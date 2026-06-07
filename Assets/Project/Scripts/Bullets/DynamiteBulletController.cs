@@ -16,7 +16,7 @@ namespace SBabchuk
         {
             if (rigidbody2d)
             {
-                rigidbody2d.velocity = (new Vector3(_target.x, _target.y, transform.position.z) - transform.position).normalized * Random.Range(properties.speedMove - 2, properties.speedMove + 2);
+                rigidbody2d.linearVelocity = (new Vector3(_target.x, _target.y, transform.position.z) - transform.position).normalized * Random.Range(properties.speedMove - 2, properties.speedMove + 2);
             }
             else
             {
