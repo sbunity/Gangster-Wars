@@ -1,0 +1,803 @@
+{
+"skeleton": {
+	"hash": "yfs38QVwxfc27tsPCDzXktTvivs",
+	"spine": "3.8.84",
+	"x": -311.3,
+	"y": -102,
+	"width": 700.4,
+	"height": 700.4,
+	"images": "./Images/",
+	"audio": ""
+},
+"bones": [
+	{ "name": "root" },
+	{ "name": "Leg", "parent": "root", "x": 31.72, "y": 125.99 },
+	{ "name": "Body", "parent": "Leg", "length": 56.27, "rotation": 101.98, "x": -9.45, "y": 32.25 },
+	{ "name": "Bullet", "parent": "root", "x": 6.87, "y": 196.75 },
+	{ "name": "Bullet2", "parent": "root", "x": 6.87, "y": 196.75 },
+	{ "name": "Bullet3", "parent": "root", "x": 6.87, "y": 196.75 },
+	{ "name": "Hand_B1", "parent": "Body", "length": 40.72, "rotation": -156.98, "x": 71.05, "y": -13.37 },
+	{ "name": "RightHandAim", "parent": "Body", "length": 135.28, "rotation": -110.22, "x": 70.15, "y": 32.89 },
+	{ "name": "Hand_F", "parent": "RightHandAim", "length": 40.97, "rotation": -79.84, "x": 0.63, "y": -1.17 },
+	{ "name": "Hand_F2", "parent": "Hand_F", "length": 40.07, "rotation": 79.81, "x": 38.69, "y": -0.25 },
+	{ "name": "Weapon", "parent": "Hand_F2", "length": 35.03, "rotation": 3.3, "x": 16.6, "y": 15.72 },
+	{ "name": "Hand_B2", "parent": "Weapon", "length": 33.93, "rotation": -1.44, "x": 51.25, "y": -2.27 },
+	{ "name": "Hand_B3", "parent": "Hand_B2", "x": 25.19, "y": -4.74 },
+	{ "name": "HeadAim", "parent": "Body", "length": 83.06, "rotation": -110.9, "x": 76.62, "y": 0.85 },
+	{ "name": "Head", "parent": "HeadAim", "length": 34.61, "rotation": 71.07, "x": -1.17, "y": 1.31 },
+	{ "name": "ShootFx", "parent": "Weapon", "length": 50.5, "rotation": -1.78, "x": 159.47, "y": 4.27 },
+	{ "name": "Aim", "parent": "root", "x": 345.23, "y": 204.77, "color": "ff3f00ff" },
+	{ "name": "LeftArmAim", "parent": "Weapon", "rotation": -0.91, "x": 46.35, "y": -1.06, "color": "ff3f00ff" },
+	{ "name": "bone", "parent": "Body", "x": -150.17, "y": 54.62 }
+],
+"slots": [
+	{ "name": "Shadow", "bone": "root", "attachment": "Shadow" },
+	{ "name": "Leg", "bone": "Leg", "attachment": "Leg" },
+	{ "name": "Hand-B2", "bone": "Hand_B2", "attachment": "Hand-B2" },
+	{ "name": "Hand-B1", "bone": "Hand_B1", "attachment": "Hand-B1" },
+	{ "name": "Body", "bone": "Body", "attachment": "Body" },
+	{ "name": "Head", "bone": "Head", "attachment": "Head" },
+	{ "name": "SplashWepon", "bone": "root" },
+	{ "name": "Weapon", "bone": "Weapon", "attachment": "Weapon" },
+	{ "name": "Hand_F2", "bone": "Hand_F2", "attachment": "Hand_F2" },
+	{ "name": "Hand_F1", "bone": "Hand_F", "attachment": "Hand_F1" },
+	{ "name": "Hand-B3", "bone": "Hand_B3", "attachment": "Hand-B3" },
+	{ "name": "Reload", "bone": "root" },
+	{ "name": "Bullet", "bone": "Bullet" },
+	{ "name": "Bullet2", "bone": "Bullet2" },
+	{ "name": "Bullet3", "bone": "Bullet3" },
+	{ "name": "skeleton-animation_0", "bone": "ShootFx" },
+	{ "name": "Box", "bone": "root", "color": "ffffff00", "attachment": "Box" },
+	{ "name": "SplashCrop", "bone": "Head" }
+],
+"ik": [
+	{
+		"name": "HeadAim",
+		"order": 2,
+		"bones": [ "HeadAim" ],
+		"target": "Aim",
+		"mix": 0.5
+	},
+	{
+		"name": "LeftArmAim",
+		"order": 1,
+		"bones": [ "Hand_B1" ],
+		"target": "LeftArmAim",
+		"compress": true,
+		"stretch": true
+	},
+	{
+		"name": "RightArmAim",
+		"bones": [ "RightHandAim" ],
+		"target": "Aim"
+	}
+],
+"skins": [
+	{
+		"name": "default",
+		"attachments": {
+			"Body": {
+				"Body": { "x": 44.51, "y": 5.23, "rotation": -101.98, "width": 72, "height": 105 }
+			},
+			"Box": {
+				"Box": { "x": 38.9, "y": 248.2, "rotation": 127.1, "width": 500, "height": 500 }
+			},
+			"Bullet": {
+				"Bullet": { "x": -0.12, "y": -0.18, "width": 16, "height": 4 }
+			},
+			"Bullet2": {
+				"Bullet": { "x": -0.12, "y": -0.18, "width": 16, "height": 4 }
+			},
+			"Bullet3": {
+				"Bullet": { "x": -0.12, "y": -0.18, "width": 16, "height": 4 }
+			},
+			"Hand-B1": {
+				"Hand-B1": { "x": 22.62, "y": -2.08, "rotation": 55.01, "width": 41, "height": 53 }
+			},
+			"Hand-B2": {
+				"Hand-B2": { "x": 11.81, "y": -1.66, "rotation": -11.69, "width": 38, "height": 17 }
+			},
+			"Hand-B3": {
+				"Hand-B3": { "x": -2.93, "y": 0.54, "rotation": 1.88, "width": 42, "height": 16 }
+			},
+			"Hand_F1": {
+				"Hand_F1": { "x": 22.39, "y": 0.28, "rotation": 82.2, "width": 25, "height": 54 }
+			},
+			"Hand_F2": {
+				"Hand_F2": { "x": 24.91, "y": 0.06, "rotation": 2.39, "width": 56, "height": 22 }
+			},
+			"Head": {
+				"Head": { "x": 35.75, "y": 4.9, "rotation": -66.32, "width": 77, "height": 83 }
+			},
+			"Leg": {
+				"Leg": { "x": 22.37, "y": -25.32, "width": 126, "height": 139 }
+			},
+			"Reload": {
+				"Reload": { "x": 29.57, "y": 193.75, "width": 141, "height": 48 }
+			},
+			"Shadow": {
+				"Shadow": { "x": 27, "y": 135, "width": 178, "height": 209 }
+			},
+			"SplashCrop": {
+				"SplashCrop": { "x": 34.32, "y": -9.42, "rotation": -65.36, "width": 79, "height": 85 }
+			},
+			"SplashWepon": {
+				"SplashWepon": { "x": 55.78, "y": 172.37, "rotation": -0.1, "width": 141, "height": 265 }
+			},
+			"Weapon": {
+				"Weapon": { "x": 37.16, "y": -11.86, "rotation": -0.91, "width": 152, "height": 42 }
+			},
+			"skeleton-animation_0": {
+				"skeleton-animation_0": { "width": 88, "height": 68 },
+				"skeleton-animation_1": { "rotation": 0.87, "width": 88, "height": 68 },
+				"skeleton-animation_2": { "rotation": 0.87, "width": 88, "height": 68 },
+				"skeleton-animation_3": { "rotation": 0.87, "width": 88, "height": 68 },
+				"skeleton-animation_4": { "rotation": 0.87, "width": 88, "height": 68 },
+				"skeleton-animation_5": { "rotation": 0.87, "width": 88, "height": 68 }
+			}
+		}
+	}
+],
+"events": {
+	"Fire": {}
+},
+"animations": {
+	"Idle": {
+		"slots": {
+			"SplashCrop": {
+				"attachment": [
+					{ "name": null }
+				]
+			}
+		},
+		"bones": {
+			"root": {
+				"rotate": [
+					{ "curve": "stepped" },
+					{ "time": 0.6667 }
+				],
+				"translate": [
+					{ "curve": "stepped" },
+					{ "time": 0.6667 }
+				],
+				"scale": [
+					{ "curve": "stepped" },
+					{ "time": 0.6667 }
+				],
+				"shear": [
+					{ "curve": "stepped" },
+					{ "time": 0.6667 }
+				]
+			},
+			"Leg": {
+				"rotate": [
+					{ "curve": "stepped" },
+					{ "time": 0.6667 }
+				],
+				"translate": [
+					{ "curve": "stepped" },
+					{ "time": 0.6667 }
+				],
+				"scale": [
+					{ "curve": "stepped" },
+					{ "time": 0.6667 }
+				],
+				"shear": [
+					{ "curve": "stepped" },
+					{ "time": 0.6667 }
+				]
+			},
+			"Body": {
+				"rotate": [
+					{},
+					{ "time": 0.3333, "angle": -1.34 },
+					{ "time": 0.6667 }
+				],
+				"translate": [
+					{},
+					{ "time": 0.3333, "y": -3.03 },
+					{ "time": 0.6667 }
+				],
+				"scale": [
+					{ "curve": "stepped" },
+					{ "time": 0.6667 }
+				],
+				"shear": [
+					{ "curve": "stepped" },
+					{ "time": 0.6667 }
+				]
+			},
+			"Head": {
+				"rotate": [
+					{},
+					{ "time": 0.3333, "angle": 5.34 },
+					{ "time": 0.6667 }
+				],
+				"translate": [
+					{ "curve": "stepped" },
+					{ "time": 0.6667 }
+				],
+				"scale": [
+					{ "curve": "stepped" },
+					{ "time": 0.6667 }
+				],
+				"shear": [
+					{ "curve": "stepped" },
+					{ "time": 0.6667 }
+				]
+			},
+			"Hand_F": {
+				"rotate": [
+					{ "curve": "stepped" },
+					{ "time": 0.6667 }
+				],
+				"translate": [
+					{ "curve": "stepped" },
+					{ "time": 0.6667 }
+				],
+				"scale": [
+					{ "curve": "stepped" },
+					{ "time": 0.6667 }
+				],
+				"shear": [
+					{ "curve": "stepped" },
+					{ "time": 0.6667 }
+				]
+			},
+			"Hand_F2": {
+				"rotate": [
+					{ "curve": "stepped" },
+					{ "time": 0.6667 }
+				],
+				"translate": [
+					{ "curve": "stepped" },
+					{ "time": 0.6667 }
+				],
+				"scale": [
+					{ "curve": "stepped" },
+					{ "time": 0.6667 }
+				],
+				"shear": [
+					{ "curve": "stepped" },
+					{ "time": 0.6667 }
+				]
+			},
+			"Weapon": {
+				"rotate": [
+					{ "curve": "stepped" },
+					{ "time": 0.6667 }
+				],
+				"translate": [
+					{ "curve": "stepped" },
+					{ "time": 0.6667 }
+				],
+				"scale": [
+					{ "curve": "stepped" },
+					{ "time": 0.6667 }
+				],
+				"shear": [
+					{ "curve": "stepped" },
+					{ "time": 0.6667 }
+				]
+			},
+			"Hand_B1": {
+				"rotate": [
+					{ "curve": "stepped" },
+					{ "time": 0.6667 }
+				],
+				"translate": [
+					{ "curve": "stepped" },
+					{ "time": 0.6667 }
+				],
+				"scale": [
+					{ "curve": "stepped" },
+					{ "time": 0.6667 }
+				],
+				"shear": [
+					{ "curve": "stepped" },
+					{ "time": 0.6667 }
+				]
+			},
+			"Hand_B2": {
+				"rotate": [
+					{ "curve": "stepped" },
+					{ "time": 0.6667 }
+				],
+				"translate": [
+					{ "curve": "stepped" },
+					{ "time": 0.6667 }
+				],
+				"scale": [
+					{ "curve": "stepped" },
+					{ "time": 0.6667 }
+				],
+				"shear": [
+					{ "curve": "stepped" },
+					{ "time": 0.6667 }
+				]
+			},
+			"Hand_B3": {
+				"rotate": [
+					{ "curve": "stepped" },
+					{ "time": 0.6667 }
+				],
+				"translate": [
+					{ "curve": "stepped" },
+					{ "time": 0.6667 }
+				],
+				"scale": [
+					{ "curve": "stepped" },
+					{ "time": 0.6667 }
+				],
+				"shear": [
+					{ "curve": "stepped" },
+					{ "time": 0.6667 }
+				]
+			}
+		}
+	},
+	"Reload": {
+		"slots": {
+			"Reload": {
+				"color": [
+					{ "color": "ffffffff" },
+					{ "time": 0.3333, "color": "ffffff00" },
+					{ "time": 0.6667, "color": "ffffffff" }
+				],
+				"attachment": [
+					{ "name": "Reload" }
+				]
+			},
+			"SplashCrop": {
+				"attachment": [
+					{ "name": null }
+				]
+			}
+		},
+		"bones": {
+			"root": {
+				"rotate": [
+					{ "curve": "stepped" },
+					{ "time": 0.6667 }
+				],
+				"translate": [
+					{ "curve": "stepped" },
+					{ "time": 0.6667 }
+				],
+				"scale": [
+					{ "curve": "stepped" },
+					{ "time": 0.6667 }
+				],
+				"shear": [
+					{ "curve": "stepped" },
+					{ "time": 0.6667 }
+				]
+			},
+			"Leg": {
+				"rotate": [
+					{ "curve": "stepped" },
+					{ "time": 0.6667 }
+				],
+				"translate": [
+					{ "curve": "stepped" },
+					{ "time": 0.6667 }
+				],
+				"scale": [
+					{ "curve": "stepped" },
+					{ "time": 0.6667 }
+				],
+				"shear": [
+					{ "curve": "stepped" },
+					{ "time": 0.6667 }
+				]
+			},
+			"Body": {
+				"rotate": [
+					{ "curve": "stepped" },
+					{ "time": 0.6667 }
+				],
+				"translate": [
+					{ "curve": "stepped" },
+					{ "time": 0.6667 }
+				],
+				"scale": [
+					{ "curve": "stepped" },
+					{ "time": 0.6667 }
+				],
+				"shear": [
+					{ "curve": "stepped" },
+					{ "time": 0.6667 }
+				]
+			},
+			"Head": {
+				"rotate": [
+					{ "angle": -16.88 },
+					{ "time": 0.3333, "angle": -7.1 },
+					{ "time": 0.6667, "angle": -16.88 }
+				],
+				"translate": [
+					{ "x": 0.88, "y": 1.5, "curve": "stepped" },
+					{ "time": 0.6667, "x": 0.88, "y": 1.5 }
+				],
+				"scale": [
+					{ "curve": "stepped" },
+					{ "time": 0.6667 }
+				],
+				"shear": [
+					{ "curve": "stepped" },
+					{ "time": 0.6667 }
+				]
+			},
+			"Hand_F": {
+				"rotate": [
+					{},
+					{ "time": 0.1667, "angle": -7.11 },
+					{ "time": 0.6667 }
+				],
+				"translate": [
+					{ "curve": "stepped" },
+					{ "time": 0.6667 }
+				],
+				"scale": [
+					{ "curve": "stepped" },
+					{ "time": 0.6667 }
+				],
+				"shear": [
+					{ "curve": "stepped" },
+					{ "time": 0.6667 }
+				]
+			},
+			"Hand_F2": {
+				"rotate": [
+					{},
+					{ "time": 0.3333, "angle": 12.84 },
+					{ "time": 0.6667 }
+				],
+				"translate": [
+					{ "curve": "stepped" },
+					{ "time": 0.6667 }
+				],
+				"scale": [
+					{ "curve": "stepped" },
+					{ "time": 0.6667 }
+				],
+				"shear": [
+					{ "curve": "stepped" },
+					{ "time": 0.6667 }
+				]
+			},
+			"Weapon": {
+				"rotate": [
+					{ "curve": "stepped" },
+					{ "time": 0.6667 }
+				],
+				"translate": [
+					{ "curve": "stepped" },
+					{ "time": 0.6667 }
+				],
+				"scale": [
+					{ "curve": "stepped" },
+					{ "time": 0.6667 }
+				],
+				"shear": [
+					{ "curve": "stepped" },
+					{ "time": 0.6667 }
+				]
+			},
+			"Hand_B1": {
+				"rotate": [
+					{ "curve": "stepped" },
+					{ "time": 0.6667 }
+				],
+				"translate": [
+					{ "curve": "stepped" },
+					{ "time": 0.6667 }
+				],
+				"scale": [
+					{ "curve": "stepped" },
+					{ "time": 0.6667 }
+				],
+				"shear": [
+					{ "curve": "stepped" },
+					{ "time": 0.6667 }
+				]
+			},
+			"Hand_B2": {
+				"rotate": [
+					{},
+					{ "time": 0.3333, "angle": 48.81 },
+					{ "time": 0.6667 }
+				],
+				"translate": [
+					{},
+					{ "time": 0.3333, "x": -2.1, "y": -10.5 },
+					{ "time": 0.6667 }
+				],
+				"scale": [
+					{ "curve": "stepped" },
+					{ "time": 0.6667 }
+				],
+				"shear": [
+					{ "curve": "stepped" },
+					{ "time": 0.6667 }
+				]
+			},
+			"Hand_B3": {
+				"rotate": [
+					{},
+					{ "time": 0.3333, "angle": -46.86 },
+					{ "time": 0.6667 }
+				],
+				"translate": [
+					{},
+					{ "time": 0.3333, "x": -7.2, "y": -6.67 },
+					{ "time": 0.6667 }
+				],
+				"scale": [
+					{ "curve": "stepped" },
+					{ "time": 0.6667 }
+				],
+				"shear": [
+					{ "curve": "stepped" },
+					{ "time": 0.6667 }
+				]
+			}
+		}
+	},
+	"Shoot": {
+		"slots": {
+			"Bullet": {
+				"attachment": [
+					{ "name": "Bullet" }
+				]
+			},
+			"Bullet2": {
+				"attachment": [
+					{ "name": "Bullet" }
+				]
+			},
+			"Bullet3": {
+				"attachment": [
+					{ "name": "Bullet" }
+				]
+			},
+			"SplashCrop": {
+				"attachment": [
+					{ "name": "SplashCrop" },
+					{ "time": 0.1, "name": null }
+				]
+			},
+			"SplashWepon": {
+				"attachment": [
+					{ "name": "SplashWepon" },
+					{ "time": 0.1, "name": null }
+				]
+			}
+		},
+		"bones": {
+			"Leg": {
+				"rotate": [
+					{ "curve": "stepped" },
+					{ "time": 0.1667 }
+				],
+				"translate": [
+					{ "curve": "stepped" },
+					{ "time": 0.1667 }
+				],
+				"scale": [
+					{ "curve": "stepped" },
+					{ "time": 0.1667 }
+				],
+				"shear": [
+					{ "curve": "stepped" },
+					{ "time": 0.1667 }
+				]
+			},
+			"Body": {
+				"rotate": [
+					{ "curve": "stepped" },
+					{ "time": 0.1667 }
+				],
+				"translate": [
+					{ "curve": "stepped" },
+					{ "time": 0.1667 }
+				],
+				"scale": [
+					{ "curve": "stepped" },
+					{ "time": 0.1667 }
+				],
+				"shear": [
+					{ "curve": "stepped" },
+					{ "time": 0.1667 }
+				]
+			},
+			"Head": {
+				"rotate": [
+					{},
+					{ "time": 0.1, "angle": -3.63 },
+					{ "time": 0.1667 }
+				],
+				"translate": [
+					{ "curve": "stepped" },
+					{ "time": 0.1667 }
+				],
+				"scale": [
+					{ "curve": "stepped" },
+					{ "time": 0.1667 }
+				],
+				"shear": [
+					{ "curve": "stepped" },
+					{ "time": 0.1667 }
+				]
+			},
+			"Hand_F": {
+				"rotate": [
+					{},
+					{ "time": 0.1, "angle": -7.38 },
+					{ "time": 0.1667 }
+				],
+				"translate": [
+					{ "curve": "stepped" },
+					{ "time": 0.1667 }
+				],
+				"scale": [
+					{ "curve": "stepped" },
+					{ "time": 0.1667 }
+				],
+				"shear": [
+					{ "curve": "stepped" },
+					{ "time": 0.1667 }
+				]
+			},
+			"Hand_F2": {
+				"rotate": [
+					{},
+					{ "time": 0.1, "angle": 7.56 },
+					{ "time": 0.1667 }
+				],
+				"translate": [
+					{ "curve": "stepped" },
+					{ "time": 0.1667 }
+				],
+				"scale": [
+					{ "curve": "stepped" },
+					{ "time": 0.1667 }
+				],
+				"shear": [
+					{ "curve": "stepped" },
+					{ "time": 0.1667 }
+				]
+			},
+			"Weapon": {
+				"rotate": [
+					{ "curve": "stepped" },
+					{ "time": 0.1667 }
+				],
+				"translate": [
+					{ "curve": "stepped" },
+					{ "time": 0.1667 }
+				],
+				"scale": [
+					{ "curve": "stepped" },
+					{ "time": 0.1667 }
+				],
+				"shear": [
+					{ "curve": "stepped" },
+					{ "time": 0.1667 }
+				]
+			},
+			"Hand_B1": {
+				"rotate": [
+					{},
+					{ "time": 0.1, "angle": -3.96 },
+					{ "time": 0.1667 }
+				],
+				"translate": [
+					{ "curve": "stepped" },
+					{ "time": 0.1667 }
+				],
+				"scale": [
+					{ "curve": "stepped" },
+					{ "time": 0.1667 }
+				],
+				"shear": [
+					{ "curve": "stepped" },
+					{ "time": 0.1667 }
+				]
+			},
+			"Hand_B2": {
+				"rotate": [
+					{},
+					{ "time": 0.1, "angle": 10.48 },
+					{ "time": 0.1667 }
+				],
+				"translate": [
+					{ "curve": "stepped" },
+					{ "time": 0.1667 }
+				],
+				"scale": [
+					{ "curve": "stepped" },
+					{ "time": 0.1667 }
+				],
+				"shear": [
+					{ "curve": "stepped" },
+					{ "time": 0.1667 }
+				]
+			},
+			"Hand_B3": {
+				"rotate": [
+					{},
+					{ "time": 0.1, "angle": -7.14 },
+					{ "time": 0.1667 }
+				],
+				"translate": [
+					{},
+					{ "time": 0.1, "x": -3.05, "y": 0.34 },
+					{ "time": 0.1667 }
+				],
+				"scale": [
+					{ "curve": "stepped" },
+					{ "time": 0.1667 }
+				],
+				"shear": [
+					{ "curve": "stepped" },
+					{ "time": 0.1667 }
+				]
+			},
+			"Bullet": {
+				"rotate": [
+					{},
+					{ "time": 0.1, "angle": 66.64 },
+					{ "time": 0.1667, "angle": 85.19 }
+				],
+				"translate": [
+					{},
+					{ "time": 0.1, "x": -21.19, "y": 14.59 },
+					{ "time": 0.1667, "x": -51.17, "y": 15.61 }
+				],
+				"scale": [
+					{}
+				],
+				"shear": [
+					{}
+				]
+			},
+			"Bullet2": {
+				"rotate": [
+					{},
+					{ "time": 0.1667, "angle": 25.56 }
+				],
+				"translate": [
+					{},
+					{ "time": 0.1667, "x": -49.15, "y": -28.91 }
+				],
+				"scale": [
+					{}
+				],
+				"shear": [
+					{}
+				]
+			},
+			"Bullet3": {
+				"rotate": [
+					{},
+					{ "time": 0.1667, "angle": 37.43 }
+				],
+				"translate": [
+					{},
+					{ "time": 0.1667, "x": -34.92, "y": -55.88 }
+				],
+				"scale": [
+					{}
+				],
+				"shear": [
+					{}
+				]
+			}
+		},
+		"events": [
+			{ "time": 0.1, "name": "Fire" }
+		]
+	}
+}
+}

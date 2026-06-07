@@ -1,0 +1,58 @@
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using DG.Tweening;
+using System;
+using UnityEngine.UI;
+
+namespace SBabchuk
+{
+    public class BomberEnemyController : EnemyControllerBase
+    {
+        [Header ("Поправка враховуючи мікс")]
+        [Range(0,1)]
+        public float mixDuration = 0.2f;
+
+        [Header("Центр спавна пуль")]
+        public List<Center> bulletPoints;
+
+        private int index = 0;
+
+        Tween correctionMixDuration;
+
+        /// <summary>
+        /// Запускаєм нову атаку
+        /// </summary>
+        public override void Attacked()
+        {
+            index = 0;
+
+            WaitNextAttack(properties.speedAtack);
+        }
+
+        /// <summary>
+        /// Нанесення шкоди
+        /// </summary>
+        public override void GiveDamage()
+        {
+            correctionMixDuration = DOVirtual.DelayedCall(mixDuration, () =>
+            {
+                float offset = Vector2.Distance(center.GetPosition(), bulletPoints[index].GetPosition());
+                LevelController.Instance.SpawnBullet(properties.bulletID, properties.damage, bulletPoints[index].GetPosition(), target.position, offset);
+
+                index++;
+            });
+           
+        }
+
+        /// <summary>
+        /// Зупинаяєм всі твіни
+        /// </summary>
+        public override void StopAllTweens()
+        {
+            base.StopAllTweens();
+
+            Utils.StopTween(correctionMixDuration);
+        }
+    }
+}

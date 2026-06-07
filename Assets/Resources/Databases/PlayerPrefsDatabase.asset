@@ -1,0 +1,106 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cb21dbdfe8227184cb2b7436087f42f6, type: 3}
+  m_Name: PlayerPrefsDatabase
+  m_EditorClassIdentifier: 
+  PlayerPrefs:
+    musik: 0
+    sound: 0
+    coin: 100
+    levelID: 0
+    selectedWeaponID: 0
+    selectedGrenadeID: 0
+    selectedDefenceID: 0
+    weapons:
+    - id: 0
+      name: Weapon_0
+      isBuy: 0
+      upgradeID: 0
+      countPatrons: 25
+    - id: 1
+      name: Weapon_1
+      isBuy: 1
+      upgradeID: -1
+      countPatrons: 0
+    - id: 2
+      name: Weapon_2
+      isBuy: 1
+      upgradeID: -1
+      countPatrons: 0
+    - id: 3
+      name: Weapon_3
+      isBuy: 1
+      upgradeID: -1
+      countPatrons: 0
+    - id: 4
+      name: Weapon_4
+      isBuy: 1
+      upgradeID: -1
+      countPatrons: 0
+    grenades:
+    - id: 0
+      isBuy: 1
+      count: 0
+    - id: 1
+      isBuy: 1
+      count: 0
+    - id: 2
+      isBuy: 1
+      count: 0
+    - id: 3
+      isBuy: 1
+      count: 0
+    defences:
+    - id: 0
+      isBuy: 1
+      upgradeID: -1
+    - id: 1
+      isBuy: 1
+      upgradeID: -1
+    - id: 2
+      isBuy: 1
+      upgradeID: -1
+    - id: 3
+      isBuy: 1
+      upgradeID: -1
+    personages:
+    - id: 0
+      isBuy: 1
+      upgradeID: 0
+    - id: 1
+      isBuy: 1
+      upgradeID: 0
+    levels:
+    - id: 0
+      isCompleted: 1
+      stars: 0
+    - id: 1
+      isCompleted: 1
+      stars: 0
+    - id: 2
+      isCompleted: 1
+      stars: 0
+    - id: 3
+      isCompleted: 1
+      stars: 0
+    - id: 4
+      isCompleted: 1
+      stars: 0
+    - id: 5
+      isCompleted: 1
+      stars: 0
+    - id: 6
+      isCompleted: 1
+      stars: 0
+    - id: 7
+      isCompleted: 1
+      stars: 0

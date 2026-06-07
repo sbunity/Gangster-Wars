@@ -1,0 +1,118 @@
+
+skeleton.png
+size: 780,508
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+Body
+  rotate: false
+  xy: 504, 294
+  size: 193, 211
+  orig: 194, 211
+  offset: 0, 0
+  index: -1
+Box
+  rotate: false
+  xy: 2, 5
+  size: 500, 500
+  orig: 500, 500
+  offset: 0, 0
+  index: -1
+Hand-B1
+  rotate: true
+  xy: 716, 311
+  size: 65, 41
+  orig: 65, 41
+  offset: 0, 0
+  index: -1
+Hand-B2
+  rotate: true
+  xy: 716, 378
+  size: 61, 54
+  orig: 61, 54
+  offset: 0, 0
+  index: -1
+Hand-F1
+  rotate: false
+  xy: 716, 441
+  size: 54, 64
+  orig: 54, 64
+  offset: 0, 0
+  index: -1
+HandF2
+  rotate: false
+  xy: 643, 184
+  size: 67, 108
+  orig: 67, 108
+  offset: 0, 0
+  index: -1
+Head
+  rotate: false
+  xy: 504, 141
+  size: 137, 151
+  orig: 137, 151
+  offset: 0, 0
+  index: -1
+Head-2
+  rotate: true
+  xy: 504, 2
+  size: 137, 143
+  orig: 137, 143
+  offset: 0, 0
+  index: -1
+Leg-B1
+  rotate: false
+  xy: 759, 303
+  size: 16, 30
+  orig: 16, 30
+  offset: 0, 0
+  index: -1
+Leg-B2
+  rotate: true
+  xy: 692, 9
+  size: 17, 31
+  orig: 17, 31
+  offset: 0, 0
+  index: -1
+Leg-B3
+  rotate: false
+  xy: 649, 15
+  size: 41, 11
+  orig: 42, 11
+  offset: 0, 0
+  index: -1
+Leg-F1
+  rotate: false
+  xy: 712, 279
+  size: 16, 30
+  orig: 16, 30
+  offset: 0, 0
+  index: -1
+Leg-F2
+  rotate: true
+  xy: 725, 9
+  size: 17, 31
+  orig: 17, 31
+  offset: 0, 0
+  index: -1
+Leg-F3
+  rotate: true
+  xy: 759, 335
+  size: 41, 11
+  orig: 42, 11
+  offset: 0, 0
+  index: -1
+Shadow
+  rotate: true
+  xy: 699, 327
+  size: 178, 15
+  orig: 178, 15
+  offset: 0, 0
+  index: -1
+Weapon
+  rotate: true
+  xy: 649, 28
+  size: 154, 109
+  orig: 154, 109
+  offset: 0, 0
+  index: -1

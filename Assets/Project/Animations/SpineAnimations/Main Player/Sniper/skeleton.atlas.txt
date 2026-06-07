@@ -1,0 +1,125 @@
+
+skeleton.png
+size: 772,504
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+Body
+  rotate: false
+  xy: 607, 220
+  size: 104, 80
+  orig: 104, 80
+  offset: 0, 0
+  index: -1
+Box
+  rotate: false
+  xy: 2, 2
+  size: 500, 500
+  orig: 500, 500
+  offset: 0, 0
+  index: -1
+Hand
+  rotate: true
+  xy: 721, 320
+  size: 90, 38
+  orig: 90, 38
+  offset: 0, 0
+  index: -1
+Hand2
+  rotate: false
+  xy: 721, 302
+  size: 31, 16
+  orig: 31, 16
+  offset: 0, 0
+  index: -1
+Head
+  rotate: false
+  xy: 607, 403
+  size: 112, 99
+  orig: 113, 99
+  offset: 0, 0
+  index: -1
+Head2
+  rotate: false
+  xy: 607, 302
+  size: 112, 99
+  orig: 113, 99
+  offset: 0, 0
+  index: -1
+Reload
+  rotate: true
+  xy: 540, 81
+  size: 131, 36
+  orig: 141, 48
+  offset: 5, 6
+  index: -1
+Shadow
+  rotate: true
+  xy: 576, 234
+  size: 268, 29
+  orig: 271, 29
+  offset: 1, 0
+  index: -1
+Splash
+  rotate: true
+  xy: 504, 18
+  size: 194, 34
+  orig: 223, 92
+  offset: 29, 0
+  index: -1
+SplashCrop
+  rotate: false
+  xy: 721, 412
+  size: 49, 90
+  orig: 57, 92
+  offset: 0, 2
+  index: -1
+Weapon
+  rotate: true
+  xy: 504, 214
+  size: 288, 70
+  orig: 289, 70
+  offset: 0, 0
+  index: -1
+skeleton-animation_0
+  rotate: false
+  xy: 667, 71
+  size: 86, 58
+  orig: 88, 68
+  offset: 0, 5
+  index: -1
+skeleton-animation_1
+  rotate: false
+  xy: 578, 150
+  size: 87, 68
+  orig: 88, 68
+  offset: 0, 0
+  index: -1
+skeleton-animation_2
+  rotate: false
+  xy: 578, 80
+  size: 87, 68
+  orig: 88, 68
+  offset: 0, 0
+  index: -1
+skeleton-animation_3
+  rotate: true
+  xy: 667, 131
+  size: 87, 68
+  orig: 88, 68
+  offset: 0, 0
+  index: -1
+skeleton-animation_4
+  rotate: false
+  xy: 540, 12
+  size: 87, 66
+  orig: 88, 68
+  offset: 0, 1
+  index: -1
+skeleton-animation_5
+  rotate: false
+  xy: 629, 11
+  size: 60, 58
+  orig: 88, 68
+  offset: 0, 5
+  index: -1

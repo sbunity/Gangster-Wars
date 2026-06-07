@@ -1,0 +1,51 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5100d30a0708cb14ebeb3f3e6cf226d8, type: 3}
+  m_Name: BombStoreDatabase
+  m_EditorClassIdentifier: 
+  grenades:
+  - id: 0
+    name: Grenade_1
+    ico: {fileID: 21300000, guid: 6e49305a73d9d9745bbc767541b2a835, type: 3}
+    price: 10
+    damage: 5
+    delay: 0
+    time: 0
+    radius: 0
+    collision: 4
+  - id: 1
+    name: Grenade_2
+    ico: {fileID: 21300000, guid: 7c4ef542666421d4b831229fd7eebb14, type: 3}
+    price: 20
+    damage: 7
+    delay: 3
+    time: 0
+    radius: 0
+    collision: 3
+  - id: 2
+    name: Grenade_3
+    ico: {fileID: 21300000, guid: af03ae9984a066941ba4886369c4656c, type: 3}
+    price: 30
+    damage: 3
+    delay: 0
+    time: 3
+    radius: 0
+    collision: 1
+  - id: 3
+    name: Grenade_4
+    ico: {fileID: 21300000, guid: 2c8107853715e094cbd00a185d06babb, type: 3}
+    price: 30
+    damage: 15
+    delay: 10
+    time: 0
+    radius: 0
+    collision: 2

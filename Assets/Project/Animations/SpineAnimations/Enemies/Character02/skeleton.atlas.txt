@@ -1,0 +1,90 @@
+
+skeleton.png
+size: 664,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+Body
+  rotate: true
+  xy: 504, 372
+  size: 135, 158
+  orig: 135, 158
+  offset: 0, 0
+  index: -1
+Box
+  rotate: false
+  xy: 2, 7
+  size: 500, 500
+  orig: 500, 500
+  offset: 0, 0
+  index: -1
+Hand B1
+  rotate: false
+  xy: 609, 160
+  size: 50, 57
+  orig: 50, 57
+  offset: 0, 0
+  index: -1
+Hand B2
+  rotate: false
+  xy: 504, 2
+  size: 47, 36
+  orig: 47, 37
+  offset: 0, 1
+  index: -1
+Hand F1
+  rotate: false
+  xy: 610, 72
+  size: 51, 54
+  orig: 51, 54
+  offset: 0, 0
+  index: -1
+Hand F2
+  rotate: false
+  xy: 504, 40
+  size: 51, 86
+  orig: 51, 87
+  offset: 0, 1
+  index: -1
+Head
+  rotate: false
+  xy: 504, 250
+  size: 103, 120
+  orig: 103, 120
+  offset: 0, 0
+  index: -1
+Head-2
+  rotate: false
+  xy: 504, 128
+  size: 103, 120
+  orig: 103, 120
+  offset: 0, 0
+  index: -1
+Leg-B
+  rotate: false
+  xy: 631, 327
+  size: 28, 43
+  orig: 29, 43
+  offset: 0, 0
+  index: -1
+Leg-F
+  rotate: true
+  xy: 609, 128
+  size: 30, 43
+  orig: 30, 43
+  offset: 0, 0
+  index: -1
+Shadow
+  rotate: true
+  xy: 609, 219
+  size: 151, 20
+  orig: 151, 20
+  offset: 0, 0
+  index: -1
+Weapon
+  rotate: false
+  xy: 557, 42
+  size: 51, 84
+  orig: 51, 84
+  offset: 0, 0
+  index: -1

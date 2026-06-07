@@ -1,0 +1,88 @@
+{
+"skeleton": {
+	"hash": "KbzK4FhZEKXKtv4RwJI6Pgfz3Vs",
+	"spine": "3.8.84",
+	"x": -56,
+	"y": -62.5,
+	"width": 112,
+	"height": 125,
+	"images": "./Images/",
+	"audio": ""
+},
+"bones": [
+	{ "name": "root" }
+],
+"slots": [
+	{ "name": "Axe", "bone": "root", "attachment": "Axe" }
+],
+"skins": [
+	{
+		"name": "default",
+		"attachments": {
+			"Axe": {
+				"Axe": { "width": 112, "height": 125 },
+				"Fish": { "width": 193, "height": 156 }
+			}
+		}
+	}
+],
+"animations": {
+	"Axe": {
+		"bones": {
+			"root": {
+				"rotate": [
+					{},
+					{ "time": 0.0667, "angle": 89.14 },
+					{ "time": 0.1333, "angle": -179.89 },
+					{ "time": 0.2, "angle": -89.37 },
+					{ "time": 0.2667 }
+				],
+				"translate": [
+					{ "curve": "stepped" },
+					{ "time": 0.2667 }
+				],
+				"scale": [
+					{ "curve": "stepped" },
+					{ "time": 0.2667 }
+				],
+				"shear": [
+					{ "curve": "stepped" },
+					{ "time": 0.2667 }
+				]
+			}
+		}
+	},
+	"Fish": {
+		"slots": {
+			"Axe": {
+				"attachment": [
+					{ "name": "Fish" }
+				]
+			}
+		},
+		"bones": {
+			"root": {
+				"rotate": [
+					{},
+					{ "time": 0.0667, "angle": 89.14 },
+					{ "time": 0.1333, "angle": -179.89 },
+					{ "time": 0.2, "angle": -89.37 },
+					{ "time": 0.2667 }
+				],
+				"translate": [
+					{ "curve": "stepped" },
+					{ "time": 0.2667 }
+				],
+				"scale": [
+					{ "curve": "stepped" },
+					{ "time": 0.2667 }
+				],
+				"shear": [
+					{ "curve": "stepped" },
+					{ "time": 0.2667 }
+				]
+			}
+		}
+	}
+}
+}

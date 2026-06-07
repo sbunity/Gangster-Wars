@@ -1,0 +1,225 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95b38e7f3b29d8a448a9c7edd71e5284, type: 3}
+  m_Name: WeaponStoreDatabase
+  m_EditorClassIdentifier: 
+  weapons:
+  - id: 0
+    name: Weapon_0
+    ico: {fileID: 21300000, guid: 2da913c8b9e462d49947185b36828611, type: 3}
+    price: 10
+    magazine: 10
+    priceMagazine: 0
+    speedReload: 0.5
+    countUpgrades: 5
+    bulletID: 6
+    upgrades:
+    - id: 0
+      name: Upgrade_1
+      price: 10
+      speedAtack: 0
+      settings:
+        damage: 3
+    - id: 1
+      name: Upgrade_2
+      price: 20
+      speedAtack: 0
+      settings:
+        damage: 4
+    - id: 2
+      name: Upgrade_3
+      price: 30
+      speedAtack: 0
+      settings:
+        damage: 5
+    - id: 3
+      name: Upgrade_4
+      price: 40
+      speedAtack: 0
+      settings:
+        damage: 6
+    - id: 4
+      name: Upgrade_5
+      price: 50
+      speedAtack: 0
+      settings:
+        damage: 7
+    settings:
+      damage: 2
+  - id: 1
+    name: Weapon_1
+    ico: {fileID: 21300000, guid: 932cf1211ae96cf44884b7330b338625, type: 3}
+    price: 10
+    magazine: 15
+    priceMagazine: 15
+    speedReload: 0.5
+    countUpgrades: 5
+    bulletID: 5
+    upgrades:
+    - id: 0
+      name: Upgrade_1
+      price: 10
+      speedAtack: 0
+      settings:
+        damage: 6
+    - id: 1
+      name: Upgrade_2
+      price: 20
+      speedAtack: 0
+      settings:
+        damage: 7
+    - id: 2
+      name: Upgrade_3
+      price: 30
+      speedAtack: 0
+      settings:
+        damage: 8
+    - id: 3
+      name: Upgrade_4
+      price: 40
+      speedAtack: 0
+      settings:
+        damage: 9
+    - id: 4
+      name: Upgrade_5
+      price: 50
+      speedAtack: 0
+      settings:
+        damage: 10
+    settings:
+      damage: 5
+  - id: 2
+    name: Weapon_2
+    ico: {fileID: 21300000, guid: c9e52e94c954ea146940099e8a3df0d3, type: 3}
+    price: 10
+    magazine: 20
+    priceMagazine: 20
+    speedReload: 1
+    countUpgrades: 5
+    bulletID: 7
+    upgrades:
+    - id: 0
+      name: Upgrade_1
+      price: 10
+      speedAtack: 0
+      settings:
+        damage: 9
+    - id: 1
+      name: Upgrade_2
+      price: 20
+      speedAtack: 0
+      settings:
+        damage: 10
+    - id: 2
+      name: Upgrade_3
+      price: 30
+      speedAtack: 0
+      settings:
+        damage: 11
+    - id: 3
+      name: Upgrade_4
+      price: 40
+      speedAtack: 0
+      settings:
+        damage: 12
+    - id: 4
+      name: Upgrade_5
+      price: 50
+      speedAtack: 0
+      settings:
+        damage: 13
+    settings:
+      damage: 8
+  - id: 3
+    name: Weapon_3
+    ico: {fileID: 21300000, guid: 48f183bbacddeb14da542848cc4f59a3, type: 3}
+    price: 10
+    magazine: 25
+    priceMagazine: 25
+    speedReload: 0.25
+    countUpgrades: 5
+    bulletID: 8
+    upgrades:
+    - id: 0
+      name: Upgrade_1
+      price: 10
+      speedAtack: 0
+      settings:
+        damage: 6
+    - id: 1
+      name: Upgrade_2
+      price: 20
+      speedAtack: 0
+      settings:
+        damage: 7
+    - id: 2
+      name: Upgrade_3
+      price: 30
+      speedAtack: 0
+      settings:
+        damage: 8
+    - id: 3
+      name: Upgrade_4
+      price: 40
+      speedAtack: 0
+      settings:
+        damage: 9
+    - id: 4
+      name: Upgrade_5
+      price: 50
+      speedAtack: 0
+      settings:
+        damage: 10
+    settings:
+      damage: 5
+  - id: 4
+    name: Weapon_4
+    ico: {fileID: 21300000, guid: d4e3528d9d00f0845a9ef986025f1d88, type: 3}
+    price: 10
+    magazine: 50
+    priceMagazine: 50
+    speedReload: 0.1
+    countUpgrades: 5
+    bulletID: 8
+    upgrades:
+    - id: 0
+      name: Upgrade_1
+      price: 10
+      speedAtack: 0
+      settings:
+        damage: 10
+    - id: 1
+      name: Upgrade_2
+      price: 20
+      speedAtack: 0
+      settings:
+        damage: 20
+    - id: 2
+      name: Upgrade_3
+      price: 30
+      speedAtack: 0
+      settings:
+        damage: 10
+    - id: 3
+      name: Upgrade_4
+      price: 40
+      speedAtack: 0
+      settings:
+        damage: 40
+    - id: 4
+      name: Upgrade_5
+      price: 50
+      speedAtack: 0
+      settings:
+        damage: 50
+    settings:
+      damage: 5
