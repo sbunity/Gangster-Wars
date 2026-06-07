@@ -68,7 +68,7 @@ namespace SBabchuk
         {
             if (rigidbody2d)
             {
-                rigidbody2d.velocity = (new Vector3(_target.x, _target.y, transform.position.z) - transform.position).normalized * properties.speedMove;
+                rigidbody2d.linearVelocity = (new Vector3(_target.x, _target.y, transform.position.z) - transform.position).normalized * properties.speedMove;
 
                 RotationBullet(_target);
             }
