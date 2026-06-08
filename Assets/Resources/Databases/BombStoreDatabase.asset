@@ -20,7 +20,7 @@ MonoBehaviour:
     damage: 5
     delay: 0
     time: 0
-    radius: 0
+    radius: 2
     collision: 4
   - id: 1
     name: Grenade_2
@@ -29,7 +29,7 @@ MonoBehaviour:
     damage: 7
     delay: 3
     time: 0
-    radius: 0
+    radius: 3
     collision: 3
   - id: 2
     name: Grenade_3
@@ -38,7 +38,7 @@ MonoBehaviour:
     damage: 3
     delay: 0
     time: 3
-    radius: 0
+    radius: 3
     collision: 1
   - id: 3
     name: Grenade_4
@@ -47,5 +47,5 @@ MonoBehaviour:
     damage: 15
     delay: 10
     time: 0
-    radius: 0
+    radius: 3
     collision: 2
