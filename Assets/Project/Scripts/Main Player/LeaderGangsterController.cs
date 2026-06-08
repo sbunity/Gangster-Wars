@@ -44,6 +44,8 @@ namespace SBabchuk
         public List<CreateBulletPoints> bulletPoints;
 
         private int index;
+        
+        public bool isAttacking = false;
 
         private void OnDestroy()
         {
@@ -142,7 +144,10 @@ namespace SBabchuk
         {
             if (countPatrons > 0)
             {
+                isAttacking = true;
+
                 Utils.StopTween(twnReload);
+                
                 e_animation.SetAnimation(AnimationsName.Shoot); //Переключаємось в анімацію атаки
             }
         }
@@ -194,12 +199,21 @@ namespace SBabchuk
         /// </summary>
         public void StopAttack()
         {
-            e_animation.SetAnimation(AnimationsName.Idle);
+            isAttacking = false;
+            
+            //e_animation.SetAnimation(AnimationsName.Idle);
 
-            index = 0;
+            //index = 0;
 
-            Reload();
+            //Reload();
         }
+        
+        public void StopShootingFinished()
+        {
+            index = 0;
+            
+            Reload();
+        } 
     }
 
 }
