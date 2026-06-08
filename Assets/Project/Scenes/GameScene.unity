@@ -12608,6 +12608,7 @@ MonoBehaviour:
     - {fileID: 1139037526}
   - points:
     - {fileID: 71165805}
+  isAttacking: 0
 --- !u!1 &1079752541
 GameObject:
   m_ObjectHideFlags: 0
