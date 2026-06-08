@@ -8,6 +8,9 @@ namespace SBabchuk
 {
     public class GrenadeController : MonoBehaviour
     {
+        public delegate void DealingDamage(Vector3 _position, int _damage, float _radius);
+        public static event DealingDamage OnDealingDamage;
+        
         [HideInInspector]
         public Transform _parent;
 
@@ -88,6 +91,8 @@ namespace SBabchuk
 		/// </summary>
 		public void Pop()
         {
+            OnDealingDamage?.Invoke(transform.position, properties.damage, properties.radius);
+            
             transform.SetParent(_parent);
             
             collisionCollider.isTrigger = false;

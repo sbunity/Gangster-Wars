@@ -83,7 +83,8 @@ namespace SBabchuk
         /// </summary>
         private void OnDisable()
         {
-            CollisionController.OnDealingDamage -= DealingDamage;
+            //CollisionController.OnDealingDamage -= DealingDamage;
+            GrenadeController.OnDealingDamage -= DealingDamage;
         }
 
         /// <summary>
@@ -91,7 +92,8 @@ namespace SBabchuk
         /// </summary>
         private void OnEnable()
         {
-            CollisionController.OnDealingDamage += DealingDamage;
+            //CollisionController.OnDealingDamage += DealingDamage;
+            GrenadeController.OnDealingDamage += DealingDamage;
         }
 
         /// <summary>
@@ -104,7 +106,7 @@ namespace SBabchuk
         {
             if (center != null)
             {
-                if (Vector3.Distance(center.GetPosition(), _position) <= _radius)
+                if (Vector2.Distance(center.GetPosition(), _position) <= _radius)
                 {
                     TakeDamage(_damage);
                 }
