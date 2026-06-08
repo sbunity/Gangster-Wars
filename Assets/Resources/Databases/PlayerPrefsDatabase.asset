@@ -15,7 +15,7 @@ MonoBehaviour:
   PlayerPrefs:
     musik: 0
     sound: 0
-    coin: 1148
+    coin: 1272
     levelID: 0
     selectedWeaponID: 0
     selectedGrenadeID: 0
@@ -30,12 +30,12 @@ MonoBehaviour:
       name: Weapon_1
       isBuy: 0
       upgradeID: -1
-      countPatrons: 446
+      countPatrons: 428
     - id: 2
       name: Weapon_2
       isBuy: 0
       upgradeID: -1
-      countPatrons: 337
+      countPatrons: 334
     - id: 3
       name: Weapon_3
       isBuy: 0
@@ -49,16 +49,16 @@ MonoBehaviour:
     grenades:
     - id: 0
       isBuy: 0
-      count: 300
+      count: 254
     - id: 1
       isBuy: 0
-      count: 500
+      count: 498
     - id: 2
       isBuy: 0
-      count: 567
+      count: 562
     - id: 3
       isBuy: 0
-      count: 567
+      count: 561
     defences:
     - id: 0
       isBuy: 0
@@ -77,7 +77,7 @@ MonoBehaviour:
       isBuy: 1
       upgradeID: 0
     - id: 1
-      isBuy: 1
+      isBuy: 0
       upgradeID: 0
     levels:
     - id: 0
