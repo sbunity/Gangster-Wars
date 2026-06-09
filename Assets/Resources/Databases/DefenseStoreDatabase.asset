@@ -16,36 +16,36 @@ MonoBehaviour:
   - id: 0
     name: Defense_1
     ico: {fileID: 21300000, guid: db216c5e9e980694cbbff22cc5cdd63c, type: 3}
-    price: 10
+    price: 0
     countUpgrades: 5
     upgrades:
     - id: 0
       name: Upgrade_1
-      price: 20
+      price: 45
       settings:
-        health: 60
+        health: 82
     - id: 1
       name: Upgrade_2
-      price: 30
-      settings:
-        health: 70
-    - id: 2
-      name: Upgrade_3
-      price: 40
-      settings:
-        health: 80
-    - id: 3
-      name: Upgrade_4
-      price: 50
-      settings:
-        health: 90
-    - id: 4
-      name: Upgrade_5
-      price: 60
+      price: 75
       settings:
         health: 100
+    - id: 2
+      name: Upgrade_3
+      price: 115
+      settings:
+        health: 120
+    - id: 3
+      name: Upgrade_4
+      price: 165
+      settings:
+        health: 145
+    - id: 4
+      name: Upgrade_5
+      price: 235
+      settings:
+        health: 175
     settings:
-      health: 50
+      health: 65
     countIcons: 4
     icons:
     - id: 0
@@ -59,36 +59,36 @@ MonoBehaviour:
   - id: 1
     name: Defense_2
     ico: {fileID: 21300000, guid: 60c481d33c103e449949a0b64641f49c, type: 3}
-    price: 70
+    price: 100
     countUpgrades: 5
     upgrades:
     - id: 0
       name: Upgrade_1
-      price: 80
-      settings:
-        health: 120
-    - id: 1
-      name: Upgrade_2
-      price: 90
-      settings:
-        health: 130
-    - id: 2
-      name: Upgrade_3
-      price: 100
-      settings:
-        health: 140
-    - id: 3
-      name: Upgrade_4
-      price: 110
+      price: 95
       settings:
         health: 150
+    - id: 1
+      name: Upgrade_2
+      price: 145
+      settings:
+        health: 180
+    - id: 2
+      name: Upgrade_3
+      price: 210
+      settings:
+        health: 215
+    - id: 3
+      name: Upgrade_4
+      price: 300
+      settings:
+        health: 255
     - id: 4
       name: Upgrade_5
-      price: 120
+      price: 420
       settings:
-        health: 160
+        health: 305
     settings:
-      health: 110
+      health: 120
     countIcons: 4
     icons:
     - id: 0
@@ -102,36 +102,36 @@ MonoBehaviour:
   - id: 2
     name: Defense_3
     ico: {fileID: 21300000, guid: 436ca8aae28a8a241a5d8aec1dcfb321, type: 3}
-    price: 130
+    price: 240
     countUpgrades: 5
     upgrades:
     - id: 0
       name: Upgrade_1
-      price: 140
+      price: 175
       settings:
-        health: 215
+        health: 255
     - id: 1
       name: Upgrade_2
-      price: 150
+      price: 255
       settings:
-        health: 230
+        health: 305
     - id: 2
       name: Upgrade_3
-      price: 160
+      price: 360
       settings:
-        health: 245
+        health: 365
     - id: 3
       name: Upgrade_4
-      price: 170
+      price: 500
       settings:
-        health: 260
+        health: 430
     - id: 4
       name: Upgrade_5
-      price: 180
+      price: 690
       settings:
-        health: 280
+        health: 515
     settings:
-      health: 200
+      health: 205
     countIcons: 4
     icons:
     - id: 0
@@ -145,36 +145,36 @@ MonoBehaviour:
   - id: 3
     name: Defense_4
     ico: {fileID: 21300000, guid: f8c9233a30f42a141b6f7d317822e650, type: 3}
-    price: 190
+    price: 460
     countUpgrades: 5
     upgrades:
     - id: 0
       name: Upgrade_1
-      price: 200
+      price: 310
       settings:
-        health: 320
+        health: 385
     - id: 1
       name: Upgrade_2
-      price: 210
+      price: 450
       settings:
-        health: 340
+        health: 460
     - id: 2
       name: Upgrade_3
-      price: 220
+      price: 640
       settings:
-        health: 360
+        health: 545
     - id: 3
       name: Upgrade_4
-      price: 230
+      price: 880
       settings:
-        health: 380
+        health: 645
     - id: 4
       name: Upgrade_5
-      price: 240
+      price: 1180
       settings:
-        health: 400
+        health: 750
     settings:
-      health: 300
+      health: 310
     countIcons: 4
     icons:
     - id: 0

@@ -17,35 +17,35 @@ MonoBehaviour:
     name: Grenade_1
     ico: {fileID: 21300000, guid: 6e49305a73d9d9745bbc767541b2a835, type: 3}
     price: 10
-    damage: 5
+    damage: 7
     delay: 0
     time: 0
-    radius: 2
+    radius: 2.2
     collision: 4
   - id: 1
     name: Grenade_2
     ico: {fileID: 21300000, guid: 7c4ef542666421d4b831229fd7eebb14, type: 3}
-    price: 20
-    damage: 7
-    delay: 3
+    price: 22
+    damage: 12
+    delay: 2.4
     time: 0
     radius: 3
     collision: 3
   - id: 2
     name: Grenade_3
     ico: {fileID: 21300000, guid: af03ae9984a066941ba4886369c4656c, type: 3}
-    price: 30
-    damage: 3
+    price: 32
+    damage: 4
     delay: 0
-    time: 3
-    radius: 3
+    time: 4.2
+    radius: 3.2
     collision: 1
   - id: 3
     name: Grenade_4
     ico: {fileID: 21300000, guid: 2c8107853715e094cbd00a185d06babb, type: 3}
-    price: 30
-    damage: 15
-    delay: 10
+    price: 45
+    damage: 24
+    delay: 6
     time: 0
-    radius: 3
+    radius: 3.5
     collision: 2

@@ -48,8 +48,12 @@ namespace SBabchuk
         /// </summary>
         public override void GiveDamage()
         {
-            float offset = Vector2.Distance(center.GetPosition(), bulletPoint.GetPosition());
-            LevelController.Instance.SpawnBullet(properties.bulletID, properties.damage, bulletPoint.GetPosition(), new Vector3(bulletPoint.GetPosition().x - 20, bulletPoint.GetPosition().y, 0), offset);
+            if (bulletPoint == null)
+                return;
+
+            Vector3 bulletPosition = bulletPoint.GetPosition();
+            float offset = Vector2.Distance(center.GetPosition(), bulletPosition);
+            LevelController.Instance.SpawnBullet(properties.bulletID, properties.damage, bulletPosition, new Vector3(bulletPosition.x - 20, bulletPosition.y, 0), offset);
         }
 
         /// <summary>

@@ -8,6 +8,8 @@ namespace SBabchuk
 {
     public class LevelController : MonoBehaviour
     {
+        private const int AmmoBonusDropChance = 35;
+
         public delegate void GameOver(Panels _panel);
         public static event GameOver OnGameOver;
 
@@ -424,7 +426,12 @@ namespace SBabchuk
         /// </summary>
         public void SpawnBonus(Vector3 _position)
         {
-            BonusController _bonus = (GetPool(Random.Range(0, 7), NamesPool.Bonuses).GetPooledObject()).GetComponent<BonusController>();
+            int bonusID = GetAvailableBonusID();
+
+            if (bonusID < 0)
+                return;
+
+            BonusController _bonus = (GetPool(bonusID, NamesPool.Bonuses).GetPooledObject()).GetComponent<BonusController>();
 
             if (_bonus != null)
             {
@@ -436,6 +443,59 @@ namespace SBabchuk
             {
                 Debug.Log("_collision == null");
             }
+        }
+
+        private int GetAvailableBonusID()
+        {
+            List<int> ammoBonuses = new List<int>();
+            List<int> otherBonuses = new List<int>();
+
+            for (int bonusID = 0; bonusID < 8; bonusID++)
+            {
+                if (!CanDropBonus(bonusID))
+                    continue;
+
+                if (IsAmmoBonus(bonusID))
+                    ammoBonuses.Add(bonusID);
+                else
+                    otherBonuses.Add(bonusID);
+            }
+
+            if (ammoBonuses.Count == 0 && otherBonuses.Count == 0)
+                return -1;
+
+            if (ammoBonuses.Count > 0 && Random.Range(0, 100) < AmmoBonusDropChance)
+                return ammoBonuses[Random.Range(0, ammoBonuses.Count)];
+
+            if (otherBonuses.Count > 0)
+                return otherBonuses[Random.Range(0, otherBonuses.Count)];
+
+            return -1;
+        }
+
+        private bool IsAmmoBonus(int bonusID)
+        {
+            return bonusID >= 0 && bonusID <= 3;
+        }
+
+        private bool CanDropBonus(int bonusID)
+        {
+            if (PersistableSO.Instance == null || PersistableSO.Instance.PlayerPrefs == null)
+                return false;
+
+            if (bonusID >= 0 && bonusID <= 3)
+            {
+                WeaponShortInfo weaponInfo = PersistableSO.Instance.PlayerPrefs.PlayerPrefs.GetWeaponShortInfo(bonusID + 1);
+                return weaponInfo != null && weaponInfo.isBuy == mySwitch.On;
+            }
+
+            if (bonusID >= 4 && bonusID <= 7)
+            {
+                GrenadeShortInfo grenadeInfo = PersistableSO.Instance.PlayerPrefs.PlayerPrefs.GetGrenadeShortInfo(bonusID - 4);
+                return grenadeInfo != null && grenadeInfo.isBuy == mySwitch.On;
+            }
+
+            return false;
         }
 
         /// <summary>

@@ -35,10 +35,15 @@ namespace SBabchuk
         /// </summary>
         public override void GiveDamage()
         {
+            if (bulletPoints == null || bulletPoints.Count == 0)
+                return;
+
             correctionMixDuration = DOVirtual.DelayedCall(mixDuration, () =>
             {
-                float offset = Vector2.Distance(center.GetPosition(), bulletPoints[index].GetPosition());
-                LevelController.Instance.SpawnBullet(properties.bulletID, properties.damage, bulletPoints[index].GetPosition(), new Vector3(bulletPoints[index].GetPosition().x - 20, bulletPoints[index].GetPosition().y, 0), offset);
+                Center bulletPoint = bulletPoints[index % bulletPoints.Count];
+                Vector3 bulletPosition = bulletPoint.GetPosition();
+                float offset = Vector2.Distance(center.GetPosition(), bulletPosition);
+                LevelController.Instance.SpawnBullet(properties.bulletID, properties.damage, bulletPosition, new Vector3(bulletPosition.x - 20, bulletPosition.y, 0), offset);
 
                 index++;
             });

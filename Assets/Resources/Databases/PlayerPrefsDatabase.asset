@@ -15,74 +15,74 @@ MonoBehaviour:
   PlayerPrefs:
     musik: 0
     sound: 0
-    coin: 234
+    coin: 0
     levelID: 0
     selectedWeaponID: 0
     selectedGrenadeID: 0
-    selectedDefenceID: 3
+    selectedDefenceID: 0
     weapons:
     - id: 0
       name: Weapon_0
       isBuy: 0
-      upgradeID: 4
+      upgradeID: -1
       countPatrons: 75
     - id: 1
       name: Weapon_1
-      isBuy: 0
-      upgradeID: 4
-      countPatrons: 28
+      isBuy: 1
+      upgradeID: -1
+      countPatrons: 0
     - id: 2
       name: Weapon_2
-      isBuy: 0
-      upgradeID: 4
-      countPatrons: 82
+      isBuy: 1
+      upgradeID: -1
+      countPatrons: 0
     - id: 3
       name: Weapon_3
-      isBuy: 0
-      upgradeID: 4
-      countPatrons: 165
+      isBuy: 1
+      upgradeID: -1
+      countPatrons: 0
     - id: 4
       name: Weapon_4
-      isBuy: 0
-      upgradeID: 4
-      countPatrons: 277
+      isBuy: 1
+      upgradeID: -1
+      countPatrons: 0
     grenades:
     - id: 0
-      isBuy: 0
-      count: 1
+      isBuy: 1
+      count: 0
     - id: 1
-      isBuy: 0
-      count: 3
+      isBuy: 1
+      count: 0
     - id: 2
-      isBuy: 0
-      count: 5
+      isBuy: 1
+      count: 0
     - id: 3
-      isBuy: 0
-      count: 6
+      isBuy: 1
+      count: 0
     defences:
     - id: 0
       isBuy: 0
       upgradeID: -1
     - id: 1
-      isBuy: 0
+      isBuy: 1
       upgradeID: -1
     - id: 2
-      isBuy: 0
+      isBuy: 1
       upgradeID: -1
     - id: 3
-      isBuy: 0
-      upgradeID: 4
+      isBuy: 1
+      upgradeID: -1
     personages:
     - id: 0
       isBuy: 1
-      upgradeID: 4
+      upgradeID: 0
     - id: 1
       isBuy: 1
-      upgradeID: 4
+      upgradeID: 0
     levels:
     - id: 0
-      isCompleted: 0
-      stars: 3
+      isCompleted: 1
+      stars: 0
     - id: 1
       isCompleted: 1
       stars: 0

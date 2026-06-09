@@ -16,80 +16,80 @@ MonoBehaviour:
   - id: 0
     name: Sniper
     ico: {fileID: 21300000, guid: 00337818850f83b4e94c8982320aba5e, type: 3}
-    price: 500
+    price: 260
     countUpgrades: 5
     bulletID: 5
     upgrades:
     - id: 0
       name: Upgrade_1
-      price: 100
+      price: 70
       settings:
-        speedAtack: 3
+        speedAtack: 3.1
         damage: 7
     - id: 1
       name: Upgrade_2
-      price: 100
+      price: 130
       settings:
-        speedAtack: 2
-        damage: 7
+        speedAtack: 2.9
+        damage: 8
     - id: 2
       name: Upgrade_3
-      price: 100
+      price: 215
       settings:
-        speedAtack: 2
+        speedAtack: 2.6
         damage: 10
     - id: 3
       name: Upgrade_4
-      price: 100
+      price: 330
       settings:
-        speedAtack: 2
-        damage: 15
+        speedAtack: 2.35
+        damage: 13
     - id: 4
       name: Upgrade_5
-      price: 100
+      price: 500
       settings:
-        speedAtack: 2
-        damage: 20
+        speedAtack: 2.1
+        damage: 17
     settings:
-      speedAtack: 3
+      speedAtack: 3.3
       damage: 5
   - id: 1
     name: Bomber
     ico: {fileID: 21300000, guid: 732628794ef987045881d629caa195ca, type: 3}
-    price: 1000
+    price: 520
     countUpgrades: 5
     bulletID: 2
     upgrades:
     - id: 0
       name: Upgrade_1
-      price: 100
+      price: 95
       settings:
-        speedAtack: 3
-        damage: 7
+        speedAtack: 3.5
+        damage: 8
     - id: 1
       name: Upgrade_2
-      price: 100
+      price: 190
       settings:
-        speedAtack: 2
-        damage: 7
+        speedAtack: 3.25
+        damage: 10
     - id: 2
       name: Upgrade_3
-      price: 100
+      price: 320
       settings:
-        speedAtack: 2
-        damage: 10
+        speedAtack: 2.95
+        damage: 13
     - id: 3
       name: Upgrade_4
-      price: 100
+      price: 500
       settings:
-        speedAtack: 2
-        damage: 15
+        speedAtack: 2.65
+        damage: 17
     - id: 4
       name: Upgrade_5
-      price: 100
+      price: 720
       settings:
-        speedAtack: 2
-        damage: 20
+        speedAtack: 2.4
+        damage: 22
     settings:
-      speedAtack: 3
-      damage: 5
+      speedAtack: 3.7
+      damage: 6

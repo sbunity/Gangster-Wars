@@ -74,7 +74,7 @@ namespace SBabchuk
                 BaseBulletController _bullet = other.gameObject.GetComponent<BaseBulletController>();
 
                 if (_bullet != null) { 
-                    //TakeDamage(_bullet.properties.damage);
+                    TakeDamage(_bullet.damage);
                     _bullet.Pop();
                 }
             }

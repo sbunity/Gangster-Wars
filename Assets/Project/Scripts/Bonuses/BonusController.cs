@@ -7,6 +7,8 @@ namespace SBabchuk
 {
     public class BonusController : ObjectControllerBase
     {
+        private const float FreeAmmoMagazineMultiplier = 0.6f;
+
         public delegate void Poped (BonusController _value);
         public static event Poped OnPoped;
 
@@ -89,7 +91,13 @@ namespace SBabchuk
 
             if (weaponsName != WeaponsName.None)
             {
-                PersistableSO.Instance.PlayerPrefs.BuyMagazine((int)weaponsName, true);
+                Weapon weapon = WeaponStoreDatabase.GetDatabase().GetWeapon((int)weaponsName);
+                if (weapon != null)
+                {
+                    int ammoCount = Mathf.Max(1, Mathf.CeilToInt(weapon.magazine * FreeAmmoMagazineMultiplier));
+
+                    PersistableSO.Instance.PlayerPrefs.SetPatrons(weaponsName, ammoCount);
+                }
             }
             else
             {

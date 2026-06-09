@@ -16,24 +16,24 @@ MonoBehaviour:
   - id: 0
     name: Enemy_1
     ico: {fileID: 21300000, guid: ce065baf5fde0e643b6ec1f0ee8b786e, type: 3}
-    health: 10
-    gold: 2
-    speedMove: 9
-    speedAtack: 2
+    health: 8
+    gold: 3
+    speedMove: 9.8
+    speedAtack: 2.4
     radiusAtack: 2
-    damage: 5
+    damage: 3
     bulletID: -1
     changeCraft: 0
     bonusID: -1
   - id: 1
     name: Enemy_2
     ico: {fileID: 21300000, guid: 38a38b8bcc8a27a449d33429f0f51964, type: 3}
-    health: 10
-    gold: 2
-    speedMove: 11
-    speedAtack: 2
+    health: 9
+    gold: 3
+    speedMove: 11.8
+    speedAtack: 2.4
     radiusAtack: 2
-    damage: 5
+    damage: 3
     bulletID: -1
     changeCraft: 0
     bonusID: -1
@@ -41,11 +41,11 @@ MonoBehaviour:
     name: Enemy_3
     ico: {fileID: 21300000, guid: 71fe12af2280736409ee0e43a4d5dd67, type: 3}
     health: 10
-    gold: 2
-    speedMove: 7
-    speedAtack: 2
+    gold: 3
+    speedMove: 8.2
+    speedAtack: 2.5
     radiusAtack: 2
-    damage: 5
+    damage: 4
     bulletID: -1
     changeCraft: 0
     bonusID: -1
@@ -53,45 +53,45 @@ MonoBehaviour:
     name: Enemy_4
     ico: {fileID: 21300000, guid: a3b8185d35ce82249b0fe3d5bb009c13, type: 3}
     health: 10
-    gold: 2
-    speedMove: 8
-    speedAtack: 2
+    gold: 3
+    speedMove: 9
+    speedAtack: 2.4
     radiusAtack: 2
-    damage: 5
+    damage: 4
     bulletID: -1
     changeCraft: 0
     bonusID: -1
   - id: 4
     name: Enemy_5
     ico: {fileID: 21300000, guid: ccea40b2c102da545b06c297cb0545de, type: 3}
-    health: 15
-    gold: 2
-    speedMove: 8
-    speedAtack: 2
+    health: 12
+    gold: 4
+    speedMove: 9.6
+    speedAtack: 2.5
     radiusAtack: 8
-    damage: 5
+    damage: 4
     bulletID: 5
     changeCraft: 0
     bonusID: -1
   - id: 5
     name: Enemy_6
     ico: {fileID: 21300000, guid: 1e5866238ba7a144bab01b6fef8636d5, type: 3}
-    health: 15
-    gold: 0
-    speedMove: 9
-    speedAtack: 2
+    health: 13
+    gold: 4
+    speedMove: 9.8
+    speedAtack: 2.4
     radiusAtack: 2
-    damage: 5
+    damage: 4
     bulletID: -1
     changeCraft: 0
     bonusID: -1
   - id: 6
     name: Enemy_7
     ico: {fileID: 21300000, guid: 6cca83e082bc5f64293567806745923d, type: 3}
-    health: 25
-    gold: 2
-    speedMove: 10
-    speedAtack: 2
+    health: 20
+    gold: 5
+    speedMove: 11
+    speedAtack: 2.3
     radiusAtack: 2
     damage: 5
     bulletID: -1
@@ -100,36 +100,36 @@ MonoBehaviour:
   - id: 7
     name: Enemy_8
     ico: {fileID: 21300000, guid: fe48665c5435bff4a9fe4a43aebba657, type: 3}
-    health: 15
-    gold: 2
-    speedMove: 11
-    speedAtack: 2
+    health: 13
+    gold: 4
+    speedMove: 11.8
+    speedAtack: 2.4
     radiusAtack: 2
-    damage: 5
+    damage: 4
     bulletID: -1
     changeCraft: 0
     bonusID: -1
   - id: 8
     name: Enemy_9
     ico: {fileID: 21300000, guid: 538c80308c6d77146826c8fc68b15bb1, type: 3}
-    health: 10
-    gold: 2
-    speedMove: 12
-    speedAtack: 2
+    health: 12
+    gold: 7
+    speedMove: 12.2
+    speedAtack: 2.4
     radiusAtack: 6
-    damage: 10
+    damage: 6
     bulletID: 4
     changeCraft: 0
     bonusID: -1
   - id: 9
     name: Enemy_10
     ico: {fileID: 21300000, guid: 339874edd482a6b498f581473270b986, type: 3}
-    health: 10
-    gold: 1
-    speedMove: 12
-    speedAtack: 2
+    health: 11
+    gold: 7
+    speedMove: 12.6
+    speedAtack: 2.4
     radiusAtack: 12
-    damage: 5
+    damage: 4
     bulletID: 6
     changeCraft: 0
     bonusID: -1
@@ -137,9 +137,9 @@ MonoBehaviour:
     name: Enemy_11
     ico: {fileID: 21300000, guid: a97dd653d87e9c34dad0369228b0baa6, type: 3}
     health: 15
-    gold: 1
+    gold: 6
     speedMove: 12
-    speedAtack: 2
+    speedAtack: 2.3
     radiusAtack: 2
     damage: 5
     bulletID: -1
@@ -148,12 +148,12 @@ MonoBehaviour:
   - id: 11
     name: Enemy_12
     ico: {fileID: 21300000, guid: 53ccf0e6c4d5ace4a9b9fe7af9765b77, type: 3}
-    health: 25
-    gold: 1
-    speedMove: 10
-    speedAtack: 2
+    health: 24
+    gold: 10
+    speedMove: 11.4
+    speedAtack: 2.2
     radiusAtack: 12
-    damage: 5
+    damage: 6
     bulletID: 8
     changeCraft: 0
     bonusID: -1
@@ -161,35 +161,35 @@ MonoBehaviour:
     name: Enemy_13
     ico: {fileID: 21300000, guid: 2f09617cd66f9f641b6453a584844cb5, type: 3}
     health: 20
-    gold: 1
-    speedMove: 9
-    speedAtack: 2
+    gold: 8
+    speedMove: 10.2
+    speedAtack: 2.3
     radiusAtack: 2
-    damage: 10
+    damage: 7
     bulletID: -1
     changeCraft: 0
     bonusID: -1
   - id: 13
     name: Enemy_14
     ico: {fileID: 21300000, guid: 306610180d7e87846932f55f0a9b3d25, type: 3}
-    health: 25
-    gold: 1
-    speedMove: 8
-    speedAtack: 2
+    health: 28
+    gold: 11
+    speedMove: 10.2
+    speedAtack: 2.2
     radiusAtack: 10
-    damage: 15
+    damage: 8
     bulletID: 3
     changeCraft: 0
     bonusID: -1
   - id: 14
     name: Enemy_15
     ico: {fileID: 21300000, guid: 85d433e11bae2364b8c5c9bad412fb9f, type: 3}
-    health: 25
-    gold: 1
-    speedMove: 8
-    speedAtack: 2
+    health: 26
+    gold: 10
+    speedMove: 9.8
+    speedAtack: 2.2
     radiusAtack: 2
-    damage: 10
+    damage: 8
     bulletID: -1
     changeCraft: 0
     bonusID: -1
