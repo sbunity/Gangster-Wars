@@ -85,6 +85,8 @@ namespace SBabchuk
         {
             //CollisionController.OnDealingDamage -= DealingDamage;
             GrenadeController.OnDealingDamage -= DealingDamage;
+
+            StopAllTweens();
         }
 
         /// <summary>
@@ -139,12 +141,17 @@ namespace SBabchuk
         /// </summary>
         public virtual void Init(EnemyOfWave _enemyOfWave, Transform spawnPoint, Transform targetPoint, int _changeCraft)
         {
-            if (!gameObject.activeSelf)
-                gameObject.SetActive(true); //Включаєм об*єкт
+            StopAllTweens();
 
             timeMoving = 0; //Скільки ми часу йшли, щоб знати скільки ще йти
 
             collided = false; //зіткнень немає
+
+            isMoving = false;
+
+            isAttacked = false;
+
+            isDie = false;
 
             target = targetPoint;
 
@@ -155,6 +162,9 @@ namespace SBabchuk
             timeMove = properties.speedMove;
 
             transform.position = spawnPoint.position; //Спавним в точці
+
+            if (!gameObject.activeSelf)
+                gameObject.SetActive(true); //Включаєм об*єкт
 
             collisionCollider = GetComponent<Collider2D>(); //Добавляєм колайдер
 

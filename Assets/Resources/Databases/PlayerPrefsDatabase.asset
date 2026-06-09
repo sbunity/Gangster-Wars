@@ -74,10 +74,10 @@ MonoBehaviour:
       upgradeID: 4
     personages:
     - id: 0
-      isBuy: 0
+      isBuy: 1
       upgradeID: 4
     - id: 1
-      isBuy: 0
+      isBuy: 1
       upgradeID: 4
     levels:
     - id: 0

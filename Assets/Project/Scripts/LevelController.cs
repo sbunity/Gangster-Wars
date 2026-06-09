@@ -66,6 +66,8 @@ namespace SBabchuk
 
         Tween twn3;
 
+        private bool isLevelFinished;
+
         /// <summary>
         /// Чи всі вже вороги із хвилі проспавнились
         /// </summary>
@@ -85,17 +87,16 @@ namespace SBabchuk
         {
             EnemyControllerBase.OnDie += DeleteEnemy;
             BonusController.OnPoped += PopedBonus;
+            BarricadeController.OnGameOver += HandleGameOver;
         }
 
         public void OnDisable()
         {
             EnemyControllerBase.OnDie -= DeleteEnemy;
             BonusController.OnPoped -= PopedBonus;
+            BarricadeController.OnGameOver -= HandleGameOver;
 
-            Utils.StopTween(twn);
-            Utils.StopTween(twn1);
-            Utils.StopTween(twn2);
-            Utils.StopTween(twn3);
+            StopSpawnTweens();
         }
 
         /// <summary>
@@ -163,10 +164,11 @@ namespace SBabchuk
 		/// Стартує рівень
 		/// </summary>
 		/// <param name="_id">Identifier.</param>
-		public void StartLevel()
+        public void StartLevel()
         {
             if (properties != null)
             {
+                isLevelFinished = false;
                 Wave();
             }
             else
@@ -186,8 +188,11 @@ namespace SBabchuk
         /// <summary>
 		/// Хвиля
 		/// </summary>
-		public void Wave()
+        public void Wave()
         {
+            if (isLevelFinished)
+                return;
+
             if (currentWave < properties.waves.Count)
             {
                 Debug.Log(Time.time + ": " + "@@ Хвиля(" + (currentWave + 1) + "/" + properties.waves.Count + ")");
@@ -196,6 +201,9 @@ namespace SBabchuk
 
                 twn = DOVirtual.DelayedCall(properties.waves[currentWave].startDelay, () =>
                 { //стартуєм нову хвилю після часу затримки хвилі
+                    if (isLevelFinished)
+                        return;
+
                     StartWave(currentWave);
                 }).SetUpdate(false);
             }
@@ -209,12 +217,18 @@ namespace SBabchuk
 		/// Запуск хвилі
 		/// </summary>
 		/// <param name="_wave">Wave.</param>
-		public void StartWave(int _wave)
+        public void StartWave(int _wave)
         {
+            if (isLevelFinished)
+                return;
+
             //OnWaveTime(properties.waves[_wave].delay);
 
             twn1 = DOVirtual.DelayedCall(properties.waves[_wave].delay, () =>
             { //стартуєм час до закінчення виділеного часу на проходження хвилі
+                if (isLevelFinished)
+                    return;
+
                 currentWave++;
                 c_currentWaveID = currentWave;
                 Wave();
@@ -230,25 +244,37 @@ namespace SBabchuk
         /// <param name="_currentEnemy"></param>
         public void WaveHandler(int _wave, int _currentEnemy)
         {
+            if (isLevelFinished)
+                return;
+
             if (_currentEnemy < properties.waves[_wave].enemies.Count)
             {
                 waveIsFull = false;
 
+                EnemyOfWave enemyOfWave = properties.waves[_wave].enemies[_currentEnemy];
+
                 twn2 = DOVirtual.DelayedCall(0, () =>
                 {
-                    SpawnEnemies(properties.waves[_wave].enemies[_currentEnemy]);
+                    if (!isLevelFinished)
+                        SpawnEnemies(enemyOfWave);
                 })
-                .SetLoops(properties.waves[_wave].enemies[_currentEnemy].countEnemy)
+                .SetLoops(enemyOfWave.countEnemy)
                 .OnComplete(() =>
                 {
-                    _currentEnemy++;
-                  
-                    waveIsFull = _currentEnemy == properties.waves[_wave].enemies.Count;
+                    if (isLevelFinished)
+                        return;
 
-                    twn3 = DOVirtual.DelayedCall(properties.waves[_wave].enemies[_currentEnemy].interval, () =>
+                    int nextEnemy = _currentEnemy + 1;
+                  
+                    waveIsFull = nextEnemy == properties.waves[_wave].enemies.Count;
+
+                    if (!waveIsFull)
                     {
-                        WaveHandler(_wave, _currentEnemy++);
-                    }).SetUpdate(false);
+                        twn3 = DOVirtual.DelayedCall(properties.waves[_wave].enemies[nextEnemy].interval, () =>
+                        {
+                            WaveHandler(_wave, nextEnemy);
+                        }).SetUpdate(false);
+                    }
                 }).SetUpdate(false);
             }
         }
@@ -258,6 +284,9 @@ namespace SBabchuk
         /// </summary>
         public void SpawnEnemies(EnemyOfWave _enemyOfWave)
         {
+            if (isLevelFinished)
+                return;
+
             EnemyControllerBase enemy = (GetPool(_enemyOfWave.enemyID, NamesPool.Enemies).GetPooledObject()).GetComponent<EnemyControllerBase>();
 
             if (enemy != null)
@@ -303,10 +332,25 @@ namespace SBabchuk
                     {
                         PersistableSO.Instance.PlayerPrefs.SetLevelCompleted((float)BarricadeController.Instance.currentHealth/(float)BarricadeController.Instance.maxHealth);
 
+                        HandleGameOver(Panels.Win);
                         OnGameOver?.Invoke(Panels.Win);
                     }
                 }
             }
+        }
+
+        private void HandleGameOver(Panels _panel)
+        {
+            isLevelFinished = true;
+            StopSpawnTweens();
+        }
+
+        private void StopSpawnTweens()
+        {
+            Utils.StopTween(twn);
+            Utils.StopTween(twn1);
+            Utils.StopTween(twn2);
+            Utils.StopTween(twn3);
         }
 
         /// <summary>
