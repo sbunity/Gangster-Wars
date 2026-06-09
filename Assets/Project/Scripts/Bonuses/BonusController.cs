@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
 
 namespace SBabchuk
 {
@@ -12,6 +13,8 @@ namespace SBabchuk
         public WeaponsName weaponsName;
 
         public GrenadesName grenadesName;
+
+        private Tween autoCollectTween;
 
         /// <summary>
         /// Підписались на Енейбл
@@ -43,6 +46,8 @@ namespace SBabchuk
         public void OnDisable()
         {
             UnSubscribe();
+
+            Utils.StopTween(autoCollectTween);
         }
 
         private void Start()
@@ -57,9 +62,13 @@ namespace SBabchuk
         {
             this.gameObject.SetActive(true);
 
+            Utils.StopTween(autoCollectTween);
+
             InitColliders();
 
             SetPosition(_position);
+
+            autoCollectTween = DOVirtual.DelayedCall(2f, Collect);
         }
 
         /// <summary>
@@ -69,17 +78,25 @@ namespace SBabchuk
         {
             if (gesture.pickedObject == gameObject)
             {
-                if (weaponsName != WeaponsName.None)
-                {
-                    PersistableSO.Instance.PlayerPrefs.BuyMagazine((int)weaponsName, true);
-                }
-                else
-                {
-                    PersistableSO.Instance.PlayerPrefs.BuyGrenade((int)grenadesName, true);
-                }
-
-                Pop(); //Повертаємось в пул
+                Collect();
             }
+        }
+
+        private void Collect()
+        {
+            if (!gameObject.activeInHierarchy)
+                return;
+
+            if (weaponsName != WeaponsName.None)
+            {
+                PersistableSO.Instance.PlayerPrefs.BuyMagazine((int)weaponsName, true);
+            }
+            else
+            {
+                PersistableSO.Instance.PlayerPrefs.BuyGrenade((int)grenadesName, true);
+            }
+
+            Pop(); //Повертаємось в пул
         }
 
         /// <summary>
@@ -87,6 +104,8 @@ namespace SBabchuk
         /// </summary>
         public void Pop()
         {
+            Utils.StopTween(autoCollectTween);
+
             OnPoped?.Invoke(this);
 
             this.gameObject.SetActive(false); //Виключаєм об*єкт

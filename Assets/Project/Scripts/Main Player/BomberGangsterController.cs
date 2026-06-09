@@ -14,6 +14,10 @@ namespace SBabchuk
         [HideInInspector]
         public Transform target;
 
+        private Vector3 lastTargetPosition;
+
+        private bool hasLastTargetPosition;
+
         [Header("Властивості")]
         private PersonageSettings properties;
 
@@ -69,28 +73,67 @@ namespace SBabchuk
             }, false).SetLoops(-1);
         }
 
+        public override void Update()
+        {
+            base.Update();
+
+            UpdateLastTargetPosition();
+        }
+
         /// <summary>
         /// Метод атаки
         /// </summary>
         public override void Attack()
         {
+            UpdateLastTargetPosition();
+
             e_animation.SetAnimation(AnimationsName.Throwing); //Переключаємось в анімацію атаки
         }
 
         public override void SpawnBullet()
         {
             float offset = Vector2.Distance(center.GetPosition(), createBulletPoint.GetPosition());
-            LevelController.Instance.SpawnBullet(personage.bulletID, properties.damage, createBulletPoint.GetPosition(), target.position, offset, "BulletHero");
+            LevelController.Instance.SpawnBullet(personage.bulletID, properties.damage, createBulletPoint.GetPosition(), GetTargetPosition(), offset, "BulletHero");
         }
 
         public bool FindEnemy()
         {
             if (target != null && target.gameObject.activeInHierarchy)
+            {
+                UpdateLastTargetPosition();
                 return true;
+            }
 
             target = LevelController.Instance.GetRandomEnemy();
 
+            UpdateLastTargetPosition();
+
             return target != null;
+        }
+
+        private void UpdateLastTargetPosition()
+        {
+            if (target == null)
+                return;
+
+            if (!target.gameObject.activeInHierarchy)
+            {
+                target = null;
+                return;
+            }
+
+            lastTargetPosition = target.position;
+            hasLastTargetPosition = true;
+        }
+
+        private Vector3 GetTargetPosition()
+        {
+            UpdateLastTargetPosition();
+
+            if (hasLastTargetPosition)
+                return lastTargetPosition;
+
+            return target != null ? target.position : createBulletPoint.GetPosition();
         }
     }
 }
