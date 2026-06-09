@@ -6529,6 +6529,7 @@ MonoBehaviour:
   aim: {fileID: 1220634446}
   speedRotate: 0.22
   target: {fileID: 0}
+  aimFireThreshold: 0.15
 --- !u!1 &511213962
 GameObject:
   m_ObjectHideFlags: 0
@@ -23288,6 +23289,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   offsetY: -0.58
+  minForwardAngle: -35
+  maxForwardAngle: 35
+  clampAimToForwardSector: 1
+  forwardSectorOrigin: {fileID: 0}
+  minAimDistance: 1.5
 --- !u!1 &1867492871
 GameObject:
   m_ObjectHideFlags: 0
