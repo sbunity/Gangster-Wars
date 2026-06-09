@@ -21,12 +21,20 @@ namespace SBabchuk
         [HideInInspector]
         public Transform target;
 
+        [Header("Поріг відстані aim до цілі для пострілу")]
+        [Range(0.01f, 1f)]
+        public float aimFireThreshold = 0.15f;
+
         [Header("Властивості")]
         private PersonageSettings properties;
 
         private Personage personage;
 
         private Vector3 aimDefaultPosition;
+
+        private bool readyToFire;
+
+        private float aimTimer;
 
         /// Передстартова ініціалізація
         /// </summary>
@@ -68,15 +76,40 @@ namespace SBabchuk
 
         public void StartAttack()
         {
-            twnAtack = DOVirtual.DelayedCall(properties.speedAtack + speedRotate*2, () => { //Запускаєм зациклення атаки
+            twnAtack = DOVirtual.DelayedCall(properties.speedAtack, () => { //Запускаєм зациклення атаки
                 if (FindEnemy())
-                {
-                    aim.DOMove(target.position, speedRotate).OnComplete(()=>
-                    {
-                        Attack(); //Атакуєм
-                    });
-                }
+                    readyToFire = true;
             }, false).SetLoops(-1);
+        }
+
+        public override void Update()
+        {
+            base.Update();
+
+            Vector3 dest = (target != null && target.gameObject.activeInHierarchy)
+                ? target.position
+                : aimDefaultPosition;
+
+            aim.position = Vector3.Lerp(aim.position, dest, Time.deltaTime / Mathf.Max(speedRotate, 0.01f));
+
+            if (readyToFire)
+            {
+                if (target != null && target.gameObject.activeInHierarchy)
+                {
+                    aimTimer += Time.deltaTime;
+                    if (aimTimer >= speedRotate)
+                    {
+                        readyToFire = false;
+                        aimTimer = 0f;
+                        Attack();
+                    }
+                }
+                else
+                {
+                    readyToFire = false;
+                    aimTimer = 0f;
+                }
+            }
         }
 
         /// <summary>
@@ -95,11 +128,13 @@ namespace SBabchuk
 
         public override void AttackEnded()
         {
-            aim.DOMove(aimDefaultPosition, speedRotate);
         }
 
         public bool FindEnemy()
         {
+            if (target != null && target.gameObject.activeInHierarchy)
+                return true;
+
             target = LevelController.Instance.GetRandomEnemy();
 
             return target != null;

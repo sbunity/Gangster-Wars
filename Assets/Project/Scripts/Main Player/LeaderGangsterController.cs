@@ -45,6 +45,10 @@ namespace SBabchuk
 
         private int index;
 
+        private readonly Dictionary<int, int> inGunCount = new Dictionary<int, int>();
+
+        public bool isAttacking = false;
+
         private void OnDestroy()
         {
             Utils.StopTween(twnReload);
@@ -73,6 +77,12 @@ namespace SBabchuk
 
         public void InitWeapon(int _weapoID)
         {
+            // Зберігаємо поточну кількість патронів в стволі для попередньої зброї
+            if (weaponShortInfo != null)
+                inGunCount[(int)weaponsName] = countPatrons;
+
+            Utils.StopTween(twnReload);
+
             weaponsName = (WeaponsName)_weapoID;
 
             weaponShortInfo = PersistableSO.Instance.PlayerPrefs.PlayerPrefs.GetWeaponShortInfo(_weapoID);
@@ -85,12 +95,17 @@ namespace SBabchuk
 
             Init(); //Ініціалізація героя
 
-            countPatrons = weaponShortInfo.countPatrons; //отримуєм кількість патрон
+            // Відновлюємо збережену кількість або ініціалізуємо вперше
+            if (inGunCount.TryGetValue(_weapoID, out int saved))
+                countPatrons = saved;
+            else
+            {
+                countPatrons = weaponShortInfo.countPatrons;
+                if (countPatrons >= weapon.magazine)
+                    countPatrons = weapon.magazine;
+            }
 
             Debug.Log("countPatrons: "+ countPatrons);
-
-            if (countPatrons >= weapon.magazine) //передаєм не більше чим є в магазині патрон
-                countPatrons = weapon.magazine;
 
             OnInitMagazine(weapon.magazine);
 
@@ -99,6 +114,9 @@ namespace SBabchuk
             createBulletPointList = bulletPoints[_weapoID].points;
 
             index = 0;
+
+            if (countPatrons < weapon.magazine)
+                Reload();
         }
 
         /// <summary>
@@ -142,7 +160,10 @@ namespace SBabchuk
         {
             if (countPatrons > 0)
             {
+                isAttacking = true;
+
                 Utils.StopTween(twnReload);
+                
                 e_animation.SetAnimation(AnimationsName.Shoot); //Переключаємось в анімацію атаки
             }
         }
@@ -194,12 +215,21 @@ namespace SBabchuk
         /// </summary>
         public void StopAttack()
         {
-            e_animation.SetAnimation(AnimationsName.Idle);
+            isAttacking = false;
+            
+            //e_animation.SetAnimation(AnimationsName.Idle);
 
-            index = 0;
+            //index = 0;
 
-            Reload();
+            //Reload();
         }
+        
+        public void StopShootingFinished()
+        {
+            index = 0;
+            
+            Reload();
+        } 
     }
 
 }

@@ -91,7 +91,13 @@ namespace SBabchuk
             }
             else if (trackEntry.Animation.Name == AnimationsName.Shoot.ToString())
             {
-                //SetAnimation(AnimationsName.Idle);
+                //SetAnimation(AnimationsName.Idle); 
+                var leader = controller as LeaderGangsterController;
+                if (leader != null && !leader.isAttacking)
+                {
+                    SetAnimation(AnimationsName.Idle);
+                    leader.StopShootingFinished();
+                }  
             }
             else if (trackEntry.Animation.Name == AnimationsName.Shoot_prev.ToString())
             {

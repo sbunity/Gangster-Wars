@@ -85,6 +85,9 @@ namespace SBabchuk
 
         public bool FindEnemy()
         {
+            if (target != null && target.gameObject.activeInHierarchy)
+                return true;
+
             target = LevelController.Instance.GetRandomEnemy();
 
             return target != null;
