@@ -66,6 +66,12 @@ namespace SBabchuk
         /// <param name="gesture">Gesture.</param>
         virtual public void OnTouchMove(Gesture gesture)
         {
+            if (HandController.IsHoldingGrenade)
+            {
+                HoldAimForward();
+                return;
+            }
+
             Vector3 pos = gesture.GetTouchToWorldPoint(9f);
             Vector3 targetPosition = new Vector3(pos.x, pos.y + offsetY, 0);
             bool canShoot = IsTargetInForwardSector(targetPosition);
@@ -91,6 +97,12 @@ namespace SBabchuk
         /// <param name="gesture">Gesture.</param>
         public void OnTouchDown(Gesture gesture)
         {
+            if (HandController.IsHoldingGrenade)
+            {
+                HoldAimForward();
+                return;
+            }
+
             isTouchingFireArea = false;
 
             if (gesture.pickedObject)
@@ -191,6 +203,18 @@ namespace SBabchuk
             }
 
             return transform.position;
+        }
+
+        private void HoldAimForward()
+        {
+            isTouchingFireArea = false;
+
+            if (LeaderGangsterController.Instance)
+            {
+                LeaderGangsterController.Instance.StopAttack();
+            }
+
+            UpdateAimPosition(GetForwardSectorOrigin() + Vector3.right * minAimDistance);
         }
 
         private void UpdateAimPosition(Vector3 aimPosition)

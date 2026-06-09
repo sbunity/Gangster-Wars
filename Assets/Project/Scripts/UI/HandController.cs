@@ -9,6 +9,8 @@ namespace SBabchuk
     {
         public static HandController Instance;
 
+        public static bool IsHoldingGrenade => Instance != null && Instance.focus;
+
         [Header("Скейл іконки вже в руці")]
         [Range(1, 2)]
         public float scaleToTouch = 1f;
