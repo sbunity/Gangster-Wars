@@ -9,11 +9,16 @@ using Spine.Unity;
 /// </summary>
 public class SortingEnemy : MonoBehaviour
 {
+    private const float UnitsPerSortingOrder = 0.03f;
+
     [Header("Виключення сортування")]
 	public bool IsStatic;
 
     [Header("Чи варто сортувани вкладені елементи")]
     public bool InChildren;
+
+    [Header("Точка сортування")]
+    [SerializeField] private Transform sortAnchor;
 
     [Header("Зміщення сортування")]
 	public float AnchorOffset;
@@ -31,7 +36,7 @@ public class SortingEnemy : MonoBehaviour
     /// <summary>
     /// Стартова ініціалізація
     /// </summary>
-    private void Start()
+    private void Awake()
 	{
         e_animation = GetComponentInChildren<SkeletonAnimation>();
 
@@ -41,10 +46,9 @@ public class SortingEnemy : MonoBehaviour
         }
         else
         {
-            SpriteRenderer spriteRenderer = GetComponent<SpriteRenderer>();
+            Renderer renderer = GetComponent<Renderer>();
 
-            if (spriteRenderer != null)
-                renderList = new List<Renderer>(){ spriteRenderer };
+            renderList = renderer != null ? new List<Renderer>() { renderer } : new List<Renderer>();
         }
     }
 
@@ -64,14 +68,26 @@ public class SortingEnemy : MonoBehaviour
     /// </summary>
 	private void AssignSortOrder() 
 	{
+        int sortingOrder = GetSortOrder();
+
         if (e_animation)
         {
-            e_animation.gameObject.GetComponent<MeshRenderer>().sortingOrder = -Mathf.RoundToInt((transform.position.y + AnchorOffset) / 0.03f);
+            MeshRenderer meshRenderer = e_animation.gameObject.GetComponent<MeshRenderer>();
+
+            if (meshRenderer)
+                meshRenderer.sortingOrder = sortingOrder;
         }
        
         foreach (Renderer renderer in renderList)
         {
-            renderer.sortingOrder = -Mathf.RoundToInt((transform.position.y + AnchorOffset) / 0.03f);
+            if (renderer)
+                renderer.sortingOrder = sortingOrder;
         }
+    }
+
+    private int GetSortOrder()
+    {
+        float anchorY = sortAnchor ? sortAnchor.position.y : transform.position.y + AnchorOffset;
+        return -Mathf.RoundToInt(anchorY / UnitsPerSortingOrder);
     }
 }
