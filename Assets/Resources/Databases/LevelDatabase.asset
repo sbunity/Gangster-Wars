@@ -22,8 +22,12 @@ MonoBehaviour:
       delay: 18
       enemies:
       - enemyID: 0
-        countEnemy: 2
+        countEnemy: 1
         interval: 0
+        changeCraft: 5
+      - enemyID: 1
+        countEnemy: 1
+        interval: 0.75
         changeCraft: 5
       - enemyID: 1
         countEnemy: 1
@@ -34,8 +38,12 @@ MonoBehaviour:
       delay: 18
       enemies:
       - enemyID: 0
-        countEnemy: 2
+        countEnemy: 1
         interval: 0
+        changeCraft: 6
+      - enemyID: 1
+        countEnemy: 1
+        interval: 0.75
         changeCraft: 6
       - enemyID: 2
         countEnemy: 1
@@ -50,8 +58,12 @@ MonoBehaviour:
       delay: 12
       enemies:
       - enemyID: 1
-        countEnemy: 2
+        countEnemy: 1
         interval: 0
+        changeCraft: 8
+      - enemyID: 0
+        countEnemy: 1
+        interval: 0.75
         changeCraft: 8
       - enemyID: 2
         countEnemy: 1
@@ -67,23 +79,35 @@ MonoBehaviour:
     waves:
     - id: 0
       startDelay: 0
-      delay: 18
+      delay: 16
       enemies:
       - enemyID: 0
-        countEnemy: 2
+        countEnemy: 1
         interval: 0
         changeCraft: 6
       - enemyID: 1
-        countEnemy: 2
+        countEnemy: 1
+        interval: 0.75
+        changeCraft: 6
+      - enemyID: 1
+        countEnemy: 1
         interval: 5
+        changeCraft: 6
+      - enemyID: 0
+        countEnemy: 1
+        interval: 0.75
         changeCraft: 6
     - id: 1
       startDelay: 0
-      delay: 19
+      delay: 17
       enemies:
       - enemyID: 2
-        countEnemy: 2
+        countEnemy: 1
         interval: 0
+        changeCraft: 8
+      - enemyID: 3
+        countEnemy: 1
+        interval: 0.75
         changeCraft: 8
       - enemyID: 3
         countEnemy: 1
@@ -95,31 +119,47 @@ MonoBehaviour:
         changeCraft: 12
     - id: 2
       startDelay: 0
-      delay: 19
+      delay: 17
       enemies:
       - enemyID: 0
-        countEnemy: 2
+        countEnemy: 1
         interval: 0
+        changeCraft: 7
+      - enemyID: 1
+        countEnemy: 1
+        interval: 0.75
         changeCraft: 7
       - enemyID: 5
         countEnemy: 1
         interval: 5
         changeCraft: 12
       - enemyID: 2
-        countEnemy: 2
+        countEnemy: 1
         interval: 5
+        changeCraft: 10
+      - enemyID: 3
+        countEnemy: 1
+        interval: 0.75
         changeCraft: 10
     - id: 3
       startDelay: 0
       delay: 12
       enemies:
       - enemyID: 7
-        countEnemy: 2
+        countEnemy: 1
         interval: 0
         changeCraft: 14
+      - enemyID: 5
+        countEnemy: 1
+        interval: 0.75
+        changeCraft: 14
       - enemyID: 3
-        countEnemy: 2
+        countEnemy: 1
         interval: 5
+        changeCraft: 12
+      - enemyID: 2
+        countEnemy: 1
+        interval: 0.75
         changeCraft: 12
       - enemyID: 5
         countEnemy: 1
@@ -134,12 +174,24 @@ MonoBehaviour:
       delay: 17
       enemies:
       - enemyID: 0
-        countEnemy: 3
+        countEnemy: 1
         interval: 0
         changeCraft: 8
+      - enemyID: 1
+        countEnemy: 1
+        interval: 0.75
+        changeCraft: 8
+      - enemyID: 0
+        countEnemy: 1
+        interval: 0.75
+        changeCraft: 8
       - enemyID: 3
-        countEnemy: 2
+        countEnemy: 1
         interval: 4.5
+        changeCraft: 10
+      - enemyID: 2
+        countEnemy: 1
+        interval: 0.75
         changeCraft: 10
       - enemyID: 7
         countEnemy: 1
@@ -150,28 +202,52 @@ MonoBehaviour:
       delay: 18
       enemies:
       - enemyID: 2
-        countEnemy: 3
+        countEnemy: 1
         interval: 0
         changeCraft: 10
+      - enemyID: 3
+        countEnemy: 1
+        interval: 0.75
+        changeCraft: 10
+      - enemyID: 2
+        countEnemy: 1
+        interval: 0.75
+        changeCraft: 10
       - enemyID: 5
-        countEnemy: 2
+        countEnemy: 1
         interval: 4.5
         changeCraft: 14
+      - enemyID: 7
+        countEnemy: 1
+        interval: 0.75
+        changeCraft: 14
       - enemyID: 1
-        countEnemy: 2
+        countEnemy: 1
         interval: 5
+        changeCraft: 10
+      - enemyID: 0
+        countEnemy: 1
+        interval: 0.75
         changeCraft: 10
     - id: 2
       startDelay: 0
       delay: 18
       enemies:
       - enemyID: 7
-        countEnemy: 2
+        countEnemy: 1
         interval: 0
         changeCraft: 16
+      - enemyID: 5
+        countEnemy: 1
+        interval: 0.75
+        changeCraft: 16
       - enemyID: 3
-        countEnemy: 2
+        countEnemy: 1
         interval: 4.5
+        changeCraft: 12
+      - enemyID: 2
+        countEnemy: 1
+        interval: 0.75
         changeCraft: 12
       - enemyID: 4
         countEnemy: 1
@@ -186,12 +262,20 @@ MonoBehaviour:
       delay: 12
       enemies:
       - enemyID: 5
-        countEnemy: 2
+        countEnemy: 1
         interval: 0
         changeCraft: 18
+      - enemyID: 7
+        countEnemy: 1
+        interval: 0.75
+        changeCraft: 18
       - enemyID: 2
-        countEnemy: 2
+        countEnemy: 1
         interval: 4.5
+        changeCraft: 12
+      - enemyID: 3
+        countEnemy: 1
+        interval: 0.75
         changeCraft: 12
       - enemyID: 6
         countEnemy: 1
@@ -210,12 +294,24 @@ MonoBehaviour:
       delay: 17
       enemies:
       - enemyID: 1
-        countEnemy: 3
+        countEnemy: 1
         interval: 0
         changeCraft: 12
+      - enemyID: 0
+        countEnemy: 1
+        interval: 0.75
+        changeCraft: 12
+      - enemyID: 1
+        countEnemy: 1
+        interval: 0.75
+        changeCraft: 12
       - enemyID: 7
-        countEnemy: 2
+        countEnemy: 1
         interval: 4.5
+        changeCraft: 18
+      - enemyID: 5
+        countEnemy: 1
+        interval: 0.75
         changeCraft: 18
       - enemyID: 4
         countEnemy: 1
@@ -226,28 +322,60 @@ MonoBehaviour:
       delay: 18
       enemies:
       - enemyID: 5
-        countEnemy: 3
+        countEnemy: 1
         interval: 0
         changeCraft: 18
+      - enemyID: 7
+        countEnemy: 1
+        interval: 0.75
+        changeCraft: 18
+      - enemyID: 5
+        countEnemy: 1
+        interval: 0.75
+        changeCraft: 18
       - enemyID: 3
-        countEnemy: 2
+        countEnemy: 1
         interval: 4.5
         changeCraft: 14
+      - enemyID: 2
+        countEnemy: 1
+        interval: 0.75
+        changeCraft: 14
       - enemyID: 8
-        countEnemy: 2
+        countEnemy: 1
         interval: 5
+        changeCraft: 34
+      - enemyID: 9
+        countEnemy: 1
+        interval: 0.75
         changeCraft: 34
     - id: 2
       startDelay: 0
       delay: 18
       enemies:
       - enemyID: 7
-        countEnemy: 3
+        countEnemy: 1
         interval: 0
         changeCraft: 20
+      - enemyID: 5
+        countEnemy: 1
+        interval: 0.75
+        changeCraft: 20
+      - enemyID: 7
+        countEnemy: 1
+        interval: 0.75
+        changeCraft: 20
       - enemyID: 2
-        countEnemy: 3
+        countEnemy: 1
         interval: 4.5
+        changeCraft: 14
+      - enemyID: 3
+        countEnemy: 1
+        interval: 0.75
+        changeCraft: 14
+      - enemyID: 2
+        countEnemy: 1
+        interval: 0.75
         changeCraft: 14
       - enemyID: 4
         countEnemy: 1
@@ -262,12 +390,20 @@ MonoBehaviour:
       delay: 19
       enemies:
       - enemyID: 10
-        countEnemy: 2
+        countEnemy: 1
         interval: 0
         changeCraft: 24
+      - enemyID: 10
+        countEnemy: 1
+        interval: 0.75
+        changeCraft: 24
       - enemyID: 4
-        countEnemy: 2
+        countEnemy: 1
         interval: 4.5
+        changeCraft: 38
+      - enemyID: 5
+        countEnemy: 1
+        interval: 0.75
         changeCraft: 38
       - enemyID: 9
         countEnemy: 1
@@ -286,12 +422,24 @@ MonoBehaviour:
         interval: 0
         changeCraft: 70
       - enemyID: 8
-        countEnemy: 2
+        countEnemy: 1
         interval: 4.5
         changeCraft: 44
+      - enemyID: 9
+        countEnemy: 1
+        interval: 0.75
+        changeCraft: 44
       - enemyID: 5
-        countEnemy: 3
+        countEnemy: 1
         interval: 4.5
+        changeCraft: 24
+      - enemyID: 7
+        countEnemy: 1
+        interval: 0.75
+        changeCraft: 24
+      - enemyID: 5
+        countEnemy: 1
+        interval: 0.75
         changeCraft: 24
       - enemyID: 11
         countEnemy: 1
@@ -306,12 +454,28 @@ MonoBehaviour:
       delay: 17
       enemies:
       - enemyID: 2
-        countEnemy: 3
+        countEnemy: 1
         interval: 0
         changeCraft: 14
+      - enemyID: 3
+        countEnemy: 1
+        interval: 0.75
+        changeCraft: 14
+      - enemyID: 2
+        countEnemy: 1
+        interval: 0.75
+        changeCraft: 14
       - enemyID: 7
-        countEnemy: 3
+        countEnemy: 1
         interval: 4.5
+        changeCraft: 22
+      - enemyID: 5
+        countEnemy: 1
+        interval: 0.75
+        changeCraft: 22
+      - enemyID: 7
+        countEnemy: 1
+        interval: 0.75
         changeCraft: 22
       - enemyID: 4
         countEnemy: 1
@@ -322,28 +486,56 @@ MonoBehaviour:
       delay: 18
       enemies:
       - enemyID: 5
-        countEnemy: 3
+        countEnemy: 1
         interval: 0
         changeCraft: 22
+      - enemyID: 7
+        countEnemy: 1
+        interval: 0.75
+        changeCraft: 22
+      - enemyID: 5
+        countEnemy: 1
+        interval: 0.75
+        changeCraft: 22
       - enemyID: 8
-        countEnemy: 2
+        countEnemy: 1
         interval: 4.5
         changeCraft: 40
+      - enemyID: 9
+        countEnemy: 1
+        interval: 0.75
+        changeCraft: 40
       - enemyID: 10
-        countEnemy: 2
+        countEnemy: 1
         interval: 5
+        changeCraft: 28
+      - enemyID: 10
+        countEnemy: 1
+        interval: 0.75
         changeCraft: 28
     - id: 2
       startDelay: 0
       delay: 19
       enemies:
       - enemyID: 7
-        countEnemy: 3
+        countEnemy: 1
         interval: 0
         changeCraft: 26
+      - enemyID: 5
+        countEnemy: 1
+        interval: 0.75
+        changeCraft: 26
+      - enemyID: 7
+        countEnemy: 1
+        interval: 0.75
+        changeCraft: 26
       - enemyID: 9
-        countEnemy: 2
+        countEnemy: 1
         interval: 4.5
+        changeCraft: 46
+      - enemyID: 8
+        countEnemy: 1
+        interval: 0.75
         changeCraft: 46
       - enemyID: 6
         countEnemy: 1
@@ -358,12 +550,24 @@ MonoBehaviour:
       delay: 19
       enemies:
       - enemyID: 10
-        countEnemy: 3
+        countEnemy: 1
         interval: 0
         changeCraft: 30
+      - enemyID: 10
+        countEnemy: 1
+        interval: 0.75
+        changeCraft: 30
+      - enemyID: 10
+        countEnemy: 1
+        interval: 0.75
+        changeCraft: 30
       - enemyID: 8
-        countEnemy: 2
+        countEnemy: 1
         interval: 4.5
+        changeCraft: 50
+      - enemyID: 9
+        countEnemy: 1
+        interval: 0.75
         changeCraft: 50
       - enemyID: 11
         countEnemy: 1
@@ -386,8 +590,12 @@ MonoBehaviour:
         interval: 5.5
         changeCraft: 86
       - enemyID: 8
-        countEnemy: 2
+        countEnemy: 1
         interval: 4.5
+        changeCraft: 56
+      - enemyID: 9
+        countEnemy: 1
+        interval: 0.75
         changeCraft: 56
       - enemyID: 13
         countEnemy: 1
@@ -402,32 +610,72 @@ MonoBehaviour:
       delay: 17
       enemies:
       - enemyID: 5
-        countEnemy: 4
+        countEnemy: 1
         interval: 0
         changeCraft: 24
       - enemyID: 7
-        countEnemy: 3
+        countEnemy: 1
+        interval: 0.75
+        changeCraft: 24
+      - enemyID: 5
+        countEnemy: 1
+        interval: 0.75
+        changeCraft: 24
+      - enemyID: 7
+        countEnemy: 1
+        interval: 0.75
+        changeCraft: 24
+      - enemyID: 7
+        countEnemy: 1
         interval: 4.2
         changeCraft: 26
+      - enemyID: 5
+        countEnemy: 1
+        interval: 0.75
+        changeCraft: 26
+      - enemyID: 7
+        countEnemy: 1
+        interval: 0.75
+        changeCraft: 26
       - enemyID: 8
-        countEnemy: 2
+        countEnemy: 1
         interval: 4.8
+        changeCraft: 44
+      - enemyID: 9
+        countEnemy: 1
+        interval: 0.75
         changeCraft: 44
     - id: 1
       startDelay: 0
       delay: 18
       enemies:
       - enemyID: 10
-        countEnemy: 3
+        countEnemy: 1
         interval: 0
         changeCraft: 32
+      - enemyID: 10
+        countEnemy: 1
+        interval: 0.75
+        changeCraft: 32
+      - enemyID: 10
+        countEnemy: 1
+        interval: 0.75
+        changeCraft: 32
       - enemyID: 4
-        countEnemy: 2
+        countEnemy: 1
         interval: 4.5
         changeCraft: 44
+      - enemyID: 5
+        countEnemy: 1
+        interval: 0.75
+        changeCraft: 44
       - enemyID: 9
-        countEnemy: 2
+        countEnemy: 1
         interval: 5
+        changeCraft: 50
+      - enemyID: 8
+        countEnemy: 1
+        interval: 0.75
         changeCraft: 50
       - enemyID: 6
         countEnemy: 1
@@ -438,12 +686,28 @@ MonoBehaviour:
       delay: 19
       enemies:
       - enemyID: 7
-        countEnemy: 3
+        countEnemy: 1
         interval: 0
         changeCraft: 30
+      - enemyID: 5
+        countEnemy: 1
+        interval: 0.75
+        changeCraft: 30
+      - enemyID: 7
+        countEnemy: 1
+        interval: 0.75
+        changeCraft: 30
       - enemyID: 8
-        countEnemy: 3
+        countEnemy: 1
         interval: 4.5
+        changeCraft: 56
+      - enemyID: 9
+        countEnemy: 1
+        interval: 0.75
+        changeCraft: 56
+      - enemyID: 8
+        countEnemy: 1
+        interval: 0.75
         changeCraft: 56
       - enemyID: 12
         countEnemy: 1
@@ -458,12 +722,24 @@ MonoBehaviour:
       delay: 19
       enemies:
       - enemyID: 10
-        countEnemy: 3
+        countEnemy: 1
         interval: 0
         changeCraft: 36
+      - enemyID: 10
+        countEnemy: 1
+        interval: 0.75
+        changeCraft: 36
+      - enemyID: 10
+        countEnemy: 1
+        interval: 0.75
+        changeCraft: 36
       - enemyID: 9
-        countEnemy: 2
+        countEnemy: 1
         interval: 4.5
+        changeCraft: 58
+      - enemyID: 8
+        countEnemy: 1
+        interval: 0.75
         changeCraft: 58
       - enemyID: 13
         countEnemy: 1
@@ -482,12 +758,24 @@ MonoBehaviour:
         interval: 0
         changeCraft: 90
       - enemyID: 8
-        countEnemy: 3
+        countEnemy: 1
         interval: 4.5
         changeCraft: 64
+      - enemyID: 9
+        countEnemy: 1
+        interval: 0.75
+        changeCraft: 64
+      - enemyID: 8
+        countEnemy: 1
+        interval: 0.75
+        changeCraft: 64
       - enemyID: 12
-        countEnemy: 2
+        countEnemy: 1
         interval: 5
+        changeCraft: 72
+      - enemyID: 12
+        countEnemy: 1
+        interval: 0.75
         changeCraft: 72
       - enemyID: 14
         countEnemy: 1
@@ -510,8 +798,12 @@ MonoBehaviour:
         interval: 6
         changeCraft: 96
       - enemyID: 9
-        countEnemy: 2
+        countEnemy: 1
         interval: 4.5
+        changeCraft: 66
+      - enemyID: 8
+        countEnemy: 1
+        interval: 0.75
         changeCraft: 66
   - id: 6
     name: Last Stand
@@ -522,16 +814,40 @@ MonoBehaviour:
       delay: 17
       enemies:
       - enemyID: 10
-        countEnemy: 4
+        countEnemy: 1
         interval: 0
         changeCraft: 34
+      - enemyID: 10
+        countEnemy: 1
+        interval: 0.75
+        changeCraft: 34
+      - enemyID: 10
+        countEnemy: 1
+        interval: 0.75
+        changeCraft: 34
+      - enemyID: 10
+        countEnemy: 1
+        interval: 0.75
+        changeCraft: 34
       - enemyID: 7
-        countEnemy: 3
+        countEnemy: 1
         interval: 4.2
         changeCraft: 30
+      - enemyID: 5
+        countEnemy: 1
+        interval: 0.75
+        changeCraft: 30
+      - enemyID: 7
+        countEnemy: 1
+        interval: 0.75
+        changeCraft: 30
       - enemyID: 8
-        countEnemy: 2
+        countEnemy: 1
         interval: 4.8
+        changeCraft: 54
+      - enemyID: 9
+        countEnemy: 1
+        interval: 0.75
         changeCraft: 54
       - enemyID: 6
         countEnemy: 1
@@ -546,32 +862,72 @@ MonoBehaviour:
         interval: 0
         changeCraft: 82
       - enemyID: 9
-        countEnemy: 3
+        countEnemy: 1
         interval: 4.5
         changeCraft: 60
+      - enemyID: 8
+        countEnemy: 1
+        interval: 0.75
+        changeCraft: 60
+      - enemyID: 9
+        countEnemy: 1
+        interval: 0.75
+        changeCraft: 60
       - enemyID: 12
-        countEnemy: 2
+        countEnemy: 1
         interval: 5
         changeCraft: 74
+      - enemyID: 12
+        countEnemy: 1
+        interval: 0.75
+        changeCraft: 74
       - enemyID: 10
-        countEnemy: 3
+        countEnemy: 1
         interval: 4.5
+        changeCraft: 38
+      - enemyID: 10
+        countEnemy: 1
+        interval: 0.75
+        changeCraft: 38
+      - enemyID: 10
+        countEnemy: 1
+        interval: 0.75
         changeCraft: 38
     - id: 2
       startDelay: 0
       delay: 19
       enemies:
       - enemyID: 11
-        countEnemy: 2
+        countEnemy: 1
         interval: 0
         changeCraft: 88
+      - enemyID: 14
+        countEnemy: 1
+        interval: 0.75
+        changeCraft: 88
       - enemyID: 7
-        countEnemy: 3
+        countEnemy: 1
         interval: 4.5
         changeCraft: 34
+      - enemyID: 5
+        countEnemy: 1
+        interval: 0.75
+        changeCraft: 34
+      - enemyID: 7
+        countEnemy: 1
+        interval: 0.75
+        changeCraft: 34
       - enemyID: 8
-        countEnemy: 3
+        countEnemy: 1
         interval: 4.8
+        changeCraft: 66
+      - enemyID: 9
+        countEnemy: 1
+        interval: 0.75
+        changeCraft: 66
+      - enemyID: 8
+        countEnemy: 1
+        interval: 0.75
         changeCraft: 66
       - enemyID: 6
         countEnemy: 1
@@ -586,12 +942,24 @@ MonoBehaviour:
         interval: 0
         changeCraft: 96
       - enemyID: 12
-        countEnemy: 2
+        countEnemy: 1
         interval: 5
         changeCraft: 78
+      - enemyID: 12
+        countEnemy: 1
+        interval: 0.75
+        changeCraft: 78
       - enemyID: 9
-        countEnemy: 3
+        countEnemy: 1
         interval: 4.5
+        changeCraft: 68
+      - enemyID: 8
+        countEnemy: 1
+        interval: 0.75
+        changeCraft: 68
+      - enemyID: 9
+        countEnemy: 1
+        interval: 0.75
         changeCraft: 68
       - enemyID: 14
         countEnemy: 1
@@ -602,16 +970,28 @@ MonoBehaviour:
       delay: 20
       enemies:
       - enemyID: 6
-        countEnemy: 2
+        countEnemy: 1
         interval: 0
+        changeCraft: 88
+      - enemyID: 6
+        countEnemy: 1
+        interval: 0.75
         changeCraft: 88
       - enemyID: 11
         countEnemy: 1
         interval: 5.5
         changeCraft: 92
       - enemyID: 8
-        countEnemy: 3
+        countEnemy: 1
         interval: 4.5
+        changeCraft: 72
+      - enemyID: 9
+        countEnemy: 1
+        interval: 0.75
+        changeCraft: 72
+      - enemyID: 8
+        countEnemy: 1
+        interval: 0.75
         changeCraft: 72
       - enemyID: 13
         countEnemy: 1
@@ -638,8 +1018,12 @@ MonoBehaviour:
         interval: 5.8
         changeCraft: 96
       - enemyID: 6
-        countEnemy: 2
+        countEnemy: 1
         interval: 5.8
+        changeCraft: 94
+      - enemyID: 6
+        countEnemy: 1
+        interval: 0.75
         changeCraft: 94
       - enemyID: 12
         countEnemy: 1
@@ -654,76 +1038,176 @@ MonoBehaviour:
       delay: 17
       enemies:
       - enemyID: 7
-        countEnemy: 4
+        countEnemy: 1
         interval: 0
         changeCraft: 34
+      - enemyID: 5
+        countEnemy: 1
+        interval: 0.75
+        changeCraft: 34
+      - enemyID: 7
+        countEnemy: 1
+        interval: 0.75
+        changeCraft: 34
+      - enemyID: 5
+        countEnemy: 1
+        interval: 0.75
+        changeCraft: 34
       - enemyID: 10
-        countEnemy: 4
+        countEnemy: 1
         interval: 4.2
         changeCraft: 38
+      - enemyID: 10
+        countEnemy: 1
+        interval: 0.75
+        changeCraft: 38
+      - enemyID: 10
+        countEnemy: 1
+        interval: 0.75
+        changeCraft: 38
+      - enemyID: 10
+        countEnemy: 1
+        interval: 0.75
+        changeCraft: 38
       - enemyID: 4
-        countEnemy: 2
+        countEnemy: 1
         interval: 4.8
         changeCraft: 48
+      - enemyID: 5
+        countEnemy: 1
+        interval: 0.75
+        changeCraft: 48
       - enemyID: 8
-        countEnemy: 2
+        countEnemy: 1
         interval: 4.8
+        changeCraft: 62
+      - enemyID: 9
+        countEnemy: 1
+        interval: 0.75
         changeCraft: 62
     - id: 1
       startDelay: 0
       delay: 18
       enemies:
       - enemyID: 6
-        countEnemy: 2
+        countEnemy: 1
         interval: 0
         changeCraft: 88
+      - enemyID: 6
+        countEnemy: 1
+        interval: 0.75
+        changeCraft: 88
       - enemyID: 9
-        countEnemy: 3
+        countEnemy: 1
         interval: 4.5
         changeCraft: 68
+      - enemyID: 8
+        countEnemy: 1
+        interval: 0.75
+        changeCraft: 68
+      - enemyID: 9
+        countEnemy: 1
+        interval: 0.75
+        changeCraft: 68
       - enemyID: 12
-        countEnemy: 2
+        countEnemy: 1
         interval: 5
         changeCraft: 82
+      - enemyID: 12
+        countEnemy: 1
+        interval: 0.75
+        changeCraft: 82
       - enemyID: 10
-        countEnemy: 3
+        countEnemy: 1
         interval: 4.5
+        changeCraft: 44
+      - enemyID: 10
+        countEnemy: 1
+        interval: 0.75
+        changeCraft: 44
+      - enemyID: 10
+        countEnemy: 1
+        interval: 0.75
         changeCraft: 44
     - id: 2
       startDelay: 0
       delay: 19
       enemies:
       - enemyID: 11
-        countEnemy: 2
+        countEnemy: 1
         interval: 0
         changeCraft: 94
+      - enemyID: 14
+        countEnemy: 1
+        interval: 0.75
+        changeCraft: 94
       - enemyID: 8
-        countEnemy: 3
+        countEnemy: 1
         interval: 4.5
         changeCraft: 76
+      - enemyID: 9
+        countEnemy: 1
+        interval: 0.75
+        changeCraft: 76
+      - enemyID: 8
+        countEnemy: 1
+        interval: 0.75
+        changeCraft: 76
       - enemyID: 13
-        countEnemy: 2
+        countEnemy: 1
         interval: 5.8
         changeCraft: 100
+      - enemyID: 13
+        countEnemy: 1
+        interval: 0.75
+        changeCraft: 100
       - enemyID: 7
-        countEnemy: 3
+        countEnemy: 1
         interval: 4.5
+        changeCraft: 40
+      - enemyID: 5
+        countEnemy: 1
+        interval: 0.75
+        changeCraft: 40
+      - enemyID: 7
+        countEnemy: 1
+        interval: 0.75
         changeCraft: 40
     - id: 3
       startDelay: 0
       delay: 20
       enemies:
       - enemyID: 14
-        countEnemy: 2
+        countEnemy: 1
         interval: 0
         changeCraft: 100
+      - enemyID: 11
+        countEnemy: 1
+        interval: 0.75
+        changeCraft: 100
       - enemyID: 12
-        countEnemy: 3
+        countEnemy: 1
         interval: 5
         changeCraft: 86
+      - enemyID: 12
+        countEnemy: 1
+        interval: 0.75
+        changeCraft: 86
+      - enemyID: 12
+        countEnemy: 1
+        interval: 0.75
+        changeCraft: 86
       - enemyID: 9
-        countEnemy: 3
+        countEnemy: 1
         interval: 4.5
+        changeCraft: 78
+      - enemyID: 8
+        countEnemy: 1
+        interval: 0.75
+        changeCraft: 78
+      - enemyID: 9
+        countEnemy: 1
+        interval: 0.75
         changeCraft: 78
       - enemyID: 6
         countEnemy: 1
@@ -734,36 +1218,68 @@ MonoBehaviour:
       delay: 20
       enemies:
       - enemyID: 13
-        countEnemy: 2
+        countEnemy: 1
         interval: 0
         changeCraft: 100
+      - enemyID: 13
+        countEnemy: 1
+        interval: 0.75
+        changeCraft: 100
       - enemyID: 11
-        countEnemy: 2
+        countEnemy: 1
         interval: 5.5
         changeCraft: 98
+      - enemyID: 14
+        countEnemy: 1
+        interval: 0.75
+        changeCraft: 98
       - enemyID: 8
-        countEnemy: 3
+        countEnemy: 1
         interval: 4.5
+        changeCraft: 84
+      - enemyID: 9
+        countEnemy: 1
+        interval: 0.75
+        changeCraft: 84
+      - enemyID: 8
+        countEnemy: 1
+        interval: 0.75
         changeCraft: 84
       - enemyID: 14
         countEnemy: 1
         interval: 6
         changeCraft: 100
       - enemyID: 12
-        countEnemy: 2
+        countEnemy: 1
         interval: 5
+        changeCraft: 90
+      - enemyID: 12
+        countEnemy: 1
+        interval: 0.75
         changeCraft: 90
     - id: 5
       startDelay: 0
       delay: 21
       enemies:
       - enemyID: 6
-        countEnemy: 2
+        countEnemy: 1
         interval: 0
         changeCraft: 96
+      - enemyID: 6
+        countEnemy: 1
+        interval: 0.75
+        changeCraft: 96
       - enemyID: 12
-        countEnemy: 3
+        countEnemy: 1
         interval: 5
+        changeCraft: 94
+      - enemyID: 12
+        countEnemy: 1
+        interval: 0.75
+        changeCraft: 94
+      - enemyID: 12
+        countEnemy: 1
+        interval: 0.75
         changeCraft: 94
       - enemyID: 13
         countEnemy: 1
@@ -774,30 +1290,54 @@ MonoBehaviour:
         interval: 6
         changeCraft: 100
       - enemyID: 11
-        countEnemy: 2
+        countEnemy: 1
         interval: 5.8
+        changeCraft: 100
+      - enemyID: 14
+        countEnemy: 1
+        interval: 0.75
         changeCraft: 100
     - id: 6
       startDelay: 0
       delay: 12
       enemies:
       - enemyID: 14
-        countEnemy: 2
+        countEnemy: 1
         interval: 0
         changeCraft: 100
+      - enemyID: 11
+        countEnemy: 1
+        interval: 0.75
+        changeCraft: 100
       - enemyID: 13
-        countEnemy: 2
+        countEnemy: 1
         interval: 5.8
         changeCraft: 100
+      - enemyID: 13
+        countEnemy: 1
+        interval: 0.75
+        changeCraft: 100
       - enemyID: 11
-        countEnemy: 2
+        countEnemy: 1
+        interval: 5.8
+        changeCraft: 100
+      - enemyID: 14
+        countEnemy: 1
+        interval: 0.75
+        changeCraft: 100
+      - enemyID: 6
+        countEnemy: 1
         interval: 5.8
         changeCraft: 100
       - enemyID: 6
-        countEnemy: 2
-        interval: 5.8
+        countEnemy: 1
+        interval: 0.75
         changeCraft: 100
       - enemyID: 12
-        countEnemy: 2
+        countEnemy: 1
         interval: 5
+        changeCraft: 100
+      - enemyID: 12
+        countEnemy: 1
+        interval: 0.75
         changeCraft: 100
