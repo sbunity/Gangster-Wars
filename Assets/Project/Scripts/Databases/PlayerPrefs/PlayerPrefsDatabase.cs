@@ -33,6 +33,30 @@ namespace SBabchuk
             OnChangeCoin?.Invoke();
         }
 
+        public bool IsMusicEnabled()
+        {
+            return PlayerPrefs.musik == mySwitch.On;
+        }
+
+        public bool IsSoundEnabled()
+        {
+            return PlayerPrefs.sound == mySwitch.On;
+        }
+
+        public void SetMusicEnabled(bool _value)
+        {
+            PlayerPrefs.musik = _value ? mySwitch.On : mySwitch.Off;
+
+            Save();
+        }
+
+        public void SetSoundEnabled(bool _value)
+        {
+            PlayerPrefs.sound = _value ? mySwitch.On : mySwitch.Off;
+
+            Save();
+        }
+
         /// <summary>
         /// Можливість здійснення покупки
         /// </summary>
