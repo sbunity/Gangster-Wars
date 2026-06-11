@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
-using DG.Tweening;
 using SBabchuk.Runtime.Architecture;
+using SBabchuk.Runtime.Gameplay.Levels;
 using SBabchuk.Runtime.Services.Contracts;
 using UnityEngine.Serialization;
 using Zenject;
@@ -25,16 +25,11 @@ namespace SBabchuk
         private LevelDatabase _database;
         private PlayerPrefsDatabase _pPrefs;
         private RandomPathPicker _pathPicker;
+        private LevelEntityTracker _entityTracker;
+        private LevelWaveScheduler _waveScheduler;
         private Level _properties;
-        private int _currentWave;
         private int _maxEnemyCount;
         private float _fillStep;
-        private List<EnemyControllerBase> _enemies = new();
-        private List<BonusController> _bonuses = new();
-        private Tween _waveDelayTween;
-        private Tween _nextWaveTween;
-        private Tween _enemySpawnTween;
-        private Tween _nextEnemyGroupTween;
         private bool _isLevelFinished;
         private IAssetProvider _assetProvider;
         private IPlayerProgressService _progressService;
@@ -54,7 +49,7 @@ namespace SBabchuk
         private void OnDisable()
         {
             UnsubscribeSignals();
-            StopSpawnTweens();
+            StopLevelScheduling();
         }
 
         [Inject]
@@ -73,6 +68,8 @@ namespace SBabchuk
         private void Awake()
         {
             _pathPicker = new RandomPathPicker(_spawnPoints.Count);
+            _entityTracker = new LevelEntityTracker();
+            _waveScheduler = new LevelWaveScheduler(SpawnEnemies);
         }
 
         private void Start()
@@ -87,6 +84,8 @@ namespace SBabchuk
         {
             _properties = _database.GetLevel(id);
             _levelFlowService?.Start(_properties);
+            _entityTracker.Clear();
+            _maxEnemyCount = 0;
 
             foreach (Waves wave in _properties.Waves)
             {
@@ -97,6 +96,7 @@ namespace SBabchuk
             }
 
             _fillStep = 1.0f / _maxEnemyCount;
+            _waveScheduler.Initialize(_properties);
         }
 
         public void Restart()
@@ -127,21 +127,8 @@ namespace SBabchuk
             if (_isLevelFinished)
                 return;
 
-            if (_currentWave < _properties.Waves.Count)
-            {
-                _isWaveFull = false;
-                _waveDelayTween = DOVirtual.DelayedCall(_properties.Waves[_currentWave].StartDelay, () =>
-                {
-                    if (_isLevelFinished)
-                        return;
-
-                    StartWave(_currentWave);
-                }).SetUpdate(false);
-            }
-            else
-            {
-                Debug.LogWarning("There are no more waves to start.");
-            }
+            _isWaveFull = false;
+            _waveScheduler.Wave();
         }
 
         public void StartWave(int waveIndex)
@@ -149,15 +136,7 @@ namespace SBabchuk
             if (_isLevelFinished)
                 return;
 
-            _nextWaveTween = DOVirtual.DelayedCall(_properties.Waves[waveIndex].Delay, () =>
-            {
-                if (_isLevelFinished)
-                    return;
-
-                _currentWave++;
-                Wave();
-            }).SetUpdate(false);
-            WaveHandler(waveIndex, 0);
+            _waveScheduler.StartWave(waveIndex);
         }
 
         public void WaveHandler(int waveIndex, int currentEnemyIndex)
@@ -165,30 +144,7 @@ namespace SBabchuk
             if (_isLevelFinished)
                 return;
 
-            if (currentEnemyIndex < _properties.Waves[waveIndex].Enemies.Count)
-            {
-                _isWaveFull = false;
-                var enemyOfWave = _properties.Waves[waveIndex].Enemies[currentEnemyIndex];
-                _enemySpawnTween = DOVirtual.DelayedCall(0, () =>
-                {
-                    if (!_isLevelFinished)
-                        SpawnEnemies(enemyOfWave);
-                }).SetLoops(enemyOfWave.CountEnemy).OnComplete(() =>
-                {
-                    if (_isLevelFinished)
-                        return;
-
-                    var nextEnemy = currentEnemyIndex + 1;
-                    _isWaveFull = nextEnemy == _properties.Waves[waveIndex].Enemies.Count;
-                    if (!_isWaveFull)
-                    {
-                        _nextEnemyGroupTween = DOVirtual.DelayedCall(_properties.Waves[waveIndex].Enemies[nextEnemy].Interval, () =>
-                        {
-                            WaveHandler(waveIndex, nextEnemy);
-                        }).SetUpdate(false);
-                    }
-                }).SetUpdate(false);
-            }
+            _waveScheduler.WaveHandler(waveIndex, currentEnemyIndex);
         }
 
         public void SpawnEnemies(EnemyOfWave enemyOfWave)
@@ -200,7 +156,7 @@ namespace SBabchuk
             var enemy = _gameFactory.CreateEnemy(enemyOfWave, _spawnPoints[path], _targetPoints[path]);
             if (enemy != null)
             {
-                _enemies.Add(enemy);
+                _entityTracker.AddEnemy(enemy);
                 _waveBar.UpdateFilled(_fillStep);
             }
             else
@@ -216,8 +172,8 @@ namespace SBabchuk
 
         public void DeleteEnemy(int id)
         {
-            _enemies.Remove(_enemies.Find(enemy => enemy.Properties.Id == id));
-            if (_enemies.Count == 0)
+            _entityTracker.RemoveEnemy(id);
+            if (_entityTracker.EnemyCount == 0)
             {
                 CheckGameOver();
             }
@@ -225,11 +181,12 @@ namespace SBabchuk
 
         private void CheckGameOver()
         {
-            if (_currentWave == _properties.Waves.Count)
+            _isWaveFull = _waveScheduler.IsWaveFull;
+            if (_waveScheduler.CurrentWave == _properties.Waves.Count)
             {
                 if (_isWaveFull)
                 {
-                    if (_bonuses.Count == 0 && _enemies.Count == 0)
+                    if (_entityTracker.BonusCount == 0 && _entityTracker.EnemyCount == 0)
                     {
                         var barricadeController = _barricadeController;
                         if (barricadeController == null)
@@ -251,15 +208,12 @@ namespace SBabchuk
         private void HandleGameOver(Panels panel)
         {
             _isLevelFinished = true;
-            StopSpawnTweens();
+            StopLevelScheduling();
         }
 
-        private void StopSpawnTweens()
+        private void StopLevelScheduling()
         {
-            _waveDelayTween?.Kill();
-            _nextWaveTween?.Kill();
-            _enemySpawnTween?.Kill();
-            _nextEnemyGroupTween?.Kill();
+            _waveScheduler?.Stop();
         }
 
         private void SubscribeSignals()
@@ -291,8 +245,8 @@ namespace SBabchuk
 
         public void PopBonus(BonusController bonus)
         {
-            _bonuses.Remove(bonus);
-            if (_enemies.Count == 0)
+            _entityTracker.RemoveBonus(bonus);
+            if (_entityTracker.EnemyCount == 0)
             {
                 CheckGameOver();
             }
@@ -300,7 +254,7 @@ namespace SBabchuk
 
         public Transform GetRandomEnemy()
         {
-            return _enemies[Random.Range(0, _enemies.Count)].Center.GetTransform();
+            return _entityTracker.GetRandomEnemy();
         }
 
         public void SpawnGrenadeOnPlace(GrenadesName grenadesName, Vector3 position)
@@ -325,7 +279,7 @@ namespace SBabchuk
 
             var bonus = _gameFactory.CreateBonus(bonusID, position);
             if (bonus != null)
-                _bonuses.Add(bonus);
+                _entityTracker.AddBonus(bonus);
             else
                 Debug.LogWarning("BonusController is missing from the spawned bonus.");
         }

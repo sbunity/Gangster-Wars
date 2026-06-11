@@ -17,6 +17,7 @@ namespace SBabchuk.Runtime.Installers
 
         private void BindServices()
         {
+            Container.Bind<IPoolAssetResolver>().To<PoolAssetResolver>().AsSingle();
             Container.Bind<IAssetProvider>().To<AssetProvider>().AsSingle();
             Container.BindInterfacesTo<SaveService>().AsSingle();
             Container.Bind<IPlayerProgressService>().To<PlayerProgressService>().AsSingle();

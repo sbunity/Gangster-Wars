@@ -6,10 +6,12 @@ namespace SBabchuk.Runtime.Services
     public sealed class PoolService : IPoolService
     {
         private readonly PoolManager _poolManager;
+        private readonly IPoolAssetResolver _poolAssetResolver;
 
-        public PoolService(PoolManager poolManager)
+        public PoolService(PoolManager poolManager, IPoolAssetResolver poolAssetResolver)
         {
             _poolManager = poolManager;
+            _poolAssetResolver = poolAssetResolver;
         }
 
         public Pool GetPool(NamesPool pool, int id)
@@ -45,14 +47,6 @@ namespace SBabchuk.Runtime.Services
         }
 
         public string GetPoolName(NamesPool pool, int id) 
-            => pool switch
-            {
-                NamesPool.Enemies => "Enemy_" + (id + 1),
-                NamesPool.Grenades => "Grenade_" + (id + 1),
-                NamesPool.Collisions => "Collision_" + (id + 1),
-                NamesPool.Bonuses => "Bonus_" + (id + 1),
-                NamesPool.Bullets => "Bullet_" + (id + 1),
-                _ => "Enemy_" + (id + 1),
-            };
+            => _poolAssetResolver.GetPoolName(pool, id);
     }
 }

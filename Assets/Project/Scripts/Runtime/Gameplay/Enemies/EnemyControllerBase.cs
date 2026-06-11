@@ -7,6 +7,12 @@ using UnityEngine.Serialization;
 
 namespace SBabchuk
 {
+    [RequireComponent(typeof(EnemyView))]
+    [RequireComponent(typeof(EnemyHealth))]
+    [RequireComponent(typeof(EnemyMovement))]
+    [RequireComponent(typeof(EnemyAttack))]
+    [RequireComponent(typeof(EnemyDeath))]
+    [RequireComponent(typeof(EnemyReward))]
     public class EnemyControllerBase : MonoBehaviour
     {
         [SerializeField, FormerlySerializedAs("e_animation")]
@@ -32,7 +38,6 @@ namespace SBabchuk
         private bool _collided;
         private bool _isDie;
         private IAssetProvider _assetProvider;
-        private IPlayerProgressService _progressService;
         private IGameFactory _gameFactory;
         private ILevelRuntimeService _levelRuntimeService;
         private BarricadeController _barricadeController;
@@ -48,10 +53,9 @@ namespace SBabchuk
         public bool IsCollided => _collided;
 
         [Inject]
-        public void Construct(IAssetProvider assetProvider, IPlayerProgressService progressService, IGameFactory gameFactory, ILevelRuntimeService levelRuntimeService, BarricadeController barricadeController, SignalBus signalBus)
+        public void Construct(IAssetProvider assetProvider, IGameFactory gameFactory, ILevelRuntimeService levelRuntimeService, BarricadeController barricadeController, SignalBus signalBus)
         {
             _assetProvider = assetProvider;
-            _progressService = progressService;
             _gameFactory = gameFactory;
             _levelRuntimeService = levelRuntimeService;
             _barricadeController = barricadeController;
@@ -86,17 +90,26 @@ namespace SBabchuk
 
         private void Awake()
         {
-            _view = GetOrAdd<EnemyView>();
-            _health = GetOrAdd<EnemyHealth>();
-            _movement = GetOrAdd<EnemyMovement>();
-            _attack = GetOrAdd<EnemyAttack>();
-            _death = GetOrAdd<EnemyDeath>();
-            _reward = GetOrAdd<EnemyReward>();
+            _view = GetRequired<EnemyView>();
+            _health = GetRequired<EnemyHealth>();
+            _movement = GetRequired<EnemyMovement>();
+            _attack = GetRequired<EnemyAttack>();
+            _death = GetRequired<EnemyDeath>();
+            _reward = GetRequired<EnemyReward>();
             _view.Initialize();
             _animation = _view.Animation;
             _center = _view.Center;
             _health.Changed += OnHealthChanged;
             _health.Died += OnHealthDied;
+        }
+
+        private void OnDestroy()
+        {
+            if (_health == null)
+                return;
+
+            _health.Changed -= OnHealthChanged;
+            _health.Died -= OnHealthDied;
         }
 
         public virtual void Init(EnemyOfWave _enemyOfWave, Transform spawnPoint, Transform targetPoint, int _changeCraft)
@@ -243,10 +256,13 @@ namespace SBabchuk
             }
         }
 
-        private T GetOrAdd<T>() where T : Component
+        private T GetRequired<T>() where T : Component
         {
             var component = GetComponent<T>();
-            return component ?? gameObject.AddComponent<T>();
+            if (component == null)
+                Debug.LogError($"{typeof(T).Name} is required on {name}.", this);
+
+            return component;
         }
     }
 }

@@ -319,10 +319,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 87fb00145220d4347b6511a16a2947b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  e_animation: {fileID: 0}
-  createBulletPoint: {fileID: 0}
-  target: {fileID: 0}
-  center: {fileID: 0}
+  _animation: {fileID: 0}
+  _createBulletPoint: {fileID: 0}
+  _target: {fileID: 0}
+  _center: {fileID: 0}
 --- !u!114 &21048521
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1072,10 +1072,10 @@ RectTransform:
   - {fileID: 672331345}
   m_Father: {fileID: 511213963}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 50.5, y: 5.25}
+  m_SizeDelta: {x: 40.5, y: 70.5}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!114 &71049947
 MonoBehaviour:
@@ -1089,9 +1089,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 19e3873b0fd450a41af999db10d172d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  index: 2
-  fullSprite: {fileID: 21300000, guid: 63e0193c86d5ff843b7e8764956a5c3f, type: 3}
-  emptySprite: {fileID: 21300000, guid: 05d0088ee8b00a9479bef5dcd0b5e88d, type: 3}
+  _index: 2
+  _fullSprite: {fileID: 21300000, guid: 63e0193c86d5ff843b7e8764956a5c3f, type: 3}
+  _emptySprite: {fileID: 21300000, guid: 05d0088ee8b00a9479bef5dcd0b5e88d, type: 3}
 --- !u!222 &71049949
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1346,9 +1346,9 @@ RectTransform:
   - {fileID: 393785044}
   m_Father: {fileID: 1968176294}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 297, y: -112.5}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &81656176
@@ -1363,9 +1363,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 326b003848641b949b20afaf7cdf3363, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 1
-  ico: {fileID: 341318287}
-  count: {fileID: 735948518}
+  _type: 1
+  _icon: {fileID: 341318287}
+  _count: {fileID: 735948518}
 --- !u!1 &84370544
 GameObject:
   m_ObjectHideFlags: 0
@@ -1806,12 +1806,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 992fc883406eff84d8ddba3001a4ae37, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyID: 11
-  ico: {fileID: 44040296}
-  health: {fileID: 1138762655}
-  damage: {fileID: 1944397585}
-  windowConfirm: {fileID: 672956414}
-  counterController: {fileID: 1856975012}
+  _enemyId: 11
+  _icon: {fileID: 44040296}
+  _health: {fileID: 1138762655}
+  _damage: {fileID: 1944397585}
+  _windowConfirm: {fileID: 672956414}
+  _counterController: {fileID: 1856975012}
 --- !u!114 &119989075
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2015,10 +2015,10 @@ RectTransform:
   - {fileID: 60167282}
   m_Father: {fileID: 511213963}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 303, y: -75.25}
+  m_SizeDelta: {x: 40.5, y: 70.5}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!114 &130860044
 MonoBehaviour:
@@ -2032,9 +2032,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 19e3873b0fd450a41af999db10d172d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  index: 32
-  fullSprite: {fileID: 21300000, guid: 63e0193c86d5ff843b7e8764956a5c3f, type: 3}
-  emptySprite: {fileID: 21300000, guid: 05d0088ee8b00a9479bef5dcd0b5e88d, type: 3}
+  _index: 32
+  _fullSprite: {fileID: 21300000, guid: 63e0193c86d5ff843b7e8764956a5c3f, type: 3}
+  _emptySprite: {fileID: 21300000, guid: 05d0088ee8b00a9479bef5dcd0b5e88d, type: 3}
 --- !u!222 &130860045
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2097,12 +2097,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 992fc883406eff84d8ddba3001a4ae37, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyID: 8
-  ico: {fileID: 784971545}
-  health: {fileID: 392691030}
-  damage: {fileID: 2092583385}
-  windowConfirm: {fileID: 672956414}
-  counterController: {fileID: 1856975012}
+  _enemyId: 8
+  _icon: {fileID: 784971545}
+  _health: {fileID: 392691030}
+  _damage: {fileID: 2092583385}
+  _windowConfirm: {fileID: 672956414}
+  _counterController: {fileID: 1856975012}
 --- !u!114 &135888001
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2326,12 +2326,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 992fc883406eff84d8ddba3001a4ae37, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyID: 7
-  ico: {fileID: 1068838}
-  health: {fileID: 1880588355}
-  damage: {fileID: 1989425486}
-  windowConfirm: {fileID: 672956414}
-  counterController: {fileID: 1856975012}
+  _enemyId: 7
+  _icon: {fileID: 1068838}
+  _health: {fileID: 1880588355}
+  _damage: {fileID: 1989425486}
+  _windowConfirm: {fileID: 672956414}
+  _counterController: {fileID: 1856975012}
 --- !u!114 &145044201
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2459,10 +2459,10 @@ RectTransform:
   - {fileID: 739694971}
   m_Father: {fileID: 511213963}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 1010, y: -75.25}
+  m_SizeDelta: {x: 40.5, y: 70.5}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!114 &146806577
 MonoBehaviour:
@@ -2476,9 +2476,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 19e3873b0fd450a41af999db10d172d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  index: 46
-  fullSprite: {fileID: 21300000, guid: 63e0193c86d5ff843b7e8764956a5c3f, type: 3}
-  emptySprite: {fileID: 21300000, guid: 05d0088ee8b00a9479bef5dcd0b5e88d, type: 3}
+  _index: 46
+  _fullSprite: {fileID: 21300000, guid: 63e0193c86d5ff843b7e8764956a5c3f, type: 3}
+  _emptySprite: {fileID: 21300000, guid: 05d0088ee8b00a9479bef5dcd0b5e88d, type: 3}
 --- !u!222 &146806578
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2899,12 +2899,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 992fc883406eff84d8ddba3001a4ae37, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyID: 0
-  ico: {fileID: 2021070048}
-  health: {fileID: 1337787093}
-  damage: {fileID: 1966745086}
-  windowConfirm: {fileID: 672956414}
-  counterController: {fileID: 1856975012}
+  _enemyId: 0
+  _icon: {fileID: 2021070048}
+  _health: {fileID: 1337787093}
+  _damage: {fileID: 1966745086}
+  _windowConfirm: {fileID: 672956414}
+  _counterController: {fileID: 1856975012}
 --- !u!114 &179918276
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3223,10 +3223,10 @@ RectTransform:
   - {fileID: 644453698}
   m_Father: {fileID: 511213963}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 555.5, y: 5.25}
+  m_SizeDelta: {x: 40.5, y: 70.5}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!114 &190876860
 MonoBehaviour:
@@ -3240,9 +3240,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 19e3873b0fd450a41af999db10d172d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  index: 12
-  fullSprite: {fileID: 21300000, guid: 63e0193c86d5ff843b7e8764956a5c3f, type: 3}
-  emptySprite: {fileID: 21300000, guid: 05d0088ee8b00a9479bef5dcd0b5e88d, type: 3}
+  _index: 12
+  _fullSprite: {fileID: 21300000, guid: 63e0193c86d5ff843b7e8764956a5c3f, type: 3}
+  _emptySprite: {fileID: 21300000, guid: 05d0088ee8b00a9479bef5dcd0b5e88d, type: 3}
 --- !u!222 &190876862
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -3701,12 +3701,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 992fc883406eff84d8ddba3001a4ae37, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyID: 10
-  ico: {fileID: 1546228326}
-  health: {fileID: 1392495923}
-  damage: {fileID: 1628277694}
-  windowConfirm: {fileID: 672956414}
-  counterController: {fileID: 1856975012}
+  _enemyId: 10
+  _icon: {fileID: 1546228326}
+  _health: {fileID: 1392495923}
+  _damage: {fileID: 1628277694}
+  _windowConfirm: {fileID: 672956414}
+  _counterController: {fileID: 1856975012}
 --- !u!114 &242000384
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3850,8 +3850,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5557225d5aeb697468d037ad7ef36f45, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 2
-  panel: {fileID: 84370544}
+  _type: 2
+  _panel: {fileID: 84370544}
 --- !u!1 &251943244
 GameObject:
   m_ObjectHideFlags: 0
@@ -3985,12 +3985,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 992fc883406eff84d8ddba3001a4ae37, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyID: 4
-  ico: {fileID: 1784131791}
-  health: {fileID: 1084840101}
-  damage: {fileID: 1724086304}
-  windowConfirm: {fileID: 672956414}
-  counterController: {fileID: 1856975012}
+  _enemyId: 4
+  _icon: {fileID: 1784131791}
+  _health: {fileID: 1084840101}
+  _damage: {fileID: 1724086304}
+  _windowConfirm: {fileID: 672956414}
+  _counterController: {fileID: 1856975012}
 --- !u!114 &254028744
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4317,7 +4317,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 279873755}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: -0.01623085, w: 0.9998683}
+  m_LocalRotation: {x: 0, y: 0, z: -0.04455355, w: 0.999007}
   m_LocalPosition: {x: -0.2178, y: 0.3832, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -4380,10 +4380,10 @@ RectTransform:
   - {fileID: 1991480126}
   m_Father: {fileID: 511213963}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 656.5, y: 5.25}
+  m_SizeDelta: {x: 40.5, y: 70.5}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!114 &279909881
 MonoBehaviour:
@@ -4397,9 +4397,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 19e3873b0fd450a41af999db10d172d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  index: 14
-  fullSprite: {fileID: 21300000, guid: 63e0193c86d5ff843b7e8764956a5c3f, type: 3}
-  emptySprite: {fileID: 21300000, guid: 05d0088ee8b00a9479bef5dcd0b5e88d, type: 3}
+  _index: 14
+  _fullSprite: {fileID: 21300000, guid: 63e0193c86d5ff843b7e8764956a5c3f, type: 3}
+  _emptySprite: {fileID: 21300000, guid: 05d0088ee8b00a9479bef5dcd0b5e88d, type: 3}
 --- !u!222 &279909883
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -5255,10 +5255,10 @@ RectTransform:
   - {fileID: 432302464}
   m_Father: {fileID: 511213963}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 202, y: -75.25}
+  m_SizeDelta: {x: 40.5, y: 70.5}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!114 &326734200
 MonoBehaviour:
@@ -5272,9 +5272,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 19e3873b0fd450a41af999db10d172d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  index: 30
-  fullSprite: {fileID: 21300000, guid: 63e0193c86d5ff843b7e8764956a5c3f, type: 3}
-  emptySprite: {fileID: 21300000, guid: 05d0088ee8b00a9479bef5dcd0b5e88d, type: 3}
+  _index: 30
+  _fullSprite: {fileID: 21300000, guid: 63e0193c86d5ff843b7e8764956a5c3f, type: 3}
+  _emptySprite: {fileID: 21300000, guid: 05d0088ee8b00a9479bef5dcd0b5e88d, type: 3}
 --- !u!222 &326734201
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -5666,10 +5666,10 @@ RectTransform:
   - {fileID: 622443009}
   m_Father: {fileID: 511213963}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 101, y: -75.25}
+  m_SizeDelta: {x: 40.5, y: 70.5}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!114 &351751310
 MonoBehaviour:
@@ -5683,9 +5683,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 19e3873b0fd450a41af999db10d172d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  index: 28
-  fullSprite: {fileID: 21300000, guid: 63e0193c86d5ff843b7e8764956a5c3f, type: 3}
-  emptySprite: {fileID: 21300000, guid: 05d0088ee8b00a9479bef5dcd0b5e88d, type: 3}
+  _index: 28
+  _fullSprite: {fileID: 21300000, guid: 63e0193c86d5ff843b7e8764956a5c3f, type: 3}
+  _emptySprite: {fileID: 21300000, guid: 05d0088ee8b00a9479bef5dcd0b5e88d, type: 3}
 --- !u!222 &351751311
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -6602,10 +6602,10 @@ RectTransform:
   - {fileID: 1986646386}
   m_Father: {fileID: 511213963}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 353.5, y: -75.25}
+  m_SizeDelta: {x: 40.5, y: 70.5}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!114 &464869275
 MonoBehaviour:
@@ -6619,9 +6619,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 19e3873b0fd450a41af999db10d172d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  index: 33
-  fullSprite: {fileID: 21300000, guid: 63e0193c86d5ff843b7e8764956a5c3f, type: 3}
-  emptySprite: {fileID: 21300000, guid: 05d0088ee8b00a9479bef5dcd0b5e88d, type: 3}
+  _index: 33
+  _fullSprite: {fileID: 21300000, guid: 63e0193c86d5ff843b7e8764956a5c3f, type: 3}
+  _emptySprite: {fileID: 21300000, guid: 05d0088ee8b00a9479bef5dcd0b5e88d, type: 3}
 --- !u!222 &464869276
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -6663,10 +6663,10 @@ RectTransform:
   - {fileID: 1079752542}
   m_Father: {fileID: 511213963}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 454.5, y: 5.25}
+  m_SizeDelta: {x: 40.5, y: 70.5}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!114 &497825313
 MonoBehaviour:
@@ -6680,9 +6680,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 19e3873b0fd450a41af999db10d172d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  index: 10
-  fullSprite: {fileID: 21300000, guid: 63e0193c86d5ff843b7e8764956a5c3f, type: 3}
-  emptySprite: {fileID: 21300000, guid: 05d0088ee8b00a9479bef5dcd0b5e88d, type: 3}
+  _index: 10
+  _fullSprite: {fileID: 21300000, guid: 63e0193c86d5ff843b7e8764956a5c3f, type: 3}
+  _emptySprite: {fileID: 21300000, guid: 05d0088ee8b00a9479bef5dcd0b5e88d, type: 3}
 --- !u!222 &497825315
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -6740,12 +6740,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 65799c17f3bb3c748ae04f34ccf09214, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  e_animation: {fileID: 0}
-  createBulletPoint: {fileID: 0}
-  aim: {fileID: 1220634446}
-  speedRotate: 0.22
-  target: {fileID: 0}
-  aimFireThreshold: 0.15
+  _animation: {fileID: 0}
+  _createBulletPoint: {fileID: 0}
+  _aim: {fileID: 1220634446}
+  _speedRotate: 0.22
+  _target: {fileID: 0}
+  _aimFireThreshold: 0.15
 --- !u!114 &507612434
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6937,10 +6937,10 @@ RectTransform:
   - {fileID: 1788461862}
   m_Father: {fileID: 511213963}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 252.5, y: -75.25}
+  m_SizeDelta: {x: 40.5, y: 70.5}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!114 &525516711
 MonoBehaviour:
@@ -6954,9 +6954,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 19e3873b0fd450a41af999db10d172d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  index: 31
-  fullSprite: {fileID: 21300000, guid: 63e0193c86d5ff843b7e8764956a5c3f, type: 3}
-  emptySprite: {fileID: 21300000, guid: 05d0088ee8b00a9479bef5dcd0b5e88d, type: 3}
+  _index: 31
+  _fullSprite: {fileID: 21300000, guid: 63e0193c86d5ff843b7e8764956a5c3f, type: 3}
+  _emptySprite: {fileID: 21300000, guid: 05d0088ee8b00a9479bef5dcd0b5e88d, type: 3}
 --- !u!222 &525516712
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -7016,8 +7016,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d1030dedf3480345856ce7942525868, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  slider: {fileID: 2086997013}
-  speed: 0.5
+  _slider: {fileID: 2086997013}
+  _speed: 0.5
 --- !u!114 &536196647
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7168,10 +7168,10 @@ RectTransform:
   - {fileID: 1102336422}
   m_Father: {fileID: 511213963}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 606, y: -75.25}
+  m_SizeDelta: {x: 40.5, y: 70.5}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!114 &592533280
 MonoBehaviour:
@@ -7185,9 +7185,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 19e3873b0fd450a41af999db10d172d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  index: 38
-  fullSprite: {fileID: 21300000, guid: 63e0193c86d5ff843b7e8764956a5c3f, type: 3}
-  emptySprite: {fileID: 21300000, guid: 05d0088ee8b00a9479bef5dcd0b5e88d, type: 3}
+  _index: 38
+  _fullSprite: {fileID: 21300000, guid: 63e0193c86d5ff843b7e8764956a5c3f, type: 3}
+  _emptySprite: {fileID: 21300000, guid: 05d0088ee8b00a9479bef5dcd0b5e88d, type: 3}
 --- !u!222 &592533281
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -7339,10 +7339,10 @@ RectTransform:
   - {fileID: 17579617}
   m_Father: {fileID: 511213963}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 0, y: 5.25}
+  m_SizeDelta: {x: 40.5, y: 70.5}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!222 &597443705
 CanvasRenderer:
@@ -7364,9 +7364,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 19e3873b0fd450a41af999db10d172d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  index: 1
-  fullSprite: {fileID: 21300000, guid: 63e0193c86d5ff843b7e8764956a5c3f, type: 3}
-  emptySprite: {fileID: 21300000, guid: 05d0088ee8b00a9479bef5dcd0b5e88d, type: 3}
+  _index: 1
+  _fullSprite: {fileID: 21300000, guid: 63e0193c86d5ff843b7e8764956a5c3f, type: 3}
+  _emptySprite: {fileID: 21300000, guid: 05d0088ee8b00a9479bef5dcd0b5e88d, type: 3}
 --- !u!1 &597866119
 GameObject:
   m_ObjectHideFlags: 0
@@ -7905,10 +7905,10 @@ RectTransform:
   - {fileID: 2056957353}
   m_Father: {fileID: 511213963}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 1111, y: -75.25}
+  m_SizeDelta: {x: 40.5, y: 70.5}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!114 &616286034
 MonoBehaviour:
@@ -7922,9 +7922,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 19e3873b0fd450a41af999db10d172d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  index: 48
-  fullSprite: {fileID: 21300000, guid: 63e0193c86d5ff843b7e8764956a5c3f, type: 3}
-  emptySprite: {fileID: 21300000, guid: 05d0088ee8b00a9479bef5dcd0b5e88d, type: 3}
+  _index: 48
+  _fullSprite: {fileID: 21300000, guid: 63e0193c86d5ff843b7e8764956a5c3f, type: 3}
+  _emptySprite: {fileID: 21300000, guid: 05d0088ee8b00a9479bef5dcd0b5e88d, type: 3}
 --- !u!222 &616286035
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -8472,10 +8472,10 @@ RectTransform:
   - {fileID: 1907151247}
   m_Father: {fileID: 511213963}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 1212, y: -75.25}
+  m_SizeDelta: {x: 40.5, y: 70.5}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!114 &660319396
 MonoBehaviour:
@@ -8489,9 +8489,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 19e3873b0fd450a41af999db10d172d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  index: 50
-  fullSprite: {fileID: 21300000, guid: 63e0193c86d5ff843b7e8764956a5c3f, type: 3}
-  emptySprite: {fileID: 21300000, guid: 05d0088ee8b00a9479bef5dcd0b5e88d, type: 3}
+  _index: 50
+  _fullSprite: {fileID: 21300000, guid: 63e0193c86d5ff843b7e8764956a5c3f, type: 3}
+  _emptySprite: {fileID: 21300000, guid: 05d0088ee8b00a9479bef5dcd0b5e88d, type: 3}
 --- !u!222 &660319397
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -8590,10 +8590,10 @@ RectTransform:
   - {fileID: 1309538846}
   m_Father: {fileID: 511213963}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 454.5, y: -75.25}
+  m_SizeDelta: {x: 40.5, y: 70.5}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!114 &664547320
 MonoBehaviour:
@@ -8607,9 +8607,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 19e3873b0fd450a41af999db10d172d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  index: 35
-  fullSprite: {fileID: 21300000, guid: 63e0193c86d5ff843b7e8764956a5c3f, type: 3}
-  emptySprite: {fileID: 21300000, guid: 05d0088ee8b00a9479bef5dcd0b5e88d, type: 3}
+  _index: 35
+  _fullSprite: {fileID: 21300000, guid: 63e0193c86d5ff843b7e8764956a5c3f, type: 3}
+  _emptySprite: {fileID: 21300000, guid: 05d0088ee8b00a9479bef5dcd0b5e88d, type: 3}
 --- !u!222 &664547321
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -8983,10 +8983,10 @@ RectTransform:
   - {fileID: 1665110280}
   m_Father: {fileID: 511213963}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 151.5, y: 5.25}
+  m_SizeDelta: {x: 40.5, y: 70.5}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!114 &697402531
 MonoBehaviour:
@@ -9000,9 +9000,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 19e3873b0fd450a41af999db10d172d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  index: 4
-  fullSprite: {fileID: 21300000, guid: 63e0193c86d5ff843b7e8764956a5c3f, type: 3}
-  emptySprite: {fileID: 21300000, guid: 05d0088ee8b00a9479bef5dcd0b5e88d, type: 3}
+  _index: 4
+  _fullSprite: {fileID: 21300000, guid: 63e0193c86d5ff843b7e8764956a5c3f, type: 3}
+  _emptySprite: {fileID: 21300000, guid: 05d0088ee8b00a9479bef5dcd0b5e88d, type: 3}
 --- !u!222 &697402533
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -9290,7 +9290,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 07dcc76b09211334eb6033f1064cd8a4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fireEvent: Fire
+  _fireEvent: Fire
 --- !u!1 &713712940
 GameObject:
   m_ObjectHideFlags: 0
@@ -9457,10 +9457,10 @@ RectTransform:
   - {fileID: 50799128}
   m_Father: {fileID: 511213963}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 858.5, y: 5.25}
+  m_SizeDelta: {x: 40.5, y: 70.5}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!114 &725414281
 MonoBehaviour:
@@ -9474,9 +9474,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 19e3873b0fd450a41af999db10d172d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  index: 18
-  fullSprite: {fileID: 21300000, guid: 63e0193c86d5ff843b7e8764956a5c3f, type: 3}
-  emptySprite: {fileID: 21300000, guid: 05d0088ee8b00a9479bef5dcd0b5e88d, type: 3}
+  _index: 18
+  _fullSprite: {fileID: 21300000, guid: 63e0193c86d5ff843b7e8764956a5c3f, type: 3}
+  _emptySprite: {fileID: 21300000, guid: 05d0088ee8b00a9479bef5dcd0b5e88d, type: 3}
 --- !u!222 &725414283
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -9955,10 +9955,10 @@ RectTransform:
   - {fileID: 2089843580}
   m_Father: {fileID: 511213963}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 808, y: 5.25}
+  m_SizeDelta: {x: 40.5, y: 70.5}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!114 &786606135
 MonoBehaviour:
@@ -9972,9 +9972,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 19e3873b0fd450a41af999db10d172d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  index: 17
-  fullSprite: {fileID: 21300000, guid: 63e0193c86d5ff843b7e8764956a5c3f, type: 3}
-  emptySprite: {fileID: 21300000, guid: 05d0088ee8b00a9479bef5dcd0b5e88d, type: 3}
+  _index: 17
+  _fullSprite: {fileID: 21300000, guid: 63e0193c86d5ff843b7e8764956a5c3f, type: 3}
+  _emptySprite: {fileID: 21300000, guid: 05d0088ee8b00a9479bef5dcd0b5e88d, type: 3}
 --- !u!222 &786606137
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -10109,8 +10109,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4de8c74e6829ff34fa024c0a41d3578c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sniper: {fileID: 507612431}
-  bomber: {fileID: 21048518}
+  _sniper: {fileID: 507612431}
+  _bomber: {fileID: 21048518}
 --- !u!1 &815223736
 GameObject:
   m_ObjectHideFlags: 0
@@ -10255,10 +10255,10 @@ RectTransform:
   - {fileID: 895385758}
   m_Father: {fileID: 511213963}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 404, y: -75.25}
+  m_SizeDelta: {x: 40.5, y: 70.5}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!114 &834589752
 MonoBehaviour:
@@ -10272,9 +10272,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 19e3873b0fd450a41af999db10d172d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  index: 34
-  fullSprite: {fileID: 21300000, guid: 63e0193c86d5ff843b7e8764956a5c3f, type: 3}
-  emptySprite: {fileID: 21300000, guid: 05d0088ee8b00a9479bef5dcd0b5e88d, type: 3}
+  _index: 34
+  _fullSprite: {fileID: 21300000, guid: 63e0193c86d5ff843b7e8764956a5c3f, type: 3}
+  _emptySprite: {fileID: 21300000, guid: 05d0088ee8b00a9479bef5dcd0b5e88d, type: 3}
 --- !u!222 &834589753
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -10347,10 +10347,10 @@ RectTransform:
   - {fileID: 1368380396}
   m_Father: {fileID: 511213963}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 656.5, y: -75.25}
+  m_SizeDelta: {x: 40.5, y: 70.5}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!114 &859118343
 MonoBehaviour:
@@ -10364,9 +10364,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 19e3873b0fd450a41af999db10d172d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  index: 39
-  fullSprite: {fileID: 21300000, guid: 63e0193c86d5ff843b7e8764956a5c3f, type: 3}
-  emptySprite: {fileID: 21300000, guid: 05d0088ee8b00a9479bef5dcd0b5e88d, type: 3}
+  _index: 39
+  _fullSprite: {fileID: 21300000, guid: 63e0193c86d5ff843b7e8764956a5c3f, type: 3}
+  _emptySprite: {fileID: 21300000, guid: 05d0088ee8b00a9479bef5dcd0b5e88d, type: 3}
 --- !u!222 &859118344
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -10514,10 +10514,10 @@ RectTransform:
   - {fileID: 1728505770}
   m_Father: {fileID: 511213963}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 252.5, y: 5.25}
+  m_SizeDelta: {x: 40.5, y: 70.5}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!114 &873027621
 MonoBehaviour:
@@ -10531,9 +10531,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 19e3873b0fd450a41af999db10d172d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  index: 6
-  fullSprite: {fileID: 21300000, guid: 63e0193c86d5ff843b7e8764956a5c3f, type: 3}
-  emptySprite: {fileID: 21300000, guid: 05d0088ee8b00a9479bef5dcd0b5e88d, type: 3}
+  _index: 6
+  _fullSprite: {fileID: 21300000, guid: 63e0193c86d5ff843b7e8764956a5c3f, type: 3}
+  _emptySprite: {fileID: 21300000, guid: 05d0088ee8b00a9479bef5dcd0b5e88d, type: 3}
 --- !u!222 &873027623
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -10873,9 +10873,9 @@ RectTransform:
   - {fileID: 1445196130}
   m_Father: {fileID: 1968176294}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 99, y: -112.5}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &906964623
@@ -10890,9 +10890,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 326b003848641b949b20afaf7cdf3363, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 0
-  ico: {fileID: 602150758}
-  count: {fileID: 1660322910}
+  _type: 0
+  _icon: {fileID: 602150758}
+  _count: {fileID: 1660322910}
 --- !u!1 &908972750
 GameObject:
   m_ObjectHideFlags: 0
@@ -11089,10 +11089,10 @@ RectTransform:
   - {fileID: 1311916827}
   m_Father: {fileID: 511213963}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 1161.5, y: 5.25}
+  m_SizeDelta: {x: 40.5, y: 70.5}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!114 &924235606
 MonoBehaviour:
@@ -11106,9 +11106,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 19e3873b0fd450a41af999db10d172d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  index: 24
-  fullSprite: {fileID: 21300000, guid: 63e0193c86d5ff843b7e8764956a5c3f, type: 3}
-  emptySprite: {fileID: 21300000, guid: 05d0088ee8b00a9479bef5dcd0b5e88d, type: 3}
+  _index: 24
+  _fullSprite: {fileID: 21300000, guid: 63e0193c86d5ff843b7e8764956a5c3f, type: 3}
+  _emptySprite: {fileID: 21300000, guid: 05d0088ee8b00a9479bef5dcd0b5e88d, type: 3}
 --- !u!222 &924235607
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -11150,10 +11150,10 @@ RectTransform:
   - {fileID: 155474976}
   m_Father: {fileID: 511213963}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 303, y: 5.25}
+  m_SizeDelta: {x: 40.5, y: 70.5}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!114 &932874376
 MonoBehaviour:
@@ -11167,9 +11167,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 19e3873b0fd450a41af999db10d172d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  index: 7
-  fullSprite: {fileID: 21300000, guid: 63e0193c86d5ff843b7e8764956a5c3f, type: 3}
-  emptySprite: {fileID: 21300000, guid: 05d0088ee8b00a9479bef5dcd0b5e88d, type: 3}
+  _index: 7
+  _fullSprite: {fileID: 21300000, guid: 63e0193c86d5ff843b7e8764956a5c3f, type: 3}
+  _emptySprite: {fileID: 21300000, guid: 05d0088ee8b00a9479bef5dcd0b5e88d, type: 3}
 --- !u!222 &932874378
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -11211,10 +11211,10 @@ RectTransform:
   - {fileID: 339324375}
   m_Father: {fileID: 511213963}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 151.5, y: -75.25}
+  m_SizeDelta: {x: 40.5, y: 70.5}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!114 &937901108
 MonoBehaviour:
@@ -11228,9 +11228,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 19e3873b0fd450a41af999db10d172d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  index: 29
-  fullSprite: {fileID: 21300000, guid: 63e0193c86d5ff843b7e8764956a5c3f, type: 3}
-  emptySprite: {fileID: 21300000, guid: 05d0088ee8b00a9479bef5dcd0b5e88d, type: 3}
+  _index: 29
+  _fullSprite: {fileID: 21300000, guid: 63e0193c86d5ff843b7e8764956a5c3f, type: 3}
+  _emptySprite: {fileID: 21300000, guid: 05d0088ee8b00a9479bef5dcd0b5e88d, type: 3}
 --- !u!222 &937901109
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -11309,9 +11309,9 @@ RectTransform:
   - {fileID: 1468400039}
   m_Father: {fileID: 1968176294}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 693, y: -112.5}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &961739107
@@ -11326,9 +11326,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 326b003848641b949b20afaf7cdf3363, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 3
-  ico: {fileID: 1893505787}
-  count: {fileID: 91882106}
+  _type: 3
+  _icon: {fileID: 1893505787}
+  _count: {fileID: 91882106}
 --- !u!1 &963564380
 GameObject:
   m_ObjectHideFlags: 0
@@ -11615,12 +11615,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 992fc883406eff84d8ddba3001a4ae37, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyID: 12
-  ico: {fileID: 464746346}
-  health: {fileID: 30293188}
-  damage: {fileID: 1260767398}
-  windowConfirm: {fileID: 672956414}
-  counterController: {fileID: 1856975012}
+  _enemyId: 12
+  _icon: {fileID: 464746346}
+  _health: {fileID: 30293188}
+  _damage: {fileID: 1260767398}
+  _windowConfirm: {fileID: 672956414}
+  _counterController: {fileID: 1856975012}
 --- !u!114 &982864128
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12089,8 +12089,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c87a19531330ffb48a53f7150e6c34c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  grenadesName: 2
-  ico: {fileID: 151110458}
+  _grenadesName: 2
+  _icon: {fileID: 151110458}
 --- !u!114 &1008415936
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12228,10 +12228,10 @@ RectTransform:
   - {fileID: 1296622936}
   m_Father: {fileID: 511213963}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 1010, y: 5.25}
+  m_SizeDelta: {x: 40.5, y: 70.5}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!114 &1023970284
 MonoBehaviour:
@@ -12245,9 +12245,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 19e3873b0fd450a41af999db10d172d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  index: 21
-  fullSprite: {fileID: 21300000, guid: 63e0193c86d5ff843b7e8764956a5c3f, type: 3}
-  emptySprite: {fileID: 21300000, guid: 05d0088ee8b00a9479bef5dcd0b5e88d, type: 3}
+  _index: 21
+  _fullSprite: {fileID: 21300000, guid: 63e0193c86d5ff843b7e8764956a5c3f, type: 3}
+  _emptySprite: {fileID: 21300000, guid: 05d0088ee8b00a9479bef5dcd0b5e88d, type: 3}
 --- !u!222 &1023970285
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -12883,8 +12883,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 97b559eb62077cd4dad5f50797a0d197, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  on: 1
-  panel: {fileID: 459535260}
+  _on: 1
+  _panel: {fileID: 459535260}
   _settingsController: {fileID: 0}
 --- !u!114 &1055493654
 MonoBehaviour:
@@ -13002,9 +13002,9 @@ RectTransform:
   - {fileID: 1205023204}
   m_Father: {fileID: 1289643748}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 875, y: -112.5}
   m_SizeDelta: {x: 150, y: 150}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1059736352
@@ -13019,9 +13019,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60d19f09388bb4841a09553c2c8e7197, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 3
-  count: {fileID: 1106340739}
-  bttn: {fileID: 688134845}
+  _type: 3
+  _count: {fileID: 1106340739}
+  _bttn: {fileID: 688134845}
 --- !u!1 &1064041591
 GameObject:
   m_ObjectHideFlags: 0
@@ -13208,22 +13208,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 560b9c3f0689dff42b102f1e84b6b78f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  e_animation: {fileID: 0}
-  createBulletPoint: {fileID: 0}
-  createBulletPointList: []
-  bulletPoints:
-  - points:
+  _animation: {fileID: 0}
+  _createBulletPoint: {fileID: 0}
+  _createBulletPointList: []
+  _bulletPoints:
+  - _points:
     - {fileID: 668602240}
-  - points:
+  - _points:
     - {fileID: 1550391897}
     - {fileID: 1639593320}
-  - points:
+  - _points:
     - {fileID: 972537969}
-  - points:
+  - _points:
     - {fileID: 1139037526}
-  - points:
+  - _points:
     - {fileID: 71165805}
-  isAttacking: 0
+  _isAttacking: 0
 --- !u!114 &1073950071
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13570,10 +13570,10 @@ RectTransform:
   - {fileID: 1003672071}
   m_Father: {fileID: 511213963}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 353.5, y: 5.25}
+  m_SizeDelta: {x: 40.5, y: 70.5}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!114 &1096901385
 MonoBehaviour:
@@ -13587,9 +13587,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 19e3873b0fd450a41af999db10d172d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  index: 8
-  fullSprite: {fileID: 21300000, guid: 63e0193c86d5ff843b7e8764956a5c3f, type: 3}
-  emptySprite: {fileID: 21300000, guid: 05d0088ee8b00a9479bef5dcd0b5e88d, type: 3}
+  _index: 8
+  _fullSprite: {fileID: 21300000, guid: 63e0193c86d5ff843b7e8764956a5c3f, type: 3}
+  _emptySprite: {fileID: 21300000, guid: 05d0088ee8b00a9479bef5dcd0b5e88d, type: 3}
 --- !u!222 &1096901387
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -14025,10 +14025,10 @@ RectTransform:
   - {fileID: 1708426667}
   m_Father: {fileID: 511213963}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 1060.5, y: -75.25}
+  m_SizeDelta: {x: 40.5, y: 70.5}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!114 &1127821073
 MonoBehaviour:
@@ -14042,9 +14042,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 19e3873b0fd450a41af999db10d172d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  index: 47
-  fullSprite: {fileID: 21300000, guid: 63e0193c86d5ff843b7e8764956a5c3f, type: 3}
-  emptySprite: {fileID: 21300000, guid: 05d0088ee8b00a9479bef5dcd0b5e88d, type: 3}
+  _index: 47
+  _fullSprite: {fileID: 21300000, guid: 63e0193c86d5ff843b7e8764956a5c3f, type: 3}
+  _emptySprite: {fileID: 21300000, guid: 05d0088ee8b00a9479bef5dcd0b5e88d, type: 3}
 --- !u!222 &1127821074
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -14086,10 +14086,10 @@ RectTransform:
   - {fileID: 1905072592}
   m_Father: {fileID: 511213963}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 404, y: 5.25}
+  m_SizeDelta: {x: 40.5, y: 70.5}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!114 &1128955363
 MonoBehaviour:
@@ -14103,9 +14103,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 19e3873b0fd450a41af999db10d172d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  index: 9
-  fullSprite: {fileID: 21300000, guid: 63e0193c86d5ff843b7e8764956a5c3f, type: 3}
-  emptySprite: {fileID: 21300000, guid: 05d0088ee8b00a9479bef5dcd0b5e88d, type: 3}
+  _index: 9
+  _fullSprite: {fileID: 21300000, guid: 63e0193c86d5ff843b7e8764956a5c3f, type: 3}
+  _emptySprite: {fileID: 21300000, guid: 05d0088ee8b00a9479bef5dcd0b5e88d, type: 3}
 --- !u!222 &1128955365
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -14178,10 +14178,10 @@ RectTransform:
   - {fileID: 450527348}
   m_Father: {fileID: 511213963}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 757.5, y: -75.25}
+  m_SizeDelta: {x: 40.5, y: 70.5}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!114 &1131660519
 MonoBehaviour:
@@ -14195,9 +14195,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 19e3873b0fd450a41af999db10d172d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  index: 41
-  fullSprite: {fileID: 21300000, guid: 63e0193c86d5ff843b7e8764956a5c3f, type: 3}
-  emptySprite: {fileID: 21300000, guid: 05d0088ee8b00a9479bef5dcd0b5e88d, type: 3}
+  _index: 41
+  _fullSprite: {fileID: 21300000, guid: 63e0193c86d5ff843b7e8764956a5c3f, type: 3}
+  _emptySprite: {fileID: 21300000, guid: 05d0088ee8b00a9479bef5dcd0b5e88d, type: 3}
 --- !u!222 &1131660520
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -14438,10 +14438,10 @@ RectTransform:
   - {fileID: 1806022825}
   m_Father: {fileID: 511213963}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 707, y: -75.25}
+  m_SizeDelta: {x: 40.5, y: 70.5}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!114 &1157101554
 MonoBehaviour:
@@ -14455,9 +14455,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 19e3873b0fd450a41af999db10d172d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  index: 40
-  fullSprite: {fileID: 21300000, guid: 63e0193c86d5ff843b7e8764956a5c3f, type: 3}
-  emptySprite: {fileID: 21300000, guid: 05d0088ee8b00a9479bef5dcd0b5e88d, type: 3}
+  _index: 40
+  _fullSprite: {fileID: 21300000, guid: 63e0193c86d5ff843b7e8764956a5c3f, type: 3}
+  _emptySprite: {fileID: 21300000, guid: 05d0088ee8b00a9479bef5dcd0b5e88d, type: 3}
 --- !u!222 &1157101555
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -14499,10 +14499,10 @@ RectTransform:
   - {fileID: 1818500714}
   m_Father: {fileID: 511213963}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 505, y: -75.25}
+  m_SizeDelta: {x: 40.5, y: 70.5}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!114 &1192107001
 MonoBehaviour:
@@ -14516,9 +14516,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 19e3873b0fd450a41af999db10d172d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  index: 36
-  fullSprite: {fileID: 21300000, guid: 63e0193c86d5ff843b7e8764956a5c3f, type: 3}
-  emptySprite: {fileID: 21300000, guid: 05d0088ee8b00a9479bef5dcd0b5e88d, type: 3}
+  _index: 36
+  _fullSprite: {fileID: 21300000, guid: 63e0193c86d5ff843b7e8764956a5c3f, type: 3}
+  _emptySprite: {fileID: 21300000, guid: 05d0088ee8b00a9479bef5dcd0b5e88d, type: 3}
 --- !u!222 &1192107002
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -14643,7 +14643,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1230115033}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: -0.47692868, w: 0.878942}
+  m_LocalRotation: {x: 0, y: 0, z: -0.485701, w: 0.87412506}
   m_LocalPosition: {x: 0.059699997, y: 0.057399996, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -14772,10 +14772,10 @@ RectTransform:
   - {fileID: 1032046058}
   m_Father: {fileID: 511213963}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 1060.5, y: 5.25}
+  m_SizeDelta: {x: 40.5, y: 70.5}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!114 &1255539548
 MonoBehaviour:
@@ -14789,9 +14789,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 19e3873b0fd450a41af999db10d172d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  index: 22
-  fullSprite: {fileID: 21300000, guid: 63e0193c86d5ff843b7e8764956a5c3f, type: 3}
-  emptySprite: {fileID: 21300000, guid: 05d0088ee8b00a9479bef5dcd0b5e88d, type: 3}
+  _index: 22
+  _fullSprite: {fileID: 21300000, guid: 63e0193c86d5ff843b7e8764956a5c3f, type: 3}
+  _emptySprite: {fileID: 21300000, guid: 05d0088ee8b00a9479bef5dcd0b5e88d, type: 3}
 --- !u!222 &1255539549
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -15021,7 +15021,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 07dcc76b09211334eb6033f1064cd8a4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fireEvent: Fire
+  _fireEvent: Fire
 --- !u!114 &1288661726
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15093,14 +15093,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 510454d3783e3cc41a00dbbd715727b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rect: {fileID: 1289643748}
-  elements:
+  _rect: {fileID: 1289643748}
+  _elements:
   - {fileID: 1709077609}
   - {fileID: 1773639456}
   - {fileID: 1856326368}
   - {fileID: 1059736352}
   - {fileID: 1563776449}
-  offset: 250
+  _offset: 250
 --- !u!114 &1289643750
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15540,8 +15540,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c87a19531330ffb48a53f7150e6c34c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  grenadesName: 1
-  ico: {fileID: 341318287}
+  _grenadesName: 1
+  _icon: {fileID: 341318287}
 --- !u!114 &1304419936
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15754,10 +15754,10 @@ RectTransform:
   - {fileID: 28875424}
   m_Father: {fileID: 511213963}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 606, y: 5.25}
+  m_SizeDelta: {x: 40.5, y: 70.5}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!114 &1310733650
 MonoBehaviour:
@@ -15771,9 +15771,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 19e3873b0fd450a41af999db10d172d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  index: 13
-  fullSprite: {fileID: 21300000, guid: 63e0193c86d5ff843b7e8764956a5c3f, type: 3}
-  emptySprite: {fileID: 21300000, guid: 05d0088ee8b00a9479bef5dcd0b5e88d, type: 3}
+  _index: 13
+  _fullSprite: {fileID: 21300000, guid: 63e0193c86d5ff843b7e8764956a5c3f, type: 3}
+  _emptySprite: {fileID: 21300000, guid: 05d0088ee8b00a9479bef5dcd0b5e88d, type: 3}
 --- !u!222 &1310733652
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -16261,8 +16261,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5557225d5aeb697468d037ad7ef36f45, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 1
-  panel: {fileID: 1448598036}
+  _type: 1
+  _panel: {fileID: 1448598036}
 --- !u!1 &1337787091
 GameObject:
   m_ObjectHideFlags: 0
@@ -16429,9 +16429,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e71a763ff846c4f459c8ccb72ca9a35a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  panel: {fileID: 988486694}
+  _panel: {fileID: 988486694}
+  _levelId: 0
   _timeCreate: 0
-  levelID: 0
   _waveID: 0
   _indexEnemy: 0
 --- !u!222 &1339765838
@@ -16662,7 +16662,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae9a77c255896054584c4398ba3ab26e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: 0
+  _target: 0
 --- !u!1 &1362359309
 GameObject:
   m_ObjectHideFlags: 0
@@ -16696,10 +16696,10 @@ RectTransform:
   - {fileID: 731731854}
   m_Father: {fileID: 511213963}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 1161.5, y: -75.25}
+  m_SizeDelta: {x: 40.5, y: 70.5}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!114 &1362359311
 MonoBehaviour:
@@ -16713,9 +16713,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 19e3873b0fd450a41af999db10d172d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  index: 49
-  fullSprite: {fileID: 21300000, guid: 63e0193c86d5ff843b7e8764956a5c3f, type: 3}
-  emptySprite: {fileID: 21300000, guid: 05d0088ee8b00a9479bef5dcd0b5e88d, type: 3}
+  _index: 49
+  _fullSprite: {fileID: 21300000, guid: 63e0193c86d5ff843b7e8764956a5c3f, type: 3}
+  _emptySprite: {fileID: 21300000, guid: 05d0088ee8b00a9479bef5dcd0b5e88d, type: 3}
 --- !u!222 &1362359312
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -16962,8 +16962,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c87a19531330ffb48a53f7150e6c34c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  grenadesName: 0
-  ico: {fileID: 602150758}
+  _grenadesName: 0
+  _icon: {fileID: 602150758}
 --- !u!1 &1372905723
 GameObject:
   m_ObjectHideFlags: 0
@@ -16997,10 +16997,10 @@ RectTransform:
   - {fileID: 1398394741}
   m_Father: {fileID: 511213963}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 858.5, y: -75.25}
+  m_SizeDelta: {x: 40.5, y: 70.5}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!114 &1372905725
 MonoBehaviour:
@@ -17014,9 +17014,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 19e3873b0fd450a41af999db10d172d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  index: 43
-  fullSprite: {fileID: 21300000, guid: 63e0193c86d5ff843b7e8764956a5c3f, type: 3}
-  emptySprite: {fileID: 21300000, guid: 05d0088ee8b00a9479bef5dcd0b5e88d, type: 3}
+  _index: 43
+  _fullSprite: {fileID: 21300000, guid: 63e0193c86d5ff843b7e8764956a5c3f, type: 3}
+  _emptySprite: {fileID: 21300000, guid: 05d0088ee8b00a9479bef5dcd0b5e88d, type: 3}
 --- !u!222 &1372905726
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -17245,7 +17245,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 07dcc76b09211334eb6033f1064cd8a4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fireEvent: Fire
+  _fireEvent: Fire
 --- !u!114 &1380178309
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17258,7 +17258,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 77d6f680333a8b148b1cab1bed1ab514, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skeletonDataAsset:
+  _skeletonDataAsset:
   - {fileID: 11400000, guid: ed80a3073522c96428780fe7bde3660a, type: 2}
   - {fileID: 11400000, guid: 196d476645bec9a4f94bb90132383ca5, type: 2}
   - {fileID: 11400000, guid: 385f38ac848e6404d96917eede49960c, type: 2}
@@ -17651,12 +17651,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 992fc883406eff84d8ddba3001a4ae37, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyID: 1
-  ico: {fileID: 1122523763}
-  health: {fileID: 1983196651}
-  damage: {fileID: 1592785062}
-  windowConfirm: {fileID: 672956414}
-  counterController: {fileID: 1856975012}
+  _enemyId: 1
+  _icon: {fileID: 1122523763}
+  _health: {fileID: 1983196651}
+  _damage: {fileID: 1592785062}
+  _windowConfirm: {fileID: 672956414}
+  _counterController: {fileID: 1856975012}
 --- !u!114 &1404445284
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17784,10 +17784,10 @@ RectTransform:
   - {fileID: 402493368}
   m_Father: {fileID: 511213963}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 0, y: -75.25}
+  m_SizeDelta: {x: 40.5, y: 70.5}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!114 &1411705564
 MonoBehaviour:
@@ -17801,9 +17801,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 19e3873b0fd450a41af999db10d172d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  index: 26
-  fullSprite: {fileID: 21300000, guid: 63e0193c86d5ff843b7e8764956a5c3f, type: 3}
-  emptySprite: {fileID: 21300000, guid: 05d0088ee8b00a9479bef5dcd0b5e88d, type: 3}
+  _index: 26
+  _fullSprite: {fileID: 21300000, guid: 63e0193c86d5ff843b7e8764956a5c3f, type: 3}
+  _emptySprite: {fileID: 21300000, guid: 05d0088ee8b00a9479bef5dcd0b5e88d, type: 3}
 --- !u!222 &1411705565
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -17876,10 +17876,10 @@ RectTransform:
   - {fileID: 1979483634}
   m_Father: {fileID: 511213963}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 1111, y: 5.25}
+  m_SizeDelta: {x: 40.5, y: 70.5}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!114 &1425614124
 MonoBehaviour:
@@ -17893,9 +17893,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 19e3873b0fd450a41af999db10d172d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  index: 23
-  fullSprite: {fileID: 21300000, guid: 63e0193c86d5ff843b7e8764956a5c3f, type: 3}
-  emptySprite: {fileID: 21300000, guid: 05d0088ee8b00a9479bef5dcd0b5e88d, type: 3}
+  _index: 23
+  _fullSprite: {fileID: 21300000, guid: 63e0193c86d5ff843b7e8764956a5c3f, type: 3}
+  _emptySprite: {fileID: 21300000, guid: 05d0088ee8b00a9479bef5dcd0b5e88d, type: 3}
 --- !u!222 &1425614125
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -17956,7 +17956,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae9a77c255896054584c4398ba3ab26e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: 2
+  _target: 2
 --- !u!114 &1438158364
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18265,9 +18265,9 @@ RectTransform:
   - {fileID: 703422302}
   m_Father: {fileID: 1968176294}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 495, y: -112.5}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1458529675
@@ -18282,9 +18282,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 326b003848641b949b20afaf7cdf3363, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 2
-  ico: {fileID: 151110458}
-  count: {fileID: 1045398976}
+  _type: 2
+  _icon: {fileID: 151110458}
+  _count: {fileID: 1045398976}
 --- !u!1 &1461790651
 GameObject:
   m_ObjectHideFlags: 0
@@ -18576,12 +18576,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 992fc883406eff84d8ddba3001a4ae37, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyID: 3
-  ico: {fileID: 1516195545}
-  health: {fileID: 1026029172}
-  damage: {fileID: 110626034}
-  windowConfirm: {fileID: 672956414}
-  counterController: {fileID: 1856975012}
+  _enemyId: 3
+  _icon: {fileID: 1516195545}
+  _health: {fileID: 1026029172}
+  _damage: {fileID: 110626034}
+  _windowConfirm: {fileID: 672956414}
+  _counterController: {fileID: 1856975012}
 --- !u!114 &1465642297
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -19029,10 +19029,10 @@ RectTransform:
   - {fileID: 2016636823}
   m_Father: {fileID: 511213963}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 757.5, y: 5.25}
+  m_SizeDelta: {x: 40.5, y: 70.5}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!114 &1472738316
 MonoBehaviour:
@@ -19046,9 +19046,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 19e3873b0fd450a41af999db10d172d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  index: 16
-  fullSprite: {fileID: 21300000, guid: 63e0193c86d5ff843b7e8764956a5c3f, type: 3}
-  emptySprite: {fileID: 21300000, guid: 05d0088ee8b00a9479bef5dcd0b5e88d, type: 3}
+  _index: 16
+  _fullSprite: {fileID: 21300000, guid: 63e0193c86d5ff843b7e8764956a5c3f, type: 3}
+  _emptySprite: {fileID: 21300000, guid: 05d0088ee8b00a9479bef5dcd0b5e88d, type: 3}
 --- !u!222 &1472738318
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -19348,12 +19348,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 992fc883406eff84d8ddba3001a4ae37, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyID: 2
-  ico: {fileID: 57316902}
-  health: {fileID: 1837935121}
-  damage: {fileID: 1483370011}
-  windowConfirm: {fileID: 672956414}
-  counterController: {fileID: 1856975012}
+  _enemyId: 2
+  _icon: {fileID: 57316902}
+  _health: {fileID: 1837935121}
+  _damage: {fileID: 1483370011}
+  _windowConfirm: {fileID: 672956414}
+  _counterController: {fileID: 1856975012}
 --- !u!114 &1486168858
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -19718,10 +19718,10 @@ RectTransform:
   - {fileID: 150393691}
   m_Father: {fileID: 511213963}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 959.5, y: -75.25}
+  m_SizeDelta: {x: 40.5, y: 70.5}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!114 &1516207448
 MonoBehaviour:
@@ -19735,9 +19735,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 19e3873b0fd450a41af999db10d172d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  index: 45
-  fullSprite: {fileID: 21300000, guid: 63e0193c86d5ff843b7e8764956a5c3f, type: 3}
-  emptySprite: {fileID: 21300000, guid: 05d0088ee8b00a9479bef5dcd0b5e88d, type: 3}
+  _index: 45
+  _fullSprite: {fileID: 21300000, guid: 63e0193c86d5ff843b7e8764956a5c3f, type: 3}
+  _emptySprite: {fileID: 21300000, guid: 05d0088ee8b00a9479bef5dcd0b5e88d, type: 3}
 --- !u!222 &1516207449
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -19800,12 +19800,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 992fc883406eff84d8ddba3001a4ae37, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyID: 5
-  ico: {fileID: 286396100}
-  health: {fileID: 298127338}
-  damage: {fileID: 1705127418}
-  windowConfirm: {fileID: 672956414}
-  counterController: {fileID: 1856975012}
+  _enemyId: 5
+  _icon: {fileID: 286396100}
+  _health: {fileID: 298127338}
+  _damage: {fileID: 1705127418}
+  _windowConfirm: {fileID: 672956414}
+  _counterController: {fileID: 1856975012}
 --- !u!114 &1528958869
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -20160,10 +20160,10 @@ RectTransform:
   - {fileID: 1887978930}
   m_Father: {fileID: 511213963}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 555.5, y: -75.25}
+  m_SizeDelta: {x: 40.5, y: 70.5}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!114 &1562031042
 MonoBehaviour:
@@ -20177,9 +20177,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 19e3873b0fd450a41af999db10d172d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  index: 37
-  fullSprite: {fileID: 21300000, guid: 63e0193c86d5ff843b7e8764956a5c3f, type: 3}
-  emptySprite: {fileID: 21300000, guid: 05d0088ee8b00a9479bef5dcd0b5e88d, type: 3}
+  _index: 37
+  _fullSprite: {fileID: 21300000, guid: 63e0193c86d5ff843b7e8764956a5c3f, type: 3}
+  _emptySprite: {fileID: 21300000, guid: 05d0088ee8b00a9479bef5dcd0b5e88d, type: 3}
 --- !u!222 &1562031043
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -20220,9 +20220,9 @@ RectTransform:
   - {fileID: 445956366}
   m_Father: {fileID: 1289643748}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 1125, y: -112.5}
   m_SizeDelta: {x: 150, y: 150}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1563776449
@@ -20237,9 +20237,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60d19f09388bb4841a09553c2c8e7197, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 4
-  count: {fileID: 1849155099}
-  bttn: {fileID: 1874516528}
+  _type: 4
+  _count: {fileID: 1849155099}
+  _bttn: {fileID: 1874516528}
 --- !u!1 &1568213871
 GameObject:
   m_ObjectHideFlags: 0
@@ -20692,10 +20692,10 @@ RectTransform:
   - {fileID: 105912183}
   m_Father: {fileID: 511213963}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 505, y: 5.25}
+  m_SizeDelta: {x: 40.5, y: 70.5}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!114 &1615387548
 MonoBehaviour:
@@ -20709,9 +20709,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 19e3873b0fd450a41af999db10d172d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  index: 11
-  fullSprite: {fileID: 21300000, guid: 63e0193c86d5ff843b7e8764956a5c3f, type: 3}
-  emptySprite: {fileID: 21300000, guid: 05d0088ee8b00a9479bef5dcd0b5e88d, type: 3}
+  _index: 11
+  _fullSprite: {fileID: 21300000, guid: 63e0193c86d5ff843b7e8764956a5c3f, type: 3}
+  _emptySprite: {fileID: 21300000, guid: 05d0088ee8b00a9479bef5dcd0b5e88d, type: 3}
 --- !u!222 &1615387550
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -21143,27 +21143,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ebc97483ef338d43b5d442c5f3d716c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnPoints:
+  _spawnPoints:
   - {fileID: 1764368984}
   - {fileID: 870249859}
   - {fileID: 993701586}
   - {fileID: 1889695547}
   - {fileID: 2042863148}
   - {fileID: 1734448840}
-  targetsPoints:
+  _targetPoints:
   - {fileID: 1071378778}
   - {fileID: 191690308}
   - {fileID: 595578940}
   - {fileID: 1561094200}
   - {fileID: 1425151753}
   - {fileID: 852442247}
-  background: {fileID: 597866121}
-  currentWave: 0
-  maxCountEnemies: 0
-  filledStep: 0
-  bonuses: []
-  WaveBar: {fileID: 1769325672}
-  waveIsFull: 0
+  _background: {fileID: 597866121}
+  _waveBar: {fileID: 1769325672}
 --- !u!114 &1616555667
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -21858,9 +21853,9 @@ RectTransform:
   - {fileID: 908972751}
   m_Father: {fileID: 1289643748}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 125, y: -112.5}
   m_SizeDelta: {x: 150, y: 150}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1709077609
@@ -21875,9 +21870,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60d19f09388bb4841a09553c2c8e7197, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 0
-  count: {fileID: 1325577177}
-  bttn: {fileID: 237788686}
+  _type: 0
+  _count: {fileID: 1325577177}
+  _bttn: {fileID: 237788686}
 --- !u!1 &1709368624
 GameObject:
   m_ObjectHideFlags: 0
@@ -22686,10 +22681,10 @@ RectTransform:
   - {fileID: 1085779377}
   m_Father: {fileID: 511213963}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 1212, y: 5.25}
+  m_SizeDelta: {x: 40.5, y: 70.5}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!114 &1760087286
 MonoBehaviour:
@@ -22703,9 +22698,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 19e3873b0fd450a41af999db10d172d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  index: 25
-  fullSprite: {fileID: 21300000, guid: 63e0193c86d5ff843b7e8764956a5c3f, type: 3}
-  emptySprite: {fileID: 21300000, guid: 05d0088ee8b00a9479bef5dcd0b5e88d, type: 3}
+  _index: 25
+  _fullSprite: {fileID: 21300000, guid: 63e0193c86d5ff843b7e8764956a5c3f, type: 3}
+  _emptySprite: {fileID: 21300000, guid: 05d0088ee8b00a9479bef5dcd0b5e88d, type: 3}
 --- !u!222 &1760087287
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -22834,8 +22829,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d1030dedf3480345856ce7942525868, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  slider: {fileID: 1577845458}
-  speed: 1
+  _slider: {fileID: 1577845458}
+  _speed: 1
 --- !u!1 &1773639454
 GameObject:
   m_ObjectHideFlags: 0
@@ -22868,9 +22863,9 @@ RectTransform:
   - {fileID: 1118983182}
   m_Father: {fileID: 1289643748}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 375, y: -112.5}
   m_SizeDelta: {x: 150, y: 150}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1773639456
@@ -22885,9 +22880,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60d19f09388bb4841a09553c2c8e7197, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 1
-  count: {fileID: 1464215339}
-  bttn: {fileID: 307308370}
+  _type: 1
+  _count: {fileID: 1464215339}
+  _bttn: {fileID: 307308370}
 --- !u!1 &1784131789
 GameObject:
   m_ObjectHideFlags: 0
@@ -23865,9 +23860,9 @@ RectTransform:
   - {fileID: 938762914}
   m_Father: {fileID: 1289643748}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 625, y: -112.5}
   m_SizeDelta: {x: 150, y: 150}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1856326368
@@ -23882,9 +23877,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60d19f09388bb4841a09553c2c8e7197, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 2
-  count: {fileID: 283669423}
-  bttn: {fileID: 1736102169}
+  _type: 2
+  _count: {fileID: 283669423}
+  _bttn: {fileID: 1736102169}
 --- !u!1 &1856975011
 GameObject:
   m_ObjectHideFlags: 0
@@ -23917,7 +23912,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b18dd640f1bb494cb3cbb5259b006cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  counterTxt: {fileID: 1465465676}
+  _counterTxt: {fileID: 1465465676}
   _settingsController: {fileID: 0}
 --- !u!114 &1856975013
 MonoBehaviour:
@@ -24202,10 +24197,10 @@ RectTransform:
   - {fileID: 1738327856}
   m_Father: {fileID: 511213963}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 202, y: 5.25}
+  m_SizeDelta: {x: 40.5, y: 70.5}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!114 &1867492873
 MonoBehaviour:
@@ -24219,9 +24214,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 19e3873b0fd450a41af999db10d172d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  index: 5
-  fullSprite: {fileID: 21300000, guid: 63e0193c86d5ff843b7e8764956a5c3f, type: 3}
-  emptySprite: {fileID: 21300000, guid: 05d0088ee8b00a9479bef5dcd0b5e88d, type: 3}
+  _index: 5
+  _fullSprite: {fileID: 21300000, guid: 63e0193c86d5ff843b7e8764956a5c3f, type: 3}
+  _emptySprite: {fileID: 21300000, guid: 05d0088ee8b00a9479bef5dcd0b5e88d, type: 3}
 --- !u!222 &1867492875
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -24916,10 +24911,10 @@ RectTransform:
   - {fileID: 258305787}
   m_Father: {fileID: 511213963}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 707, y: 5.25}
+  m_SizeDelta: {x: 40.5, y: 70.5}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!114 &1903609888
 MonoBehaviour:
@@ -24933,9 +24928,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 19e3873b0fd450a41af999db10d172d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  index: 15
-  fullSprite: {fileID: 21300000, guid: 63e0193c86d5ff843b7e8764956a5c3f, type: 3}
-  emptySprite: {fileID: 21300000, guid: 05d0088ee8b00a9479bef5dcd0b5e88d, type: 3}
+  _index: 15
+  _fullSprite: {fileID: 21300000, guid: 63e0193c86d5ff843b7e8764956a5c3f, type: 3}
+  _emptySprite: {fileID: 21300000, guid: 05d0088ee8b00a9479bef5dcd0b5e88d, type: 3}
 --- !u!222 &1903609890
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -25584,9 +25579,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 91a4905bfcd00f34babaee08374047e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scaleToTouch: 1
-  touchCollider: {fileID: 1949213162}
-  collisionCollider: {fileID: 1949213161}
+  _scaleToTouch: 1
+  _touchCollider: {fileID: 1949213162}
+  _collisionCollider: {fileID: 1949213161}
 --- !u!1 &1953458575
 GameObject:
   m_ObjectHideFlags: 0
@@ -25641,12 +25636,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 992fc883406eff84d8ddba3001a4ae37, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyID: 14
-  ico: {fileID: 1150180591}
-  health: {fileID: 251943246}
-  damage: {fileID: 901207889}
-  windowConfirm: {fileID: 672956414}
-  counterController: {fileID: 1856975012}
+  _enemyId: 14
+  _icon: {fileID: 1150180591}
+  _health: {fileID: 251943246}
+  _damage: {fileID: 901207889}
+  _windowConfirm: {fileID: 672956414}
+  _counterController: {fileID: 1856975012}
 --- !u!114 &1953458578
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -25774,10 +25769,10 @@ RectTransform:
   - {fileID: 1064893886}
   m_Father: {fileID: 511213963}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 50.5, y: -75.25}
+  m_SizeDelta: {x: 40.5, y: 70.5}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!114 &1953826557
 MonoBehaviour:
@@ -25791,9 +25786,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 19e3873b0fd450a41af999db10d172d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  index: 27
-  fullSprite: {fileID: 21300000, guid: 63e0193c86d5ff843b7e8764956a5c3f, type: 3}
-  emptySprite: {fileID: 21300000, guid: 05d0088ee8b00a9479bef5dcd0b5e88d, type: 3}
+  _index: 27
+  _fullSprite: {fileID: 21300000, guid: 63e0193c86d5ff843b7e8764956a5c3f, type: 3}
+  _emptySprite: {fileID: 21300000, guid: 05d0088ee8b00a9479bef5dcd0b5e88d, type: 3}
 --- !u!222 &1953826558
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -25856,12 +25851,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 992fc883406eff84d8ddba3001a4ae37, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyID: 6
-  ico: {fileID: 1295617310}
-  health: {fileID: 389003474}
-  damage: {fileID: 391936657}
-  windowConfirm: {fileID: 672956414}
-  counterController: {fileID: 1856975012}
+  _enemyId: 6
+  _icon: {fileID: 1295617310}
+  _health: {fileID: 389003474}
+  _damage: {fileID: 391936657}
+  _windowConfirm: {fileID: 672956414}
+  _counterController: {fileID: 1856975012}
 --- !u!114 &1965235013
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -26090,8 +26085,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2649313acc23d424b9a4a77915092f24, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rect: {fileID: 1968176294}
-  elements:
+  _rect: {fileID: 1968176294}
+  _elements:
   - {fileID: 906964623}
   - {fileID: 81656176}
   - {fileID: 1458529675}
@@ -26265,9 +26260,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fcc74a9eefb09064689ac7b2482b280a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentHealth: 100
-  maxHealth: 0
-  healthbar: {fileID: 536196646}
+  _healthBar: {fileID: 536196646}
 --- !u!60 &1974793441
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -27430,10 +27423,10 @@ RectTransform:
   - {fileID: 144871344}
   m_Father: {fileID: 511213963}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 101, y: 5.25}
+  m_SizeDelta: {x: 40.5, y: 70.5}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!114 &2005356691
 MonoBehaviour:
@@ -27447,9 +27440,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 19e3873b0fd450a41af999db10d172d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  index: 3
-  fullSprite: {fileID: 21300000, guid: 63e0193c86d5ff843b7e8764956a5c3f, type: 3}
-  emptySprite: {fileID: 21300000, guid: 05d0088ee8b00a9479bef5dcd0b5e88d, type: 3}
+  _index: 3
+  _fullSprite: {fileID: 21300000, guid: 63e0193c86d5ff843b7e8764956a5c3f, type: 3}
+  _emptySprite: {fileID: 21300000, guid: 05d0088ee8b00a9479bef5dcd0b5e88d, type: 3}
 --- !u!222 &2005356693
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -27719,60 +27712,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2027080220}
   m_CullTransparentMesh: 0
---- !u!1 &2036866066
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2036866068}
-  - component: {fileID: 2036866067}
-  m_Layer: 0
-  m_Name: PersistableSO - DELETE
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &2036866067
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2036866066}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 46adf561576fe2d4eb357fe14117b147, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  objectsToPersist:
-  - {fileID: 11400000, guid: 6c1ac18b3e39ac54399199c10199313a, type: 2}
-  PlayerPrefs: {fileID: 11400000, guid: 6c1ac18b3e39ac54399199c10199313a, type: 2}
-  WeaponStore: {fileID: 11400000, guid: 1e499579c241ccd4cb243a54f2999e29, type: 2}
-  BombStore: {fileID: 11400000, guid: 4e3a1b6758be6394ebad0d9a9419388d, type: 2}
-  DefenceStore: {fileID: 11400000, guid: 6c326f05a7b67ba4bb0941385df9903a, type: 2}
-  PlayerStore: {fileID: 11400000, guid: f54752fc4447a60448a58465ba00405a, type: 2}
-  Enemy: {fileID: 11400000, guid: 07ad9f364824526418982bc90fdcfc5f, type: 2}
-  Level: {fileID: 11400000, guid: 0c9448d03ff7c434d95adc40b77771fc, type: 2}
-  Bullet: {fileID: 11400000, guid: 8a5faff2995761648bdf3cf9bba6ce8e, type: 2}
---- !u!4 &2036866068
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2036866066}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.25493297, y: 2.338638, z: -40.949127}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2038733035
 GameObject:
   m_ObjectHideFlags: 0
@@ -28237,12 +28176,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 992fc883406eff84d8ddba3001a4ae37, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyID: 13
-  ico: {fileID: 339334000}
-  health: {fileID: 1477988103}
-  damage: {fileID: 1789596976}
-  windowConfirm: {fileID: 672956414}
-  counterController: {fileID: 1856975012}
+  _enemyId: 13
+  _icon: {fileID: 339334000}
+  _health: {fileID: 1477988103}
+  _damage: {fileID: 1789596976}
+  _windowConfirm: {fileID: 672956414}
+  _counterController: {fileID: 1856975012}
 --- !u!114 &2058935012
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -28391,12 +28330,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 992fc883406eff84d8ddba3001a4ae37, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyID: 9
-  ico: {fileID: 1358261462}
-  health: {fileID: 279126747}
-  damage: {fileID: 1784321136}
-  windowConfirm: {fileID: 672956414}
-  counterController: {fileID: 1856975012}
+  _enemyId: 9
+  _icon: {fileID: 1358261462}
+  _health: {fileID: 279126747}
+  _damage: {fileID: 1784321136}
+  _windowConfirm: {fileID: 672956414}
+  _counterController: {fileID: 1856975012}
 --- !u!114 &2063164241
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -28726,10 +28665,10 @@ RectTransform:
   - {fileID: 1934261894}
   m_Father: {fileID: 511213963}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 909, y: 5.25}
+  m_SizeDelta: {x: 40.5, y: 70.5}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!114 &2091274623
 MonoBehaviour:
@@ -28743,9 +28682,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 19e3873b0fd450a41af999db10d172d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  index: 19
-  fullSprite: {fileID: 21300000, guid: 63e0193c86d5ff843b7e8764956a5c3f, type: 3}
-  emptySprite: {fileID: 21300000, guid: 05d0088ee8b00a9479bef5dcd0b5e88d, type: 3}
+  _index: 19
+  _fullSprite: {fileID: 21300000, guid: 63e0193c86d5ff843b7e8764956a5c3f, type: 3}
+  _emptySprite: {fileID: 21300000, guid: 05d0088ee8b00a9479bef5dcd0b5e88d, type: 3}
 --- !u!222 &2091274625
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -28979,8 +28918,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c87a19531330ffb48a53f7150e6c34c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  grenadesName: 3
-  ico: {fileID: 1893505787}
+  _grenadesName: 3
+  _icon: {fileID: 1893505787}
 --- !u!114 &2094295780
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -29079,10 +29018,10 @@ RectTransform:
   - {fileID: 368495637}
   m_Father: {fileID: 511213963}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 808, y: -75.25}
+  m_SizeDelta: {x: 40.5, y: 70.5}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!114 &2111966126
 MonoBehaviour:
@@ -29096,9 +29035,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 19e3873b0fd450a41af999db10d172d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  index: 42
-  fullSprite: {fileID: 21300000, guid: 63e0193c86d5ff843b7e8764956a5c3f, type: 3}
-  emptySprite: {fileID: 21300000, guid: 05d0088ee8b00a9479bef5dcd0b5e88d, type: 3}
+  _index: 42
+  _fullSprite: {fileID: 21300000, guid: 63e0193c86d5ff843b7e8764956a5c3f, type: 3}
+  _emptySprite: {fileID: 21300000, guid: 05d0088ee8b00a9479bef5dcd0b5e88d, type: 3}
 --- !u!222 &2111966127
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -29215,10 +29154,10 @@ RectTransform:
   - {fileID: 2114807374}
   m_Father: {fileID: 511213963}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 909, y: -75.25}
+  m_SizeDelta: {x: 40.5, y: 70.5}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!114 &2115815262
 MonoBehaviour:
@@ -29232,9 +29171,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 19e3873b0fd450a41af999db10d172d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  index: 44
-  fullSprite: {fileID: 21300000, guid: 63e0193c86d5ff843b7e8764956a5c3f, type: 3}
-  emptySprite: {fileID: 21300000, guid: 05d0088ee8b00a9479bef5dcd0b5e88d, type: 3}
+  _index: 44
+  _fullSprite: {fileID: 21300000, guid: 63e0193c86d5ff843b7e8764956a5c3f, type: 3}
+  _emptySprite: {fileID: 21300000, guid: 05d0088ee8b00a9479bef5dcd0b5e88d, type: 3}
 --- !u!222 &2115815263
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -29355,10 +29294,10 @@ RectTransform:
   - {fileID: 292962217}
   m_Father: {fileID: 511213963}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 959.5, y: 5.25}
+  m_SizeDelta: {x: 40.5, y: 70.5}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!114 &2135788858
 MonoBehaviour:
@@ -29372,9 +29311,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 19e3873b0fd450a41af999db10d172d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  index: 20
-  fullSprite: {fileID: 21300000, guid: 63e0193c86d5ff843b7e8764956a5c3f, type: 3}
-  emptySprite: {fileID: 21300000, guid: 05d0088ee8b00a9479bef5dcd0b5e88d, type: 3}
+  _index: 20
+  _fullSprite: {fileID: 21300000, guid: 63e0193c86d5ff843b7e8764956a5c3f, type: 3}
+  _emptySprite: {fileID: 21300000, guid: 05d0088ee8b00a9479bef5dcd0b5e88d, type: 3}
 --- !u!222 &2135788860
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -29396,7 +29335,6 @@ SceneRoots:
   - {fileID: 74251646}
   - {fileID: 812900565}
   - {fileID: 1397584121}
-  - {fileID: 2036866068}
   - {fileID: 285257384}
   - {fileID: 1949213164}
   - {fileID: 1055493657}

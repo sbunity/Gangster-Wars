@@ -1,13 +1,10 @@
-using SBabchuk.Runtime.Architecture;
-using SBabchuk.Runtime.Services.Contracts;
 using UnityEngine;
 using UnityEngine.UI;
-using Zenject;
 using UnityEngine.Serialization;
 
 namespace SBabchuk
 {
-    public class BSElementController : MonoBehaviour
+    public class BSElementController : StoreElementControllerBase
     {
         [SerializeField, FormerlySerializedAs("grenade")]
         private GrenadesName _grenade;
@@ -26,57 +23,29 @@ namespace SBabchuk
         private LockGElementController _lockGElementController;
         private GrenadeShortInfo _grenadeShortInfo;
         private Grenade _grenadeInfo;
-        private IAssetProvider _assetProvider;
-        private IPlayerProgressService _progressService;
-        private SignalBus _signalBus;
-
-        [Inject]
-        public void Construct(IAssetProvider assetProvider, IPlayerProgressService progressService, SignalBus signalBus)
-        {
-            _assetProvider = assetProvider;
-            _progressService = progressService;
-            _signalBus = signalBus;
-        }
-
-        private void OnEnable()
-        {
-            _signalBus?.Subscribe<ProgressUpgradedSignal>(OnProgressUpgraded);
-        }
-
-        private void OnDisable()
-        {
-            _signalBus?.Unsubscribe<ProgressUpgradedSignal>(OnProgressUpgraded);
-        }
-
-        private void OnProgressUpgraded(ProgressUpgradedSignal signal)
-        {
-            CheckInteractive();
-        }
 
         private void Start()
         {
             _panel = GetComponentInChildren<SpriteSwap>();
             _unlockGElementController = GetComponentInChildren<UnlockGElementController>(true);
             _lockGElementController = GetComponentInChildren<LockGElementController>(true);
-            var bombStore = _assetProvider.BombStoreDatabase;
+            var bombStore = AssetProvider.BombStoreDatabase;
             _grenadeInfo = bombStore.GetGrenade((int)_grenade);
             _icon.sprite = _grenadeInfo.Icon;
             _text.text = _grenadeInfo.Name;
-            CheckInteractive();
+            RefreshState();
         }
 
-        private void CheckInteractive()
+        protected override void RefreshState()
         {
-            _grenadeShortInfo = _progressService.GetGrenadeShortInfo((int)_grenade);
+            _grenadeShortInfo = ProgressService.GetGrenadeShortInfo((int)_grenade);
             _count.text = _grenadeShortInfo.Count.ToString();
             ChangeLock(_grenadeShortInfo.IsBuy == mySwitch.On);
         }
 
         private void ChangeLock(bool _value = false)
         {
-            _panel.Change(_value);
-            _lockGElementController.gameObject.SetActive(!_value);
-            _unlockGElementController.gameObject.SetActive(_value);
+            ApplyLockState(_panel, _lockGElementController.gameObject, _unlockGElementController.gameObject, _value);
             
             if (_unlockGElementController.gameObject.activeSelf)
             {

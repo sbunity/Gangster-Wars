@@ -8,6 +8,13 @@ namespace SBabchuk.Runtime.Services
 {
     public sealed class AssetProvider : IAssetProvider
     {
+        private readonly IPoolAssetResolver _poolAssetResolver;
+
+        public AssetProvider(IPoolAssetResolver poolAssetResolver)
+        {
+            _poolAssetResolver = poolAssetResolver;
+        }
+
         public PlayerPrefsDatabase PlayerPrefsDatabase => LoadRequiredAsset<PlayerPrefsDatabase>();
         public WeaponStoreDatabase WeaponStoreDatabase => LoadRequiredAsset<WeaponStoreDatabase>();
         public BombStoreDatabase BombStoreDatabase => LoadRequiredAsset<BombStoreDatabase>();
@@ -38,32 +45,10 @@ namespace SBabchuk.Runtime.Services
 
         public GameObject LoadPrefab(NamesPool pool, int id)
         {
-            var folder = GetPrefabFolder(pool);
-            if (string.IsNullOrEmpty(folder))
+            var path = _poolAssetResolver.GetPrefabResourcesPath(pool, id);
+            if (string.IsNullOrEmpty(path))
                 return null;
-            return Resources.Load<GameObject>("Prefabs/" + folder + "/" + GetPrefabName(pool, id));
+            return Resources.Load<GameObject>(path);
         }
-
-        private string GetPrefabFolder(NamesPool pool) 
-            => pool switch
-            {
-                NamesPool.Enemies => "Enemies",
-                NamesPool.Bullets => "Bullets",
-                NamesPool.Grenades => "Grenades",
-                NamesPool.Collisions => "Collisions",
-                NamesPool.Bonuses => "Bonuses",
-                _ => string.Empty,
-            };
-
-        private string GetPrefabName(NamesPool pool, int id) 
-            => pool switch
-            {
-                NamesPool.Enemies => "Enemy_" + (id + 1),
-                NamesPool.Bullets => "Bullet_" + (id + 1),
-                NamesPool.Grenades => "Grenade_" + (id + 1),
-                NamesPool.Collisions => "Collision_" + (id + 1),
-                NamesPool.Bonuses => "Bonus_" + (id + 1),
-                _ => string.Empty,
-            };
     }
 }

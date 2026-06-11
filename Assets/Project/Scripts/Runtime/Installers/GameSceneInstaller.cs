@@ -21,6 +21,8 @@ namespace SBabchuk.Runtime.Installers
 
         public override void InstallBindings()
         {
+            ValidateReferences();
+
             var references = new GameSceneReferences(_levelController, _barricadeController, _leaderController, _handController, _sightController, _poolManager, _waveBar, _enemySpawnPoints, _enemyTargetPoints);
             Container.Bind<GameSceneReferences>().FromInstance(references).AsSingle();
             Container.Bind<PoolManager>().FromInstance(_poolManager).AsSingle();
@@ -41,6 +43,31 @@ namespace SBabchuk.Runtime.Installers
                 Container.Bind<IAimService>().FromInstance(_sightController).AsSingle();
             else
                 Container.Bind<IAimService>().To<NullAimService>().AsSingle();
+        }
+
+        private void ValidateReferences()
+        {
+            ValidateRequired(_levelController, nameof(_levelController));
+            ValidateRequired(_barricadeController, nameof(_barricadeController));
+            ValidateRequired(_leaderController, nameof(_leaderController));
+            ValidateRequired(_handController, nameof(_handController));
+            ValidateRequired(_poolManager, nameof(_poolManager));
+            ValidateRequired(_waveBar, nameof(_waveBar));
+
+            if (_enemySpawnPoints == null || _enemySpawnPoints.Count == 0)
+                Debug.LogError($"{nameof(GameSceneInstaller)} has no enemy spawn points assigned.", this);
+
+            if (_enemyTargetPoints == null || _enemyTargetPoints.Count == 0)
+                Debug.LogError($"{nameof(GameSceneInstaller)} has no enemy target points assigned.", this);
+
+            if (_enemySpawnPoints != null && _enemyTargetPoints != null && _enemySpawnPoints.Count != _enemyTargetPoints.Count)
+                Debug.LogError($"{nameof(GameSceneInstaller)} has mismatched spawn/target point counts: {_enemySpawnPoints.Count}/{_enemyTargetPoints.Count}.", this);
+        }
+
+        private void ValidateRequired(Object reference, string fieldName)
+        {
+            if (reference == null)
+                Debug.LogError($"{nameof(GameSceneInstaller)} missing required reference: {fieldName}.", this);
         }
 
         private void BindIfAssigned<T>(T instance) where T : Object

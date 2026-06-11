@@ -1,13 +1,10 @@
-using SBabchuk.Runtime.Architecture;
-using SBabchuk.Runtime.Services.Contracts;
 using UnityEngine;
 using UnityEngine.UI;
-using Zenject;
 using UnityEngine.Serialization;
 
 namespace SBabchuk
 {
-    public class WSElementController : MonoBehaviour
+    public class WSElementController : StoreElementControllerBase
     {
         [SerializeField, FormerlySerializedAs("weapon")]
         private WeaponsName _weapon;
@@ -24,32 +21,6 @@ namespace SBabchuk
         private AmmunitionsController _ammunitionsController;
         private WeaponShortInfo _weaponShortInfo;
         private Weapon _weaponInfo;
-        private IAssetProvider _assetProvider;
-        private IPlayerProgressService _progressService;
-        private SignalBus _signalBus;
-
-        [Inject]
-        public void Construct(IAssetProvider assetProvider, IPlayerProgressService progressService, SignalBus signalBus)
-        {
-            _assetProvider = assetProvider;
-            _progressService = progressService;
-            _signalBus = signalBus;
-        }
-
-        private void OnEnable()
-        {
-            _signalBus?.Subscribe<ProgressUpgradedSignal>(OnProgressUpgraded);
-        }
-
-        private void OnDisable()
-        {
-            _signalBus?.Unsubscribe<ProgressUpgradedSignal>(OnProgressUpgraded);
-        }
-
-        private void OnProgressUpgraded(ProgressUpgradedSignal signal)
-        {
-            CheckInteractive();
-        }
 
         private void Start()
         {
@@ -57,24 +28,22 @@ namespace SBabchuk
             _lockElementController = GetComponentInChildren<LockElementController>(true);
             _unlockElementController = GetComponentInChildren<UnlockElementController>(true);
             _ammunitionsController = GetComponentInChildren<AmmunitionsController>(true);
-            var weaponStore = _assetProvider.WeaponStoreDatabase;
+            var weaponStore = AssetProvider.WeaponStoreDatabase;
             _weaponInfo = weaponStore.GetWeapon((int)_weapon);
             _icon.sprite = _weaponInfo.Icon;
             _text.text = _weaponInfo.Name;
-            CheckInteractive();
+            RefreshState();
         }
 
-        private void CheckInteractive()
+        protected override void RefreshState()
         {
-            _weaponShortInfo = _progressService.GetWeaponShortInfo((int)_weapon);
+            _weaponShortInfo = ProgressService.GetWeaponShortInfo((int)_weapon);
             ChangeLock(_weaponShortInfo.IsBuy == mySwitch.On);
         }
 
         private void ChangeLock(bool _value = false)
         {
-            _panel.Change(_value);
-            _lockElementController.gameObject.SetActive(!_value);
-            _unlockElementController.gameObject.SetActive(_value);
+            ApplyLockState(_panel, _lockElementController.gameObject, _unlockElementController.gameObject, _value);
             
             if (_lockElementController.gameObject.activeSelf)
                 _lockElementController.Initialisation((int)_weapon);

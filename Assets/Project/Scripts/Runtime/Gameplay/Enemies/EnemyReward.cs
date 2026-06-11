@@ -6,12 +6,12 @@ namespace SBabchuk.Runtime.Gameplay.Enemies
 {
     public sealed class EnemyReward : MonoBehaviour
     {
-        private IPlayerProgressService _progressService;
+        private ICombatService _combatService;
 
         [Inject]
-        public void Construct(IPlayerProgressService progressService)
+        public void Construct(ICombatService combatService)
         {
-            _progressService = progressService;
+            _combatService = combatService;
         }
 
         public void Grant(Enemy enemy)
@@ -19,7 +19,7 @@ namespace SBabchuk.Runtime.Gameplay.Enemies
             if (enemy == null)
                 return;
                 
-            _progressService?.AddCoins(enemy.Gold);
+            _combatService?.RewardEnemyDeath(enemy);
         }
     }
 }
