@@ -24,7 +24,7 @@ namespace SBabchuk
         public override void Pop()
         {
             base.Pop();
-            LevelRuntimeService?.SpawnCollision(4, transform.position);
+            LevelSpawnService?.SpawnCollision(4, transform.position);
         }
 
         void FixedUpdate()

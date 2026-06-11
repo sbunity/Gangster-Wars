@@ -33,7 +33,7 @@ namespace SBabchuk
                 var bulletPosition = bulletPoint.GetPosition();
                 var offset = Vector2.Distance(Center.GetPosition(), bulletPosition);
                 
-                LevelRuntimeService?.SpawnBullet(Properties.BulletId, Properties.Damage, bulletPosition, Target.position, offset);
+                LevelSpawnService?.SpawnBullet(Properties.BulletId, Properties.Damage, bulletPosition, Target.position, offset);
                 _index++;
             });
         }

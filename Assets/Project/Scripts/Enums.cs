@@ -1,13 +1,5 @@
 namespace SBabchuk
 {
-    public enum NameHero
-    {
-        None = 0,
-        Hero_1 = 1,
-        Hero_2 = 2,
-        Hero_3 = 3,
-    }
-
     public enum WeaponsName
     {
         None = -1,
@@ -66,15 +58,6 @@ namespace SBabchuk
         Personage = 4
     }
 
-    public enum WeaponsUpgrade
-    {
-        Upgrade_1 = 0,
-        Upgrade_2 = 1,
-        Upgrade_3 = 2,
-        Upgrade_4 = 3,
-        Upgrade_5 = 4
-    }
-
     public enum EnemiesName
     {
         None = -1,
@@ -123,62 +106,10 @@ namespace SBabchuk
         Bonuses,
     }
 
-    public enum BttnsName
-    {
-        None = 0,
-        Bttn_1,
-        Bttn_2,
-        Bttn_3
-    }
-
-    public enum ColorEnemy
-    {
-        None = 0,
-        Red = 1,
-        Green = 2,
-        Blue = 3,
-        Yellow = 4,
-        Pink = 5,
-        Mega = 6
-    }
-
-    public enum ComplexityName
-    {
-        Easy = 0,
-        Medium = 1,
-        Hard = 2
-    }
-
-    public enum BonusesName
-    {
-        None = -1,
-        Bonus_1 = 0,
-        Bonus_2 = 1,
-        Bonus_3 = 2,
-        Bonus_4 = 3,
-        Bonus_5 = 4,
-        Bonus_6 = 5,
-        Bonus_7 = 6,
-        Bonus_8 = 7,
-    }
-
-    public enum BonusesUpgrade
-    {
-        Upgrade_1 = 0,
-        Upgrade_2 = 1,
-        Upgrade_3 = 2
-    }
-
     public enum mySwitch
     {
         On = 0,
         Off = 1
-    }
-
-    public enum Sounds
-    {
-        Musik = 0,
-        Sound = 1
     }
 
     public enum AnimationsName
@@ -191,16 +122,6 @@ namespace SBabchuk
         Shoot,
         Shoot_prev,
         Throwing
-    }
-
-    public enum Actions
-    {
-        Walk,
-        Attack,
-        Dead,
-        Frozen,
-        Stand,
-        Hit,
     }
 
     public enum Upgrades

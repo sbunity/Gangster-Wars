@@ -8,7 +8,7 @@ using UnityEngine.Serialization;
 
 namespace SBabchuk
 {
-    public class BonusController : ObjectControllerBase
+    public class BonusController : MonoBehaviour
     {
         private const float FREE_AMMO_MAGAZINE_MULTIPLIER = 0.6f;
 
@@ -32,12 +32,12 @@ namespace SBabchuk
             _signalBus = signalBus;
         }
 
-        public override void Subscribe()
+        private void Subscribe()
         {
             EasyTouch.On_TouchStart += OnTouchDown;
         }
 
-        public override void UnSubscribe()
+        private void UnSubscribe()
         {
             EasyTouch.On_TouchStart -= OnTouchDown;
         }
@@ -64,11 +64,23 @@ namespace SBabchuk
             this.gameObject.SetActive(true);
             _autoCollectTween?.Kill();
             InitColliders();
-            SetPosition(position);
+            transform.position = position;
             _autoCollectTween = DOVirtual.DelayedCall(2f, Collect);
         }
 
-        public override void OnTouchDown(Gesture gesture)
+        // The bonus needs a kinematic trigger collider so EasyTouch can pick it and trigger collection.
+        private void InitColliders()
+        {
+            var touchCollider = gameObject.AddComponent<PolygonCollider2D>();
+            touchCollider.isTrigger = true;
+
+            var body = GetComponent<Rigidbody2D>();
+            if (body == null)
+                body = gameObject.AddComponent<Rigidbody2D>();
+            body.bodyType = RigidbodyType2D.Kinematic;
+        }
+
+        private void OnTouchDown(Gesture gesture)
         {
             if (gesture.pickedObject == gameObject)
                 Collect();

@@ -102,7 +102,7 @@ namespace SBabchuk
         {
             if (_target != null && _target.gameObject.activeInHierarchy)
                 return true;
-            _target = _levelRuntimeService?.GetRandomEnemy();
+            _target = _enemyTargetProvider?.GetRandomEnemy();
             return _target != null;
         }
     }

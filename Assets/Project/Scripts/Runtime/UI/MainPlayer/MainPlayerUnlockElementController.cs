@@ -31,11 +31,6 @@ namespace SBabchuk
             _progressService = progressService;
         }
 
-        private void CheckActive(bool _value = false)
-        {
-            gameObject.SetActive(_value);
-        }
-
         public void Initialisation(int _id)
         {
             InitialisationUpgrade(_id);

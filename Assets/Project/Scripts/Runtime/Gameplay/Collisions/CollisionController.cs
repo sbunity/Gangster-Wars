@@ -28,11 +28,6 @@ namespace SBabchuk
         private float _time;
         public float Time { get => _time; set => _time = value; }
 
-        public virtual void Awake()
-        {
-            
-        }
-
         [Inject]
         public void Construct(SignalBus signalBus)
         {
@@ -41,12 +36,7 @@ namespace SBabchuk
 
         public virtual void Start()
         {
-            Subscribe();
             _parent = transform.parent;
-        }
-
-        public virtual void Subscribe()
-        {
         }
 
         public virtual void Init(Vector3 position, int damage = 0, float radius = 00, float time = 0)
@@ -56,14 +46,6 @@ namespace SBabchuk
             _damage = damage;
             _radius = radius;
             _time = time;
-        }
-
-        private void OnCompleteAnimation(TrackEntry trackEntry)
-        {
-            if (trackEntry.Animation.Name == "Fx2")
-            {
-                Pop();
-            }
         }
 
         public void Pop()

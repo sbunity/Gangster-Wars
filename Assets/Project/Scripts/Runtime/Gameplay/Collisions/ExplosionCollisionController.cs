@@ -14,16 +14,6 @@ namespace SBabchuk
         [SerializeField, FormerlySerializedAs("timeParticle"), Range(0, 3)]
 
         private float _timeParticle;
-        private SortingEnemy _sortingEnemy;
-        
-        public override void Awake()
-        {
-            _sortingEnemy = GetComponent<SortingEnemy>();
-        }
-
-        public override void Subscribe()
-        {
-        }
 
         private void OnDisable()
         {

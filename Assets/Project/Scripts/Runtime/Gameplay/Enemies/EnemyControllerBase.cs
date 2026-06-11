@@ -36,10 +36,9 @@ namespace SBabchuk
         public Center Center { get => _center; private set => _center = value; }
 
         private bool _collided;
-        private bool _isDie;
         private IAssetProvider _assetProvider;
         private IGameFactory _gameFactory;
-        private ILevelRuntimeService _levelRuntimeService;
+        private ILevelSpawnService _levelSpawnService;
         private BarricadeController _barricadeController;
         private SignalBus _signalBus;
         private bool _isSubscribedToSignals;
@@ -49,15 +48,15 @@ namespace SBabchuk
         private EnemyAttack _attack;
         private EnemyDeath _death;
         private EnemyReward _reward;
-        protected ILevelRuntimeService LevelRuntimeService => _levelRuntimeService;
+        protected ILevelSpawnService LevelSpawnService => _levelSpawnService;
         public bool IsCollided => _collided;
 
         [Inject]
-        public void Construct(IAssetProvider assetProvider, IGameFactory gameFactory, ILevelRuntimeService levelRuntimeService, BarricadeController barricadeController, SignalBus signalBus)
+        public void Construct(IAssetProvider assetProvider, IGameFactory gameFactory, ILevelSpawnService levelSpawnService, BarricadeController barricadeController, SignalBus signalBus)
         {
             _assetProvider = assetProvider;
             _gameFactory = gameFactory;
-            _levelRuntimeService = levelRuntimeService;
+            _levelSpawnService = levelSpawnService;
             _barricadeController = barricadeController;
             _signalBus = signalBus;
             SubscribeSignals();
@@ -117,7 +116,6 @@ namespace SBabchuk
             StopAllTweens();
             _collided = false;
             _isAttacked = false;
-            _isDie = false;
             _target = targetPoint;
 
             var enemyDatabase = _assetProvider.EnemyDatabase;
@@ -146,9 +144,6 @@ namespace SBabchuk
             _movement.Stop();
             _view.SetAnimation(AnimationsName.Idle);
         }
-
-        public void ContinueMove()
-            => StartMove(_target);
 
         public bool CheckDistance()
             => _movement.IsInAttackRange(_properties.AttackRadius);
@@ -189,7 +184,6 @@ namespace SBabchuk
         private void OnHealthDied()
         {
             _collided = true;
-            _isDie = true;
             _attack.MarkDead();
             StopAllTweens();
             _death.Play(_view);
@@ -216,7 +210,7 @@ namespace SBabchuk
         {
             if (UnityEngine.Random.Range(0, 100) <= _properties.DropChance)
             {
-                _levelRuntimeService?.SpawnBonus(this.gameObject.transform.position);
+                _levelSpawnService?.SpawnBonus(this.gameObject.transform.position);
             }
         }
 
@@ -241,7 +235,6 @@ namespace SBabchuk
         public void Pop()
         {
             this.gameObject.SetActive(false);
-            _isDie = false;
         }
 
         private void FixedUpdate()

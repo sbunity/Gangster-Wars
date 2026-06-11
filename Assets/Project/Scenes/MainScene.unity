@@ -190,9 +190,9 @@ RectTransform:
   - {fileID: 2133156744}
   m_Father: {fileID: 1428745334}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 312.5, y: -105.5}
   m_SizeDelta: {x: 604, y: 211}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &3149752
@@ -227,9 +227,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a03539cc790ad1f4b9292dbce96194e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weapon: 0
-  ico: {fileID: 1878243731}
-  txt: {fileID: 1514573641}
+  _weapon: 0
+  _icon: {fileID: 1878243731}
+  _text: {fileID: 1514573641}
 --- !u!222 &3149755
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -403,9 +403,9 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 1161610600}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 27.5, y: -0.5}
   m_SizeDelta: {x: 15, y: 35}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &9712444
@@ -478,9 +478,9 @@ RectTransform:
   - {fileID: 877101605}
   m_Father: {fileID: 2024817549}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 507.5, y: -75}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &19045646
@@ -495,9 +495,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 326b003848641b949b20afaf7cdf3363, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 2
-  ico: {fileID: 1081684204}
-  count: {fileID: 612341987}
+  _type: 2
+  _icon: {fileID: 1081684204}
+  _count: {fileID: 612341987}
 --- !u!1 &19253983
 GameObject:
   m_ObjectHideFlags: 0
@@ -680,9 +680,9 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 1161610600}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 87.5, y: -0.5}
   m_SizeDelta: {x: 15, y: 35}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &38621663
@@ -777,14 +777,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78bc3b9104f9880409ef8232268428f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 0
-  patrons:
+  _type: 0
+  _patrons:
   - {fileID: 2109201710}
   - {fileID: 96965290}
   - {fileID: 316825491}
   - {fileID: 1834484707}
   - {fileID: 1324916637}
-  buySprite: {fileID: 21300000, guid: 5fc93985a93ed19489716ea47428d57e, type: 3}
+  _buySprite: {fileID: 21300000, guid: 5fc93985a93ed19489716ea47428d57e, type: 3}
 --- !u!114 &49103143
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1374,9 +1374,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d6afb3bb6b0a4f4469f23d5c7b59b666, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  priceBuy: {fileID: 170654562}
-  bttnBuy: {fileID: 1306478025}
-  id: 0
+  _priceBuy: {fileID: 170654562}
+  _bttnBuy: {fileID: 1306478025}
+  _id: 0
 --- !u!1 &69071499
 GameObject:
   m_ObjectHideFlags: 0
@@ -1764,9 +1764,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e834784c7746b64ea6c99ef116c0108, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  defence: 2
-  ico: {fileID: 1052478826}
-  txt: {fileID: 556097048}
+  _defence: 2
+  _icon: {fileID: 1052478826}
+  _text: {fileID: 556097048}
 --- !u!114 &81256176
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1960,14 +1960,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78bc3b9104f9880409ef8232268428f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 2
-  patrons:
+  _type: 2
+  _patrons:
   - {fileID: 1838010704}
   - {fileID: 1166711864}
   - {fileID: 1758919666}
   - {fileID: 1023493048}
   - {fileID: 1487306839}
-  buySprite: {fileID: 21300000, guid: 5fc93985a93ed19489716ea47428d57e, type: 3}
+  _buySprite: {fileID: 21300000, guid: 5fc93985a93ed19489716ea47428d57e, type: 3}
 --- !u!1 &93244241
 GameObject:
   m_ObjectHideFlags: 0
@@ -2048,7 +2048,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc822827ff8440647ab2e71b13675b71, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  personage: 0
+  _personage: 0
 --- !u!1 &95553775
 GameObject:
   m_ObjectHideFlags: 0
@@ -2192,9 +2192,9 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 49103141}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 27.5, y: -0.5}
   m_SizeDelta: {x: 15, y: 35}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &96965290
@@ -3132,9 +3132,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4606d7fcae1bd0f49ad1a9b55f9db236, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  priceBuy: {fileID: 2015367175}
-  bttnBuy: {fileID: 1669829438}
-  id: 0
+  _priceBuy: {fileID: 2015367175}
+  _bttnBuy: {fileID: 1669829438}
+  _id: 0
 --- !u!1 &141829112
 GameObject:
   m_ObjectHideFlags: 0
@@ -3603,7 +3603,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 164239074}
-  - component: {fileID: 164239073}
   - component: {fileID: 164239075}
   m_Layer: 0
   m_Name: '[Scripts]'
@@ -3612,28 +3611,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &164239073
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 164239072}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 46adf561576fe2d4eb357fe14117b147, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  objectsToPersist:
-  - {fileID: 11400000, guid: 6c1ac18b3e39ac54399199c10199313a, type: 2}
-  PlayerPrefs: {fileID: 11400000, guid: 6c1ac18b3e39ac54399199c10199313a, type: 2}
-  WeaponStore: {fileID: 11400000, guid: 1e499579c241ccd4cb243a54f2999e29, type: 2}
-  BombStore: {fileID: 11400000, guid: 4e3a1b6758be6394ebad0d9a9419388d, type: 2}
-  DefenceStore: {fileID: 11400000, guid: 6c326f05a7b67ba4bb0941385df9903a, type: 2}
-  PlayerStore: {fileID: 11400000, guid: f54752fc4447a60448a58465ba00405a, type: 2}
-  Enemy: {fileID: 0}
-  Level: {fileID: 0}
-  Bullet: {fileID: 0}
 --- !u!4 &164239074
 Transform:
   m_ObjectHideFlags: 0
@@ -4275,14 +4252,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78bc3b9104f9880409ef8232268428f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 4
-  patrons:
+  _type: 4
+  _patrons:
   - {fileID: 1847425905}
   - {fileID: 985477379}
   - {fileID: 1961404252}
   - {fileID: 2081384598}
   - {fileID: 37339873}
-  buySprite: {fileID: 21300000, guid: 5fc93985a93ed19489716ea47428d57e, type: 3}
+  _buySprite: {fileID: 21300000, guid: 5fc93985a93ed19489716ea47428d57e, type: 3}
 --- !u!1 &220424152
 GameObject:
   m_ObjectHideFlags: 0
@@ -4831,8 +4808,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ebd0eaace69662143a6b1e2f99037263, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  active: {fileID: 21300000, guid: ad06cd33957fa8243befa8e2c6b74523, type: 3}
-  inactive: {fileID: 21300000, guid: 3c73aafd4f9d09a4e95a80f5c7bad2d0, type: 3}
+  _active: {fileID: 21300000, guid: ad06cd33957fa8243befa8e2c6b74523, type: 3}
+  _inactive: {fileID: 21300000, guid: 3c73aafd4f9d09a4e95a80f5c7bad2d0, type: 3}
 --- !u!114 &234861712
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5029,9 +5006,9 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 1600224851}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 27.5, y: -0.5}
   m_SizeDelta: {x: 15, y: 35}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &257761307
@@ -5104,9 +5081,9 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 2143440765}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 87.5, y: -0.5}
   m_SizeDelta: {x: 15, y: 35}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &267712543
@@ -5198,8 +5175,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ebd0eaace69662143a6b1e2f99037263, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  active: {fileID: 21300000, guid: ad06cd33957fa8243befa8e2c6b74523, type: 3}
-  inactive: {fileID: 21300000, guid: 3c73aafd4f9d09a4e95a80f5c7bad2d0, type: 3}
+  _active: {fileID: 21300000, guid: ad06cd33957fa8243befa8e2c6b74523, type: 3}
+  _inactive: {fileID: 21300000, guid: 3c73aafd4f9d09a4e95a80f5c7bad2d0, type: 3}
 --- !u!114 &271801351
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5518,12 +5495,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51e3edc9236a3dc42ad7adb45147fc6e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  priceUpgrade: {fileID: 1525732914}
-  bttnUpgrade: {fileID: 1357791118}
-  priceMagazine: {fileID: 2040559179}
-  bttnMagazine: {fileID: 1548169330}
-  BuyUpgradeElements: {fileID: 479107746}
-  BuyMagazineElements: {fileID: 871680897}
+  _priceUpgrade: {fileID: 1525732914}
+  _bttnUpgrade: {fileID: 1357791118}
+  _priceMagazine: {fileID: 2040559179}
+  _bttnMagazine: {fileID: 1548169330}
+  _buyUpgradeElements: {fileID: 479107746}
+  _buyMagazineElements: {fileID: 871680897}
 --- !u!1 &287584834
 GameObject:
   m_ObjectHideFlags: 0
@@ -5910,9 +5887,9 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 49103141}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 47.5, y: -0.5}
   m_SizeDelta: {x: 15, y: 35}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &316825491
@@ -6003,11 +5980,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8af08709f5e20a04fb3958ba3c43cdfd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  active: 0
-  imgs:
+  _active: 0
+  _imgs:
   - {fileID: 1540278429}
   - {fileID: 333706511}
-  window: {fileID: 962039452}
+  _window: {fileID: 962039452}
 --- !u!1 &333499597
 GameObject:
   m_ObjectHideFlags: 0
@@ -6144,8 +6121,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ebd0eaace69662143a6b1e2f99037263, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  active: {fileID: 21300000, guid: 54ea7506d6e8a2a43b6fdeb0f6967d74, type: 3}
-  inactive: {fileID: 21300000, guid: 6c552f54c5725d646b7d01042b4adffb, type: 3}
+  _active: {fileID: 21300000, guid: 54ea7506d6e8a2a43b6fdeb0f6967d74, type: 3}
+  _inactive: {fileID: 21300000, guid: 6c552f54c5725d646b7d01042b4adffb, type: 3}
 --- !u!1 &335236097
 GameObject:
   m_ObjectHideFlags: 0
@@ -6178,9 +6155,9 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 2143440765}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 67.5, y: -0.5}
   m_SizeDelta: {x: 15, y: 35}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &335236099
@@ -6648,11 +6625,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8af08709f5e20a04fb3958ba3c43cdfd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  active: 1
-  imgs:
+  _active: 1
+  _imgs:
   - {fileID: 984624278}
   - {fileID: 1370057064}
-  window: {fileID: 1484048101}
+  _window: {fileID: 1484048101}
 --- !u!1 &371358613
 GameObject:
   m_ObjectHideFlags: 0
@@ -6990,9 +6967,9 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 903596439}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 27.5, y: -0.5}
   m_SizeDelta: {x: 15, y: 35}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &383502152
@@ -7376,12 +7353,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f24e19700887efc40bbfa6a315db7b5a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  priceBuy: {fileID: 872879639}
-  bttnBuy: {fileID: 224659959}
-  id: 0
-  changed: {fileID: 292142289}
-  select: {fileID: 1478019004}
-  levelUp: {fileID: 382317259}
+  _priceBuy: {fileID: 872879639}
+  _bttnBuy: {fileID: 224659959}
+  _id: 0
+  _changed: {fileID: 292142289}
+  _select: {fileID: 1478019004}
+  _levelUp: {fileID: 382317259}
 --- !u!1 &424201553
 GameObject:
   m_ObjectHideFlags: 0
@@ -7589,9 +7566,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e834784c7746b64ea6c99ef116c0108, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  defence: 3
-  ico: {fileID: 199325639}
-  txt: {fileID: 926764905}
+  _defence: 3
+  _icon: {fileID: 199325639}
+  _text: {fileID: 926764905}
 --- !u!114 &433899315
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7819,9 +7796,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 540e75f272a8c8b4d9e37df48d6b7ad7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  priceBuy: {fileID: 392845332}
-  bttnBuy: {fileID: 456752413}
-  id: 0
+  _priceBuy: {fileID: 392845332}
+  _bttnBuy: {fileID: 456752413}
+  _id: 0
 --- !u!1 &443178057
 GameObject:
   m_ObjectHideFlags: 0
@@ -7856,9 +7833,9 @@ RectTransform:
   - {fileID: 540192767}
   m_Father: {fileID: 1428745334}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 312.5, y: -948.5}
   m_SizeDelta: {x: 604, y: 211}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &443178059
@@ -7873,9 +7850,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a03539cc790ad1f4b9292dbce96194e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weapon: 3
-  ico: {fileID: 1642280553}
-  txt: {fileID: 1978711161}
+  _weapon: 3
+  _icon: {fileID: 1642280553}
+  _text: {fileID: 1978711161}
 --- !u!114 &443178060
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8749,9 +8726,9 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 1600224851}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 67.5, y: -0.5}
   m_SizeDelta: {x: 15, y: 35}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &486752327
@@ -9563,9 +9540,9 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 903596439}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 7.5, y: -0.5}
   m_SizeDelta: {x: 15, y: 35}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &526297540
@@ -9638,9 +9615,9 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 2143440765}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 7.5, y: -0.5}
   m_SizeDelta: {x: 15, y: 35}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &538300929
@@ -9855,8 +9832,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ebd0eaace69662143a6b1e2f99037263, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  active: {fileID: 21300000, guid: ad06cd33957fa8243befa8e2c6b74523, type: 3}
-  inactive: {fileID: 21300000, guid: 3c73aafd4f9d09a4e95a80f5c7bad2d0, type: 3}
+  _active: {fileID: 21300000, guid: ad06cd33957fa8243befa8e2c6b74523, type: 3}
+  _inactive: {fileID: 21300000, guid: 3c73aafd4f9d09a4e95a80f5c7bad2d0, type: 3}
 --- !u!114 &547036723
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10694,8 +10671,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ebd0eaace69662143a6b1e2f99037263, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  active: {fileID: 21300000, guid: fe3e830697c585949b3d2a7edd73200b, type: 3}
-  inactive: {fileID: 21300000, guid: 7bbb3b43a95624c48942e1460f117bcd, type: 3}
+  _active: {fileID: 21300000, guid: fe3e830697c585949b3d2a7edd73200b, type: 3}
+  _inactive: {fileID: 21300000, guid: 7bbb3b43a95624c48942e1460f117bcd, type: 3}
 --- !u!1 &590001640
 GameObject:
   m_ObjectHideFlags: 0
@@ -10961,10 +10938,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 590118c5ec352704d834e47b87d5cc37, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  personage: 1
-  unlockElement: {fileID: 2016285327}
-  lockElement: {fileID: 1096230426}
-  panel: {fileID: 1335480908}
+  _personage: 1
+  _unlockElement: {fileID: 2016285327}
+  _lockElement: {fileID: 1096230426}
+  _panel: {fileID: 1335480908}
 --- !u!61 &603705417
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -11752,9 +11729,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d6afb3bb6b0a4f4469f23d5c7b59b666, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  priceBuy: {fileID: 1588266434}
-  bttnBuy: {fileID: 1575472208}
-  id: 0
+  _priceBuy: {fileID: 1588266434}
+  _bttnBuy: {fileID: 1575472208}
+  _id: 0
 --- !u!1 &670534419
 GameObject:
   m_ObjectHideFlags: 0
@@ -12376,12 +12353,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f24e19700887efc40bbfa6a315db7b5a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  priceBuy: {fileID: 1262856453}
-  bttnBuy: {fileID: 1111933175}
-  id: 0
-  changed: {fileID: 1983570998}
-  select: {fileID: 1277390559}
-  levelUp: {fileID: 1546315059}
+  _priceBuy: {fileID: 1262856453}
+  _bttnBuy: {fileID: 1111933175}
+  _id: 0
+  _changed: {fileID: 1983570998}
+  _select: {fileID: 1277390559}
+  _levelUp: {fileID: 1546315059}
 --- !u!1 &716545223
 GameObject:
   m_ObjectHideFlags: 0
@@ -12588,9 +12565,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 540e75f272a8c8b4d9e37df48d6b7ad7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  priceBuy: {fileID: 1385001930}
-  bttnBuy: {fileID: 1682712368}
-  id: 0
+  _priceBuy: {fileID: 1385001930}
+  _bttnBuy: {fileID: 1682712368}
+  _id: 0
 --- !u!1 &726370149
 GameObject:
   m_ObjectHideFlags: 0
@@ -12954,9 +12931,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 07f52ea353894c64786116cc81a89e93, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  priceBuy: {fileID: 1799933872}
-  bttnBuy: {fileID: 1505463158}
-  id: 0
+  _priceBuy: {fileID: 1799933872}
+  _bttnBuy: {fileID: 1505463158}
+  _id: 0
 --- !u!1 &754932143
 GameObject:
   m_ObjectHideFlags: 0
@@ -12989,9 +12966,9 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 1161610600}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 67.5, y: -0.5}
   m_SizeDelta: {x: 15, y: 35}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &754932145
@@ -14347,9 +14324,9 @@ RectTransform:
   - {fileID: 876705001}
   m_Father: {fileID: 1428745334}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 312.5, y: -386.5}
   m_SizeDelta: {x: 604, y: 211}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &812063061
@@ -14364,9 +14341,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a03539cc790ad1f4b9292dbce96194e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weapon: 1
-  ico: {fileID: 1986609224}
-  txt: {fileID: 2118005088}
+  _weapon: 1
+  _icon: {fileID: 1986609224}
+  _text: {fileID: 2118005088}
 --- !u!114 &812063062
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14810,9 +14787,9 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 903596439}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 87.5, y: -0.5}
   m_SizeDelta: {x: 15, y: 35}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &836384994
@@ -15852,9 +15829,9 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 1161610600}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 7.5, y: -0.5}
   m_SizeDelta: {x: 15, y: 35}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &870639682
@@ -16541,9 +16518,9 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 903596439}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 67.5, y: -0.5}
   m_SizeDelta: {x: 15, y: 35}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &894876781
@@ -16829,14 +16806,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78bc3b9104f9880409ef8232268428f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 0
-  patrons:
+  _type: 0
+  _patrons:
   - {fileID: 526297540}
   - {fileID: 383502152}
   - {fileID: 1073385726}
   - {fileID: 894876781}
   - {fileID: 836384994}
-  buySprite: {fileID: 21300000, guid: 5fc93985a93ed19489716ea47428d57e, type: 3}
+  _buySprite: {fileID: 21300000, guid: 5fc93985a93ed19489716ea47428d57e, type: 3}
 --- !u!1 &910081049
 GameObject:
   m_ObjectHideFlags: 0
@@ -17462,12 +17439,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f24e19700887efc40bbfa6a315db7b5a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  priceBuy: {fileID: 1354695332}
-  bttnBuy: {fileID: 193782409}
-  id: 0
-  changed: {fileID: 856969134}
-  select: {fileID: 1524806243}
-  levelUp: {fileID: 1563568496}
+  _priceBuy: {fileID: 1354695332}
+  _bttnBuy: {fileID: 193782409}
+  _id: 0
+  _changed: {fileID: 856969134}
+  _select: {fileID: 1524806243}
+  _levelUp: {fileID: 1563568496}
 --- !u!1 &939237465
 GameObject:
   m_ObjectHideFlags: 0
@@ -17548,9 +17525,9 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 1600224851}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 47.5, y: -0.5}
   m_SizeDelta: {x: 15, y: 35}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &939840425
@@ -17738,9 +17715,9 @@ RectTransform:
   - {fileID: 1087869809}
   m_Father: {fileID: 2024817549}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 730.5, y: -75}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &961822776
@@ -17755,9 +17732,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 326b003848641b949b20afaf7cdf3363, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 3
-  ico: {fileID: 1042272528}
-  count: {fileID: 1198863652}
+  _type: 3
+  _icon: {fileID: 1042272528}
+  _count: {fileID: 1198863652}
 --- !u!1 &961866293
 GameObject:
   m_ObjectHideFlags: 0
@@ -18158,8 +18135,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ebd0eaace69662143a6b1e2f99037263, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  active: {fileID: 21300000, guid: ad06cd33957fa8243befa8e2c6b74523, type: 3}
-  inactive: {fileID: 21300000, guid: 3c73aafd4f9d09a4e95a80f5c7bad2d0, type: 3}
+  _active: {fileID: 21300000, guid: ad06cd33957fa8243befa8e2c6b74523, type: 3}
+  _inactive: {fileID: 21300000, guid: 3c73aafd4f9d09a4e95a80f5c7bad2d0, type: 3}
 --- !u!114 &969901686
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18558,8 +18535,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ebd0eaace69662143a6b1e2f99037263, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  active: {fileID: 21300000, guid: 7350994ce3552704c8fea0108a4f287b, type: 3}
-  inactive: {fileID: 21300000, guid: 61b2097c9fa47de479e0182d086b2954, type: 3}
+  _active: {fileID: 21300000, guid: 7350994ce3552704c8fea0108a4f287b, type: 3}
+  _inactive: {fileID: 21300000, guid: 61b2097c9fa47de479e0182d086b2954, type: 3}
 --- !u!1 &985477377
 GameObject:
   m_ObjectHideFlags: 0
@@ -18687,10 +18664,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0c873f2010d430d4388c1224f2fa90c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  grenade: 2
-  ico: {fileID: 439067939}
-  txt: {fileID: 800574995}
-  count: {fileID: 1065155898}
+  _grenade: 2
+  _icon: {fileID: 439067939}
+  _text: {fileID: 800574995}
+  _count: {fileID: 1065155898}
 --- !u!114 &999527520
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -19628,8 +19605,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ebd0eaace69662143a6b1e2f99037263, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  active: {fileID: 21300000, guid: ad06cd33957fa8243befa8e2c6b74523, type: 3}
-  inactive: {fileID: 21300000, guid: 3c73aafd4f9d09a4e95a80f5c7bad2d0, type: 3}
+  _active: {fileID: 21300000, guid: ad06cd33957fa8243befa8e2c6b74523, type: 3}
+  _inactive: {fileID: 21300000, guid: 3c73aafd4f9d09a4e95a80f5c7bad2d0, type: 3}
 --- !u!114 &1042113071
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -20289,7 +20266,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae9a77c255896054584c4398ba3ab26e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: 1
+  _target: 1
 --- !u!1 &1073385724
 GameObject:
   m_ObjectHideFlags: 0
@@ -20322,9 +20299,9 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 903596439}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 47.5, y: -0.5}
   m_SizeDelta: {x: 15, y: 35}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1073385726
@@ -20994,8 +20971,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ebd0eaace69662143a6b1e2f99037263, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  active: {fileID: 21300000, guid: 7350994ce3552704c8fea0108a4f287b, type: 3}
-  inactive: {fileID: 21300000, guid: 61b2097c9fa47de479e0182d086b2954, type: 3}
+  _active: {fileID: 21300000, guid: 7350994ce3552704c8fea0108a4f287b, type: 3}
+  _inactive: {fileID: 21300000, guid: 61b2097c9fa47de479e0182d086b2954, type: 3}
 --- !u!1 &1093819212
 GameObject:
   m_ObjectHideFlags: 0
@@ -21048,12 +21025,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51e3edc9236a3dc42ad7adb45147fc6e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  priceUpgrade: {fileID: 376536878}
-  bttnUpgrade: {fileID: 1282680642}
-  priceMagazine: {fileID: 433484458}
-  bttnMagazine: {fileID: 1664880111}
-  BuyUpgradeElements: {fileID: 767127498}
-  BuyMagazineElements: {fileID: 87915604}
+  _priceUpgrade: {fileID: 376536878}
+  _bttnUpgrade: {fileID: 1282680642}
+  _priceMagazine: {fileID: 433484458}
+  _bttnMagazine: {fileID: 1664880111}
+  _buyUpgradeElements: {fileID: 767127498}
+  _buyMagazineElements: {fileID: 87915604}
 --- !u!1 &1094587462
 GameObject:
   m_ObjectHideFlags: 0
@@ -21273,8 +21250,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ebd0eaace69662143a6b1e2f99037263, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  active: {fileID: 21300000, guid: ad06cd33957fa8243befa8e2c6b74523, type: 3}
-  inactive: {fileID: 21300000, guid: 3c73aafd4f9d09a4e95a80f5c7bad2d0, type: 3}
+  _active: {fileID: 21300000, guid: ad06cd33957fa8243befa8e2c6b74523, type: 3}
+  _inactive: {fileID: 21300000, guid: 3c73aafd4f9d09a4e95a80f5c7bad2d0, type: 3}
 --- !u!114 &1103038183
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -21697,9 +21674,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 91570f99991ec02428be892b9d312f94, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  priceUpgrade: {fileID: 1010011406}
-  bttnUpgrade: {fileID: 76527301}
-  BuyUpgradeElements: {fileID: 1280483132}
+  _priceUpgrade: {fileID: 1010011406}
+  _bttnUpgrade: {fileID: 76527301}
+  _buyUpgradeElements: {fileID: 1280483132}
 --- !u!1 &1117290848
 GameObject:
   m_ObjectHideFlags: 0
@@ -22019,8 +21996,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ebd0eaace69662143a6b1e2f99037263, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  active: {fileID: 21300000, guid: ad06cd33957fa8243befa8e2c6b74523, type: 3}
-  inactive: {fileID: 21300000, guid: 3c73aafd4f9d09a4e95a80f5c7bad2d0, type: 3}
+  _active: {fileID: 21300000, guid: ad06cd33957fa8243befa8e2c6b74523, type: 3}
+  _inactive: {fileID: 21300000, guid: 3c73aafd4f9d09a4e95a80f5c7bad2d0, type: 3}
 --- !u!114 &1147271930
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -22091,9 +22068,9 @@ RectTransform:
   - {fileID: 379952127}
   m_Father: {fileID: 2024817549}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 61.5, y: -75}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1159415416
@@ -22108,9 +22085,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 326b003848641b949b20afaf7cdf3363, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 0
-  ico: {fileID: 785144272}
-  count: {fileID: 1335116222}
+  _type: 0
+  _icon: {fileID: 785144272}
+  _count: {fileID: 1335116222}
 --- !u!1 &1161238664
 GameObject:
   m_ObjectHideFlags: 0
@@ -22307,14 +22284,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78bc3b9104f9880409ef8232268428f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 0
-  patrons:
+  _type: 0
+  _patrons:
   - {fileID: 870639682}
   - {fileID: 9712444}
   - {fileID: 1398897516}
   - {fileID: 754932145}
   - {fileID: 38621663}
-  buySprite: {fileID: 21300000, guid: 5fc93985a93ed19489716ea47428d57e, type: 3}
+  _buySprite: {fileID: 21300000, guid: 5fc93985a93ed19489716ea47428d57e, type: 3}
 --- !u!1 &1164734185
 GameObject:
   m_ObjectHideFlags: 0
@@ -24004,8 +23981,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ebd0eaace69662143a6b1e2f99037263, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  active: {fileID: 21300000, guid: ad06cd33957fa8243befa8e2c6b74523, type: 3}
-  inactive: {fileID: 21300000, guid: 3c73aafd4f9d09a4e95a80f5c7bad2d0, type: 3}
+  _active: {fileID: 21300000, guid: ad06cd33957fa8243befa8e2c6b74523, type: 3}
+  _inactive: {fileID: 21300000, guid: 3c73aafd4f9d09a4e95a80f5c7bad2d0, type: 3}
 --- !u!114 &1258391062
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -24096,7 +24073,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc822827ff8440647ab2e71b13675b71, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  personage: 1
+  _personage: 1
 --- !u!114 &1261138220
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -24872,11 +24849,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8af08709f5e20a04fb3958ba3c43cdfd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  active: 0
-  imgs:
+  _active: 0
+  _imgs:
   - {fileID: 1092636241}
   - {fileID: 582298330}
-  window: {fileID: 1212082020}
+  _window: {fileID: 1212082020}
 --- !u!1 &1302401748
 GameObject:
   m_ObjectHideFlags: 0
@@ -24928,8 +24905,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ebd0eaace69662143a6b1e2f99037263, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  active: {fileID: 21300000, guid: ad06cd33957fa8243befa8e2c6b74523, type: 3}
-  inactive: {fileID: 21300000, guid: 3c73aafd4f9d09a4e95a80f5c7bad2d0, type: 3}
+  _active: {fileID: 21300000, guid: ad06cd33957fa8243befa8e2c6b74523, type: 3}
+  _inactive: {fileID: 21300000, guid: 3c73aafd4f9d09a4e95a80f5c7bad2d0, type: 3}
 --- !u!114 &1302401751
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -25637,9 +25614,9 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 49103141}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 87.5, y: -0.5}
   m_SizeDelta: {x: 15, y: 35}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1324916637
@@ -25732,12 +25709,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51e3edc9236a3dc42ad7adb45147fc6e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  priceUpgrade: {fileID: 1763186970}
-  bttnUpgrade: {fileID: 670534420}
-  priceMagazine: {fileID: 57956143}
-  bttnMagazine: {fileID: 1449751457}
-  BuyUpgradeElements: {fileID: 1631250425}
-  BuyMagazineElements: {fileID: 1700411317}
+  _priceUpgrade: {fileID: 1763186970}
+  _bttnUpgrade: {fileID: 670534420}
+  _priceMagazine: {fileID: 57956143}
+  _bttnMagazine: {fileID: 1449751457}
+  _buyUpgradeElements: {fileID: 1631250425}
+  _buyMagazineElements: {fileID: 1700411317}
 --- !u!1 &1332480333
 GameObject:
   m_ObjectHideFlags: 0
@@ -25941,9 +25918,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2b716dbdb6126944cbdce240b952cb2d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  parentPanel: {fileID: 0}
-  hideIfShowChild: 0
-  panel: {fileID: 1261138217}
+  _parentPanel: {fileID: 0}
+  _hideIfShowChild: 0
+  _panel: {fileID: 1261138217}
 --- !u!1 &1335756619
 GameObject:
   m_ObjectHideFlags: 0
@@ -25997,14 +25974,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78bc3b9104f9880409ef8232268428f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 2
-  patrons:
+  _type: 2
+  _patrons:
   - {fileID: 122236684}
   - {fileID: 1526051220}
   - {fileID: 1507338126}
   - {fileID: 539424084}
   - {fileID: 1505738985}
-  buySprite: {fileID: 21300000, guid: 5fc93985a93ed19489716ea47428d57e, type: 3}
+  _buySprite: {fileID: 21300000, guid: 5fc93985a93ed19489716ea47428d57e, type: 3}
 --- !u!1 &1339183610
 GameObject:
   m_ObjectHideFlags: 0
@@ -26160,9 +26137,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e834784c7746b64ea6c99ef116c0108, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  defence: 0
-  ico: {fileID: 148413033}
-  txt: {fileID: 720880565}
+  _defence: 0
+  _icon: {fileID: 148413033}
+  _text: {fileID: 720880565}
 --- !u!1 &1342178778
 GameObject:
   m_ObjectHideFlags: 0
@@ -26290,10 +26267,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 590118c5ec352704d834e47b87d5cc37, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  personage: 0
-  unlockElement: {fileID: 1556459302}
-  lockElement: {fileID: 919617659}
-  panel: {fileID: 1712440807}
+  _personage: 0
+  _unlockElement: {fileID: 1556459302}
+  _lockElement: {fileID: 919617659}
+  _panel: {fileID: 1712440807}
 --- !u!61 &1343130034
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -26527,9 +26504,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e834784c7746b64ea6c99ef116c0108, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  defence: 1
-  ico: {fileID: 1713711986}
-  txt: {fileID: 1579857559}
+  _defence: 1
+  _icon: {fileID: 1713711986}
+  _text: {fileID: 1579857559}
 --- !u!114 &1354411958
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -27087,8 +27064,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ebd0eaace69662143a6b1e2f99037263, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  active: {fileID: 21300000, guid: d9b07adaeaf1ddd45858e84b90da1f81, type: 3}
-  inactive: {fileID: 21300000, guid: 245844f38d6d98e4d815e7df23d92320, type: 3}
+  _active: {fileID: 21300000, guid: d9b07adaeaf1ddd45858e84b90da1f81, type: 3}
+  _inactive: {fileID: 21300000, guid: 245844f38d6d98e4d815e7df23d92320, type: 3}
 --- !u!1 &1372723009
 GameObject:
   m_ObjectHideFlags: 0
@@ -27263,9 +27240,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 07f52ea353894c64786116cc81a89e93, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  priceBuy: {fileID: 786158315}
-  bttnBuy: {fileID: 563913101}
-  id: 0
+  _priceBuy: {fileID: 786158315}
+  _bttnBuy: {fileID: 563913101}
+  _id: 0
 --- !u!1 &1385001928
 GameObject:
   m_ObjectHideFlags: 0
@@ -27509,8 +27486,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ebd0eaace69662143a6b1e2f99037263, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  active: {fileID: 21300000, guid: 667626fc94b52ef46bb65ec98b87767a, type: 3}
-  inactive: {fileID: 21300000, guid: e5120f49789576b439e321c953ba06af, type: 3}
+  _active: {fileID: 21300000, guid: 667626fc94b52ef46bb65ec98b87767a, type: 3}
+  _inactive: {fileID: 21300000, guid: e5120f49789576b439e321c953ba06af, type: 3}
 --- !u!1 &1398897514
 GameObject:
   m_ObjectHideFlags: 0
@@ -27543,9 +27520,9 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 1161610600}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 47.5, y: -0.5}
   m_SizeDelta: {x: 15, y: 35}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1398897516
@@ -27627,7 +27604,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0.000061035156, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 1425}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &1428745335
 MonoBehaviour:
@@ -27728,8 +27705,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ebd0eaace69662143a6b1e2f99037263, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  active: {fileID: 21300000, guid: ad06cd33957fa8243befa8e2c6b74523, type: 3}
-  inactive: {fileID: 21300000, guid: 3c73aafd4f9d09a4e95a80f5c7bad2d0, type: 3}
+  _active: {fileID: 21300000, guid: ad06cd33957fa8243befa8e2c6b74523, type: 3}
+  _inactive: {fileID: 21300000, guid: 3c73aafd4f9d09a4e95a80f5c7bad2d0, type: 3}
 --- !u!114 &1428854033
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -28773,14 +28750,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78bc3b9104f9880409ef8232268428f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 4
-  patrons:
+  _type: 4
+  _patrons:
   - {fileID: 353320828}
   - {fileID: 600807529}
   - {fileID: 748198414}
   - {fileID: 1755984306}
   - {fileID: 1220103081}
-  buySprite: {fileID: 21300000, guid: 5fc93985a93ed19489716ea47428d57e, type: 3}
+  _buySprite: {fileID: 21300000, guid: 5fc93985a93ed19489716ea47428d57e, type: 3}
 --- !u!1 &1487306837
 GameObject:
   m_ObjectHideFlags: 0
@@ -29213,9 +29190,9 @@ RectTransform:
   - {fileID: 1528378517}
   m_Father: {fileID: 1428745334}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 312.5, y: -667.5}
   m_SizeDelta: {x: 604, y: 211}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1506411368
@@ -29230,9 +29207,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a03539cc790ad1f4b9292dbce96194e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weapon: 2
-  ico: {fileID: 1876381984}
-  txt: {fileID: 1031696940}
+  _weapon: 2
+  _icon: {fileID: 1876381984}
+  _text: {fileID: 1031696940}
 --- !u!114 &1506411369
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -29368,9 +29345,9 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 1600224851}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 87.5, y: -0.5}
   m_SizeDelta: {x: 15, y: 35}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1511186779
@@ -30524,8 +30501,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ebd0eaace69662143a6b1e2f99037263, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  active: {fileID: 21300000, guid: 7350994ce3552704c8fea0108a4f287b, type: 3}
-  inactive: {fileID: 21300000, guid: 61b2097c9fa47de479e0182d086b2954, type: 3}
+  _active: {fileID: 21300000, guid: 7350994ce3552704c8fea0108a4f287b, type: 3}
+  _inactive: {fileID: 21300000, guid: 61b2097c9fa47de479e0182d086b2954, type: 3}
 --- !u!1 &1545414446
 GameObject:
   m_ObjectHideFlags: 0
@@ -31001,9 +30978,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4606d7fcae1bd0f49ad1a9b55f9db236, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  priceBuy: {fileID: 1006795520}
-  bttnBuy: {fileID: 1965342451}
-  id: 0
+  _priceBuy: {fileID: 1006795520}
+  _bttnBuy: {fileID: 1965342451}
+  _id: 0
 --- !u!1 &1572368270
 GameObject:
   m_ObjectHideFlags: 0
@@ -31131,9 +31108,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d6afb3bb6b0a4f4469f23d5c7b59b666, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  priceBuy: {fileID: 1178650118}
-  bttnBuy: {fileID: 123242633}
-  id: 0
+  _priceBuy: {fileID: 1178650118}
+  _bttnBuy: {fileID: 123242633}
+  _id: 0
 --- !u!1 &1575472206
 GameObject:
   m_ObjectHideFlags: 0
@@ -31799,14 +31776,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78bc3b9104f9880409ef8232268428f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 0
-  patrons:
+  _type: 0
+  _patrons:
   - {fileID: 1796373495}
   - {fileID: 257761307}
   - {fileID: 939840425}
   - {fileID: 486752327}
   - {fileID: 1511186779}
-  buySprite: {fileID: 21300000, guid: 5fc93985a93ed19489716ea47428d57e, type: 3}
+  _buySprite: {fileID: 21300000, guid: 5fc93985a93ed19489716ea47428d57e, type: 3}
 --- !u!1 &1610845942
 GameObject:
   m_ObjectHideFlags: 0
@@ -31952,8 +31929,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ebd0eaace69662143a6b1e2f99037263, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  active: {fileID: 21300000, guid: 7350994ce3552704c8fea0108a4f287b, type: 3}
-  inactive: {fileID: 21300000, guid: 61b2097c9fa47de479e0182d086b2954, type: 3}
+  _active: {fileID: 21300000, guid: 7350994ce3552704c8fea0108a4f287b, type: 3}
+  _inactive: {fileID: 21300000, guid: 61b2097c9fa47de479e0182d086b2954, type: 3}
 --- !u!1 &1611418368
 GameObject:
   m_ObjectHideFlags: 0
@@ -32004,9 +31981,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4606d7fcae1bd0f49ad1a9b55f9db236, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  priceBuy: {fileID: 2007015630}
-  bttnBuy: {fileID: 113640227}
-  id: 0
+  _priceBuy: {fileID: 2007015630}
+  _bttnBuy: {fileID: 113640227}
+  _id: 0
 --- !u!1 &1628335329
 GameObject:
   m_ObjectHideFlags: 0
@@ -32058,8 +32035,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ebd0eaace69662143a6b1e2f99037263, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  active: {fileID: 21300000, guid: ad06cd33957fa8243befa8e2c6b74523, type: 3}
-  inactive: {fileID: 21300000, guid: 3c73aafd4f9d09a4e95a80f5c7bad2d0, type: 3}
+  _active: {fileID: 21300000, guid: ad06cd33957fa8243befa8e2c6b74523, type: 3}
+  _inactive: {fileID: 21300000, guid: 3c73aafd4f9d09a4e95a80f5c7bad2d0, type: 3}
 --- !u!114 &1628335332
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -32150,12 +32127,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51e3edc9236a3dc42ad7adb45147fc6e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  priceUpgrade: {fileID: 849298401}
-  bttnUpgrade: {fileID: 1250474317}
-  priceMagazine: {fileID: 2023275633}
-  bttnMagazine: {fileID: 512855092}
-  BuyUpgradeElements: {fileID: 1117290848}
-  BuyMagazineElements: {fileID: 282033732}
+  _priceUpgrade: {fileID: 849298401}
+  _bttnUpgrade: {fileID: 1250474317}
+  _priceMagazine: {fileID: 2023275633}
+  _bttnMagazine: {fileID: 512855092}
+  _buyUpgradeElements: {fileID: 1117290848}
+  _buyMagazineElements: {fileID: 282033732}
 --- !u!1 &1631250425
 GameObject:
   m_ObjectHideFlags: 0
@@ -32447,8 +32424,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ebd0eaace69662143a6b1e2f99037263, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  active: {fileID: 21300000, guid: ad06cd33957fa8243befa8e2c6b74523, type: 3}
-  inactive: {fileID: 21300000, guid: 3c73aafd4f9d09a4e95a80f5c7bad2d0, type: 3}
+  _active: {fileID: 21300000, guid: ad06cd33957fa8243befa8e2c6b74523, type: 3}
+  _inactive: {fileID: 21300000, guid: 3c73aafd4f9d09a4e95a80f5c7bad2d0, type: 3}
 --- !u!114 &1643613544
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -32648,10 +32625,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0c873f2010d430d4388c1224f2fa90c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  grenade: 1
-  ico: {fileID: 371358615}
-  txt: {fileID: 759251583}
-  count: {fileID: 943430808}
+  _grenade: 1
+  _icon: {fileID: 371358615}
+  _text: {fileID: 759251583}
+  _count: {fileID: 943430808}
 --- !u!114 &1652437101
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -33039,9 +33016,9 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 2143440765}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 47.5, y: -0.5}
   m_SizeDelta: {x: 15, y: 35}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1668668021
@@ -33303,8 +33280,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ebd0eaace69662143a6b1e2f99037263, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  active: {fileID: 21300000, guid: ad06cd33957fa8243befa8e2c6b74523, type: 3}
-  inactive: {fileID: 21300000, guid: 3c73aafd4f9d09a4e95a80f5c7bad2d0, type: 3}
+  _active: {fileID: 21300000, guid: ad06cd33957fa8243befa8e2c6b74523, type: 3}
+  _inactive: {fileID: 21300000, guid: 3c73aafd4f9d09a4e95a80f5c7bad2d0, type: 3}
 --- !u!114 &1672884288
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -34408,9 +34385,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2b716dbdb6126944cbdce240b952cb2d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  parentPanel: {fileID: 0}
-  hideIfShowChild: 0
-  panel: {fileID: 93244241}
+  _parentPanel: {fileID: 0}
+  _hideIfShowChild: 0
+  _panel: {fileID: 93244241}
 --- !u!1 &1713711984
 GameObject:
   m_ObjectHideFlags: 0
@@ -34881,9 +34858,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 540e75f272a8c8b4d9e37df48d6b7ad7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  priceBuy: {fileID: 1305758519}
-  bttnBuy: {fileID: 6577095}
-  id: 0
+  _priceBuy: {fileID: 1305758519}
+  _bttnBuy: {fileID: 6577095}
+  _id: 0
 --- !u!1 &1743517701
 GameObject:
   m_ObjectHideFlags: 0
@@ -35499,10 +35476,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0c873f2010d430d4388c1224f2fa90c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  grenade: 3
-  ico: {fileID: 1889882083}
-  txt: {fileID: 394526032}
-  count: {fileID: 842023765}
+  _grenade: 3
+  _icon: {fileID: 1889882083}
+  _text: {fileID: 394526032}
+  _count: {fileID: 842023765}
 --- !u!114 &1772048409
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -35607,9 +35584,9 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 2143440765}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 27.5, y: -0.5}
   m_SizeDelta: {x: 15, y: 35}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1772849962
@@ -35684,9 +35661,9 @@ RectTransform:
   - {fileID: 1854750546}
   m_Father: {fileID: 1428745334}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 312.5, y: -1229.5}
   m_SizeDelta: {x: 604, y: 211}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1777352711
@@ -35701,9 +35678,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a03539cc790ad1f4b9292dbce96194e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weapon: 4
-  ico: {fileID: 466480870}
-  txt: {fileID: 780499389}
+  _weapon: 4
+  _icon: {fileID: 466480870}
+  _text: {fileID: 780499389}
 --- !u!114 &1777352712
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -35783,8 +35760,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ebd0eaace69662143a6b1e2f99037263, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  active: {fileID: 21300000, guid: ad06cd33957fa8243befa8e2c6b74523, type: 3}
-  inactive: {fileID: 21300000, guid: 3c73aafd4f9d09a4e95a80f5c7bad2d0, type: 3}
+  _active: {fileID: 21300000, guid: ad06cd33957fa8243befa8e2c6b74523, type: 3}
+  _inactive: {fileID: 21300000, guid: 3c73aafd4f9d09a4e95a80f5c7bad2d0, type: 3}
 --- !u!114 &1795540786
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -35855,9 +35832,9 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 1600224851}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 7.5, y: -0.5}
   m_SizeDelta: {x: 15, y: 35}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1796373495
@@ -36177,9 +36154,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d6afb3bb6b0a4f4469f23d5c7b59b666, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  priceBuy: {fileID: 835534214}
-  bttnBuy: {fileID: 1025429463}
-  id: 0
+  _priceBuy: {fileID: 835534214}
+  _bttnBuy: {fileID: 1025429463}
+  _id: 0
 --- !u!1 &1824142352
 GameObject:
   m_ObjectHideFlags: 0
@@ -36230,9 +36207,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4606d7fcae1bd0f49ad1a9b55f9db236, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  priceBuy: {fileID: 2110071111}
-  bttnBuy: {fileID: 1889508666}
-  id: 0
+  _priceBuy: {fileID: 2110071111}
+  _bttnBuy: {fileID: 1889508666}
+  _id: 0
 --- !u!1 &1831125303
 GameObject:
   m_ObjectHideFlags: 0
@@ -36340,9 +36317,9 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 49103141}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 67.5, y: -0.5}
   m_SizeDelta: {x: 15, y: 35}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1834484707
@@ -36822,12 +36799,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51e3edc9236a3dc42ad7adb45147fc6e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  priceUpgrade: {fileID: 871827558}
-  bttnUpgrade: {fileID: 776766160}
-  priceMagazine: {fileID: 1913297496}
-  bttnMagazine: {fileID: 856019272}
-  BuyUpgradeElements: {fileID: 2145717219}
-  BuyMagazineElements: {fileID: 1800342733}
+  _priceUpgrade: {fileID: 871827558}
+  _bttnUpgrade: {fileID: 776766160}
+  _priceMagazine: {fileID: 1913297496}
+  _bttnMagazine: {fileID: 856019272}
+  _buyUpgradeElements: {fileID: 2145717219}
+  _buyMagazineElements: {fileID: 1800342733}
 --- !u!1 &1854750545
 GameObject:
   m_ObjectHideFlags: 0
@@ -37585,11 +37562,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8af08709f5e20a04fb3958ba3c43cdfd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  active: 0
-  imgs:
+  _active: 0
+  _imgs:
   - {fileID: 1610845947}
   - {fileID: 1398658792}
-  window: {fileID: 607439864}
+  _window: {fileID: 607439864}
 --- !u!1 &1904151623
 GameObject:
   m_ObjectHideFlags: 0
@@ -37641,8 +37618,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ebd0eaace69662143a6b1e2f99037263, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  active: {fileID: 21300000, guid: ad06cd33957fa8243befa8e2c6b74523, type: 3}
-  inactive: {fileID: 21300000, guid: 3c73aafd4f9d09a4e95a80f5c7bad2d0, type: 3}
+  _active: {fileID: 21300000, guid: ad06cd33957fa8243befa8e2c6b74523, type: 3}
+  _inactive: {fileID: 21300000, guid: 3c73aafd4f9d09a4e95a80f5c7bad2d0, type: 3}
 --- !u!114 &1904151626
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -37925,9 +37902,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d6afb3bb6b0a4f4469f23d5c7b59b666, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  priceBuy: {fileID: 879529041}
-  bttnBuy: {fileID: 2121561508}
-  id: 0
+  _priceBuy: {fileID: 879529041}
+  _bttnBuy: {fileID: 2121561508}
+  _id: 0
 --- !u!1 &1921299645
 GameObject:
   m_ObjectHideFlags: 0
@@ -38244,12 +38221,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f24e19700887efc40bbfa6a315db7b5a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  priceBuy: {fileID: 2128690428}
-  bttnBuy: {fileID: 768561767}
-  id: 0
-  changed: {fileID: 305782496}
-  select: {fileID: 929908787}
-  levelUp: {fileID: 521425050}
+  _priceBuy: {fileID: 2128690428}
+  _bttnBuy: {fileID: 768561767}
+  _id: 0
+  _changed: {fileID: 305782496}
+  _select: {fileID: 929908787}
+  _levelUp: {fileID: 521425050}
 --- !u!1 &1957867569
 GameObject:
   m_ObjectHideFlags: 0
@@ -39489,9 +39466,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 91570f99991ec02428be892b9d312f94, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  priceUpgrade: {fileID: 64869433}
-  bttnUpgrade: {fileID: 233207205}
-  BuyUpgradeElements: {fileID: 786137822}
+  _priceUpgrade: {fileID: 64869433}
+  _bttnUpgrade: {fileID: 233207205}
+  _buyUpgradeElements: {fileID: 786137822}
 --- !u!1 &2007015629
 GameObject:
   m_ObjectHideFlags: 0
@@ -40065,8 +40042,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2649313acc23d424b9a4a77915092f24, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rect: {fileID: 2024817549}
-  elements:
+  _rect: {fileID: 2024817549}
+  _elements:
   - {fileID: 1159415416}
   - {fileID: 2089741578}
   - {fileID: 19045646}
@@ -40124,14 +40101,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78bc3b9104f9880409ef8232268428f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 2
-  patrons:
+  _type: 2
+  _patrons:
   - {fileID: 966363820}
   - {fileID: 1533589854}
   - {fileID: 2033312582}
   - {fileID: 1239914125}
   - {fileID: 501112347}
-  buySprite: {fileID: 21300000, guid: 5fc93985a93ed19489716ea47428d57e, type: 3}
+  _buySprite: {fileID: 21300000, guid: 5fc93985a93ed19489716ea47428d57e, type: 3}
 --- !u!850595691 &2026446011
 LightingSettings:
   m_ObjectHideFlags: 0
@@ -40777,8 +40754,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ebd0eaace69662143a6b1e2f99037263, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  active: {fileID: 21300000, guid: ad06cd33957fa8243befa8e2c6b74523, type: 3}
-  inactive: {fileID: 21300000, guid: 3c73aafd4f9d09a4e95a80f5c7bad2d0, type: 3}
+  _active: {fileID: 21300000, guid: ad06cd33957fa8243befa8e2c6b74523, type: 3}
+  _inactive: {fileID: 21300000, guid: 3c73aafd4f9d09a4e95a80f5c7bad2d0, type: 3}
 --- !u!114 &2056996493
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -40943,8 +40920,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ebd0eaace69662143a6b1e2f99037263, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  active: {fileID: 21300000, guid: ad06cd33957fa8243befa8e2c6b74523, type: 3}
-  inactive: {fileID: 21300000, guid: 3c73aafd4f9d09a4e95a80f5c7bad2d0, type: 3}
+  _active: {fileID: 21300000, guid: ad06cd33957fa8243befa8e2c6b74523, type: 3}
+  _inactive: {fileID: 21300000, guid: 3c73aafd4f9d09a4e95a80f5c7bad2d0, type: 3}
 --- !u!114 &2079510538
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -41111,14 +41088,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78bc3b9104f9880409ef8232268428f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 2
-  patrons:
+  _type: 2
+  _patrons:
   - {fileID: 457956554}
   - {fileID: 141829114}
   - {fileID: 1122158408}
   - {fileID: 576537120}
   - {fileID: 1702816670}
-  buySprite: {fileID: 21300000, guid: 5fc93985a93ed19489716ea47428d57e, type: 3}
+  _buySprite: {fileID: 21300000, guid: 5fc93985a93ed19489716ea47428d57e, type: 3}
 --- !u!1 &2089278376
 GameObject:
   m_ObjectHideFlags: 0
@@ -41169,9 +41146,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 540e75f272a8c8b4d9e37df48d6b7ad7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  priceBuy: {fileID: 1990223409}
-  bttnBuy: {fileID: 1090141365}
-  id: 0
+  _priceBuy: {fileID: 1990223409}
+  _bttnBuy: {fileID: 1090141365}
+  _id: 0
 --- !u!1 &2089741576
 GameObject:
   m_ObjectHideFlags: 0
@@ -41204,9 +41181,9 @@ RectTransform:
   - {fileID: 60802709}
   m_Father: {fileID: 2024817549}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 284.5, y: -75}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2089741578
@@ -41221,9 +41198,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 326b003848641b949b20afaf7cdf3363, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 1
-  ico: {fileID: 1479857487}
-  count: {fileID: 272864376}
+  _type: 1
+  _icon: {fileID: 1479857487}
+  _count: {fileID: 272864376}
 --- !u!1 &2092292709
 GameObject:
   m_ObjectHideFlags: 0
@@ -41340,10 +41317,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0c873f2010d430d4388c1224f2fa90c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  grenade: 0
-  ico: {fileID: 1993627559}
-  txt: {fileID: 969148991}
-  count: {fileID: 2145960634}
+  _grenade: 0
+  _icon: {fileID: 1993627559}
+  _text: {fileID: 969148991}
+  _count: {fileID: 2145960634}
 --- !u!222 &2092292714
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -41384,9 +41361,9 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 49103141}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 7.5, y: -0.5}
   m_SizeDelta: {x: 15, y: 35}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2109201710
@@ -42382,14 +42359,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78bc3b9104f9880409ef8232268428f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 0
-  patrons:
+  _type: 0
+  _patrons:
   - {fileID: 538300929}
   - {fileID: 1772849962}
   - {fileID: 1668668021}
   - {fileID: 335236099}
   - {fileID: 267712543}
-  buySprite: {fileID: 21300000, guid: 5fc93985a93ed19489716ea47428d57e, type: 3}
+  _buySprite: {fileID: 21300000, guid: 5fc93985a93ed19489716ea47428d57e, type: 3}
 --- !u!1 &2145717219
 GameObject:
   m_ObjectHideFlags: 0

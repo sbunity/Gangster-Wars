@@ -53,10 +53,7 @@ namespace SBabchuk
 
         private void OnCompleteAnimation(TrackEntry trackEntry)
         {
-            if (trackEntry.Animation.Name == AnimationsName.Reload.ToString())
-            {
-            }
-            else if (trackEntry.Animation.Name == AnimationsName.Shoot.ToString())
+            if (trackEntry.Animation.Name == AnimationsName.Shoot.ToString())
             {
                 var leader = _controller as LeaderGangsterController;
                 if (leader != null && !leader.IsAttacking)

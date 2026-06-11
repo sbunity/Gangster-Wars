@@ -26,22 +26,22 @@ namespace SBabchuk
         [SerializeField, FormerlySerializedAs("collisionCollider")]
         private Collider2D _collisionCollider;
 
-        protected ILevelRuntimeService LevelRuntimeService => _levelRuntimeService;
+        protected ILevelSpawnService LevelSpawnService => _levelSpawnService;
 
         private SortingEnemy _sorting;
         private IAssetProvider _assetProvider;
         private IGameFactory _gameFactory;
-        private ILevelRuntimeService _levelRuntimeService;
+        private ILevelSpawnService _levelSpawnService;
         private IAimService _aimService;
         private ProjectileView _view;
         private ProjectileMovement _movement;
 
         [Inject]
-        public void Construct(IAssetProvider assetProvider, IGameFactory gameFactory, ILevelRuntimeService levelRuntimeService, IAimService aimService)
+        public void Construct(IAssetProvider assetProvider, IGameFactory gameFactory, ILevelSpawnService levelSpawnService, IAimService aimService)
         {
             _assetProvider = assetProvider;
             _gameFactory = gameFactory;
-            _levelRuntimeService = levelRuntimeService;
+            _levelSpawnService = levelSpawnService;
             _aimService = aimService;
         }
 

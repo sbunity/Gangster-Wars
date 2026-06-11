@@ -78,7 +78,7 @@ namespace SBabchuk
                 return true;
             }
 
-            _target = _levelRuntimeService?.GetRandomEnemy();
+            _target = _enemyTargetProvider?.GetRandomEnemy();
             UpdateLastTargetPosition();
             return _target != null;
         }

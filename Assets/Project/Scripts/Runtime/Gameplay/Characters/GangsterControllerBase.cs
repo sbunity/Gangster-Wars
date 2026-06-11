@@ -23,17 +23,15 @@ namespace SBabchuk
 
         protected IAssetProvider _assetProvider;
         protected IPlayerProgressService _progressService;
-        protected IGameFactory _gameFactory;
-        protected ILevelRuntimeService _levelRuntimeService;
+        protected IEnemyTargetProvider _enemyTargetProvider;
         protected CharacterView _characterView;
         protected CharacterWeapon _characterWeapon;
         [Inject]
-        public void Construct(IAssetProvider assetProvider, IPlayerProgressService progressService, IGameFactory gameFactory, ILevelRuntimeService levelRuntimeService)
+        public void Construct(IAssetProvider assetProvider, IPlayerProgressService progressService, IEnemyTargetProvider enemyTargetProvider)
         {
             _assetProvider = assetProvider;
             _progressService = progressService;
-            _gameFactory = gameFactory;
-            _levelRuntimeService = levelRuntimeService;
+            _enemyTargetProvider = enemyTargetProvider;
         }
 
         public virtual void Awake()

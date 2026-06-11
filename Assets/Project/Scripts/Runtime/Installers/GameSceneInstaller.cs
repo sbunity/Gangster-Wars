@@ -74,8 +74,10 @@ namespace SBabchuk.Runtime.Installers
         {
             if (instance != null)
                 Container.Bind<T>().FromInstance(instance).AsSingle();
-            if (instance is ILevelRuntimeService levelRuntimeService)
-                Container.Bind<ILevelRuntimeService>().FromInstance(levelRuntimeService).AsSingle();
+            if (instance is ILevelSpawnService levelSpawnService)
+                Container.Bind<ILevelSpawnService>().FromInstance(levelSpawnService).AsSingle();
+            if (instance is IEnemyTargetProvider enemyTargetProvider)
+                Container.Bind<IEnemyTargetProvider>().FromInstance(enemyTargetProvider).AsSingle();
         }
     }
 

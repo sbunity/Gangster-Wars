@@ -8,7 +8,7 @@ using Zenject;
 
 namespace SBabchuk
 {
-    public class LevelController : MonoBehaviour, ILevelRuntimeService
+    public class LevelController : MonoBehaviour, ILevelSpawnService, IEnemyTargetProvider
     {
         [SerializeField, FormerlySerializedAs("spawnPoints")]
         private List<Transform> _spawnPoints;

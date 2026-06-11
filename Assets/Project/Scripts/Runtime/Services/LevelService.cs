@@ -5,12 +5,10 @@ using Zenject;
 
 namespace SBabchuk.Runtime.Services
 {
-    public sealed class LevelService : ILevelService, ILevelFlowService
+    public sealed class LevelService : ILevelFlowService
     {
         private readonly SignalBus _signalBus;
         public event Action<Panels> Finished;
-        public Level CurrentLevel { get; private set; }
-        public int CurrentWave { get; private set; }
         public bool IsFinished { get; private set; }
         public Panels LastPanel { get; private set; } = Panels.None;
 
@@ -19,17 +17,10 @@ namespace SBabchuk.Runtime.Services
             _signalBus = signalBus;
         }
 
-        public void Initialize(Level level)
-        {
-            CurrentLevel = level;
-            CurrentWave = 0;
-            IsFinished = false;
-            LastPanel = Panels.None;
-        }
-
         public void Start(Level level)
         {
-            Initialize(level);
+            IsFinished = false;
+            LastPanel = Panels.None;
         }
 
         public void Finish(Panels panel)

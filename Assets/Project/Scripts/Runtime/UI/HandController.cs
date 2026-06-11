@@ -32,14 +32,14 @@ namespace SBabchuk
 
         private IAssetProvider _assetProvider;
         private IPlayerProgressService _progressService;
-        private ILevelRuntimeService _levelRuntimeService;
+        private ILevelSpawnService _levelSpawnService;
 
         [Inject]
-        public void Construct(IAssetProvider assetProvider, IPlayerProgressService progressService, ILevelRuntimeService levelRuntimeService)
+        public void Construct(IAssetProvider assetProvider, IPlayerProgressService progressService, ILevelSpawnService levelSpawnService)
         {
             _assetProvider = assetProvider;
             _progressService = progressService;
-            _levelRuntimeService = levelRuntimeService;
+            _levelSpawnService = levelSpawnService;
         }
 
         private void Awake()
@@ -126,7 +126,7 @@ namespace SBabchuk
         {
             _grenade.CheckIco(true);
             _progressService.UseGrenade((int)_currentGrenadeName);
-            _levelRuntimeService?.SpawnGrenadeOnPlace(_currentGrenadeName, transform.position);
+            _levelSpawnService?.SpawnGrenadeOnPlace(_currentGrenadeName, transform.position);
             transform.position = new Vector3(100, 100, 0);
         }
 

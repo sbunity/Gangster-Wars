@@ -11,14 +11,6 @@ namespace SBabchuk
     {
         private Tween _twn;
 
-        public override void Awake()
-        {
-        }
-
-        public override void Subscribe()
-        {
-        }
-
         private void OnDisable()
         {
             _twn?.Kill();
