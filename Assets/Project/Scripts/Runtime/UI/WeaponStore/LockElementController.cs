@@ -6,15 +6,6 @@ namespace SBabchuk
     public class LockElementController : LockElementControllerBase
     {
         private Weapon weaponInfo;
-        private IAssetProvider _assetProvider;
-        private IPlayerProgressService _progressService;
-
-        [Inject]
-        public void Construct(IAssetProvider assetProvider, IPlayerProgressService progressService)
-        {
-            _assetProvider = assetProvider;
-            _progressService = progressService;
-        }
 
         public override void Initialisation(int _id)
         {

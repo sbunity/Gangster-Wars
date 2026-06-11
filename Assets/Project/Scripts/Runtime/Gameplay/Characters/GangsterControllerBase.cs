@@ -23,17 +23,15 @@ namespace SBabchuk
 
         protected IAssetProvider _assetProvider;
         protected IPlayerProgressService _progressService;
-        protected IPoolService _poolService;
         protected IGameFactory _gameFactory;
         protected ILevelRuntimeService _levelRuntimeService;
         protected CharacterView _characterView;
         protected CharacterWeapon _characterWeapon;
         [Inject]
-        public void Construct(IAssetProvider assetProvider, IPlayerProgressService progressService, IPoolService poolService, IGameFactory gameFactory, ILevelRuntimeService levelRuntimeService)
+        public void Construct(IAssetProvider assetProvider, IPlayerProgressService progressService, IGameFactory gameFactory, ILevelRuntimeService levelRuntimeService)
         {
             _assetProvider = assetProvider;
             _progressService = progressService;
-            _poolService = poolService;
             _gameFactory = gameFactory;
             _levelRuntimeService = levelRuntimeService;
         }
@@ -73,13 +71,6 @@ namespace SBabchuk
         public virtual void Spawn(Vector3 _position)
         {
             _characterWeapon.Fire(0, 4, _position, default(Vector3), 0);
-        }
-
-        public virtual Pool GetPool(int _spellID)
-        {
-            if (_poolService != null)
-                return _poolService.GetPool(NamesPool.Bullets, _spellID);
-            return null;
         }
 
         public virtual void Update()

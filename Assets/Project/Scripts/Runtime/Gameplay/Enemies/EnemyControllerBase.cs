@@ -1,5 +1,4 @@
 using UnityEngine;
-using DG.Tweening;
 using SBabchuk.Runtime.Architecture;
 using SBabchuk.Runtime.Gameplay.Enemies;
 using SBabchuk.Runtime.Services.Contracts;
@@ -32,11 +31,9 @@ namespace SBabchuk
 
         private bool _collided;
         private bool _isDie;
-        private Tween _twnFire;
         private IAssetProvider _assetProvider;
         private IPlayerProgressService _progressService;
         private IGameFactory _gameFactory;
-        private ICombatService _combatService;
         private ILevelRuntimeService _levelRuntimeService;
         private BarricadeController _barricadeController;
         private SignalBus _signalBus;
@@ -48,14 +45,14 @@ namespace SBabchuk
         private EnemyDeath _death;
         private EnemyReward _reward;
         protected ILevelRuntimeService LevelRuntimeService => _levelRuntimeService;
+        public bool IsCollided => _collided;
 
         [Inject]
-        public void Construct(IAssetProvider assetProvider, IPlayerProgressService progressService, IGameFactory gameFactory, ICombatService combatService, ILevelRuntimeService levelRuntimeService, BarricadeController barricadeController, SignalBus signalBus)
+        public void Construct(IAssetProvider assetProvider, IPlayerProgressService progressService, IGameFactory gameFactory, ILevelRuntimeService levelRuntimeService, BarricadeController barricadeController, SignalBus signalBus)
         {
             _assetProvider = assetProvider;
             _progressService = progressService;
             _gameFactory = gameFactory;
-            _combatService = combatService;
             _levelRuntimeService = levelRuntimeService;
             _barricadeController = barricadeController;
             _signalBus = signalBus;
@@ -192,8 +189,6 @@ namespace SBabchuk
 
             if (_movement != null)
                 _movement.Stop();
-
-            _twnFire?.Kill();
         }
 
         public void Dead()
@@ -234,40 +229,6 @@ namespace SBabchuk
         {
             this.gameObject.SetActive(false);
             _isDie = false;
-        }
-
-        private void OnTriggerEnter2D(Collider2D other)
-        {
-            if (other.CompareTag("BulletHero") && !_collided)
-            {
-                BaseBulletController bullet = other.GetComponent<BaseBulletController>();
-                if (_combatService != null)
-                    _combatService.ApplyBulletHit(this, bullet);
-                else
-                {
-                    bullet.Pop();
-                    TakeDamage(bullet.Damage);
-                }
-            }
-            else if (other.CompareTag("Grenade") && !_collided)
-            {
-                GrenadeController grenade = other.GetComponent<GrenadeController>();
-                if ((GrenadesName)grenade.Properties.Id == GrenadesName.Grenade_3)
-                    grenade.Action(0);
-            }
-
-            if (other.CompareTag("Fire"))
-            {
-                _twnFire = DOVirtual.DelayedCall(1, () =>
-                {
-                    TakeDamage(1);
-                }).SetLoops(-1);
-            }
-        }
-
-        private void OnTriggerExit2D(Collider2D other)
-        {
-            _twnFire?.Kill();
         }
 
         private void FixedUpdate()

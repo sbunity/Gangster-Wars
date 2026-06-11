@@ -17,16 +17,7 @@ namespace SBabchuk
         [SerializeField, FormerlySerializedAs("levelUp")]
         private GameObject _levelUp;
 
-        private IAssetProvider _assetProvider;
-        private IPlayerProgressService _progressService;
         private Defense _defenceInfo;
-
-        [Inject]
-        public void Construct(IAssetProvider assetProvider, IPlayerProgressService progressService)
-        {
-            _assetProvider = assetProvider;
-            _progressService = progressService;
-        }
 
         public override void Initialisation(int _id)
         {

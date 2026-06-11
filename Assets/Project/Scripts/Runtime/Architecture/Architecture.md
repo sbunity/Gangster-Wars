@@ -49,7 +49,7 @@ The main scenes now contain `SceneContext`:
 
 The current prefabs keep their legacy controller components for compatibility, but pooled objects are injected through `IGameFactory` before initialization. Focused runtime blocks have been added to existing prefabs:
 
-- enemies: `EnemyView`, `EnemyHealth`, `EnemyDeath`, `EnemyReward`
+- enemies: `EnemyView`, `EnemyHealth`, `EnemyMovement`, `EnemyAttack`, `EnemyDeath`, `EnemyReward`
 - characters: `CharacterView`, `CharacterWeapon`
 - projectiles: `ProjectileView`, `ProjectileMovement`
 - grenades: `GrenadeView`
@@ -64,7 +64,7 @@ The save format is unchanged.
 
 `SaveService` delegates to `PersistableSO.Save`, `PersistableSO.Load`, and `PersistableSO.SaveSO`. Data is still serialized to `Application.persistentDataPath` as `Main_{ScriptableObjectName}.pso` using the existing JsonUtility/BinaryFormatter flow.
 
-Runtime progress mutations in gameplay, level select, store UI, ammo UI, bonuses, player characters, and settings go through `IPlayerProgressService` or `IAudioSettingsService`. The underlying `PlayerPrefsDatabase` methods still perform their current save calls and static events; `LegacySignalBridge` converts those legacy events into typed Zenject signals for migrated UI.
+Runtime progress mutations in gameplay, level select, store UI, ammo UI, bonuses, player characters, and settings go through `IPlayerProgressService` or `IAudioSettingsService`. These services persist via `ISaveService` and raise typed Zenject signals (`CoinsChangedSignal`, `ProgressUpgradedSignal`, `WeaponAmmoChangedSignal`, ...) directly. The earlier legacy static-event / `LegacySignalBridge` path has been removed.
 
 ## Asset Loading Flow
 
@@ -74,12 +74,17 @@ Prefab spawning currently flows through:
 
 `IGameFactory` -> `IPoolService` -> legacy `PoolManager` -> existing pooled prefabs.
 
+## Helpers Extracted From LevelController
+
+- `BonusDropService` (`IBonusDropService`, Project-scoped) decides which bonus id is eligible to drop, based on owned weapons/grenades.
+- `RandomPathPicker` is a plain class that yields spawn-path indices without repetition (refilling once exhausted).
+- `CollisionEffectId.Impact` names the impact-effect pool id used by bullet/melee hits.
+
 ## Known Limitations
 
 Remaining cleanup is limited to non-gameplay editor/constructor tooling and deeper replacement of legacy controller bodies.
 
-- Constructor/debug scripts under `Assets/Project/Scripts/Constructor` still access legacy singletons because they are editor-like tooling around the old level constructor workflow.
-- Legacy static events remain at their source in `PlayerPrefsDatabase`, `EnemyControllerBase`, `BarricadeController`, and `BonusController`; production listeners are bridged to Zenject signals where migrated.
+- Constructor/debug scripts under `Assets/Project/Scripts/Runtime/UI/Constructor` still access legacy databases because they are editor-like tooling around the old level constructor workflow.
 - `PoolManager` still owns the actual pool implementation; it is isolated behind `IPoolService` for migrated code.
 - `LevelController` schedules waves internally (DOTween-based) for gameplay compatibility.
-- Some legacy controllers still contain behavior orchestration while the newly added blocks own view, health, reward, weapon, projectile movement, and visual adapter responsibilities.
+- `EnemyControllerBase` still hosts trigger-collision handling (`OnTriggerEnter2D`) directly; the focused runtime blocks own view, health, movement, attack, death, and reward responsibilities.
