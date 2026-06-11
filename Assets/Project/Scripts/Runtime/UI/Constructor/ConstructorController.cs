@@ -1,31 +1,31 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace SBabchuk
 {
     public class ConstructorController : MonoBehaviour
     {
-        [Header("Чи включений конструктор?")]
-        public mySwitch on = mySwitch.Off;
+        [SerializeField, FormerlySerializedAs("on")]
+        private mySwitch _on = mySwitch.Off;
 
-        [Header("Панел")]
-        public GameObject panel;
+        [SerializeField, FormerlySerializedAs("panel")]
+        private GameObject _panel;
 
         [SerializeField] private SettingsController _settingsController;
 
         private void Start()
         {
-            panel.SetActive(on == mySwitch.On);
+            _panel.SetActive(_on == mySwitch.On);
         }
 
         public void Settings()
         {
-            Time.timeScale = Time.timeScale == 1? 0 : 1;
-
+            Time.timeScale = Time.timeScale == 1 ? 0 : 1;
             if (_settingsController == null)
                 _settingsController = GetComponentInChildren<SettingsController>(true);
-
+                
             _settingsController.ChangeVisible(Time.timeScale != 1);
         }
     }

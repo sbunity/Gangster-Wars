@@ -1,28 +1,26 @@
 using UnityEngine;
 using DG.Tweening;
+using UnityEngine.Serialization;
 
 namespace SBabchuk
 {
     public class BigBossEnemyController : EnemyControllerBase
     {
-        [Header("Shot delay")]
-        [Range(0, 1)]
-        public float mixDuration = 0.2f;
+        [SerializeField, FormerlySerializedAs("mixDuration"), Range(0, 1)]
+        private float _mixDuration = 0.2f;
 
-        [Header("Bullet spawn point")]
-        public Center bulletPoint;
+        [SerializeField, FormerlySerializedAs("bulletPoint")]
+        private Center _bulletPoint;
 
-        private Tween correctionMixDuration;
+        private Tween _correctionMixDuration;
 
         public override void Attack()
         {
-            isAttacked = true;
-
-            e_animation.SetAnimation(AnimationsName.Attack);
-
-            correctionMixDuration = DOVirtual.DelayedCall(mixDuration, () =>
+            IsAttacked = true;
+            Animation.SetAnimation(AnimationsName.Attack);
+            _correctionMixDuration = DOVirtual.DelayedCall(_mixDuration, () =>
             {
-                correctionMixDuration = DOVirtual.DelayedCall(0.1f, () =>
+                _correctionMixDuration = DOVirtual.DelayedCall(0.1f, () =>
                 {
                     GiveDamage();
                 }).SetLoops(4);
@@ -31,25 +29,23 @@ namespace SBabchuk
 
         public override void Attacked()
         {
-            WaitNextAttack(properties.speedAtack);
+            WaitNextAttack(Properties.AttackSpeed);
         }
 
         public override void GiveDamage()
         {
-            if (bulletPoint == null)
+            if (_bulletPoint == null)
                 return;
 
-            Vector3 bulletPosition = bulletPoint.GetPosition();
-            float offset = Vector2.Distance(center.GetPosition(), bulletPosition);
-            if (LevelRuntimeService != null)
-                LevelRuntimeService.SpawnBullet(properties.bulletID, properties.damage, bulletPosition, new Vector3(bulletPosition.x - 20, bulletPosition.y, 0), offset);
+            var bulletPosition = _bulletPoint.GetPosition();
+            var offset = Vector2.Distance(Center.GetPosition(), bulletPosition);
+            LevelRuntimeService?.SpawnBullet(Properties.BulletId, Properties.Damage, bulletPosition, new Vector3(bulletPosition.x - 20, bulletPosition.y, 0), offset);
         }
 
         public override void StopAllTweens()
         {
             base.StopAllTweens();
-
-            correctionMixDuration?.Kill();
+            _correctionMixDuration?.Kill();
         }
     }
 }

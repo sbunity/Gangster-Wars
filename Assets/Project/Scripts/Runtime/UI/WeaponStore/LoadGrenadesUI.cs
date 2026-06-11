@@ -1,29 +1,26 @@
-using System.Collections;
 using System.Collections.Generic;
 using SBabchuk.Runtime.Architecture;
 using SBabchuk.Runtime.Services.Contracts;
 using UnityEngine;
-using UnityEngine.UI;
 using Zenject;
+using UnityEngine.Serialization;
 
 namespace SBabchuk
 {
     public class LoadGrenadesUI : MonoBehaviour
     {
-        [Header("Елемент LayoutGroup")]
-        public RectTransform rect;
+        [SerializeField, FormerlySerializedAs("rect")]
+        private RectTransform _rect;
 
-        [Header("Елементи UI")]
-        public List<LoadGrenadeInfoUI> elements;
+        [SerializeField, FormerlySerializedAs("elements")]
+        private List<LoadGrenadeInfoUI> _elements;
+
         private IAssetProvider _assetProvider;
         private IPlayerProgressService _progressService;
         private SignalBus _signalBus;
 
         [Inject]
-        private void Construct(
-            IAssetProvider assetProvider,
-            IPlayerProgressService progressService,
-            SignalBus signalBus)
+        public void Construct(IAssetProvider assetProvider, IPlayerProgressService progressService, SignalBus signalBus)
         {
             _assetProvider = assetProvider;
             _progressService = progressService;
@@ -52,22 +49,18 @@ namespace SBabchuk
 
         private void Initialized()
         {
-            rect.sizeDelta = new Vector2(0, rect.sizeDelta.y);
-
-            foreach (LoadGrenadeInfoUI element in elements)
+            _rect.sizeDelta = new Vector2(0, _rect.sizeDelta.y);
+            foreach (LoadGrenadeInfoUI element in _elements)
             {
-                GrenadeShortInfo shortInfo = _progressService.GetGrenadeShortInfo((int)element.type);
-
+                GrenadeShortInfo shortInfo = _progressService.GetGrenadeShortInfo((int)element.Type);
                 var bombStore = _assetProvider.BombStoreDatabase;
-                Grenade grenade = bombStore.GetGrenade((int)element.type);
+                Grenade grenade = bombStore.GetGrenade((int)element.Type);
 
-                if (shortInfo.count > 0)
+                if (shortInfo.Count > 0)
                 {
-                    element.Initialized(grenade.ico, shortInfo.count);
-
+                    element.Initialized(grenade.Icon, shortInfo.Count);
                     element.gameObject.SetActive(true);
-
-                    rect.sizeDelta = new Vector2(rect.sizeDelta.x + 198, rect.sizeDelta.y);
+                    _rect.sizeDelta = new Vector2(_rect.sizeDelta.x + 198, _rect.sizeDelta.y);
                 }
                 else
                 {

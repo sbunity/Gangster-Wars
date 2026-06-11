@@ -8,8 +8,11 @@ namespace SBabchuk.Runtime.Services.Contracts
     public interface ILevelService
     {
         Level CurrentLevel { get; }
+
         int CurrentWave { get; }
+
         bool IsFinished { get; }
+
         void Initialize(Level level);
         void Finish(Panels panel);
     }
@@ -18,7 +21,9 @@ namespace SBabchuk.Runtime.Services.Contracts
     {
         event Action<Panels> Finished;
         Panels LastPanel { get; }
+
         bool IsFinished { get; }
+
         void Start(Level level);
         void Finish(Panels panel);
     }

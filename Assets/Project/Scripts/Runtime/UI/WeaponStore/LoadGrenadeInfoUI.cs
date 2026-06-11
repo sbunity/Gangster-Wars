@@ -1,26 +1,25 @@
-﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Serialization;
 
 namespace SBabchuk
-{ 
+{
     public class LoadGrenadeInfoUI : MonoBehaviour
     {
-        [Header("Тип гранати")]
-        public GrenadesName type;
+        [SerializeField, FormerlySerializedAs("type")]
+        private GrenadesName _type;
+        public GrenadesName Type { get => _type; set => _type = value; }
 
-        [Header("Іконка")]
-        public Image ico;
+        [SerializeField, FormerlySerializedAs("ico")]
+        private Image _icon;
 
-        [Header("Кількість")]
-        public Text count;
+        [SerializeField, FormerlySerializedAs("count")]
+        private Text _count;
 
-        public void Initialized(Sprite _ico, int _count)
+        public void Initialized(Sprite icon, int count)
         {
-            count.text = _count.ToString();
-
-            ico.sprite = _ico;
+            _count.text = count.ToString();
+            _icon.sprite = icon;
         }
     }
 }

@@ -8,7 +8,7 @@ namespace SBabchuk.Runtime.Gameplay.Projectiles
         {
             if (body == null)
                 return;
-
+                
             body.linearVelocity = (new Vector3(target.x, target.y, origin.z) - origin).normalized * speed;
         }
 

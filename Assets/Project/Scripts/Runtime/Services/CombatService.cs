@@ -18,9 +18,9 @@ namespace SBabchuk.Runtime.Services
         {
             if (enemy == null || bullet == null)
                 return;
-
+                
             bullet.Pop();
-            _damageService.DamageEnemy(enemy, bullet.damage);
+            _damageService.DamageEnemy(enemy, bullet.Damage);
         }
 
         public void ApplyGrenadeDamage(Vector3 position, int damage, float radius)
@@ -30,7 +30,7 @@ namespace SBabchuk.Runtime.Services
         public void RewardEnemyDeath(Enemy enemy)
         {
             if (enemy != null)
-                _progressService.AddCoins(enemy.gold);
+                _progressService.AddCoins(enemy.Gold);
         }
     }
 }

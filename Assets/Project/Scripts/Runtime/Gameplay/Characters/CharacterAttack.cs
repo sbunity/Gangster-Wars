@@ -6,7 +6,6 @@ namespace SBabchuk.Runtime.Gameplay.Characters
     public sealed class CharacterAttack : MonoBehaviour
     {
         private Tween _attackTween;
-
         public bool IsAttacking { get; private set; }
 
         public void StartAttack(CharacterView view, AnimationsName animation)

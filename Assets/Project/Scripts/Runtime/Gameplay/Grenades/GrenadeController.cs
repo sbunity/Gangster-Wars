@@ -1,27 +1,24 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 using DG.Tweening;
-using Spine.Unity;
 using SBabchuk.Runtime.Architecture;
 using SBabchuk.Runtime.Gameplay.Grenades;
 using SBabchuk.Runtime.Services.Contracts;
+using UnityEngine;
 using Zenject;
+using UnityEngine.Serialization;
 
 namespace SBabchuk
 {
     public class GrenadeController : MonoBehaviour
     {
-        [HideInInspector]
-        public Transform _parent;
+        [SerializeField, FormerlySerializedAs("_parent")]
+        private Transform _parent;
 
-        [Header("Колайдер для зіткнення")]
-        private Collider2D collisionCollider;
+        [SerializeField, FormerlySerializedAs("properties")]
+        private Grenade _properties;
+        public Grenade Properties { get => _properties; set => _properties = value; }
 
-        [HideInInspector]
-        public Grenade properties;
-
-        private Tween twn;
+        private Collider2D _collisionCollider;
+        private Tween _timerTween;
         private IAssetProvider _assetProvider;
         private IGameFactory _gameFactory;
         private ILevelRuntimeService _levelRuntimeService;
@@ -29,11 +26,7 @@ namespace SBabchuk
         private GrenadeView _view;
 
         [Inject]
-        private void Construct(
-            IAssetProvider assetProvider,
-            IGameFactory gameFactory,
-            ILevelRuntimeService levelRuntimeService,
-            SignalBus signalBus)
+        public void Construct(IAssetProvider assetProvider, IGameFactory gameFactory, ILevelRuntimeService levelRuntimeService, SignalBus signalBus)
         {
             _assetProvider = assetProvider;
             _gameFactory = gameFactory;
@@ -41,97 +34,62 @@ namespace SBabchuk
             _signalBus = signalBus;
         }
 
-        /// <summary>
-        /// Стартова ініціазізація
-        /// </summary>
-        void Start()
+        private void Start()
         {
             _view = GetOrAdd<GrenadeView>();
             _view.Initialize();
             _parent = transform.parent;
         }
 
-        /// <summary>
-        /// Ініціалізація
-        /// </summary>
-        /// <param name="_id"></param>
-        /// <param name="_damage"></param>
-        /// <param name="_position"></param>
-        /// <param name="_target"></param>
-        public void Init(int _id = 0, int _damage = 0, Vector3 _position = default(Vector3), Transform _target = null)
+        public void Init(int id = 0, int damage = 0, Vector3 position = default(Vector3), Transform target = null)
         {
             this.gameObject.SetActive(true);
-
-            transform.position = _position;
-
+            transform.position = position;
             var bombStore = _assetProvider.BombStoreDatabase;
-            properties = bombStore.GetGrenade(_id);
-
-            if (collisionCollider == null)
+            _properties = bombStore.GetGrenade(id);
+            if (_collisionCollider == null)
             {
-                collisionCollider = gameObject.AddComponent<PolygonCollider2D>();
+                _collisionCollider = gameObject.AddComponent<PolygonCollider2D>();
                 _view.Initialize();
             }
 
-            collisionCollider.isTrigger = false;
-
-            Action(properties.delay);
+            _collisionCollider.isTrigger = false;
+            Action(_properties.Delay);
         }
 
-       /// <summary>
-       /// Запускаєм дію
-       /// </summary>
-        public void Action(float _value)
+        public void Action(float delay)
         {
-            Timer(_value);
+            Timer(delay);
         }
 
-        /// <summary>
-        /// Таймер
-        /// </summary>
-        /// <param name="_delay">Затримка до зриву</param>
-        public void Timer(float _delay)
+        public void Timer(float delay)
         {
-            twn?.Kill();
-
-            twn = DOVirtual.DelayedCall(_delay, ()=> {
-                Explosion();
-            });
+            _timerTween?.Kill();
+            _timerTween = DOVirtual.DelayedCall(delay, Explosion);
         }
 
-        /// <summary>
-        /// Добавлення ефекта зриву
-        /// </summary>
         public void Explosion()
         {
             Pop();
-
             if (_gameFactory != null)
-                _gameFactory.CreateCollision((int)properties.collision, transform.position, properties);
-            else if (_levelRuntimeService != null)
-                _levelRuntimeService.SpawnCollision((int)properties.collision, transform.position, properties);
+                _gameFactory.CreateCollision((int)_properties.Collision, transform.position, _properties);
+            else
+                _levelRuntimeService?.SpawnCollision((int)_properties.Collision, transform.position, _properties);
         }
 
-        /// <summary>
-		/// Повернення в пуш
-		/// </summary>
         public void Pop()
         {
-            _signalBus.Fire(new GrenadeDamageSignal(transform.position, properties.damage, properties.radius));
-            
+            _signalBus.Fire(new GrenadeDamageSignal(transform.position, _properties.Damage, _properties.Radius));
             transform.SetParent(_parent);
-            
-            collisionCollider.isTrigger = false;
-            
+            _collisionCollider.isTrigger = false;
             this.gameObject.SetActive(false);
-
             transform.tag = "Grenade";
         }
 
         private T GetOrAdd<T>() where T : Component
         {
             var component = GetComponent<T>();
-            return component != null ? component : gameObject.AddComponent<T>();
+            return component ?? gameObject.AddComponent<T>();
         }
     }
 }

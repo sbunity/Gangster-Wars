@@ -9,45 +9,35 @@ namespace SBabchuk
 {
     public class FireCollisionController : CollisionController
     {
-        private Tween twn;
+        private Tween _twn;
 
-        /// <summary>
-        /// Предастартова ініціалізація
-        /// </summary>
         public override void Awake()
         {
         }
 
-        /// <summary>
-        /// Стратова ініціалізація
-        /// </summary>
         public override void Subscribe()
         {
         }
 
         private void OnDisable()
         {
-            twn?.Kill();
+            _twn?.Kill();
         }
 
         public override void Init(Vector3 _position, int _damage, float _radius, float _time = 0)
         {
             this.gameObject.SetActive(true);
-
             transform.position = _position;
-
-            damage = _damage;
-
-            radius = _radius;
-
-            time = _time;
-
-            Action(time);
+            Damage = _damage;
+            Radius = _radius;
+            Time = _time;
+            Action(Time);
         }
 
         private void Action(float _time)
         {
-            twn = DOVirtual.DelayedCall(time, () => {
+            _twn = DOVirtual.DelayedCall(Time, () =>
+            {
                 Pop();
             });
         }

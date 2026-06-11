@@ -1,250 +1,176 @@
-using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
-using Spine.Unity;
-using Spine;
 using DG.Tweening;
 using SBabchuk.Runtime.Architecture;
 using SBabchuk.Runtime.Services.Contracts;
+using UnityEngine;
 using Zenject;
+using UnityEngine.Serialization;
 
 namespace SBabchuk
-{ 
+{
     [System.Serializable]
     public class CreateBulletPoints
     {
-        [Header("�����")]
-        public List<Center> points;
+        [SerializeField, FormerlySerializedAs("points")]
+        private List<Center> _points;
+        public List<Center> Points { get => _points; set => _points = value; }
     }
 
     public class LeaderGangsterController : GangsterControllerBase, ILeaderWeaponController
     {
-        private WeaponShortInfo weaponShortInfo;
+        [SerializeField, FormerlySerializedAs("createBulletPointList")]
+        private List<Center> _createBulletPointList;
 
-        private Weapon weapon;
+        [SerializeField, FormerlySerializedAs("bulletPoints")]
+        private List<CreateBulletPoints> _bulletPoints;
 
-        private WeaponSettings properties;
+        [SerializeField, FormerlySerializedAs("isAttacking")]
+        private bool _isAttacking = false;
+        public bool IsAttacking => _isAttacking;
 
-        private int countPatrons;
-
-        private Tween twnReload;
-
-        private Tween twnReloadPause;
-
-        WeaponsName weaponsName;
-
-        [Header("����� �� ���� �������� ����")]
-        [HideInInspector]
-        public List<Center> createBulletPointList;
-
-        public List<CreateBulletPoints> bulletPoints;
-
-        private int index;
-
-        private readonly Dictionary<int, int> inGunCount = new Dictionary<int, int>();
+        private WeaponShortInfo _weaponShortInfo;
+        private Weapon _weapon;
+        private WeaponSettings _properties;
+        private int _countPatrons;
+        private Tween _reloadTween;
+        private WeaponsName _weaponsName;
+        private int _index;
+        private readonly Dictionary<int, int> _inGunCount = new();
         private SignalBus _signalBus;
 
-        public bool isAttacking = false;
-        public bool IsAttacking => isAttacking;
-
         [Inject]
-        private void ConstructLeader(SignalBus signalBus)
+        public void ConstructLeader(SignalBus signalBus)
         {
             _signalBus = signalBus;
         }
 
         private void OnDestroy()
         {
-            twnReload?.Kill();
+            _reloadTween?.Kill();
         }
 
-        /// <summary>
-        /// ������������� ������������
-        /// </summary>
-        public override void Awake()
+        public void InitWeapon(int weaponId)
         {
-            base.Awake();
+            if (_weaponShortInfo != null)
+                _inGunCount[(int)_weaponsName] = _countPatrons;
 
-            //Time.timeScale = 0.075f;
-        }
+            _reloadTween?.Kill();
 
-        /// <summary>
-        /// �����
-        /// </summary>
-        public override void Start()
-        {
-            //InitWeapon(2);
-        }
+            _weaponsName = (WeaponsName)weaponId;
+            _weaponShortInfo = _progressService.GetWeaponShortInfo(weaponId);
 
-        public void InitWeapon(int _weapoID)
-        {
-            // �������� ������� ������� �������� � ����� ��� ���������� ����
-            if (weaponShortInfo != null)
-                inGunCount[(int)weaponsName] = countPatrons;
+            var weaponStore = _assetProvider.WeaponStoreDatabase;
+            _weapon = weaponStore.GetWeapon(weaponId);
 
-            twnReload?.Kill();
+            var upgrade = weaponStore.GetUpgrade(weaponId, _weaponShortInfo.UpgradeId);
+            _properties = upgrade != null ? upgrade.Settings : _weapon.Settings;
 
-            weaponsName = (WeaponsName)_weapoID;
+            Init();
 
-            weaponShortInfo = ProgressService.GetWeaponShortInfo(_weapoID);
-
-            var weaponStore = AssetProvider.WeaponStoreDatabase;
-
-            weapon = weaponStore.GetWeapon(_weapoID);
-
-            WUpgrade upgrade = weaponStore.GetUpgrade(_weapoID, weaponShortInfo.upgradeID);
-
-            properties = (upgrade != null)? upgrade.settings : weapon.settings;
-
-            Init(); //������������ �����
-
-            // ³��������� ��������� ������� ��� ����������� ������
-            if (inGunCount.TryGetValue(_weapoID, out int saved))
-                countPatrons = saved;
+            if (_inGunCount.TryGetValue(weaponId, out var savedAmmo))
+            {
+                _countPatrons = savedAmmo;
+            }
             else
             {
-                countPatrons = weaponShortInfo.countPatrons;
-                if (countPatrons >= weapon.magazine)
-                    countPatrons = weapon.magazine;
+                _countPatrons = _weaponShortInfo.AmmoCount;
+
+                if (_countPatrons >= _weapon.Magazine)
+                    _countPatrons = _weapon.Magazine;
             }
 
-            Debug.Log("countPatrons: "+ countPatrons);
+            _signalBus.Fire(new LeaderMagazineInitializedSignal(_weapon.Magazine));
+            _signalBus.Fire(new LeaderPatronsChangedSignal(_countPatrons));
+            _createBulletPointList = _bulletPoints[weaponId].Points;
+            _index = 0;
 
-            _signalBus.Fire(new LeaderMagazineInitializedSignal(weapon.magazine));
-            _signalBus.Fire(new LeaderPatronsChangedSignal(countPatrons));
-
-            createBulletPointList = bulletPoints[_weapoID].points;
-
-            index = 0;
-
-            if (countPatrons < weapon.magazine)
+            if (_countPatrons < _weapon.Magazine)
                 Reload();
         }
 
-        /// <summary>
-        /// ��������� �����
-        /// </summary>
         public override void SpawnBullet()
         {
-            CharacterWeapon.Fire(weapon.bulletID, properties.damage, createBulletPointList[index].GetPosition(), default(Vector3), 0);
+            _characterWeapon.Fire(_weapon.BulletId, _properties.Damage, _createBulletPointList[_index].GetPosition(), default(Vector3), 0);
+            _index = _index + 1 < _createBulletPointList.Count ? _index + 1 : 0;
 
-            index = (index + 1 < createBulletPointList.Count) ? index + 1 : 0;
-
-            if (weaponsName != WeaponsName.Weapon_1)
-            {
-                ProgressService.SetWeaponAmmo(weaponsName, -1);
-            }
-
-            //return;
+            if (_weaponsName != WeaponsName.Weapon_1)
+                _progressService.SetWeaponAmmo(_weaponsName, -1);
 
             UpdatePatrons(-1);
         }
 
-        /// <summary>
-        /// ��������� ������
-        /// </summary>
-        /// <param name="_value"></param>
-        private void UpdatePatrons(int _value)
-        {
-            countPatrons += _value;
-
-            _signalBus.Fire(new LeaderPatronsChangedSignal(countPatrons));
-
-            if (countPatrons == 0)
-            {
-                StopAttack();
-            }
-        }
-
-        /// <summary>
-        /// ����� �����
-        /// </summary>
         public override void Attack()
         {
-            if (countPatrons > 0)
-            {
-                isAttacking = true;
+            if (_countPatrons <= 0)
+                return;
 
-                twnReload?.Kill();
-                
-                e_animation.SetAnimation(AnimationsName.Shoot); //������������� � �������� �����
-            }
+            _isAttacking = true;
+            _reloadTween?.Kill();
+            Animation.SetAnimation(AnimationsName.Shoot);
         }
 
-        /// <summary>
-        /// �����������
-        /// </summary>
         public void Reload()
         {
-            twnReload?.Kill();
-
-            twnReload = DOVirtual.DelayedCall(1f, () =>
+            _reloadTween?.Kill();
+            _reloadTween = DOVirtual.DelayedCall(1f, () =>
             {
-                 var weaponStore = AssetProvider.WeaponStoreDatabase;
-                 twnReload = DOVirtual.DelayedCall(weaponStore.GetWeapon(weaponShortInfo.id).speedReload, () => 
-                 {
-                     if (countPatrons < weapon.magazine)
-                     {
-                         if (e_animation.GetCurrentAnimation() != AnimationsName.Reload)
-                         {
-                             e_animation.SetAnimation(AnimationsName.Reload); //������������� � �������� �����������
-                         }
+                var weaponStore = _assetProvider.WeaponStoreDatabase;
+                _reloadTween = DOVirtual.DelayedCall(weaponStore.GetWeapon(_weaponShortInfo.Id).SpeedReload, () =>
+                {
+                    if (_countPatrons < _weapon.Magazine)
+                    {
+                        if (Animation.GetCurrentAnimation() != AnimationsName.Reload)
+                            Animation.SetAnimation(AnimationsName.Reload);
+                        
+                        if (_countPatrons < _weaponShortInfo.AmmoCount)
+                        {
+                            UpdatePatrons(1);
+                        }
+                        else
+                        {
+                            if (Animation.GetCurrentAnimation() != AnimationsName.Idle)
+                                Animation.SetAnimation(AnimationsName.Idle);
 
-                         if (countPatrons < weaponShortInfo.countPatrons) //������� �� ������ ������ �� �� ������ ����� � �������
-                         {
-                             UpdatePatrons(1);
-                         }
-                         else
-                         {
-                             if (e_animation.GetCurrentAnimation() != AnimationsName.Idle)
-                                 e_animation.SetAnimation(AnimationsName.Idle); //������������� � �������� ������
+                            _reloadTween?.Kill();
+                        }
+                    }
+                    else
+                    {
+                        if (Animation.GetCurrentAnimation() != AnimationsName.Idle)
+                            Animation.SetAnimation(AnimationsName.Idle);
 
-                             twnReload?.Kill();
-                         }
-
-                     }
-                     else
-                     {
-                         if (e_animation.GetCurrentAnimation() != AnimationsName.Idle)
-                             e_animation.SetAnimation(AnimationsName.Idle); //������������� � �������� ������
-
-                         twnReload?.Kill();
-                     }
-                 }).SetLoops(-1);
-             });
+                        _reloadTween?.Kill();
+                    }
+                }).SetLoops(-1);
+            });
         }
 
-        /// <summary>
-        /// �������� �����
-        /// </summary>
         public void StopAttack()
         {
-            isAttacking = false;
-            
-            //e_animation.SetAnimation(AnimationsName.Idle);
-
-            //index = 0;
-
-            //Reload();
+            _isAttacking = false;
         }
-        
+
         public void StopShootingFinished()
         {
-            index = 0;
-            
+            _index = 0;
             Reload();
-        } 
+        }
 
         public Vector3 GetAimOrigin()
         {
-            if (createBulletPointList != null && createBulletPointList.Count > 0 && createBulletPointList[0] != null)
-                return createBulletPointList[0].GetPosition();
-
-            if (createBulletPoint)
-                return createBulletPoint.GetPosition();
-
+            if (_createBulletPointList != null && _createBulletPointList.Count > 0 && _createBulletPointList[0] != null)
+                return _createBulletPointList[0].GetPosition();
+            if (CreateBulletPoint)
+                return CreateBulletPoint.GetPosition();
             return transform.position;
         }
-    }
 
+        private void UpdatePatrons(int value)
+        {
+            _countPatrons += value;
+            _signalBus.Fire(new LeaderPatronsChangedSignal(_countPatrons));
+            if (_countPatrons == 0)
+                StopAttack();
+        }
+    }
 }

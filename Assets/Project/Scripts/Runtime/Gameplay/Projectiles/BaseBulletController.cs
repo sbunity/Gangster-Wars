@@ -2,40 +2,42 @@ using UnityEngine;
 using SBabchuk.Runtime.Gameplay.Projectiles;
 using SBabchuk.Runtime.Services.Contracts;
 using Zenject;
+using UnityEngine.Serialization;
 
 namespace SBabchuk
 {
     public class BaseBulletController : MonoBehaviour
     {
-        [HideInInspector] public Rigidbody2D rigidbody2d;
+        [SerializeField, FormerlySerializedAs("rigidbody2d")]
+        private Rigidbody2D _rigidbody2D;
+        public Rigidbody2D Rigidbody2D { get => _rigidbody2D; set => _rigidbody2D = value; }
 
-        [HideInInspector]
-        public Transform _parent;
+        [SerializeField, FormerlySerializedAs("_parent")]
+        private Transform _parent;
 
-        [HideInInspector]
-        public Bullet properties;
+        [SerializeField, FormerlySerializedAs("properties")]
+        private Bullet _properties;
+        public Bullet Properties { get => _properties; set => _properties = value; }
 
-        [HideInInspector]
-        public int damage;
+        [SerializeField, FormerlySerializedAs("damage")]
+        private int _damage;
+        public int Damage { get => _damage; set => _damage = value; }
 
-        [HideInInspector]
-        public Collider2D collisionCollider;
+        [SerializeField, FormerlySerializedAs("collisionCollider")]
+        private Collider2D _collisionCollider;
 
-        private SortingEnemy sorting;
+        protected ILevelRuntimeService LevelRuntimeService => _levelRuntimeService;
+
+        private SortingEnemy _sorting;
         private IAssetProvider _assetProvider;
         private IGameFactory _gameFactory;
         private ILevelRuntimeService _levelRuntimeService;
         private IAimService _aimService;
         private ProjectileView _view;
         private ProjectileMovement _movement;
-        protected ILevelRuntimeService LevelRuntimeService => _levelRuntimeService;
 
         [Inject]
-        private void Construct(
-            IAssetProvider assetProvider,
-            IGameFactory gameFactory,
-            ILevelRuntimeService levelRuntimeService,
-            IAimService aimService)
+        public void Construct(IAssetProvider assetProvider, IGameFactory gameFactory, ILevelRuntimeService levelRuntimeService, IAimService aimService)
         {
             _assetProvider = assetProvider;
             _gameFactory = gameFactory;
@@ -48,10 +50,8 @@ namespace SBabchuk
             _view = GetOrAdd<ProjectileView>();
             _movement = GetOrAdd<ProjectileMovement>();
             _view.Initialize();
-
-            rigidbody2d = _view.Rigidbody;
-
-            sorting = _view.Sorting;
+            _rigidbody2D = _view.Rigidbody;
+            _sorting = _view.Sorting;
         }
 
         public virtual void Start()
@@ -59,73 +59,62 @@ namespace SBabchuk
             _parent = transform.parent;
         }
 
-        public virtual void Init(int _id = 0, int _damage = 0, Vector3 _position = default(Vector3), Vector3 _target = default(Vector3), float _offset = 0)
+        public virtual void Init(int id = 0, int damage = 0, Vector3 position = default(Vector3), Vector3 target = default(Vector3), float offset = 0)
         {
             this.gameObject.SetActive(true);
+            if (_sorting)
+                _sorting.AnchorOffset = -offset;
 
-            if (sorting)
-                sorting.AnchorOffset = -_offset;
-
-            transform.position = _position;
-
-            damage = _damage;
-
+            transform.position = position;
+            _damage = damage;
             var bulletDatabase = _assetProvider.BulletDatabase;
-            properties = bulletDatabase.GetBullet(_id);
-
-            StartMove((_target != default(Vector3)) ? (Vector2)_target : _aimService.CurrentAimPosition);
-
-            if (collisionCollider == null)
+            _properties = bulletDatabase.GetBullet(id);
+            StartMove((target != default(Vector3)) ? (Vector2)target : _aimService.CurrentAimPosition);
+            
+            if (_collisionCollider == null)
             {
-                collisionCollider = gameObject.AddComponent<PolygonCollider2D>();
+                _collisionCollider = gameObject.AddComponent<PolygonCollider2D>();
                 _view.Initialize();
             }
 
-            collisionCollider.isTrigger = false;
+            _collisionCollider.isTrigger = false;
         }
 
         public virtual void StartMove(Vector2 _target)
         {
-            if (rigidbody2d)
+            if (_rigidbody2D)
             {
-                _movement.Move(rigidbody2d, transform.position, _target, properties.speedMove);
-
+                _movement.Move(_rigidbody2D, transform.position, _target, _properties.SpeedMove);
                 RotationBullet(_target);
             }
             else
             {
-                Debug.Log("rigidbody2d == null");
+                Debug.LogWarning("Bullet Rigidbody2D is missing.");
             }
         }
 
         public virtual void RotationBullet(Vector3 _target)
         {
-            Vector3 currPoint = transform.position;
-
-            Vector3 currDir = _target - currPoint;
-
+            var currPoint = transform.position;
+            var currDir = _target - currPoint;
             currDir.Normalize();
-
-            float rotationZ = Mathf.Atan2(currDir.y, currDir.x) * Mathf.Rad2Deg;
-
+            var rotationZ = Mathf.Atan2(currDir.y, currDir.x) * Mathf.Rad2Deg;
             transform.rotation = Quaternion.Euler(0, 0, rotationZ);
         }
 
         public virtual void Pop()
         {
             transform.SetParent(_parent);
-
-            if (collisionCollider)
-                collisionCollider.isTrigger = false;
+            if (_collisionCollider)
+                _collisionCollider.isTrigger = false;
 
             this.gameObject.SetActive(false);
-
             transform.tag = "Bullet";
 
             if (_gameFactory != null)
                 _gameFactory.CreateCollision(7, this.transform.position);
-            else if (_levelRuntimeService != null)
-                _levelRuntimeService.SpawnCollision(7, this.transform.position);
+            else
+                _levelRuntimeService?.SpawnCollision(7, this.transform.position);
         }
 
         public virtual void OnBecameInvisible()
@@ -136,7 +125,7 @@ namespace SBabchuk
         private T GetOrAdd<T>() where T : Component
         {
             var component = GetComponent<T>();
-            return component != null ? component : gameObject.AddComponent<T>();
+            return component ?? gameObject.AddComponent<T>();
         }
     }
 }

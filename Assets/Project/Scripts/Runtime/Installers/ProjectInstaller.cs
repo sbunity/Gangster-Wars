@@ -11,7 +11,6 @@ namespace SBabchuk.Runtime.Installers
         public override void InstallBindings()
         {
             SignalBusInstaller.Install(Container);
-
             BindServices();
             DeclareSignals();
         }

@@ -1,125 +1,97 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Spine.Unity;
 using Spine;
 using DG.Tweening;
+using UnityEngine.Serialization;
 
 namespace SBabchuk
 {
     public class SniperGangsterController : GangsterControllerBase
     {
-        [Header("Aim - кострейнт")]
-        public Transform aim;
+        [SerializeField, FormerlySerializedAs("aim")]
+        private Transform _aim;
 
-        [Header("Швидкість поворота для стрильби")]
-        [Range(0, 2)]
-        public float speedRotate;
+        [SerializeField, FormerlySerializedAs("speedRotate"), Range(0, 2)]
+        private float _speedRotate;
 
-        [HideInInspector]
-        public Transform target;
+        [SerializeField, FormerlySerializedAs("target")]
+        private Transform _target;
 
-        [Header("Поріг відстані aim до цілі для пострілу")]
-        [Range(0.01f, 1f)]
-        public float aimFireThreshold = 0.15f;
+        [SerializeField, FormerlySerializedAs("aimFireThreshold"), Range(0.01f, 1f)]
+        
+        private float _aimFireThreshold = 0.15f;
+        private PersonageSettings _properties;
+        private Personage _personage;
+        private Vector3 _aimDefaultPosition;
+        private bool _readyToFire;
+        private float _aimTimer;
 
-        [Header("Властивості")]
-        private PersonageSettings properties;
-
-        private Personage personage;
-
-        private Vector3 aimDefaultPosition;
-
-        private bool readyToFire;
-
-        private float aimTimer;
-
-        /// Передстартова ініціалізація
-        /// </summary>
-        public override void Awake()
-        {
-            base.Awake();
-        }
-
-        /// <summary>
-        /// Ініціалізація героя
-        /// </summary>
-        /// <param name="_id">Id героя</param>
         public override void Init()
         {
-            e_animation.SetAnimation(AnimationsName.Idle);
-
-            PersonageShortInfo _shortInfo = ProgressService.GetPersonageShortInfo((int)PersonagesName.Sniper);
-
-            var playerStore = AssetProvider.MainPlayerDatabase;
-
-            personage = playerStore.GetPersonage((int)PersonagesName.Sniper);
-
-            PUpgrade _upgrade = playerStore.GetUpgrade((int)PersonagesName.Sniper, _shortInfo.upgradeID);
-
+            Animation.SetAnimation(AnimationsName.Idle);
+            PersonageShortInfo _shortInfo = _progressService.GetPersonageShortInfo((int)PersonagesName.Sniper);
+            
+            var playerStore = _assetProvider.MainPlayerDatabase;
+            _personage = playerStore.GetPersonage((int)PersonagesName.Sniper);
+            PUpgrade _upgrade = playerStore.GetUpgrade((int)PersonagesName.Sniper, _shortInfo.UpgradeId);
+            
             if (_upgrade != null)
             {
-                properties = _upgrade.settings;
+                _properties = _upgrade.Settings;
             }
             else
             {
-                properties = playerStore.GetPersonage((int)PersonagesName.Sniper).settings;
+                _properties = playerStore.GetPersonage((int)PersonagesName.Sniper).Settings;
             }
 
-            aimDefaultPosition = aim.position;
-
+            _aimDefaultPosition = _aim.position;
             StartAttack();
         }
 
         public void StartAttack()
         {
-            twnAtack = DOVirtual.DelayedCall(properties.speedAtack, () => { //Запускаєм зациклення атаки
+            AttackTween = DOVirtual.DelayedCall(_properties.AttackSpeed, () =>
+            {
                 if (FindEnemy())
-                    readyToFire = true;
+                    _readyToFire = true;
             }, false).SetLoops(-1);
         }
 
         public override void Update()
         {
             base.Update();
-
-            Vector3 dest = (target != null && target.gameObject.activeInHierarchy)
-                ? target.position
-                : aimDefaultPosition;
-
-            aim.position = Vector3.Lerp(aim.position, dest, Time.deltaTime / Mathf.Max(speedRotate, 0.01f));
-
-            if (readyToFire)
+            Vector3 dest = (_target != null && _target.gameObject.activeInHierarchy) ? _target.position : _aimDefaultPosition;
+            _aim.position = Vector3.Lerp(_aim.position, dest, Time.deltaTime / Mathf.Max(_speedRotate, 0.01f));
+            if (_readyToFire)
             {
-                if (target != null && target.gameObject.activeInHierarchy)
+                if (_target != null && _target.gameObject.activeInHierarchy)
                 {
-                    aimTimer += Time.deltaTime;
-                    if (aimTimer >= speedRotate)
+                    _aimTimer += Time.deltaTime;
+                    if (_aimTimer >= _speedRotate)
                     {
-                        readyToFire = false;
-                        aimTimer = 0f;
+                        _readyToFire = false;
+                        _aimTimer = 0f;
                         Attack();
                     }
                 }
                 else
                 {
-                    readyToFire = false;
-                    aimTimer = 0f;
+                    _readyToFire = false;
+                    _aimTimer = 0f;
                 }
             }
         }
 
-        /// <summary>
-        /// Метод атаки
-        /// </summary>
         public override void Attack()
         {
-            e_animation.SetAnimation(AnimationsName.Shoot_prev); //Переключаємось в анімацію атаки
+            Animation.SetAnimation(AnimationsName.Shoot_prev);
         }
 
         public override void SpawnBullet()
         {
-            CharacterWeapon.Fire(personage.bulletID, properties.damage, createBulletPoint.GetPosition(), target.position, 0);
+            _characterWeapon.Fire(_personage.BulletId, _properties.Damage, CreateBulletPoint.GetPosition(), _target.position, 0);
         }
 
         public override void AttackEnded()
@@ -128,12 +100,10 @@ namespace SBabchuk
 
         public bool FindEnemy()
         {
-            if (target != null && target.gameObject.activeInHierarchy)
+            if (_target != null && _target.gameObject.activeInHierarchy)
                 return true;
-
-            target = LevelRuntimeService != null ? LevelRuntimeService.GetRandomEnemy() : null;
-
-            return target != null;
+            _target = _levelRuntimeService?.GetRandomEnemy();
+            return _target != null;
         }
     }
 }

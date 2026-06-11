@@ -5,30 +5,24 @@ using SBabchuk.Runtime.Services.Contracts;
 using UnityEngine;
 using UnityEngine.UI;
 using Zenject;
+using UnityEngine.Serialization;
 
 namespace SBabchuk
 {
     public class MainPlayerElementController : MonoBehaviour
     {
-        [Header("Для якого персонажа")]
-        public PersonagesName personage;
+        [SerializeField, FormerlySerializedAs("personage")]
+        private PersonagesName _personage;
 
-        [Header("Елементи при заблокуванні")]
-        private MainPlayerLockElementController lockElementController;
-
-        [Header("Елементи при розблокуванні")]
-        private MainPlayerUnlockElementController unlockElementController;
-
-        private AmmunitionsController ammunitionsController;
-
-        private PersonageShortInfo personageShortInfo;
+        private MainPlayerLockElementController _lockElementController;
+        private MainPlayerUnlockElementController _unlockElementController;
+        private AmmunitionsController _ammunitionsController;
+        private PersonageShortInfo _personageShortInfo;
         private IPlayerProgressService _progressService;
         private SignalBus _signalBus;
 
         [Inject]
-        private void Construct(
-            IPlayerProgressService progressService,
-            SignalBus signalBus)
+        public void Construct(IPlayerProgressService progressService, SignalBus signalBus)
         {
             _progressService = progressService;
             _signalBus = signalBus;
@@ -51,50 +45,31 @@ namespace SBabchuk
 
         private void Start()
         {
-
-            ///Отримуєм LockElementController
-            lockElementController = GetComponentInChildren<MainPlayerLockElementController>(true);
-
-            ///Отримуєм UnlockElementController
-            unlockElementController = GetComponentInChildren<MainPlayerUnlockElementController>(true);
-
-            ///Отримуєм AmmunitionsController
-            ammunitionsController = GetComponentInChildren<AmmunitionsController>(true);
-
-            ///Перевірка на інтерактивність
+            _lockElementController = GetComponentInChildren<MainPlayerLockElementController>(true);
+            _unlockElementController = GetComponentInChildren<MainPlayerUnlockElementController>(true);
+            _ammunitionsController = GetComponentInChildren<AmmunitionsController>(true);
             CheckInteractive();
         }
 
-        /// <summary>
-        /// Перевірка на інтерактивність
-        /// </summary>
         private void CheckInteractive()
         {
-            personageShortInfo = _progressService.GetPersonageShortInfo((int)personage);
-
-            ChangeLock(personageShortInfo.isBuy == mySwitch.On);
+            _personageShortInfo = _progressService.GetPersonageShortInfo((int)_personage);
+            ChangeLock(_personageShortInfo.IsBuy == mySwitch.On);
         }
 
-        /// <summary>
-        /// Включаєм певні елементи 
-        /// </summary>
-        /// <param name="_value"></param>
         private void ChangeLock(bool _value = false)
         {
-            lockElementController.gameObject.SetActive(!_value);
-
-            unlockElementController.gameObject.SetActive(_value);
-
-            if (lockElementController.gameObject.activeSelf)
+            _lockElementController.gameObject.SetActive(!_value);
+            _unlockElementController.gameObject.SetActive(_value);
+            if (_lockElementController.gameObject.activeSelf)
             {
-                lockElementController.Initialisation((int)personage);
+                _lockElementController.Initialisation((int)_personage);
             }
 
-            if (unlockElementController.gameObject.activeSelf)
+            if (_unlockElementController.gameObject.activeSelf)
             {
-                unlockElementController.Initialisation((int)personage);
-
-                ammunitionsController.Initialisation((int)personage);
+                _unlockElementController.Initialisation((int)_personage);
+                _ammunitionsController.Initialisation((int)_personage);
             }
         }
     }

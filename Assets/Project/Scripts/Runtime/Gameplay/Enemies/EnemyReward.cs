@@ -9,7 +9,7 @@ namespace SBabchuk.Runtime.Gameplay.Enemies
         private IPlayerProgressService _progressService;
 
         [Inject]
-        private void Construct(IPlayerProgressService progressService)
+        public void Construct(IPlayerProgressService progressService)
         {
             _progressService = progressService;
         }
@@ -18,8 +18,8 @@ namespace SBabchuk.Runtime.Gameplay.Enemies
         {
             if (enemy == null)
                 return;
-
-            _progressService?.AddCoins(enemy.gold);
+                
+            _progressService?.AddCoins(enemy.Gold);
         }
     }
 }

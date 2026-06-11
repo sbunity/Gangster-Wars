@@ -1,38 +1,29 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace SBabchuk
 {
     [CreateAssetMenu(menuName = "Databases/Create LevelDatabase", fileName = "LevelDatabase")]
     public class LevelDatabase : ScriptableObject
     {
-        [Header("Рівні")]
-        [SerializeField, HideInInspector] public List<Level> levels = new List<Level>();
+        [FormerlySerializedAs("levels")]
+        [SerializeField, HideInInspector]
+        private List<Level> _levels = new List<Level>();
+        public List<Level> Levels { get => _levels; set => _levels = value; }
 
-        /// <summary>
-        /// Отримуєм рівень
-        /// </summary>
-        /// <param name="id">ІД шуканого рівня</param>
-        /// <returns>Повертаєм рівень</returns>
         public Level GetLevel(int id)
         {
-            int index = levels.FindIndex(x => x.id == id);
-
-            return index != -1 ? levels[index] : null;
+            int index = _levels.FindIndex(x => x.Id == id);
+            return index != -1 ? _levels[index] : null;
         }
 
-        /// <summary>
-        /// Знаходимо хвилю, для рівня
-        /// </summary>
-        /// <param name="_level">Рівень</param>
-        /// <param name="_waveID">ІД хвилі</param>
-        /// <returns>Хвиля</returns>
         public Waves GetWave(Level _level, int _waveID)
         {
-            foreach (Waves _waves in _level.waves)
+            foreach (Waves _waves in _level.Waves)
             {
-                if (_waves.id == _waveID)
+                if (_waves.Id == _waveID)
                 {
                     return _waves;
                 }
@@ -41,19 +32,12 @@ namespace SBabchuk
             return null;
         }
 
-        /// <summary>
-        /// Знаходимо хвилю, для рівня
-        /// </summary>
-        /// <param name="_levelID">ІД рівня</param>
-        /// <param name="_waveID">ІД хвилі</param>
-        /// <returns>Хвиля</returns>
         public Waves GetWave(int _levelID, int _waveID)
         {
             Level _level = GetLevel(_levelID);
-
-            foreach (Waves _waves in _level.waves)
+            foreach (Waves _waves in _level.Waves)
             {
-                if (_waves.id == _waveID)
+                if (_waves.Id == _waveID)
                 {
                     return _waves;
                 }
@@ -62,47 +46,26 @@ namespace SBabchuk
             return null;
         }
 
-        /// <summary>
-        /// Створюєм, для даного рівня нову хвилю
-        /// </summary>
-        /// <param name="_levelID"> ІД Рівня</param>
-        /// <param name="_time">Час на проходження попередньої хвилі</param>
-        /// <returns></returns>
         public int CreateWave(int _levelID, int _time = -1)
         {
             Level level = GetLevel(_levelID);
-
             if (_time != -1)
             {
-                if (level.waves.Count != 0)
-                    level.waves[level.waves.Count - 1].delay = _time;
+                if (level.Waves.Count != 0)
+                    level.Waves[level.Waves.Count - 1].Delay = _time;
             }
 
-            level.waves.Add(new Waves(level.waves.Count));
-
+            level.Waves.Add(new Waves(level.Waves.Count));
             SaveData();
-
-            return level.waves.Count - 1;
+            return level.Waves.Count - 1;
         }
 
-        /// <summary>
-        /// Добавляєм для рівня в хвилю нового юніта
-        /// </summary>
-        /// <param name="_levelID">ІД рівня</param>
-        /// <param name="_waveID">ІД хвилі</param>
-        /// <param name="_enemyId">ІД юніта</param>
-        /// <param name="_count">К-сть юнітів</param>
-        /// <param name="_time">Час коли виходить</param>
-        /// <returns></returns>
         public int CreateEnemyOnWave(int _levelID, int _waveID, int _enemyId, int _count = 1, int _time = -1)
         {
             Waves wave = GetWave(_levelID, _waveID);
-
-            wave.enemies.Add(new EnemyOfWave(_enemyId, _count, _time, 0));
-
+            wave.Enemies.Add(new EnemyOfWave(_enemyId, _count, _time, 0));
             SaveData();
-
-            return wave.enemies.Count - 1;
+            return wave.Enemies.Count - 1;
         }
 
         public void SaveData()
@@ -116,72 +79,96 @@ namespace SBabchuk
     [System.Serializable]
     public class Level
     {
-        [Header("ID рівень")]
-        public int id;
+        [SerializeField]
+        [FormerlySerializedAs("id")]
+        private int _id;
+        public int Id { get => _id; set => _id = value; }
 
-        [Header("Найменування рівня")]
-        public string name;
+        [SerializeField]
+        [FormerlySerializedAs("name")]
+        private string _name;
+        public string Name { get => _name; set => _name = value; }
 
-        [Header("Іконка левела")]
-        public Sprite ico;
+        [SerializeField]
+        [FormerlySerializedAs("ico")]
+        private Sprite _icon;
+        public Sprite Icon { get => _icon; set => _icon = value; }
 
-        [Header("Хвилі юнітів")]
-        public List<Waves> waves = new List<Waves>();
+        [SerializeField]
+        [FormerlySerializedAs("waves")]
+        private List<Waves> _waves = new List<Waves>();
+        public List<Waves> Waves { get => _waves; set => _waves = value; }
 
         public Level(int _id)
         {
-            this.id = _id;
-            this.name = "Рівень_" + (_id + 1);
+            this._id = _id;
+            this._name = "Р В РЎвЂ“Р Р†Р ВµР Р…РЎРЉ_" + (_id + 1);
         }
     }
 
     [System.Serializable]
     public class Waves
     {
-        [Header("ID хвилі")]
-        public int id;
+        [SerializeField]
+        [FormerlySerializedAs("id")]
+        private int _id;
+        public int Id { get => _id; set => _id = value; }
 
-        [Header("Затримка при старті хвилі(не помню що це)")]
-        public float startDelay;
+        [SerializeField]
+        [FormerlySerializedAs("startDelay")]
+        private float _startDelay;
+        public float StartDelay { get => _startDelay; set => _startDelay = value; }
 
-        [Header("Час на проходження")]
-        public float delay;
+        [SerializeField]
+        [FormerlySerializedAs("delay")]
+        private float _delay;
+        public float Delay { get => _delay; set => _delay = value; }
 
-        [Header("Юніти, що виходитимуть в даній хвилі")]
-        public List<EnemyOfWave> enemies = new List<EnemyOfWave>();
+        [SerializeField]
+        [FormerlySerializedAs("enemies")]
+        private List<EnemyOfWave> _enemies = new List<EnemyOfWave>();
+        public List<EnemyOfWave> Enemies { get => _enemies; set => _enemies = value; }
 
         public Waves(int _id)
         {
-            this.id = _id;
+            this._id = _id;
         }
     }
 
     [System.Serializable]
     public class EnemyOfWave
     {
-        [Header("Тип юніта")]
-        public int enemyID;
+        [SerializeField]
+        [FormerlySerializedAs("enemyID")]
+        private int _enemyId;
+        public int EnemyId { get => _enemyId; set => _enemyId = value; }
 
-        [Header("Кількість")]
-        public int countEnemy;
+        [SerializeField]
+        [FormerlySerializedAs("countEnemy")]
+        private int _countEnemy;
+        public int CountEnemy { get => _countEnemy; set => _countEnemy = value; }
 
-        [Header("Інтервал")]
-        public float interval;
+        [SerializeField]
+        [FormerlySerializedAs("interval")]
+        private float _interval;
+        public float Interval { get => _interval; set => _interval = value; }
 
-        [Header("Йморівність випадання монетки (%)")]
-        public int changeCraft;
+        [SerializeField]
+        [FormerlySerializedAs("changeCraft")]
+        private int _dropChance;
+        public int DropChance { get => _dropChance; set => _dropChance = value; }
 
         public EnemyOfWave()
         {
-            this.countEnemy = 1;
+            this._countEnemy = 1;
         }
 
         public EnemyOfWave(int _enemyID, int _countEnemy, float _interval, int _changeCraft)
         {
-            this.enemyID = _enemyID;
-            this.countEnemy = _countEnemy;
-            this.interval = _interval;
-            this.changeCraft = _changeCraft;
+            this._enemyId = _enemyID;
+            this._countEnemy = _countEnemy;
+            this._interval = _interval;
+            this._dropChance = _changeCraft;
         }
     }
 }

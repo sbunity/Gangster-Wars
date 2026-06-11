@@ -1,41 +1,39 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Serialization;
 
 namespace SBabchuk
 {
     public class CounterController : MonoBehaviour
     {
-        [Header("Лічильник скільки добавляєм юнітів")]
-        public Text counterTxt;
+        [SerializeField, FormerlySerializedAs("counterTxt")]
+        private Text _counterTxt;
 
         [SerializeField] private SettingsController _settingsController;
+        private int _counter = 1;
+        private int _enemyID;
 
-        private int counter = 1;
-
-        private int enemyID;
-
-        public void SetEnemyID(int _enemyID)
+        public void SetEnemyID(int enemyID)
         {
-            enemyID = _enemyID;
+            _enemyID = enemyID;
         }
 
-        public void SetCounter(int _value)
+        public void SetCounter(int value)
         {
-            counter = Mathf.Max(_value, 1);
-
-            counterTxt.text = counter.ToString();
+            _counter = Mathf.Max(value, 1);
+            _counterTxt.text = _counter.ToString();
         }
 
         public void More()
         {
-            SetCounter(counter + 1);
+            SetCounter(_counter + 1);
         }
 
         public void Less()
         {
-            SetCounter(counter - 1);
+            SetCounter(_counter - 1);
         }
 
         public void Click()
@@ -43,7 +41,7 @@ namespace SBabchuk
             if (_settingsController == null)
                 _settingsController = GetComponentInParent<SettingsController>(true);
 
-            _settingsController.CreateNewEnemy(enemyID, counter);
+            _settingsController.CreateNewEnemy(_enemyID, _counter);
         }
     }
 }

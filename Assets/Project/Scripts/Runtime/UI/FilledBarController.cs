@@ -1,31 +1,26 @@
 using DG.Tweening;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Serialization;
 
 namespace SBabchuk
-{ 
+{
     public class FilledBarController : MonoBehaviour
     {
-        [Header("Елемент, що заповнюється")]
-        public Slider slider;
-        
-        [Header("Швидкість заповнення")]
-        [Range(0.1f, 3)]
-        public float speed;
+        [SerializeField, FormerlySerializedAs("slider")]
+        private Slider _slider;
 
-        private float currentvalue;
+        [SerializeField, FormerlySerializedAs("speed"), Range(0.1f, 3)]
+        private float _speed;
 
-        Tween twn;
+        private float _currentvalue;
+        private Tween _twn;
 
-        public void UpdateFlled(float _value)
+        public void UpdateFlled(float value)
         {
-            twn?.Kill();
-
-            currentvalue = currentvalue + _value;
-
-            twn = slider.DOValue(currentvalue, speed).SetUpdate(true);
+            _twn?.Kill();
+            _currentvalue += value;
+            _twn = _slider.DOValue(_currentvalue, _speed).SetUpdate(true);
         }
     }
 }

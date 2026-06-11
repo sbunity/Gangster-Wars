@@ -45,9 +45,8 @@ namespace SBabchuk.Runtime.Services
             return UniTask.CompletedTask;
         }
 
-        private ScriptableObject[] GetPersistentAssets()
-        {
-            return new ScriptableObject[]
+        private ScriptableObject[] GetPersistentAssets() 
+            => new ScriptableObject[]
             {
                 _assetProvider.PlayerPrefsDatabase,
                 _assetProvider.WeaponStoreDatabase,
@@ -58,7 +57,6 @@ namespace SBabchuk.Runtime.Services
                 _assetProvider.LevelDatabase,
                 _assetProvider.BulletDatabase
             };
-        }
 
         private void LoadAsset(ScriptableObject asset)
         {
@@ -67,25 +65,22 @@ namespace SBabchuk.Runtime.Services
                 return;
 
             var formatter = new BinaryFormatter();
-            using (var file = File.Open(path, FileMode.Open))
-            {
-                JsonUtility.FromJsonOverwrite((string)formatter.Deserialize(file), asset);
-            }
+
+            using var file = File.Open(path, FileMode.Open);
+            JsonUtility.FromJsonOverwrite((string)formatter.Deserialize(file), asset);
         }
 
         private void SaveAsset(ScriptableObject asset)
         {
             var formatter = new BinaryFormatter();
-            using (var file = File.Create(GetPath(asset)))
+            using var file = File.Create(GetPath(asset));
             {
                 var json = JsonUtility.ToJson(asset);
                 formatter.Serialize(file, json);
             }
         }
 
-        private string GetPath(ScriptableObject asset)
-        {
-            return Path.Combine(Application.persistentDataPath, $"Main_{asset.name}.pso");
-        }
+        private string GetPath(ScriptableObject asset) 
+            => Path.Combine(Application.persistentDataPath, $"Main_{asset.name}.pso");
     }
 }

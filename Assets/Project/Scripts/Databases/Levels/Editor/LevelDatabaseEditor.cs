@@ -1,4 +1,4 @@
-﻿using UnityEditor;
+using UnityEditor;
 using UnityEditor.SceneManagement;
 using UnityEngine;
 
@@ -9,8 +9,7 @@ namespace SBabchuk
     {
         public override void Draw()
         {
-            LevelDatabaseDrawer.Draw((LevelDatabase)database, selectedMode);
+            LevelDatabaseDrawer.Draw((LevelDatabase)Database, SelectedMode);
         }
     }
 }
-

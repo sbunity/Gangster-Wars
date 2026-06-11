@@ -1,65 +1,79 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace SBabchuk
 {
     [CreateAssetMenu(menuName = "Databases/Create BombStoreDatabase", fileName = "BombStoreDatabase")]
     public class BombStoreDatabase : ScriptableObject
     {
-        [Header("Гранати")]
-        [SerializeField, HideInInspector] public List<Grenade> grenades = new List<Grenade>();
+        [FormerlySerializedAs("grenades")]
+        [SerializeField, HideInInspector]
+        private List<Grenade> _grenades = new List<Grenade>();
+        public List<Grenade> Grenades { get => _grenades; set => _grenades = value; }
 
-        /// <summary>
-        /// Повертає властивості гранати(по заданому id)
-        /// </summary>
-        /// <param name="_id">Id шуканої гарнати</param>
-        /// <returns></returns>
         public Grenade GetGrenade(int _id)
         {
-            int index = grenades.FindIndex(x => x.id == _id);
-
-            return index != -1 ? grenades[index] : null;
+            int index = _grenades.FindIndex(x => x.Id == _id);
+            return index != -1 ? _grenades[index] : null;
         }
-
     }
 
     [System.Serializable]
     public class Grenade
     {
-        #region Відображення
-        [Header("ID")]
-        public int id;
+        [SerializeField]
+        [FormerlySerializedAs("id")]
+        private int _id;
+        public int Id { get => _id; set => _id = value; }
 
-        [Header("Найменування")]
-        public string name;
+        [SerializeField]
+        [FormerlySerializedAs("name")]
+        private string _name;
+        public string Name { get => _name; set => _name = value; }
 
-        [Header("Іконка")]
-        public Sprite ico;
-        #endregion //Відображення
+        [SerializeField]
+        [FormerlySerializedAs("ico")]
+        private Sprite _icon;
+        public Sprite Icon { get => _icon; set => _icon = value; }
 
-        [Header("Вартість (за 1 штуку)")]
-        public int price;
 
-        [Header("Урон (без апгрейда)")]
-        public int damage;
+        [SerializeField]
+        [FormerlySerializedAs("price")]
 
-        [Header("Затримка до зриву")]
-        public float delay;
+        private int _price;
+        public int Price { get => _price; set => _price = value; }
 
-        [Header("Час дії(для молотова)")]
-        public float time;
+        [SerializeField]
+        [FormerlySerializedAs("damage")]
+        private int _damage;
+        public int Damage { get => _damage; set => _damage = value; }
 
-        [Header("Радіус дії")]
-        public float radius;
+        [SerializeField]
+        [FormerlySerializedAs("delay")]
+        private float _delay;
+        public float Delay { get => _delay; set => _delay = value; }
 
-        [Header("Ефект зриву")]
-        public CollisionsName collision;
+        [SerializeField]
+        [FormerlySerializedAs("time")]
+        private float _time;
+        public float Time { get => _time; set => _time = value; }
+
+        [SerializeField]
+        [FormerlySerializedAs("radius")]
+        private float _radius;
+        public float Radius { get => _radius; set => _radius = value; }
+
+        [SerializeField]
+        [FormerlySerializedAs("collision")]
+        private CollisionsName _collision;
+        public CollisionsName Collision { get => _collision; set => _collision = value; }
 
         public Grenade(int _id)
         {
-            this.id = _id;
-            this.name = "Grenade_" + (_id + 1);
+            this._id = _id;
+            this._name = "Grenade_" + (_id + 1);
         }
     }
 }

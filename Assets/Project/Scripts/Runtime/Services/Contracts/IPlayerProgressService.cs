@@ -3,12 +3,19 @@ namespace SBabchuk.Runtime.Services.Contracts
     public interface IPlayerProgressService
     {
         PlayerPrefs PlayerPrefs { get; }
+
         PlayerPrefsDatabase Preferences { get; }
+
         int Coins { get; }
+
         int CurrentLevelId { get; }
+
         int SelectedWeaponId { get; }
+
         int SelectedGrenadeId { get; }
+
         int SelectedDefenceId { get; }
+
         void AddCoins(int value);
         bool CanBuy(int price);
         void SetCurrentLevel(int id);

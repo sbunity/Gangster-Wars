@@ -9,7 +9,7 @@ namespace SBabchuk
 {
     public class AudioSettingsApplier : MonoBehaviour
     {
-        private const float RefreshDelay = 0.5f;
+        private const float REFRESH_DELAY = 0.5f;
 
         [SerializeField] private AudioSource[] _audioSources;
 
@@ -18,7 +18,7 @@ namespace SBabchuk
         private SignalBus _signalBus;
 
         [Inject]
-        private void Construct(IPlayerProgressService progressService, SignalBus signalBus)
+        public void Construct(IPlayerProgressService progressService, SignalBus signalBus)
         {
             _progressService = progressService;
             _signalBus = signalBus;
@@ -63,7 +63,7 @@ namespace SBabchuk
             while (true)
             {
                 ApplyInternal();
-                yield return new WaitForSecondsRealtime(RefreshDelay);
+                yield return new WaitForSecondsRealtime(REFRESH_DELAY);
             }
         }
 
@@ -72,15 +72,13 @@ namespace SBabchuk
             var preferences = _progressService.Preferences;
             var isMusicEnabled = preferences.IsMusicEnabled();
             var isSoundEnabled = preferences.IsSoundEnabled();
-            var audioSources = _audioSources != null && _audioSources.Length > 0
-                ? _audioSources
-                : GetComponentsInChildren<AudioSource>(true);
-
+            var audioSources = _audioSources != null && _audioSources.Length > 0 ? _audioSources : GetComponentsInChildren<AudioSource>(true);
+            
             foreach (var source in audioSources)
             {
                 if (!source)
                     continue;
-
+                    
                 source.mute = source.loop ? !isMusicEnabled : !isSoundEnabled;
             }
         }

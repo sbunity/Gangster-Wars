@@ -8,7 +8,6 @@ namespace SBabchuk.Runtime.Factories
     {
         private readonly IPoolService _poolService;
         private readonly DiContainer _container;
-
         public GameFactory(IPoolService poolService, DiContainer container)
         {
             _poolService = poolService;
@@ -17,12 +16,11 @@ namespace SBabchuk.Runtime.Factories
 
         public EnemyControllerBase CreateEnemy(EnemyOfWave enemyOfWave, Transform spawnPoint, Transform targetPoint)
         {
-            var enemy = _poolService.Get<EnemyControllerBase>(NamesPool.Enemies, enemyOfWave.enemyID);
+            var enemy = _poolService.Get<EnemyControllerBase>(NamesPool.Enemies, enemyOfWave.EnemyId);
             if (enemy == null)
                 return null;
-
             Inject(enemy.gameObject);
-            enemy.Init(enemyOfWave, spawnPoint, targetPoint, enemyOfWave.changeCraft);
+            enemy.Init(enemyOfWave, spawnPoint, targetPoint, enemyOfWave.DropChance);
             return enemy;
         }
 
@@ -31,7 +29,6 @@ namespace SBabchuk.Runtime.Factories
             var bullet = _poolService.Get<BaseBulletController>(NamesPool.Bullets, bulletId);
             if (bullet == null)
                 return null;
-
             Inject(bullet.gameObject);
             bullet.transform.tag = tag;
             bullet.Init(bulletId, damage, position, target, offset);
@@ -43,7 +40,6 @@ namespace SBabchuk.Runtime.Factories
             var grenadeController = _poolService.Get<GrenadeController>(NamesPool.Grenades, (int)grenade);
             if (grenadeController == null)
                 return null;
-
             Inject(grenadeController.gameObject);
             grenadeController.Init((int)grenade, 5, position);
             return grenadeController;
@@ -54,13 +50,11 @@ namespace SBabchuk.Runtime.Factories
             var collision = _poolService.Get<CollisionController>(NamesPool.Collisions, collisionId);
             if (collision == null)
                 return null;
-
             Inject(collision.gameObject);
             if (grenade != null)
-                collision.Init(position, grenade.damage, grenade.radius, grenade.time);
+                collision.Init(position, grenade.Damage, grenade.Radius, grenade.Time);
             else
                 collision.Init(position);
-
             return collision;
         }
 
@@ -69,7 +63,6 @@ namespace SBabchuk.Runtime.Factories
             var bonus = _poolService.Get<BonusController>(NamesPool.Bonuses, bonusId);
             if (bonus == null)
                 return null;
-
             Inject(bonus.gameObject);
             bonus.Init(position);
             return bonus;
@@ -77,8 +70,7 @@ namespace SBabchuk.Runtime.Factories
 
         private void Inject(GameObject target)
         {
-            if (_container != null)
-                _container.InjectGameObject(target);
+            _container?.InjectGameObject(target);
         }
     }
 }

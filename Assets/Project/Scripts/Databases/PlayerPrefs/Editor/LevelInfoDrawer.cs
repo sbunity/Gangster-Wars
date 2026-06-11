@@ -6,33 +6,16 @@ namespace SBabchuk
 {
     public class LevelInfoDrawer
     {
-        /// <summary>
-        /// Дефолтний колір
-        /// </summary>
         static Color defaultColor;
-
-        /// <summary>
-        /// База даних
-        /// </summary>
         static PlayerPrefsDatabase database;
-
-        /// <summary>
-        /// Заголовок для кнопки
-        /// </summary>
         static string titleLevel = "Show Levels";
-
         public static void Draw()
         {
-            database = PlayerPrefsDatabaseDrawer.database;
-
-            defaultColor = PlayerPrefsDatabaseDrawer.defaultColor;
-
+            database = PlayerPrefsDatabaseDrawer.Database;
+            defaultColor = PlayerPrefsDatabaseDrawer.DefaultColor;
             DrawTittle();
         }
 
-        /// <summary>
-        /// Показуєм заголовок
-        /// </summary>
         public static void DrawTittle()
         {
             GUILayout.BeginHorizontal();
@@ -51,11 +34,11 @@ namespace SBabchuk
 
                 if (GUILayout.Button("Clear", GUILayout.Width(100), GUILayout.Height(20)))
                 {
-                    database.PlayerPrefs.levels.Clear();
+                    database.PlayerPrefs.Levels.Clear();
                 }
             }
-            GUILayout.EndHorizontal();
 
+            GUILayout.EndHorizontal();
             if (titleLevel == "Hide Levels")
             {
                 GUI.color = Color.grey;
@@ -63,82 +46,69 @@ namespace SBabchuk
                 {
                     GUILayout.BeginVertical();
                     {
-                        EditorGUILayout.LabelField("Інформація про персонажів:");
-
-                        if (database.PlayerPrefs.levels != null)
+                        EditorGUILayout.LabelField("Р вЂ Р Р…РЎвЂћР С•РЎР‚Р СР В°РЎвЂ РЎвЂ“РЎРЏ Р С—РЎР‚Р С• Р С—Р ВµРЎР‚РЎРѓР С•Р Р…Р В°Р В¶РЎвЂ“Р Р†:");
+                        if (database.PlayerPrefs.Levels != null)
                         {
-                            if (database.PlayerPrefs.levels.Count == EditorDatabaseLookup.Get<LevelDatabase>().levels.Count)
+                            if (database.PlayerPrefs.Levels.Count == EditorDatabaseLookup.Get<LevelDatabase>().Levels.Count)
                             {
-                                foreach (LevelShortInfo _level in database.PlayerPrefs.levels)
+                                foreach (LevelShortInfo _level in database.PlayerPrefs.Levels)
                                 {
                                     DrawInfo(_level);
                                 }
                             }
                             else
                             {
-                                Debug.Log("database.PlayerPrefs.levels == 0");
-
-                                database.PlayerPrefs.levels.Clear();
-
-                                foreach (Level _level in EditorDatabaseLookup.Get<LevelDatabase>().levels)
+                                database.PlayerPrefs.Levels.Clear();
+                                foreach (Level _level in EditorDatabaseLookup.Get<LevelDatabase>().Levels)
                                 {
-                                    database.PlayerPrefs.levels.Add(new LevelShortInfo(_level));
+                                    database.PlayerPrefs.Levels.Add(new LevelShortInfo(_level));
                                 }
                             }
                         }
                         else
                         {
-                            Debug.Log("database.PlayerPrefs.defences == null");
-
-                            database.PlayerPrefs.levels = new List<LevelShortInfo>();
+                            database.PlayerPrefs.Levels = new List<LevelShortInfo>();
                         }
                     }
+
                     GUILayout.EndVertical();
                 }
+
                 GUILayout.EndHorizontal();
             }
         }
 
-        /// <summary>
-        /// Показуєм інформацію
-        /// </summary>
-        /// <param name="_value"></param>
         public static void DrawInfo(LevelShortInfo _value)
         {
-            Level _record = EditorDatabaseLookup.Get<LevelDatabase>().GetLevel(_value.id);
-
+            Level _record = EditorDatabaseLookup.Get<LevelDatabase>().GetLevel(_value.Id);
             GUI.color = defaultColor;
-
             GUILayout.BeginVertical("box");
             {
                 GUILayout.BeginHorizontal();
                 {
                     GUILayout.BeginVertical();
                     {
-                        _record.ico = (Sprite)EditorGUILayout.ObjectField(_record.ico, typeof(Sprite), false, GUILayout.Width(75), GUILayout.Height(75));
+                        _record.Icon = (Sprite)EditorGUILayout.ObjectField(_record.Icon, typeof(Sprite), false, GUILayout.Width(75), GUILayout.Height(75));
                     }
+
                     GUILayout.EndVertical();
-
-                    if (_value.isCompleted == mySwitch.On)
+                    if (_value.IsCompleted == mySwitch.On)
                         Utils.ChangeColor(Color.green);
-
                     GUILayout.BeginVertical();
                     {
-                        _record.id = EditorGUILayout.IntField("ID: ", _record.id);
-
-                        _record.name = EditorGUILayout.TextField("Найменування: ", _record.name);
-
-                        //_value.isOpened = ((mySwitch)EditorGUILayout.EnumPopup("Чи відкритий: ", (mySwitch)_value.isOpened));
-
-                        _value.isCompleted = ((mySwitch)EditorGUILayout.EnumPopup("Чи продений: ", (mySwitch)_value.isCompleted));
-
-                        if (_value.isCompleted == mySwitch.On)
-                            _value.stars = EditorGUILayout.IntSlider("Успішність проходження: ", _value.stars, 0, 3);
+                        _record.Id = EditorGUILayout.IntField("ID: ", _record.Id);
+                        _record.Name = EditorGUILayout.TextField("Р СњР В°Р в„–Р СР ВµР Р…РЎС“Р Р†Р В°Р Р…Р Р…РЎРЏ: ", _record.Name);
+                        _value.IsCompleted = ((mySwitch)EditorGUILayout.EnumPopup("Р В§Р С‘ Р С—РЎР‚Р С•Р Т‘Р ВµР Р…Р С‘Р в„–: ", (mySwitch)_value.IsCompleted));
+                        if (_value.IsCompleted == mySwitch.On)
+                            _value.Stars = EditorGUILayout.IntSlider("Р Р€РЎРѓР С—РЎвЂ“РЎв‚¬Р Р…РЎвЂ“РЎРѓРЎвЂљРЎРЉ Р С—РЎР‚Р С•РЎвЂ¦Р С•Р Т‘Р В¶Р ВµР Р…Р Р…РЎРЏ: ", _value.Stars, 0, 3);
                     }
+
                     GUILayout.EndVertical();
                 }
+
                 GUILayout.EndHorizontal();
             }
+
             GUILayout.EndVertical();
         }
     }

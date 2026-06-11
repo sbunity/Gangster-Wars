@@ -4,35 +4,18 @@ using System.Collections.Generic;
 
 namespace SBabchuk
 {
-    public class PersonageInfoDrawer 
+    public class PersonageInfoDrawer
     {
-        /// <summary>
-        /// Дефолтний колір
-        /// </summary>
         static Color defaultColor;
-
-        /// <summary>
-        /// База даних
-        /// </summary>
         static PlayerPrefsDatabase database;
-
-        /// <summary>
-        /// Заголовок для кнопки
-        /// </summary>
         static string titlePersonage = "Show Personages";
-
         public static void Draw()
         {
-            database = PlayerPrefsDatabaseDrawer.database;
-
-            defaultColor = PlayerPrefsDatabaseDrawer.defaultColor;
-
+            database = PlayerPrefsDatabaseDrawer.Database;
+            defaultColor = PlayerPrefsDatabaseDrawer.DefaultColor;
             DrawTittle();
         }
 
-        /// <summary>
-        /// Показуєм перепони
-        /// </summary>
         public static void DrawTittle()
         {
             GUILayout.BeginHorizontal();
@@ -51,11 +34,11 @@ namespace SBabchuk
 
                 if (GUILayout.Button("Clear", GUILayout.Width(100), GUILayout.Height(20)))
                 {
-                    database.PlayerPrefs.personages.Clear();
+                    database.PlayerPrefs.Personages.Clear();
                 }
             }
-            GUILayout.EndHorizontal();
 
+            GUILayout.EndHorizontal();
             if (titlePersonage == "Hide Personages")
             {
                 GUI.color = Color.grey;
@@ -63,114 +46,95 @@ namespace SBabchuk
                 {
                     GUILayout.BeginVertical();
                     {
-                        EditorGUILayout.LabelField("Інформація про персонажів:");
-
-                        if (database.PlayerPrefs.personages != null)
+                        EditorGUILayout.LabelField("Р вЂ Р Р…РЎвЂћР С•РЎР‚Р СР В°РЎвЂ РЎвЂ“РЎРЏ Р С—РЎР‚Р С• Р С—Р ВµРЎР‚РЎРѓР С•Р Р…Р В°Р В¶РЎвЂ“Р Р†:");
+                        if (database.PlayerPrefs.Personages != null)
                         {
-                            if (database.PlayerPrefs.personages.Count == EditorDatabaseLookup.Get<MainPlayerDatabase>().personages.Count)
+                            if (database.PlayerPrefs.Personages.Count == EditorDatabaseLookup.Get<MainPlayerDatabase>().Personages.Count)
                             {
-                                foreach (PersonageShortInfo _personage in database.PlayerPrefs.personages)
+                                foreach (PersonageShortInfo _personage in database.PlayerPrefs.Personages)
                                 {
                                     DrawInfo(_personage);
                                 }
                             }
                             else
                             {
-                                Debug.Log("database.PlayerPrefs.personages == 0");
-
-                                database.PlayerPrefs.personages.Clear();
-
-                                foreach (Personage _personage in EditorDatabaseLookup.Get<MainPlayerDatabase>().personages)
+                                database.PlayerPrefs.Personages.Clear();
+                                foreach (Personage _personage in EditorDatabaseLookup.Get<MainPlayerDatabase>().Personages)
                                 {
-                                    database.PlayerPrefs.personages.Add(new PersonageShortInfo(_personage));
+                                    database.PlayerPrefs.Personages.Add(new PersonageShortInfo(_personage));
                                 }
-                                Debug.Log("$$$ " + database.PlayerPrefs.personages.Count);
                             }
                         }
                         else
                         {
-                            Debug.Log("database.PlayerPrefs.personages == null");
-
-                            database.PlayerPrefs.personages = new List<PersonageShortInfo>();
+                            database.PlayerPrefs.Personages = new List<PersonageShortInfo>();
                         }
                     }
+
                     GUILayout.EndVertical();
                 }
+
                 GUILayout.EndHorizontal();
             }
         }
 
-        /// <summary>
-        /// Показуєм заголовок інфи про перепони
-        /// </summary>
-        /// <param name="_value"></param>
         public static void DrawInfo(PersonageShortInfo _value)
         {
-            Personage _record = EditorDatabaseLookup.Get<MainPlayerDatabase>().GetPersonage(_value.id);
-
+            Personage _record = EditorDatabaseLookup.Get<MainPlayerDatabase>().GetPersonage(_value.Id);
             GUI.color = defaultColor;
-
             GUILayout.BeginVertical("box");
             {
-                if (_value.isBuy == mySwitch.On)
+                if (_value.IsBuy == mySwitch.On)
                     Utils.ChangeColor(Color.cyan);
-
                 GUILayout.BeginHorizontal();
                 {
                     GUILayout.BeginVertical();
                     {
-                        _record.ico = (Sprite)EditorGUILayout.ObjectField(_record.ico, typeof(Sprite), false, GUILayout.Width(75), GUILayout.Height(75));
+                        _record.Icon = (Sprite)EditorGUILayout.ObjectField(_record.Icon, typeof(Sprite), false, GUILayout.Width(75), GUILayout.Height(75));
                     }
-                    GUILayout.EndVertical();
 
+                    GUILayout.EndVertical();
                     GUILayout.BeginVertical();
                     {
-                        _record.id = EditorGUILayout.IntField("ID: ", _record.id);
-
-                        _record.name = EditorGUILayout.TextField("Найменування: ", _record.name);
-
-                        _value.isBuy = ((mySwitch)EditorGUILayout.EnumPopup("Чи доступна: ", (mySwitch)_value.isBuy));
-
-                        if (_value.isBuy == mySwitch.On)
+                        _record.Id = EditorGUILayout.IntField("ID: ", _record.Id);
+                        _record.Name = EditorGUILayout.TextField("Р СњР В°Р в„–Р СР ВµР Р…РЎС“Р Р†Р В°Р Р…Р Р…РЎРЏ: ", _record.Name);
+                        _value.IsBuy = ((mySwitch)EditorGUILayout.EnumPopup("Р В§Р С‘ Р Т‘Р С•РЎРѓРЎвЂљРЎС“Р С—Р Р…Р В°: ", (mySwitch)_value.IsBuy));
+                        if (_value.IsBuy == mySwitch.On)
                         {
-                            _value.upgradeID = EditorGUILayout.IntSlider(" Апгрейд (ID): ", _value.upgradeID, -1, _record.upgrades.Count - 1);
-
-                            DrawSettings(_record, _value.upgradeID);
+                            _value.UpgradeId = EditorGUILayout.IntSlider(" Р С’Р С—Р С–РЎР‚Р ВµР в„–Р Т‘ (ID): ", _value.UpgradeId, -1, _record.Upgrades.Count - 1);
+                            DrawSettings(_record, _value.UpgradeId);
                         }
                     }
+
                     GUILayout.EndVertical();
                 }
+
                 GUILayout.EndHorizontal();
             }
+
             GUILayout.EndVertical();
         }
 
-        /// <summary>
-        /// Показуєм властивості зброї
-        /// </summary>
-        /// <param name="_stuff"></param>
-        /// <param name="_upgradeID"></param>
         public static void DrawSettings(Personage _personage, int _upgradeID)
         {
             GUILayout.BeginVertical();
             {
                 GUI.color = Color.yellow;
                 PUpgrade _upgrade = EditorDatabaseLookup.Get<MainPlayerDatabase>().GetUpgrade(_personage, _upgradeID);
-
                 if (_upgrade != null)
                 {
-                    _upgrade.settings.damage = EditorGUILayout.IntSlider("Урон: ", _upgrade.settings.damage, 0, 100);
-
-                    _upgrade.settings.speedAtack = EditorGUILayout.Slider("Швидкість стрельби: ", _upgrade.settings.speedAtack, 0, 10);
+                    _upgrade.Settings.Damage = EditorGUILayout.IntSlider("Р Р€РЎР‚Р С•Р Р…: ", _upgrade.Settings.Damage, 0, 100);
+                    _upgrade.Settings.AttackSpeed = EditorGUILayout.Slider("Р РЃР Р†Р С‘Р Т‘Р С”РЎвЂ“РЎРѓРЎвЂљРЎРЉ РЎРѓРЎвЂљРЎР‚Р ВµР В»РЎРЉР В±Р С‘: ", _upgrade.Settings.AttackSpeed, 0, 10);
                 }
                 else
                 {
-                    _personage.settings.damage = EditorGUILayout.IntSlider("Урон: ", _personage.settings.damage, 0, 100);
-
-                    _personage.settings.speedAtack = EditorGUILayout.Slider("Швидкість стрiльби: ", _personage.settings.speedAtack, 0, 10);
+                    _personage.Settings.Damage = EditorGUILayout.IntSlider("Р Р€РЎР‚Р С•Р Р…: ", _personage.Settings.Damage, 0, 100);
+                    _personage.Settings.AttackSpeed = EditorGUILayout.Slider("Р РЃР Р†Р С‘Р Т‘Р С”РЎвЂ“РЎРѓРЎвЂљРЎРЉ РЎРѓРЎвЂљРЎР‚iР В»РЎРЉР В±Р С‘: ", _personage.Settings.AttackSpeed, 0, 10);
                 }
+
                 GUI.color = defaultColor;
             }
+
             GUILayout.EndVertical();
         }
     }

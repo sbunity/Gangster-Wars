@@ -1,16 +1,10 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class Center : MonoBehaviour
 {
-    public Transform GetTransform()
-    {
-        return transform;
-    }
+    public Transform GetTransform() => transform;
 
-    public Vector3 GetPosition()
-    {
-        return transform.position;
-    }
+    public Vector3 GetPosition() => transform.position;
 }

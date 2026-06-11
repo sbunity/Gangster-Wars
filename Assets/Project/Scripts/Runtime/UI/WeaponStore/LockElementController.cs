@@ -1,8 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
 using SBabchuk.Runtime.Services.Contracts;
-using UnityEngine;
-using UnityEngine.UI;
 using Zenject;
 
 namespace SBabchuk
@@ -14,9 +10,7 @@ namespace SBabchuk
         private IPlayerProgressService _progressService;
 
         [Inject]
-        private void Construct(
-            IAssetProvider assetProvider,
-            IPlayerProgressService progressService)
+        public void Construct(IAssetProvider assetProvider, IPlayerProgressService progressService)
         {
             _assetProvider = assetProvider;
             _progressService = progressService;
@@ -24,29 +18,20 @@ namespace SBabchuk
 
         public override void Initialisation(int _id)
         {
-            id = _id;
-
-            ///Отримуєм зброю з бази
+            Id = _id;
             var weaponStore = _assetProvider.WeaponStoreDatabase;
-            weaponInfo = weaponStore.GetWeapon(id);
+            weaponInfo = weaponStore.GetWeapon(Id);
 
-            if (priceBuy)
-            {
-                priceBuy.text = weaponInfo.price.ToString();
-            }
+            if (PriceBuy)
+                PriceBuy.text = weaponInfo.Price.ToString();
 
-            if (bttnBuy)
-            {
-                bttnBuy.interactable = _progressService.CanBuy(weaponInfo.price);
-            }
+            if (BttnBuy)
+                BttnBuy.interactable = _progressService.CanBuy(weaponInfo.Price);
         }
 
-        /// <summary>
-        /// Поукупка зброї
-        /// </summary>
         public override void Buy()
         {
-            _progressService.BuyWeapon(id);
+            _progressService.BuyWeapon(Id);
         }
     }
 }

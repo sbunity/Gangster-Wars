@@ -1,47 +1,35 @@
-using System.Collections;
-using System.Collections.Generic;
 using SBabchuk.Runtime.Architecture;
 using SBabchuk.Runtime.Services.Contracts;
 using UnityEngine;
 using UnityEngine.UI;
 using Zenject;
+using UnityEngine.Serialization;
 
 namespace SBabchuk
 {
     public class WSElementController : MonoBehaviour
     {
-        [Header("Для якої зброї")]
-        public WeaponsName weapon;
+        [SerializeField, FormerlySerializedAs("weapon")]
+        private WeaponsName _weapon;
 
-        [Header("Іконка")]
-        public Image ico;
+        [SerializeField, FormerlySerializedAs("ico")]
+        private Image _icon;
 
-        [Header("Назва")]
-        public Text txt;
+        [SerializeField, FormerlySerializedAs("txt")]
+        private Text _text;
 
-        [Header("Компоненти, які змінюють вигляд")]
-        private SpriteSwap panel;
-
-        [Header("Елементи при заблокуванні")]
-        private LockElementController lockElementController;
-
-        [Header("Елементи при розблокуванні")]
-        private UnlockElementController unlockElementController;
-
-        private AmmunitionsController ammunitionsController;
-
-        private WeaponShortInfo weaponShortInfo;
-
-        private Weapon weaponInfo;
+        private SpriteSwap _panel;
+        private LockElementController _lockElementController;
+        private UnlockElementController _unlockElementController;
+        private AmmunitionsController _ammunitionsController;
+        private WeaponShortInfo _weaponShortInfo;
+        private Weapon _weaponInfo;
         private IAssetProvider _assetProvider;
         private IPlayerProgressService _progressService;
         private SignalBus _signalBus;
 
         [Inject]
-        private void Construct(
-            IAssetProvider assetProvider,
-            IPlayerProgressService progressService,
-            SignalBus signalBus)
+        public void Construct(IAssetProvider assetProvider, IPlayerProgressService progressService, SignalBus signalBus)
         {
             _assetProvider = assetProvider;
             _progressService = progressService;
@@ -65,60 +53,36 @@ namespace SBabchuk
 
         private void Start()
         {
-            ///Отримуєм SpriteSwap
-            panel = GetComponentInChildren<SpriteSwap>();
-
-            ///Отримуєм LockElementController
-            lockElementController = GetComponentInChildren<LockElementController>(true);
-
-            ///Отримуєм UnlockElementController
-            unlockElementController = GetComponentInChildren<UnlockElementController>(true);
-
-            ///Отримуєм AmmunitionsController
-            ammunitionsController = GetComponentInChildren<AmmunitionsController>(true);
-
-            ///Отримуєм зброю з бази
+            _panel = GetComponentInChildren<SpriteSwap>();
+            _lockElementController = GetComponentInChildren<LockElementController>(true);
+            _unlockElementController = GetComponentInChildren<UnlockElementController>(true);
+            _ammunitionsController = GetComponentInChildren<AmmunitionsController>(true);
             var weaponStore = _assetProvider.WeaponStoreDatabase;
-            weaponInfo = weaponStore.GetWeapon((int)weapon);
-
-            ico.sprite = weaponInfo.ico;
-
-            txt.text = weaponInfo.name;
-
-            ///Перевірка на інтерактивність
+            _weaponInfo = weaponStore.GetWeapon((int)_weapon);
+            _icon.sprite = _weaponInfo.Icon;
+            _text.text = _weaponInfo.Name;
             CheckInteractive();
         }
 
-        /// <summary>
-        /// Перевірка на інтерактивність
-        /// </summary>
         private void CheckInteractive()
         {
-            weaponShortInfo = _progressService.GetWeaponShortInfo((int)weapon);
-
-            ChangeLock(weaponShortInfo.isBuy == mySwitch.On);
+            _weaponShortInfo = _progressService.GetWeaponShortInfo((int)_weapon);
+            ChangeLock(_weaponShortInfo.IsBuy == mySwitch.On);
         }
 
-        /// <summary>
-        /// Включаєм певні елементи 
-        /// </summary>
-        /// <param name="_value"></param>
         private void ChangeLock(bool _value = false)
         {
-            panel.Change(_value);
+            _panel.Change(_value);
+            _lockElementController.gameObject.SetActive(!_value);
+            _unlockElementController.gameObject.SetActive(_value);
+            
+            if (_lockElementController.gameObject.activeSelf)
+                _lockElementController.Initialisation((int)_weapon);
 
-            lockElementController.gameObject.SetActive(!_value);
-
-            unlockElementController.gameObject.SetActive(_value);
-
-            if (lockElementController.gameObject.activeSelf)
-                lockElementController.Initialisation((int)weapon);
-
-            if (unlockElementController.gameObject.activeSelf)
+            if (_unlockElementController.gameObject.activeSelf)
             {
-                unlockElementController.Initialisation((int)weapon);
-
-                ammunitionsController.Initialisation((int)weapon);
+                _unlockElementController.Initialisation((int)_weapon);
+                _ammunitionsController.Initialisation((int)_weapon);
             }
         }
     }

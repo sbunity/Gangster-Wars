@@ -20,68 +20,56 @@ namespace SBabchuk.Runtime.Services
 
         public PlayerPrefs PlayerPrefs => Preferences.PlayerPrefs;
         public PlayerPrefsDatabase Preferences => _assetProvider.PlayerPrefsDatabase;
-        public int Coins => PlayerPrefs.coin;
-        public int CurrentLevelId => PlayerPrefs.levelID;
-        public int SelectedWeaponId => PlayerPrefs.selectedWeaponID;
-        public int SelectedGrenadeId => PlayerPrefs.selectedGrenadeID;
-        public int SelectedDefenceId => PlayerPrefs.selectedDefenceID;
+        public int Coins => PlayerPrefs.Coin;
+        public int CurrentLevelId => PlayerPrefs.LevelId;
+        public int SelectedWeaponId => PlayerPrefs.SelectedWeaponId;
+        public int SelectedGrenadeId => PlayerPrefs.SelectedGrenadeId;
+        public int SelectedDefenceId => PlayerPrefs.SelectedDefenceId;
 
         public void AddCoins(int value)
         {
-            PlayerPrefs.coin += value;
-            if (PlayerPrefs.coin < 0)
-                PlayerPrefs.coin = 0;
+            PlayerPrefs.Coin += value;
+            if (PlayerPrefs.Coin < 0)
+                PlayerPrefs.Coin = 0;
 
             SaveProgress();
-            _signalBus.Fire(new CoinsChangedSignal(PlayerPrefs.coin));
+            _signalBus.Fire(new CoinsChangedSignal(PlayerPrefs.Coin));
         }
 
-        public bool CanBuy(int price)
-        {
-            return Preferences.OpportunityBuy(price);
-        }
+        public bool CanBuy(int price) 
+            => Preferences.OpportunityBuy(price);
 
         public void SetCurrentLevel(int id)
         {
-            PlayerPrefs.levelID = id;
+            PlayerPrefs.LevelId = id;
             SaveProgress();
         }
 
         public void CompleteCurrentLevel(float barricadeHealthPercent)
         {
-            var levelShortInfo = PlayerPrefs.GetLevelShortInfo(PlayerPrefs.levelID);
+            var levelShortInfo = PlayerPrefs.GetLevelShortInfo(PlayerPrefs.LevelId);
             if (levelShortInfo == null)
                 return;
 
-            levelShortInfo.isCompleted = mySwitch.On;
+            levelShortInfo.IsCompleted = mySwitch.On;
             Preferences.SetStars(levelShortInfo, barricadeHealthPercent);
             SaveProgress();
         }
 
-        public WeaponShortInfo GetWeaponShortInfo(int id)
-        {
-            return PlayerPrefs.GetWeaponShortInfo(id);
-        }
+        public WeaponShortInfo GetWeaponShortInfo(int id) 
+            => PlayerPrefs.GetWeaponShortInfo(id);
 
-        public GrenadeShortInfo GetGrenadeShortInfo(int id)
-        {
-            return PlayerPrefs.GetGrenadeShortInfo(id);
-        }
+        public GrenadeShortInfo GetGrenadeShortInfo(int id) 
+            => PlayerPrefs.GetGrenadeShortInfo(id);
 
-        public DefenceShortInfo GetDefenceShortInfo(int id)
-        {
-            return PlayerPrefs.GetDefenceShortInfo(id);
-        }
+        public DefenceShortInfo GetDefenceShortInfo(int id) 
+            => PlayerPrefs.GetDefenceShortInfo(id);
 
-        public PersonageShortInfo GetPersonageShortInfo(int id)
-        {
-            return PlayerPrefs.GetPersonageShortInfo(id);
-        }
+        public PersonageShortInfo GetPersonageShortInfo(int id) 
+            => PlayerPrefs.GetPersonageShortInfo(id);
 
-        public LevelShortInfo GetLevelShortInfo(int id)
-        {
-            return PlayerPrefs.GetLevelShortInfo(id);
-        }
+        public LevelShortInfo GetLevelShortInfo(int id) 
+            => PlayerPrefs.GetLevelShortInfo(id);
 
         public void SetWeaponAmmo(WeaponsName weapon, int value)
         {
@@ -89,11 +77,11 @@ namespace SBabchuk.Runtime.Services
             if (weaponShortInfo == null)
                 return;
 
-            weaponShortInfo.countPatrons += value;
+            weaponShortInfo.AmmoCount += value;
             SaveProgress();
+            _signalBus.Fire(new WeaponAmmoChangedSignal(weapon, weaponShortInfo.AmmoCount));
 
-            _signalBus.Fire(new WeaponAmmoChangedSignal(weapon, weaponShortInfo.countPatrons));
-            if (weaponShortInfo.countPatrons == 0)
+            if (weaponShortInfo.AmmoCount == 0)
                 FireProgressChanged();
         }
 
@@ -104,8 +92,8 @@ namespace SBabchuk.Runtime.Services
             if (weaponShortInfo == null || weapon == null)
                 return;
 
-            weaponShortInfo.isBuy = mySwitch.On;
-            AddCoins(-weapon.price);
+            weaponShortInfo.IsBuy = mySwitch.On;
+            AddCoins(-weapon.Price);
             FireProgressChanged();
         }
 
@@ -116,9 +104,10 @@ namespace SBabchuk.Runtime.Services
             if (weaponShortInfo == null || weapon == null)
                 return;
 
-            weaponShortInfo.countPatrons += weapon.magazine;
+            weaponShortInfo.AmmoCount += weapon.Magazine;
+
             if (!isFree)
-                AddCoins(-weapon.priceMagazine);
+                AddCoins(-weapon.PriceMagazine);
             else
                 SaveProgress();
 
@@ -132,13 +121,14 @@ namespace SBabchuk.Runtime.Services
             if (weaponShortInfo == null || weapon == null)
                 return;
 
-            if (weaponShortInfo.upgradeID >= weapon.upgrades.Count - 1)
+            if (weaponShortInfo.UpgradeId >= weapon.Upgrades.Count - 1)
                 return;
 
-            weaponShortInfo.upgradeID++;
-            var upgrade = _assetProvider.WeaponStoreDatabase.GetUpgrade(id, weaponShortInfo.upgradeID);
+            weaponShortInfo.UpgradeId++;
+            var upgrade = _assetProvider.WeaponStoreDatabase.GetUpgrade(id, weaponShortInfo.UpgradeId);
+            
             if (upgrade != null)
-                AddCoins(-upgrade.price);
+                AddCoins(-upgrade.Price);
             else
                 SaveProgress();
 
@@ -152,11 +142,11 @@ namespace SBabchuk.Runtime.Services
             if (grenadeShortInfo == null || grenade == null)
                 return;
 
-            if (grenadeShortInfo.isBuy == mySwitch.On)
+            if (grenadeShortInfo.IsBuy == mySwitch.On)
             {
-                grenadeShortInfo.count++;
+                grenadeShortInfo.Count++;
                 if (!isFree)
-                    AddCoins(-grenade.price);
+                    AddCoins(-grenade.Price);
                 else
                     SaveProgress();
             }
@@ -170,7 +160,7 @@ namespace SBabchuk.Runtime.Services
             if (grenadeShortInfo == null)
                 return;
 
-            grenadeShortInfo.count--;
+            grenadeShortInfo.Count--;
             SaveProgress();
             FireProgressChanged();
         }
@@ -182,14 +172,14 @@ namespace SBabchuk.Runtime.Services
             if (defenceShortInfo == null || defence == null)
                 return;
 
-            defenceShortInfo.isBuy = mySwitch.On;
-            AddCoins(-defence.price);
+            defenceShortInfo.IsBuy = mySwitch.On;
+            AddCoins(-defence.Price);
             FireProgressChanged();
         }
 
         public void SelectDefence(int id)
         {
-            PlayerPrefs.selectedDefenceID = id;
+            PlayerPrefs.SelectedDefenceId = id;
             SaveProgress();
             FireProgressChanged();
         }
@@ -201,13 +191,14 @@ namespace SBabchuk.Runtime.Services
             if (defenceShortInfo == null || defence == null)
                 return;
 
-            if (defenceShortInfo.upgradeID >= defence.upgrades.Count - 1)
+            if (defenceShortInfo.UpgradeId >= defence.Upgrades.Count - 1)
                 return;
 
-            defenceShortInfo.upgradeID++;
-            var upgrade = _assetProvider.DefenseStoreDatabase.GetUpgrade(id, defenceShortInfo.upgradeID);
+            defenceShortInfo.UpgradeId++;
+            var upgrade = _assetProvider.DefenseStoreDatabase.GetUpgrade(id, defenceShortInfo.UpgradeId);
+            
             if (upgrade != null)
-                AddCoins(-upgrade.price);
+                AddCoins(-upgrade.Price);
             else
                 SaveProgress();
 
@@ -221,8 +212,8 @@ namespace SBabchuk.Runtime.Services
             if (personageShortInfo == null || personage == null)
                 return;
 
-            personageShortInfo.isBuy = mySwitch.On;
-            AddCoins(-personage.price);
+            personageShortInfo.IsBuy = mySwitch.On;
+            AddCoins(-personage.Price);
             FireProgressChanged();
         }
 
@@ -233,27 +224,24 @@ namespace SBabchuk.Runtime.Services
             if (personageShortInfo == null || personage == null)
                 return;
 
-            if (personageShortInfo.upgradeID >= personage.upgrades.Count - 1)
+            if (personageShortInfo.UpgradeId >= personage.Upgrades.Count - 1)
                 return;
 
-            personageShortInfo.upgradeID++;
-            var upgrade = _assetProvider.MainPlayerDatabase.GetUpgrade(id, personageShortInfo.upgradeID);
+            personageShortInfo.UpgradeId++;
+            var upgrade = _assetProvider.MainPlayerDatabase.GetUpgrade(id, personageShortInfo.UpgradeId);
+            
             if (upgrade != null)
-                AddCoins(-upgrade.price);
+                AddCoins(-upgrade.Price);
             else
                 SaveProgress();
 
             FireProgressChanged();
         }
 
-        private void SaveProgress()
-        {
-            _saveService.SaveAsync(Preferences).Forget();
-        }
+        private void SaveProgress() 
+            => _saveService.SaveAsync(Preferences).Forget();
 
-        private void FireProgressChanged()
-        {
-            _signalBus.Fire<ProgressUpgradedSignal>();
-        }
+        private void FireProgressChanged() 
+            => _signalBus.Fire<ProgressUpgradedSignal>();
     }
 }

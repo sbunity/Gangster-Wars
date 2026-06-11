@@ -1,35 +1,36 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace SBabchuk
 {
     public class PersistableSO : MonoBehaviour
     {
-        [Header("База, що змынюэться ы ъъ потрыбно пыдгружати")]
-        public List<ScriptableObject> objectsToPersist;
+        [SerializeField, FormerlySerializedAs("objectsToPersist")]
+        private List<ScriptableObject> _objectsToPersist;
 
-        [Header("База даних PlayerPrefs")]
-        public PlayerPrefsDatabase PlayerPrefs;
+        [SerializeField, FormerlySerializedAs("PlayerPrefs")]
+        private PlayerPrefsDatabase _playerPrefs;
 
-        [Header("База даних зброї")]
-        public WeaponStoreDatabase WeaponStore;
+        [SerializeField, FormerlySerializedAs("WeaponStore")]
+        private WeaponStoreDatabase _weaponStore;
 
-        [Header("База даних гранат")]
-        public BombStoreDatabase BombStore;
+        [SerializeField, FormerlySerializedAs("BombStore")]
+        private BombStoreDatabase _bombStore;
 
-        [Header("База даних перепон")]
-        public DefenseStoreDatabase DefenceStore;
+        [SerializeField, FormerlySerializedAs("DefenceStore")]
+        private DefenseStoreDatabase _defenceStore;
 
-        [Header("База даних персонажів")]
-        public MainPlayerDatabase PlayerStore;
+        [SerializeField, FormerlySerializedAs("PlayerStore")]
+        private MainPlayerDatabase _playerStore;
 
-        [Header("База даних ворогів")]
-        public EnemyDatabase Enemy;
+        [SerializeField, FormerlySerializedAs("Enemy")]
+        private EnemyDatabase _enemy;
 
-        [Header("База даних лквклів")]
-        public LevelDatabase Level;
+        [SerializeField, FormerlySerializedAs("Level")]
+        private LevelDatabase _level;
 
-        [Header("База даних пуль")]
-        public BulletDatabase Bullet;
+        [SerializeField, FormerlySerializedAs("Bullet")]
+        private BulletDatabase _bullet;
     }
 }

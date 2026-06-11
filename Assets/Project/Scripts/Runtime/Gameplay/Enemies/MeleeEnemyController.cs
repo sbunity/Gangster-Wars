@@ -4,7 +4,7 @@ namespace SBabchuk
     {
         public override void Attacked()
         {
-            WaitNextAttack(properties.speedAtack);
+            WaitNextAttack(Properties.AttackSpeed);
         }
     }
 }

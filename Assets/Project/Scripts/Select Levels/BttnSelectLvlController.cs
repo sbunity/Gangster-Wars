@@ -5,31 +5,33 @@ using SBabchuk.Runtime.Services.Contracts;
 using UnityEngine;
 using UnityEngine.UI;
 using Zenject;
+using UnityEngine.Serialization;
 
 namespace SBabchuk
 {
     public class BttnSelectLvlController : MonoBehaviour
     {
-        [Header("За який рівень відповідає")]
-        public LevelsName level;
+        [SerializeField, FormerlySerializedAs("level")]
+        private LevelsName _level;
 
-        [Header("Чи пройдений")]
-        public mySwitch isCompleted;
+        [SerializeField, FormerlySerializedAs("isCompleted")]
+        private mySwitch _isCompleted;
+        public mySwitch IsCompleted { get => _isCompleted; set => _isCompleted = value; }
 
-        [Header("Назва рівня")]
-        public Text tittle;
+        [SerializeField, FormerlySerializedAs("tittle")]
+        private Text _title;
 
-        [Header("Кaртинка заблокованого рiвня")]
-        public GameObject lockImg;
+        [SerializeField, FormerlySerializedAs("lockImg")]
+        private GameObject _lockImg;
 
-        [Header("Кількість зірочок")]
-        public Image stars;
+        [SerializeField, FormerlySerializedAs("stars")]
+        private Image _stars;
 
-        [Header("Кількість зірочок")]
-        public List<Sprite> starsSprite;
+        [SerializeField, FormerlySerializedAs("starsSprite")]
+        private List<Sprite> _starsSprite;
 
-        [Header("Залешності")]
-        public List<BttnSelectLvlController> predecessors = new List<BttnSelectLvlController>();
+        [SerializeField, FormerlySerializedAs("predecessors")]
+        private List<BttnSelectLvlController> _predecessors = new List<BttnSelectLvlController>();
 
         private LevelDatabase _database;
         private Level _properties;
@@ -38,10 +40,7 @@ namespace SBabchuk
         private ISceneLoaderService _sceneLoaderService;
 
         [Inject]
-        private void Construct(
-            IAssetProvider assetProvider,
-            IPlayerProgressService progressService,
-            ISceneLoaderService sceneLoaderService)
+        public void Construct(IAssetProvider assetProvider, IPlayerProgressService progressService, ISceneLoaderService sceneLoaderService)
         {
             _assetProvider = assetProvider;
             _progressService = progressService;
@@ -51,7 +50,7 @@ namespace SBabchuk
         private IEnumerator Start()
         {
             _database = _assetProvider.LevelDatabase;
-            Init(level);
+            Init(_level);
 
             yield return null;
 
@@ -61,41 +60,39 @@ namespace SBabchuk
         public void Init(LevelsName targetLevel)
         {
             _properties = _database.GetLevel((int)targetLevel);
-            tittle.text = _properties.name;
-
+            _title.text = _properties.Name;
             var levelShortInfo = _progressService.GetLevelShortInfo((int)targetLevel);
-            isCompleted = levelShortInfo.isCompleted;
-            stars.sprite = GetSpriteStar(levelShortInfo.stars);
+            _isCompleted = levelShortInfo.IsCompleted;
+            _stars.sprite = GetSpriteStar(levelShortInfo.Stars);
         }
 
         public Sprite GetSpriteStar(int value)
         {
-            return starsSprite[value];
+            return _starsSprite[value];
         }
 
         public void RefreshLockState()
         {
             var isLocked = false;
-
-            foreach (var predecessor in predecessors)
+            foreach (var predecessor in _predecessors)
             {
-                if (predecessor != null && predecessor.isCompleted != mySwitch.On)
+                if (predecessor != null && predecessor.IsCompleted != mySwitch.On)
                 {
                     isLocked = true;
                     break;
                 }
             }
 
-            lockImg.SetActive(isLocked);
-            stars.enabled = !lockImg.activeSelf;
+            _lockImg.SetActive(isLocked);
+            _stars.enabled = !_lockImg.activeSelf;
         }
 
         public void StartLevel()
         {
-            if (lockImg.activeSelf)
+            if (_lockImg.activeSelf)
                 return;
-
-            _progressService.SetCurrentLevel((int)level);
+                
+            _progressService.SetCurrentLevel((int)_level);
             _sceneLoaderService.LoadAsync(Scene.GameScene).Forget();
         }
     }

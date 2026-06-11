@@ -8,9 +8,7 @@ namespace SBabchuk.Runtime.Services
     public sealed class LevelService : ILevelService, ILevelFlowService
     {
         private readonly SignalBus _signalBus;
-
         public event Action<Panels> Finished;
-
         public Level CurrentLevel { get; private set; }
         public int CurrentWave { get; private set; }
         public bool IsFinished { get; private set; }
@@ -38,7 +36,7 @@ namespace SBabchuk.Runtime.Services
         {
             if (IsFinished)
                 return;
-
+                
             IsFinished = true;
             LastPanel = panel;
             Finished?.Invoke(panel);

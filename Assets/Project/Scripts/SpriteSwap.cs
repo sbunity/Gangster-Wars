@@ -1,26 +1,24 @@
-﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Serialization;
 
 public class SpriteSwap : MonoBehaviour
 {
-    [Header("Спрайт, для активного стану")]
-    public Sprite active;
+    [SerializeField, FormerlySerializedAs("active")]
+    private Sprite _active;
 
-    [Header("Спрайт, для неактивного стану")]
-    public Sprite inactive;
+    [SerializeField, FormerlySerializedAs("inactive")]
+    private Sprite _inactive;
 
-    [Header("Компонент картинка")]
-    private Image img;
+    private Image _img;
 
     private void Awake()
     {
-        img = GetComponent<Image>();
+        _img = GetComponent<Image>();
     }
 
     public void Change(bool _value = true)
     {
-        img.sprite = (_value) ? active : inactive;
+        _img.sprite = _value ? _active : _inactive;
     }
 }

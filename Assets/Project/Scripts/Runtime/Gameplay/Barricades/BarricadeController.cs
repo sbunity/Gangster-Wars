@@ -1,38 +1,29 @@
-﻿using System.Collections;
 using System.Collections.Generic;
 using SBabchuk.Runtime.Architecture;
 using SBabchuk.Runtime.Services.Contracts;
 using UnityEngine;
+using UnityEngine.Serialization;
 using Zenject;
 
 namespace SBabchuk
 {
     public class BarricadeController : MonoBehaviour
     {
-        [Header("Поточна к-сть життів")]
-        public int currentHealth = 10;
+        [SerializeField, FormerlySerializedAs("healthbar")]
+        private FilledBarController _healthBar;
+        
+        public int CurrentHealth { get; private set; } = 10;
+        public int MaxHealth { get; private set; }
 
-        [Header("Максимальна кількість життів")]
-        [HideInInspector] public int maxHealth;
-
-        [Header("Відображення життя")]
-        public FilledBarController healthbar;
-
-        [Header("Відображення")]
-        private SpriteRenderer sRenderer;
-
-        private List<Ico> icons = new List<Ico>();
+        private SpriteRenderer _spriteRenderer;
+        private List<Ico> _defenceIcons = new();
         private IAssetProvider _assetProvider;
         private IPlayerProgressService _progressService;
         private ILevelFlowService _levelFlowService;
         private SignalBus _signalBus;
-
+        
         [Inject]
-        private void Construct(
-            IAssetProvider assetProvider,
-            IPlayerProgressService progressService,
-            ILevelFlowService levelFlowService,
-            SignalBus signalBus)
+        public void Construct(IAssetProvider assetProvider, IPlayerProgressService progressService, ILevelFlowService levelFlowService, SignalBus signalBus)
         {
             _assetProvider = assetProvider;
             _progressService = progressService;
@@ -40,9 +31,9 @@ namespace SBabchuk
             _signalBus = signalBus;
         }
 
-        public void Awake()
+        private void Awake()
         {
-            sRenderer = GetComponent<SpriteRenderer>();
+            _spriteRenderer = GetComponent<SpriteRenderer>();
         }
 
         private void Start()
@@ -53,110 +44,65 @@ namespace SBabchuk
         public void Init()
         {
             var selectedDefenceId = _progressService.SelectedDefenceId;
-
-            DefenceShortInfo shortInfo = _progressService.GetDefenceShortInfo(selectedDefenceId);
-
+            var shortInfo = _progressService.GetDefenceShortInfo(selectedDefenceId);
             var defenceStore = _assetProvider.DefenseStoreDatabase;
-
-            DUpgrade upgrade = defenceStore.GetUpgrade(shortInfo.id, shortInfo.upgradeID);
-
-            Defense defence = defenceStore.GetDefense(shortInfo.id);
-
-            if (upgrade != null)
-            {
-                currentHealth = upgrade.settings.health;
-            }
-            else
-            {
-                currentHealth = defence.settings.health;
-            }
-
-            icons = defence.icons;
-
-            maxHealth = currentHealth;
-
-            //CheckHealth();
-
-            SetHealth(maxHealth);
+            var upgrade = defenceStore.GetUpgrade(shortInfo.Id, shortInfo.UpgradeId);
+            var defence = defenceStore.GetDefense(shortInfo.Id);
+            CurrentHealth = (upgrade != null) ? upgrade.Settings.Health : defence.Settings.Health;
+            _defenceIcons = defence.Icons;
+            MaxHealth = CurrentHealth;
+            SetHealth(MaxHealth);
         }
 
-        public void OnTriggerEnter2D(Collider2D other)
+        private void OnTriggerEnter2D(Collider2D other)
         {
             if (other.tag == "Bullet")
             {
-                BaseBulletController _bullet = other.gameObject.GetComponent<BaseBulletController>();
-
-                if (_bullet != null) { 
-                    TakeDamage(_bullet.damage);
-                    _bullet.Pop();
+                var bullet = other.gameObject.GetComponent<BaseBulletController>();
+                if (bullet != null)
+                {
+                    TakeDamage(bullet.Damage);
+                    bullet.Pop();
                 }
             }
         }
 
-        /// <summary>
-        /// Отримання шкоди
-        /// </summary>
-        /// <param name="_damage"></param>
-        public void TakeDamage(int _damage)
+        public void TakeDamage(int damage)
         {
-            Debug.Log("Отримання урона: " + _damage);
-
-            if (currentHealth - _damage <= 0)
+            if (CurrentHealth - damage <= 0)
             {
-                SetHealth(-currentHealth);
-
+                SetHealth(-CurrentHealth);
                 _levelFlowService.Finish(Panels.Lose);
             }
             else
             {
-                SetHealth(-_damage);
+                SetHealth(-damage);
             }
         }
 
-        /// <summary>
-        /// Добавляє життя
-        /// </summary>
-        /// <param name="_value"></param>
-        public void SetHealth(int _value)
+        public void SetHealth(int value)
         {
-            if (currentHealth + _value > maxHealth)
-            {
-                currentHealth = maxHealth;
-            }
-            else if (currentHealth - _value < 0)
-            {
-                currentHealth = 0;
-            }
+            if (CurrentHealth + value > MaxHealth)
+                CurrentHealth = MaxHealth;
+            else if (CurrentHealth - value < 0)
+                CurrentHealth = 0;
             else
-            {
-                currentHealth += _value;
-            }
-
-            CheckHealth(_value);
-
-            _signalBus.Fire(new BarricadeHealthChangedSignal((float)currentHealth / maxHealth));
+                CurrentHealth += value;
+            CheckHealth(value);
+            _signalBus.Fire(new BarricadeHealthChangedSignal((float)CurrentHealth / MaxHealth));
         }
 
-        private void CheckHealth(int _value)
+        private void CheckHealth(int value)
         {
-            if (currentHealth >= 0.75f * maxHealth)
-            {
-                sRenderer.sprite = icons[0].ico;
-            }
-            else if(currentHealth >= 0.25f * maxHealth)
-            {
-                sRenderer.sprite = icons[1].ico;
-            }
-            else if (currentHealth > 0)
-            {
-                sRenderer.sprite = icons[2].ico;
-            }
+            if (CurrentHealth >= 0.75f * MaxHealth)
+                _spriteRenderer.sprite = _defenceIcons[0].Icon;
+            else if (CurrentHealth >= 0.25f * MaxHealth)
+                _spriteRenderer.sprite = _defenceIcons[1].Icon;
+            else if (CurrentHealth > 0)
+                _spriteRenderer.sprite = _defenceIcons[2].Icon;
             else
-            {
-                sRenderer.sprite = icons[3].ico;
-            }
-
-            healthbar.UpdateFlled((float)_value / (float)maxHealth);
+                _spriteRenderer.sprite = _defenceIcons[3].Icon;
+            _healthBar.UpdateFlled((float)value / (float)MaxHealth);
         }
     }
 }

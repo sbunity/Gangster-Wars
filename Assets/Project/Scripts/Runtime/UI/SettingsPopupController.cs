@@ -13,13 +13,13 @@ namespace SBabchuk
         [SerializeField] private Button closeButton;
         [SerializeField] private bool pauseGameOnOpen;
 
-        private float previousTimeScale = 1f;
-        private bool isOpened;
-        private bool isInitialized;
+        private float _previousTimeScale = 1f;
+        private bool _isOpened;
+        private bool _isInitialized;
         private IAudioSettingsService _audioSettingsService;
 
         [Inject]
-        private void Construct(IAudioSettingsService audioSettingsService)
+        public void Construct(IAudioSettingsService audioSettingsService)
         {
             _audioSettingsService = audioSettingsService;
         }
@@ -28,10 +28,10 @@ namespace SBabchuk
         {
             if (closeButton)
                 closeButton.onClick.AddListener(Close);
-
+            
             if (musicToggle)
                 musicToggle.onValueChanged.AddListener(SetMusicEnabled);
-
+            
             if (soundToggle)
                 soundToggle.onValueChanged.AddListener(SetSoundEnabled);
         }
@@ -45,10 +45,10 @@ namespace SBabchuk
         {
             if (closeButton)
                 closeButton.onClick.RemoveListener(Close);
-
+            
             if (musicToggle)
                 musicToggle.onValueChanged.RemoveListener(SetMusicEnabled);
-
+            
             if (soundToggle)
                 soundToggle.onValueChanged.RemoveListener(SetSoundEnabled);
         }
@@ -56,41 +56,39 @@ namespace SBabchuk
         public void Open()
         {
             RefreshView();
-
-            if (pauseGameOnOpen && !isOpened)
+            if (pauseGameOnOpen && !_isOpened)
             {
-                previousTimeScale = Time.timeScale;
+                _previousTimeScale = Time.timeScale;
                 Time.timeScale = 0f;
             }
 
-            isOpened = true;
-
+            _isOpened = true;
             if (panel)
                 panel.SetActive(true);
         }
 
         public void Close()
         {
-            if (pauseGameOnOpen && isOpened)
-                Time.timeScale = previousTimeScale;
-
-            isOpened = false;
+            if (pauseGameOnOpen && _isOpened)
+                Time.timeScale = _previousTimeScale;
+            
+            _isOpened = false;
             CloseWithoutTimeScale();
         }
 
         public void SetMusicEnabled(bool _value)
         {
-            if (!isInitialized)
+            if (!_isInitialized)
                 return;
-
+            
             _audioSettingsService?.SetMusicEnabled(_value);
         }
 
         public void SetSoundEnabled(bool _value)
         {
-            if (!isInitialized)
+            if (!_isInitialized)
                 return;
-
+            
             _audioSettingsService?.SetSoundEnabled(_value);
         }
 
@@ -98,11 +96,11 @@ namespace SBabchuk
         {
             if (musicToggle)
                 musicToggle.SetIsOnWithoutNotify(_audioSettingsService == null || _audioSettingsService.IsMusicEnabled);
-
+            
             if (soundToggle)
                 soundToggle.SetIsOnWithoutNotify(_audioSettingsService == null || _audioSettingsService.IsSoundEnabled);
-
-            isInitialized = true;
+            
+            _isInitialized = true;
         }
 
         private void CloseWithoutTimeScale()

@@ -20,41 +20,36 @@ namespace SBabchuk.Runtime.Services
         public async UniTask SpawnAsync(Level level, IReadOnlyList<Transform> spawnPoints, IReadOnlyList<Transform> targetPoints)
         {
             _isStopped = false;
-
-            for (var waveIndex = 0; waveIndex < level.waves.Count; waveIndex++)
+            for (var waveIndex = 0; waveIndex < level.Waves.Count; waveIndex++)
             {
-                var wave = level.waves[waveIndex];
-                await UniTask.Delay(System.TimeSpan.FromSeconds(wave.startDelay));
+                var wave = level.Waves[waveIndex];
+                await UniTask.Delay(System.TimeSpan.FromSeconds(wave.StartDelay));
 
                 if (_isStopped)
                     return;
 
-                foreach (var enemyOfWave in wave.enemies)
+                foreach (var enemyOfWave in wave.Enemies)
                 {
-                    for (var index = 0; index < enemyOfWave.countEnemy; index++)
+                    for (var index = 0; index < enemyOfWave.CountEnemy; index++)
                     {
                         if (_isStopped)
                             return;
 
                         var path = Random.Range(0, spawnPoints.Count);
                         _gameFactory.CreateEnemy(enemyOfWave, spawnPoints[path], targetPoints[path]);
-                        await UniTask.Delay(System.TimeSpan.FromSeconds(enemyOfWave.interval));
+                        await UniTask.Delay(System.TimeSpan.FromSeconds(enemyOfWave.Interval));
                     }
                 }
 
-                await UniTask.Delay(System.TimeSpan.FromSeconds(wave.delay));
+                await UniTask.Delay(System.TimeSpan.FromSeconds(wave.Delay));
             }
         }
 
         public void Stop()
         {
             _isStopped = true;
-
             foreach (var tween in _tweens)
-            {
-                if (tween != null)
-                    tween.Kill();
-            }
+                tween?.Kill();
 
             _tweens.Clear();
         }

@@ -4,30 +4,28 @@ using SBabchuk.Runtime.Services.Contracts;
 using UnityEngine;
 using UnityEngine.UI;
 using Zenject;
+using UnityEngine.Serialization;
 
 namespace SBabchuk
 {
     public class MainPlayerUnlockElementController : MonoBehaviour
     {
-        [Header("Поле для виведення вартості покупки апгрейда")]
-        public Text priceUpgrade;
+        [SerializeField, FormerlySerializedAs("priceUpgrade")]
+        private Text _priceUpgrade;
 
-        [Header("Кнопка покупки апгрейда")]
-        public Button bttnUpgrade;
+        [SerializeField, FormerlySerializedAs("bttnUpgrade")]
+        private Button _bttnUpgrade;
 
-        [Header("Кнопка і ціна для апгрейдів")]
-        public GameObject BuyUpgradeElements;
+        [SerializeField, FormerlySerializedAs("BuyUpgradeElements")]
+        private GameObject _buyUpgradeElements;
 
-        int price;
-
-        int personageID;
+        private int _price;
+        private int _personageID;
         private IAssetProvider _assetProvider;
         private IPlayerProgressService _progressService;
 
         [Inject]
-        private void Construct(
-            IAssetProvider assetProvider,
-            IPlayerProgressService progressService)
+        public void Construct(IAssetProvider assetProvider, IPlayerProgressService progressService)
         {
             _assetProvider = assetProvider;
             _progressService = progressService;
@@ -45,41 +43,34 @@ namespace SBabchuk
 
         private void InitialisationUpgrade(int _id)
         {
-            personageID = _id;
-
+            _personageID = _id;
             var personageShortInfo = _progressService.GetPersonageShortInfo(_id);
-
-            int _upgradeID = personageShortInfo.upgradeID + 1;
-
+            int _upgradeID = personageShortInfo.UpgradeId + 1;
             var playerStore = _assetProvider.MainPlayerDatabase;
             PUpgrade _upgrade = playerStore.GetUpgrade(_id, _upgradeID);
-
+            
             if (_upgrade != null)
             {
-                price = _upgrade.price;
-
-                if (priceUpgrade)
+                _price = _upgrade.Price;
+                if (_priceUpgrade)
                 {
-                    priceUpgrade.text = price.ToString();
+                    _priceUpgrade.text = _price.ToString();
                 }
 
-                if (bttnUpgrade)
+                if (_bttnUpgrade)
                 {
-                    bttnUpgrade.interactable = _progressService.CanBuy(price);
+                    _bttnUpgrade.interactable = _progressService.CanBuy(_price);
                 }
             }
             else
             {
-                BuyUpgradeElements.SetActive(false);
+                _buyUpgradeElements.SetActive(false);
             }
         }
 
-        /// <summary>
-        /// Поукупка апгрейда зброї
-        /// </summary>
         public void BuyUpgrade()
         {
-            _progressService.BuyPersonageUpgrade(personageID);
+            _progressService.BuyPersonageUpgrade(_personageID);
         }
     }
 }

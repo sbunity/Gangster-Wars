@@ -1,146 +1,112 @@
-using System.Collections;
-using System.Collections.Generic;
-using SBabchuk.Runtime.Gameplay.Bonuses;
-using UnityEngine;
 using DG.Tweening;
 using SBabchuk.Runtime.Architecture;
+using SBabchuk.Runtime.Gameplay.Bonuses;
 using SBabchuk.Runtime.Services.Contracts;
+using UnityEngine;
 using Zenject;
+using UnityEngine.Serialization;
 
 namespace SBabchuk
 {
     public class BonusController : ObjectControllerBase
     {
-        private const float FreeAmmoMagazineMultiplier = 0.6f;
+        private const float FREE_AMMO_MAGAZINE_MULTIPLIER = 0.6f;
 
-        public WeaponsName weaponsName;
+        [SerializeField, FormerlySerializedAs("weaponsName")]
+        private WeaponsName _weaponsName;
 
-        public GrenadesName grenadesName;
+        [SerializeField, FormerlySerializedAs("grenadesName")]
+        private GrenadesName _grenadesName;
 
-        private Tween autoCollectTween;
+        private Tween _autoCollectTween;
         private IAssetProvider _assetProvider;
         private IPlayerProgressService _progressService;
         private SignalBus _signalBus;
         private BonusView _view;
-
+        
         [Inject]
-        private void Construct(
-            IAssetProvider assetProvider,
-            IPlayerProgressService progressService,
-            SignalBus signalBus)
+        public void Construct(IAssetProvider assetProvider, IPlayerProgressService progressService, SignalBus signalBus)
         {
             _assetProvider = assetProvider;
             _progressService = progressService;
             _signalBus = signalBus;
         }
 
-        /// <summary>
-        /// Підписались на Енейбл
-        /// </summary>
         public override void Subscribe()
         {
             EasyTouch.On_TouchStart += OnTouchDown;
         }
 
-        /// <summary>
-        /// Підписались на Дізкйбл
-        /// </summary>
         public override void UnSubscribe()
         {
             EasyTouch.On_TouchStart -= OnTouchDown;
         }
 
-        /// <summary>
-        /// Підписались на Енейбл
-        /// </summary>
-        public void OnEnable()
+        private void OnEnable()
         {
             Subscribe();
         }
 
-        /// <summary>
-        /// Підписались на Дізкйбл
-        /// </summary>
-        public void OnDisable()
+        private void OnDisable()
         {
             UnSubscribe();
-
-            autoCollectTween?.Kill();
+            _autoCollectTween?.Kill();
         }
 
         private void Start()
         {
             _view = GetOrAdd<BonusView>();
             _view.Initialize();
-            //Init(this.transfor.position);
         }
 
-        /// <summary>
-        /// Ініціалізація властивостей
-        /// </summary>
-        public void Init(Vector3 _position)
+        public void Init(Vector3 position)
         {
             this.gameObject.SetActive(true);
-
-            autoCollectTween?.Kill();
-
+            _autoCollectTween?.Kill();
             InitColliders();
-
-            SetPosition(_position);
-
-            autoCollectTween = DOVirtual.DelayedCall(2f, Collect);
+            SetPosition(position);
+            _autoCollectTween = DOVirtual.DelayedCall(2f, Collect);
         }
 
-        /// <summary>
-        /// Нажаття пальцем
-        /// </summary>
         public override void OnTouchDown(Gesture gesture)
         {
             if (gesture.pickedObject == gameObject)
-            {
                 Collect();
-            }
         }
 
         private void Collect()
         {
             if (!gameObject.activeInHierarchy)
                 return;
-
-            if (weaponsName != WeaponsName.None)
+            if (_weaponsName != WeaponsName.None)
             {
-                Weapon weapon = _assetProvider.WeaponStoreDatabase.GetWeapon((int)weaponsName);
+                var weapon = _assetProvider.WeaponStoreDatabase.GetWeapon((int)_weaponsName);
                 if (weapon != null)
                 {
-                    int ammoCount = Mathf.Max(1, Mathf.CeilToInt(weapon.magazine * FreeAmmoMagazineMultiplier));
-
-                    _progressService.SetWeaponAmmo(weaponsName, ammoCount);
+                    var ammoCount = Mathf.Max(1, Mathf.CeilToInt(weapon.Magazine * FREE_AMMO_MAGAZINE_MULTIPLIER));
+                    _progressService.SetWeaponAmmo(_weaponsName, ammoCount);
                 }
             }
             else
             {
-                _progressService.BuyGrenade((int)grenadesName, true);
+                _progressService.BuyGrenade((int)_grenadesName, true);
             }
 
-            Pop(); //Повертаємось в пул
+            Pop();
         }
 
-        /// <summary>
-        /// Повернутись в пул
-        /// </summary>
         public void Pop()
         {
-            autoCollectTween?.Kill();
-
+            _autoCollectTween?.Kill();
             _signalBus.Fire(new BonusPoppedSignal(this));
-
-            this.gameObject.SetActive(false); //Виключаєм об*єкт
+            this.gameObject.SetActive(false);
         }
 
-        private T GetOrAdd<T>() where T : Component
+        private T GetOrAdd<T>()
+            where T : Component
         {
             var component = GetComponent<T>();
-            return component != null ? component : gameObject.AddComponent<T>();
+            return component ?? gameObject.AddComponent<T>();
         }
     }
 }

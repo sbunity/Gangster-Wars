@@ -1,31 +1,29 @@
 using SBabchuk.Runtime.Architecture;
 using UnityEngine;
 using Zenject;
+using UnityEngine.Serialization;
 
 public class UIPanelController : MonoBehaviour
 {
-    [Header("Панель не повинна зникати, вона є дочірна")]
-    public UIPanelController parentPanel;
+    [SerializeField, FormerlySerializedAs("parentPanel")]
+    private UIPanelController _parentPanel;
+    public UIPanelController ParentPanel { get => _parentPanel; set => _parentPanel = value; }
 
-    [Header("Чи варто ховати батькa при відкритті дочерної панельки")]
-    public bool hideIfShowChild;
+    [SerializeField, FormerlySerializedAs("hideIfShowChild")]
+    private bool _hideIfShowChild;
+    public bool HideIfShowChild { get => _hideIfShowChild; set => _hideIfShowChild = value; }
 
-    [Header("ID панельки")]
+    [SerializeField, FormerlySerializedAs("panel")]
+    private GameObject _panel;
+
     private int _instanceID;
-    public int InstanceID
-    {
-        get => _instanceID;
-        set => _instanceID = value;
-    }
-
-    [Header("Тіло панельки")]
-    public GameObject panel;
+    public int InstanceID { get => _instanceID; set => _instanceID = value; }
 
     private SignalBus _signalBus;
     private bool _isSubscribed;
 
     [Inject]
-    private void Construct(SignalBus signalBus)
+    public void Construct(SignalBus signalBus)
     {
         _signalBus = signalBus;
         Subscribe();
@@ -49,11 +47,10 @@ public class UIPanelController : MonoBehaviour
     public void Show(UIPanelController targetPanel)
     {
         _signalBus.Fire(new UIPanelReplaceSignal(targetPanel));
-
         if (targetPanel.InstanceID != InstanceID)
             return;
 
-        panel.SetActive(true);
+        _panel.SetActive(true);
     }
 
     public void Hide(UIPanelController targetPanel)
@@ -61,7 +58,7 @@ public class UIPanelController : MonoBehaviour
         if (targetPanel.InstanceID != InstanceID)
             return;
 
-        panel.SetActive(false);
+        _panel.SetActive(false);
     }
 
     private void Replace(UIPanelReplaceSignal signal)
@@ -70,10 +67,10 @@ public class UIPanelController : MonoBehaviour
         if (targetPanel.InstanceID == InstanceID)
             return;
 
-        if (targetPanel.parentPanel && InstanceID == targetPanel.parentPanel.InstanceID && !targetPanel.parentPanel.hideIfShowChild)
+        if (targetPanel.ParentPanel && InstanceID == targetPanel.ParentPanel.InstanceID && !targetPanel.ParentPanel.HideIfShowChild)
             return;
 
-        panel.SetActive(false);
+        _panel.SetActive(false);
     }
 
     private void Subscribe()
@@ -89,7 +86,7 @@ public class UIPanelController : MonoBehaviour
     {
         if (!_isSubscribed || _signalBus == null)
             return;
-
+            
         _signalBus.Unsubscribe<UIPanelReplaceSignal>(Replace);
         _isSubscribed = false;
     }

@@ -1,38 +1,39 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using SBabchuk.Runtime.Services.Contracts;
 using UnityEngine;
 using UnityEngine.UI;
 using Zenject;
+using UnityEngine.Serialization;
 
 namespace SBabchuk
 {
     public class UIBttnEnemyInfo : MonoBehaviour
     {
-        [Header("ІД юніта")]
-        public EnemiesName enemyID;
+        [SerializeField, FormerlySerializedAs("enemyID")]
+        private EnemiesName _enemyId;
 
-        [Header("Іконка")]
-        public Image ico;
+        [SerializeField, FormerlySerializedAs("ico")]
+        private Image _icon;
 
-        [Header("Життя")]
-        public Text health;
+        [SerializeField, FormerlySerializedAs("health")]
+        private Text _health;
 
-        [Header("Урон")]
-        public Text damage;
+        [SerializeField, FormerlySerializedAs("damage")]
+        private Text _damage;
 
-        [Header("ВІкно із вибором кількості")]
-        public GameObject windowConfirm;
+        [SerializeField, FormerlySerializedAs("windowConfirm")]
+        private GameObject _windowConfirm;
 
-        [Header("Кількість")]
-        public CounterController counterController;
+        [SerializeField, FormerlySerializedAs("counterController")]
+        private CounterController _counterController;
 
-        private EnemyDatabase enemyDatabase;
-
+        private EnemyDatabase _enemyDatabase;
+        
         [Inject]
-        private void Construct(IAssetProvider assetProvider)
+        public void Construct(IAssetProvider assetProvider)
         {
-            enemyDatabase = assetProvider.EnemyDatabase;
+            _enemyDatabase = assetProvider.EnemyDatabase;
         }
 
         private void Start()
@@ -42,20 +43,16 @@ namespace SBabchuk
 
         private void SetInfo()
         {
-            Enemy enemy = enemyDatabase.GetEnemy((int)enemyID);
-
-            ico.sprite = enemy.ico;
-
-            health.text = "Життя: " + enemy.health.ToString();
-
-            damage.text = "Урон: " + enemy.damage.ToString();
+            Enemy enemy = _enemyDatabase.GetEnemy((int)_enemyId);
+            _icon.sprite = enemy.Icon;
+            _health.text = "Р–РёС‚С‚СЏ: " + enemy.Health.ToString();
+            _damage.text = "РЈСЂРѕРЅ: " + enemy.Damage.ToString();
         }
 
         public void Click()
         {
-            windowConfirm.SetActive(true);
-
-            counterController.SetEnemyID((int)enemyID);
+            _windowConfirm.SetActive(true);
+            _counterController.SetEnemyID((int)_enemyId);
         }
     }
 }

@@ -4,24 +4,26 @@ using SBabchuk.Runtime.Architecture;
 using UnityEngine;
 using UnityEngine.UI;
 using Zenject;
+using UnityEngine.Serialization;
 
 namespace SBabchuk
 {
-
     public class LoadWeaponUIInfo : MonoBehaviour
     {
-        [Header("Тип гранати")]
-        public WeaponsName type;
+        [SerializeField, FormerlySerializedAs("type")]
+        private WeaponsName _type;
+        public WeaponsName Type { get => _type; set => _type = value; }
 
-        [Header("Кількість")]
-        public Text count;
+        [SerializeField, FormerlySerializedAs("count")]
+        private Text _count;
 
-        [Header("Кнопка")]
-        public Button bttn;
+        [SerializeField, FormerlySerializedAs("bttn")]
+        private Button _bttn;
+
         private SignalBus _signalBus;
 
         [Inject]
-        private void Construct(SignalBus signalBus)
+        public void Construct(SignalBus signalBus)
         {
             _signalBus = signalBus;
         }
@@ -41,17 +43,15 @@ namespace SBabchuk
             UpdateWeaponPatrons(signal.Weapon, signal.Count);
         }
 
-        public void Initialized(int _count)
+        public void Initialized(int count)
         {
-            count.text = _count.ToString();
+            _count.text = count.ToString();
         }
 
-        public void UpdateWeaponPatrons(WeaponsName _weaponsName, int _count)
+        public void UpdateWeaponPatrons(WeaponsName weaponsName, int count)
         {
-            if (type == _weaponsName)
-            {
-                count.text = _count.ToString();
-            }
+            if (_type == weaponsName)
+                _count.text = count.ToString();
         }
     }
 }

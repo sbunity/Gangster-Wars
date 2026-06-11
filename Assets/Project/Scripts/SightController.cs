@@ -1,5 +1,3 @@
-﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using SBabchuk.Runtime.Services.Contracts;
 using Zenject;
@@ -8,74 +6,45 @@ namespace SBabchuk
 {
     public class SightController : MonoBehaviour, IAimService
     {
-        [Header("Зміщення по У")]
-        [Range(-2, 2)]
-        public float offsetY;
+        [SerializeField, Range(-2, 2)] private float offsetY;
+        [SerializeField, Range(-180, 180)] private float minForwardAngle = -70f;
+        [SerializeField, Range(-180, 180)] private float maxForwardAngle = 70f;
+        [SerializeField] private bool clampAimToForwardSector = true;
+        [SerializeField] private Transform forwardSectorOrigin;
+        [SerializeField, Range(0f, 5f)] private float minAimDistance = 1.5f;
 
-        [Header("Сектор стрільби")]
-        [Range(-180, 180)]
-        public float minForwardAngle = -70f;
-
-        [Range(-180, 180)]
-        public float maxForwardAngle = 70f;
-
-        [SerializeField]
-        private bool clampAimToForwardSector = true;
-
-        [Header("Точка повороту")]
-        [SerializeField]
-        private Transform forwardSectorOrigin;
-
-        [SerializeField, Range(0f, 5f)]
-        private float minAimDistance = 1.5f;
-
-        private bool isTouchingFireArea;
+        private bool _isTouchingFireArea;
         private ILeaderWeaponController _leaderWeaponController;
         private IHandService _handService;
         public Vector2 CurrentAimPosition { get; private set; }
 
         [Inject]
-        private void Construct(
-            ILeaderWeaponController leaderWeaponController,
-            IHandService handService)
+        public void Construct(ILeaderWeaponController leaderWeaponController, IHandService handService)
         {
             _leaderWeaponController = leaderWeaponController;
             _handService = handService;
         }
 
-        /// <summary>
-        /// Awake
-        /// </summary>
-        void Awake()
+        private void Awake()
         {
             UpdateAimPosition(transform.position);
         }
 
-        /// <summary>
-        /// Підписались на Енейбл
-        /// </summary>
-        public void OnEnable()
+        private void OnEnable()
         {
             EasyTouch.On_TouchStart += OnTouchDown;
             EasyTouch.On_TouchDown += OnTouchMove;
             EasyTouch.On_TouchUp += OnTouchUp;
         }
 
-        /// <summary>
-        /// Підписались на Дізкйбл
-        /// </summary>
-        public void OnDisable()
+        private void OnDisable()
         {
             EasyTouch.On_TouchStart -= OnTouchDown;
             EasyTouch.On_TouchDown -= OnTouchMove;
             EasyTouch.On_TouchUp -= OnTouchUp;
         }
 
-        /// <summary>
-        /// Рухаєм тачом
-        /// </summary>
-        /// <param name="gesture">Gesture.</param>
-        virtual public void OnTouchMove(Gesture gesture)
+        public virtual void OnTouchMove(Gesture gesture)
         {
             if (_handService != null && _handService.IsHoldingGrenade)
             {
@@ -83,10 +52,9 @@ namespace SBabchuk
                 return;
             }
 
-            Vector3 pos = gesture.GetTouchToWorldPoint(9f);
-            Vector3 targetPosition = new Vector3(pos.x, pos.y + offsetY, 0);
-            bool canShoot = IsTargetInForwardSector(targetPosition);
-
+            var pos = gesture.GetTouchToWorldPoint(9f);
+            var targetPosition = new Vector3(pos.x, pos.y + offsetY, 0);
+            var canShoot = IsTargetInForwardSector(targetPosition);
             if (canShoot || clampAimToForwardSector)
             {
                 UpdateAimPosition(canShoot ? ClampToMinAimDistance(targetPosition) : ClampToForwardSector(targetPosition));
@@ -96,16 +64,12 @@ namespace SBabchuk
             {
                 _leaderWeaponController.StopAttack();
             }
-            else if (canShoot && isTouchingFireArea && _leaderWeaponController != null && !_leaderWeaponController.IsAttacking)
+            else if (canShoot && _isTouchingFireArea && _leaderWeaponController != null && !_leaderWeaponController.IsAttacking)
             {
                 _leaderWeaponController.Attack();
             }
         }
 
-        /// <summary>
-        /// Нажаття на екрані
-        /// </summary>
-        /// <param name="gesture">Gesture.</param>
         public void OnTouchDown(Gesture gesture)
         {
             if (_handService != null && _handService.IsHoldingGrenade)
@@ -114,18 +78,15 @@ namespace SBabchuk
                 return;
             }
 
-            isTouchingFireArea = false;
-
+            _isTouchingFireArea = false;
             if (gesture.pickedObject)
             {
-                if (gesture.pickedObject.tag == "FireZone" || gesture.pickedObject.tag == "Place" || gesture.pickedObject.tag == "Enemy")
+                if (gesture.pickedObject.CompareTag("FireZone") || gesture.pickedObject.CompareTag("Place") || gesture.pickedObject.CompareTag("Enemy"))
                 {
-                    isTouchingFireArea = true;
-
-                    Vector3 pos = gesture.GetTouchToWorldPoint(9f);
-                    Vector3 targetPosition = new Vector3(pos.x, pos.y + offsetY, 0);
-                    bool canShoot = IsTargetInForwardSector(targetPosition);
-
+                    _isTouchingFireArea = true;
+                    var pos = gesture.GetTouchToWorldPoint(9f);
+                    var targetPosition = new Vector3(pos.x, pos.y + offsetY, 0);
+                    var canShoot = IsTargetInForwardSector(targetPosition);
                     if (canShoot || clampAimToForwardSector)
                     {
                         UpdateAimPosition(canShoot ? ClampToMinAimDistance(targetPosition) : ClampToForwardSector(targetPosition));
@@ -135,63 +96,54 @@ namespace SBabchuk
                     {
                         _leaderWeaponController.Attack();
                     }
-                    else if (_leaderWeaponController != null)
+                    else
                     {
-                        _leaderWeaponController.StopAttack();
+                        _leaderWeaponController?.StopAttack();
                     }
                 }
             }
         }
 
-        /// <summary>
-        /// Віджаття
-        /// </summary>
         public void OnTouchUp(Gesture gesture)
         {
-            isTouchingFireArea = false;
-
-            if (_leaderWeaponController != null)
-            {
-                _leaderWeaponController.StopAttack();
-            }
+            _isTouchingFireArea = false;
+            _leaderWeaponController?.StopAttack();
         }
 
         private bool IsTargetInForwardSector(Vector3 targetPosition)
         {
-            Vector2 direction = targetPosition - GetForwardSectorOrigin();
-
+            var direction = targetPosition - GetForwardSectorOrigin();
             if (direction.sqrMagnitude <= Mathf.Epsilon)
                 return true;
 
-            float touchAngle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+            var touchAngle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
             return IsAngleInForwardSector(touchAngle);
         }
 
         private Vector3 ClampToForwardSector(Vector3 targetPosition)
         {
-            Vector3 origin = GetForwardSectorOrigin();
-            Vector2 direction = targetPosition - origin;
-
+            var origin = GetForwardSectorOrigin();
+            var direction = targetPosition - origin;
             if (direction.sqrMagnitude <= Mathf.Epsilon)
                 direction = Vector2.right;
 
-            float distance = Mathf.Max(direction.magnitude, minAimDistance);
-            float touchAngle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-            float clampedAngle = ClampAngleToForwardSector(touchAngle);
-            float angleRad = clampedAngle * Mathf.Deg2Rad;
+            var distance = Mathf.Max(direction.magnitude, minAimDistance);
+            var touchAngle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+            var clampedAngle = ClampAngleToForwardSector(touchAngle);
+            var angleRad = clampedAngle * Mathf.Deg2Rad;
 
             return origin + new Vector3(Mathf.Cos(angleRad), Mathf.Sin(angleRad), 0f) * distance;
         }
 
         private Vector3 ClampToMinAimDistance(Vector3 targetPosition)
         {
-            Vector3 origin = GetForwardSectorOrigin();
-            Vector2 direction = targetPosition - origin;
-
+            var origin = GetForwardSectorOrigin();
+            var direction = targetPosition - origin;
             if (direction.sqrMagnitude <= Mathf.Epsilon)
                 direction = Vector2.right;
 
-            float distance = Mathf.Max(direction.magnitude, minAimDistance);
+            var distance = Mathf.Max(direction.magnitude, minAimDistance);
+
             return origin + (Vector3)direction.normalized * distance;
         }
 
@@ -208,12 +160,8 @@ namespace SBabchuk
 
         private void HoldAimForward()
         {
-            isTouchingFireArea = false;
-
-            if (_leaderWeaponController != null)
-            {
-                _leaderWeaponController.StopAttack();
-            }
+            _isTouchingFireArea = false;
+            _leaderWeaponController?.StopAttack();
 
             UpdateAimPosition(GetForwardSectorOrigin() + Vector3.right * minAimDistance);
         }
@@ -227,9 +175,8 @@ namespace SBabchuk
         private bool IsAngleInForwardSector(float angle)
         {
             angle = NormalizeAngle(angle);
-            float minAngle = NormalizeAngle(minForwardAngle);
-            float maxAngle = NormalizeAngle(maxForwardAngle);
-
+            var minAngle = NormalizeAngle(minForwardAngle);
+            var maxAngle = NormalizeAngle(maxForwardAngle);
             if (minAngle <= maxAngle)
                 return angle >= minAngle && angle <= maxAngle;
 
@@ -241,11 +188,10 @@ namespace SBabchuk
             if (IsAngleInForwardSector(angle))
                 return NormalizeAngle(angle);
 
-            float minAngle = NormalizeAngle(minForwardAngle);
-            float maxAngle = NormalizeAngle(maxForwardAngle);
-            float minDelta = Mathf.Abs(Mathf.DeltaAngle(angle, minAngle));
-            float maxDelta = Mathf.Abs(Mathf.DeltaAngle(angle, maxAngle));
-
+            var minAngle = NormalizeAngle(minForwardAngle);
+            var maxAngle = NormalizeAngle(maxForwardAngle);
+            var minDelta = Mathf.Abs(Mathf.DeltaAngle(angle, minAngle));
+            var maxDelta = Mathf.Abs(Mathf.DeltaAngle(angle, maxAngle));
             return minDelta <= maxDelta ? minAngle : maxAngle;
         }
 

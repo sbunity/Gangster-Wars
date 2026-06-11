@@ -1,6 +1,5 @@
-﻿namespace SBabchuk
+namespace SBabchuk
 {
-    #region ENUMS
     public enum NameHero
     {
         None = 0,
@@ -161,7 +160,6 @@
         Bonus_6 = 5,
         Bonus_7 = 6,
         Bonus_8 = 7,
-       
     }
 
     public enum BonusesUpgrade
@@ -245,5 +243,4 @@
         Level_10 = 9,
     }
 
-    #endregion//ENUMS
 }

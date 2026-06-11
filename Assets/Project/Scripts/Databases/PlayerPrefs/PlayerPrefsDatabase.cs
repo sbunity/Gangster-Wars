@@ -1,84 +1,111 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace SBabchuk
 {
     [CreateAssetMenu(menuName = "Databases/Create PlayerPrefsDatabase", fileName = "PlayerPrefsDatabase")]
     public class PlayerPrefsDatabase : ScriptableObject
     {
-        [Header("PlayerPrefs")]
-        [SerializeField, HideInInspector] public PlayerPrefs PlayerPrefs = new PlayerPrefs();
+        [FormerlySerializedAs("PlayerPrefs")]
+        [SerializeField, HideInInspector]
+        private PlayerPrefs _playerPrefs = new PlayerPrefs();
+        public PlayerPrefs PlayerPrefs { get => _playerPrefs; set => _playerPrefs = value; }
 
         public bool IsMusicEnabled()
         {
-            return PlayerPrefs.musik == mySwitch.On;
+            return _playerPrefs.Music == mySwitch.On;
         }
 
         public bool IsSoundEnabled()
         {
-            return PlayerPrefs.sound == mySwitch.On;
+            return _playerPrefs.Sound == mySwitch.On;
         }
 
         public bool OpportunityBuy(int price)
         {
-            return PlayerPrefs.coin >= price;
+            return _playerPrefs.Coin >= price;
         }
 
         public void SetStars(LevelShortInfo levelShortInfo, float value)
         {
             if (value >= 0.75f)
-                levelShortInfo.stars = Mathf.Max(3, levelShortInfo.stars);
+                levelShortInfo.Stars = Mathf.Max(3, levelShortInfo.Stars);
             else if (value >= 0.50f)
-                levelShortInfo.stars = Mathf.Max(2, levelShortInfo.stars);
+                levelShortInfo.Stars = Mathf.Max(2, levelShortInfo.Stars);
             else
-                levelShortInfo.stars = Mathf.Max(1, levelShortInfo.stars);
+                levelShortInfo.Stars = Mathf.Max(1, levelShortInfo.Stars);
         }
     }
 
     [System.Serializable]
     public class PlayerPrefs
     {
-        [Header("Чи включена музика")]
-        public mySwitch musik;
+        [SerializeField]
+        [FormerlySerializedAs("musik")]
+        private mySwitch _music;
+        public mySwitch Music { get => _music; set => _music = value; }
 
-        [Header("Чи включені звуки")]
-        public mySwitch sound;
+        [SerializeField]
+        [FormerlySerializedAs("sound")]
+        private mySwitch _sound;
+        public mySwitch Sound { get => _sound; set => _sound = value; }
 
-        [Header("К-сть монеток")]
-        public int coin;
+        [SerializeField]
+        [FormerlySerializedAs("coin")]
+        private int _coin;
+        public int Coin { get => _coin; set => _coin = value; }
 
-        [Header("Рівень на якому зупинились")]
-        public int levelID;
+        [SerializeField]
+        [FormerlySerializedAs("levelID")]
+        private int _levelId;
+        public int LevelId { get => _levelId; set => _levelId = value; }
 
-        [Header("ID зброї в руках стрілка")]
-        public int selectedWeaponID = 0;
+        [SerializeField]
+        [FormerlySerializedAs("selectedWeaponID")]
+        private int _selectedWeaponId = 0;
+        public int SelectedWeaponId { get => _selectedWeaponId; set => _selectedWeaponId = value; }
 
-        [Header("ID гранат в руках підривника")]
-        public int selectedGrenadeID = 0;
+        [SerializeField]
+        [FormerlySerializedAs("selectedGrenadeID")]
+        private int _selectedGrenadeId = 0;
+        public int SelectedGrenadeId { get => _selectedGrenadeId; set => _selectedGrenadeId = value; }
 
-        [Header("ID перепони, що встановлена")]
-        public int selectedDefenceID = 0;
+        [SerializeField]
+        [FormerlySerializedAs("selectedDefenceID")]
+        private int _selectedDefenceId = 0;
+        public int SelectedDefenceId { get => _selectedDefenceId; set => _selectedDefenceId = value; }
 
-        [Header("Iнформація про зброю")]
-        public List<WeaponShortInfo> weapons = new List<WeaponShortInfo>();
+        [SerializeField]
+        [FormerlySerializedAs("weapons")]
+        private List<WeaponShortInfo> _weapons = new List<WeaponShortInfo>();
+        public List<WeaponShortInfo> Weapons { get => _weapons; set => _weapons = value; }
 
-        [Header("Iнформація про зброю")]
-        public List<GrenadeShortInfo> grenades = new List<GrenadeShortInfo>();
+        [SerializeField]
+        [FormerlySerializedAs("grenades")]
+        private List<GrenadeShortInfo> _grenades = new List<GrenadeShortInfo>();
+        public List<GrenadeShortInfo> Grenades { get => _grenades; set => _grenades = value; }
 
-        [Header("Iнформація про перепони")]
-        public List<DefenceShortInfo> defences = new List<DefenceShortInfo>();
+        [SerializeField]
+        [FormerlySerializedAs("defences")]
+        private List<DefenceShortInfo> _defences = new List<DefenceShortInfo>();
+        public List<DefenceShortInfo> Defences { get => _defences; set => _defences = value; }
 
-        [Header("Iнформація про перепони")]
-        public List<PersonageShortInfo> personages = new List<PersonageShortInfo>();
+        [SerializeField]
+        [FormerlySerializedAs("personages")]
+        private List<PersonageShortInfo> _personages = new List<PersonageShortInfo>();
+        public List<PersonageShortInfo> Personages { get => _personages; set => _personages = value; }
 
-        [Header("Iнформація про рівні")]
-        public List<LevelShortInfo> levels = new List<LevelShortInfo>();
+        [SerializeField]
+        [FormerlySerializedAs("levels")]
+        private List<LevelShortInfo> _levels = new List<LevelShortInfo>();
+        public List<LevelShortInfo> Levels { get => _levels; set => _levels = value; }
 
         public WeaponShortInfo GetWeaponShortInfo(int id)
         {
-            foreach (var weapon in weapons)
+            foreach (var weapon in _weapons)
             {
-                if (weapon.id == id)
+                if (weapon.Id == id)
                     return weapon;
             }
 
@@ -87,9 +114,9 @@ namespace SBabchuk
 
         public GrenadeShortInfo GetGrenadeShortInfo(int id)
         {
-            foreach (var grenade in grenades)
+            foreach (var grenade in _grenades)
             {
-                if (grenade.id == id)
+                if (grenade.Id == id)
                     return grenade;
             }
 
@@ -98,9 +125,9 @@ namespace SBabchuk
 
         public DefenceShortInfo GetDefenceShortInfo(int id)
         {
-            foreach (var defence in defences)
+            foreach (var defence in _defences)
             {
-                if (defence.id == id)
+                if (defence.Id == id)
                     return defence;
             }
 
@@ -109,9 +136,9 @@ namespace SBabchuk
 
         public PersonageShortInfo GetPersonageShortInfo(int id)
         {
-            foreach (var personage in personages)
+            foreach (var personage in _personages)
             {
-                if (personage.id == id)
+                if (personage.Id == id)
                     return personage;
             }
 
@@ -120,9 +147,9 @@ namespace SBabchuk
 
         public LevelShortInfo GetLevelShortInfo(int id)
         {
-            foreach (var info in levels)
+            foreach (var info in _levels)
             {
-                if (info.id == id)
+                if (info.Id == id)
                     return info;
             }
 
@@ -133,105 +160,140 @@ namespace SBabchuk
     [System.Serializable]
     public class WeaponShortInfo
     {
-        [Header("Ідентифікатор")]
-        public int id;
+        [SerializeField]
+        [FormerlySerializedAs("id")]
+        private int _id;
+        public int Id { get => _id; set => _id = value; }
 
-        [Header("Найменування")]
-        public string name;
+        [SerializeField]
+        [FormerlySerializedAs("name")]
+        private string _name;
+        public string Name { get => _name; set => _name = value; }
 
-        [Header("Чи куплений")]
-        public mySwitch isBuy;
+        [SerializeField]
+        [FormerlySerializedAs("isBuy")]
+        private mySwitch _isBuy;
+        public mySwitch IsBuy { get => _isBuy; set => _isBuy = value; }
 
-        [Header("Ідентифікатор апгрейда")]
-        public int upgradeID;
+        [SerializeField]
+        [FormerlySerializedAs("upgradeID")]
+        private int _upgradeId;
+        public int UpgradeId { get => _upgradeId; set => _upgradeId = value; }
 
-        [Header("Кількість патронів які знайшли")]
-        public int countPatrons;
+        [SerializeField]
+        [FormerlySerializedAs("countPatrons")]
+        private int _ammoCount;
+        public int AmmoCount { get => _ammoCount; set => _ammoCount = value; }
 
         public WeaponShortInfo(Weapon weapon)
         {
-            id = weapon.id;
-            name = weapon.name;
-            isBuy = mySwitch.Off;
-            upgradeID = -1;
+            _id = weapon.Id;
+            _name = weapon.Name;
+            _isBuy = mySwitch.Off;
+            _upgradeId = -1;
         }
     }
 
     [System.Serializable]
     public class GrenadeShortInfo
     {
-        [Header("Ідентифікатор")]
-        public int id;
+        [SerializeField]
+        [FormerlySerializedAs("id")]
+        private int _id;
+        public int Id { get => _id; set => _id = value; }
 
-        [Header("Чи гранати доступні для покупок")]
-        public mySwitch isBuy;
+        [SerializeField]
+        [FormerlySerializedAs("isBuy")]
+        private mySwitch _isBuy;
+        public mySwitch IsBuy { get => _isBuy; set => _isBuy = value; }
 
-        [Header("Кількість гранат цього типу")]
-        public int count;
+        [SerializeField]
+        [FormerlySerializedAs("count")]
+        private int _count;
+        public int Count { get => _count; set => _count = value; }
 
         public GrenadeShortInfo(Grenade value)
         {
-            id = value.id;
-            isBuy = mySwitch.Off;
-            count = 0;
+            _id = value.Id;
+            _isBuy = mySwitch.Off;
+            _count = 0;
         }
     }
 
     [System.Serializable]
     public class DefenceShortInfo
     {
-        [Header("Ідентифікатор")]
-        public int id;
+        [SerializeField]
+        [FormerlySerializedAs("id")]
+        private int _id;
+        public int Id { get => _id; set => _id = value; }
 
-        [Header("Чи перепони доступні для покупок")]
-        public mySwitch isBuy;
+        [SerializeField]
+        [FormerlySerializedAs("isBuy")]
+        private mySwitch _isBuy;
+        public mySwitch IsBuy { get => _isBuy; set => _isBuy = value; }
 
-        public int upgradeID;
+        [SerializeField]
+        [FormerlySerializedAs("upgradeID")]
+        private int _upgradeId;
+        public int UpgradeId { get => _upgradeId; set => _upgradeId = value; }
 
         public DefenceShortInfo(Defense value)
         {
-            id = value.id;
-            isBuy = mySwitch.Off;
-            upgradeID = -1;
+            _id = value.Id;
+            _isBuy = mySwitch.Off;
+            _upgradeId = -1;
         }
     }
 
     [System.Serializable]
     public class PersonageShortInfo
     {
-        [Header("Ідентифікатор")]
-        public int id;
+        [SerializeField]
+        [FormerlySerializedAs("id")]
+        private int _id;
+        public int Id { get => _id; set => _id = value; }
 
-        [Header("Чи перепони доступні для покупок")]
-        public mySwitch isBuy;
+        [SerializeField]
+        [FormerlySerializedAs("isBuy")]
+        private mySwitch _isBuy;
+        public mySwitch IsBuy { get => _isBuy; set => _isBuy = value; }
 
-        [Header("Ідентифікатор апгрейда")]
-        public int upgradeID;
+        [SerializeField]
+        [FormerlySerializedAs("upgradeID")]
+        private int _upgradeId;
+        public int UpgradeId { get => _upgradeId; set => _upgradeId = value; }
 
         public PersonageShortInfo(Personage value)
         {
-            id = value.id;
-            isBuy = mySwitch.Off;
+            _id = value.Id;
+            _isBuy = mySwitch.Off;
         }
     }
 
     [System.Serializable]
     public class LevelShortInfo
     {
-        [Header("Ідентифікатор")]
-        public int id;
+        [SerializeField]
+        [FormerlySerializedAs("id")]
+        private int _id;
+        public int Id { get => _id; set => _id = value; }
 
-        [Header("Чи рівень пройдений")]
-        public mySwitch isCompleted;
+        [SerializeField]
+        [FormerlySerializedAs("isCompleted")]
+        private mySwitch _isCompleted;
+        public mySwitch IsCompleted { get => _isCompleted; set => _isCompleted = value; }
 
-        [Header("Кількість зірок(успішність проходження)")]
-        public int stars;
+        [SerializeField]
+        [FormerlySerializedAs("stars")]
+        private int _stars;
+        public int Stars { get => _stars; set => _stars = value; }
 
         public LevelShortInfo(Level value)
         {
-            id = value.id;
-            isCompleted = mySwitch.Off;
-            stars = 0;
+            _id = value.Id;
+            _isCompleted = mySwitch.Off;
+            _stars = 0;
         }
     }
 }

@@ -6,33 +6,16 @@ namespace SBabchuk
 {
     public class WeaponInfoDrawer
     {
-        /// <summary>
-        /// Дефолтний колір
-        /// </summary>
         static Color defaultColor;
-
-        /// <summary>
-        /// База даних
-        /// </summary>
         static PlayerPrefsDatabase database;
-
-        /// <summary>
-        /// Заголовок для кнопки
-        /// </summary>
         static string titleWeapon = "Show Weapons";
-
         public static void Draw()
         {
-            database = PlayerPrefsDatabaseDrawer.database;
-
-            defaultColor = PlayerPrefsDatabaseDrawer.defaultColor;
-
+            database = PlayerPrefsDatabaseDrawer.Database;
+            defaultColor = PlayerPrefsDatabaseDrawer.DefaultColor;
             DrawTittle();
         }
 
-        /// <summary>
-        /// Показуєм заголовок для зброї
-        /// </summary>
         public static void DrawTittle()
         {
             GUILayout.BeginHorizontal();
@@ -51,11 +34,11 @@ namespace SBabchuk
 
                 if (GUILayout.Button("Clear", GUILayout.Width(100), GUILayout.Height(20)))
                 {
-                    database.PlayerPrefs.weapons.Clear();
+                    database.PlayerPrefs.Weapons.Clear();
                 }
             }
-            GUILayout.EndHorizontal();
 
+            GUILayout.EndHorizontal();
             if (titleWeapon == "Hide Weapons")
             {
                 GUI.color = Color.grey;
@@ -63,58 +46,47 @@ namespace SBabchuk
                 {
                     GUILayout.BeginVertical();
                     {
-                        EditorGUILayout.LabelField("Інформація про зброю:");
-
-                        if (database.PlayerPrefs.weapons != null)
+                        EditorGUILayout.LabelField("Р вЂ Р Р…РЎвЂћР С•РЎР‚Р СР В°РЎвЂ РЎвЂ“РЎРЏ Р С—РЎР‚Р С• Р В·Р В±РЎР‚Р С•РЎР‹:");
+                        if (database.PlayerPrefs.Weapons != null)
                         {
-                            if (database.PlayerPrefs.weapons.Count == EditorDatabaseLookup.Get<WeaponStoreDatabase>().weapons.Count)
+                            if (database.PlayerPrefs.Weapons.Count == EditorDatabaseLookup.Get<WeaponStoreDatabase>().Weapons.Count)
                             {
-                                foreach (WeaponShortInfo _weapon in database.PlayerPrefs.weapons)
+                                foreach (WeaponShortInfo _weapon in database.PlayerPrefs.Weapons)
                                 {
                                     DrawInfo(_weapon);
                                 }
                             }
                             else
                             {
-                                Debug.Log("database.PlayerPrefs.stuffs == 0");
-
-                                database.PlayerPrefs.weapons.Clear();
-
-                                foreach (Weapon _weapon in EditorDatabaseLookup.Get<WeaponStoreDatabase>().weapons)
+                                database.PlayerPrefs.Weapons.Clear();
+                                foreach (Weapon _weapon in EditorDatabaseLookup.Get<WeaponStoreDatabase>().Weapons)
                                 {
-                                    database.PlayerPrefs.weapons.Add(new WeaponShortInfo(_weapon));
+                                    database.PlayerPrefs.Weapons.Add(new WeaponShortInfo(_weapon));
                                 }
                             }
                         }
                         else
                         {
-                            Debug.Log("database.PlayerPrefs.stuffs == null");
-
-                            database.PlayerPrefs.weapons = new List<WeaponShortInfo>();
+                            database.PlayerPrefs.Weapons = new List<WeaponShortInfo>();
                         }
                     }
+
                     GUILayout.EndVertical();
                 }
+
                 GUILayout.EndHorizontal();
             }
         }
 
-        /// <summary>
-        /// Показуєм інформацію для зброї
-        /// </summary>
-        /// <param name="_value"></param>
         public static void DrawInfo(WeaponShortInfo _value)
         {
-            Weapon _weapon = EditorDatabaseLookup.Get<WeaponStoreDatabase>().GetWeapon(_value.id);
-
+            Weapon _weapon = EditorDatabaseLookup.Get<WeaponStoreDatabase>().GetWeapon(_value.Id);
             if (_weapon != null)
             {
-                if (_value.isBuy == mySwitch.On)
+                if (_value.IsBuy == mySwitch.On)
                     GUI.color = Color.cyan;
-
-                if (database.PlayerPrefs.selectedWeaponID == _weapon.id)
+                if (database.PlayerPrefs.SelectedWeaponId == _weapon.Id)
                     GUI.color = Color.green;
-
                 GUILayout.BeginVertical("box");
                 {
                     GUI.color = defaultColor;
@@ -122,78 +94,70 @@ namespace SBabchuk
                     {
                         GUILayout.BeginVertical();
                         {
-                            _weapon.ico = (Sprite)EditorGUILayout.ObjectField(_weapon.ico, typeof(Sprite), false, GUILayout.Width(75), GUILayout.Height(75));
+                            _weapon.Icon = (Sprite)EditorGUILayout.ObjectField(_weapon.Icon, typeof(Sprite), false, GUILayout.Width(75), GUILayout.Height(75));
                         }
-                        GUILayout.EndVertical();
 
+                        GUILayout.EndVertical();
                         GUILayout.BeginVertical();
                         {
-                            _weapon.id = EditorGUILayout.IntField("ID: ", _weapon.id);
-
-                            _weapon.name = EditorGUILayout.TextField("Найменування зброї: ", _weapon.name);
-
-
-                            if (_value.isBuy == mySwitch.On)
+                            _weapon.Id = EditorGUILayout.IntField("ID: ", _weapon.Id);
+                            _weapon.Name = EditorGUILayout.TextField("Р СњР В°Р в„–Р СР ВµР Р…РЎС“Р Р†Р В°Р Р…Р Р…РЎРЏ Р В·Р В±РЎР‚Р С•РЎвЂ”: ", _weapon.Name);
+                            if (_value.IsBuy == mySwitch.On)
                                 GUI.color = Color.green;
-                            _value.isBuy = ((mySwitch)EditorGUILayout.EnumPopup("Чи купленa: ", (mySwitch)_value.isBuy));
-
-                            if (_value.isBuy == mySwitch.On)
+                            _value.IsBuy = ((mySwitch)EditorGUILayout.EnumPopup("Р В§Р С‘ Р С”РЎС“Р С—Р В»Р ВµР Р…a: ", (mySwitch)_value.IsBuy));
+                            if (_value.IsBuy == mySwitch.On)
                             {
                                 GUI.color = Color.yellow;
-
-                                _value.countPatrons = EditorGUILayout.IntField("Кількість патронів які знайшли: ", _value.countPatrons);
-
-                                _value.upgradeID = EditorGUILayout.IntSlider(" Апгрейд (ID): ", _value.upgradeID, -1, _weapon.upgrades.Count - 1);
+                                _value.AmmoCount = EditorGUILayout.IntField("Р С™РЎвЂ“Р В»РЎРЉР С”РЎвЂ“РЎРѓРЎвЂљРЎРЉ Р С—Р В°РЎвЂљРЎР‚Р С•Р Р…РЎвЂ“Р Р† РЎРЏР С”РЎвЂ“ Р В·Р Р…Р В°Р в„–РЎв‚¬Р В»Р С‘: ", _value.AmmoCount);
+                                _value.UpgradeId = EditorGUILayout.IntSlider(" Р С’Р С—Р С–РЎР‚Р ВµР в„–Р Т‘ (ID): ", _value.UpgradeId, -1, _weapon.Upgrades.Count - 1);
                             }
 
                             GUI.color = defaultColor;
                         }
+
                         GUILayout.EndVertical();
                     }
-                    GUILayout.EndHorizontal();
 
-                    if (_value.isBuy == mySwitch.On)
+                    GUILayout.EndHorizontal();
+                    if (_value.IsBuy == mySwitch.On)
                     {
                         GUILayout.BeginHorizontal("box");
                         {
-                            DrawSettings(_weapon, _value.upgradeID);
+                            DrawSettings(_weapon, _value.UpgradeId);
                         }
+
                         GUILayout.EndHorizontal();
                     }
                 }
+
                 GUILayout.EndHorizontal();
                 GUI.color = defaultColor;
             }
             else
             {
-                EditorGUILayout.LabelField("Не знайдено посоха");
+                EditorGUILayout.LabelField("Р СњР Вµ Р В·Р Р…Р В°Р в„–Р Т‘Р ВµР Р…Р С• Р С—Р С•РЎРѓР С•РЎвЂ¦Р В°");
             }
         }
 
-        /// <summary>
-        /// Показуєм властивості зброї
-        /// </summary>
-        /// <param name="_stuff"></param>
-        /// <param name="_upgradeID"></param>
         public static void DrawSettings(Weapon _weapon, int _upgradeID)
         {
             GUILayout.BeginVertical();
             {
                 GUI.color = Color.yellow;
                 WUpgrade _upgrade = EditorDatabaseLookup.Get<WeaponStoreDatabase>().GetUpgrade(_weapon, _upgradeID);
-
                 if (_upgrade != null)
                 {
-                    _upgrade.settings.damage = EditorGUILayout.IntSlider("Урон: ", _upgrade.settings.damage, 0, 10);
+                    _upgrade.Settings.Damage = EditorGUILayout.IntSlider("Р Р€РЎР‚Р С•Р Р…: ", _upgrade.Settings.Damage, 0, 10);
                 }
                 else
                 {
-                    _weapon.settings.damage = EditorGUILayout.IntSlider("Урон: ", _weapon.settings.damage, 0, 10);
+                    _weapon.Settings.Damage = EditorGUILayout.IntSlider("Р Р€РЎР‚Р С•Р Р…: ", _weapon.Settings.Damage, 0, 10);
                 }
+
                 GUI.color = defaultColor;
             }
+
             GUILayout.EndVertical();
         }
-
     }
 }

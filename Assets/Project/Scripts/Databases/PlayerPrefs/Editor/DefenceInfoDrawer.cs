@@ -6,34 +6,16 @@ namespace SBabchuk
 {
     public class DefenceInfoDrawer
     {
-        /// <summary>
-        /// Дефолтний колір
-        /// </summary>
         static Color defaultColor;
-
-        /// <summary>
-        /// База даних
-        /// </summary>
         static PlayerPrefsDatabase database;
-
-        /// <summary>
-        /// Заголовок для кнопки
-        /// </summary>
         static string titleDefence = "Show Defences";
-
         public static void Draw()
         {
-            database = PlayerPrefsDatabaseDrawer.database;
-
-            defaultColor = PlayerPrefsDatabaseDrawer.defaultColor;
-
+            database = PlayerPrefsDatabaseDrawer.Database;
+            defaultColor = PlayerPrefsDatabaseDrawer.DefaultColor;
             DrawTittle();
         }
 
-
-        /// <summary>
-        /// Показуєм перепони
-        /// </summary>
         public static void DrawTittle()
         {
             GUILayout.BeginHorizontal();
@@ -52,11 +34,11 @@ namespace SBabchuk
 
                 if (GUILayout.Button("Clear", GUILayout.Width(100), GUILayout.Height(20)))
                 {
-                    database.PlayerPrefs.defences.Clear();
+                    database.PlayerPrefs.Defences.Clear();
                 }
             }
-            GUILayout.EndHorizontal();
 
+            GUILayout.EndHorizontal();
             if (titleDefence == "Hide Defences")
             {
                 GUI.color = Color.grey;
@@ -64,123 +46,107 @@ namespace SBabchuk
                 {
                     GUILayout.BeginVertical();
                     {
-                        EditorGUILayout.LabelField("Інформація про перепони:");
-
-                        if (database.PlayerPrefs.defences != null)
+                        EditorGUILayout.LabelField("Р вЂ Р Р…РЎвЂћР С•РЎР‚Р СР В°РЎвЂ РЎвЂ“РЎРЏ Р С—РЎР‚Р С• Р С—Р ВµРЎР‚Р ВµР С—Р С•Р Р…Р С‘:");
+                        if (database.PlayerPrefs.Defences != null)
                         {
-                            if (database.PlayerPrefs.defences.Count == EditorDatabaseLookup.Get<DefenseStoreDatabase>().defenses.Count)
+                            if (database.PlayerPrefs.Defences.Count == EditorDatabaseLookup.Get<DefenseStoreDatabase>().Defenses.Count)
                             {
-                                foreach (DefenceShortInfo _defence in database.PlayerPrefs.defences)
+                                foreach (DefenceShortInfo _defence in database.PlayerPrefs.Defences)
                                 {
                                     DrawInfo(_defence);
                                 }
                             }
                             else
                             {
-                                Debug.Log("database.PlayerPrefs.defences == 0");
-
-                                database.PlayerPrefs.defences.Clear();
-
-                                foreach (Defense _defence in EditorDatabaseLookup.Get<DefenseStoreDatabase>().defenses)
+                                database.PlayerPrefs.Defences.Clear();
+                                foreach (Defense _defence in EditorDatabaseLookup.Get<DefenseStoreDatabase>().Defenses)
                                 {
-                                    database.PlayerPrefs.defences.Add(new DefenceShortInfo(_defence));
+                                    database.PlayerPrefs.Defences.Add(new DefenceShortInfo(_defence));
                                 }
                             }
                         }
                         else
                         {
-                            Debug.Log("database.PlayerPrefs.defences == null");
-
-                            database.PlayerPrefs.defences = new List<DefenceShortInfo>();
+                            database.PlayerPrefs.Defences = new List<DefenceShortInfo>();
                         }
                     }
+
                     GUILayout.EndVertical();
                 }
+
                 GUILayout.EndHorizontal();
             }
         }
 
-        /// <summary>
-        /// Показуєм заголовок інфи про перепони
-        /// </summary>
-        /// <param name="_value"></param>
         public static void DrawInfo(DefenceShortInfo _value)
         {
-            Defense _defence = EditorDatabaseLookup.Get<DefenseStoreDatabase>().GetDefense(_value.id);
-
+            Defense _defence = EditorDatabaseLookup.Get<DefenseStoreDatabase>().GetDefense(_value.Id);
             GUI.color = defaultColor;
-
             GUILayout.BeginVertical("box");
             {
-                if (_value.isBuy == mySwitch.On)
+                if (_value.IsBuy == mySwitch.On)
                     GUI.color = Color.cyan;
-
-                if (database.PlayerPrefs.selectedDefenceID == _defence.id)
+                if (database.PlayerPrefs.SelectedDefenceId == _defence.Id)
                     GUI.color = Color.green;
-
                 GUILayout.BeginHorizontal();
                 {
                     GUILayout.BeginVertical();
                     {
-                        _defence.ico = (Sprite)EditorGUILayout.ObjectField(_defence.ico, typeof(Sprite), false, GUILayout.Width(75), GUILayout.Height(75));
+                        _defence.Icon = (Sprite)EditorGUILayout.ObjectField(_defence.Icon, typeof(Sprite), false, GUILayout.Width(75), GUILayout.Height(75));
                     }
-                    GUILayout.EndVertical();
 
+                    GUILayout.EndVertical();
                     GUILayout.BeginVertical();
                     {
-                        _defence.id = EditorGUILayout.IntField("ID: ", _defence.id);
-
-                        _defence.name = EditorGUILayout.TextField("Найменування: ", _defence.name);
-
-                        _value.isBuy = ((mySwitch)EditorGUILayout.EnumPopup("Чи доступна: ", (mySwitch)_value.isBuy));
-
-                        if (_value.isBuy == mySwitch.On)
+                        _defence.Id = EditorGUILayout.IntField("ID: ", _defence.Id);
+                        _defence.Name = EditorGUILayout.TextField("Р СњР В°Р в„–Р СР ВµР Р…РЎС“Р Р†Р В°Р Р…Р Р…РЎРЏ: ", _defence.Name);
+                        _value.IsBuy = ((mySwitch)EditorGUILayout.EnumPopup("Р В§Р С‘ Р Т‘Р С•РЎРѓРЎвЂљРЎС“Р С—Р Р…Р В°: ", (mySwitch)_value.IsBuy));
+                        if (_value.IsBuy == mySwitch.On)
                         {
                             GUI.color = Color.green;
-                            _value.upgradeID = EditorGUILayout.IntField("ID апгрейда: ", _value.upgradeID);
+                            _value.UpgradeId = EditorGUILayout.IntField("ID Р В°Р С—Р С–РЎР‚Р ВµР в„–Р Т‘Р В°: ", _value.UpgradeId);
                         }
                     }
+
                     GUILayout.EndVertical();
                 }
-                GUILayout.EndHorizontal();
 
-                if (_value.isBuy == mySwitch.On)
+                GUILayout.EndHorizontal();
+                if (_value.IsBuy == mySwitch.On)
                 {
                     GUILayout.BeginHorizontal("box");
                     {
-                        DrawSettings(_defence, _value.upgradeID);
+                        DrawSettings(_defence, _value.UpgradeId);
                     }
+
                     GUILayout.EndHorizontal();
                 }
+
                 GUI.color = defaultColor;
             }
+
             GUILayout.EndVertical();
         }
 
-        /// <summary>
-        /// Показуєм властивості перепони
-        /// </summary>
-        /// <param name="_stuff"></param>
-        /// <param name="_upgradeID"></param>
         public static void DrawSettings(Defense _defence, int _upgradeID)
         {
             GUILayout.BeginVertical();
             {
                 GUI.color = Color.yellow;
                 DUpgrade _upgrade = EditorDatabaseLookup.Get<DefenseStoreDatabase>().GetUpgrade(_defence, _upgradeID);
-
                 if (_upgrade != null)
                 {
-                    _upgrade.settings.health = EditorGUILayout.IntSlider("К-сть життів: ", _upgrade.settings.health, 0, 1000);
+                    _upgrade.Settings.Health = EditorGUILayout.IntSlider("Р С™-РЎРѓРЎвЂљРЎРЉ Р В¶Р С‘РЎвЂљРЎвЂљРЎвЂ“Р Р†: ", _upgrade.Settings.Health, 0, 1000);
                 }
                 else
                 {
-                    _defence.settings.health = EditorGUILayout.IntSlider("К-сть життів(без апгрейда): ", _defence.settings.health, 0, 1000);
+                    _defence.Settings.Health = EditorGUILayout.IntSlider("Р С™-РЎРѓРЎвЂљРЎРЉ Р В¶Р С‘РЎвЂљРЎвЂљРЎвЂ“Р Р†(Р В±Р ВµР В· Р В°Р С—Р С–РЎР‚Р ВµР в„–Р Т‘Р В°): ", _defence.Settings.Health, 0, 1000);
                 }
+
                 GUI.color = defaultColor;
             }
+
             GUILayout.EndVertical();
         }
-
     }
 }

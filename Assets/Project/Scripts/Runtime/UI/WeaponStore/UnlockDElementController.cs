@@ -1,31 +1,28 @@
-using System.Collections;
-using System.Collections.Generic;
 using SBabchuk.Runtime.Services.Contracts;
 using UnityEngine;
 using UnityEngine.UI;
 using Zenject;
+using UnityEngine.Serialization;
 
 namespace SBabchuk
 {
     public class UnlockDElementController : LockElementControllerBase
     {
-        private Defense defenceInfo;
+        [SerializeField, FormerlySerializedAs("changed")]
+        private Image _changed;
 
-        [Header("Чи використовується")]
-        public Image changed;
+        [SerializeField, FormerlySerializedAs("select")]
+        private Button _select;
 
-        [Header("Чи використовується")]
-        public Button select;
+        [SerializeField, FormerlySerializedAs("levelUp")]
+        private GameObject _levelUp;
 
-        [Header("Апгрейд")]
-        public GameObject levelUp;
         private IAssetProvider _assetProvider;
         private IPlayerProgressService _progressService;
+        private Defense _defenceInfo;
 
         [Inject]
-        private void Construct(
-            IAssetProvider assetProvider,
-            IPlayerProgressService progressService)
+        public void Construct(IAssetProvider assetProvider, IPlayerProgressService progressService)
         {
             _assetProvider = assetProvider;
             _progressService = progressService;
@@ -33,56 +30,37 @@ namespace SBabchuk
 
         public override void Initialisation(int _id)
         {
-            id = _id;
-
-            ///Отримуєм зброю з бази
+            Id = _id;
             var defenceStore = _assetProvider.DefenseStoreDatabase;
-            defenceInfo = defenceStore.GetDefense(id);
+            _defenceInfo = defenceStore.GetDefense(Id);
 
-            if (priceBuy)
-            {
-                priceBuy.text = defenceInfo.price.ToString();
-            }
+            if (PriceBuy)
+                PriceBuy.text = _defenceInfo.Price.ToString();
 
-            if (bttnBuy)
-            {
-                bttnBuy.interactable = _progressService.CanBuy(defenceInfo.price);
-            }
+            if (BttnBuy)
+                BttnBuy.interactable = _progressService.CanBuy(_defenceInfo.Price);
 
             var defenceShortInfo = _progressService.GetDefenceShortInfo(_id);
-
             var selectedDefenceId = _progressService.SelectedDefenceId;
 
-            if (levelUp)
-            {
-                levelUp.gameObject.SetActive(defenceShortInfo.upgradeID < defenceInfo.countUpgrades - 1 || selectedDefenceId == -1);
-            }
+            if (_levelUp)
+                _levelUp.SetActive(defenceShortInfo.UpgradeId < _defenceInfo.CountUpgrades - 1 || selectedDefenceId == -1);
 
-            if (changed)
-            {
-                changed.gameObject.SetActive(selectedDefenceId == _id);
-            }
+            if (_changed)
+                _changed.gameObject.SetActive(selectedDefenceId == _id);
 
-            if (select)
-            {
-                select.gameObject.SetActive(selectedDefenceId != _id);
-            }
+            if (_select)
+                _select.gameObject.SetActive(selectedDefenceId != _id);
         }
 
-        /// <summary>
-        /// Поукупка апгрейда перепони
-        /// </summary>
         public override void Buy()
         {
-            _progressService.BuyDefenceUpgrade(id);
+            _progressService.BuyDefenceUpgrade(Id);
         }
 
-        /// <summary>
-        /// Вибираєм перепону
-        /// </summary>
         public void Select()
         {
-            _progressService.SelectDefence(id);
+            _progressService.SelectDefence(Id);
         }
     }
 }

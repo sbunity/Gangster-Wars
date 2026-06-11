@@ -16,28 +16,17 @@ namespace SBabchuk.Runtime.Installers
         [SerializeField] private SightController _sightController;
         [SerializeField] private PoolManager _poolManager;
         [SerializeField] private FilledBarController _waveBar;
-        [SerializeField] private List<Transform> _enemySpawnPoints = new List<Transform>();
-        [SerializeField] private List<Transform> _enemyTargetPoints = new List<Transform>();
+        [SerializeField] private List<Transform> _enemySpawnPoints = new();
+        [SerializeField] private List<Transform> _enemyTargetPoints = new();
 
         public override void InstallBindings()
         {
-            var references = new GameSceneReferences(
-                _levelController,
-                _barricadeController,
-                _leaderController,
-                _handController,
-                _sightController,
-                _poolManager,
-                _waveBar,
-                _enemySpawnPoints,
-                _enemyTargetPoints);
-
+            var references = new GameSceneReferences(_levelController, _barricadeController, _leaderController, _handController, _sightController, _poolManager, _waveBar, _enemySpawnPoints, _enemyTargetPoints);
             Container.Bind<GameSceneReferences>().FromInstance(references).AsSingle();
             Container.Bind<PoolManager>().FromInstance(_poolManager).AsSingle();
             Container.Bind<IPoolService>().To<PoolService>().AsSingle();
             Container.Bind<IGameFactory>().To<GameFactory>().AsSingle();
             Container.Bind<IWaveSpawnerService>().To<WaveSpawnerService>().AsSingle();
-
             BindIfAssigned(_levelController);
             BindIfAssigned(_barricadeController);
             BindIfAssigned(_waveBar);
@@ -47,10 +36,8 @@ namespace SBabchuk.Runtime.Installers
 
             if (_leaderController != null)
                 Container.Bind<ILeaderWeaponController>().FromInstance(_leaderController).AsSingle();
-
             if (_handController != null)
                 Container.Bind<IHandService>().FromInstance(_handController).AsSingle();
-
             if (_sightController != null)
                 Container.Bind<IAimService>().FromInstance(_sightController).AsSingle();
             else
@@ -61,7 +48,6 @@ namespace SBabchuk.Runtime.Installers
         {
             if (instance != null)
                 Container.Bind<T>().FromInstance(instance).AsSingle();
-
             if (instance is ILevelRuntimeService levelRuntimeService)
                 Container.Bind<ILevelRuntimeService>().FromInstance(levelRuntimeService).AsSingle();
         }
@@ -69,16 +55,7 @@ namespace SBabchuk.Runtime.Installers
 
     public sealed class GameSceneReferences
     {
-        public GameSceneReferences(
-            LevelController levelController,
-            BarricadeController barricadeController,
-            LeaderGangsterController leaderController,
-            HandController handController,
-            SightController sightController,
-            PoolManager poolManager,
-            FilledBarController waveBar,
-            IReadOnlyList<Transform> enemySpawnPoints,
-            IReadOnlyList<Transform> enemyTargetPoints)
+        public GameSceneReferences(LevelController levelController, BarricadeController barricadeController, LeaderGangsterController leaderController, HandController handController, SightController sightController, PoolManager poolManager, FilledBarController waveBar, IReadOnlyList<Transform> enemySpawnPoints, IReadOnlyList<Transform> enemyTargetPoints)
         {
             LevelController = levelController;
             BarricadeController = barricadeController;

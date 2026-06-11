@@ -1,9 +1,9 @@
 using SBabchuk.Runtime.Services.Contracts;
 using UnityEngine;
+
 #if UNITY_EDITOR
 using UnityEditor;
 #endif
-
 namespace SBabchuk.Runtime.Services
 {
     public sealed class AssetProvider : IAssetProvider
@@ -32,10 +32,7 @@ namespace SBabchuk.Runtime.Services
 
         private T LoadRequiredAsset<T>() where T : Object
         {
-            var asset = LoadAsset<T>();
-            if (asset == null)
-                throw new MissingReferenceException("Required database asset was not found: " + typeof(T).Name);
-
+            var asset = LoadAsset<T>() ?? throw new MissingReferenceException("Required database asset was not found: " + typeof(T).Name);
             return asset;
         }
 
@@ -44,46 +41,29 @@ namespace SBabchuk.Runtime.Services
             var folder = GetPrefabFolder(pool);
             if (string.IsNullOrEmpty(folder))
                 return null;
-
             return Resources.Load<GameObject>("Prefabs/" + folder + "/" + GetPrefabName(pool, id));
         }
 
-        private string GetPrefabFolder(NamesPool pool)
-        {
-            switch (pool)
+        private string GetPrefabFolder(NamesPool pool) 
+            => pool switch
             {
-                case NamesPool.Enemies:
-                    return "Enemies";
-                case NamesPool.Bullets:
-                    return "Bullets";
-                case NamesPool.Grenades:
-                    return "Grenades";
-                case NamesPool.Collisions:
-                    return "Collisions";
-                case NamesPool.Bonuses:
-                    return "Bonuses";
-                default:
-                    return string.Empty;
-            }
-        }
+                NamesPool.Enemies => "Enemies",
+                NamesPool.Bullets => "Bullets",
+                NamesPool.Grenades => "Grenades",
+                NamesPool.Collisions => "Collisions",
+                NamesPool.Bonuses => "Bonuses",
+                _ => string.Empty,
+            };
 
-        private string GetPrefabName(NamesPool pool, int id)
-        {
-            switch (pool)
+        private string GetPrefabName(NamesPool pool, int id) 
+            => pool switch
             {
-                case NamesPool.Enemies:
-                    return "Enemy_" + (id + 1);
-                case NamesPool.Bullets:
-                    return "Bullet_" + (id + 1);
-                case NamesPool.Grenades:
-                    return "Grenade_" + (id + 1);
-                case NamesPool.Collisions:
-                    return "Collision_" + (id + 1);
-                case NamesPool.Bonuses:
-                    return "Bonus_" + (id + 1);
-                default:
-                    return string.Empty;
-            }
-        }
+                NamesPool.Enemies => "Enemy_" + (id + 1),
+                NamesPool.Bullets => "Bullet_" + (id + 1),
+                NamesPool.Grenades => "Grenade_" + (id + 1),
+                NamesPool.Collisions => "Collision_" + (id + 1),
+                NamesPool.Bonuses => "Bonus_" + (id + 1),
+                _ => string.Empty,
+            };
     }
 }

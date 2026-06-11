@@ -1,27 +1,24 @@
-using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
 using Spine.Unity;
-using Spine;
 using SBabchuk.Runtime.Services.Contracts;
+using UnityEngine;
 using Zenject;
+using UnityEngine.Serialization;
 
 namespace SBabchuk
 {
     public class AssetDataController : MonoBehaviour
     {
+        [SerializeField, FormerlySerializedAs("skeletonDataAsset")]
+        private List<SkeletonDataAsset> _skeletonDataAsset;
+
         private SkeletonAnimation skltn;
-
         private GangsterAnimationController gangsterAnimationController;
-
         private LeaderGangsterController leaderGangsterController;
         private IPlayerProgressService _progressService;
 
-        [Header("Скелетони для різної зброї")]
-        public List<SkeletonDataAsset> skeletonDataAsset;
-
         [Inject]
-        private void Construct(IPlayerProgressService progressService)
+        public void Construct(IPlayerProgressService progressService)
         {
             _progressService = progressService;
         }
@@ -29,9 +26,7 @@ namespace SBabchuk
         private void Awake()
         {
             skltn = GetComponent<SkeletonAnimation>();
-
             gangsterAnimationController = GetComponent<GangsterAnimationController>();
-
             leaderGangsterController = GetComponentInParent<LeaderGangsterController>();
         }
 
@@ -40,14 +35,11 @@ namespace SBabchuk
             SetAssetData(_progressService.SelectedWeaponId);
         }
 
-        public void SetAssetData(int _value = 0)
+        private void SetAssetData(int value = 0)
         {
-            Debug.Log("SetAssetData: " + _value);
-            skltn.skeletonDataAsset = skeletonDataAsset[_value];
+            skltn.skeletonDataAsset = _skeletonDataAsset[value];
             skltn.Initialize(true);
-
-            leaderGangsterController.InitWeapon(_value);
-
+            leaderGangsterController.InitWeapon(value);
             gangsterAnimationController.Subscribe();
         }
     }

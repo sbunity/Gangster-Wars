@@ -3,54 +3,48 @@ using DG.Tweening;
 using SBabchuk.Runtime.Gameplay.Characters;
 using SBabchuk.Runtime.Services.Contracts;
 using Zenject;
+using UnityEngine.Serialization;
 
 namespace SBabchuk
 {
     public class GangsterControllerBase : MonoBehaviour
     {
-        [Header("Animator")]
-        [HideInInspector]
-        public GangsterAnimationController e_animation;
+        [SerializeField, FormerlySerializedAs("e_animation")]
+        private GangsterAnimationController _animation;
+        public GangsterAnimationController Animation { get => _animation; set => _animation = value; }
 
-        [Header("Bullet spawn point")]
-        [HideInInspector]
-        public Center createBulletPoint;
+        [SerializeField, FormerlySerializedAs("createBulletPoint")]
+        private Center _createBulletPoint;
+        public Center CreateBulletPoint { get => _createBulletPoint; set => _createBulletPoint = value; }
 
-        [HideInInspector]
-        public Tween twnAtack;
+        [SerializeField, FormerlySerializedAs("twnAtack")]
+        private Tween _attackTween;
+        public Tween AttackTween { get => _attackTween; set => _attackTween = value; }
 
-        protected IAssetProvider AssetProvider;
-        protected IPlayerProgressService ProgressService;
-        protected IPoolService PoolService;
-        protected IGameFactory GameFactory;
-        protected ILevelRuntimeService LevelRuntimeService;
-        protected CharacterView CharacterView;
-        protected CharacterWeapon CharacterWeapon;
-
+        protected IAssetProvider _assetProvider;
+        protected IPlayerProgressService _progressService;
+        protected IPoolService _poolService;
+        protected IGameFactory _gameFactory;
+        protected ILevelRuntimeService _levelRuntimeService;
+        protected CharacterView _characterView;
+        protected CharacterWeapon _characterWeapon;
         [Inject]
-        private void Construct(
-            IAssetProvider assetProvider,
-            IPlayerProgressService progressService,
-            IPoolService poolService,
-            IGameFactory gameFactory,
-            ILevelRuntimeService levelRuntimeService)
+        public void Construct(IAssetProvider assetProvider, IPlayerProgressService progressService, IPoolService poolService, IGameFactory gameFactory, ILevelRuntimeService levelRuntimeService)
         {
-            AssetProvider = assetProvider;
-            ProgressService = progressService;
-            PoolService = poolService;
-            GameFactory = gameFactory;
-            LevelRuntimeService = levelRuntimeService;
+            _assetProvider = assetProvider;
+            _progressService = progressService;
+            _poolService = poolService;
+            _gameFactory = gameFactory;
+            _levelRuntimeService = levelRuntimeService;
         }
 
         public virtual void Awake()
         {
-            CharacterView = GetOrAdd<CharacterView>();
-            CharacterWeapon = GetOrAdd<CharacterWeapon>();
-            CharacterView.Initialize();
-
-            e_animation = CharacterView.Animation;
-
-            createBulletPoint = CharacterView.BulletPoint;
+            _characterView = GetOrAdd<CharacterView>();
+            _characterWeapon = GetOrAdd<CharacterWeapon>();
+            _characterView.Initialize();
+            _animation = _characterView.Animation;
+            _createBulletPoint = _characterView.BulletPoint;
         }
 
         public virtual void Start()
@@ -60,7 +54,7 @@ namespace SBabchuk
 
         public virtual void Init()
         {
-            e_animation.SetAnimation(AnimationsName.Idle);
+            _animation.SetAnimation(AnimationsName.Idle);
         }
 
         public virtual void Attack()
@@ -73,19 +67,18 @@ namespace SBabchuk
 
         public virtual void SpawnBullet()
         {
-            Spawn(createBulletPoint.GetPosition());
+            Spawn(_createBulletPoint.GetPosition());
         }
 
         public virtual void Spawn(Vector3 _position)
         {
-            CharacterWeapon.Fire(0, 4, _position, default(Vector3), 0);
+            _characterWeapon.Fire(0, 4, _position, default(Vector3), 0);
         }
 
         public virtual Pool GetPool(int _spellID)
         {
-            if (PoolService != null)
-                return PoolService.GetPool(NamesPool.Bullets, _spellID);
-
+            if (_poolService != null)
+                return _poolService.GetPool(NamesPool.Bullets, _spellID);
             return null;
         }
 
@@ -93,10 +86,11 @@ namespace SBabchuk
         {
         }
 
-        private T GetOrAdd<T>() where T : Component
+        private T GetOrAdd<T>()
+            where T : Component
         {
             var component = GetComponent<T>();
-            return component != null ? component : gameObject.AddComponent<T>();
+            return component ?? gameObject.AddComponent<T>();
         }
     }
 }

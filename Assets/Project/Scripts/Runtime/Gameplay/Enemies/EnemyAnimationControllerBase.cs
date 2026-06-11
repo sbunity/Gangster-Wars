@@ -1,80 +1,62 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Spine.Unity;
 using Spine;
+using UnityEngine.Serialization;
 
 namespace SBabchuk
 {
     public class EnemyAnimationControllerBase : MonoBehaviour
     {
-        [SpineEvent] public string fireEventName = "footstep";
+        [SerializeField, FormerlySerializedAs("fireEventName"), SpineEvent]
+        private string _fireEventName = "footstep";
 
-        [HideInInspector]public SkeletonAnimation skltn;
+        [SerializeField, FormerlySerializedAs("skltn")]
+        private SkeletonAnimation _skeleton;
 
-        private EnemyControllerBase enemyController;
+        private EnemyControllerBase _enemyController;
 
         private void OnDestroy()
         {
-            if (skltn)
-            skltn.state.Complete -= OnCompleteAnimation;
+            if (_skeleton)
+                _skeleton.state.Complete -= OnCompleteAnimation;
         }
 
         private void OnEnable()
         {
-            //skltn.state.Complete += OnCompleteAnimation;
         }
 
         private void Awake()
         {
-            skltn = GetComponentInChildren<SkeletonAnimation>();
-
-            enemyController = GetComponent<EnemyControllerBase>();
+            _skeleton = GetComponentInChildren<SkeletonAnimation>();
+            _enemyController = GetComponent<EnemyControllerBase>();
         }
 
         private void Start()
         {
-            skltn.state.Complete += OnCompleteAnimation;
-            skltn.AnimationState.Event += HandleEvent;
+            _skeleton.state.Complete += OnCompleteAnimation;
+            _skeleton.AnimationState.Event += HandleEvent;
         }
 
-        public void SetAnimation(AnimationsName _animation)
-        {
-            skltn.state.SetAnimation(0, _animation.ToString(), GetLoop(_animation));
-        }
+        public void SetAnimation(AnimationsName _animation) 
+            => _skeleton.state.SetAnimation(0, _animation.ToString(), GetLoop(_animation));
 
-        /// <summary>
-        /// Встановлення зациклення певних анімацій
-        /// </summary>
-        /// <param name="_animation"></param>
-        /// <returns></returns>
-        private bool GetLoop(AnimationsName _animation)
-        {
-            return (_animation == AnimationsName.Walk || _animation == AnimationsName.Idle);
-        }
+        private bool GetLoop(AnimationsName _animation) 
+            => _animation == AnimationsName.Walk || _animation == AnimationsName.Idle;
 
-        /// <summary>
-        /// Перевырка завершеносты анымацыъ
-        /// </summary>
-        /// <param name="trackEntry"></param>
         public void OnCompleteAnimation(TrackEntry trackEntry)
         {
             if (trackEntry.Animation.Name == AnimationsName.Attack.ToString())
-            {
-                enemyController.Attacked();
-            }
+                _enemyController.Attacked();
             else if (trackEntry.Animation.Name == AnimationsName.Death.ToString())
-            {
-                enemyController.Dead();
-            }
+                _enemyController.Dead();
         }
 
         void HandleEvent(TrackEntry trackEntry, Spine.Event e)
         {
-            if (e.Data.Name == fireEventName)
-            {
-                enemyController.GiveDamage();
-            }
+            if (e.Data.Name == _fireEventName)
+                _enemyController.GiveDamage();
         }
     }
 }

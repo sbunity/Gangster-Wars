@@ -1,38 +1,29 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace SBabchuk
 {
     [CreateAssetMenu(menuName = "Databases/Create DefenseStoreDatabase", fileName = "DefenseStoreDatabase")]
     public class DefenseStoreDatabase : ScriptableObject
     {
-        [Header("Перепона")]
-        [SerializeField, HideInInspector] public List<Defense> defenses = new List<Defense>();
+        [FormerlySerializedAs("defenses")]
+        [SerializeField, HideInInspector]
+        private List<Defense> _defenses = new List<Defense>();
+        public List<Defense> Defenses { get => _defenses; set => _defenses = value; }
 
-        /// <summary>
-        /// Повертає властивості перепони(по заданому id)
-        /// </summary>
-        /// <param name="_id">Id шуканої перпони</param>
-        /// <returns></returns>
         public Defense GetDefense(int _id)
         {
-            int index = defenses.FindIndex(x => x.id == _id);
-
-            return index != -1 ? defenses[index] : null;
+            int index = _defenses.FindIndex(x => x.Id == _id);
+            return index != -1 ? _defenses[index] : null;
         }
 
-        /// <summary>
-        /// Повертає апгрейд (по id) для даної перепони (по Defense)
-        /// </summary>
-        /// <param name="_grenade">Перепона</param>
-        /// <param name="_id">Id шуканого апгрейда</param>
-        /// <returns></returns>
         public DUpgrade GetUpgrade(Defense _defense, int _id)
         {
-            foreach (DUpgrade upgrade in _defense.upgrades)
+            foreach (DUpgrade upgrade in _defense.Upgrades)
             {
-                if (upgrade.id == _id)
+                if (upgrade.Id == _id)
                 {
                     return upgrade;
                 }
@@ -41,19 +32,12 @@ namespace SBabchuk
             return null;
         }
 
-        /// <summary>
-        /// Повертає апгрейд (по id) для даної перепони (по _defenseID)
-        /// </summary>
-        /// <param name="_defenseID">Id перепони</param>
-        /// <param name="_id">Id шуканого апгрейда</param>
-        /// <returns></returns>
         public DUpgrade GetUpgrade(int _defenseID, int _id)
         {
             Defense _defense = GetDefense(_defenseID);
-
-            foreach (DUpgrade upgrade in _defense.upgrades)
+            foreach (DUpgrade upgrade in _defense.Upgrades)
             {
-                if (upgrade.id == _id)
+                if (upgrade.Id == _id)
                 {
                     return upgrade;
                 }
@@ -61,90 +45,121 @@ namespace SBabchuk
 
             return null;
         }
-
     }
 
     [System.Serializable]
     public class Defense
     {
-        #region Відображення
-        [Header("ID")]
-        public int id;
+        [SerializeField]
+        [FormerlySerializedAs("id")]
+        private int _id;
+        public int Id { get => _id; set => _id = value; }
 
-        [Header("Найменування")]
-        public string name;
+        [SerializeField]
+        [FormerlySerializedAs("name")]
+        private string _name;
+        public string Name { get => _name; set => _name = value; }
 
-        [Header("Іконка сброї")]
-        public Sprite ico;
-        #endregion //Відображення
+        [SerializeField]
+        [FormerlySerializedAs("ico")]
+        private Sprite _icon;
+        public Sprite Icon { get => _icon; set => _icon = value; }
 
-        [Header("Вартість")]
-        public int price;
 
-        [Header("Кількість апгрейдів")]
-        public int countUpgrades;
+        [SerializeField]
+        [FormerlySerializedAs("price")]
 
-        [Header("Апгрейди")]
-        public List<DUpgrade> upgrades = new List<DUpgrade>();
+        private int _price;
+        public int Price { get => _price; set => _price = value; }
 
-        [Header("Параметри")]
-        public DefenceSettings settings = new DefenceSettings();
+        [SerializeField]
+        [FormerlySerializedAs("countUpgrades")]
+        private int _countUpgrades;
+        public int CountUpgrades { get => _countUpgrades; set => _countUpgrades = value; }
 
-        [Header("Кількість іконок")]
-        public int countIcons;
+        [SerializeField]
+        [FormerlySerializedAs("upgrades")]
+        private List<DUpgrade> _upgrades = new List<DUpgrade>();
+        public List<DUpgrade> Upgrades { get => _upgrades; set => _upgrades = value; }
 
-        [Header("Картинки відносно стану")]
-        public List<Ico> icons = new List<Ico>();
+        [SerializeField]
+        [FormerlySerializedAs("settings")]
+        private DefenceSettings _settings = new DefenceSettings();
+        public DefenceSettings Settings { get => _settings; set => _settings = value; }
+
+        [SerializeField]
+        [FormerlySerializedAs("countIcons")]
+        private int _countIcons;
+        public int CountIcons { get => _countIcons; set => _countIcons = value; }
+
+        [SerializeField]
+        [FormerlySerializedAs("icons")]
+        private List<Ico> _icons = new List<Ico>();
+        public List<Ico> Icons { get => _icons; set => _icons = value; }
 
         public Defense(int _id)
         {
-            this.id = _id;
-            this.name = "Defense_" + (_id + 1);
+            this._id = _id;
+            this._name = "Defense_" + (_id + 1);
         }
     }
 
     [System.Serializable]
     public class DefenceSettings
     {
-        [Header("К-сть життів (без апгрейда)")]
-        public int health;
+        [SerializeField]
+        [FormerlySerializedAs("health")]
+        private int _health;
+        public int Health { get => _health; set => _health = value; }
     }
 
     [System.Serializable]
     public class DUpgrade
     {
-        [Header("ID апгрейда")]
-        public int id;
+        [SerializeField]
+        [FormerlySerializedAs("id")]
+        private int _id;
+        public int Id { get => _id; set => _id = value; }
 
-        [Header("Найменування апгрейда")]
-        public string name;
+        [SerializeField]
+        [FormerlySerializedAs("name")]
+        private string _name;
+        public string Name { get => _name; set => _name = value; }
 
-        [Header("Ціна апгрейда")]
-        public int price;
+        [SerializeField]
+        [FormerlySerializedAs("price")]
+        private int _price;
+        public int Price { get => _price; set => _price = value; }
 
-        [Header("Властивості апгрейда")]
-        public DefenceSettings settings;
+        [SerializeField]
+        [FormerlySerializedAs("settings")]
+        private DefenceSettings _settings;
+        public DefenceSettings Settings { get => _settings; set => _settings = value; }
 
         public DUpgrade(int _id)
         {
-            this.id = _id;
-            this.name = "Upgrade_" + (_id + 1);
-            this.price = 0;
+            this._id = _id;
+            this._name = "Upgrade_" + (_id + 1);
+            this._price = 0;
         }
     }
 
     [System.Serializable]
     public class Ico
     {
-        [Header("ID іконки")]
-        public int id;
+        [SerializeField]
+        [FormerlySerializedAs("id")]
+        private int _id;
+        public int Id { get => _id; set => _id = value; }
 
-        [Header("Іконка")]
-        public Sprite ico;
+        [SerializeField]
+        [FormerlySerializedAs("ico")]
+        private Sprite _icon;
+        public Sprite Icon { get => _icon; set => _icon = value; }
 
         public Ico(int _id)
         {
-            this.id = _id;
+            this._id = _id;
         }
     }
 }

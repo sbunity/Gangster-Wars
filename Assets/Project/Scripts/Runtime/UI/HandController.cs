@@ -1,294 +1,177 @@
 using DG.Tweening;
-using System.Collections;
-using System.Collections.Generic;
 using SBabchuk.Runtime.Services.Contracts;
 using UnityEngine;
 using Zenject;
+using UnityEngine.Serialization;
 
 namespace SBabchuk
 {
     public class HandController : MonoBehaviour, IHandService
     {
-        public bool IsHoldingGrenade => focus;
+        public bool IsHoldingGrenade => _focus;
 
-        [Header("Скейл іконки вже в руці")]
-        [Range(1, 2)]
-        public float scaleToTouch = 1f;
+        [SerializeField, FormerlySerializedAs("scaleToTouch"), Range(1, 2)]
+        private float _scaleToTouch = 1f;
 
-        [Header("Тач колайдер")]
-        public Collider2D touchCollider;
+        [SerializeField, FormerlySerializedAs("touchCollider")]
+        private Collider2D _touchCollider;
 
-        [Header("Солайдер для колізій")]
-        public Collider2D collisionCollider;
+        [SerializeField, FormerlySerializedAs("collisionCollider")]
+        private Collider2D _collisionCollider;
 
-        /// <summary>
-        /// Колайдер з яким взаємодієм
-        /// </summary>
-        private Collider2D otherCollider;
+        private Collider2D _otherCollider;
+        private Vector3 _positionForBack;
+        private GrenadesName _currentGrenadeName;
+        private SpriteRenderer _sRender;
+        private GrenadeBttnController _grenade;
+        private bool _focus = false;
+        private bool _onTrigger;
+        private string _tagPlace = "Place";
+        private bool _isMovingToBack;
+        private Tween _twn;
 
-        /// <summary>
-        /// Позиція, куди варто повернутись
-        /// </summary>
-        private Vector3 positionForBack;
-
-        /// <summary>
-        /// поточне ім*я гранати
-        /// </summary>
-        private GrenadesName currentGrenadeName;
-
-        /// <summary>
-        /// SpriteRenderer - компонент
-        /// </summary>
-        private SpriteRenderer sRender;
-
-        /// <summary>
-        /// Вказівник на кнопку, по нажаття якої ми тут
-        /// </summary>
-        private GrenadeBttnController grenade;
-
-        /// <summary>
-        /// Чи здійснений фокус
-        /// </summary>
-        private bool focus = false;
-
-        /// <summary>
-        /// Чи є зіткнення з колайдером
-        /// </summary>
-        private bool onTrigger;
-
-        /// <summary>
-        /// Тег для Place
-        /// </summary>
-        private string tagPlace = "Place";
-
-        /// <summary>
-        /// Чи зараз в русі
-        /// </summary>
-        private bool isMovingToBack;
-
-        /// <summary>
-        /// Тимчасова змінна для твіна
-        /// </summary>
-        Tween twn;
         private IAssetProvider _assetProvider;
         private IPlayerProgressService _progressService;
         private ILevelRuntimeService _levelRuntimeService;
 
         [Inject]
-        private void Construct(
-            IAssetProvider assetProvider,
-            IPlayerProgressService progressService,
-            ILevelRuntimeService levelRuntimeService)
+        public void Construct(IAssetProvider assetProvider, IPlayerProgressService progressService, ILevelRuntimeService levelRuntimeService)
         {
             _assetProvider = assetProvider;
             _progressService = progressService;
             _levelRuntimeService = levelRuntimeService;
         }
 
-        /// <summary>
-        /// Предстартова ініціалізація
-        /// </summary>
         private void Awake()
         {
-            sRender = GetComponent<SpriteRenderer>();
+            _sRender = GetComponent<SpriteRenderer>();
         }
 
-        /// <summary>
-        /// Ініціалізація
-        /// </summary>
-        public void Init(GrenadesName _grenadeName, GrenadeBttnController _grenade)
+        public void Init(GrenadesName grenadeName, GrenadeBttnController grenade)
         {
-            if (isMovingToBack)
+            if (_isMovingToBack)
             {
-                twn?.Kill();
+                _twn?.Kill();
                 CompleteMovingToBack();
             }
 
-            grenade = _grenade;
-
-            currentGrenadeName = _grenadeName;
-
-            Vector3 pos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-
+            _grenade = grenade;
+            _currentGrenadeName = grenadeName;
+            var pos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             transform.position = new Vector3(pos.x, pos.y, 0);
-
-            positionForBack = transform.position;
-
+            _positionForBack = transform.position;
             var bombStore = _assetProvider.BombStoreDatabase;
-            sRender.sprite = bombStore.GetGrenade((int)_grenadeName).ico;
-
+            _sRender.sprite = bombStore.GetGrenade((int)grenadeName).Icon;
             OnTouchDown();
         }
 
-        /// <summary>
-        /// Підписались на Енейбл
-        /// </summary>
-        public void OnEnable()
+        private void OnEnable()
         {
             EasyTouch.On_TouchDown += OnTouchMove;
             EasyTouch.On_TouchUp += OnTouchUp;
         }
 
-        /// <summary>
-        /// Підписались на Дізкйбл
-        /// </summary>
-        public void OnDisable()
+        private void OnDisable()
         {
             EasyTouch.On_TouchDown -= OnTouchMove;
             EasyTouch.On_TouchUp -= OnTouchUp;
         }
 
-        /// <summary>
-        /// Закінчилась взаємодія по колайдерам
-        /// </summary>
-        /// <param name="other">Other.</param>
-        public void OnTriggerExit2D(Collider2D other)
+        private void OnTriggerExit2D(Collider2D other)
         {
-            if (onTrigger)
+            if (_onTrigger)
             {
-                onTrigger = false;
-
-                otherCollider = null;
+                _onTrigger = false;
+                _otherCollider = null;
             }
         }
 
-        /// <summary>
-        /// Взаємодія по колайдерам
-        /// </summary>
-        /// <param name="other"></param>
-        public void OnTriggerStay2D(Collider2D other)
+        private void OnTriggerStay2D(Collider2D other)
         {
-            if (otherCollider)
+            if (_otherCollider)
             {
-                if (other.tag == otherCollider.tag)
+                if (_otherCollider.CompareTag(other.tag))
                 {
-                    onTrigger = true;
+                    _onTrigger = true;
                 }
             }
             else
             {
-                if (other.tag == tagPlace)
+                if (other.CompareTag(_tagPlace))
                 {
-                    otherCollider = other;
-
-                    onTrigger = true;
+                    _otherCollider = other;
+                    _onTrigger = true;
                 }
             }
         }
 
-        /// <summary>
-        /// Рухаєм
-        /// </summary>
-        /// <param name="gesture">Gesture.</param>
         public void OnTouchMove(Gesture gesture)
         {
-            if (focus)
+            if (_focus)
             {
-                Vector3 pos = gesture.GetTouchToWorldPoint(9f);
+                var pos = gesture.GetTouchToWorldPoint(9f);
                 transform.position = pos;
             }
         }
 
-        /// <summary>
-        /// Чи ми зараз над місцем призначення
-        /// </summary>
         public void IsOverPlace()
         {
-            if (onTrigger)
-            {
-                Checked(); //правильно поставили
-            }
+            if (_onTrigger)
+                Checked();
             else
-            {
-                SwimBackOnTable(); //повертаєм назад, якщо неправильно поставили
-            }
+                SwimBackOnTable();
         }
 
-        /// <summary>
-        /// Перевірка
-        /// </summary>
         public void Checked()
         {
-            Debug.Log("Checked");
-
-            grenade.CheckIco(true);
-
-            _progressService.UseGrenade((int)currentGrenadeName);
-
-            if (_levelRuntimeService != null)
-                _levelRuntimeService.SpawnGrenadeOnPlace(currentGrenadeName, transform.position);
-
-            transform.position = new Vector3(100, 100, 0); //ховаєм руку
+            _grenade.CheckIco(true);
+            _progressService.UseGrenade((int)_currentGrenadeName);
+            _levelRuntimeService?.SpawnGrenadeOnPlace(_currentGrenadeName, transform.position);
+            transform.position = new Vector3(100, 100, 0);
         }
 
-        /// <summary>
-        /// Метод, що імітує нажаття
-        /// </summary>
         public void OnTouchDown()
         {
-            if (!focus)
+            if (!_focus)
             {
-                if (this.gameObject.transform.localScale.x <= 1 * scaleToTouch)
-                    this.gameObject.transform.localScale *= scaleToTouch;
-
-                focus = true;
+                if (this.gameObject.transform.localScale.x <= 1 * _scaleToTouch)
+                    this.gameObject.transform.localScale *= _scaleToTouch;
+                _focus = true;
             }
         }
 
-        /// <summary>
-        /// Коли відпустили тач
-        /// </summary>
-        /// <param name="gesture"></param>
         public void OnTouchUp(Gesture gesture)
         {
-             if (focus)
-             {
-                 IsOverPlace();
-
-                 focus = false;
-             }
+            if (_focus)
+            {
+                IsOverPlace();
+                _focus = false;
+            }
         }
 
-        /// <summary>
-        /// Повертаэм на місце
-        /// </summary>
-        /// <param name="time">Time.</param>
         public void SwimBackOnTable(float time = 0.5f)
         {
-            twn = transform.DOLocalMove(positionForBack, time)
-                .OnStart(() => 
-                {
-                    isMovingToBack = true;
-
-                    touchCollider.enabled = false;
-
-                    collisionCollider.enabled = false;
-                    
-                    focus = false;
-                })
-                .OnComplete(() => 
-                {
-                    CompleteMovingToBack();
-                });
+            _twn = transform.DOLocalMove(_positionForBack, time).OnStart(() =>
+            {
+                _isMovingToBack = true;
+                _touchCollider.enabled = false;
+                _collisionCollider.enabled = false;
+                _focus = false;
+            }).OnComplete(() =>
+            {
+                CompleteMovingToBack();
+            });
         }
 
-        /// <summary>
-        /// Що треба зробити, коли повернулись на місце
-        /// </summary>
         private void CompleteMovingToBack()
         {
-            grenade.CheckIco(true);
-
+            _grenade.CheckIco(true);
             transform.position = new Vector3(100, 100, 0);
-
-            touchCollider.enabled = true;
-
-            collisionCollider.enabled = true;
-
-            isMovingToBack = false;
-
+            _touchCollider.enabled = true;
+            _collisionCollider.enabled = true;
+            _isMovingToBack = false;
             if (this.gameObject.transform.localScale.x > 1)
-                this.gameObject.transform.localScale /= scaleToTouch;
+                this.gameObject.transform.localScale /= _scaleToTouch;
         }
     }
 }

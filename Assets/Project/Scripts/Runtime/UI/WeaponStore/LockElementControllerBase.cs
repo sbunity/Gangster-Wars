@@ -1,33 +1,27 @@
-﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Serialization;
 
 namespace SBabchuk
 {
     public class LockElementControllerBase : MonoBehaviour
     {
-        [Header("Поле для виведення вартості покупки зброї")]
-        public Text priceBuy;
+        [SerializeField, FormerlySerializedAs("priceBuy")]
+        private Text _priceBuy;
+        public Text PriceBuy { get => _priceBuy; set => _priceBuy = value; }
 
-        [Header("Кнопка покупки")]
-        public Button bttnBuy;
+        [SerializeField, FormerlySerializedAs("bttnBuy")]
+        private Button _bttnBuy;
+        public Button BttnBuy { get => _bttnBuy; set => _bttnBuy = value; }
 
-        [HideInInspector]
-        public int id;
+        [SerializeField, FormerlySerializedAs("id")]
+        private int _id;
+        public int Id { get => _id; set => _id = value; }
 
-        /// <summary>
-        /// Ініціалізація
-        /// </summary>
-        /// <param name="_id"></param>
         public virtual void Initialisation(int _id)
         {
-           
         }
 
-        /// <summary>
-        /// Поукупка зброї
-        /// </summary>
         public virtual void Buy()
         {
         }

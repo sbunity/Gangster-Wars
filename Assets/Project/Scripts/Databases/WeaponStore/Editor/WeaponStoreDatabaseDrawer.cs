@@ -6,65 +6,43 @@ namespace SBabchuk
 {
     public class WeaponStoreDatabaseDrawer
     {
-        [Header("���� �� ������������")]
         static Color defaultColor;
-
-        [Header("������� �����")]
         static int selected = 0;
-
-        [Header("������������� �� ����������� �����������")]
         private static int selectedMode = 0;
-
-        [Header("������ �� ���� �����")]
         static private WeaponStoreDatabase database;
-
-        [Header("��������� ��� ������")]
         static string titleBttnVisibleUpgrade = "Show";
-
-        /// <summary>
-        /// �������� ����� ����������� � ��������
-        /// </summary>
-        /// <param name="_database"></param>
-        /// <param name="selectedMode"></param>
         public static void Draw(WeaponStoreDatabase _database, int _selectedMode)
         {
-            if (database == null) //�������� ��������� �� null
-                database = _database; //�����*������ ���� �����
-
-            selectedMode = _selectedMode; //�����*������ ���
-
-            defaultColor = GUI.color; //������� ���� �� �������, ��� ���������� ������������
-
-            DrawNavigation(); //����������� ��������
+            if (database == null)
+                database = _database;
+            selectedMode = _selectedMode;
+            defaultColor = GUI.color;
+            DrawNavigation();
         }
 
-        /// <summary>
-        /// ������������ ��������(����)
-        /// </summary>
         public static void DrawNavigation()
         {
             Utils.ChangeColor(Color.grey);
             GUILayout.BeginVertical("box");
             {
                 GUI.color = defaultColor;
-                EditorGUILayout.LabelField("������������:");
-
+                EditorGUILayout.LabelField("РїС—Р…РїС—Р…РїС—Р…РїС—Р…РїС—Р…РїС—Р…РїС—Р…РїС—Р…РїС—Р…РїС—Р…РїС—Р…РїС—Р…:");
                 EditorGUILayout.BeginHorizontal();
                 {
-                    if (GUILayout.Button("�������� ����� �����"))
+                    if (GUILayout.Button("РїС—Р…РїС—Р…РїС—Р…РїС—Р…РїС—Р…РїС—Р…РїС—Р…РїС—Р… РїС—Р…РїС—Р…РїС—Р…РїС—Р…РїС—Р… РїС—Р…РїС—Р…РїС—Р…РїС—Р…РїС—Р…"))
                     {
-                        database.weapons.Add(new Weapon(database.weapons.Count));
-                        selected = database.weapons.Count - 1;
+                        database.Weapons.Add(new Weapon(database.Weapons.Count));
+                        selected = database.Weapons.Count - 1;
                     }
 
-                    if (GUILayout.Button("�������� �� ������", GUILayout.Width(150)))
+                    if (GUILayout.Button("РїС—Р…РїС—Р…РїС—Р…РїС—Р…РїС—Р…РїС—Р…РїС—Р…РїС—Р… РїС—Р…РїС—Р… РїС—Р…РїС—Р…РїС—Р…РїС—Р…РїС—Р…РїС—Р…", GUILayout.Width(150)))
                     {
-                        database.weapons.Clear();
+                        database.Weapons.Clear();
                         selected = 0;
                     }
                 }
-                EditorGUILayout.EndHorizontal();
 
+                EditorGUILayout.EndHorizontal();
                 EditorGUILayout.BeginHorizontal();
                 {
                     if (selectedMode == 1)
@@ -73,23 +51,24 @@ namespace SBabchuk
                         {
                             selected = Mathf.Max(0, selected - 1);
                         }
+
                         if (GUILayout.Button("-->", GUILayout.Width(50)))
                         {
-                            selected = Mathf.Min(database.weapons.Count == 0 ? 0 : database.weapons.Count - 1, selected + 1);
+                            selected = Mathf.Min(database.Weapons.Count == 0 ? 0 : database.Weapons.Count - 1, selected + 1);
                         }
                     }
                 }
-                EditorGUILayout.EndHorizontal();
 
+                EditorGUILayout.EndHorizontal();
                 if (database)
                 {
-                    if (database.weapons != null)
+                    if (database.Weapons != null)
                     {
-                        if (database.weapons.Count > 0)
+                        if (database.Weapons.Count > 0)
                         {
                             if (selectedMode == 0)
                             {
-                                foreach (Weapon _weapon in database.weapons)
+                                foreach (Weapon _weapon in database.Weapons)
                                 {
                                     if (DrawWeapon(_weapon))
                                         break;
@@ -97,78 +76,62 @@ namespace SBabchuk
                             }
                             else
                             {
-                                DrawWeapon(database.weapons[selected]);
+                                DrawWeapon(database.Weapons[selected]);
                             }
                         }
                     }
                 }
             }
+
             GUILayout.EndVertical();
         }
 
-        /// <summary>
-        /// ����������� ���������� ��� �����
-        /// </summary>
-        /// <param name="_weapon"></param>
-        /// <returns></returns>
         public static bool DrawWeapon(Weapon _weapon)
         {
             GUILayout.BeginHorizontal("box");
             {
                 GUILayout.BeginVertical();
                 {
-                    //������ ������
-                    _weapon.ico = (Sprite)EditorGUILayout.ObjectField(_weapon.ico, typeof(Sprite), false, GUILayout.Width(75), GUILayout.Height(75));
-
-                    //������ ��������� ��������� ����
-                    if (GUILayout.Button("��������", GUILayout.Width(75), GUILayout.Height(20)))
+                    _weapon.Icon = (Sprite)EditorGUILayout.ObjectField(_weapon.Icon, typeof(Sprite), false, GUILayout.Width(75), GUILayout.Height(75));
+                    if (GUILayout.Button("РїС—Р…РїС—Р…РїС—Р…РїС—Р…РїС—Р…РїС—Р…РїС—Р…РїС—Р…", GUILayout.Width(75), GUILayout.Height(20)))
                     {
-                        database.weapons.Remove(_weapon);
+                        database.Weapons.Remove(_weapon);
                         selected = Mathf.Max(0, selected - 1);
                         return true;
                     }
                 }
-                GUILayout.EndVertical();
 
+                GUILayout.EndVertical();
                 GUILayout.BeginVertical();
                 {
-                    _weapon.id = EditorGUILayout.IntField("ID ����: ", _weapon.id);
-                    _weapon.name = EditorGUILayout.TextField("������������ ����: ", _weapon.name);
-
-                    Utils.CheckColor(_weapon.price, 0);
-                    _weapon.price = EditorGUILayout.IntField("������� ����: ", _weapon.price);
+                    _weapon.Id = EditorGUILayout.IntField("ID РїС—Р…РїС—Р…РїС—Р…РїС—Р…: ", _weapon.Id);
+                    _weapon.Name = EditorGUILayout.TextField("РїС—Р…РїС—Р…РїС—Р…РїС—Р…РїС—Р…РїС—Р…РїС—Р…РїС—Р…РїС—Р…РїС—Р…РїС—Р…РїС—Р… РїС—Р…РїС—Р…РїС—Р…РїС—Р…: ", _weapon.Name);
+                    Utils.CheckColor(_weapon.Price, 0);
+                    _weapon.Price = EditorGUILayout.IntField("РїС—Р…РїС—Р…РїС—Р…РїС—Р…РїС—Р…РїС—Р…РїС—Р… РїС—Р…РїС—Р…РїС—Р…РїС—Р…: ", _weapon.Price);
                     Utils.ChangeColor(defaultColor);
-
-                    Utils.CheckColor(_weapon.magazine, 0);
-                    _weapon.magazine = EditorGUILayout.IntSlider("���������� ��������: ", _weapon.magazine, 0, 50);
+                    Utils.CheckColor(_weapon.Magazine, 0);
+                    _weapon.Magazine = EditorGUILayout.IntSlider("РїС—Р…РїС—Р…РїС—Р…РїС—Р…РїС—Р…РїС—Р…РїС—Р…РїС—Р…РїС—Р…РїС—Р… РїС—Р…РїС—Р…РїС—Р…РїС—Р…РїС—Р…РїС—Р…РїС—Р…РїС—Р…: ", _weapon.Magazine, 0, 50);
                     Utils.ChangeColor(defaultColor);
-
-                    Utils.CheckColor(_weapon.priceMagazine, 0);
-                    _weapon.priceMagazine = EditorGUILayout.IntSlider("������� �������� ��������: ", _weapon.priceMagazine, 0, 300);
+                    Utils.CheckColor(_weapon.PriceMagazine, 0);
+                    _weapon.PriceMagazine = EditorGUILayout.IntSlider("РїС—Р…РїС—Р…РїС—Р…РїС—Р…РїС—Р…РїС—Р…РїС—Р… РїС—Р…РїС—Р…РїС—Р…РїС—Р…РїС—Р…РїС—Р…РїС—Р…РїС—Р… РїС—Р…РїС—Р…РїС—Р…РїС—Р…РїС—Р…РїС—Р…РїС—Р…РїС—Р…: ", _weapon.PriceMagazine, 0, 300);
                     Utils.ChangeColor(defaultColor);
-
-                    Utils.CheckColor(_weapon.speedReload, 0);
-                    _weapon.speedReload = EditorGUILayout.Slider("�������� ����������� 1 �������: ", _weapon.speedReload, 0, 3);
+                    Utils.CheckColor(_weapon.SpeedReload, 0);
+                    _weapon.SpeedReload = EditorGUILayout.Slider("РїС—Р…РїС—Р…РїС—Р…РїС—Р…РїС—Р…РїС—Р…РїС—Р…РїС—Р… РїС—Р…РїС—Р…РїС—Р…РїС—Р…РїС—Р…РїС—Р…РїС—Р…РїС—Р…РїС—Р…РїС—Р…РїС—Р… 1 РїС—Р…РїС—Р…РїС—Р…РїС—Р…РїС—Р…РїС—Р…РїС—Р…: ", _weapon.SpeedReload, 0, 3);
                     Utils.ChangeColor(defaultColor);
-
-                    Utils.CheckColor(_weapon.settings.damage, 0);
-                    _weapon.settings.damage = EditorGUILayout.IntField("���� ��� ��������: ", _weapon.settings.damage);
+                    Utils.CheckColor(_weapon.Settings.Damage, 0);
+                    _weapon.Settings.Damage = EditorGUILayout.IntField("РїС—Р…РїС—Р…РїС—Р…РїС—Р… РїС—Р…РїС—Р…РїС—Р… РїС—Р…РїС—Р…РїС—Р…РїС—Р…РїС—Р…РїС—Р…РїС—Р…РїС—Р…: ", _weapon.Settings.Damage);
                     Utils.ChangeColor(defaultColor);
-
-                    Utils.CheckColor(_weapon.bulletID, -1);
-                    _weapon.bulletID = (int)((BulletsName)EditorGUILayout.EnumPopup("����(ID)", (BulletsName)_weapon.bulletID));
+                    Utils.CheckColor(_weapon.BulletId, -1);
+                    _weapon.BulletId = (int)((BulletsName)EditorGUILayout.EnumPopup("РїС—Р…РїС—Р…РїС—Р…РїС—Р…(ID)", (BulletsName)_weapon.BulletId));
                     Utils.ChangeColor(defaultColor);
-
-                    if (_weapon.bulletID != -1)
-                        DrawBulletInfo(_weapon.bulletID);
-
+                    if (_weapon.BulletId != -1)
+                        DrawBulletInfo(_weapon.BulletId);
                     Utils.ChangeColor(Color.green);
-                    _weapon.countUpgrades = EditorGUILayout.IntSlider("ʳ������ ��������: ", _weapon.countUpgrades, 1, 5);
+                    _weapon.CountUpgrades = EditorGUILayout.IntSlider("РљС–РїС—Р…РїС—Р…РїС—Р…РїС—Р…РїС—Р…РїС—Р… РїС—Р…РїС—Р…РїС—Р…РїС—Р…РїС—Р…РїС—Р…РїС—Р…РїС—Р…: ", _weapon.CountUpgrades, 1, 5);
                     Utils.ChangeColor(defaultColor);
-
-                    if (GUILayout.Button(((selected != _weapon.id)) ? "Show" : titleBttnVisibleUpgrade, GUILayout.Width(100), GUILayout.Height(20)))
+                    if (GUILayout.Button(((selected != _weapon.Id)) ? "Show" : titleBttnVisibleUpgrade, GUILayout.Width(100), GUILayout.Height(20)))
                     {
-                        if (selected == _weapon.id)
+                        if (selected == _weapon.Id)
                         {
                             if (titleBttnVisibleUpgrade == "Show")
                             {
@@ -183,109 +146,102 @@ namespace SBabchuk
                         else
                         {
                             titleBttnVisibleUpgrade = "Hide";
-                            selected = _weapon.id;
+                            selected = _weapon.Id;
                         }
                     }
-                   
-                    if (titleBttnVisibleUpgrade == "Hide" && selected == _weapon.id)
+
+                    if (titleBttnVisibleUpgrade == "Hide" && selected == _weapon.Id)
                     {
-                       
-                        EditorGUILayout.LabelField("���������� ��� ��������:");
-                        if (_weapon.upgrades != null)
+                        EditorGUILayout.LabelField("РїС—Р…РїС—Р…РїС—Р…РїС—Р…РїС—Р…РїС—Р…РїС—Р…РїС—Р…РїС—Р…РїС—Р… РїС—Р…РїС—Р…РїС—Р… РїС—Р…РїС—Р…РїС—Р…РїС—Р…РїС—Р…РїС—Р…РїС—Р…РїС—Р…:");
+                        if (_weapon.Upgrades != null)
                         {
-                            if (_weapon.countUpgrades == _weapon.upgrades.Count)
+                            if (_weapon.CountUpgrades == _weapon.Upgrades.Count)
                             {
-                                foreach (WUpgrade _upgrade in _weapon.upgrades)
+                                foreach (WUpgrade _upgrade in _weapon.Upgrades)
                                 {
                                     DrawUpgrade(_upgrade);
                                 }
                             }
                             else
                             {
-                                if (_weapon.countUpgrades > _weapon.upgrades.Count)
+                                if (_weapon.CountUpgrades > _weapon.Upgrades.Count)
                                 {
-                                    for (int i = _weapon.upgrades.Count; i < _weapon.countUpgrades; i++)
+                                    for (int i = _weapon.Upgrades.Count; i < _weapon.CountUpgrades; i++)
                                     {
-                                        _weapon.upgrades.Add(new WUpgrade(_weapon.upgrades.Count));
+                                        _weapon.Upgrades.Add(new WUpgrade(_weapon.Upgrades.Count));
                                     }
                                 }
                                 else
                                 {
-                                    _weapon.upgrades.RemoveRange(_weapon.upgrades.Count - (_weapon.upgrades.Count - _weapon.countUpgrades), _weapon.upgrades.Count - _weapon.countUpgrades);
+                                    _weapon.Upgrades.RemoveRange(_weapon.Upgrades.Count - (_weapon.Upgrades.Count - _weapon.CountUpgrades), _weapon.Upgrades.Count - _weapon.CountUpgrades);
                                 }
                             }
                         }
                         else
                         {
-                            _weapon.upgrades = new List<WUpgrade>();
-
-                            for (int i = 0; i < _weapon.countUpgrades; i++)
+                            _weapon.Upgrades = new List<WUpgrade>();
+                            for (int i = 0; i < _weapon.CountUpgrades; i++)
                             {
-                                _weapon.upgrades.Add(new WUpgrade(_weapon.upgrades.Count));
+                                _weapon.Upgrades.Add(new WUpgrade(_weapon.Upgrades.Count));
                             }
                         }
                     }
-
                 }
+
                 GUILayout.EndVertical();
             }
+
             GUILayout.EndHorizontal();
             return false;
         }
 
-        /// <summary>
-        /// ����������� ���������� ��� ��������
-        /// </summary>
-        /// <param name="_upgrade"></param>
         public static void DrawUpgrade(WUpgrade _upgrade)
         {
             GUILayout.BeginHorizontal("box");
             {
                 GUILayout.BeginVertical();
                 {
-                    _upgrade.id = EditorGUILayout.IntField("ID ��������: ", _upgrade.id);
-                    _upgrade.name = EditorGUILayout.TextField("������������ ��������: ", _upgrade.name);
-
-                    Utils.CheckColor(_upgrade.price, 0);
-                    _upgrade.price = EditorGUILayout.IntField("������� ��������: ", _upgrade.price);
+                    _upgrade.Id = EditorGUILayout.IntField("ID РїС—Р…РїС—Р…РїС—Р…РїС—Р…РїС—Р…РїС—Р…РїС—Р…РїС—Р…: ", _upgrade.Id);
+                    _upgrade.Name = EditorGUILayout.TextField("РїС—Р…РїС—Р…РїС—Р…РїС—Р…РїС—Р…РїС—Р…РїС—Р…РїС—Р…РїС—Р…РїС—Р…РїС—Р…РїС—Р… РїС—Р…РїС—Р…РїС—Р…РїС—Р…РїС—Р…РїС—Р…РїС—Р…РїС—Р…: ", _upgrade.Name);
+                    Utils.CheckColor(_upgrade.Price, 0);
+                    _upgrade.Price = EditorGUILayout.IntField("РїС—Р…РїС—Р…РїС—Р…РїС—Р…РїС—Р…РїС—Р…РїС—Р… РїС—Р…РїС—Р…РїС—Р…РїС—Р…РїС—Р…РїС—Р…РїС—Р…РїС—Р…: ", _upgrade.Price);
                     Utils.ChangeColor(defaultColor);
-
-                    Utils.CheckColor(_upgrade.settings.damage, 0);
-                    _upgrade.settings.damage = EditorGUILayout.IntField("����: ", _upgrade.settings.damage);
+                    Utils.CheckColor(_upgrade.Settings.Damage, 0);
+                    _upgrade.Settings.Damage = EditorGUILayout.IntField("РїС—Р…РїС—Р…РїС—Р…РїС—Р…: ", _upgrade.Settings.Damage);
                     Utils.ChangeColor(defaultColor);
                 }
+
                 GUILayout.EndVertical();
             }
+
             GUILayout.EndHorizontal();
         }
 
-        /// <summary>
-		/// ��������� ���������� ��� ���� � ���������� ��� ������
-		/// </summary>
-		/// <param name="index">Index.</param>
-		public static void DrawBulletInfo(int index)
+        public static void DrawBulletInfo(int index)
         {
-            if (EditorDatabaseLookup.Get<BulletDatabase>().bullets.Count > 0)
+            if (EditorDatabaseLookup.Get<BulletDatabase>().Bullets.Count > 0)
             {
-                foreach (Bullet bullet in EditorDatabaseLookup.Get<BulletDatabase>().bullets)
+                foreach (Bullet bullet in EditorDatabaseLookup.Get<BulletDatabase>().Bullets)
                 {
-                    if (bullet.id == index)
+                    if (bullet.Id == index)
                     {
                         GUILayout.BeginVertical("box");
                         {
                             GUILayout.BeginHorizontal();
                             {
-                                bullet.ico = (Sprite)EditorGUILayout.ObjectField(bullet.ico, typeof(Sprite), false, GUILayout.Width(75), GUILayout.Height(75));
+                                bullet.Icon = (Sprite)EditorGUILayout.ObjectField(bullet.Icon, typeof(Sprite), false, GUILayout.Width(75), GUILayout.Height(75));
                             }
+
                             GUILayout.EndHorizontal();
                         }
+
                         GUILayout.EndVertical();
                     }
                 }
             }
             else
             {
-                EditorGUILayout.LabelField("���� ������");
+                EditorGUILayout.LabelField("РїС—Р…РїС—Р…РїС—Р…РїС—Р… РїС—Р…РїС—Р…РїС—Р…РїС—Р…РїС—Р…РїС—Р…");
             }
         }
     }

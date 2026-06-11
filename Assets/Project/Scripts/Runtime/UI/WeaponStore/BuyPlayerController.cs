@@ -1,46 +1,42 @@
-﻿using System;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using SBabchuk.Runtime.Architecture;
 using SBabchuk.Runtime.Services.Contracts;
 using UnityEngine;
 using Zenject;
+using UnityEngine.Serialization;
 
 namespace SBabchuk
 {
     public class BuyPlayerController : MonoBehaviour
     {
-        public PersonagesName personage;
+        [SerializeField, FormerlySerializedAs("personage")]
+        private PersonagesName _personage;
 
-        private PersonageShortInfo personageShortInfo;
+        [SerializeField, FormerlySerializedAs("unlockElement")]
+        private GameObject _unlockElement;
 
-        private Personage personageInfo;
+        [SerializeField, FormerlySerializedAs("lockElement")]
+        private GameObject _lockElement;
 
-        [Header("Елементи при розблокуванні")]
-        public GameObject unlockElement;
+        [SerializeField, FormerlySerializedAs("panel")]
+        private UIPanelController _panel;
 
-        [Header("Елементи при заблокуванні")]
-        public GameObject lockElement;
+        private PersonageShortInfo _personageShortInfo;
+        private Personage _personageInfo;
 
-        [Header("UI панелька")]
-        public UIPanelController panel;
-
-        Collider2D coll;
+        private Collider2D _coll;
         private IPlayerProgressService _progressService;
         private SignalBus _signalBus;
 
         [Inject]
-        private void Construct(
-            IPlayerProgressService progressService,
-            SignalBus signalBus)
+        public void Construct(IPlayerProgressService progressService, SignalBus signalBus)
         {
             _progressService = progressService;
             _signalBus = signalBus;
         }
 
-        /// <summary>
-        /// Встановити підписку на евенти
-        /// </summary>
         void OnEnable()
         {
             EasyTouch.On_TouchUp += OnTouchUp;
@@ -48,9 +44,6 @@ namespace SBabchuk
             _signalBus.Subscribe<UIPanelReplaceSignal>(Replace);
         }
 
-        /// <summary>
-        /// Втратити підписку на евенти
-        /// </summary>
         void OnDisable()
         {
             EasyTouch.On_TouchUp -= OnTouchUp;
@@ -65,60 +58,46 @@ namespace SBabchuk
 
         private void Start()
         {
-            coll = GetComponent<Collider2D>();
-
+            _coll = GetComponent<Collider2D>();
             CheckInteractive();
         }
 
-        /// <summary>
-        /// Перевірка на інтерактивність
-        /// </summary>
         private void CheckInteractive()
         {
-            personageShortInfo = _progressService.GetPersonageShortInfo((int)personage);
-
-            ChangeLock(personageShortInfo.isBuy == mySwitch.On);
+            _personageShortInfo = _progressService.GetPersonageShortInfo((int)_personage);
+            ChangeLock(_personageShortInfo.IsBuy == mySwitch.On);
         }
 
-        /// <summary>
-        /// Включаєм певні елементи 
-        /// </summary>
-        /// <param name="_value"></param>
         private void ChangeLock(bool _value = false)
         {
-            unlockElement.SetActive(_value);
-
-            lockElement.SetActive(!_value);
+            _unlockElement.SetActive(_value);
+            _lockElement.SetActive(!_value);
         }
 
         private void OnTouchUp(Gesture gesture)
         {
             if (gesture.pickedObject == gameObject)
             {
-                coll.enabled = false;
-
-                panel.Show(panel);
+                _coll.enabled = false;
+                _panel.Show(_panel);
             }
         }
 
         private void Replace(UIPanelReplaceSignal signal)
         {
-            if(signal.Panel != panel)
-                coll.enabled = true;
+            if (signal.Panel != _panel)
+                _coll.enabled = true;
         }
 
         public void Hide()
         {
-            panel.Hide(panel);
-
-            coll.enabled = true;
+            _panel.Hide(_panel);
+            _coll.enabled = true;
         }
 
         public void Buy()
         {
-            //panel.Hide(panel);
-
-            _progressService.BuyPersonage((int)personage);
+            _progressService.BuyPersonage((int)_personage);
         }
     }
 }

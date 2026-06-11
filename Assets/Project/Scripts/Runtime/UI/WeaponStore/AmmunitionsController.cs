@@ -4,37 +4,42 @@ using SBabchuk.Runtime.Services.Contracts;
 using UnityEngine;
 using UnityEngine.UI;
 using Zenject;
+using UnityEngine.Serialization;
 
 namespace SBabchuk
 {
     public class AmmunitionsController : MonoBehaviour
     {
-        public ShortInfoName type;
+        [SerializeField, FormerlySerializedAs("type")]
+        private ShortInfoName _type;
 
-        public List<Image> patrons;
+        [SerializeField, FormerlySerializedAs("patrons")]
+        private List<Image> _patrons;
 
-        public Sprite buySprite;
+        [SerializeField, FormerlySerializedAs("buySprite")]
+        private Sprite _buySprite;
+
         private IPlayerProgressService _progressService;
-
+        
         [Inject]
-        private void Construct(IPlayerProgressService progressService)
+        public void Construct(IPlayerProgressService progressService)
         {
             _progressService = progressService;
         }
 
         private int GetUp(int _id)
         {
-            if (type == ShortInfoName.Weapon)
+            if (_type == ShortInfoName.Weapon)
             {
-                return _progressService.GetWeaponShortInfo(_id).upgradeID;
+                return _progressService.GetWeaponShortInfo(_id).UpgradeId;
             }
-            else if (type == ShortInfoName.Defence)
+            else if (_type == ShortInfoName.Defence)
             {
-                return _progressService.GetDefenceShortInfo(_id).upgradeID;
+                return _progressService.GetDefenceShortInfo(_id).UpgradeId;
             }
-            else if (type == ShortInfoName.Personage)
+            else if (_type == ShortInfoName.Personage)
             {
-                return _progressService.GetPersonageShortInfo(_id).upgradeID;
+                return _progressService.GetPersonageShortInfo(_id).UpgradeId;
             }
             else
             {
@@ -46,7 +51,7 @@ namespace SBabchuk
         {
             for (int i = 0; i <= GetUp(_id); i++)
             {
-                patrons[i].sprite = buySprite;
+                _patrons[i].sprite = _buySprite;
             }
         }
     }

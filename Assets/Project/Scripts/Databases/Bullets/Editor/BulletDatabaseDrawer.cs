@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using UnityEditor;
 using System.Collections.Generic;
 
@@ -6,50 +6,35 @@ namespace SBabchuk
 {
     public class BulletDatabaseDrawer
     {
-        /// <summary>
-        /// Вибрана пуля
-        /// </summary>
         static int selected = 0;
-
-        /// <summary>
-        /// Змінна для зберігання кольрі по дефолту
-        /// </summary>
         static Color defaultColor;
-
-        /// <summary>
-        /// База даних
-        /// </summary>
         static private BulletDatabase database;
-
         public static void Draw(BulletDatabase _database, int selectedMode)
         {
             if (database == null)
                 database = _database;
-
             defaultColor = GUI.color;
-
             Utils.ChangeColor(Color.grey);
             GUILayout.BeginVertical("box");
             {
                 GUI.color = defaultColor;
-                EditorGUILayout.LabelField("Налаштування:");
-
+                EditorGUILayout.LabelField("РќР°Р»Р°С€С‚СѓРІР°РЅРЅСЏ:");
                 EditorGUILayout.BeginHorizontal();
                 {
-                    if (GUILayout.Button("Добавити новий запис"))
+                    if (GUILayout.Button("Р”РѕР±Р°РІРёС‚Рё РЅРѕРІРёР№ Р·Р°РїРёСЃ"))
                     {
-                        database.bullets.Add(new Bullet(database.bullets.Count));
-                        selected = database.bullets.Count - 1;
+                        database.Bullets.Add(new Bullet(database.Bullets.Count));
+                        selected = database.Bullets.Count - 1;
                     }
 
-                    if (GUILayout.Button("Видалити всі записи", GUILayout.Width(175)))
+                    if (GUILayout.Button("Р’РёРґР°Р»РёС‚Рё РІСЃС– Р·Р°РїРёСЃРё", GUILayout.Width(175)))
                     {
-                        database.bullets.Clear();
+                        database.Bullets.Clear();
                         selected = 0;
                     }
                 }
-                EditorGUILayout.EndHorizontal();
 
+                EditorGUILayout.EndHorizontal();
                 EditorGUILayout.BeginHorizontal();
                 {
                     if (selectedMode == 1)
@@ -58,23 +43,24 @@ namespace SBabchuk
                         {
                             selected = Mathf.Max(0, selected - 1);
                         }
+
                         if (GUILayout.Button("-->"))
                         {
-                            selected = Mathf.Min(database.bullets.Count == 0 ? 0 : database.bullets.Count - 1, selected + 1);
+                            selected = Mathf.Min(database.Bullets.Count == 0 ? 0 : database.Bullets.Count - 1, selected + 1);
                         }
                     }
                 }
-                EditorGUILayout.EndHorizontal();
 
+                EditorGUILayout.EndHorizontal();
                 if (database)
                 {
-                    if (database.bullets != null)
+                    if (database.Bullets != null)
                     {
-                        if (database.bullets.Count > 0)
+                        if (database.Bullets.Count > 0)
                         {
                             if (selectedMode == 0)
                             {
-                                foreach (Bullet _bullet in database.bullets)
+                                foreach (Bullet _bullet in database.Bullets)
                                 {
                                     if (DrawInfo(_bullet))
                                         break;
@@ -82,12 +68,13 @@ namespace SBabchuk
                             }
                             else
                             {
-                                DrawInfo(database.bullets[selected]);
+                                DrawInfo(database.Bullets[selected]);
                             }
                         }
                     }
                 }
             }
+
             GUILayout.EndVertical();
         }
 
@@ -97,31 +84,30 @@ namespace SBabchuk
             {
                 GUILayout.BeginVertical();
                 {
-                    _bullet.ico = (Sprite)EditorGUILayout.ObjectField(_bullet.ico, typeof(Sprite), false, GUILayout.Width(75), GUILayout.Height(75));
-
-                    if (GUILayout.Button("Видалити", GUILayout.Width(75), GUILayout.Height(20)))
+                    _bullet.Icon = (Sprite)EditorGUILayout.ObjectField(_bullet.Icon, typeof(Sprite), false, GUILayout.Width(75), GUILayout.Height(75));
+                    if (GUILayout.Button("Р’РёРґР°Р»РёС‚Рё", GUILayout.Width(75), GUILayout.Height(20)))
                     {
-                        database.bullets.Remove(_bullet);
+                        database.Bullets.Remove(_bullet);
                         selected = Mathf.Max(0, selected - 1);
                         return true;
                     }
                 }
+
                 GUILayout.EndVertical();
                 GUILayout.BeginVertical();
                 {
-                    _bullet.id = EditorGUILayout.IntField("ID: ", _bullet.id);
-                    _bullet.name = EditorGUILayout.TextField("Найменування: ", _bullet.name);
-
-                    Utils.CheckColor(_bullet.speedMove, 0);
-                    _bullet.speedMove = EditorGUILayout.FloatField("Швидкість: ", _bullet.speedMove);
+                    _bullet.Id = EditorGUILayout.IntField("ID: ", _bullet.Id);
+                    _bullet.Name = EditorGUILayout.TextField("РќР°Р№РјРµРЅСѓРІР°РЅРЅСЏ: ", _bullet.Name);
+                    Utils.CheckColor(_bullet.SpeedMove, 0);
+                    _bullet.SpeedMove = EditorGUILayout.FloatField("РЁРІРёРґРєС–СЃС‚СЊ: ", _bullet.SpeedMove);
                     Utils.ChangeColor(defaultColor);
-                    //_bullet.damage = EditorGUILayout.IntField ("Урон: ", _bullet.damage);
                 }
+
                 GUILayout.EndVertical();
             }
+
             GUILayout.EndHorizontal();
             return false;
         }
-
     }
 }

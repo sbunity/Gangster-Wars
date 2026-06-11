@@ -23,7 +23,7 @@ namespace SBabchuk.Runtime.Gameplay.Enemies
 
             if (CollisionCollider == null)
                 return;
-
+                
             CollisionCollider.enabled = value;
             CollisionCollider.isTrigger = value;
         }

@@ -1,54 +1,57 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace SBabchuk
 {
     [CreateAssetMenu(menuName = "Databases/Create BulletDatabase", fileName = "BulletDatabase")]
     public class BulletDatabase : ScriptableObject
     {
-        [Header("Пулі")]
-        [SerializeField, HideInInspector] public List<Bullet> bullets = new List<Bullet>();
+        [FormerlySerializedAs("bullets")]
+        [SerializeField, HideInInspector]
+        private List<Bullet> _bullets = new List<Bullet>();
+        public List<Bullet> Bullets { get => _bullets; set => _bullets = value; }
 
         public Bullet GetBullet(int id)
         {
-            int index = bullets.FindIndex(x => x.id == id);
-
-            return index != -1 ? bullets[index] : null;
+            int index = _bullets.FindIndex(x => x.Id == id);
+            return index != -1 ? _bullets[index] : null;
         }
-
     }
 
     [System.Serializable]
     public class Bullet
     {
-        [Header("ID Пулі")]
-        public int id;
+        [SerializeField]
+        [FormerlySerializedAs("id")]
+        private int _id;
+        public int Id { get => _id; set => _id = value; }
 
-        [Header("Найменування пулі")]
-        public string name;
+        [SerializeField]
+        [FormerlySerializedAs("name")]
+        private string _name;
+        public string Name { get => _name; set => _name = value; }
 
-        [Header("Іконка пулі")]
-        public Sprite ico;
+        [SerializeField]
+        [FormerlySerializedAs("ico")]
+        private Sprite _icon;
+        public Sprite Icon { get => _icon; set => _icon = value; }
 
-        [Header("Швидкість руху")]
-        public float speedMove;
+        [SerializeField]
+        [FormerlySerializedAs("speedMove")]
+        private float _speedMove;
+        public float SpeedMove { get => _speedMove; set => _speedMove = value; }
 
-        [Header("Урон")]
-        public int damage;
+        [SerializeField]
+        [FormerlySerializedAs("damage")]
+        private int _damage;
+        public int Damage { get => _damage; set => _damage = value; }
 
         public Bullet(int _id)
         {
-            this.id = _id;
-            this.name = "Bullet_" + (_id +1);
+            this._id = _id;
+            this._name = "Bullet_" + (_id + 1);
         }
-
-        //public Bullet (Bullet _bullet){
-        //	this.id = _bullet.id;
-        //	this.name = _bullet.name;
-        //	this.ico = _bullet.ico;
-        //	this.speedMove = _bullet.speedMove;
-        //	this.damage = _bullet.damage;
-        //}
     }
 }

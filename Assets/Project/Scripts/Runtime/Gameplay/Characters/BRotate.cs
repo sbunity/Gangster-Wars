@@ -1,124 +1,115 @@
-﻿using Spine;
+using Spine;
 using Spine.Unity;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class BRotate : MonoBehaviour
 {
-    private SkeletonAnimation SkeletonAnim;
+    [SerializeField, FormerlySerializedAs("boneName"), SpineBone]
+    private string _boneName;
 
-    private Bone GunBone;
+    [SerializeField, FormerlySerializedAs("Hand_B1BoneName"), SpineBone]
+    private string _handB1BoneName;
 
-    private Bone Hand_B1Bone;
-    private Bone Hand_B2Bone;
-    private Bone Hand_B3Bone;
-    private Bone Hand_FBone;
-    private Bone Hand_F2Bone;
-    private Bone WeaponBone;
+    [SerializeField, FormerlySerializedAs("Hand_B2BoneName"), SpineBone]
+    private string _handB2BoneName;
 
-    [SpineBone]
-    public string boneName;
+    [SerializeField, FormerlySerializedAs("Hand_B3BoneName"), SpineBone]
+    private string _handB3BoneName;
 
-    [SpineBone]
-    public string Hand_B1BoneName;
-    [SpineBone]
-    public string Hand_B2BoneName;
-    [SpineBone]
-    public string Hand_B3BoneName;
-    [SpineBone]
-    public string Hand_FBoneName;
-    [SpineBone]
-    public string Hand_F2BoneName;
-    [SpineBone]
-    public string WeaponBoneName;
+    [SerializeField, FormerlySerializedAs("Hand_FBoneName"), SpineBone]
+    private string _handFBoneName;
 
-    [Header("Аім")]
-    public Transform target;
+    [SerializeField, FormerlySerializedAs("Hand_F2BoneName"), SpineBone]
+    private string _handF2BoneName;
 
-    [Range(-180, 180)]
-    public int angle;
+    [SerializeField, FormerlySerializedAs("WeaponBoneName"), SpineBone]
+    private string _weaponBoneName;
+
+    [SerializeField, FormerlySerializedAs("target")]
+    private Transform _target;
+
+    [SerializeField, FormerlySerializedAs("angle"), Range(-180, 180)]
+    private int _angle;
+
+    private SkeletonAnimation _skeletonAnim;
+    private Bone _gunBone;
+    private Bone _handB1Bone;
+    private Bone _handB2Bone;
+    private Bone _handB3Bone;
+    private Bone _handFBone;
+    private Bone _handF2Bone;
+    private Bone _weaponBone;
 
     void Start()
     {
-        SkeletonAnim = GetComponent<SkeletonAnimation>();
-        if (SkeletonAnim)
+        _skeletonAnim = GetComponent<SkeletonAnimation>();
+        if (_skeletonAnim)
         {
-            // get bones
-            GunBone = SkeletonAnim.skeleton.FindBone(boneName);
-
-            Hand_B1Bone = SkeletonAnim.skeleton.FindBone(Hand_B1BoneName);
-            Hand_B2Bone = SkeletonAnim.skeleton.FindBone(Hand_B2BoneName);
-            Hand_B3Bone = SkeletonAnim.skeleton.FindBone(Hand_B3BoneName);
-            Hand_FBone = SkeletonAnim.skeleton.FindBone(Hand_FBoneName);
-            Hand_F2Bone = SkeletonAnim.skeleton.FindBone(Hand_F2BoneName);
-            WeaponBone = SkeletonAnim.skeleton.FindBone(WeaponBoneName);
-
-            SkeletonAnim.UpdateWorld += UpdateBones;
+            _gunBone = _skeletonAnim.skeleton.FindBone(_boneName);
+            _handB1Bone = _skeletonAnim.skeleton.FindBone(_handB1BoneName);
+            _handB2Bone = _skeletonAnim.skeleton.FindBone(_handB2BoneName);
+            _handB3Bone = _skeletonAnim.skeleton.FindBone(_handB3BoneName);
+            _handFBone = _skeletonAnim.skeleton.FindBone(_handFBoneName);
+            _handF2Bone = _skeletonAnim.skeleton.FindBone(_handF2BoneName);
+            _weaponBone = _skeletonAnim.skeleton.FindBone(_weaponBoneName);
+            _skeletonAnim.UpdateWorld += UpdateBones;
         }
     }
 
-    void UpdateBones(ISkeletonAnimation animated)
+    private void UpdateBones(ISkeletonAnimation animated)
     {
-       
-        if (GunBone != null)
+        if (_gunBone != null)
         {
-            Rotate(GunBone);
+            Rotate(_gunBone);
         }
 
-        if (Hand_B1Bone != null)
+        if (_handB1Bone != null)
         {
-            Rotate(Hand_B1Bone);
+            Rotate(_handB1Bone);
         }
 
-        if (Hand_B2Bone != null)
+        if (_handB2Bone != null)
         {
-            Rotate(Hand_B2Bone);
+            Rotate(_handB2Bone);
         }
 
-        if (Hand_B3Bone != null)
+        if (_handB3Bone != null)
         {
-            Rotate(Hand_B3Bone);
+            Rotate(_handB3Bone);
         }
 
-        if (Hand_FBone != null)
+        if (_handFBone != null)
         {
-            Rotate(Hand_FBone);
+            Rotate(_handFBone);
         }
 
-        if (Hand_F2Bone != null)
+        if (_handF2Bone != null)
         {
-            Rotate(Hand_F2Bone);
+            Rotate(_handF2Bone);
         }
 
-        if (WeaponBone != null)
+        if (_weaponBone != null)
         {
-            Rotate(WeaponBone);
+            Rotate(_weaponBone);
         }
     }
 
-    public void Rotate(Bone _GunBone)
+    private void Rotate(Bone _GunBone)
     {
-        // could be public
-        const float LowerRotationBound = -180.0f;
-        const float UpperRotationBound = 180.0f;
-
-        // temp variables
-        float tempRot;
-        Vector3 tempVec;
-
-        // gun bone rotation
-        tempVec = Camera.main.WorldToScreenPoint(new Vector3(_GunBone.WorldX + transform.position.x, _GunBone.WorldY + transform.position.y, 0));
-        //tempVec = Input.mousePosition - tempVec;
-        tempVec = Camera.main.WorldToScreenPoint(target.position) - tempVec;
-        tempRot = Mathf.Atan2(tempVec.y, tempVec.x * transform.localScale.x) * Mathf.Rad2Deg + angle;
-        _GunBone.Rotation = Mathf.Clamp(tempRot, LowerRotationBound, UpperRotationBound) - _GunBone.Parent.WorldRotationX; 
+        const float LOWER_ROTATION_BOUND = -180.0f;
+        const float UPPER_ROTATION_BOUND = 180.0f;
+        var tempVec = Camera.main.WorldToScreenPoint(new Vector3(_GunBone.WorldX + transform.position.x, _GunBone.WorldY + transform.position.y, 0));
+        tempVec = Camera.main.WorldToScreenPoint(_target.position) - tempVec;
+        var tempRot = Mathf.Atan2(tempVec.y, tempVec.x * transform.localScale.x) * Mathf.Rad2Deg + _angle;
+        _GunBone.Rotation = Mathf.Clamp(tempRot, LOWER_ROTATION_BOUND, UPPER_ROTATION_BOUND) - _GunBone.Parent.WorldRotationX;
     }
 
-    void Flip()
+    private void Flip()
     {
-        // change facing flag and scale transform
-        Vector3 scale = transform.localScale;
+        var scale = transform.localScale;
         scale.x *= -1;
         transform.localScale = scale;
     }

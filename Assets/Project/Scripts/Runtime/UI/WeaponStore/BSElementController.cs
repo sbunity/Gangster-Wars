@@ -1,47 +1,37 @@
-using System.Collections;
-using System.Collections.Generic;
 using SBabchuk.Runtime.Architecture;
 using SBabchuk.Runtime.Services.Contracts;
 using UnityEngine;
 using UnityEngine.UI;
 using Zenject;
+using UnityEngine.Serialization;
+
 namespace SBabchuk
 {
     public class BSElementController : MonoBehaviour
     {
-        [Header("Для якої гранати")]
-        public GrenadesName grenade;
+        [SerializeField, FormerlySerializedAs("grenade")]
+        private GrenadesName _grenade;
 
-        [Header("Іконка")]
-        public Image ico;
+        [SerializeField, FormerlySerializedAs("ico")]
+        private Image _icon;
 
-        [Header("Назва")]
-        public Text txt;
+        [SerializeField, FormerlySerializedAs("txt")]
+        private Text _text;
 
-        [Header("Кількість")]
-        public Text count;
+        [SerializeField, FormerlySerializedAs("count")]
+        private Text _count;
 
-        [Header("Компоненти, які змінюють вигляд")]
-        private SpriteSwap panel;
-
-        [Header("Елементи при розблокуванні")]
-        private UnlockGElementController unlockGElementController;
-
-        [Header("Елементи при заблокуванні")]
-        private LockGElementController lockGElementController;
-
-        private GrenadeShortInfo grenadeShortInfo;
-
-        private Grenade grenadeInfo;
+        private SpriteSwap _panel;
+        private UnlockGElementController _unlockGElementController;
+        private LockGElementController _lockGElementController;
+        private GrenadeShortInfo _grenadeShortInfo;
+        private Grenade _grenadeInfo;
         private IAssetProvider _assetProvider;
         private IPlayerProgressService _progressService;
         private SignalBus _signalBus;
 
         [Inject]
-        private void Construct(
-            IAssetProvider assetProvider,
-            IPlayerProgressService progressService,
-            SignalBus signalBus)
+        public void Construct(IAssetProvider assetProvider, IPlayerProgressService progressService, SignalBus signalBus)
         {
             _assetProvider = assetProvider;
             _progressService = progressService;
@@ -65,54 +55,32 @@ namespace SBabchuk
 
         private void Start()
         {
-            ///Отримуєм SpriteSwap
-            panel = GetComponentInChildren<SpriteSwap>();
-
-            ///Отримуєм LockElementController
-            unlockGElementController = GetComponentInChildren<UnlockGElementController>(true);
-
-            ///Отримуєм LockElementController
-            lockGElementController = GetComponentInChildren<LockGElementController>(true);
-
-            ///Отримуєм зброю з бази
+            _panel = GetComponentInChildren<SpriteSwap>();
+            _unlockGElementController = GetComponentInChildren<UnlockGElementController>(true);
+            _lockGElementController = GetComponentInChildren<LockGElementController>(true);
             var bombStore = _assetProvider.BombStoreDatabase;
-            grenadeInfo = bombStore.GetGrenade((int)grenade);
-
-            ico.sprite = grenadeInfo.ico;
-
-            txt.text = grenadeInfo.name;
-
-            ///Перевірка на інтерактивність
+            _grenadeInfo = bombStore.GetGrenade((int)_grenade);
+            _icon.sprite = _grenadeInfo.Icon;
+            _text.text = _grenadeInfo.Name;
             CheckInteractive();
         }
 
-        /// <summary>
-        /// Перевірка на інтерактивність
-        /// </summary>
         private void CheckInteractive()
         {
-            grenadeShortInfo = _progressService.GetGrenadeShortInfo((int)grenade);
-
-            count.text = grenadeShortInfo.count.ToString();
-
-            ChangeLock(grenadeShortInfo.isBuy == mySwitch.On);
+            _grenadeShortInfo = _progressService.GetGrenadeShortInfo((int)_grenade);
+            _count.text = _grenadeShortInfo.Count.ToString();
+            ChangeLock(_grenadeShortInfo.IsBuy == mySwitch.On);
         }
 
-        /// <summary>
-        /// Включаєм певні елементи 
-        /// </summary>
-        /// <param name="_value"></param>
         private void ChangeLock(bool _value = false)
         {
-            panel.Change(_value);
-
-            lockGElementController.gameObject.SetActive(!_value);
-
-            unlockGElementController.gameObject.SetActive(_value);
-
-            if (unlockGElementController.gameObject.activeSelf)
+            _panel.Change(_value);
+            _lockGElementController.gameObject.SetActive(!_value);
+            _unlockGElementController.gameObject.SetActive(_value);
+            
+            if (_unlockGElementController.gameObject.activeSelf)
             {
-                unlockGElementController.Initialisation((int)grenade);
+                _unlockGElementController.Initialisation((int)_grenade);
             }
         }
     }

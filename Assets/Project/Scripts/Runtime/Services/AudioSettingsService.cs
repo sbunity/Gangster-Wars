@@ -10,11 +10,8 @@ namespace SBabchuk.Runtime.Services
         private readonly IPlayerProgressService _progressService;
         private readonly ISaveService _saveService;
         private readonly SignalBus _signalBus;
-
-        public AudioSettingsService(
-            IPlayerProgressService progressService,
-            ISaveService saveService,
-            SignalBus signalBus)
+        
+        public AudioSettingsService(IPlayerProgressService progressService, ISaveService saveService, SignalBus signalBus)
         {
             _progressService = progressService;
             _saveService = saveService;
@@ -26,14 +23,14 @@ namespace SBabchuk.Runtime.Services
 
         public void SetMusicEnabled(bool value)
         {
-            _progressService.PlayerPrefs.musik = value ? mySwitch.On : mySwitch.Off;
+            _progressService.PlayerPrefs.Music = value ? mySwitch.On : mySwitch.Off;
             _saveService.SaveAsync(_progressService.Preferences).Forget();
             Apply();
         }
 
         public void SetSoundEnabled(bool value)
         {
-            _progressService.PlayerPrefs.sound = value ? mySwitch.On : mySwitch.Off;
+            _progressService.PlayerPrefs.Sound = value ? mySwitch.On : mySwitch.Off;
             _saveService.SaveAsync(_progressService.Preferences).Forget();
             Apply();
         }

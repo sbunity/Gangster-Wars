@@ -1,42 +1,38 @@
-using System.Collections;
-using System.Collections.Generic;
 using SBabchuk.Runtime.Services.Contracts;
 using UnityEngine;
 using UnityEngine.UI;
 using Zenject;
+using UnityEngine.Serialization;
 
 namespace SBabchuk
 {
     public class UnlockElementController : MonoBehaviour
     {
-        [Header("Поле для виведення вартості покупки апгрейда зброї")]
-        public Text priceUpgrade;
+        [SerializeField, FormerlySerializedAs("priceUpgrade")]
+        private Text _priceUpgrade;
 
-        [Header("Кнопка покупки апгрейда зброї")]
-        public Button bttnUpgrade;
+        [SerializeField, FormerlySerializedAs("bttnUpgrade")]
+        private Button _bttnUpgrade;
 
-        [Header("Поле для виведення вартості покупки патрон")]
-        public Text priceMagazine;
+        [SerializeField, FormerlySerializedAs("priceMagazine")]
+        private Text _priceMagazine;
 
-        [Header("Кнопка покупки патрон")]
-        public Button bttnMagazine;
+        [SerializeField, FormerlySerializedAs("bttnMagazine")]
+        private Button _bttnMagazine;
 
-        [Header("Кнопка і ціна для апгрейдів")]
-        public GameObject BuyUpgradeElements;
+        [SerializeField, FormerlySerializedAs("BuyUpgradeElements")]
+        private GameObject _buyUpgradeElements;
 
-        [Header("Кнопка і ціна для патронів")]
-        public GameObject BuyMagazineElements;
+        [SerializeField, FormerlySerializedAs("BuyMagazineElements")]
+        private GameObject _buyMagazineElements;
 
-        int price;
-
-        int weaponID;
+        private int _price;
+        private int _weaponID;
         private IAssetProvider _assetProvider;
         private IPlayerProgressService _progressService;
 
         [Inject]
-        private void Construct(
-            IAssetProvider assetProvider,
-            IPlayerProgressService progressService)
+        public void Construct(IAssetProvider assetProvider, IPlayerProgressService progressService)
         {
             _assetProvider = assetProvider;
             _progressService = progressService;
@@ -50,83 +46,54 @@ namespace SBabchuk
         public void Initialisation(int _id)
         {
             InitialisationUpgrade(_id);
-
             InitialisationMagazine(_id);
         }
 
-        private void InitialisationUpgrade(int _id)
+        private void InitialisationUpgrade(int id)
         {
-            weaponID = _id;
-
-            var weaponShortInfo = _progressService.GetWeaponShortInfo(_id);
-
-            int _upgradeID = weaponShortInfo.upgradeID + 1;
-
+            _weaponID = id;
+            var weaponShortInfo = _progressService.GetWeaponShortInfo(id);
+            var _upgradeID = weaponShortInfo.UpgradeId + 1;
             var weaponStore = _assetProvider.WeaponStoreDatabase;
-            WUpgrade _upgrade = weaponStore.GetUpgrade(_id, _upgradeID);
+            var _upgrade = weaponStore.GetUpgrade(id, _upgradeID);
 
             if (_upgrade != null)
             {
-                price = _upgrade.price;
+                _price = _upgrade.Price;
+                if (_priceUpgrade)
+                    _priceUpgrade.text = _price.ToString();
 
-                if (priceUpgrade)
-                {
-                    priceUpgrade.text = price.ToString();
-                }
-
-                if (bttnUpgrade)
-                {
-                    bttnUpgrade.interactable = _progressService.CanBuy(price);
-                }
+                if (_bttnUpgrade)
+                    _bttnUpgrade.interactable = _progressService.CanBuy(_price);
             }
             else
             {
-                BuyUpgradeElements.SetActive(false);
+                _buyUpgradeElements.SetActive(false);
             }
         }
 
-        private void InitialisationMagazine(int _id)
+        private void InitialisationMagazine(int id)
         {
-            WeaponShortInfo weaponShortInfo = _progressService.GetWeaponShortInfo(_id);
-
+            var weaponShortInfo = _progressService.GetWeaponShortInfo(id);
             var weaponStore = _assetProvider.WeaponStoreDatabase;
-            Weapon weapon = weaponStore.GetWeapon(_id);
+            var weapon = weaponStore.GetWeapon(id);
+            _price = weaponStore.GetWeapon(id).PriceMagazine;
 
-            //if (weaponShortInfo.currentMagazine < weapon.magazine)
-            //{
+            if (_priceMagazine)
+                _priceMagazine.text = _price.ToString();
 
-                price = weaponStore.GetWeapon(_id).priceMagazine;
-
-                if (priceMagazine)
-                {
-                    priceMagazine.text = price.ToString();
-                }
-
-                if (bttnMagazine)
-                {
-                    bttnMagazine.interactable = _progressService.CanBuy(price);
-                }
-            //}
-            //else
-            //{
-            //    BuyMagazineElements.SetActive(false);
-            //}
+            if (_bttnMagazine)
+                _bttnMagazine.interactable = _progressService.CanBuy(_price);
         }
 
-        /// <summary>
-        /// Поукупка апгрейда зброї
-        /// </summary>
         public void BuyUpgrade()
         {
-            _progressService.BuyWeaponUpgrade(weaponID);
+            _progressService.BuyWeaponUpgrade(_weaponID);
         }
 
-        /// <summary>
-        /// Поукупка апгрейда магазина
-        /// </summary>
         public void BuyMagazine()
         {
-            _progressService.BuyWeaponMagazine(weaponID);
+            _progressService.BuyWeaponMagazine(_weaponID);
         }
     }
 }

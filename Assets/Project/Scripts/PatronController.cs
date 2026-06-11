@@ -2,26 +2,27 @@ using SBabchuk.Runtime.Architecture;
 using UnityEngine;
 using UnityEngine.UI;
 using Zenject;
+using UnityEngine.Serialization;
 
 namespace SBabchuk
 {
     public class PatronController : MonoBehaviour
     {
-        [Header("Індекс патрона")]
-        public int index;
+        [SerializeField, FormerlySerializedAs("index")]
+        private int _index;
 
-        [Header("Спрайд повного патрона")]
-        public Sprite fullSprite;
+        [SerializeField, FormerlySerializedAs("fullSprite")]
+        private Sprite _fullSprite;
 
-        [Header("Спрайд порожнього патрона")]
-        public Sprite emptySprite;
+        [SerializeField, FormerlySerializedAs("emptySprite")]
+        private Sprite _emptySprite;
 
         private Image _ico;
         private SignalBus _signalBus;
         private bool _isSubscribed;
 
         [Inject]
-        private void Construct(SignalBus signalBus)
+        public void Construct(SignalBus signalBus)
         {
             _signalBus = signalBus;
             Subscribe();
@@ -44,12 +45,12 @@ namespace SBabchuk
 
         private void Init(LeaderMagazineInitializedSignal signal)
         {
-            _ico.gameObject.SetActive(index <= signal.Capacity);
+            _ico.gameObject.SetActive(_index <= signal.Capacity);
         }
 
         private void Check(LeaderPatronsChangedSignal signal)
         {
-            _ico.sprite = index <= signal.Count ? fullSprite : emptySprite;
+            _ico.sprite = _index <= signal.Count ? _fullSprite : _emptySprite;
         }
 
         private void Subscribe()
@@ -66,7 +67,7 @@ namespace SBabchuk
         {
             if (!_isSubscribed || _signalBus == null)
                 return;
-
+                
             _signalBus.Unsubscribe<LeaderMagazineInitializedSignal>(Init);
             _signalBus.Unsubscribe<LeaderPatronsChangedSignal>(Check);
             _isSubscribed = false;

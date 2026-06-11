@@ -1,68 +1,43 @@
-﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
-using System.Linq;
 using SBabchuk.Runtime.Architecture;
 using SBabchuk.Runtime.Services.Contracts;
+using UnityEngine.Serialization;
 using Zenject;
 
 namespace SBabchuk
 {
     public class LevelController : MonoBehaviour, ILevelRuntimeService
     {
-        private const int AmmoBonusDropChance = 35;
+        private const int AMMO_BONUS_DROP_CHANCE = 35;
 
-        [Header("Точки появи ворогів")]
-        public List<Transform> spawnPoints;
+        [SerializeField, FormerlySerializedAs("spawnPoints")]
+        private List<Transform> _spawnPoints;
 
-        [Header("Точки атаки ворогів")]
-        public List<Transform> targetsPoints;
+        [SerializeField, FormerlySerializedAs("targetsPoints")]
+        private List<Transform> _targetPoints;
 
-        [Header("Фон")]
-        public SpriteRenderer background;
+        [SerializeField, FormerlySerializedAs("background")]
+        private SpriteRenderer _background;
 
-        [Header("База даних")]
-        private LevelDatabase database;
+        [SerializeField, FormerlySerializedAs("WaveBar")]
+        private FilledBarController _waveBar;
 
-        private PlayerPrefsDatabase pPrefs;
-
-        [Header("Список індексів випадкових шляхів")]
-        private int[] listRandomPath;// = new int[]{ 0, 1, 2, 3, 4, 5, 6 };
-
-        [Header("Властивості рівня")]
-        private Level properties;
-
-        [Header("Поточна хвиля")]
-        public int currentWave = 0;
-
-        [Header("Кількість ворогів")]
-        private int countEnemies;
-
-        [Header("Скільки юнітів буде на рівні")]
-        public int maxCountEnemies;
-
-        [Header("Крок збільшення заповнення за 1 юніта")]
-        public float filledStep;
-
-        [Header("Список ворогів на сцені")]
-        private List<EnemyControllerBase> enemies = new List<EnemyControllerBase>();
-
-        [Header("Список бонусів на сцені")]
-        public List<BonusController> bonuses = new List<BonusController>();
-
-        [Header("Прогрес хвиль")]
-        public FilledBarController WaveBar;
-
-        Tween twn;
-
-        Tween twn1;
-
-        Tween twn2;
-
-        Tween twn3;
-
-        private bool isLevelFinished;
+        private LevelDatabase _database;
+        private PlayerPrefsDatabase _pPrefs;
+        private int[] _listRandomPath;
+        private Level _properties;
+        private int _currentWave;
+        private int _maxEnemyCount;
+        private float _fillStep;
+        private List<EnemyControllerBase> _enemies = new();
+        private List<BonusController> _bonuses = new();
+        private Tween _waveDelayTween;
+        private Tween _nextWaveTween;
+        private Tween _enemySpawnTween;
+        private Tween _nextEnemyGroupTween;
+        private bool _isLevelFinished;
         private IAssetProvider _assetProvider;
         private IPlayerProgressService _progressService;
         private IPoolService _poolService;
@@ -71,33 +46,21 @@ namespace SBabchuk
         private BarricadeController _barricadeController;
         private SignalBus _signalBus;
         private bool _isSubscribedToSignals;
+        private bool _isWaveFull;
 
-        /// <summary>
-        /// Чи всі вже вороги із хвилі проспавнились
-        /// </summary>
-        public bool waveIsFull;
-
-        public void OnEnable()
+        private void OnEnable()
         {
             SubscribeSignals();
         }
 
-        public void OnDisable()
+        private void OnDisable()
         {
             UnsubscribeSignals();
-
             StopSpawnTweens();
         }
 
         [Inject]
-        private void Construct(
-            IAssetProvider assetProvider,
-            IPlayerProgressService progressService,
-            IPoolService poolService,
-            IGameFactory gameFactory,
-            ILevelFlowService levelFlowService,
-            BarricadeController barricadeController,
-            SignalBus signalBus)
+        public void Construct(IAssetProvider assetProvider, IPlayerProgressService progressService, IPoolService poolService, IGameFactory gameFactory, ILevelFlowService levelFlowService, BarricadeController barricadeController, SignalBus signalBus)
         {
             _assetProvider = assetProvider;
             _progressService = progressService;
@@ -106,253 +69,187 @@ namespace SBabchuk
             _levelFlowService = levelFlowService;
             _barricadeController = barricadeController;
             _signalBus = signalBus;
-
             SubscribeSignals();
         }
 
-        /// <summary>
-        /// Предстартова ініціалізація
-        /// </summary>
-        public void Awake()
+        private void Awake()
         {
-            //Список потрібний, щоб був точний рандом
-            listRandomPath = new int[] { 0, 1, 2, 3, 4, 5 };
+            _listRandomPath = new int[]
+            {
+                0,
+                1,
+                2,
+                3,
+                4,
+                5
+            };
         }
 
-        /// <summary>
-		/// Старт
-		/// </summary>
-		public void Start()
+        private void Start()
         {
-            database = _assetProvider.LevelDatabase;
-
-            pPrefs = _progressService.Preferences;
-
-            Debug.Log(pPrefs.PlayerPrefs.levelID);
-            Init(pPrefs.PlayerPrefs.levelID);
-
+            _database = _assetProvider.LevelDatabase;
+            _pPrefs = _progressService.Preferences;
+            Init(_pPrefs.PlayerPrefs.LevelId);
             StartLevel();
         }
 
-        /// <summary>
-        /// Витягуєм з бази властивості левела
-        /// </summary>
-        /// <param name="_id">Identifier.</param>
-        public void Init(int _id = 0)
+        public void Init(int id = 0)
         {
-            properties = database.GetLevel(_id);
-            _levelFlowService?.Start(properties);
+            _properties = _database.GetLevel(id);
+            _levelFlowService?.Start(_properties);
 
-            // The scene's Background SpriteRenderer holds the designed level background.
-            // The Level.ico field is the level-select icon (small UI sprites, some missing),
-            // so it must NOT overwrite the background here.
-
-            foreach (Waves wave in properties.waves)
+            foreach (Waves wave in _properties.Waves)
             {
-                foreach (EnemyOfWave enemies in wave.enemies)
+                foreach (EnemyOfWave enemies in wave.Enemies)
                 {
-                    maxCountEnemies += enemies.countEnemy;
+                    _maxEnemyCount += enemies.CountEnemy;
                 }
             }
 
-            filledStep = 1.0f / maxCountEnemies;
+            _fillStep = 1.0f / _maxEnemyCount;
         }
 
-        /// <summary>
-        /// Рестарт левела
-        /// </summary>
         public void Restart()
         {
             Time.timeScale = 1;
         }
 
-        /// <summary>
-		/// Стартує рівень
-		/// </summary>
-		/// <param name="_id">Identifier.</param>
         public void StartLevel()
         {
-            if (properties != null)
+            if (_properties != null)
             {
-                isLevelFinished = false;
+                _isLevelFinished = false;
                 Wave();
             }
             else
             {
-                print("@@@@@@@@@@ немає левела");
+                Debug.LogWarning("Level properties are missing.");
             }
         }
 
-        /// <summary>
-        /// Повернення до проходження
-        /// </summary>
-        public void ContinueLevel() // ДЛЯ КОНСТРУКТОРА
+        public void ContinueLevel()
         {
             StartLevel();
         }
 
-        /// <summary>
-		/// Хвиля
-		/// </summary>
         public void Wave()
         {
-            if (isLevelFinished)
+            if (_isLevelFinished)
                 return;
 
-            if (currentWave < properties.waves.Count)
+            if (_currentWave < _properties.Waves.Count)
             {
-                Debug.Log(Time.time + ": " + "@@ Хвиля(" + (currentWave + 1) + "/" + properties.waves.Count + ")");
-
-                waveIsFull = false;
-
-                twn = DOVirtual.DelayedCall(properties.waves[currentWave].startDelay, () =>
-                { //стартуєм нову хвилю після часу затримки хвилі
-                    if (isLevelFinished)
+                _isWaveFull = false;
+                _waveDelayTween = DOVirtual.DelayedCall(_properties.Waves[_currentWave].StartDelay, () =>
+                {
+                    if (_isLevelFinished)
                         return;
 
-                    StartWave(currentWave);
+                    StartWave(_currentWave);
                 }).SetUpdate(false);
             }
             else
             {
-                print(Time.time + ": " + "@@ Хвиль більше немає");
+                Debug.LogWarning("There are no more waves to start.");
             }
         }
 
-        /// <summary>
-		/// Запуск хвилі
-		/// </summary>
-		/// <param name="_wave">Wave.</param>
-        public void StartWave(int _wave)
+        public void StartWave(int waveIndex)
         {
-            if (isLevelFinished)
+            if (_isLevelFinished)
                 return;
 
-            //OnWaveTime(properties.waves[_wave].delay);
-
-            twn1 = DOVirtual.DelayedCall(properties.waves[_wave].delay, () =>
-            { //стартуєм час до закінчення виділеного часу на проходження хвилі
-                if (isLevelFinished)
+            _nextWaveTween = DOVirtual.DelayedCall(_properties.Waves[waveIndex].Delay, () =>
+            {
+                if (_isLevelFinished)
                     return;
 
-                currentWave++;
+                _currentWave++;
                 Wave();
             }).SetUpdate(false);
-
-            WaveHandler(_wave, 0);
+            WaveHandler(waveIndex, 0);
         }
 
-        /// <summary>
-        /// Спавнимо юнітів для хвилі
-        /// </summary>
-        /// <param name="_wave"></param>
-        /// <param name="_currentEnemy"></param>
-        public void WaveHandler(int _wave, int _currentEnemy)
+        public void WaveHandler(int waveIndex, int currentEnemyIndex)
         {
-            if (isLevelFinished)
+            if (_isLevelFinished)
                 return;
 
-            if (_currentEnemy < properties.waves[_wave].enemies.Count)
+            if (currentEnemyIndex < _properties.Waves[waveIndex].Enemies.Count)
             {
-                waveIsFull = false;
-
-                EnemyOfWave enemyOfWave = properties.waves[_wave].enemies[_currentEnemy];
-
-                twn2 = DOVirtual.DelayedCall(0, () =>
+                _isWaveFull = false;
+                var enemyOfWave = _properties.Waves[waveIndex].Enemies[currentEnemyIndex];
+                _enemySpawnTween = DOVirtual.DelayedCall(0, () =>
                 {
-                    if (!isLevelFinished)
+                    if (!_isLevelFinished)
                         SpawnEnemies(enemyOfWave);
-                })
-                .SetLoops(enemyOfWave.countEnemy)
-                .OnComplete(() =>
+                }).SetLoops(enemyOfWave.CountEnemy).OnComplete(() =>
                 {
-                    if (isLevelFinished)
+                    if (_isLevelFinished)
                         return;
 
-                    int nextEnemy = _currentEnemy + 1;
-                  
-                    waveIsFull = nextEnemy == properties.waves[_wave].enemies.Count;
-
-                    if (!waveIsFull)
+                    var nextEnemy = currentEnemyIndex + 1;
+                    _isWaveFull = nextEnemy == _properties.Waves[waveIndex].Enemies.Count;
+                    if (!_isWaveFull)
                     {
-                        twn3 = DOVirtual.DelayedCall(properties.waves[_wave].enemies[nextEnemy].interval, () =>
+                        _nextEnemyGroupTween = DOVirtual.DelayedCall(_properties.Waves[waveIndex].Enemies[nextEnemy].Interval, () =>
                         {
-                            WaveHandler(_wave, nextEnemy);
+                            WaveHandler(waveIndex, nextEnemy);
                         }).SetUpdate(false);
                     }
                 }).SetUpdate(false);
             }
         }
 
-        /// <summary>
-        /// Створюєм юніта 
-        /// </summary>
-        public void SpawnEnemies(EnemyOfWave _enemyOfWave)
+        public void SpawnEnemies(EnemyOfWave enemyOfWave)
         {
-            if (isLevelFinished)
+            if (_isLevelFinished)
                 return;
 
-            int path = GetRandomPath();
-
-            EnemyControllerBase enemy = _gameFactory != null
-                ? _gameFactory.CreateEnemy(_enemyOfWave, spawnPoints[path], targetsPoints[path])
-                : (GetPool(_enemyOfWave.enemyID, NamesPool.Enemies).GetPooledObject()).GetComponent<EnemyControllerBase>();
-
+            var path = GetRandomPath();
+            var enemy = _gameFactory != null ? _gameFactory.CreateEnemy(enemyOfWave, _spawnPoints[path], _targetPoints[path]) : (GetPool(enemyOfWave.EnemyId, NamesPool.Enemies).GetPooledObject()).GetComponent<EnemyControllerBase>();
             if (enemy != null)
             {
-                enemies.Add(enemy);
-
+                _enemies.Add(enemy);
                 if (_gameFactory == null)
-                {
-                    enemy.Init(_enemyOfWave, spawnPoints[path], targetsPoints[path], _enemyOfWave.changeCraft);
-                }
+                    enemy.Init(enemyOfWave, _spawnPoints[path], _targetPoints[path], enemyOfWave.DropChance);
 
-                WaveBar.UpdateFlled(filledStep);
+                _waveBar.UpdateFlled(_fillStep);
             }
             else
             {
-                Debug.Log("EnemyControllerBase == null");
+                Debug.LogWarning("EnemyControllerBase is missing from the spawned enemy.");
             }
         }
 
-        /// <summary>
-        /// Видалити ворога, який помер
-        /// </summary>
-        /// <param name="_id"></param>
         private void DeleteEnemy(EnemyDiedSignal signal)
         {
             DeleteEnemy(signal.EnemyId);
         }
 
-        public void DeleteEnemy(int _id)
+        public void DeleteEnemy(int id)
         {
-            enemies.Remove(enemies.Find(enemy => enemy.properties.id == _id));
-
-            if (enemies.Count == 0)
+            _enemies.Remove(_enemies.Find(enemy => enemy.Properties.Id == id));
+            if (_enemies.Count == 0)
             {
                 CheckGameOver();
             }
         }
 
-        /// <summary>
-        /// Перевірка чи можн азавершувати гру
-        /// </summary>
         private void CheckGameOver()
         {
-            if (currentWave == properties.waves.Count)
+            if (_currentWave == _properties.Waves.Count)
             {
-                if (waveIsFull)
+                if (_isWaveFull)
                 {
-                    if (bonuses.Count == 0 && enemies.Count == 0)
+                    if (_bonuses.Count == 0 && _enemies.Count == 0)
                     {
                         var barricadeController = _barricadeController;
                         if (barricadeController == null)
                             return;
 
-                        var healthPercent = (float)barricadeController.currentHealth/(float)barricadeController.maxHealth;
-
+                        var healthPercent = (float)barricadeController.CurrentHealth / (float)barricadeController.MaxHealth;
                         _progressService.CompleteCurrentLevel(healthPercent);
-
                         _levelFlowService.Finish(Panels.Win);
                     }
                 }
@@ -364,18 +261,18 @@ namespace SBabchuk
             HandleGameOver(signal.Panel);
         }
 
-        private void HandleGameOver(Panels _panel)
+        private void HandleGameOver(Panels panel)
         {
-            isLevelFinished = true;
+            _isLevelFinished = true;
             StopSpawnTweens();
         }
 
         private void StopSpawnTweens()
         {
-            twn?.Kill();
-            twn1?.Kill();
-            twn2?.Kill();
-            twn3?.Kill();
+            _waveDelayTween?.Kill();
+            _nextWaveTween?.Kill();
+            _enemySpawnTween?.Kill();
+            _nextEnemyGroupTween?.Kill();
         }
 
         private void SubscribeSignals()
@@ -400,113 +297,78 @@ namespace SBabchuk
             _isSubscribedToSignals = false;
         }
 
-        /// <summary>
-        /// Видалити бонус, який взяли
-        /// </summary>
-        /// <param name="_id"></param>
         private void PopedBonus(BonusPoppedSignal signal)
         {
             PopedBonus(signal.Bonus);
         }
 
-        public void PopedBonus(BonusController _value)
+        public void PopedBonus(BonusController bonus)
         {
-            bonuses.Remove(_value);
-
-            if (enemies.Count == 0)
+            _bonuses.Remove(bonus);
+            if (_enemies.Count == 0)
             {
                 CheckGameOver();
             }
         }
 
-        /// <summary>
-        /// Oтримати Трансформ для випадкового ворога
-        /// </summary>
-        /// <returns></returns>
         public Transform GetRandomEnemy()
         {
-            return enemies[Random.Range(0, enemies.Count)].center.GetTransform();
+            return _enemies[Random.Range(0, _enemies.Count)].Center.GetTransform();
         }
 
-        /// <summary>
-        /// Спавними відповідну бомбу на позиції, що отримали
-        /// </summary>
-        /// <param name="_grenadesName"></param>
-        /// <param name="_position"></param>
-        public void SpawnGrenadeOnPlace(GrenadesName _grenadesName, Vector3 _position)
+        public void SpawnGrenadeOnPlace(GrenadesName grenadesName, Vector3 position)
         {
-            GrenadeController grenade = _gameFactory != null
-                ? _gameFactory.CreateGrenade(_grenadesName, _position)
-                : (GetPool((int)_grenadesName, NamesPool.Grenades).GetPooledObject()).GetComponent<GrenadeController>();
-
+            var grenade = _gameFactory != null ? _gameFactory.CreateGrenade(grenadesName, position) : (GetPool((int)grenadesName, NamesPool.Grenades).GetPooledObject()).GetComponent<GrenadeController>();
             if (grenade != null)
             {
                 if (_gameFactory == null)
-                    grenade.Init((int)_grenadesName, 5, _position);
+                    grenade.Init((int)grenadesName, 5, position);
             }
             else
             {
-                Debug.Log("grenade == null");
+                Debug.LogWarning("GrenadeController is missing from the spawned grenade.");
             }
         }
 
-        /// <summary>
-        /// Спавними відповідну анімації зриву
-        /// </summary>
-        public void SpawnCollision(int _collisionID, Vector3 _position, Grenade _properties = null)
+        public void SpawnCollision(int collisionId, Vector3 position, Grenade grenade = null)
         {
-            CollisionController _collision = _gameFactory != null
-                ? _gameFactory.CreateCollision(_collisionID, _position, _properties)
-                : (GetPool(_collisionID, NamesPool.Collisions).GetPooledObject()).GetComponent<CollisionController>();
-
-            if (_collision != null)
+            var collision = _gameFactory != null ? _gameFactory.CreateCollision(collisionId, position, grenade) : (GetPool(collisionId, NamesPool.Collisions).GetPooledObject()).GetComponent<CollisionController>();
+            if (collision != null)
             {
-                if (_gameFactory == null && _properties != null)
-                {
-                    _collision.Init(_position: _position, _damage: _properties.damage, _radius: _properties.radius, _time: _properties.time);
-                }
+                if (_gameFactory == null && grenade != null)
+                    collision.Init(position: position, damage: grenade.Damage, radius: grenade.Radius, time: grenade.Time);
                 else if (_gameFactory == null)
-                {
-                    _collision.Init(_position: _position);
-                }
+                    collision.Init(position: position);
             }
             else
             {
-                Debug.Log("_collision == null");
+                Debug.LogWarning("CollisionController is missing from the spawned collision.");
             }
         }
 
-        /// <summary>
-        /// Спавними відповідну анімації зриву
-        /// </summary>
-        public void SpawnBonus(Vector3 _position)
+        public void SpawnBonus(Vector3 position)
         {
-            int bonusID = GetAvailableBonusID();
-
+            var bonusID = GetAvailableBonusID();
             if (bonusID < 0)
                 return;
 
-            BonusController _bonus = _gameFactory != null
-                ? _gameFactory.CreateBonus(bonusID, _position)
-                : (GetPool(bonusID, NamesPool.Bonuses).GetPooledObject()).GetComponent<BonusController>();
-
-            if (_bonus != null)
+            var bonus = _gameFactory != null ? _gameFactory.CreateBonus(bonusID, position) : (GetPool(bonusID, NamesPool.Bonuses).GetPooledObject()).GetComponent<BonusController>();
+            if (bonus != null)
             {
-                bonuses.Add(_bonus);
-
+                _bonuses.Add(bonus);
                 if (_gameFactory == null)
-                    _bonus.Init(_position);
+                    bonus.Init(position);
             }
             else
             {
-                Debug.Log("_collision == null");
+                Debug.LogWarning("BonusController is missing from the spawned bonus.");
             }
         }
 
         private int GetAvailableBonusID()
         {
-            List<int> ammoBonuses = new List<int>();
-            List<int> otherBonuses = new List<int>();
+            var ammoBonuses = new List<int>();
+            var otherBonuses = new List<int>();
 
             for (int bonusID = 0; bonusID < 8; bonusID++)
             {
@@ -522,7 +384,7 @@ namespace SBabchuk
             if (ammoBonuses.Count == 0 && otherBonuses.Count == 0)
                 return -1;
 
-            if (ammoBonuses.Count > 0 && Random.Range(0, 100) < AmmoBonusDropChance)
+            if (ammoBonuses.Count > 0 && Random.Range(0, 100) < AMMO_BONUS_DROP_CHANCE)
                 return ammoBonuses[Random.Range(0, ammoBonuses.Count)];
 
             if (otherBonuses.Count > 0)
@@ -543,91 +405,73 @@ namespace SBabchuk
 
             if (bonusID >= 0 && bonusID <= 3)
             {
-                WeaponShortInfo weaponInfo = _progressService.GetWeaponShortInfo(bonusID + 1);
-                return weaponInfo != null && weaponInfo.isBuy == mySwitch.On;
+                var weaponInfo = _progressService.GetWeaponShortInfo(bonusID + 1);
+                return weaponInfo != null && weaponInfo.IsBuy == mySwitch.On;
             }
 
             if (bonusID >= 4 && bonusID <= 7)
             {
-                GrenadeShortInfo grenadeInfo = _progressService.GetGrenadeShortInfo(bonusID - 4);
-                return grenadeInfo != null && grenadeInfo.isBuy == mySwitch.On;
+                var grenadeInfo = _progressService.GetGrenadeShortInfo(bonusID - 4);
+                return grenadeInfo != null && grenadeInfo.IsBuy == mySwitch.On;
             }
 
             return false;
         }
 
-        /// <summary>
-        /// Спавними пулю
-        /// </summary>
-        public void SpawnBullet(int _bulletId, int _damage = 0, Vector3 _position = default(Vector3), Vector3 _target = default(Vector3), float _offset = 0, string _tag = "Bullet")
+        public void SpawnBullet(int bulletId, int damage = 0, Vector3 position = default(Vector3), Vector3 target = default(Vector3), float offset = 0, string tag = "Bullet")
         {
-            BaseBulletController _bullet = _gameFactory != null
-                ? _gameFactory.CreateBullet(_bulletId, _damage, _position, _target, _offset, _tag)
-                : (GetPool(_bulletId, NamesPool.Bullets).GetPooledObject()).GetComponent<BaseBulletController>();
-
-            if (_bullet != null)
+            var bullet = _gameFactory != null ? _gameFactory.CreateBullet(bulletId, damage, position, target, offset, tag) : (GetPool(bulletId, NamesPool.Bullets).GetPooledObject()).GetComponent<BaseBulletController>();
+            if (bullet != null)
             {
                 if (_gameFactory == null)
                 {
-                    _bullet.transform.tag = _tag; //Ставив тег, щоб знати що це пуля героя
-
-                    _bullet.Init(_bulletId, _damage, _position, _target, _offset); //Ініціалізація пулі
+                    bullet.transform.tag = tag;
+                    bullet.Init(bulletId, damage, position, target, offset);
                 }
             }
             else
             {
-                Debug.Log("_bullet == null");
+                Debug.LogWarning("BaseBulletController is missing from the spawned bullet.");
             }
         }
 
-        /// <summary>
-        /// Вибираєм пулл і повертаєм ім*я префаба
-        /// </summary>
-        /// <param name="_enemyID"></param>
-        /// <param name="_pool"></param>
-        /// <returns></returns>
-        public Pool GetPool(int _ID, NamesPool _pool)
+        public Pool GetPool(int id, NamesPool pool)
         {
-            if (_poolService != null)
-                return _poolService.GetPool(_pool, _ID);
-
-            return null;
+            if (_poolService == null)
+                return null;
+                
+            return _poolService.GetPool(pool, id);
         }
 
-        #region GetRandomPath
-        /// <summary>
-        /// Отримати рандомний шлях
-        /// </summary>
-        /// <returns>The random path.</returns>
-        /// <param name="wManager">W manager.</param>
         public int GetRandomPath()
         {
-            if (listRandomPath.Length == 0)
+            if (_listRandomPath.Length == 0)
             {
-                listRandomPath = new int[] { 0, 1, 2, 3, 4, 5 };
+                _listRandomPath = new int[]
+                {
+                    0,
+                    1,
+                    2,
+                    3,
+                    4,
+                    5
+                };
             }
 
-            var numToRemove = Random.Range(0, listRandomPath.Length);
-            int index = listRandomPath[numToRemove];
-            RemoveAt(ref listRandomPath, numToRemove);
+            var numToRemove = Random.Range(0, _listRandomPath.Length);
+            var index = _listRandomPath[numToRemove];
+            RemoveAt(ref _listRandomPath, numToRemove);
             return index;
         }
 
-        /// <summary>
-        /// Видалити певний елемент
-        /// </summary>
-        /// <param name="arr">Arr.</param>
-        /// <param name="index">Index.</param>
-        /// <typeparam name="T">The 1st type parameter.</typeparam>
         public void RemoveAt<T>(ref T[] arr, int index)
         {
-            for (int a = index; a < arr.Length - 1; a++)
+            for (var i = index; i < arr.Length - 1; i++)
             {
-                arr[a] = arr[a + 1];
+                arr[i] = arr[i + 1];
             }
 
             System.Array.Resize(ref arr, arr.Length - 1);
         }
-        #endregion
     }
 }

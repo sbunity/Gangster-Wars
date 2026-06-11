@@ -1,93 +1,73 @@
-﻿using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
-using SBabchuk;
 using Spine.Unity;
+using UnityEngine;
+using UnityEngine.Serialization;
 
-/// <summary>
-/// Сортування
-/// </summary>
 public class SortingEnemy : MonoBehaviour
 {
-    private const float UnitsPerSortingOrder = 0.03f;
+    private const float UNITS_PER_SORTING_ORDER = 0.03f;
+    [SerializeField, FormerlySerializedAs("IsStatic")]
+    private bool _isStatic;
 
-    [Header("Виключення сортування")]
-	public bool IsStatic;
+    [SerializeField, FormerlySerializedAs("InChildren")]
+    private bool _inChildren;
 
-    [Header("Чи варто сортувани вкладені елементи")]
-    public bool InChildren;
+    [SerializeField, FormerlySerializedAs("sortAnchor")]
+    private Transform _sortAnchor;
 
-    [Header("Точка сортування")]
-    [SerializeField] private Transform sortAnchor;
+    [SerializeField, FormerlySerializedAs("AnchorOffset")]
+    private float _anchorOffset;
+    public float AnchorOffset { get => _anchorOffset; set => _anchorOffset = value; }
 
-    [Header("Зміщення сортування")]
-	public float AnchorOffset;
+    [SerializeField, FormerlySerializedAs("renderList")]
+    private List<Renderer> _renderList;
 
-    /// <summary>
-    /// Компоненти в усіх діятх включно
-    /// </summary>
-    [HideInInspector] public List<Renderer> renderList;
+    private SkeletonAnimation _skeletonAnimation;
 
-    /// <summary>
-    /// Компонент SkeletonAnimation
-    /// </summary>
-    private SkeletonAnimation e_animation;
-
-    /// <summary>
-    /// Стартова ініціалізація
-    /// </summary>
     private void Awake()
-	{
-        e_animation = GetComponentInChildren<SkeletonAnimation>();
-
-        if (InChildren)
+    {
+        _skeletonAnimation = GetComponentInChildren<SkeletonAnimation>();
+        if (_inChildren)
         {
-            renderList = new List<Renderer>(GetComponentsInChildren<Renderer>());
+            _renderList = new List<Renderer>(GetComponentsInChildren<Renderer>());
         }
         else
         {
-            Renderer renderer = GetComponent<Renderer>();
-
-            renderList = renderer != null ? new List<Renderer>() { renderer } : new List<Renderer>();
+            var objectRenderer = GetComponent<Renderer>();
+            _renderList = objectRenderer != null ? new List<Renderer>
+            {
+                objectRenderer
+            }
+            : new List<Renderer>();
         }
     }
 
-    /// <summary>
-    /// Оновлення
-    /// </summary>
     private void LateUpdate()
-	{
-		if (!IsStatic)
-		{
-			AssignSortOrder();
-		}
-	}
+    {
+        if (!_isStatic)
+            AssignSortOrder();
+    }
 
-    /// <summary>
-    /// Встановлення налаштувань сортування
-    /// </summary>
-	private void AssignSortOrder() 
-	{
-        int sortingOrder = GetSortOrder();
-
-        if (e_animation)
+    private void AssignSortOrder()
+    {
+        var sortingOrder = GetSortOrder();
+        if (_skeletonAnimation)
         {
-            MeshRenderer meshRenderer = e_animation.gameObject.GetComponent<MeshRenderer>();
-
+            var meshRenderer = _skeletonAnimation.gameObject.GetComponent<MeshRenderer>();
             if (meshRenderer)
                 meshRenderer.sortingOrder = sortingOrder;
         }
-       
-        foreach (Renderer renderer in renderList)
+
+        foreach (var objectRenderer in _renderList)
         {
-            if (renderer)
-                renderer.sortingOrder = sortingOrder;
+            if (objectRenderer)
+                objectRenderer.sortingOrder = sortingOrder;
         }
     }
 
     private int GetSortOrder()
     {
-        float anchorY = sortAnchor ? sortAnchor.position.y : transform.position.y + AnchorOffset;
-        return -Mathf.RoundToInt(anchorY / UnitsPerSortingOrder);
+        var anchorY = _sortAnchor ? _sortAnchor.position.y : transform.position.y + _anchorOffset;
+        return -Mathf.RoundToInt(anchorY / UNITS_PER_SORTING_ORDER);
     }
 }

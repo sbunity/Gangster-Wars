@@ -1,22 +1,16 @@
-using System.Collections;
-using System.Collections.Generic;
 using SBabchuk.Runtime.Services.Contracts;
-using UnityEngine;
-using UnityEngine.UI;
 using Zenject;
 
 namespace SBabchuk
 {
     public class UnlockGElementController : LockElementControllerBase
     {
-        private Grenade grenadeInfo;
+        private Grenade _grenadeInfo;
         private IAssetProvider _assetProvider;
         private IPlayerProgressService _progressService;
 
         [Inject]
-        private void Construct(
-            IAssetProvider assetProvider,
-            IPlayerProgressService progressService)
+        public void Construct(IAssetProvider assetProvider, IPlayerProgressService progressService)
         {
             _assetProvider = assetProvider;
             _progressService = progressService;
@@ -24,30 +18,20 @@ namespace SBabchuk
 
         public override void Initialisation(int _id)
         {
-            id = _id;
-
-            ///Отримуєм зброю з бази
+            Id = _id;
             var bombStore = _assetProvider.BombStoreDatabase;
-            grenadeInfo = bombStore.GetGrenade(id);
+            _grenadeInfo = bombStore.GetGrenade(Id);
+            
+            if (PriceBuy)
+                PriceBuy.text = _grenadeInfo.Price.ToString();
 
-            if (priceBuy)
-            {
-                priceBuy.text = grenadeInfo.price.ToString();
-            }
-
-            if (bttnBuy)
-            {
-                bttnBuy.interactable = _progressService.CanBuy(grenadeInfo.price);
-            }
+            if (BttnBuy)
+                BttnBuy.interactable = _progressService.CanBuy(_grenadeInfo.Price);
         }
 
-        /// <summary>
-        /// Поукупка зброї
-        /// </summary>
         public override void Buy()
         {
-            _progressService.BuyGrenade(id);
+            _progressService.BuyGrenade(Id);
         }
-
     }
 }

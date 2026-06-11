@@ -1,4 +1,4 @@
-﻿using UnityEditor;
+using UnityEditor;
 using UnityEditor.SceneManagement;
 using UnityEngine;
 
@@ -9,7 +9,7 @@ namespace SBabchuk
     {
         public override void Draw()
         {
-            BulletDatabaseDrawer.Draw((BulletDatabase)database, selectedMode);
+            BulletDatabaseDrawer.Draw((BulletDatabase)Database, SelectedMode);
         }
     }
 }

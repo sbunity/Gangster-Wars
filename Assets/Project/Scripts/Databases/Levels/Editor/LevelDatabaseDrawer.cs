@@ -15,41 +15,39 @@ namespace SBabchuk
         static int selectedIndexEnemyOfWave = 0;
         static string titleBttnVisibleLevel = "Show";
         static string titleBttnVisibleWave = "Show";
-
         static int verticalModeWave = 0;
         static int verticalModeEnemy = 0;
-        static string[] mode = { "|", "--" };
-
+        static string[] mode =
+        {
+            "|",
+            "--"
+        };
         public static void Draw(LevelDatabase _database, int selectedMode)
         {
             if (database == null)
                 database = _database;
-
             defaultColor = GUI.color;
-
             Utils.ChangeColor(Color.grey);
-
             GUILayout.BeginVertical("box");
             {
                 Utils.ChangeColor(defaultColor);
-                EditorGUILayout.LabelField("������������:");
-
+                EditorGUILayout.LabelField("пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ:");
                 GUILayout.BeginHorizontal();
                 {
-                    if (GUILayout.Button("�������� ����� �����"))
+                    if (GUILayout.Button("пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ"))
                     {
-                        database.levels.Add(new Level(database.levels.Count));
-                        selectedIndexLevel = database.levels.Count - 1;
+                        database.Levels.Add(new Level(database.Levels.Count));
+                        selectedIndexLevel = database.Levels.Count - 1;
                     }
 
-                    if (GUILayout.Button("�������� �� ������", GUILayout.Width(175)))
+                    if (GUILayout.Button("пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ", GUILayout.Width(175)))
                     {
-                        database.levels.Clear();
+                        database.Levels.Clear();
                         selectedIndexLevel = 0;
                     }
                 }
-                GUILayout.EndHorizontal();
 
+                GUILayout.EndHorizontal();
                 GUILayout.BeginHorizontal();
                 {
                     if (selectedMode == 1)
@@ -58,25 +56,25 @@ namespace SBabchuk
                         {
                             selectedIndexLevel = Mathf.Max(0, selectedIndexLevel - 1);
                         }
+
                         if (GUILayout.Button("-->"))
                         {
-                            selectedIndexLevel = Mathf.Min(database.levels.Count == 0 ? 0 : database.levels.Count - 1, selectedIndexLevel + 1);
+                            selectedIndexLevel = Mathf.Min(database.Levels.Count == 0 ? 0 : database.Levels.Count - 1, selectedIndexLevel + 1);
                         }
                     }
                 }
+
                 GUILayout.EndHorizontal();
-
                 EditorGUILayout.LabelField("Level: " + selectedIndexLevel);
-
                 if (database)
                 {
-                    if (database.levels != null)
+                    if (database.Levels != null)
                     {
-                        if (database.levels.Count > 0)
+                        if (database.Levels.Count > 0)
                         {
                             if (selectedMode == 0)
                             {
-                                foreach (Level _level in database.levels)
+                                foreach (Level _level in database.Levels)
                                 {
                                     if (Draw(_level))
                                         break;
@@ -85,16 +83,17 @@ namespace SBabchuk
                             else
                             {
                                 selectedIndexLevel = selectedIndexLevel != -1 ? selectedIndexLevel : 0;
-                                Draw(database.levels[selectedIndexLevel]);
+                                Draw(database.Levels[selectedIndexLevel]);
                             }
                         }
                         else
                         {
-                            EditorGUILayout.LabelField("���� ������");
+                            EditorGUILayout.LabelField("пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ");
                         }
                     }
                 }
             }
+
             GUILayout.EndVertical();
         }
 
@@ -106,13 +105,14 @@ namespace SBabchuk
                 {
                     if (GUILayout.Button("X", GUILayout.Width(20), GUILayout.Height(20)))
                     {
-                        database.levels.Remove(_level);
+                        database.Levels.Remove(_level);
                         selectedIndexLevel = Mathf.Max(0, selectedIndexLevel - 1);
                         return true;
                     }
-                    if (GUILayout.Button(((selectedIndexLevel != _level.id)) ? "Show" : titleBttnVisibleLevel, GUILayout.Width(100), GUILayout.Height(20)))
+
+                    if (GUILayout.Button(((selectedIndexLevel != _level.Id)) ? "Show" : titleBttnVisibleLevel, GUILayout.Width(100), GUILayout.Height(20)))
                     {
-                        if (selectedIndexLevel == _level.id)
+                        if (selectedIndexLevel == _level.Id)
                         {
                             if (titleBttnVisibleLevel == "Show")
                             {
@@ -127,100 +127,99 @@ namespace SBabchuk
                         else
                         {
                             titleBttnVisibleLevel = "Hide";
-                            selectedIndexLevel = _level.id;
+                            selectedIndexLevel = _level.Id;
                         }
                     }
                 }
+
                 GUILayout.EndHorizontal();
                 GUILayout.BeginHorizontal();
                 {
-                    _level.ico = (Sprite)EditorGUILayout.ObjectField(_level.ico, typeof(Sprite), false, GUILayout.Width(75), GUILayout.Height(75));
+                    _level.Icon = (Sprite)EditorGUILayout.ObjectField(_level.Icon, typeof(Sprite), false, GUILayout.Width(75), GUILayout.Height(75));
                     GUILayout.BeginVertical();
                     {
-                        _level.id = EditorGUILayout.IntField("ID �����: ", _level.id);
-                        _level.name = EditorGUILayout.TextField("������������ ����: ", _level.name);
+                        _level.Id = EditorGUILayout.IntField("ID пїЅпїЅпїЅпїЅпїЅ: ", _level.Id);
+                        _level.Name = EditorGUILayout.TextField("пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ: ", _level.Name);
                     }
+
                     GUILayout.EndVertical();
                 }
+
                 GUILayout.EndHorizontal();
-                if (titleBttnVisibleLevel == "Hide" && selectedIndexLevel == _level.id)
+                if (titleBttnVisibleLevel == "Hide" && selectedIndexLevel == _level.Id)
                 {
-                    #region Waves
                     DrawWaves(_level);
-                    #endregion
                 }
-                //				}
+
                 GUILayout.EndVertical();
             }
+
             return false;
         }
 
-        /// <summary>
-        /// ������ ����
-        /// </summary>
         public static void DrawWaves(Level level)
         {
             GUI.color = Color.cyan;
             GUILayout.BeginVertical("box");
             {
                 GUI.color = defaultColor;
-                EditorGUILayout.LabelField("����:");
-
+                EditorGUILayout.LabelField("пїЅпїЅпїЅпїЅ:");
                 GUILayout.BeginHorizontal();
                 {
                     verticalModeWave = GUILayout.Toolbar(verticalModeWave, mode);
                 }
-                GUILayout.EndHorizontal();
 
+                GUILayout.EndHorizontal();
                 EditorGUILayout.BeginHorizontal();
                 {
-                    if (GUILayout.Button("�������� ���� �����"))
+                    if (GUILayout.Button("пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ"))
                     {
-                        level.waves.Add(new Waves(level.waves.Count));
-                        selectedIndexWave = level.waves.Count - 1;
+                        level.Waves.Add(new Waves(level.Waves.Count));
+                        selectedIndexWave = level.Waves.Count - 1;
                     }
+
                     if (verticalModeWave == 1)
                     {
                         if (GUILayout.Button("<--", GUILayout.Width(50)))
                         {
                             selectedIndexWave = Mathf.Max(0, selectedIndexWave - 1);
                         }
+
                         if (GUILayout.Button("-->", GUILayout.Width(50)))
                         {
-                            selectedIndexWave = Mathf.Min(level.waves.Count == 0 ? 0 : level.waves.Count - 1, selectedIndexWave + 1);
+                            selectedIndexWave = Mathf.Min(level.Waves.Count == 0 ? 0 : level.Waves.Count - 1, selectedIndexWave + 1);
                         }
                     }
-                    if (GUILayout.Button("�������� ��", GUILayout.Width(75)))
+
+                    if (GUILayout.Button("пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ", GUILayout.Width(75)))
                     {
-                        level.waves.Clear();
+                        level.Waves.Clear();
                         selectedIndexWave = 0;
                     }
                 }
-                EditorGUILayout.EndHorizontal();
 
-                if (level.waves.Count > 0)
+                EditorGUILayout.EndHorizontal();
+                if (level.Waves.Count > 0)
                 {
                     if (verticalModeWave == 0)
                     {
-                        foreach (Waves _wave in level.waves)
+                        foreach (Waves _wave in level.Waves)
                         {
-                            if (DrawWave(level.waves, _wave))
+                            if (DrawWave(level.Waves, _wave))
                                 break;
                         }
                     }
                     else
                     {
                         selectedIndexWave = selectedIndexWave != -1 ? selectedIndexWave : 0;
-                        DrawWave(level.waves, level.waves[selectedIndexWave]);
+                        DrawWave(level.Waves, level.Waves[selectedIndexWave]);
                     }
                 }
             }
+
             GUILayout.EndVertical();
         }
 
-        /// <summary>
-        /// ������ �����
-        /// </summary>
         public static bool DrawWave(List<Waves> waves, Waves wave)
         {
             GUI.color = Color.grey;
@@ -235,9 +234,10 @@ namespace SBabchuk
                         selectedIndexWave = Mathf.Max(0, selectedIndexWave - 1);
                         return true;
                     }
-                    if (GUILayout.Button(((selectedIndexWave != wave.id)) ? "Show" : titleBttnVisibleWave, GUILayout.Width(100), GUILayout.Height(20)))
+
+                    if (GUILayout.Button(((selectedIndexWave != wave.Id)) ? "Show" : titleBttnVisibleWave, GUILayout.Width(100), GUILayout.Height(20)))
                     {
-                        if (selectedIndexWave == wave.id)
+                        if (selectedIndexWave == wave.Id)
                         {
                             if (titleBttnVisibleWave == "Show")
                             {
@@ -252,90 +252,88 @@ namespace SBabchuk
                         else
                         {
                             titleBttnVisibleWave = "Hide";
-                            selectedIndexWave = wave.id;
+                            selectedIndexWave = wave.Id;
                         }
                     }
                 }
-                GUILayout.EndHorizontal();
-                wave.id = EditorGUILayout.IntField("ID ����: ", wave.id);
-                wave.startDelay = EditorGUILayout.FloatField("�������� ��� ����� ����: ", wave.startDelay);
-                wave.delay = EditorGUILayout.FloatField("��� �� �����������: ", wave.delay);
 
-                if (titleBttnVisibleWave == "Hide" && selectedIndexWave == wave.id)
+                GUILayout.EndHorizontal();
+                wave.Id = EditorGUILayout.IntField("ID пїЅпїЅпїЅпїЅ: ", wave.Id);
+                wave.StartDelay = EditorGUILayout.FloatField("пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ: ", wave.StartDelay);
+                wave.Delay = EditorGUILayout.FloatField("пїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ: ", wave.Delay);
+                if (titleBttnVisibleWave == "Hide" && selectedIndexWave == wave.Id)
                 {
                     DrawEnemyOfWave(wave);
                 }
             }
+
             GUILayout.EndVertical();
             return false;
         }
 
-        /// <summary>
-        /// ������ �������, ����� ��� ����� ����
-        /// </summary>
         public static void DrawEnemyOfWave(Waves wave)
         {
             GUI.color = Color.gray;
             GUILayout.BeginVertical("box");
             {
                 GUI.color = defaultColor;
-                EditorGUILayout.LabelField("����:");
-
+                EditorGUILayout.LabelField("пїЅпїЅпїЅпїЅ:");
                 GUILayout.BeginHorizontal();
                 {
                     verticalModeEnemy = GUILayout.Toolbar(verticalModeEnemy, mode);
                 }
-                GUILayout.EndHorizontal();
 
+                GUILayout.EndHorizontal();
                 EditorGUILayout.BeginHorizontal();
                 {
-                    if (GUILayout.Button("�������� ������ �����"))
+                    if (GUILayout.Button("пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ"))
                     {
-                        wave.enemies.Add(new EnemyOfWave());
-                        selectedIndexEnemyOfWave = wave.enemies.Count - 1;
+                        wave.Enemies.Add(new EnemyOfWave());
+                        selectedIndexEnemyOfWave = wave.Enemies.Count - 1;
                     }
+
                     if (verticalModeEnemy == 1)
                     {
                         if (GUILayout.Button("<--", GUILayout.Width(50)))
                         {
                             selectedIndexEnemyOfWave = Mathf.Max(0, selectedIndexEnemyOfWave - 1);
                         }
+
                         if (GUILayout.Button("-->", GUILayout.Width(50)))
                         {
-                            selectedIndexEnemyOfWave = Mathf.Min(wave.enemies.Count == 0 ? 0 : wave.enemies.Count - 1, selectedIndexEnemyOfWave + 1);
+                            selectedIndexEnemyOfWave = Mathf.Min(wave.Enemies.Count == 0 ? 0 : wave.Enemies.Count - 1, selectedIndexEnemyOfWave + 1);
                         }
                     }
+
                     if (GUILayout.Button("Delete All", GUILayout.Width(75)))
                     {
-                        wave.enemies.Clear();
+                        wave.Enemies.Clear();
                         selectedIndexEnemyOfWave = 0;
                     }
                 }
-                EditorGUILayout.EndHorizontal();
 
-                if (wave.enemies.Count > 0)
+                EditorGUILayout.EndHorizontal();
+                if (wave.Enemies.Count > 0)
                 {
                     if (verticalModeEnemy == 0)
                     {
-                        foreach (EnemyOfWave _enemyOfWave in wave.enemies)
+                        foreach (EnemyOfWave _enemyOfWave in wave.Enemies)
                         {
-                            if (DrawEnemy(wave.enemies, _enemyOfWave))
+                            if (DrawEnemy(wave.Enemies, _enemyOfWave))
                                 break;
                         }
                     }
                     else
                     {
                         selectedIndexEnemyOfWave = selectedIndexEnemyOfWave != -1 ? selectedIndexEnemyOfWave : 0;
-                        DrawEnemy(wave.enemies, wave.enemies[selectedIndexEnemyOfWave]);
+                        DrawEnemy(wave.Enemies, wave.Enemies[selectedIndexEnemyOfWave]);
                     }
                 }
             }
+
             GUILayout.EndVertical();
         }
 
-        /// <summary>
-        /// ������ ���������� ��� ������ � ����� ����, ������� �������� � ��� ���
-        /// </summary>
         public static bool DrawEnemy(List<EnemyOfWave> enemies, EnemyOfWave enemyOfWave)
         {
             GUILayout.BeginVertical("box");
@@ -349,53 +347,51 @@ namespace SBabchuk
                         return true;
                     }
                 }
+
                 GUILayout.EndHorizontal();
-
-                enemyOfWave.enemyID = (int)((EnemiesName)EditorGUILayout.EnumPopup("��� �����(ID)", (EnemiesName)enemyOfWave.enemyID));
-
-                DrawEnemyInfo(enemyOfWave.enemyID);
-
-                enemyOfWave.countEnemy = EditorGUILayout.IntSlider("ʳ������ ������ (���������� ���������): ", enemyOfWave.countEnemy, 0, 10);
-                enemyOfWave.interval = EditorGUILayout.Slider("�������� (����� ������ ���� ����� ����������): ", enemyOfWave.interval, 0, 30);
-                enemyOfWave.changeCraft = EditorGUILayout.IntSlider("���������� ��������� ������� (%): ", enemyOfWave.changeCraft, 0, 100);
+                enemyOfWave.EnemyId = (int)((EnemiesName)EditorGUILayout.EnumPopup("пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ(ID)", (EnemiesName)enemyOfWave.EnemyId));
+                DrawEnemyInfo(enemyOfWave.EnemyId);
+                enemyOfWave.CountEnemy = EditorGUILayout.IntSlider("КіпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ (пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ): ", enemyOfWave.CountEnemy, 0, 10);
+                enemyOfWave.Interval = EditorGUILayout.Slider("пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ (пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ): ", enemyOfWave.Interval, 0, 30);
+                enemyOfWave.DropChance = EditorGUILayout.IntSlider("пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ (%): ", enemyOfWave.DropChance, 0, 100);
             }
+
             GUILayout.EndVertical();
             return false;
         }
 
-        /// <summary>
-        /// ������ ����������, ��� ������ ������, ��� ����������
-        /// </summary>
         public static void DrawEnemyInfo(int index)
         {
-            if (EditorDatabaseLookup.Get<EnemyDatabase>().enemies.Count > 0)
+            if (EditorDatabaseLookup.Get<EnemyDatabase>().Enemies.Count > 0)
             {
-                foreach (Enemy enemy in EditorDatabaseLookup.Get<EnemyDatabase>().enemies)
+                foreach (Enemy enemy in EditorDatabaseLookup.Get<EnemyDatabase>().Enemies)
                 {
-                    if (enemy.id == index)
+                    if (enemy.Id == index)
                     {
                         GUILayout.BeginVertical("box");
                         {
                             GUILayout.BeginHorizontal();
                             {
-                                enemy.ico = (Sprite)EditorGUILayout.ObjectField(enemy.ico, typeof(Sprite), false, GUILayout.Width(75), GUILayout.Height(75));
+                                enemy.Icon = (Sprite)EditorGUILayout.ObjectField(enemy.Icon, typeof(Sprite), false, GUILayout.Width(75), GUILayout.Height(75));
                                 GUILayout.BeginVertical();
                                 {
-                                    enemy.id = EditorGUILayout.IntField("ID �����: ", enemy.id);
-                                    enemy.name = EditorGUILayout.TextField("������������ �����: ", enemy.name);
-
+                                    enemy.Id = EditorGUILayout.IntField("ID пїЅпїЅпїЅпїЅпїЅ: ", enemy.Id);
+                                    enemy.Name = EditorGUILayout.TextField("пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ: ", enemy.Name);
                                 }
+
                                 GUILayout.EndVertical();
                             }
+
                             GUILayout.EndHorizontal();
                         }
+
                         GUILayout.EndVertical();
                     }
                 }
             }
             else
             {
-                EditorGUILayout.LabelField("���� ������");
+                EditorGUILayout.LabelField("пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ");
             }
         }
     }

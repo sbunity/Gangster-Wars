@@ -4,27 +4,35 @@ using SBabchuk.Runtime.Architecture;
 using SBabchuk.Runtime.Gameplay.Enemies;
 using SBabchuk.Runtime.Services.Contracts;
 using Zenject;
+using UnityEngine.Serialization;
 
 namespace SBabchuk
 {
     public class EnemyControllerBase : MonoBehaviour
     {
-        [HideInInspector] public EnemyAnimationControllerBase e_animation;
+        [SerializeField, FormerlySerializedAs("e_animation")]
+        private EnemyAnimationControllerBase _animation;
+        public EnemyAnimationControllerBase Animation { get => _animation; set => _animation = value; }
 
-        public Enemy properties;
+        [SerializeField, FormerlySerializedAs("properties")]
+        private Enemy _properties;
+        public Enemy Properties { get => _properties; set => _properties = value; }
 
-        // Kept public for subclasses that drive their own attack animation (e.g. BigBoss).
-        [HideInInspector] public bool isAttacked;
+        [SerializeField, FormerlySerializedAs("isAttacked")]
+        private bool _isAttacked;
+        public bool IsAttacked { get => _isAttacked; set => _isAttacked = value; }
 
-        [HideInInspector] public Transform target;
+        [SerializeField, FormerlySerializedAs("target")]
+        private Transform _target;
+        public Transform Target { get => _target; set => _target = value; }
 
-        [HideInInspector] public Center center;
+        [SerializeField, FormerlySerializedAs("center")]
+        private Center _center;
+        public Center Center { get => _center; set => _center = value; }
 
-        private bool collided;
-        private bool isDie;
-
-        private Tween twnFire;
-
+        private bool _collided;
+        private bool _isDie;
+        private Tween _twnFire;
         private IAssetProvider _assetProvider;
         private IPlayerProgressService _progressService;
         private IGameFactory _gameFactory;
@@ -33,25 +41,16 @@ namespace SBabchuk
         private BarricadeController _barricadeController;
         private SignalBus _signalBus;
         private bool _isSubscribedToSignals;
-
         private EnemyView _view;
         private EnemyHealth _health;
         private EnemyMovement _movement;
         private EnemyAttack _attack;
         private EnemyDeath _death;
         private EnemyReward _reward;
-
         protected ILevelRuntimeService LevelRuntimeService => _levelRuntimeService;
 
         [Inject]
-        private void Construct(
-            IAssetProvider assetProvider,
-            IPlayerProgressService progressService,
-            IGameFactory gameFactory,
-            ICombatService combatService,
-            ILevelRuntimeService levelRuntimeService,
-            BarricadeController barricadeController,
-            SignalBus signalBus)
+        public void Construct(IAssetProvider assetProvider, IPlayerProgressService progressService, IGameFactory gameFactory, ICombatService combatService, ILevelRuntimeService levelRuntimeService, BarricadeController barricadeController, SignalBus signalBus)
         {
             _assetProvider = assetProvider;
             _progressService = progressService;
@@ -60,14 +59,12 @@ namespace SBabchuk
             _levelRuntimeService = levelRuntimeService;
             _barricadeController = barricadeController;
             _signalBus = signalBus;
-
             SubscribeSignals();
         }
 
         private void OnDisable()
         {
             UnsubscribeSignals();
-
             StopAllTweens();
         }
 
@@ -76,16 +73,14 @@ namespace SBabchuk
             SubscribeSignals();
         }
 
-        private void DealingDamage(GrenadeDamageSignal signal)
-        {
-            DealingDamage(signal.Position, signal.Damage, signal.Radius);
-        }
+        private void DealingDamage(GrenadeDamageSignal signal) 
+            => DealingDamage(signal.Position, signal.Damage, signal.Radius);
 
         private void DealingDamage(Vector3 _position, int _damage, float _radius)
         {
-            if (center != null)
+            if (_center != null)
             {
-                if (Vector2.Distance(center.GetPosition(), _position) <= _radius)
+                if (Vector2.Distance(_center.GetPosition(), _position) <= _radius)
                 {
                     TakeDamage(_damage);
                 }
@@ -100,13 +95,9 @@ namespace SBabchuk
             _attack = GetOrAdd<EnemyAttack>();
             _death = GetOrAdd<EnemyDeath>();
             _reward = GetOrAdd<EnemyReward>();
-
             _view.Initialize();
-
-            e_animation = _view.Animation;
-
-            center = _view.Center;
-
+            _animation = _view.Animation;
+            _center = _view.Center;
             _health.Changed += OnHealthChanged;
             _health.Died += OnHealthDied;
         }
@@ -114,19 +105,19 @@ namespace SBabchuk
         public virtual void Init(EnemyOfWave _enemyOfWave, Transform spawnPoint, Transform targetPoint, int _changeCraft)
         {
             StopAllTweens();
-
-            collided = false;
-            isAttacked = false;
-            isDie = false;
-
-            target = targetPoint;
+            _collided = false;
+            _isAttacked = false;
+            _isDie = false;
+            _target = targetPoint;
 
             var enemyDatabase = _assetProvider.EnemyDatabase;
-            properties = new Enemy(enemyDatabase.GetEnemy(_enemyOfWave.enemyID));
-            properties.changeCraft = _changeCraft;
+            _properties = new Enemy(enemyDatabase.GetEnemy(_enemyOfWave.EnemyId))
+            {
+                DropChance = _changeCraft
+            };
 
-            _health.Initialize(properties.health);
-            _movement.Initialize(_view, target, properties.speedMove);
+            _health.Initialize(_properties.Health);
+            _movement.Initialize(_view, _target, _properties.SpeedMove);
             _attack.Initialize(_view);
 
             transform.position = spawnPoint.position;
@@ -135,14 +126,10 @@ namespace SBabchuk
                 gameObject.SetActive(true);
 
             _view.SetColliderEnabled(true);
-
-            StartMove(target);
+            StartMove(_target);
         }
 
-        public void StartMove(Transform _target)
-        {
-            _movement.Move();
-        }
+        public void StartMove(Transform _target) => _movement.Move();
 
         public void StopMove()
         {
@@ -150,65 +137,56 @@ namespace SBabchuk
             _view.SetAnimation(AnimationsName.Idle);
         }
 
-        public void ContinueMove()
-        {
-            StartMove(target);
-        }
+        public void ContinueMove() 
+            => StartMove(_target);
 
         public void ContinueSpeedMove()
         {
         }
 
-        public bool CheckDistance()
-        {
-            return _movement.IsInAttackRange(properties.radiusAtack);
-        }
+        public bool CheckDistance() 
+            => _movement.IsInAttackRange(_properties.AttackRadius);
 
         public virtual void Attack()
         {
-            isAttacked = true;
+            _isAttacked = true;
             _attack.Attack();
         }
 
-        public virtual void Attacked()
-        {
-            WaitNextAttack(properties.speedAtack);
-        }
+        public virtual void Attacked() 
+            => WaitNextAttack(_properties.AttackSpeed);
 
         public void WaitNextAttack(float _delay = -1)
         {
-            isAttacked = false;
-
-            var delay = (_delay < 0) ? properties.speedAtack : _delay;
+            _isAttacked = false;
+            var delay = (_delay < 0) ? _properties.AttackSpeed : _delay;
             _attack.WaitNext(delay, Attack);
         }
 
         public virtual void GiveDamage()
         {
             if (_barricadeController != null)
-                _barricadeController.TakeDamage(properties.damage);
+                _barricadeController.TakeDamage(_properties.Damage);
 
             if (_gameFactory != null)
-                _gameFactory.CreateCollision(7, target.position);
-            else if (_levelRuntimeService != null)
-                _levelRuntimeService.SpawnCollision(7, target.position, null);
+                _gameFactory.CreateCollision(7, _target.position);
+            else
+                _levelRuntimeService?.SpawnCollision(7, _target.position, null);
         }
 
-        public void TakeDamage(int _damage)
-        {
-            _health.ApplyDamage(_damage);
-        }
+        public void TakeDamage(int _damage) 
+            => _health.ApplyDamage(_damage);
 
         private void OnHealthChanged(float normalized)
         {
-            if (properties != null)
-                properties.health = _health.Current;
+            if (_properties != null)
+                _properties.Health = _health.Current;
         }
 
         private void OnHealthDied()
         {
-            collided = true;
-            isDie = true;
+            _collided = true;
+            _isDie = true;
             _attack.MarkDead();
             StopAllTweens();
             _death.Play(_view);
@@ -222,29 +200,22 @@ namespace SBabchuk
             if (_movement != null)
                 _movement.Stop();
 
-            twnFire?.Kill();
+            _twnFire?.Kill();
         }
 
-        /// <summary>
-        /// Triggered by the Spine "Death" animation completion event.
-        /// </summary>
         public void Dead()
         {
-            _signalBus.Fire(new EnemyDiedSignal(properties.id));
-
-            _reward.Grant(properties);
-
+            _signalBus.Fire(new EnemyDiedSignal(_properties.Id));
+            _reward.Grant(_properties);
             CheckSpawnBonus();
-
             Pop();
         }
 
         private void CheckSpawnBonus()
         {
-            if (UnityEngine.Random.Range(0, 100) <= properties.changeCraft)
+            if (UnityEngine.Random.Range(0, 100) <= _properties.DropChance)
             {
-                if (_levelRuntimeService != null)
-                    _levelRuntimeService.SpawnBonus(this.gameObject.transform.position);
+                _levelRuntimeService?.SpawnBonus(this.gameObject.transform.position);
             }
         }
 
@@ -269,43 +240,41 @@ namespace SBabchuk
         public void Pop()
         {
             this.gameObject.SetActive(false);
-
-            isDie = false;
+            _isDie = false;
         }
 
-        public void OnTriggerEnter2D(Collider2D other)
+        private void OnTriggerEnter2D(Collider2D other)
         {
-            if (other.tag == "BulletHero" && !collided)
+            if (other.CompareTag("BulletHero") && !_collided)
             {
                 BaseBulletController bullet = other.GetComponent<BaseBulletController>();
-
                 if (_combatService != null)
                     _combatService.ApplyBulletHit(this, bullet);
                 else
                 {
                     bullet.Pop();
-                    TakeDamage(bullet.damage);
+                    TakeDamage(bullet.Damage);
                 }
             }
-            else if (other.tag == "Grenade" && !collided)
+            else if (other.CompareTag("Grenade") && !_collided)
             {
                 GrenadeController grenade = other.GetComponent<GrenadeController>();
-
-                if ((GrenadesName)grenade.properties.id == GrenadesName.Grenade_3)
+                if ((GrenadesName)grenade.Properties.Id == GrenadesName.Grenade_3)
                     grenade.Action(0);
             }
-            if (other.tag == "Fire")
+
+            if (other.CompareTag("Fire"))
             {
-                twnFire = DOVirtual.DelayedCall(1, () =>
+                _twnFire = DOVirtual.DelayedCall(1, () =>
                 {
                     TakeDamage(1);
                 }).SetLoops(-1);
             }
         }
 
-        public void OnTriggerExit2D(Collider2D other)
+        private void OnTriggerExit2D(Collider2D other)
         {
-            twnFire?.Kill();
+            _twnFire?.Kill();
         }
 
         private void FixedUpdate()
@@ -315,7 +284,6 @@ namespace SBabchuk
                 if (CheckDistance())
                 {
                     StopMove();
-
                     Attack();
                 }
             }
@@ -324,7 +292,7 @@ namespace SBabchuk
         private T GetOrAdd<T>() where T : Component
         {
             var component = GetComponent<T>();
-            return component != null ? component : gameObject.AddComponent<T>();
+            return component ?? gameObject.AddComponent<T>();
         }
     }
 }

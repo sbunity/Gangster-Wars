@@ -7,7 +7,6 @@ namespace SBabchuk.Runtime.Gameplay.Enemies
     {
         public event Action<float> Changed;
         public event Action Died;
-
         public int Current { get; private set; }
         public int Max { get; private set; }
         public bool IsDead { get; private set; }
@@ -30,7 +29,7 @@ namespace SBabchuk.Runtime.Gameplay.Enemies
 
             if (Current > 0)
                 return;
-
+                
             IsDead = true;
             Died?.Invoke();
         }

@@ -1,56 +1,52 @@
-using System.Collections;
-using System.Collections.Generic;
 using Cysharp.Threading.Tasks;
 using SBabchuk.Runtime.Architecture;
 using SBabchuk.Runtime.Services.Contracts;
 using UnityEngine;
 using Zenject;
+using UnityEngine.Serialization;
 
 namespace SBabchuk
 {
     public class WinPanelController : MonoBehaviour
     {
-        public Panels type;
+        [SerializeField, FormerlySerializedAs("type")]
+        private Panels _type;
 
-        public GameObject panel;
+        [SerializeField, FormerlySerializedAs("panel")]
+        private GameObject _panel;
+
         private ISceneLoaderService _sceneLoaderService;
         private SignalBus _signalBus;
 
         [Inject]
-        private void Construct(
-            ISceneLoaderService sceneLoaderService,
-            SignalBus signalBus)
+        public void Construct(ISceneLoaderService sceneLoaderService, SignalBus signalBus)
         {
             _sceneLoaderService = sceneLoaderService;
             _signalBus = signalBus;
         }
 
-        public void OnEnable()
+        private void OnEnable()
         {
-            if (_signalBus != null)
-                _signalBus.Subscribe<GameFinishedSignal>(OnGameFinished);
+            _signalBus?.Subscribe<GameFinishedSignal>(OnGameFinished);
         }
 
-        public void OnDisable()
+        private void OnDisable()
         {
-            if (_signalBus != null)
-                _signalBus.Unsubscribe<GameFinishedSignal>(OnGameFinished);
+            _signalBus?.Unsubscribe<GameFinishedSignal>(OnGameFinished);
         }
 
-        public void Show(Panels _panel)
+        public void Show(Panels panelType)
         {
-            Debug.Log("Show" + _panel);
-            if (type == _panel)
+            if (_type == panelType)
             {
-                panel.SetActive(true);
-
+                _panel.SetActive(true);
                 Time.timeScale = 0;
             }
         }
 
         public void Hide()
         {
-            panel.SetActive(true);
+            _panel.SetActive(true);
         }
 
         private void OnGameFinished(GameFinishedSignal signal)
@@ -61,9 +57,7 @@ namespace SBabchuk
         public void SwitchScene()
         {
             Time.timeScale = 1;
-
             _sceneLoaderService?.LoadAsync(Scene.MainScene).Forget();
-
             Hide();
         }
     }

@@ -4,30 +4,23 @@ using UnityEngine;
 using DG.Tweening;
 using Spine.Unity;
 using Spine;
+using UnityEngine.Serialization;
 
 namespace SBabchuk
 {
     public class ExplosionCollisionController : CollisionController
     {
         private Tween twn;
+        [SerializeField, FormerlySerializedAs("timeParticle"), Range(0, 3)]
 
-        [Header("Час життя")]
-        [Range(0, 3)]
-        public float timeParticle;
-
-        private SortingEnemy sortingEnemy;
-
-        /// <summary>
-        /// Предастартова ініціалізація
-        /// </summary>
+        private float _timeParticle;
+        private SortingEnemy _sortingEnemy;
+        
         public override void Awake()
         {
-            sortingEnemy = GetComponent<SortingEnemy>();
+            _sortingEnemy = GetComponent<SortingEnemy>();
         }
 
-        /// <summary>
-        /// Стратова ініціалізація
-        /// </summary>
         public override void Subscribe()
         {
         }
@@ -40,21 +33,17 @@ namespace SBabchuk
         public override void Init(Vector3 _position, int _damage, float _radius, float _time = 2)
         {
             this.gameObject.SetActive(true);
-
             transform.position = _position;
-
-            damage = _damage;
-
-            radius = _radius;
-
-            time = _time;
-
-            Action(time);
+            Damage = _damage;
+            Radius = _radius;
+            Time = _time;
+            Action(Time);
         }
 
         private void Action(float _time)
         {
-            twn = DOVirtual.DelayedCall(timeParticle, () => {
+            twn = DOVirtual.DelayedCall(_timeParticle, () =>
+            {
                 Pop();
             });
         }

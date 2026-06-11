@@ -1,7 +1,12 @@
-﻿[System.Serializable]
+using UnityEngine;
+using UnityEngine.Serialization;
+
+[System.Serializable]
 public class SettingsUpgradeWeapon
 {
-    public int weaponID = -1;
+    [SerializeField, FormerlySerializedAs("weaponID")]
+    private int _weaponId = -1;
 
-    public int upgradeID = -1;
+    [SerializeField, FormerlySerializedAs("upgradeID")]
+    private int _upgradeId = -1;
 }

@@ -1,53 +1,41 @@
-using System.Collections;
-using System.Collections.Generic;
 using SBabchuk.Runtime.Services.Contracts;
 using UnityEngine;
-using UnityEngine.UI;
 using Zenject;
 
 namespace SBabchuk
 {
     public class MainPlayerLockElementController : LockElementControllerBase
     {
-        private Personage personage;
+        private Personage _personage;
         private IAssetProvider _assetProvider;
         private IPlayerProgressService _progressService;
 
         [Inject]
-        private void Construct(
-            IAssetProvider assetProvider,
-            IPlayerProgressService progressService)
+        public void Construct(IAssetProvider assetProvider, IPlayerProgressService progressService)
         {
             _assetProvider = assetProvider;
             _progressService = progressService;
         }
 
-        public override void Initialisation(int _id)
+        public override void Initialisation(int personageId)
         {
-            Debug.Log("Initialisation" + _id);
-            id = _id;
-
-            ///Отримуєм зброю з бази
+            Id = personageId;
             var playerStore = _assetProvider.MainPlayerDatabase;
-            personage = playerStore.GetPersonage(id);
-
-            if (priceBuy)
+            _personage = playerStore.GetPersonage(Id);
+            if (PriceBuy)
             {
-                priceBuy.text = personage.price.ToString();
+                PriceBuy.text = _personage.Price.ToString();
             }
 
-            if (bttnBuy)
+            if (BttnBuy)
             {
-                bttnBuy.interactable = _progressService.CanBuy(personage.price);
+                BttnBuy.interactable = _progressService.CanBuy(_personage.Price);
             }
         }
 
-        /// <summary>
-        /// Поукупка зброї
-        /// </summary>
         public override void Buy()
         {
-            _progressService.BuyPersonage(id);
+            _progressService.BuyPersonage(Id);
         }
     }
 }

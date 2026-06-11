@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
@@ -6,77 +6,58 @@ using Spine.Unity;
 using Spine;
 using SBabchuk.Runtime.Architecture;
 using Zenject;
+using UnityEngine.Serialization;
 
 namespace SBabchuk
 {
     public class CollisionController : MonoBehaviour
     {
-        [HideInInspector] public Transform _parent;
+        [SerializeField, FormerlySerializedAs("_parent")]
+        private Transform _parent;
+
         private SignalBus _signalBus;
+        [SerializeField, FormerlySerializedAs("damage")]
+        private int _damage;
+        public int Damage { get => _damage; set => _damage = value; }
 
-        /// <summary>
-        /// Урон, що нанесе
-        /// </summary>
-        [HideInInspector] public int damage;
+        [SerializeField, FormerlySerializedAs("radius")]
+        private float _radius;
+        public float Radius { get => _radius; set => _radius = value; }
 
-        /// <summary>
-        /// Радіус нанесення урона
-        /// </summary>
-        [HideInInspector] public float radius;
+        [SerializeField, FormerlySerializedAs("time")]
+        private float _time;
+        public float Time { get => _time; set => _time = value; }
 
-        /// <summary>
-        /// Час дії
-        /// </summary>
-        [HideInInspector] public float time;
-
-        /// <summary>
-        /// Предастартова ініціалізація
-        /// </summary>
         public virtual void Awake()
         {
             
         }
 
         [Inject]
-        private void Construct(SignalBus signalBus)
+        public void Construct(SignalBus signalBus)
         {
             _signalBus = signalBus;
         }
 
-        /// <summary>
-        /// Старт
-        /// </summary>
         public virtual void Start()
         {
             Subscribe();
-
             _parent = transform.parent;
         }
 
-        /// <summary>
-        /// Стратова ініціалізація
-        /// </summary>
         public virtual void Subscribe()
         {
         }
 
-        public virtual void Init(Vector3 _position, int _damage = 0, float _radius = 00, float _time = 0)
+        public virtual void Init(Vector3 position, int damage = 0, float radius = 00, float time = 0)
         {
             this.gameObject.SetActive(true);
-
-            transform.position = _position;
-
-            damage = _damage;
-
-            radius = _radius;
-
-            time = _time;
+            transform.position = position;
+            _damage = damage;
+            _radius = radius;
+            _time = time;
         }
 
-        /// <summary>
-        /// Перевіряєм на закінчення анімації
-        /// </summary>
-        /// <param name="trackEntry"></param>
         private void OnCompleteAnimation(TrackEntry trackEntry)
         {
             if (trackEntry.Animation.Name == "Fx2")
@@ -85,17 +66,11 @@ namespace SBabchuk
             }
         }
 
-        /// <summary>
-		/// Повернення в пуш
-		/// </summary>
-		public void Pop()
+        public void Pop()
         {
-            _signalBus.Fire(new GrenadeDamageSignal(transform.position, damage, radius));
-
+            _signalBus.Fire(new GrenadeDamageSignal(transform.position, _damage, _radius));
             transform.SetParent(_parent);
-
             this.gameObject.SetActive(false);
-
             transform.tag = "Collision";
         }
     }

@@ -8,11 +8,9 @@ namespace SBabchuk.Runtime.Gameplay.Characters
     {
         private IGameFactory _gameFactory;
         private ILevelRuntimeService _levelRuntimeService;
-
+        
         [Inject]
-        private void Construct(
-            IGameFactory gameFactory,
-            ILevelRuntimeService levelRuntimeService)
+        public void Construct(IGameFactory gameFactory, ILevelRuntimeService levelRuntimeService)
         {
             _gameFactory = gameFactory;
             _levelRuntimeService = levelRuntimeService;

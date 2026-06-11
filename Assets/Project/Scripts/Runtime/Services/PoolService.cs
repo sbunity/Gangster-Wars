@@ -44,23 +44,15 @@ namespace SBabchuk.Runtime.Services
             return instance != null ? instance.GetComponent<T>() : null;
         }
 
-        public string GetPoolName(NamesPool pool, int id)
-        {
-            switch (pool)
+        public string GetPoolName(NamesPool pool, int id) 
+            => pool switch
             {
-                case NamesPool.Enemies:
-                    return "Enemy_" + (id + 1);
-                case NamesPool.Grenades:
-                    return "Grenade_" + (id + 1);
-                case NamesPool.Collisions:
-                    return "Collision_" + (id + 1);
-                case NamesPool.Bonuses:
-                    return "Bonus_" + (id + 1);
-                case NamesPool.Bullets:
-                    return "Bullet_" + (id + 1);
-                default:
-                    return "Enemy_" + (id + 1);
-            }
-        }
+                NamesPool.Enemies => "Enemy_" + (id + 1),
+                NamesPool.Grenades => "Grenade_" + (id + 1),
+                NamesPool.Collisions => "Collision_" + (id + 1),
+                NamesPool.Bonuses => "Bonus_" + (id + 1),
+                NamesPool.Bullets => "Bullet_" + (id + 1),
+                _ => "Enemy_" + (id + 1),
+            };
     }
 }

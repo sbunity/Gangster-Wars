@@ -1,27 +1,29 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace SBabchuk
 {
     [CreateAssetMenu(menuName = "Databases/Create WeaponStoreDatabase", fileName = "WeaponStoreDatabase")]
     public class WeaponStoreDatabase : ScriptableObject
     {
-        [Header("Зброя")]
-        [SerializeField, HideInInspector] public List<Weapon> weapons = new List<Weapon>();
+        [FormerlySerializedAs("weapons")]
+        [SerializeField, HideInInspector]
+        private List<Weapon> _weapons = new List<Weapon>();
+        public List<Weapon> Weapons { get => _weapons; set => _weapons = value; }
 
         public Weapon GetWeapon(int _id)
         {
-            int index = weapons.FindIndex(x => x.id == _id);
-
-            return index != -1 ? weapons[index] : null;
+            int index = _weapons.FindIndex(x => x.Id == _id);
+            return index != -1 ? _weapons[index] : null;
         }
 
         public WUpgrade GetUpgrade(Weapon _weapon, int _id)
         {
-            foreach (WUpgrade upgrade in _weapon.upgrades)
+            foreach (WUpgrade upgrade in _weapon.Upgrades)
             {
-                if (upgrade.id == _id)
+                if (upgrade.Id == _id)
                 {
                     return upgrade;
                 }
@@ -33,10 +35,9 @@ namespace SBabchuk
         public WUpgrade GetUpgrade(int _weaponID, int _id)
         {
             Weapon _weapon = GetWeapon(_weaponID);
-
-            foreach (WUpgrade upgrade in _weapon.upgrades)
+            foreach (WUpgrade upgrade in _weapon.Upgrades)
             {
-                if (upgrade.id == _id)
+                if (upgrade.Id == _id)
                 {
                     return upgrade;
                 }
@@ -44,95 +45,128 @@ namespace SBabchuk
 
             return null;
         }
-
     }
 
     [System.Serializable]
     public class Weapon
     {
-        #region Відображення
-        [Header("ID зброї")]
-        public int id;
+        [SerializeField]
+        [FormerlySerializedAs("id")]
+        private int _id;
+        public int Id { get => _id; set => _id = value; }
 
-        [Header("Найменування зброї")]
-        public string name;
+        [SerializeField]
+        [FormerlySerializedAs("name")]
+        private string _name;
+        public string Name { get => _name; set => _name = value; }
 
-        [Header("Іконка сброї")]
-        public Sprite ico;
-        #endregion //Відображення
+        [SerializeField]
+        [FormerlySerializedAs("ico")]
+        private Sprite _icon;
+        public Sprite Icon { get => _icon; set => _icon = value; }
 
-        [Header("Вартість зброї")]
-        public int price;
 
-        [Header("Максимальна кількість патронів в магазині")]
-        public int magazine;
+        [SerializeField]
+        [FormerlySerializedAs("price")]
 
-        [Header("Вартість магазина патронів")]
-        public int priceMagazine;
+        private int _price;
+        public int Price { get => _price; set => _price = value; }
 
-        [Header("Швидкість перезарядки 1 патрона")]
-        public float speedReload;
+        [SerializeField]
+        [FormerlySerializedAs("magazine")]
+        private int _magazine;
+        public int Magazine { get => _magazine; set => _magazine = value; }
 
-        [Header("Кількість апгрейдів")]
-        public int countUpgrades;
+        [SerializeField]
+        [FormerlySerializedAs("priceMagazine")]
+        private int _priceMagazine;
+        public int PriceMagazine { get => _priceMagazine; set => _priceMagazine = value; }
 
-        [Header("Якими пулями стріляє (id)")]
-        public int bulletID;
+        [SerializeField]
+        [FormerlySerializedAs("speedReload")]
+        private float _speedReload;
+        public float SpeedReload { get => _speedReload; set => _speedReload = value; }
 
-        [Header("Апгрейди")]
-        public List<WUpgrade> upgrades = new List<WUpgrade>();
+        [SerializeField]
+        [FormerlySerializedAs("countUpgrades")]
+        private int _countUpgrades;
+        public int CountUpgrades { get => _countUpgrades; set => _countUpgrades = value; }
 
-        [Header("Параметри")]
-        public WeaponSettings settings = new WeaponSettings();
+        [SerializeField]
+        [FormerlySerializedAs("bulletID")]
+        private int _bulletId;
+        public int BulletId { get => _bulletId; set => _bulletId = value; }
+
+        [SerializeField]
+        [FormerlySerializedAs("upgrades")]
+        private List<WUpgrade> _upgrades = new List<WUpgrade>();
+        public List<WUpgrade> Upgrades { get => _upgrades; set => _upgrades = value; }
+
+        [SerializeField]
+        [FormerlySerializedAs("settings")]
+        private WeaponSettings _settings = new WeaponSettings();
+        public WeaponSettings Settings { get => _settings; set => _settings = value; }
 
         public Weapon(int _id)
         {
-            this.id = _id;
-            this.name = "Weapon_" + _id;
+            this._id = _id;
+            this._name = "Weapon_" + _id;
         }
 
         public Weapon(Weapon _weapon)
         {
-            this.id = _weapon.id;
-            this.name = _weapon.name;
-            this.ico = _weapon.ico;
-            this.magazine = _weapon.magazine;
-            this.priceMagazine = _weapon.priceMagazine;
-            this.settings = _weapon.settings;
-            this.upgrades = _weapon.upgrades;
+            this._id = _weapon.Id;
+            this._name = _weapon.Name;
+            this._icon = _weapon.Icon;
+            this._magazine = _weapon.Magazine;
+            this._priceMagazine = _weapon.PriceMagazine;
+            this._settings = _weapon.Settings;
+            this._upgrades = _weapon.Upgrades;
         }
     }
 
     [System.Serializable]
     public class WeaponSettings
     {
-        [Header("Урон")]
-        public int damage;
+        [SerializeField]
+        [FormerlySerializedAs("damage")]
+        private int _damage;
+        public int Damage { get => _damage; set => _damage = value; }
     }
 
     [System.Serializable]
     public class WUpgrade
     {
-        [Header("ID апгрейда")]
-        public int id;
+        [SerializeField]
+        [FormerlySerializedAs("id")]
+        private int _id;
+        public int Id { get => _id; set => _id = value; }
 
-        [Header("Найменування апгрейда")]
-        public string name;
+        [SerializeField]
+        [FormerlySerializedAs("name")]
+        private string _name;
+        public string Name { get => _name; set => _name = value; }
 
-        [Header("Ціна апгрейда")]
-        public int price;
+        [SerializeField]
+        [FormerlySerializedAs("price")]
+        private int _price;
+        public int Price { get => _price; set => _price = value; }
 
-        [Header("Швидкість атаки")]
-        public float speedAtack;
+        [SerializeField]
+        [FormerlySerializedAs("speedAtack")]
+        private float _attackSpeed;
+        public float AttackSpeed { get => _attackSpeed; set => _attackSpeed = value; }
 
-        [Header("Властивості апгрейда")]
-        public WeaponSettings settings;
+        [SerializeField]
+        [FormerlySerializedAs("settings")]
+        private WeaponSettings _settings;
+        public WeaponSettings Settings { get => _settings; set => _settings = value; }
 
         public WUpgrade(int _id)
         {
-            this.id = _id;
-            this.name = "Upgrade_" + (_id + 1);
-            this.price = 0;
+            this._id = _id;
+            this._name = "Upgrade_" + (_id + 1);
+            this._price = 0;
         }
     }
 }

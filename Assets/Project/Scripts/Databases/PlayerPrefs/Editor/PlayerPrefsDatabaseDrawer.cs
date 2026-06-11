@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using UnityEditor;
 using System.Collections.Generic;
 
@@ -6,68 +6,56 @@ namespace SBabchuk
 {
     public class PlayerPrefsDatabaseDrawer
     {
-        /// <summary>
-        /// Дефолтний колір
-        /// </summary>
-        public static Color defaultColor;
+        private static Color _defaultColor;
+        public static Color DefaultColor { get => _defaultColor; set => _defaultColor = value; }
 
-        /// <summary>
-        /// База даних
-        /// </summary>
-        public static PlayerPrefsDatabase database;
+        private static PlayerPrefsDatabase _database;
+        public static PlayerPrefsDatabase Database { get => _database; set => _database = value; }
 
-        /// <summary>
-        /// Перевірка чи є створений PPref
-        /// </summary>
-        /// <param name="_database"></param>
-        public static void Draw(PlayerPrefsDatabase _database)
+        public static void Draw(PlayerPrefsDatabase database)
         {
-            defaultColor = GUI.color;
-            if (_database.PlayerPrefs == null)
+            _defaultColor = GUI.color;
+            if (database.PlayerPrefs == null)
             {
                 EditorGUILayout.BeginHorizontal();
                 {
-                    if (GUILayout.Button("Добавити pPrefs"))
+                    if (GUILayout.Button("Р”РѕР±Р°РІРёС‚Рё pPrefs"))
                     {
-                        _database.PlayerPrefs = new PlayerPrefs();
+                        database.PlayerPrefs = new PlayerPrefs();
                     }
                 }
+
                 EditorGUILayout.EndHorizontal();
             }
             else
             {
-                database = _database;
+                _database = database;
                 GUI.color = Color.red;
                 EditorGUILayout.BeginHorizontal();
                 {
-                    if (GUILayout.Button("Видалити pPrefs"))
+                    if (GUILayout.Button("Р’РёРґР°Р»РёС‚Рё pPrefs"))
                     {
-                        _database.PlayerPrefs = null;
+                        database.PlayerPrefs = null;
                     }
                 }
-                EditorGUILayout.EndHorizontal();
 
+                EditorGUILayout.EndHorizontal();
                 GUI.color = Color.green;
                 EditorGUILayout.BeginHorizontal();
                 {
-                    if (GUILayout.Button("Зберегти зміни в pPrefs"))
+                    if (GUILayout.Button("Р—Р±РµСЂРµРіС‚Рё Р·РјС–РЅРё РІ pPrefs"))
                     {
-                        EditorUtility.SetDirty(_database);
+                        EditorUtility.SetDirty(database);
                         AssetDatabase.SaveAssets();
                     }
                 }
+
                 EditorGUILayout.EndHorizontal();
-
-                GUI.color = defaultColor;
-
+                GUI.color = _defaultColor;
                 DrawInfo(_database);
             }
         }
 
-        /// <summary>
-        /// Основний метод промалювання
-        /// </summary>
-        /// <param name="_database"></param>
         public static void DrawInfo(PlayerPrefsDatabase _database)
         {
             GUI.color = Color.grey;
@@ -75,184 +63,172 @@ namespace SBabchuk
             {
                 DrawSoundMusikInfo();
             }
-            GUILayout.EndVertical();
-            GUI.color = defaultColor;
 
+            GUILayout.EndVertical();
+            GUI.color = _defaultColor;
             GUI.color = Color.grey;
             GUILayout.BeginVertical("box");
             {
                 DrawCoinInfo();
             }
-            GUILayout.EndVertical();
-            GUI.color = defaultColor;
 
+            GUILayout.EndVertical();
+            GUI.color = _defaultColor;
             GUI.color = Color.grey;
             GUILayout.BeginVertical("box");
             {
                 DrawLevelInfo();
             }
-            GUILayout.EndVertical();
-            GUI.color = defaultColor;
 
+            GUILayout.EndVertical();
+            GUI.color = _defaultColor;
             GUI.color = Color.grey;
             GUILayout.BeginVertical("box");
             {
                 DrawWeaponIDInfo();
             }
-            GUILayout.EndVertical();
-            GUI.color = defaultColor;
 
+            GUILayout.EndVertical();
+            GUI.color = _defaultColor;
             GUI.color = Color.grey;
             GUILayout.BeginVertical("box");
             {
                 DrawGrenadeIDInfo();
             }
-            GUILayout.EndVertical();
-            GUI.color = defaultColor;
 
+            GUILayout.EndVertical();
+            GUI.color = _defaultColor;
             GUI.color = Color.grey;
             GUILayout.BeginVertical("box");
             {
                 DrawDefenceIDInfo();
             }
-            GUILayout.EndVertical();
-            GUI.color = defaultColor;
 
+            GUILayout.EndVertical();
+            GUI.color = _defaultColor;
             GUI.color = Color.grey;
             GUILayout.BeginVertical("box");
             {
-                GUI.color = defaultColor;
+                GUI.color = _defaultColor;
                 WeaponInfoDrawer.Draw();
             }
-            GUILayout.EndVertical();
-            GUI.color = defaultColor;
 
+            GUILayout.EndVertical();
+            GUI.color = _defaultColor;
             GUI.color = Color.grey;
             GUILayout.BeginVertical("box");
             {
-                GUI.color = defaultColor;
+                GUI.color = _defaultColor;
                 GrenadeInfoDrawer.Draw();
             }
-            GUILayout.EndVertical();
-            GUI.color = defaultColor;
 
+            GUILayout.EndVertical();
+            GUI.color = _defaultColor;
             GUI.color = Color.grey;
             GUILayout.BeginVertical("box");
             {
-                GUI.color = defaultColor;
+                GUI.color = _defaultColor;
                 DefenceInfoDrawer.Draw();
             }
-            GUILayout.EndVertical();
-            GUI.color = defaultColor;
 
+            GUILayout.EndVertical();
+            GUI.color = _defaultColor;
             GUI.color = Color.grey;
             GUILayout.BeginVertical("box");
             {
-                GUI.color = defaultColor;
+                GUI.color = _defaultColor;
                 PersonageInfoDrawer.Draw();
             }
-            GUILayout.EndVertical();
-            GUI.color = defaultColor;
 
+            GUILayout.EndVertical();
+            GUI.color = _defaultColor;
             GUI.color = Color.grey;
             GUILayout.BeginVertical("box");
             {
-                GUI.color = defaultColor;
+                GUI.color = _defaultColor;
                 LevelInfoDrawer.Draw();
             }
+
             GUILayout.EndVertical();
-            GUI.color = defaultColor;
+            GUI.color = _defaultColor;
         }
 
-        /// <summary>
-        /// Показуєм ID поточної гранати
-        /// </summary>
         public static void DrawDefenceIDInfo()
         {
-            GUI.color = defaultColor;
+            GUI.color = _defaultColor;
             GUILayout.BeginVertical("box");
             {
                 GUI.color = Color.yellow;
-                database.PlayerPrefs.selectedDefenceID = EditorGUILayout.IntField("ID поточної перепони: ", database.PlayerPrefs.selectedDefenceID);
-                GUI.color = defaultColor;
+                _database.PlayerPrefs.SelectedDefenceId = EditorGUILayout.IntField("ID РїРѕС‚РѕС‡РЅРѕС— РїРµСЂРµРїРѕРЅРё: ", _database.PlayerPrefs.SelectedDefenceId);
+                GUI.color = _defaultColor;
             }
+
             GUILayout.EndVertical();
         }
 
-        /// <summary>
-        /// Показуєм ID поточної гранати
-        /// </summary>
         public static void DrawGrenadeIDInfo()
         {
-            GUI.color = defaultColor;
+            GUI.color = _defaultColor;
             GUILayout.BeginVertical("box");
             {
                 GUI.color = Color.yellow;
-                database.PlayerPrefs.selectedGrenadeID = EditorGUILayout.IntField("ID поточної гранати: ", database.PlayerPrefs.selectedGrenadeID);
-                GUI.color = defaultColor;
+                _database.PlayerPrefs.SelectedGrenadeId = EditorGUILayout.IntField("ID РїРѕС‚РѕС‡РЅРѕС— РіСЂР°РЅР°С‚Рё: ", _database.PlayerPrefs.SelectedGrenadeId);
+                GUI.color = _defaultColor;
             }
+
             GUILayout.EndVertical();
         }
 
-        /// <summary>
-        /// Показуєм ID поточної зброї
-        /// </summary>
         public static void DrawWeaponIDInfo()
         {
-            GUI.color = defaultColor;
+            GUI.color = _defaultColor;
             GUILayout.BeginVertical("box");
             {
                 GUI.color = Color.yellow;
-                database.PlayerPrefs.selectedWeaponID = EditorGUILayout.IntField("ID поточної зброї: ", database.PlayerPrefs.selectedWeaponID);
-                GUI.color = defaultColor;
+                _database.PlayerPrefs.SelectedWeaponId = EditorGUILayout.IntField("ID РїРѕС‚РѕС‡РЅРѕС— Р·Р±СЂРѕС—: ", _database.PlayerPrefs.SelectedWeaponId);
+                GUI.color = _defaultColor;
             }
+
             GUILayout.EndVertical();
         }
 
-        /// <summary>
-        /// Показуєм рівень на якому зупинились
-        /// </summary>
         public static void DrawLevelInfo()
         {
-            GUI.color = defaultColor;
+            GUI.color = _defaultColor;
             GUILayout.BeginVertical("box");
             {
                 GUI.color = Color.yellow;
-                database.PlayerPrefs.levelID = EditorGUILayout.IntField("Рівень на якому зупинились: ", database.PlayerPrefs.levelID);
-                GUI.color = defaultColor;
+                _database.PlayerPrefs.LevelId = EditorGUILayout.IntField("Р С–РІРµРЅСЊ РЅР° СЏРєРѕРјСѓ Р·СѓРїРёРЅРёР»РёСЃСЊ: ", _database.PlayerPrefs.LevelId);
+                GUI.color = _defaultColor;
             }
+
             GUILayout.EndVertical();
         }
 
-        /// <summary>
-        /// Показуєм кількість діамантів
-        /// </summary>
         public static void DrawCoinInfo()
         {
-            GUI.color = defaultColor;
+            GUI.color = _defaultColor;
             GUILayout.BeginVertical("box");
             {
                 GUI.color = Color.yellow;
-                database.PlayerPrefs.coin = EditorGUILayout.IntField("К-сть діамантів: ", database.PlayerPrefs.coin);
-                GUI.color = defaultColor;
+                _database.PlayerPrefs.Coin = EditorGUILayout.IntField("Рљ-СЃС‚СЊ РґС–Р°РјР°РЅС‚С–РІ: ", _database.PlayerPrefs.Coin);
+                GUI.color = _defaultColor;
             }
-            GUILayout.EndVertical();
 
+            GUILayout.EndVertical();
         }
 
-        /// <summary>
-        /// Показуєм параметри включеності музики і звуків
-        /// </summary>
         public static void DrawSoundMusikInfo()
         {
-            GUI.color = defaultColor;
+            GUI.color = _defaultColor;
             GUILayout.BeginVertical("box");
             {
                 GUI.color = Color.yellow;
-                database.PlayerPrefs.musik = (mySwitch)EditorGUILayout.EnumPopup("Музика: ", database.PlayerPrefs.musik);
-                database.PlayerPrefs.sound = (mySwitch)EditorGUILayout.EnumPopup("Звуки: ", database.PlayerPrefs.sound);
-                GUI.color = defaultColor;
+                _database.PlayerPrefs.Music = (mySwitch)EditorGUILayout.EnumPopup("РњСѓР·РёРєР°: ", _database.PlayerPrefs.Music);
+                _database.PlayerPrefs.Sound = (mySwitch)EditorGUILayout.EnumPopup("Р—РІСѓРєРё: ", _database.PlayerPrefs.Sound);
+                GUI.color = _defaultColor;
             }
+
             GUILayout.EndVertical();
         }
     }

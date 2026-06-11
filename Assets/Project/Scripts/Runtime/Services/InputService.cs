@@ -15,7 +15,6 @@ namespace SBabchuk.Runtime.Services
                 var camera = Camera.main;
                 if (camera == null)
                     return Vector2.zero;
-
                 return camera.ScreenToWorldPoint(PointerPosition);
             }
         }

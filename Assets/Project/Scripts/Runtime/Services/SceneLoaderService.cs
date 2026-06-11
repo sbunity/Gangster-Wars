@@ -14,17 +14,12 @@ namespace SBabchuk.Runtime.Services
             _sceneLoader = sceneLoader;
         }
 
-        public UniTask LoadAsync(SBabchuk.Scene scene, LoadSceneMode mode = LoadSceneMode.Single)
-        {
-            return LoadAsync(scene.ToString(), mode);
-        }
+        public UniTask LoadAsync(SBabchuk.Scene scene, LoadSceneMode mode = LoadSceneMode.Single) 
+            => LoadAsync(scene.ToString(), mode);
 
         public async UniTask LoadAsync(string sceneName, LoadSceneMode mode = LoadSceneMode.Single)
         {
-            var operation = _sceneLoader != null
-                ? _sceneLoader.LoadSceneAsync(sceneName, mode)
-                : SceneManager.LoadSceneAsync(sceneName, mode);
-
+            var operation = _sceneLoader != null ? _sceneLoader.LoadSceneAsync(sceneName, mode) : SceneManager.LoadSceneAsync(sceneName, mode);
             await operation.ToUniTask();
         }
     }

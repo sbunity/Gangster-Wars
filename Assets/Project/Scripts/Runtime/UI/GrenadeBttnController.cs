@@ -1,63 +1,45 @@
 using UnityEngine;
 using UnityEngine.UI;
-using System.Collections;
 using SBabchuk.Runtime.Services.Contracts;
 using Zenject;
+using UnityEngine.Serialization;
 
 namespace SBabchuk
 {
     public class GrenadeBttnController : MonoBehaviour
     {
-        [Header("За яку гранату відповідає")]
-        public GrenadesName grenadesName; //ідентифікатор стікера
+        [SerializeField, FormerlySerializedAs("grenadesName")]
+        private GrenadesName _grenadesName;
 
-        [Header("Іконка")]
-        public Image ico;
+        [SerializeField, FormerlySerializedAs("ico")]
+        private Image _icon;
 
-        /// <summary>
-        /// Image - компонент кнопки
-        /// </summary>
-        private Image imgBttn;
+        private Image _imgBttn;
         private IHandService _handService;
 
         [Inject]
-        private void Construct(IHandService handService)
+        public void Construct(IHandService handService)
         {
             _handService = handService;
         }
 
-        /// <summary>
-        /// Предстартова ініціалізація
-        /// </summary>
         private void Awake()
         {
-            imgBttn = GetComponent<Image>();
+            _imgBttn = GetComponent<Image>();
         }
 
-        /// <summary>
-        /// Подія нажаття на кнопку UI
-        /// </summary>
         public void PointerDown()
         {
             CheckIco(false);
-
-            //OnPointerDown?.Invoke(false);
-
-            _handService?.Init(grenadesName, this);
+            _handService?.Init(_grenadesName, this);
         }
 
-        /// <summary>
-        /// Іконка включається і виключається
-        /// </summary>
-        /// <param name="_value"></param>
         public void CheckIco(bool _value)
         {
-            if (ico.enabled != _value)
-            {
-                ico.enabled = _value;
-            }
+            if (_icon.enabled != _value)
+                _icon.enabled = _value;
 
-            imgBttn.raycastTarget = _value;
+            _imgBttn.raycastTarget = _value;
         }
     }
 }

@@ -1,35 +1,28 @@
 using SBabchuk.Runtime.Services.Contracts;
 using UnityEngine;
 using Zenject;
+using UnityEngine.Serialization;
 
 namespace SBabchuk
 {
     public class SettingsController : MonoBehaviour
     {
-        [Header("Панел")]
-        public GameObject panel;
+        [SerializeField, FormerlySerializedAs("panel")]
+        private GameObject _panel;
+
+        [SerializeField, FormerlySerializedAs("levelID")]
+        private int _levelId;
+
+        [SerializeField] private float _timeCreate;
+        [SerializeField] private int _waveID;
+        [SerializeField] private int _indexEnemy;
 
         private LevelDatabase _levelDatabase;
         private IPlayerProgressService _progressService;
         private LevelController _levelController;
-
-        [Header("Час створення хвилі")]
-        [SerializeField] private float _timeCreate;
-
-        [Header("ІД рівня")]
-        public int levelID;
-
-        [Header("ІД поточної хвилі")]
-        [SerializeField] private int _waveID;
-
-        [Header("Індекс юніта на хвилі")]
-        [SerializeField] private int _indexEnemy;
-
+        
         [Inject]
-        private void Construct(
-            IAssetProvider assetProvider,
-            IPlayerProgressService progressService,
-            LevelController levelController)
+        public void Construct(IAssetProvider assetProvider, IPlayerProgressService progressService, LevelController levelController)
         {
             _levelDatabase = assetProvider.LevelDatabase;
             _progressService = progressService;
@@ -38,7 +31,7 @@ namespace SBabchuk
 
         public void ChangeVisible(bool value)
         {
-            panel.SetActive(value);
+            _panel.SetActive(value);
         }
 
         public void Restart()
@@ -48,19 +41,16 @@ namespace SBabchuk
 
         public void CreateNewWave()
         {
-            levelID = _progressService.CurrentLevelId;
-
-            _waveID = _levelDatabase.CreateWave(levelID, (int)(Time.time - _timeCreate));
+            _levelId = _progressService.CurrentLevelId;
+            _waveID = _levelDatabase.CreateWave(_levelId, (int)(Time.time - _timeCreate));
             _timeCreate = Time.time;
-
             _levelController.ContinueLevel();
         }
 
         public void CreateNewEnemy(int enemyID, int count)
         {
-            levelID = _progressService.CurrentLevelId;
-
-            _indexEnemy = _levelDatabase.CreateEnemyOnWave(levelID, _waveID, enemyID, count, (int)(Time.time - _timeCreate));
+            _levelId = _progressService.CurrentLevelId;
+            _indexEnemy = _levelDatabase.CreateEnemyOnWave(_levelId, _waveID, enemyID, count, (int)(Time.time - _timeCreate));
             _levelController.WaveHandler(_waveID, _indexEnemy);
         }
     }
