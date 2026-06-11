@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEditor;
 using System.Collections.Generic;
 
@@ -46,7 +46,7 @@ namespace SBabchuk
                 {
                     GUILayout.BeginVertical();
                     {
-                        EditorGUILayout.LabelField("Р†РЅС„РѕСЂРјР°С†С–СЏ РїСЂРѕ РіСЂР°РЅР°С‚Рё:");
+                        EditorGUILayout.LabelField("Інформація про гранати:");
                         if (database.PlayerPrefs.Grenades != null)
                         {
                             if (database.PlayerPrefs.Grenades.Count == EditorDatabaseLookup.Get<BombStoreDatabase>().Grenades.Count)
@@ -97,12 +97,12 @@ namespace SBabchuk
                     GUILayout.BeginVertical();
                     {
                         _grenade.Id = EditorGUILayout.IntField("ID: ", _grenade.Id);
-                        _grenade.Name = EditorGUILayout.TextField("РќР°Р№РјРµРЅСѓРІР°РЅРЅСЏ: ", _grenade.Name);
+                        _grenade.Name = EditorGUILayout.TextField("Найменування: ", _grenade.Name);
                         if (_value.IsBuy == mySwitch.On)
                             GUI.color = Color.green;
-                        _value.IsBuy = ((mySwitch)EditorGUILayout.EnumPopup("Р§Рё РєСѓРїР»РµРЅa: ", (mySwitch)_value.IsBuy));
+                        _value.IsBuy = ((mySwitch)EditorGUILayout.EnumPopup("Чи купленa: ", (mySwitch)_value.IsBuy));
                         GUI.color = Color.green;
-                        _value.Count = EditorGUILayout.IntField("РљС–Р»СЊРєС–СЃС‚СЊ РіСЂР°РЅР°С‚ С†СЊРѕРіРѕ С‚РёРїСѓ РЅР° СЂСѓРєР°С…: ", _value.Count);
+                        _value.Count = EditorGUILayout.IntField("Кількість гранат цього типу на руках: ", _value.Count);
                     }
 
                     GUILayout.EndVertical();

@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEditor;
 using System.Collections.Generic;
 
@@ -31,16 +31,16 @@ namespace SBabchuk
             GUILayout.BeginVertical("box");
             {
                 Utils.ChangeColor(defaultColor);
-                EditorGUILayout.LabelField("пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ:");
+                EditorGUILayout.LabelField("Налаштування:");
                 GUILayout.BeginHorizontal();
                 {
-                    if (GUILayout.Button("пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ"))
+                    if (GUILayout.Button("Добавити новий запис"))
                     {
                         database.Levels.Add(new Level(database.Levels.Count));
                         selectedIndexLevel = database.Levels.Count - 1;
                     }
 
-                    if (GUILayout.Button("пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ", GUILayout.Width(175)))
+                    if (GUILayout.Button("Видалити всі записи", GUILayout.Width(175)))
                     {
                         database.Levels.Clear();
                         selectedIndexLevel = 0;
@@ -88,7 +88,7 @@ namespace SBabchuk
                         }
                         else
                         {
-                            EditorGUILayout.LabelField("пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ");
+                            EditorGUILayout.LabelField("Немає записів");
                         }
                     }
                 }
@@ -138,8 +138,8 @@ namespace SBabchuk
                     _level.Icon = (Sprite)EditorGUILayout.ObjectField(_level.Icon, typeof(Sprite), false, GUILayout.Width(75), GUILayout.Height(75));
                     GUILayout.BeginVertical();
                     {
-                        _level.Id = EditorGUILayout.IntField("ID пїЅпїЅпїЅпїЅпїЅ: ", _level.Id);
-                        _level.Name = EditorGUILayout.TextField("пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ: ", _level.Name);
+                        _level.Id = EditorGUILayout.IntField("ID рівень: ", _level.Id);
+                        _level.Name = EditorGUILayout.TextField("Найменування рівня: ", _level.Name);
                     }
 
                     GUILayout.EndVertical();
@@ -163,7 +163,7 @@ namespace SBabchuk
             GUILayout.BeginVertical("box");
             {
                 GUI.color = defaultColor;
-                EditorGUILayout.LabelField("пїЅпїЅпїЅпїЅ:");
+                EditorGUILayout.LabelField("Хвилі:");
                 GUILayout.BeginHorizontal();
                 {
                     verticalModeWave = GUILayout.Toolbar(verticalModeWave, mode);
@@ -172,7 +172,7 @@ namespace SBabchuk
                 GUILayout.EndHorizontal();
                 EditorGUILayout.BeginHorizontal();
                 {
-                    if (GUILayout.Button("пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ"))
+                    if (GUILayout.Button("Добавити нову хвилю"))
                     {
                         level.Waves.Add(new Waves(level.Waves.Count));
                         selectedIndexWave = level.Waves.Count - 1;
@@ -191,7 +191,7 @@ namespace SBabchuk
                         }
                     }
 
-                    if (GUILayout.Button("пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ", GUILayout.Width(75)))
+                    if (GUILayout.Button("Видалити всі", GUILayout.Width(75)))
                     {
                         level.Waves.Clear();
                         selectedIndexWave = 0;
@@ -258,9 +258,9 @@ namespace SBabchuk
                 }
 
                 GUILayout.EndHorizontal();
-                wave.Id = EditorGUILayout.IntField("ID пїЅпїЅпїЅпїЅ: ", wave.Id);
-                wave.StartDelay = EditorGUILayout.FloatField("пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ: ", wave.StartDelay);
-                wave.Delay = EditorGUILayout.FloatField("пїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ: ", wave.Delay);
+                wave.Id = EditorGUILayout.IntField("ID хвилі: ", wave.Id);
+                wave.StartDelay = EditorGUILayout.FloatField("Затримка при старті хвилі: ", wave.StartDelay);
+                wave.Delay = EditorGUILayout.FloatField("Час на проходження: ", wave.Delay);
                 if (titleBttnVisibleWave == "Hide" && selectedIndexWave == wave.Id)
                 {
                     DrawEnemyOfWave(wave);
@@ -277,7 +277,7 @@ namespace SBabchuk
             GUILayout.BeginVertical("box");
             {
                 GUI.color = defaultColor;
-                EditorGUILayout.LabelField("пїЅпїЅпїЅпїЅ:");
+                EditorGUILayout.LabelField("Хвилі:");
                 GUILayout.BeginHorizontal();
                 {
                     verticalModeEnemy = GUILayout.Toolbar(verticalModeEnemy, mode);
@@ -286,7 +286,7 @@ namespace SBabchuk
                 GUILayout.EndHorizontal();
                 EditorGUILayout.BeginHorizontal();
                 {
-                    if (GUILayout.Button("пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ"))
+                    if (GUILayout.Button("Добавити нового юніта"))
                     {
                         wave.Enemies.Add(new EnemyOfWave());
                         selectedIndexEnemyOfWave = wave.Enemies.Count - 1;
@@ -349,11 +349,11 @@ namespace SBabchuk
                 }
 
                 GUILayout.EndHorizontal();
-                enemyOfWave.EnemyId = (int)((EnemiesName)EditorGUILayout.EnumPopup("пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ(ID)", (EnemiesName)enemyOfWave.EnemyId));
+                enemyOfWave.EnemyId = (int)((EnemiesName)EditorGUILayout.EnumPopup("Тип юніта(ID)", (EnemiesName)enemyOfWave.EnemyId));
                 DrawEnemyInfo(enemyOfWave.EnemyId);
-                enemyOfWave.CountEnemy = EditorGUILayout.IntSlider("КіпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ (пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ): ", enemyOfWave.CountEnemy, 0, 10);
-                enemyOfWave.Interval = EditorGUILayout.Slider("пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ (пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ): ", enemyOfWave.Interval, 0, 30);
-                enemyOfWave.DropChance = EditorGUILayout.IntSlider("пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ (%): ", enemyOfWave.DropChance, 0, 100);
+                enemyOfWave.CountEnemy = EditorGUILayout.IntSlider("Кількість ворогів (спавняться одночасно): ", enemyOfWave.CountEnemy, 0, 10);
+                enemyOfWave.Interval = EditorGUILayout.Slider("Інтервал (через скільки часу ворог спавниться): ", enemyOfWave.Interval, 0, 30);
+                enemyOfWave.DropChance = EditorGUILayout.IntSlider("Йморівність випадання монетки (%): ", enemyOfWave.DropChance, 0, 100);
             }
 
             GUILayout.EndVertical();
@@ -375,8 +375,8 @@ namespace SBabchuk
                                 enemy.Icon = (Sprite)EditorGUILayout.ObjectField(enemy.Icon, typeof(Sprite), false, GUILayout.Width(75), GUILayout.Height(75));
                                 GUILayout.BeginVertical();
                                 {
-                                    enemy.Id = EditorGUILayout.IntField("ID пїЅпїЅпїЅпїЅпїЅ: ", enemy.Id);
-                                    enemy.Name = EditorGUILayout.TextField("пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ: ", enemy.Name);
+                                    enemy.Id = EditorGUILayout.IntField("ID юніта: ", enemy.Id);
+                                    enemy.Name = EditorGUILayout.TextField("Найменування юніта: ", enemy.Name);
                                 }
 
                                 GUILayout.EndVertical();
@@ -391,7 +391,7 @@ namespace SBabchuk
             }
             else
             {
-                EditorGUILayout.LabelField("пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ");
+                EditorGUILayout.LabelField("Немає записів");
             }
         }
     }

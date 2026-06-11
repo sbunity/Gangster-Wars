@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEditor;
 using System.Collections.Generic;
 
@@ -19,7 +19,7 @@ namespace SBabchuk
             {
                 EditorGUILayout.BeginHorizontal();
                 {
-                    if (GUILayout.Button("Р”РѕР±Р°РІРёС‚Рё pPrefs"))
+                    if (GUILayout.Button("Добавити pPrefs"))
                     {
                         database.PlayerPrefs = new PlayerPrefs();
                     }
@@ -33,7 +33,7 @@ namespace SBabchuk
                 GUI.color = Color.red;
                 EditorGUILayout.BeginHorizontal();
                 {
-                    if (GUILayout.Button("Р’РёРґР°Р»РёС‚Рё pPrefs"))
+                    if (GUILayout.Button("Видалити pPrefs"))
                     {
                         database.PlayerPrefs = null;
                     }
@@ -43,7 +43,7 @@ namespace SBabchuk
                 GUI.color = Color.green;
                 EditorGUILayout.BeginHorizontal();
                 {
-                    if (GUILayout.Button("Р—Р±РµСЂРµРіС‚Рё Р·РјС–РЅРё РІ pPrefs"))
+                    if (GUILayout.Button("Зберегти зміни в pPrefs"))
                     {
                         EditorUtility.SetDirty(database);
                         AssetDatabase.SaveAssets();
@@ -159,7 +159,7 @@ namespace SBabchuk
             GUILayout.BeginVertical("box");
             {
                 GUI.color = Color.yellow;
-                _database.PlayerPrefs.SelectedDefenceId = EditorGUILayout.IntField("ID РїРѕС‚РѕС‡РЅРѕС— РїРµСЂРµРїРѕРЅРё: ", _database.PlayerPrefs.SelectedDefenceId);
+                _database.PlayerPrefs.SelectedDefenceId = EditorGUILayout.IntField("ID поточної перепони: ", _database.PlayerPrefs.SelectedDefenceId);
                 GUI.color = _defaultColor;
             }
 
@@ -172,7 +172,7 @@ namespace SBabchuk
             GUILayout.BeginVertical("box");
             {
                 GUI.color = Color.yellow;
-                _database.PlayerPrefs.SelectedGrenadeId = EditorGUILayout.IntField("ID РїРѕС‚РѕС‡РЅРѕС— РіСЂР°РЅР°С‚Рё: ", _database.PlayerPrefs.SelectedGrenadeId);
+                _database.PlayerPrefs.SelectedGrenadeId = EditorGUILayout.IntField("ID поточної гранати: ", _database.PlayerPrefs.SelectedGrenadeId);
                 GUI.color = _defaultColor;
             }
 
@@ -185,7 +185,7 @@ namespace SBabchuk
             GUILayout.BeginVertical("box");
             {
                 GUI.color = Color.yellow;
-                _database.PlayerPrefs.SelectedWeaponId = EditorGUILayout.IntField("ID РїРѕС‚РѕС‡РЅРѕС— Р·Р±СЂРѕС—: ", _database.PlayerPrefs.SelectedWeaponId);
+                _database.PlayerPrefs.SelectedWeaponId = EditorGUILayout.IntField("ID поточної зброї: ", _database.PlayerPrefs.SelectedWeaponId);
                 GUI.color = _defaultColor;
             }
 
@@ -198,7 +198,7 @@ namespace SBabchuk
             GUILayout.BeginVertical("box");
             {
                 GUI.color = Color.yellow;
-                _database.PlayerPrefs.LevelId = EditorGUILayout.IntField("Р С–РІРµРЅСЊ РЅР° СЏРєРѕРјСѓ Р·СѓРїРёРЅРёР»РёСЃСЊ: ", _database.PlayerPrefs.LevelId);
+                _database.PlayerPrefs.LevelId = EditorGUILayout.IntField("Рівень на якому зупинились: ", _database.PlayerPrefs.LevelId);
                 GUI.color = _defaultColor;
             }
 
@@ -211,7 +211,7 @@ namespace SBabchuk
             GUILayout.BeginVertical("box");
             {
                 GUI.color = Color.yellow;
-                _database.PlayerPrefs.Coin = EditorGUILayout.IntField("Рљ-СЃС‚СЊ РґС–Р°РјР°РЅС‚С–РІ: ", _database.PlayerPrefs.Coin);
+                _database.PlayerPrefs.Coin = EditorGUILayout.IntField("К-сть діамантів: ", _database.PlayerPrefs.Coin);
                 GUI.color = _defaultColor;
             }
 
@@ -224,8 +224,8 @@ namespace SBabchuk
             GUILayout.BeginVertical("box");
             {
                 GUI.color = Color.yellow;
-                _database.PlayerPrefs.Music = (mySwitch)EditorGUILayout.EnumPopup("РњСѓР·РёРєР°: ", _database.PlayerPrefs.Music);
-                _database.PlayerPrefs.Sound = (mySwitch)EditorGUILayout.EnumPopup("Р—РІСѓРєРё: ", _database.PlayerPrefs.Sound);
+                _database.PlayerPrefs.Music = (mySwitch)EditorGUILayout.EnumPopup("Музика: ", _database.PlayerPrefs.Music);
+                _database.PlayerPrefs.Sound = (mySwitch)EditorGUILayout.EnumPopup("Звуки: ", _database.PlayerPrefs.Sound);
                 GUI.color = _defaultColor;
             }
 

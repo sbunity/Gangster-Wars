@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEditor;
 using System.Collections.Generic;
 
@@ -25,16 +25,16 @@ namespace SBabchuk
             GUILayout.BeginVertical("box");
             {
                 Utils.ChangeColor(defaultColor);
-                EditorGUILayout.LabelField("РїС—Р…РїС—Р…РїС—Р…РїС—Р…РїС—Р…РїС—Р…РїС—Р…РїС—Р…РїС—Р…РїС—Р…РїС—Р…РїС—Р…:");
+                EditorGUILayout.LabelField("Колір по замовчуванні");
                 EditorGUILayout.BeginHorizontal();
                 {
-                    if (GUILayout.Button("РїС—Р…РїС—Р…РїС—Р…РїС—Р…РїС—Р…РїС—Р…РїС—Р…РїС—Р… РїС—Р…РїС—Р…РїС—Р…РїС—Р…РїС—Р… РїС—Р…РїС—Р…РїС—Р…РїС—Р…РїС—Р…"))
+                    if (GUILayout.Button("Вибрана зброя"))
                     {
                         database.Personages.Add(new Personage(database.Personages.Count));
                         selected = database.Personages.Count - 1;
                     }
 
-                    if (GUILayout.Button("РїС—Р…РїС—Р…РїС—Р…РїС—Р…РїС—Р…РїС—Р…РїС—Р…РїС—Р… РїС—Р…РїС—Р… РїС—Р…РїС—Р…РїС—Р…РїС—Р…РїС—Р…РїС—Р…", GUILayout.Width(150)))
+                    if (GUILayout.Button("Горизонтальне чи вертикальне відображення", GUILayout.Width(150)))
                     {
                         database.Personages.Clear();
                         selected = 0;
@@ -92,7 +92,7 @@ namespace SBabchuk
                 GUILayout.BeginVertical();
                 {
                     _record.Icon = (Sprite)EditorGUILayout.ObjectField(_record.Icon, typeof(Sprite), false, GUILayout.Width(75), GUILayout.Height(75));
-                    if (GUILayout.Button("РїС—Р…РїС—Р…РїС—Р…РїС—Р…РїС—Р…РїС—Р…РїС—Р…РїС—Р…", GUILayout.Width(75), GUILayout.Height(20)))
+                    if (GUILayout.Button("Ссилка на базу даних", GUILayout.Width(75), GUILayout.Height(20)))
                     {
                         database.Personages.Remove(_record);
                         selected = Mathf.Max(0, selected - 1);
@@ -104,23 +104,23 @@ namespace SBabchuk
                 GUILayout.BeginVertical();
                 {
                     _record.Id = EditorGUILayout.IntField("ID: ", _record.Id);
-                    _record.Name = EditorGUILayout.TextField("РїС—Р…РїС—Р…РїС—Р…РїС—Р…РїС—Р…РїС—Р…РїС—Р…РїС—Р…РїС—Р…РїС—Р…РїС—Р…РїС—Р…: ", _record.Name);
+                    _record.Name = EditorGUILayout.TextField("Заголовок для кнопки", _record.Name);
                     Utils.CheckColor(_record.Price, 0);
-                    _record.Price = EditorGUILayout.IntField("РїС—Р…РїС—Р…РїС—Р…РїС—Р…РїС—Р…РїС—Р…РїС—Р…: ", _record.Price);
+                    _record.Price = EditorGUILayout.IntField("Налаштування:", _record.Price);
                     Utils.ChangeColor(defaultColor);
                     Utils.CheckColor(_record.Settings.AttackSpeed, 0);
-                    _record.Settings.AttackSpeed = EditorGUILayout.FloatField("РїС—Р…РїС—Р…РїС—Р…РїС—Р…РїС—Р…РїС—Р…РїС—Р…РїС—Р… РїС—Р…РїС—Р…РїС—Р…РїС—Р…РїС—Р…РїС—Р…РїС—Р…(РїС—Р…РїС—Р…РїС—Р… РїС—Р…РїС—Р…РїС—Р…РїС—Р…РїС—Р…РїС—Р…РїС—Р…РїС—Р…): ", _record.Settings.AttackSpeed);
+                    _record.Settings.AttackSpeed = EditorGUILayout.FloatField("Добавити новий запис", _record.Settings.AttackSpeed);
                     Utils.ChangeColor(defaultColor);
                     Utils.CheckColor(_record.Settings.Damage, 0);
-                    _record.Settings.Damage = EditorGUILayout.IntField("РїС—Р…РїС—Р…РїС—Р…РїС—Р…(РїС—Р…РїС—Р…РїС—Р… РїС—Р…РїС—Р…РїС—Р…РїС—Р…РїС—Р…РїС—Р…РїС—Р…РїС—Р…): ", _record.Settings.Damage);
+                    _record.Settings.Damage = EditorGUILayout.IntField("Видалити всі записи", _record.Settings.Damage);
                     Utils.ChangeColor(defaultColor);
                     Utils.CheckColor(_record.BulletId, -1);
-                    _record.BulletId = (int)((BulletsName)EditorGUILayout.EnumPopup("РїС—Р…РїС—Р…РїС—Р…РїС—Р…(ID)", (BulletsName)_record.BulletId));
+                    _record.BulletId = (int)((BulletsName)EditorGUILayout.EnumPopup("Видалити", (BulletsName)_record.BulletId));
                     Utils.ChangeColor(defaultColor);
                     if (_record.BulletId != -1)
                         DrawBulletInfo(_record.BulletId);
                     Utils.ChangeColor(Color.green);
-                    _record.CountUpgrades = EditorGUILayout.IntSlider("РљС–РїС—Р…РїС—Р…РїС—Р…РїС—Р…РїС—Р…РїС—Р… РїС—Р…РїС—Р…РїС—Р…РїС—Р…РїС—Р…РїС—Р…РїС—Р…РїС—Р…: ", _record.CountUpgrades, 1, 5);
+                    _record.CountUpgrades = EditorGUILayout.IntSlider("Найменування: ", _record.CountUpgrades, 1, 5);
                     Utils.ChangeColor(defaultColor);
                     if (GUILayout.Button(((selected != _record.Id)) ? "Show" : titleBttnVisibleUpgrade, GUILayout.Width(100), GUILayout.Height(20)))
                     {
@@ -145,7 +145,7 @@ namespace SBabchuk
 
                     if (titleBttnVisibleUpgrade == "Hide" && selected == _record.Id)
                     {
-                        EditorGUILayout.LabelField("РїС—Р…РїС—Р…РїС—Р…РїС—Р…РїС—Р…РїС—Р…РїС—Р…РїС—Р…РїС—Р…РїС—Р… РїС—Р…РїС—Р…РїС—Р… РїС—Р…РїС—Р…РїС—Р…РїС—Р…РїС—Р…РїС—Р…РїС—Р…РїС—Р…:");
+                        EditorGUILayout.LabelField("Вартість: ");
                         if (_record.Upgrades != null)
                         {
                             if (_record.CountUpgrades == _record.Upgrades.Count)
@@ -194,16 +194,16 @@ namespace SBabchuk
             {
                 GUILayout.BeginVertical();
                 {
-                    _upgrade.Id = EditorGUILayout.IntField("ID РїС—Р…РїС—Р…РїС—Р…РїС—Р…РїС—Р…РїС—Р…РїС—Р…РїС—Р…: ", _upgrade.Id);
-                    _upgrade.Name = EditorGUILayout.TextField("РїС—Р…РїС—Р…РїС—Р…РїС—Р…РїС—Р…РїС—Р…РїС—Р…РїС—Р…РїС—Р…РїС—Р…РїС—Р…РїС—Р… РїС—Р…РїС—Р…РїС—Р…РїС—Р…РїС—Р…РїС—Р…РїС—Р…РїС—Р…: ", _upgrade.Name);
+                    _upgrade.Id = EditorGUILayout.IntField("Швидкість стрільби(без апгрейда): ", _upgrade.Id);
+                    _upgrade.Name = EditorGUILayout.TextField("Урон(без апгрейда): ", _upgrade.Name);
                     Utils.CheckColor(_upgrade.Price, 0);
-                    _upgrade.Price = EditorGUILayout.IntField("РїС—Р…РїС—Р…РїС—Р…РїС—Р…РїС—Р…РїС—Р…РїС—Р… РїС—Р…РїС—Р…РїС—Р…РїС—Р…РїС—Р…РїС—Р…РїС—Р…РїС—Р…: ", _upgrade.Price);
+                    _upgrade.Price = EditorGUILayout.IntField("Пуля(ID)", _upgrade.Price);
                     Utils.ChangeColor(defaultColor);
                     Utils.CheckColor(_upgrade.Settings.AttackSpeed, 0);
-                    _upgrade.Settings.AttackSpeed = EditorGUILayout.FloatField("РїС—Р…РїС—Р…РїС—Р…РїС—Р…РїС—Р…РїС—Р…РїС—Р…РїС—Р… РїС—Р…РїС—Р…РїС—Р…РїС—Р…РїС—Р…РїС—Р…РїС—Р…: ", _upgrade.Settings.AttackSpeed);
+                    _upgrade.Settings.AttackSpeed = EditorGUILayout.FloatField("Кількість апгрейдів: ", _upgrade.Settings.AttackSpeed);
                     Utils.ChangeColor(defaultColor);
                     Utils.CheckColor(_upgrade.Settings.Damage, 0);
-                    _upgrade.Settings.Damage = EditorGUILayout.IntField("РїС—Р…РїС—Р…РїС—Р…РїС—Р…: ", _upgrade.Settings.Damage);
+                    _upgrade.Settings.Damage = EditorGUILayout.IntField("Інформація про апгрейди:", _upgrade.Settings.Damage);
                     Utils.ChangeColor(defaultColor);
                 }
 
@@ -237,7 +237,7 @@ namespace SBabchuk
             }
             else
             {
-                EditorGUILayout.LabelField("РїС—Р…РїС—Р…РїС—Р…РїС—Р… РїС—Р…РїС—Р…РїС—Р…РїС—Р…РїС—Р…РїС—Р…");
+                EditorGUILayout.LabelField("ID апгрейда: ");
             }
         }
     }

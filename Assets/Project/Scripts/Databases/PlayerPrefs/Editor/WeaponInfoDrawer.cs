@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEditor;
 using System.Collections.Generic;
 
@@ -46,7 +46,7 @@ namespace SBabchuk
                 {
                     GUILayout.BeginVertical();
                     {
-                        EditorGUILayout.LabelField("Р†РЅС„РѕСЂРјР°С†С–СЏ РїСЂРѕ Р·Р±СЂРѕСЋ:");
+                        EditorGUILayout.LabelField("Інформація про зброю:");
                         if (database.PlayerPrefs.Weapons != null)
                         {
                             if (database.PlayerPrefs.Weapons.Count == EditorDatabaseLookup.Get<WeaponStoreDatabase>().Weapons.Count)
@@ -101,15 +101,15 @@ namespace SBabchuk
                         GUILayout.BeginVertical();
                         {
                             _weapon.Id = EditorGUILayout.IntField("ID: ", _weapon.Id);
-                            _weapon.Name = EditorGUILayout.TextField("РќР°Р№РјРµРЅСѓРІР°РЅРЅСЏ Р·Р±СЂРѕС—: ", _weapon.Name);
+                            _weapon.Name = EditorGUILayout.TextField("Найменування зброї: ", _weapon.Name);
                             if (_value.IsBuy == mySwitch.On)
                                 GUI.color = Color.green;
-                            _value.IsBuy = ((mySwitch)EditorGUILayout.EnumPopup("Р§Рё РєСѓРїР»РµРЅa: ", (mySwitch)_value.IsBuy));
+                            _value.IsBuy = ((mySwitch)EditorGUILayout.EnumPopup("Чи купленa: ", (mySwitch)_value.IsBuy));
                             if (_value.IsBuy == mySwitch.On)
                             {
                                 GUI.color = Color.yellow;
-                                _value.AmmoCount = EditorGUILayout.IntField("РљС–Р»СЊРєС–СЃС‚СЊ РїР°С‚СЂРѕРЅС–РІ СЏРєС– Р·РЅР°Р№С€Р»Рё: ", _value.AmmoCount);
-                                _value.UpgradeId = EditorGUILayout.IntSlider(" РђРїРіСЂРµР№Рґ (ID): ", _value.UpgradeId, -1, _weapon.Upgrades.Count - 1);
+                                _value.AmmoCount = EditorGUILayout.IntField("Кількість патронів які знайшли: ", _value.AmmoCount);
+                                _value.UpgradeId = EditorGUILayout.IntSlider(" Апгрейд (ID): ", _value.UpgradeId, -1, _weapon.Upgrades.Count - 1);
                             }
 
                             GUI.color = defaultColor;
@@ -135,7 +135,7 @@ namespace SBabchuk
             }
             else
             {
-                EditorGUILayout.LabelField("РќРµ Р·РЅР°Р№РґРµРЅРѕ РїРѕСЃРѕС…Р°");
+                EditorGUILayout.LabelField("Не знайдено посоха");
             }
         }
 
@@ -147,11 +147,11 @@ namespace SBabchuk
                 WUpgrade _upgrade = EditorDatabaseLookup.Get<WeaponStoreDatabase>().GetUpgrade(_weapon, _upgradeID);
                 if (_upgrade != null)
                 {
-                    _upgrade.Settings.Damage = EditorGUILayout.IntSlider("РЈСЂРѕРЅ: ", _upgrade.Settings.Damage, 0, 10);
+                    _upgrade.Settings.Damage = EditorGUILayout.IntSlider("Урон: ", _upgrade.Settings.Damage, 0, 10);
                 }
                 else
                 {
-                    _weapon.Settings.Damage = EditorGUILayout.IntSlider("РЈСЂРѕРЅ: ", _weapon.Settings.Damage, 0, 10);
+                    _weapon.Settings.Damage = EditorGUILayout.IntSlider("Урон: ", _weapon.Settings.Damage, 0, 10);
                 }
 
                 GUI.color = defaultColor;

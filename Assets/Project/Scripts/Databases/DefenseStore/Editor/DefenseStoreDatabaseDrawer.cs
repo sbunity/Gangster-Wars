@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEditor;
 using System.Collections.Generic;
 
@@ -26,16 +26,16 @@ namespace SBabchuk
             GUILayout.BeginVertical("box");
             {
                 GUI.color = defaultColor;
-                EditorGUILayout.LabelField("Р СњР В°Р В»Р В°РЎв‚¬РЎвЂљРЎС“Р Р†Р В°Р Р…Р Р…РЎРЏ:");
+                EditorGUILayout.LabelField("Інформація про апгрейди:");
                 EditorGUILayout.BeginHorizontal();
                 {
-                    if (GUILayout.Button("Р вЂќР С•Р В±Р В°Р Р†Р С‘РЎвЂљР С‘ Р Р…Р С•Р Р†Р С‘Р в„– Р В·Р В°Р С—Р С‘РЎРѓ"))
+                    if (GUILayout.Button("Добавити новий запис"))
                     {
                         database.Defenses.Add(new Defense(database.Defenses.Count));
                         selected = database.Defenses.Count - 1;
                     }
 
-                    if (GUILayout.Button("Р вЂ™Р С‘Р Т‘Р В°Р В»Р С‘РЎвЂљР С‘ Р Р†РЎРѓРЎвЂ“ Р В·Р В°Р С—Р С‘РЎРѓР С‘", GUILayout.Width(150)))
+                    if (GUILayout.Button("Видалити всі записи", GUILayout.Width(150)))
                     {
                         database.Defenses.Clear();
                         selected = 0;
@@ -93,7 +93,7 @@ namespace SBabchuk
                 GUILayout.BeginVertical();
                 {
                     _record.Icon = (Sprite)EditorGUILayout.ObjectField(_record.Icon, typeof(Sprite), false, GUILayout.Width(75), GUILayout.Height(75));
-                    if (GUILayout.Button("Р вЂ™Р С‘Р Т‘Р В°Р В»Р С‘РЎвЂљР С‘", GUILayout.Width(75), GUILayout.Height(20)))
+                    if (GUILayout.Button("Видалити", GUILayout.Width(75), GUILayout.Height(20)))
                     {
                         database.Defenses.Remove(_record);
                         selected = Mathf.Max(0, selected - 1);
@@ -105,15 +105,15 @@ namespace SBabchuk
                 GUILayout.BeginVertical();
                 {
                     _record.Id = EditorGUILayout.IntField("ID: ", _record.Id);
-                    _record.Name = EditorGUILayout.TextField("Р СњР В°Р в„–Р СР ВµР Р…РЎС“Р Р†Р В°Р Р…Р Р…РЎРЏ: ", _record.Name);
+                    _record.Name = EditorGUILayout.TextField("Найменування: ", _record.Name);
                     Utils.CheckColor(_record.Price, 0);
-                    _record.Price = EditorGUILayout.IntField("Р вЂ™Р В°РЎР‚РЎвЂљРЎвЂ“РЎРѓРЎвЂљРЎРЉ: ", _record.Price);
+                    _record.Price = EditorGUILayout.IntField("Вартість: ", _record.Price);
                     Utils.ChangeColor(defaultColor);
                     Utils.CheckColor(_record.Settings.Health, 0);
-                    _record.Settings.Health = EditorGUILayout.IntField("Р С™-РЎРѓРЎвЂљРЎРЉ Р В¶Р С‘РЎвЂљРЎвЂљРЎвЂ“Р Р† (Р В±Р ВµР В· Р В°Р С—Р С–РЎР‚Р ВµР в„–Р Т‘Р В°): ", _record.Settings.Health);
+                    _record.Settings.Health = EditorGUILayout.IntField("К-сть життів (без апгрейда): ", _record.Settings.Health);
                     Utils.ChangeColor(defaultColor);
                     GUI.color = Color.green;
-                    _record.CountUpgrades = EditorGUILayout.IntSlider("Р С™РЎвЂ“Р В»РЎРЉР С”РЎвЂ“РЎРѓРЎвЂљРЎРЉ Р В°Р С—Р С–РЎР‚Р ВµР в„–Р Т‘РЎвЂ“Р Р†: ", _record.CountUpgrades, 1, 5);
+                    _record.CountUpgrades = EditorGUILayout.IntSlider("Кількість апгрейдів: ", _record.CountUpgrades, 1, 5);
                     GUI.color = defaultColor;
                     if (GUILayout.Button(((selected != _record.Id)) ? "Show" : titleBttnVisibleUpgrade, GUILayout.Width(100), GUILayout.Height(20)))
                     {
@@ -138,7 +138,7 @@ namespace SBabchuk
 
                     if (titleBttnVisibleUpgrade == "Hide" && selected == _record.Id)
                     {
-                        EditorGUILayout.LabelField("Р вЂ Р Р…РЎвЂћР С•РЎР‚Р СР В°РЎвЂ РЎвЂ“РЎРЏ Р С—РЎР‚Р С• Р В°Р С—Р С–РЎР‚Р ВµР в„–Р Т‘Р С‘:");
+                        EditorGUILayout.LabelField("Інформація про апгрейди:");
                         if (_record.Upgrades != null)
                         {
                             if (_record.CountUpgrades == _record.Upgrades.Count)
@@ -174,7 +174,7 @@ namespace SBabchuk
                     }
 
                     GUI.color = Color.green;
-                    _record.CountIcons = EditorGUILayout.IntSlider("Р С™РЎвЂ“Р В»РЎРЉР С”РЎвЂ“РЎРѓРЎвЂљРЎРЉ РЎвЂ“Р С”Р С•Р Р…Р С•Р С”: ", _record.CountIcons, 1, 4);
+                    _record.CountIcons = EditorGUILayout.IntSlider("Кількість іконок: ", _record.CountIcons, 1, 4);
                     GUI.color = defaultColor;
                     if (GUILayout.Button(((selected != _record.Id)) ? "Show" : titleBttnVisibleIcons, GUILayout.Width(100), GUILayout.Height(20)))
                     {
@@ -199,7 +199,7 @@ namespace SBabchuk
 
                     if (titleBttnVisibleIcons == "Hide" && selected == _record.Id)
                     {
-                        EditorGUILayout.LabelField("Р вЂ Р Р…РЎвЂћР С•РЎР‚Р СР В°РЎвЂ РЎвЂ“РЎРЏ Р С—РЎР‚Р С• Р В°Р С—Р С–РЎР‚Р ВµР в„–Р Т‘Р С‘:");
+                        EditorGUILayout.LabelField("Інформація про апгрейди:");
                         if (_record.Icons != null)
                         {
                             if (_record.CountIcons == _record.Icons.Count)
@@ -258,13 +258,13 @@ namespace SBabchuk
             {
                 GUILayout.BeginVertical();
                 {
-                    _upgrade.Id = EditorGUILayout.IntField("ID Р В°Р С—Р С–РЎР‚Р ВµР в„–Р Т‘Р В°: ", _upgrade.Id);
-                    _upgrade.Name = EditorGUILayout.TextField("Р СњР В°Р в„–Р СР ВµР Р…РЎС“Р Р†Р В°Р Р…Р Р…РЎРЏ Р В°Р С—Р С–РЎР‚Р ВµР в„–Р Т‘Р В°: ", _upgrade.Name);
+                    _upgrade.Id = EditorGUILayout.IntField("ID апгрейда: ", _upgrade.Id);
+                    _upgrade.Name = EditorGUILayout.TextField("Найменування апгрейда: ", _upgrade.Name);
                     Utils.CheckColor(_upgrade.Price, 0);
-                    _upgrade.Price = EditorGUILayout.IntField("Р вЂ™Р В°РЎР‚РЎвЂљРЎвЂ“РЎРѓРЎвЂљРЎРЉ Р В°Р С—Р С–РЎР‚Р ВµР в„–Р Т‘Р В°: ", _upgrade.Price);
+                    _upgrade.Price = EditorGUILayout.IntField("Вартість апгрейда: ", _upgrade.Price);
                     Utils.ChangeColor(defaultColor);
                     Utils.CheckColor(_upgrade.Settings.Health, 0);
-                    _upgrade.Settings.Health = EditorGUILayout.IntField("Р С™-РЎРѓРЎвЂљРЎРЉ Р В¶Р С‘РЎвЂљРЎвЂљРЎвЂ“Р Р† (Р В±Р ВµР В· Р В°Р С—Р С–РЎР‚Р ВµР в„–Р Т‘Р В°): ", _upgrade.Settings.Health);
+                    _upgrade.Settings.Health = EditorGUILayout.IntField("К-сть життів (без апгрейда): ", _upgrade.Settings.Health);
                     Utils.ChangeColor(defaultColor);
                 }
 

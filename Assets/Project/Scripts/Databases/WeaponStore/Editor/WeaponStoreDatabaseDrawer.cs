@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEditor;
 using System.Collections.Generic;
 
@@ -26,16 +26,16 @@ namespace SBabchuk
             GUILayout.BeginVertical("box");
             {
                 GUI.color = defaultColor;
-                EditorGUILayout.LabelField("РїС—Р…РїС—Р…РїС—Р…РїС—Р…РїС—Р…РїС—Р…РїС—Р…РїС—Р…РїС—Р…РїС—Р…РїС—Р…РїС—Р…:");
+                EditorGUILayout.LabelField("Колір по замовчуванні");
                 EditorGUILayout.BeginHorizontal();
                 {
-                    if (GUILayout.Button("РїС—Р…РїС—Р…РїС—Р…РїС—Р…РїС—Р…РїС—Р…РїС—Р…РїС—Р… РїС—Р…РїС—Р…РїС—Р…РїС—Р…РїС—Р… РїС—Р…РїС—Р…РїС—Р…РїС—Р…РїС—Р…"))
+                    if (GUILayout.Button("Вибрана зброя"))
                     {
                         database.Weapons.Add(new Weapon(database.Weapons.Count));
                         selected = database.Weapons.Count - 1;
                     }
 
-                    if (GUILayout.Button("РїС—Р…РїС—Р…РїС—Р…РїС—Р…РїС—Р…РїС—Р…РїС—Р…РїС—Р… РїС—Р…РїС—Р… РїС—Р…РїС—Р…РїС—Р…РїС—Р…РїС—Р…РїС—Р…", GUILayout.Width(150)))
+                    if (GUILayout.Button("Горизонтальне чи вертикальне відображення", GUILayout.Width(150)))
                     {
                         database.Weapons.Clear();
                         selected = 0;
@@ -93,7 +93,7 @@ namespace SBabchuk
                 GUILayout.BeginVertical();
                 {
                     _weapon.Icon = (Sprite)EditorGUILayout.ObjectField(_weapon.Icon, typeof(Sprite), false, GUILayout.Width(75), GUILayout.Height(75));
-                    if (GUILayout.Button("РїС—Р…РїС—Р…РїС—Р…РїС—Р…РїС—Р…РїС—Р…РїС—Р…РїС—Р…", GUILayout.Width(75), GUILayout.Height(20)))
+                    if (GUILayout.Button("Ссилка на базу даних", GUILayout.Width(75), GUILayout.Height(20)))
                     {
                         database.Weapons.Remove(_weapon);
                         selected = Mathf.Max(0, selected - 1);
@@ -104,30 +104,30 @@ namespace SBabchuk
                 GUILayout.EndVertical();
                 GUILayout.BeginVertical();
                 {
-                    _weapon.Id = EditorGUILayout.IntField("ID РїС—Р…РїС—Р…РїС—Р…РїС—Р…: ", _weapon.Id);
-                    _weapon.Name = EditorGUILayout.TextField("РїС—Р…РїС—Р…РїС—Р…РїС—Р…РїС—Р…РїС—Р…РїС—Р…РїС—Р…РїС—Р…РїС—Р…РїС—Р…РїС—Р… РїС—Р…РїС—Р…РїС—Р…РїС—Р…: ", _weapon.Name);
+                    _weapon.Id = EditorGUILayout.IntField("Заголовок для кнопки", _weapon.Id);
+                    _weapon.Name = EditorGUILayout.TextField("Налаштування:", _weapon.Name);
                     Utils.CheckColor(_weapon.Price, 0);
-                    _weapon.Price = EditorGUILayout.IntField("РїС—Р…РїС—Р…РїС—Р…РїС—Р…РїС—Р…РїС—Р…РїС—Р… РїС—Р…РїС—Р…РїС—Р…РїС—Р…: ", _weapon.Price);
+                    _weapon.Price = EditorGUILayout.IntField("Добавити новий запис", _weapon.Price);
                     Utils.ChangeColor(defaultColor);
                     Utils.CheckColor(_weapon.Magazine, 0);
-                    _weapon.Magazine = EditorGUILayout.IntSlider("РїС—Р…РїС—Р…РїС—Р…РїС—Р…РїС—Р…РїС—Р…РїС—Р…РїС—Р…РїС—Р…РїС—Р… РїС—Р…РїС—Р…РїС—Р…РїС—Р…РїС—Р…РїС—Р…РїС—Р…РїС—Р…: ", _weapon.Magazine, 0, 50);
+                    _weapon.Magazine = EditorGUILayout.IntSlider("Видалити всі записи", _weapon.Magazine, 0, 50);
                     Utils.ChangeColor(defaultColor);
                     Utils.CheckColor(_weapon.PriceMagazine, 0);
-                    _weapon.PriceMagazine = EditorGUILayout.IntSlider("РїС—Р…РїС—Р…РїС—Р…РїС—Р…РїС—Р…РїС—Р…РїС—Р… РїС—Р…РїС—Р…РїС—Р…РїС—Р…РїС—Р…РїС—Р…РїС—Р…РїС—Р… РїС—Р…РїС—Р…РїС—Р…РїС—Р…РїС—Р…РїС—Р…РїС—Р…РїС—Р…: ", _weapon.PriceMagazine, 0, 300);
+                    _weapon.PriceMagazine = EditorGUILayout.IntSlider("Видалити", _weapon.PriceMagazine, 0, 300);
                     Utils.ChangeColor(defaultColor);
                     Utils.CheckColor(_weapon.SpeedReload, 0);
-                    _weapon.SpeedReload = EditorGUILayout.Slider("РїС—Р…РїС—Р…РїС—Р…РїС—Р…РїС—Р…РїС—Р…РїС—Р…РїС—Р… РїС—Р…РїС—Р…РїС—Р…РїС—Р…РїС—Р…РїС—Р…РїС—Р…РїС—Р…РїС—Р…РїС—Р…РїС—Р… 1 РїС—Р…РїС—Р…РїС—Р…РїС—Р…РїС—Р…РїС—Р…РїС—Р…: ", _weapon.SpeedReload, 0, 3);
+                    _weapon.SpeedReload = EditorGUILayout.Slider("ID зброї: ", _weapon.SpeedReload, 0, 3);
                     Utils.ChangeColor(defaultColor);
                     Utils.CheckColor(_weapon.Settings.Damage, 0);
-                    _weapon.Settings.Damage = EditorGUILayout.IntField("РїС—Р…РїС—Р…РїС—Р…РїС—Р… РїС—Р…РїС—Р…РїС—Р… РїС—Р…РїС—Р…РїС—Р…РїС—Р…РїС—Р…РїС—Р…РїС—Р…РїС—Р…: ", _weapon.Settings.Damage);
+                    _weapon.Settings.Damage = EditorGUILayout.IntField("Найменування зброї: ", _weapon.Settings.Damage);
                     Utils.ChangeColor(defaultColor);
                     Utils.CheckColor(_weapon.BulletId, -1);
-                    _weapon.BulletId = (int)((BulletsName)EditorGUILayout.EnumPopup("РїС—Р…РїС—Р…РїС—Р…РїС—Р…(ID)", (BulletsName)_weapon.BulletId));
+                    _weapon.BulletId = (int)((BulletsName)EditorGUILayout.EnumPopup("Вартість зброї: ", (BulletsName)_weapon.BulletId));
                     Utils.ChangeColor(defaultColor);
                     if (_weapon.BulletId != -1)
                         DrawBulletInfo(_weapon.BulletId);
                     Utils.ChangeColor(Color.green);
-                    _weapon.CountUpgrades = EditorGUILayout.IntSlider("РљС–РїС—Р…РїС—Р…РїС—Р…РїС—Р…РїС—Р…РїС—Р… РїС—Р…РїС—Р…РїС—Р…РїС—Р…РїС—Р…РїС—Р…РїС—Р…РїС—Р…: ", _weapon.CountUpgrades, 1, 5);
+                    _weapon.CountUpgrades = EditorGUILayout.IntSlider("Розмірність магазина: ", _weapon.CountUpgrades, 1, 5);
                     Utils.ChangeColor(defaultColor);
                     if (GUILayout.Button(((selected != _weapon.Id)) ? "Show" : titleBttnVisibleUpgrade, GUILayout.Width(100), GUILayout.Height(20)))
                     {
@@ -152,7 +152,7 @@ namespace SBabchuk
 
                     if (titleBttnVisibleUpgrade == "Hide" && selected == _weapon.Id)
                     {
-                        EditorGUILayout.LabelField("РїС—Р…РїС—Р…РїС—Р…РїС—Р…РїС—Р…РїС—Р…РїС—Р…РїС—Р…РїС—Р…РїС—Р… РїС—Р…РїС—Р…РїС—Р… РїС—Р…РїС—Р…РїС—Р…РїС—Р…РїС—Р…РїС—Р…РїС—Р…РїС—Р…:");
+                        EditorGUILayout.LabelField("Вартість магазина патронів: ");
                         if (_weapon.Upgrades != null)
                         {
                             if (_weapon.CountUpgrades == _weapon.Upgrades.Count)
@@ -201,13 +201,13 @@ namespace SBabchuk
             {
                 GUILayout.BeginVertical();
                 {
-                    _upgrade.Id = EditorGUILayout.IntField("ID РїС—Р…РїС—Р…РїС—Р…РїС—Р…РїС—Р…РїС—Р…РїС—Р…РїС—Р…: ", _upgrade.Id);
-                    _upgrade.Name = EditorGUILayout.TextField("РїС—Р…РїС—Р…РїС—Р…РїС—Р…РїС—Р…РїС—Р…РїС—Р…РїС—Р…РїС—Р…РїС—Р…РїС—Р…РїС—Р… РїС—Р…РїС—Р…РїС—Р…РїС—Р…РїС—Р…РїС—Р…РїС—Р…РїС—Р…: ", _upgrade.Name);
+                    _upgrade.Id = EditorGUILayout.IntField("Швидкість перезарядки 1 патрона: ", _upgrade.Id);
+                    _upgrade.Name = EditorGUILayout.TextField("Урон без апгрейда: ", _upgrade.Name);
                     Utils.CheckColor(_upgrade.Price, 0);
-                    _upgrade.Price = EditorGUILayout.IntField("РїС—Р…РїС—Р…РїС—Р…РїС—Р…РїС—Р…РїС—Р…РїС—Р… РїС—Р…РїС—Р…РїС—Р…РїС—Р…РїС—Р…РїС—Р…РїС—Р…РїС—Р…: ", _upgrade.Price);
+                    _upgrade.Price = EditorGUILayout.IntField("Пуля(ID)", _upgrade.Price);
                     Utils.ChangeColor(defaultColor);
                     Utils.CheckColor(_upgrade.Settings.Damage, 0);
-                    _upgrade.Settings.Damage = EditorGUILayout.IntField("РїС—Р…РїС—Р…РїС—Р…РїС—Р…: ", _upgrade.Settings.Damage);
+                    _upgrade.Settings.Damage = EditorGUILayout.IntField("Кількість апгрейдів: ", _upgrade.Settings.Damage);
                     Utils.ChangeColor(defaultColor);
                 }
 
@@ -241,7 +241,7 @@ namespace SBabchuk
             }
             else
             {
-                EditorGUILayout.LabelField("РїС—Р…РїС—Р…РїС—Р…РїС—Р… РїС—Р…РїС—Р…РїС—Р…РїС—Р…РїС—Р…РїС—Р…");
+                EditorGUILayout.LabelField("Інформація про апгрейди:");
             }
         }
     }

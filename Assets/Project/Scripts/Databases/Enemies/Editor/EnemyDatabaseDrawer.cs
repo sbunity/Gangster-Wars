@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEditor;
 using System.Collections.Generic;
 
@@ -18,16 +18,16 @@ namespace SBabchuk
             GUILayout.BeginVertical("box");
             {
                 GUI.color = defaultColor;
-                EditorGUILayout.LabelField("РїС—Р…РїС—Р…РїС—Р…РїС—Р…РїС—Р…РїС—Р…РїС—Р…РїС—Р…РїС—Р…РїС—Р…РїС—Р…РїС—Р…:");
+                EditorGUILayout.LabelField("Налаштування:");
                 EditorGUILayout.BeginHorizontal();
                 {
-                    if (GUILayout.Button("РїС—Р…РїС—Р…РїС—Р…РїС—Р…РїС—Р…РїС—Р…РїС—Р…РїС—Р… РїС—Р…РїС—Р…РїС—Р…РїС—Р…РїС—Р… РїС—Р…РїС—Р…РїС—Р…РїС—Р…РїС—Р…"))
+                    if (GUILayout.Button("Добавити новий запис"))
                     {
                         database.Enemies.Add(new Enemy(database.Enemies.Count));
                         selectedEnemy = database.Enemies.Count - 1;
                     }
 
-                    if (GUILayout.Button("РїС—Р…РїС—Р…РїС—Р…РїС—Р…РїС—Р…РїС—Р…РїС—Р…РїС—Р… РїС—Р…РїС—Р… РїС—Р…РїС—Р…РїС—Р…РїС—Р…РїС—Р…РїС—Р…", GUILayout.Width(75)))
+                    if (GUILayout.Button("Видалити всі записи", GUILayout.Width(75)))
                     {
                         database.Enemies.Clear();
                         selectedEnemy = 0;
@@ -85,7 +85,7 @@ namespace SBabchuk
                 GUILayout.BeginVertical();
                 {
                     _enemy.Icon = (Sprite)EditorGUILayout.ObjectField(_enemy.Icon, typeof(Sprite), false, GUILayout.Width(75), GUILayout.Height(75));
-                    if (GUILayout.Button("РїС—Р…РїС—Р…РїС—Р…РїС—Р…РїС—Р…РїС—Р…РїС—Р…РїС—Р…", GUILayout.Width(75), GUILayout.Height(20)))
+                    if (GUILayout.Button("Видалити", GUILayout.Width(75), GUILayout.Height(20)))
                     {
                         database.Enemies.Remove(_enemy);
                         return true;
@@ -96,27 +96,27 @@ namespace SBabchuk
                 GUILayout.BeginVertical();
                 {
                     _enemy.Id = EditorGUILayout.IntField("ID: ", _enemy.Id);
-                    _enemy.Name = EditorGUILayout.TextField("РїС—Р…РїС—Р…РїС—Р…РїС—Р…РїС—Р…РїС—Р…РїС—Р…РїС—Р…РїС—Р…РїС—Р…РїС—Р…РїС—Р…: ", _enemy.Name);
+                    _enemy.Name = EditorGUILayout.TextField("Найменування: ", _enemy.Name);
                     Utils.CheckColor(_enemy.Gold, 0);
-                    _enemy.Gold = EditorGUILayout.IntField("РїС—Р…РїС—Р…РїС—Р…РїС—Р…РїС—Р… РїС—Р…РїС—Р… РїС—Р…РїС—Р…РїС—Р…РїС—Р…РїС—Р…РїС—Р…: ", _enemy.Gold);
+                    _enemy.Gold = EditorGUILayout.IntField("Кошти за смерть: ", _enemy.Gold);
                     Utils.ChangeColor(defaultColor);
                     Utils.CheckColor(_enemy.Health, 0);
-                    _enemy.Health = EditorGUILayout.IntField("РљС–РїС—Р…РїС—Р…РїС—Р…РїС—Р…РїС—Р…РїС—Р… РїС—Р…РїС—Р…РїС—Р…РїС—Р…РїС—Р…: ", _enemy.Health);
+                    _enemy.Health = EditorGUILayout.IntField("Кількість життів: ", _enemy.Health);
                     Utils.ChangeColor(defaultColor);
                     Utils.CheckColor(_enemy.SpeedMove, 0);
-                    _enemy.SpeedMove = EditorGUILayout.Slider("РїС—Р…РїС—Р…РїС—Р…РїС—Р…РїС—Р…РїС—Р…РїС—Р…РїС—Р… РїС—Р…РїС—Р…РїС—Р…РїС—Р…: ", _enemy.SpeedMove, 0, 20);
+                    _enemy.SpeedMove = EditorGUILayout.Slider("Швидкість руху: ", _enemy.SpeedMove, 0, 20);
                     Utils.ChangeColor(defaultColor);
                     Utils.CheckColor(_enemy.AttackSpeed, 0);
-                    _enemy.AttackSpeed = EditorGUILayout.Slider("РїС—Р…РїС—Р…РїС—Р…РїС—Р…РїС—Р…РїС—Р…РїС—Р…РїС—Р… РїС—Р…РїС—Р…РїС—Р…РїС—Р…РїС—Р…: ", _enemy.AttackSpeed, 0, 5);
+                    _enemy.AttackSpeed = EditorGUILayout.Slider("Швидкість атаки: ", _enemy.AttackSpeed, 0, 5);
                     Utils.ChangeColor(defaultColor);
                     Utils.CheckColor(_enemy.Damage, 0);
-                    _enemy.Damage = EditorGUILayout.IntField("РїС—Р…РїС—Р…РїС—Р…РїС—Р… РїС—Р…РїС—Р…РїС—Р…РїС—Р…РїС—Р…: ", _enemy.Damage);
+                    _enemy.Damage = EditorGUILayout.IntField("Урон Юніта: ", _enemy.Damage);
                     Utils.ChangeColor(defaultColor);
                     Utils.CheckColor(_enemy.AttackRadius, 0);
-                    _enemy.AttackRadius = EditorGUILayout.Slider("РїС—Р…РїС—Р…РїС—Р…РїС—Р…РїС—Р… РїС—Р…РїС—Р…РїС—Р…РїС—Р…РїС—Р…: ", _enemy.AttackRadius, 0, 100);
+                    _enemy.AttackRadius = EditorGUILayout.Slider("Радіус атаки: ", _enemy.AttackRadius, 0, 100);
                     Utils.ChangeColor(defaultColor);
                     Utils.CheckColor(_enemy.BulletId, -1);
-                    _enemy.BulletId = (int)((BulletsName)EditorGUILayout.EnumPopup("РїС—Р…РїС—Р…РїС—Р…РїС—Р…(ID)", (BulletsName)_enemy.BulletId));
+                    _enemy.BulletId = (int)((BulletsName)EditorGUILayout.EnumPopup("Пуля(ID)", (BulletsName)_enemy.BulletId));
                     Utils.ChangeColor(defaultColor);
                     if (_enemy.BulletId != -1)
                         DrawBulletInfo(_enemy.BulletId);
@@ -153,7 +153,7 @@ namespace SBabchuk
             }
             else
             {
-                EditorGUILayout.LabelField("РїС—Р…РїС—Р…РїС—Р…РїС—Р… РїС—Р…РїС—Р…РїС—Р…РїС—Р…РїС—Р…РїС—Р…");
+                EditorGUILayout.LabelField("ID пулі: ");
             }
         }
     }

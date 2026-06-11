@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEditor;
 using System.Collections.Generic;
 
@@ -18,16 +18,16 @@ namespace SBabchuk
             GUILayout.BeginVertical("box");
             {
                 GUI.color = defaultColor;
-                EditorGUILayout.LabelField("РќР°Р»Р°С€С‚СѓРІР°РЅРЅСЏ:");
+                EditorGUILayout.LabelField("Налаштування:");
                 EditorGUILayout.BeginHorizontal();
                 {
-                    if (GUILayout.Button("Р”РѕР±Р°РІРёС‚Рё РЅРѕРІРёР№ Р·Р°РїРёСЃ"))
+                    if (GUILayout.Button("Добавити новий запис"))
                     {
                         database.Bullets.Add(new Bullet(database.Bullets.Count));
                         selected = database.Bullets.Count - 1;
                     }
 
-                    if (GUILayout.Button("Р’РёРґР°Р»РёС‚Рё РІСЃС– Р·Р°РїРёСЃРё", GUILayout.Width(175)))
+                    if (GUILayout.Button("Видалити всі записи", GUILayout.Width(175)))
                     {
                         database.Bullets.Clear();
                         selected = 0;
@@ -85,7 +85,7 @@ namespace SBabchuk
                 GUILayout.BeginVertical();
                 {
                     _bullet.Icon = (Sprite)EditorGUILayout.ObjectField(_bullet.Icon, typeof(Sprite), false, GUILayout.Width(75), GUILayout.Height(75));
-                    if (GUILayout.Button("Р’РёРґР°Р»РёС‚Рё", GUILayout.Width(75), GUILayout.Height(20)))
+                    if (GUILayout.Button("Видалити", GUILayout.Width(75), GUILayout.Height(20)))
                     {
                         database.Bullets.Remove(_bullet);
                         selected = Mathf.Max(0, selected - 1);
@@ -97,9 +97,9 @@ namespace SBabchuk
                 GUILayout.BeginVertical();
                 {
                     _bullet.Id = EditorGUILayout.IntField("ID: ", _bullet.Id);
-                    _bullet.Name = EditorGUILayout.TextField("РќР°Р№РјРµРЅСѓРІР°РЅРЅСЏ: ", _bullet.Name);
+                    _bullet.Name = EditorGUILayout.TextField("Найменування: ", _bullet.Name);
                     Utils.CheckColor(_bullet.SpeedMove, 0);
-                    _bullet.SpeedMove = EditorGUILayout.FloatField("РЁРІРёРґРєС–СЃС‚СЊ: ", _bullet.SpeedMove);
+                    _bullet.SpeedMove = EditorGUILayout.FloatField("Швидкість: ", _bullet.SpeedMove);
                     Utils.ChangeColor(defaultColor);
                 }
 

@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using SBabchuk.Runtime.Services.Contracts;
 using UnityEngine;
@@ -45,8 +45,8 @@ namespace SBabchuk
         {
             Enemy enemy = _enemyDatabase.GetEnemy((int)_enemyId);
             _icon.sprite = enemy.Icon;
-            _health.text = "Р–РёС‚С‚СЏ: " + enemy.Health.ToString();
-            _damage.text = "РЈСЂРѕРЅ: " + enemy.Damage.ToString();
+            _health.text = "Життя" + enemy.Health.ToString();
+            _damage.text = "Урон" + enemy.Damage.ToString();
         }
 
         public void Click()

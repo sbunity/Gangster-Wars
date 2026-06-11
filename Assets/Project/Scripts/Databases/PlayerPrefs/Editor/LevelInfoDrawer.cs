@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEditor;
 using System.Collections.Generic;
 
@@ -46,7 +46,7 @@ namespace SBabchuk
                 {
                     GUILayout.BeginVertical();
                     {
-                        EditorGUILayout.LabelField("Р†РЅС„РѕСЂРјР°С†С–СЏ РїСЂРѕ РїРµСЂСЃРѕРЅР°Р¶С–РІ:");
+                        EditorGUILayout.LabelField("Інформація про персонажів:");
                         if (database.PlayerPrefs.Levels != null)
                         {
                             if (database.PlayerPrefs.Levels.Count == EditorDatabaseLookup.Get<LevelDatabase>().Levels.Count)
@@ -97,10 +97,10 @@ namespace SBabchuk
                     GUILayout.BeginVertical();
                     {
                         _record.Id = EditorGUILayout.IntField("ID: ", _record.Id);
-                        _record.Name = EditorGUILayout.TextField("РќР°Р№РјРµРЅСѓРІР°РЅРЅСЏ: ", _record.Name);
-                        _value.IsCompleted = ((mySwitch)EditorGUILayout.EnumPopup("Р§Рё РїСЂРѕРґРµРЅРёР№: ", (mySwitch)_value.IsCompleted));
+                        _record.Name = EditorGUILayout.TextField("Найменування: ", _record.Name);
+                        _value.IsCompleted = ((mySwitch)EditorGUILayout.EnumPopup("Чи продений: ", (mySwitch)_value.IsCompleted));
                         if (_value.IsCompleted == mySwitch.On)
-                            _value.Stars = EditorGUILayout.IntSlider("РЈСЃРїС–С€РЅС–СЃС‚СЊ РїСЂРѕС…РѕРґР¶РµРЅРЅСЏ: ", _value.Stars, 0, 3);
+                            _value.Stars = EditorGUILayout.IntSlider("Успішність проходження: ", _value.Stars, 0, 3);
                     }
 
                     GUILayout.EndVertical();

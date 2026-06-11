@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Serialization;
@@ -102,7 +102,7 @@ namespace SBabchuk
         public Level(int _id)
         {
             this._id = _id;
-            this._name = "Р В РЎвЂ“Р Р†Р ВµР Р…РЎРЉ_" + (_id + 1);
+            this._name = "Час на проходження" + (_id + 1);
         }
     }
 

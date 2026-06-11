@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEditor;
 using System.Collections.Generic;
 
@@ -46,7 +46,7 @@ namespace SBabchuk
                 {
                     GUILayout.BeginVertical();
                     {
-                        EditorGUILayout.LabelField("Р†РЅС„РѕСЂРјР°С†С–СЏ РїСЂРѕ РїРµСЂСЃРѕРЅР°Р¶С–РІ:");
+                        EditorGUILayout.LabelField("Інформація про персонажів:");
                         if (database.PlayerPrefs.Personages != null)
                         {
                             if (database.PlayerPrefs.Personages.Count == EditorDatabaseLookup.Get<MainPlayerDatabase>().Personages.Count)
@@ -97,11 +97,11 @@ namespace SBabchuk
                     GUILayout.BeginVertical();
                     {
                         _record.Id = EditorGUILayout.IntField("ID: ", _record.Id);
-                        _record.Name = EditorGUILayout.TextField("РќР°Р№РјРµРЅСѓРІР°РЅРЅСЏ: ", _record.Name);
-                        _value.IsBuy = ((mySwitch)EditorGUILayout.EnumPopup("Р§Рё РґРѕСЃС‚СѓРїРЅР°: ", (mySwitch)_value.IsBuy));
+                        _record.Name = EditorGUILayout.TextField("Найменування: ", _record.Name);
+                        _value.IsBuy = ((mySwitch)EditorGUILayout.EnumPopup("Чи доступна: ", (mySwitch)_value.IsBuy));
                         if (_value.IsBuy == mySwitch.On)
                         {
-                            _value.UpgradeId = EditorGUILayout.IntSlider(" РђРїРіСЂРµР№Рґ (ID): ", _value.UpgradeId, -1, _record.Upgrades.Count - 1);
+                            _value.UpgradeId = EditorGUILayout.IntSlider(" Апгрейд (ID): ", _value.UpgradeId, -1, _record.Upgrades.Count - 1);
                             DrawSettings(_record, _value.UpgradeId);
                         }
                     }
@@ -123,13 +123,13 @@ namespace SBabchuk
                 PUpgrade _upgrade = EditorDatabaseLookup.Get<MainPlayerDatabase>().GetUpgrade(_personage, _upgradeID);
                 if (_upgrade != null)
                 {
-                    _upgrade.Settings.Damage = EditorGUILayout.IntSlider("РЈСЂРѕРЅ: ", _upgrade.Settings.Damage, 0, 100);
-                    _upgrade.Settings.AttackSpeed = EditorGUILayout.Slider("РЁРІРёРґРєС–СЃС‚СЊ СЃС‚СЂРµР»СЊР±Рё: ", _upgrade.Settings.AttackSpeed, 0, 10);
+                    _upgrade.Settings.Damage = EditorGUILayout.IntSlider("Урон: ", _upgrade.Settings.Damage, 0, 100);
+                    _upgrade.Settings.AttackSpeed = EditorGUILayout.Slider("Швидкість стрельби: ", _upgrade.Settings.AttackSpeed, 0, 10);
                 }
                 else
                 {
-                    _personage.Settings.Damage = EditorGUILayout.IntSlider("РЈСЂРѕРЅ: ", _personage.Settings.Damage, 0, 100);
-                    _personage.Settings.AttackSpeed = EditorGUILayout.Slider("РЁРІРёРґРєС–СЃС‚СЊ СЃС‚СЂiР»СЊР±Рё: ", _personage.Settings.AttackSpeed, 0, 10);
+                    _personage.Settings.Damage = EditorGUILayout.IntSlider("Урон: ", _personage.Settings.Damage, 0, 100);
+                    _personage.Settings.AttackSpeed = EditorGUILayout.Slider("Швидкість стрiльби: ", _personage.Settings.AttackSpeed, 0, 10);
                 }
 
                 GUI.color = defaultColor;

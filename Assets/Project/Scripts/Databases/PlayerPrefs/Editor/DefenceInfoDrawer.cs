@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEditor;
 using System.Collections.Generic;
 
@@ -46,7 +46,7 @@ namespace SBabchuk
                 {
                     GUILayout.BeginVertical();
                     {
-                        EditorGUILayout.LabelField("Р†РЅС„РѕСЂРјР°С†С–СЏ РїСЂРѕ РїРµСЂРµРїРѕРЅРё:");
+                        EditorGUILayout.LabelField("Інформація про перепони:");
                         if (database.PlayerPrefs.Defences != null)
                         {
                             if (database.PlayerPrefs.Defences.Count == EditorDatabaseLookup.Get<DefenseStoreDatabase>().Defenses.Count)
@@ -99,12 +99,12 @@ namespace SBabchuk
                     GUILayout.BeginVertical();
                     {
                         _defence.Id = EditorGUILayout.IntField("ID: ", _defence.Id);
-                        _defence.Name = EditorGUILayout.TextField("РќР°Р№РјРµРЅСѓРІР°РЅРЅСЏ: ", _defence.Name);
-                        _value.IsBuy = ((mySwitch)EditorGUILayout.EnumPopup("Р§Рё РґРѕСЃС‚СѓРїРЅР°: ", (mySwitch)_value.IsBuy));
+                        _defence.Name = EditorGUILayout.TextField("Найменування: ", _defence.Name);
+                        _value.IsBuy = ((mySwitch)EditorGUILayout.EnumPopup("Чи доступна: ", (mySwitch)_value.IsBuy));
                         if (_value.IsBuy == mySwitch.On)
                         {
                             GUI.color = Color.green;
-                            _value.UpgradeId = EditorGUILayout.IntField("ID Р°РїРіСЂРµР№РґР°: ", _value.UpgradeId);
+                            _value.UpgradeId = EditorGUILayout.IntField("ID апгрейда: ", _value.UpgradeId);
                         }
                     }
 
@@ -136,11 +136,11 @@ namespace SBabchuk
                 DUpgrade _upgrade = EditorDatabaseLookup.Get<DefenseStoreDatabase>().GetUpgrade(_defence, _upgradeID);
                 if (_upgrade != null)
                 {
-                    _upgrade.Settings.Health = EditorGUILayout.IntSlider("Рљ-СЃС‚СЊ Р¶РёС‚С‚С–РІ: ", _upgrade.Settings.Health, 0, 1000);
+                    _upgrade.Settings.Health = EditorGUILayout.IntSlider("К-сть життів: ", _upgrade.Settings.Health, 0, 1000);
                 }
                 else
                 {
-                    _defence.Settings.Health = EditorGUILayout.IntSlider("Рљ-СЃС‚СЊ Р¶РёС‚С‚С–РІ(Р±РµР· Р°РїРіСЂРµР№РґР°): ", _defence.Settings.Health, 0, 1000);
+                    _defence.Settings.Health = EditorGUILayout.IntSlider("К-сть життів(без апгрейда): ", _defence.Settings.Health, 0, 1000);
                 }
 
                 GUI.color = defaultColor;

@@ -1,4 +1,4 @@
-using UnityEditor;
+﻿using UnityEditor;
 using UnityEditor.SceneManagement;
 using UnityEngine;
 using UnityEngine.Serialization;
@@ -66,7 +66,7 @@ namespace SBabchuk
 
         public void DrawButtonSave()
         {
-            if (GUILayout.Button("Р В РІР‚вЂќР В Р’В±Р В Р’ВµР РЋР вЂљР В Р’ВµР В РЎвЂ“Р РЋРІР‚С™Р В РЎвЂ", GUILayout.Height(20)))
+            if (GUILayout.Button("Зберегти", GUILayout.Height(20)))
             {
                 serializedObject.ApplyModifiedProperties();
                 SetObjectDirty(_database);
