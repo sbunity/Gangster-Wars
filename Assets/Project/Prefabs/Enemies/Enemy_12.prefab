@@ -316,6 +316,13 @@ GameObject:
   - component: {fileID: 2932965791605694430}
   - component: {fileID: 8453274657730335895}
   - component: {fileID: 4860058072810677148}
+  - component: {fileID: 8917153817608916892}
+  - component: {fileID: 5382181468413779822}
+  - component: {fileID: 8504036138699453308}
+  - component: {fileID: 1476887189433634268}
+  - component: {fileID: 4497817832414296542}
+  - component: {fileID: 1642991456671908270}
+  - component: {fileID: 4200485961358763876}
   m_Layer: 10
   m_Name: Enemy_12
   m_TagString: Enemy
@@ -466,3 +473,87 @@ MonoBehaviour:
   center: {fileID: 0}
   mixDuration: 0.2
   bulletPoint: {fileID: 487251586659858586}
+--- !u!114 &8917153817608916892
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9203159638082935601}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d5cad70183fbf2a49a875f9c968c31c0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SBabchuk.Runtime.Gameplay.Enemies.EnemyView
+--- !u!114 &5382181468413779822
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9203159638082935601}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 20e808ee3ff4d064eb94a0827bd0c745, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SBabchuk.Runtime.Gameplay.Enemies.EnemyHealth
+--- !u!114 &8504036138699453308
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9203159638082935601}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad04c30ffd208394a824802b40556104, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SBabchuk.Runtime.Gameplay.Enemies.EnemyMovement
+--- !u!114 &1476887189433634268
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9203159638082935601}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 93ac177aa36836c40a051fa82093b884, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SBabchuk.Runtime.Gameplay.Enemies.EnemyAttack
+--- !u!114 &4497817832414296542
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9203159638082935601}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 421daaf5c0b00c543937a11b08c4bf1a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SBabchuk.Runtime.Gameplay.Enemies.EnemyDeath
+--- !u!114 &1642991456671908270
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9203159638082935601}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0fad14419f7b31c43b661e1e7242fba4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SBabchuk.Runtime.Gameplay.Enemies.EnemyReward
+--- !u!114 &4200485961358763876
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9203159638082935601}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0d7e51e645b26844a8077cac1bfff863, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SBabchuk.Runtime.Gameplay.Enemies.EnemyCollisionHandler

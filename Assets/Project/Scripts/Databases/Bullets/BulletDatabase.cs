@@ -17,26 +17,6 @@ namespace SBabchuk
             return index != -1 ? bullets[index] : null;
         }
 
-        /// <summary>
-        /// Повертає ссилку на базу даних
-        /// </summary>
-        /// <returns></returns>
-        public static BulletDatabase GetDatabase()
-        {
-            #if UNITY_EDITOR
-            return Utils.GetAsset<BulletDatabase>();
-            #endif
-
-            #if UNITY_ANDROID || UNITY_IPHONE
-            return Utils.GetAsset2<BulletDatabase>();
-            #endif
-        }
-
-        void SaveData()
-        {
-            if (PersistableSO.Instance)
-                PersistableSO.Instance.SaveSO(this);
-        }
     }
 
     [System.Serializable]

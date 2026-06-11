@@ -1,6 +1,9 @@
 using System.Collections;
+using SBabchuk.Runtime.Services.Contracts;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using Zenject;
+using SBabchuk.Runtime.Architecture;
 
 namespace SBabchuk
 {
@@ -8,39 +11,37 @@ namespace SBabchuk
     {
         private const float RefreshDelay = 0.5f;
 
-        private static AudioSettingsApplier instance;
+        [SerializeField] private AudioSource[] _audioSources;
 
-        private Coroutine refreshCoroutine;
+        private Coroutine _refreshCoroutine;
+        private IPlayerProgressService _progressService;
+        private SignalBus _signalBus;
 
-        private PlayerPrefsDatabase Preferences
+        [Inject]
+        private void Construct(IPlayerProgressService progressService, SignalBus signalBus)
         {
-            get
-            {
-                return PersistableSO.Instance ? PersistableSO.Instance.PlayerPrefs : PlayerPrefsDatabase.GetDatabase();
-            }
-        }
-
-        private void Awake()
-        {
-            instance = this;
+            _progressService = progressService;
+            _signalBus = signalBus;
         }
 
         private void OnEnable()
         {
             SceneManager.sceneLoaded += OnSceneLoaded;
-            Apply();
+            _signalBus.Subscribe<AudioSettingsChangedSignal>(ApplyInternal);
+            ApplyInternal();
             StartRefresh();
         }
 
         private void OnDisable()
         {
             SceneManager.sceneLoaded -= OnSceneLoaded;
-        }
+            _signalBus.Unsubscribe<AudioSettingsChangedSignal>(ApplyInternal);
 
-        public static void Apply()
-        {
-            if (instance)
-                instance.ApplyInternal();
+            if (_refreshCoroutine != null)
+            {
+                StopCoroutine(_refreshCoroutine);
+                _refreshCoroutine = null;
+            }
         }
 
         private void OnSceneLoaded(UnityEngine.SceneManagement.Scene _scene, LoadSceneMode _mode)
@@ -51,10 +52,10 @@ namespace SBabchuk
 
         private void StartRefresh()
         {
-            if (refreshCoroutine != null)
-                StopCoroutine(refreshCoroutine);
+            if (_refreshCoroutine != null)
+                StopCoroutine(_refreshCoroutine);
 
-            refreshCoroutine = StartCoroutine(RefreshRoutine());
+            _refreshCoroutine = StartCoroutine(RefreshRoutine());
         }
 
         private IEnumerator RefreshRoutine()
@@ -68,10 +69,12 @@ namespace SBabchuk
 
         private void ApplyInternal()
         {
-            var preferences = Preferences;
-            var isMusicEnabled = !preferences || preferences.IsMusicEnabled();
-            var isSoundEnabled = !preferences || preferences.IsSoundEnabled();
-            var audioSources = FindObjectsOfType<AudioSource>(true);
+            var preferences = _progressService.Preferences;
+            var isMusicEnabled = preferences.IsMusicEnabled();
+            var isSoundEnabled = preferences.IsSoundEnabled();
+            var audioSources = _audioSources != null && _audioSources.Length > 0
+                ? _audioSources
+                : GetComponentsInChildren<AudioSource>(true);
 
             foreach (var source in audioSources)
             {

@@ -1,15 +1,9 @@
-﻿using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class TabController : MonoBehaviour
 {
-    public delegate void Focus(int _id);
-    public static event Focus OnFocus;
-
-    private int ID;
+    private int _id;
 
     [Header("Ознака активності вкладки")]
     public bool active;
@@ -20,42 +14,33 @@ public class TabController : MonoBehaviour
     [Header("Вікно, що відповідає закладці")]
     public GameObject window;
 
-    private void OnEnable()
-    {
-        TabController.OnFocus += OnSetFocus;
-    }
-
-    private void OnDisable()
-    {
-        TabController.OnFocus -= OnSetFocus;
-    }
-
     public void Start()
     {
-        ID = this.GetInstanceID();
-
+        _id = GetInstanceID();
         Change(active);
     }
 
-    public void OnSetFocus(int _id)
+    public void OnSetFocus(int id)
     {
-        active = _id == ID;
-
+        active = id == _id;
         window.SetActive(active);
-
         Change(active);
     }
 
     public void SetFocus()
     {
-        OnFocus(ID);
+        var parent = transform.parent;
+        var tabs = parent != null
+            ? parent.GetComponentsInChildren<TabController>(true)
+            : new[] { this };
+
+        foreach (var tab in tabs)
+            tab.OnSetFocus(_id);
     }
 
-    public void Change(bool _value = true)
+    public void Change(bool value = true)
     {
-        foreach (SpriteSwap ss in imgs)
-        {
-            ss.Change(_value);
-        }
+        foreach (var spriteSwap in imgs)
+            spriteSwap.Change(value);
     }
 }

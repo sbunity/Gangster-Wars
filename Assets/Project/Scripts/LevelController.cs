@@ -3,21 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
 using System.Linq;
+using SBabchuk.Runtime.Architecture;
+using SBabchuk.Runtime.Services.Contracts;
+using Zenject;
 
 namespace SBabchuk
 {
-    public class LevelController : MonoBehaviour
+    public class LevelController : MonoBehaviour, ILevelRuntimeService
     {
         private const int AmmoBonusDropChance = 35;
-
-        public delegate void GameOver(Panels _panel);
-        public static event GameOver OnGameOver;
-
-        public delegate void Event(float _value);
-        public static event Event OnUpdateCountEnemies;
-
-        [Header("Інстенс")]
-        public static LevelController Instance;
 
         [Header("Точки появи ворогів")]
         public List<Transform> spawnPoints;
@@ -69,36 +63,51 @@ namespace SBabchuk
         Tween twn3;
 
         private bool isLevelFinished;
+        private IAssetProvider _assetProvider;
+        private IPlayerProgressService _progressService;
+        private IPoolService _poolService;
+        private IGameFactory _gameFactory;
+        private ILevelFlowService _levelFlowService;
+        private BarricadeController _barricadeController;
+        private SignalBus _signalBus;
+        private bool _isSubscribedToSignals;
 
         /// <summary>
         /// Чи всі вже вороги із хвилі проспавнились
         /// </summary>
         public bool waveIsFull;
 
-        /// + Для конструктора
-
-        //Щоб отримати рівень
-        [HideInInspector] public static int c_levelID;
-
-        //Щоб отримати рівень
-        [HideInInspector] public static int c_currentWaveID;
-
-        /// - Для конструктора
-
         public void OnEnable()
         {
-            EnemyControllerBase.OnDie += DeleteEnemy;
-            BonusController.OnPoped += PopedBonus;
-            BarricadeController.OnGameOver += HandleGameOver;
+            SubscribeSignals();
         }
 
         public void OnDisable()
         {
-            EnemyControllerBase.OnDie -= DeleteEnemy;
-            BonusController.OnPoped -= PopedBonus;
-            BarricadeController.OnGameOver -= HandleGameOver;
+            UnsubscribeSignals();
 
             StopSpawnTweens();
+        }
+
+        [Inject]
+        private void Construct(
+            IAssetProvider assetProvider,
+            IPlayerProgressService progressService,
+            IPoolService poolService,
+            IGameFactory gameFactory,
+            ILevelFlowService levelFlowService,
+            BarricadeController barricadeController,
+            SignalBus signalBus)
+        {
+            _assetProvider = assetProvider;
+            _progressService = progressService;
+            _poolService = poolService;
+            _gameFactory = gameFactory;
+            _levelFlowService = levelFlowService;
+            _barricadeController = barricadeController;
+            _signalBus = signalBus;
+
+            SubscribeSignals();
         }
 
         /// <summary>
@@ -106,11 +115,6 @@ namespace SBabchuk
         /// </summary>
         public void Awake()
         {
-            if (!Instance)
-            {
-                Instance = this;
-            }
-
             //Список потрібний, щоб був точний рандом
             listRandomPath = new int[] { 0, 1, 2, 3, 4, 5 };
         }
@@ -120,13 +124,11 @@ namespace SBabchuk
 		/// </summary>
 		public void Start()
         {
-            database = PersistableSO.Instance.Level;
+            database = _assetProvider.LevelDatabase;
 
-            pPrefs = PersistableSO.Instance.PlayerPrefs;
+            pPrefs = _progressService.Preferences;
 
             Debug.Log(pPrefs.PlayerPrefs.levelID);
-            c_levelID = pPrefs.PlayerPrefs.levelID;
-
             Init(pPrefs.PlayerPrefs.levelID);
 
             StartLevel();
@@ -139,8 +141,11 @@ namespace SBabchuk
         public void Init(int _id = 0)
         {
             properties = database.GetLevel(_id);
+            _levelFlowService?.Start(properties);
 
-            background.sprite = properties.ico;
+            // The scene's Background SpriteRenderer holds the designed level background.
+            // The Level.ico field is the level-select icon (small UI sprites, some missing),
+            // so it must NOT overwrite the background here.
 
             foreach (Waves wave in properties.waves)
             {
@@ -159,7 +164,6 @@ namespace SBabchuk
         public void Restart()
         {
             Time.timeScale = 1;
-            //SceneLoader.Instance.SwitchToScene(Scenes.Game);
         }
 
         /// <summary>
@@ -232,7 +236,6 @@ namespace SBabchuk
                     return;
 
                 currentWave++;
-                c_currentWaveID = currentWave;
                 Wave();
             }).SetUpdate(false);
 
@@ -289,15 +292,20 @@ namespace SBabchuk
             if (isLevelFinished)
                 return;
 
-            EnemyControllerBase enemy = (GetPool(_enemyOfWave.enemyID, NamesPool.Enemies).GetPooledObject()).GetComponent<EnemyControllerBase>();
+            int path = GetRandomPath();
+
+            EnemyControllerBase enemy = _gameFactory != null
+                ? _gameFactory.CreateEnemy(_enemyOfWave, spawnPoints[path], targetsPoints[path])
+                : (GetPool(_enemyOfWave.enemyID, NamesPool.Enemies).GetPooledObject()).GetComponent<EnemyControllerBase>();
 
             if (enemy != null)
             {
                 enemies.Add(enemy);
 
-                int path = GetRandomPath();
-
-                enemy.Init(_enemyOfWave, spawnPoints[path], targetsPoints[path], _enemyOfWave.changeCraft);
+                if (_gameFactory == null)
+                {
+                    enemy.Init(_enemyOfWave, spawnPoints[path], targetsPoints[path], _enemyOfWave.changeCraft);
+                }
 
                 WaveBar.UpdateFlled(filledStep);
             }
@@ -311,6 +319,11 @@ namespace SBabchuk
         /// Видалити ворога, який помер
         /// </summary>
         /// <param name="_id"></param>
+        private void DeleteEnemy(EnemyDiedSignal signal)
+        {
+            DeleteEnemy(signal.EnemyId);
+        }
+
         public void DeleteEnemy(int _id)
         {
             enemies.Remove(enemies.Find(enemy => enemy.properties.id == _id));
@@ -332,13 +345,23 @@ namespace SBabchuk
                 {
                     if (bonuses.Count == 0 && enemies.Count == 0)
                     {
-                        PersistableSO.Instance.PlayerPrefs.SetLevelCompleted((float)BarricadeController.Instance.currentHealth/(float)BarricadeController.Instance.maxHealth);
+                        var barricadeController = _barricadeController;
+                        if (barricadeController == null)
+                            return;
 
-                        HandleGameOver(Panels.Win);
-                        OnGameOver?.Invoke(Panels.Win);
+                        var healthPercent = (float)barricadeController.currentHealth/(float)barricadeController.maxHealth;
+
+                        _progressService.CompleteCurrentLevel(healthPercent);
+
+                        _levelFlowService.Finish(Panels.Win);
                     }
                 }
             }
+        }
+
+        private void HandleGameOver(GameFinishedSignal signal)
+        {
+            HandleGameOver(signal.Panel);
         }
 
         private void HandleGameOver(Panels _panel)
@@ -349,16 +372,43 @@ namespace SBabchuk
 
         private void StopSpawnTweens()
         {
-            Utils.StopTween(twn);
-            Utils.StopTween(twn1);
-            Utils.StopTween(twn2);
-            Utils.StopTween(twn3);
+            twn?.Kill();
+            twn1?.Kill();
+            twn2?.Kill();
+            twn3?.Kill();
+        }
+
+        private void SubscribeSignals()
+        {
+            if (_isSubscribedToSignals || _signalBus == null)
+                return;
+
+            _signalBus.Subscribe<EnemyDiedSignal>(DeleteEnemy);
+            _signalBus.Subscribe<BonusPoppedSignal>(PopedBonus);
+            _signalBus.Subscribe<GameFinishedSignal>(HandleGameOver);
+            _isSubscribedToSignals = true;
+        }
+
+        private void UnsubscribeSignals()
+        {
+            if (!_isSubscribedToSignals || _signalBus == null)
+                return;
+
+            _signalBus.Unsubscribe<EnemyDiedSignal>(DeleteEnemy);
+            _signalBus.Unsubscribe<BonusPoppedSignal>(PopedBonus);
+            _signalBus.Unsubscribe<GameFinishedSignal>(HandleGameOver);
+            _isSubscribedToSignals = false;
         }
 
         /// <summary>
         /// Видалити бонус, який взяли
         /// </summary>
         /// <param name="_id"></param>
+        private void PopedBonus(BonusPoppedSignal signal)
+        {
+            PopedBonus(signal.Bonus);
+        }
+
         public void PopedBonus(BonusController _value)
         {
             bonuses.Remove(_value);
@@ -385,11 +435,14 @@ namespace SBabchuk
         /// <param name="_position"></param>
         public void SpawnGrenadeOnPlace(GrenadesName _grenadesName, Vector3 _position)
         {
-            GrenadeController grenade = (GetPool((int)_grenadesName, NamesPool.Grenades).GetPooledObject()).GetComponent<GrenadeController>();
+            GrenadeController grenade = _gameFactory != null
+                ? _gameFactory.CreateGrenade(_grenadesName, _position)
+                : (GetPool((int)_grenadesName, NamesPool.Grenades).GetPooledObject()).GetComponent<GrenadeController>();
 
             if (grenade != null)
             {
-                grenade.Init((int)_grenadesName, 5, _position);
+                if (_gameFactory == null)
+                    grenade.Init((int)_grenadesName, 5, _position);
             }
             else
             {
@@ -402,15 +455,17 @@ namespace SBabchuk
         /// </summary>
         public void SpawnCollision(int _collisionID, Vector3 _position, Grenade _properties = null)
         {
-            CollisionController _collision = (GetPool(_collisionID, NamesPool.Collisions).GetPooledObject()).GetComponent<CollisionController>();
+            CollisionController _collision = _gameFactory != null
+                ? _gameFactory.CreateCollision(_collisionID, _position, _properties)
+                : (GetPool(_collisionID, NamesPool.Collisions).GetPooledObject()).GetComponent<CollisionController>();
 
             if (_collision != null)
             {
-                if (_properties != null)
+                if (_gameFactory == null && _properties != null)
                 {
                     _collision.Init(_position: _position, _damage: _properties.damage, _radius: _properties.radius, _time: _properties.time);
                 }
-                else
+                else if (_gameFactory == null)
                 {
                     _collision.Init(_position: _position);
                 }
@@ -431,13 +486,16 @@ namespace SBabchuk
             if (bonusID < 0)
                 return;
 
-            BonusController _bonus = (GetPool(bonusID, NamesPool.Bonuses).GetPooledObject()).GetComponent<BonusController>();
+            BonusController _bonus = _gameFactory != null
+                ? _gameFactory.CreateBonus(bonusID, _position)
+                : (GetPool(bonusID, NamesPool.Bonuses).GetPooledObject()).GetComponent<BonusController>();
 
             if (_bonus != null)
             {
                 bonuses.Add(_bonus);
 
-                _bonus.Init(_position);
+                if (_gameFactory == null)
+                    _bonus.Init(_position);
             }
             else
             {
@@ -480,18 +538,18 @@ namespace SBabchuk
 
         private bool CanDropBonus(int bonusID)
         {
-            if (PersistableSO.Instance == null || PersistableSO.Instance.PlayerPrefs == null)
+            if (_progressService == null)
                 return false;
 
             if (bonusID >= 0 && bonusID <= 3)
             {
-                WeaponShortInfo weaponInfo = PersistableSO.Instance.PlayerPrefs.PlayerPrefs.GetWeaponShortInfo(bonusID + 1);
+                WeaponShortInfo weaponInfo = _progressService.GetWeaponShortInfo(bonusID + 1);
                 return weaponInfo != null && weaponInfo.isBuy == mySwitch.On;
             }
 
             if (bonusID >= 4 && bonusID <= 7)
             {
-                GrenadeShortInfo grenadeInfo = PersistableSO.Instance.PlayerPrefs.PlayerPrefs.GetGrenadeShortInfo(bonusID - 4);
+                GrenadeShortInfo grenadeInfo = _progressService.GetGrenadeShortInfo(bonusID - 4);
                 return grenadeInfo != null && grenadeInfo.isBuy == mySwitch.On;
             }
 
@@ -503,13 +561,18 @@ namespace SBabchuk
         /// </summary>
         public void SpawnBullet(int _bulletId, int _damage = 0, Vector3 _position = default(Vector3), Vector3 _target = default(Vector3), float _offset = 0, string _tag = "Bullet")
         {
-            BaseBulletController _bullet = (GetPool(_bulletId, NamesPool.Bullets).GetPooledObject()).GetComponent<BaseBulletController>();
+            BaseBulletController _bullet = _gameFactory != null
+                ? _gameFactory.CreateBullet(_bulletId, _damage, _position, _target, _offset, _tag)
+                : (GetPool(_bulletId, NamesPool.Bullets).GetPooledObject()).GetComponent<BaseBulletController>();
 
             if (_bullet != null)
             {
-                _bullet.transform.tag = _tag; //Ставив тег, щоб знати що це пуля героя
+                if (_gameFactory == null)
+                {
+                    _bullet.transform.tag = _tag; //Ставив тег, щоб знати що це пуля героя
 
-                _bullet.Init(_bulletId, _damage, _position, _target, _offset); //Ініціалізація пулі
+                    _bullet.Init(_bulletId, _damage, _position, _target, _offset); //Ініціалізація пулі
+                }
             }
             else
             {
@@ -525,18 +588,10 @@ namespace SBabchuk
         /// <returns></returns>
         public Pool GetPool(int _ID, NamesPool _pool)
         {
-            if (_pool == NamesPool.Enemies)
-                return PoolManager.GetPoolByName("Enemy_" + (_ID + 1));
-            else if (_pool == NamesPool.Grenades)
-                return PoolManager.GetPoolByName("Grenade_" + (_ID + 1));
-            else if (_pool == NamesPool.Collisions)
-                return PoolManager.GetPoolByName("Collision_" + (_ID + 1));
-            else if (_pool == NamesPool.Bonuses)
-                return PoolManager.GetPoolByName("Bonus_" + (_ID + 1));
-            else if (_pool == NamesPool.Bullets)
-                return PoolManager.GetPoolByName("Bullet_" + (_ID + 1));
-            else
-                return PoolManager.GetPoolByName("Enemy_" + (_ID + 1));
+            if (_poolService != null)
+                return _poolService.GetPool(_pool, _ID);
+
+            return null;
         }
 
         #region GetRandomPath

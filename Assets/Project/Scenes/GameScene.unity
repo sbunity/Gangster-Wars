@@ -280,6 +280,10 @@ GameObject:
   m_Component:
   - component: {fileID: 21048519}
   - component: {fileID: 21048520}
+  - component: {fileID: 21048524}
+  - component: {fileID: 21048523}
+  - component: {fileID: 21048522}
+  - component: {fileID: 21048521}
   m_Layer: 0
   m_Name: BomberGangster
   m_TagString: Untagged
@@ -319,6 +323,54 @@ MonoBehaviour:
   createBulletPoint: {fileID: 0}
   target: {fileID: 0}
   center: {fileID: 0}
+--- !u!114 &21048521
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 21048518}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c2b7b1d459d8c5744814d273918f72af, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SBabchuk.Runtime.Gameplay.Characters.CharacterAmmo
+--- !u!114 &21048522
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 21048518}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee32287931863dd43ae137906f0c53dc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SBabchuk.Runtime.Gameplay.Characters.CharacterWeapon
+--- !u!114 &21048523
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 21048518}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3dbe5d65a59fba341999d355e8f3fc31, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SBabchuk.Runtime.Gameplay.Characters.CharacterAttack
+--- !u!114 &21048524
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 21048518}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: df28552668603c24290f514c5ddfb0dd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SBabchuk.Runtime.Gameplay.Characters.CharacterView
 --- !u!4 &22058832 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 194851198192427351, guid: 4e4844c210580314ab038135bdb6c1fc,
@@ -6649,6 +6701,10 @@ GameObject:
   m_Component:
   - component: {fileID: 507612432}
   - component: {fileID: 507612433}
+  - component: {fileID: 507612437}
+  - component: {fileID: 507612436}
+  - component: {fileID: 507612435}
+  - component: {fileID: 507612434}
   m_Layer: 0
   m_Name: SniperGangster
   m_TagString: Untagged
@@ -6690,6 +6746,54 @@ MonoBehaviour:
   speedRotate: 0.22
   target: {fileID: 0}
   aimFireThreshold: 0.15
+--- !u!114 &507612434
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 507612431}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c2b7b1d459d8c5744814d273918f72af, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SBabchuk.Runtime.Gameplay.Characters.CharacterAmmo
+--- !u!114 &507612435
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 507612431}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee32287931863dd43ae137906f0c53dc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SBabchuk.Runtime.Gameplay.Characters.CharacterWeapon
+--- !u!114 &507612436
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 507612431}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3dbe5d65a59fba341999d355e8f3fc31, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SBabchuk.Runtime.Gameplay.Characters.CharacterAttack
+--- !u!114 &507612437
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 507612431}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: df28552668603c24290f514c5ddfb0dd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SBabchuk.Runtime.Gameplay.Characters.CharacterView
 --- !u!1 &511213962
 GameObject:
   m_ObjectHideFlags: 0
@@ -12781,6 +12885,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   on: 1
   panel: {fileID: 459535260}
+  _settingsController: {fileID: 0}
 --- !u!114 &1055493654
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13064,6 +13169,10 @@ GameObject:
   m_Component:
   - component: {fileID: 1073950069}
   - component: {fileID: 1073950070}
+  - component: {fileID: 1073950074}
+  - component: {fileID: 1073950073}
+  - component: {fileID: 1073950072}
+  - component: {fileID: 1073950071}
   m_Layer: 0
   m_Name: LeaderGangster
   m_TagString: Untagged
@@ -13115,6 +13224,54 @@ MonoBehaviour:
   - points:
     - {fileID: 71165805}
   isAttacking: 0
+--- !u!114 &1073950071
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1073950068}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c2b7b1d459d8c5744814d273918f72af, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SBabchuk.Runtime.Gameplay.Characters.CharacterAmmo
+--- !u!114 &1073950072
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1073950068}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee32287931863dd43ae137906f0c53dc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SBabchuk.Runtime.Gameplay.Characters.CharacterWeapon
+--- !u!114 &1073950073
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1073950068}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3dbe5d65a59fba341999d355e8f3fc31, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SBabchuk.Runtime.Gameplay.Characters.CharacterAttack
+--- !u!114 &1073950074
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1073950068}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: df28552668603c24290f514c5ddfb0dd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SBabchuk.Runtime.Gameplay.Characters.CharacterView
 --- !u!1 &1079752541
 GameObject:
   m_ObjectHideFlags: 0
@@ -16273,7 +16430,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   panel: {fileID: 988486694}
+  _timeCreate: 0
   levelID: 0
+  _waveID: 0
+  _indexEnemy: 0
 --- !u!222 &1339765838
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -21016,6 +21176,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6525afd947f418e47a77a3db3f5aad24, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SBabchuk.AudioSettingsApplier
+  _audioSources: []
 --- !u!1 &1618507324
 GameObject:
   m_ObjectHideFlags: 0
@@ -23757,6 +23918,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   counterTxt: {fileID: 1465465676}
+  _settingsController: {fileID: 0}
 --- !u!114 &1856975013
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -26576,6 +26738,104 @@ PolygonCollider2D:
       - {x: 1.14, y: 2.595}
       - {x: 1.14, y: 2.565}
   m_UseDelaunayMesh: 1
+--- !u!1 &1977259309
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1977259312}
+  - component: {fileID: 1977259311}
+  - component: {fileID: 1977259310}
+  m_Layer: 0
+  m_Name: SceneContext
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1977259310
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1977259309}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cefdfe5f400a9f74a882ddeb3e4e7fba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SBabchuk.Runtime.Installers.GameSceneInstaller
+  _levelController: {fileID: 1616555666}
+  _barricadeController: {fileID: 1974793440}
+  _leaderController: {fileID: 1073950070}
+  _handController: {fileID: 1949213165}
+  _sightController: {fileID: 1865941192}
+  _poolManager: {fileID: 1616555664}
+  _waveBar: {fileID: 1769325672}
+  _enemySpawnPoints:
+  - {fileID: 1764368984}
+  - {fileID: 870249859}
+  - {fileID: 993701586}
+  - {fileID: 1889695547}
+  - {fileID: 2042863148}
+  - {fileID: 1734448840}
+  _enemyTargetPoints:
+  - {fileID: 1071378778}
+  - {fileID: 191690308}
+  - {fileID: 595578940}
+  - {fileID: 1561094200}
+  - {fileID: 1425151753}
+  - {fileID: 852442247}
+--- !u!114 &1977259311
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1977259309}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 89715ad69b973a14899afa2c6730b30b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Zenject::Zenject.SceneContext
+  _scriptableObjectInstallers: []
+  _monoInstallers:
+  - {fileID: 1977259310}
+  _installerPrefabs: []
+  _autoRun: 1
+  OnPreInstall:
+    m_PersistentCalls:
+      m_Calls: []
+  OnPostInstall:
+    m_PersistentCalls:
+      m_Calls: []
+  OnPreResolve:
+    m_PersistentCalls:
+      m_Calls: []
+  OnPostResolve:
+    m_PersistentCalls:
+      m_Calls: []
+  _parentNewObjectsUnderSceneContext: 0
+  _contractNames: []
+  _parentContractNames: []
+--- !u!4 &1977259312
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1977259309}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1979483633
 GameObject:
   m_ObjectHideFlags: 0
@@ -29140,3 +29400,4 @@ SceneRoots:
   - {fileID: 285257384}
   - {fileID: 1949213164}
   - {fileID: 1055493657}
+  - {fileID: 1977259312}

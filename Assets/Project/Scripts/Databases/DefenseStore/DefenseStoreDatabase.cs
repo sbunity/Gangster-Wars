@@ -62,29 +62,6 @@ namespace SBabchuk
             return null;
         }
 
-        /// <summary>
-        /// Повертає ссилку на базу даних
-        /// </summary>
-        /// <returns></returns>
-        public static DefenseStoreDatabase GetDatabase()
-        {
-#if UNITY_EDITOR
-            return Utils.GetAsset<DefenseStoreDatabase>();
-#endif
-
-#if UNITY_ANDROID || UNITY_IPHONE
-            return Utils.GetAsset2<DefenseStoreDatabase>();
-#endif
-        }
-
-        /// <summary>
-        /// Збереження
-        /// </summary>
-        void Save()
-        {
-            if (PersistableSO.Instance)
-                PersistableSO.Instance.SaveSO(this);
-        }
     }
 
     [System.Serializable]

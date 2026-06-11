@@ -45,23 +45,6 @@ namespace SBabchuk
             return null;
         }
 
-
-        public static WeaponStoreDatabase GetDatabase()
-        {
-        #if UNITY_EDITOR
-            return Utils.GetAsset<WeaponStoreDatabase>();
-        #endif
-
-        #if UNITY_ANDROID || UNITY_IPHONE
-            return Utils.GetAsset2<WeaponStoreDatabase>();
-        #endif
-        }
-
-        void Save()
-        {
-            if (PersistableSO.Instance)
-                PersistableSO.Instance.SaveSO(this);
-        }
     }
 
     [System.Serializable]

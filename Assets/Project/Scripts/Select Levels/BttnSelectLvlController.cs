@@ -1,22 +1,21 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
+using Cysharp.Threading.Tasks;
+using SBabchuk.Runtime.Services.Contracts;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using Zenject;
 
 namespace SBabchuk
 {
     public class BttnSelectLvlController : MonoBehaviour
     {
-        public delegate void Initialized(int _id, mySwitch _isCompleted);
-        public static event Initialized OnInitialized;
-
         [Header("За який рівень відповідає")]
         public LevelsName level;
 
         [Header("Чи пройдений")]
         public mySwitch isCompleted;
- 
+
         [Header("Назва рівня")]
         public Text tittle;
 
@@ -32,101 +31,72 @@ namespace SBabchuk
         [Header("Залешності")]
         public List<BttnSelectLvlController> predecessors = new List<BttnSelectLvlController>();
 
-        /// <summary>
-        /// База даних рівнів
-        /// </summary>
-        private LevelDatabase database;
+        private LevelDatabase _database;
+        private Level _properties;
+        private IAssetProvider _assetProvider;
+        private IPlayerProgressService _progressService;
+        private ISceneLoaderService _sceneLoaderService;
 
-        /// <summary>
-        /// Властивості рівня
-        /// </summary>
-        private Level properties;
-
-        /// <summary>
-        /// Чи рівень закритий
-        /// </summary>
-        private bool isLock = true;
-
-        private void OnEnable()
+        [Inject]
+        private void Construct(
+            IAssetProvider assetProvider,
+            IPlayerProgressService progressService,
+            ISceneLoaderService sceneLoaderService)
         {
-            BttnSelectLvlController.OnInitialized += CheckPosterity;
+            _assetProvider = assetProvider;
+            _progressService = progressService;
+            _sceneLoaderService = sceneLoaderService;
         }
 
-        private void OnDisable()
+        private IEnumerator Start()
         {
-            BttnSelectLvlController.OnInitialized -= CheckPosterity;
-        }
-
-        /// <summary>
-        /// Стартова ініціалізація
-        /// </summary>
-        private void Start()
-        {
-            database = PersistableSO.Instance.Level;
-
+            _database = _assetProvider.LevelDatabase;
             Init(level);
+
+            yield return null;
+
+            RefreshLockState();
         }
 
-        /// <summary>
-        /// Витягуєм з бази властивості левела
-        /// </summary>
-        /// <param name="_id">Identifier.</param>
-        public void Init(LevelsName _level)
+        public void Init(LevelsName targetLevel)
         {
-            properties = database.GetLevel((int)_level);
+            _properties = _database.GetLevel((int)targetLevel);
+            tittle.text = _properties.name;
 
-            tittle.text = properties.name;
-
-            LevelShortInfo levelShortInfo = PersistableSO.Instance.PlayerPrefs.PlayerPrefs.GetLevelShortInfo((int)_level);
-
+            var levelShortInfo = _progressService.GetLevelShortInfo((int)targetLevel);
             isCompleted = levelShortInfo.isCompleted;
-
-            OnInitialized?.Invoke((int)_level, isCompleted);
-
             stars.sprite = GetSpriteStar(levelShortInfo.stars);
         }
 
-        public Sprite GetSpriteStar(int _value)
+        public Sprite GetSpriteStar(int value)
         {
-            return starsSprite[_value];
+            return starsSprite[value];
         }
 
-        public void CheckPosterity(int _id, mySwitch _mySwitch)
+        public void RefreshLockState()
         {
-            if (isLock)
+            var isLocked = false;
+
+            foreach (var predecessor in predecessors)
             {
-                if (predecessors.Count != 0)
+                if (predecessor != null && predecessor.isCompleted != mySwitch.On)
                 {
-                    foreach (BttnSelectLvlController bttnSelectLvlController in predecessors)
-                    {
-                        if ((int)bttnSelectLvlController.level == _id)
-                        {
-                            isLock = !(_mySwitch == mySwitch.On);
-                        }
-                    }
-                }
-                else
-                {
-                    isLock = false;
+                    isLocked = true;
+                    break;
                 }
             }
 
-            lockImg.SetActive(isLock);
-
+            lockImg.SetActive(isLocked);
             stars.enabled = !lockImg.activeSelf;
         }
 
-        /// <summary>
-        /// Старт рівня
-        /// </summary>
         public void StartLevel()
         {
-            if (!lockImg.activeSelf)
-            {
-                PersistableSO.Instance.PlayerPrefs.SetLevel((int)level);
+            if (lockImg.activeSelf)
+                return;
 
-                SceneManager.LoadScene(Scene.GameScene.ToString());
-            }
+            _progressService.SetCurrentLevel((int)level);
+            _sceneLoaderService.LoadAsync(Scene.GameScene).Forget();
         }
     }
 }

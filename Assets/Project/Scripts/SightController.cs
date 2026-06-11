@@ -1,14 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using SBabchuk.Runtime.Services.Contracts;
+using Zenject;
 
 namespace SBabchuk
 {
-    public class SightController : MonoBehaviour
+    public class SightController : MonoBehaviour, IAimService
     {
-        [HideInInspector]
-        public static Vector2 sightPosition;
-
         [Header("Зміщення по У")]
         [Range(-2, 2)]
         public float offsetY;
@@ -31,6 +30,18 @@ namespace SBabchuk
         private float minAimDistance = 1.5f;
 
         private bool isTouchingFireArea;
+        private ILeaderWeaponController _leaderWeaponController;
+        private IHandService _handService;
+        public Vector2 CurrentAimPosition { get; private set; }
+
+        [Inject]
+        private void Construct(
+            ILeaderWeaponController leaderWeaponController,
+            IHandService handService)
+        {
+            _leaderWeaponController = leaderWeaponController;
+            _handService = handService;
+        }
 
         /// <summary>
         /// Awake
@@ -66,7 +77,7 @@ namespace SBabchuk
         /// <param name="gesture">Gesture.</param>
         virtual public void OnTouchMove(Gesture gesture)
         {
-            if (HandController.IsHoldingGrenade)
+            if (_handService != null && _handService.IsHoldingGrenade)
             {
                 HoldAimForward();
                 return;
@@ -81,13 +92,13 @@ namespace SBabchuk
                 UpdateAimPosition(canShoot ? ClampToMinAimDistance(targetPosition) : ClampToForwardSector(targetPosition));
             }
 
-            if (!canShoot && LeaderGangsterController.Instance)
+            if (!canShoot && _leaderWeaponController != null)
             {
-                LeaderGangsterController.Instance.StopAttack();
+                _leaderWeaponController.StopAttack();
             }
-            else if (canShoot && isTouchingFireArea && LeaderGangsterController.Instance && !LeaderGangsterController.Instance.isAttacking)
+            else if (canShoot && isTouchingFireArea && _leaderWeaponController != null && !_leaderWeaponController.IsAttacking)
             {
-                LeaderGangsterController.Instance.Attack();
+                _leaderWeaponController.Attack();
             }
         }
 
@@ -97,7 +108,7 @@ namespace SBabchuk
         /// <param name="gesture">Gesture.</param>
         public void OnTouchDown(Gesture gesture)
         {
-            if (HandController.IsHoldingGrenade)
+            if (_handService != null && _handService.IsHoldingGrenade)
             {
                 HoldAimForward();
                 return;
@@ -120,13 +131,13 @@ namespace SBabchuk
                         UpdateAimPosition(canShoot ? ClampToMinAimDistance(targetPosition) : ClampToForwardSector(targetPosition));
                     }
 
-                    if (LeaderGangsterController.Instance && canShoot)
+                    if (_leaderWeaponController != null && canShoot)
                     {
-                        LeaderGangsterController.Instance.Attack();
+                        _leaderWeaponController.Attack();
                     }
-                    else if (LeaderGangsterController.Instance)
+                    else if (_leaderWeaponController != null)
                     {
-                        LeaderGangsterController.Instance.StopAttack();
+                        _leaderWeaponController.StopAttack();
                     }
                 }
             }
@@ -139,9 +150,9 @@ namespace SBabchuk
         {
             isTouchingFireArea = false;
 
-            if (LeaderGangsterController.Instance)
+            if (_leaderWeaponController != null)
             {
-                LeaderGangsterController.Instance.StopAttack();
+                _leaderWeaponController.StopAttack();
             }
         }
 
@@ -189,18 +200,8 @@ namespace SBabchuk
             if (forwardSectorOrigin)
                 return forwardSectorOrigin.position;
 
-            LeaderGangsterController leader = LeaderGangsterController.Instance;
-
-            if (leader)
-            {
-                if (leader.createBulletPointList != null && leader.createBulletPointList.Count > 0 && leader.createBulletPointList[0] != null)
-                    return leader.createBulletPointList[0].GetPosition();
-
-                if (leader.createBulletPoint)
-                    return leader.createBulletPoint.GetPosition();
-
-                return leader.transform.position;
-            }
+            if (_leaderWeaponController != null)
+                return _leaderWeaponController.GetAimOrigin();
 
             return transform.position;
         }
@@ -209,9 +210,9 @@ namespace SBabchuk
         {
             isTouchingFireArea = false;
 
-            if (LeaderGangsterController.Instance)
+            if (_leaderWeaponController != null)
             {
-                LeaderGangsterController.Instance.StopAttack();
+                _leaderWeaponController.StopAttack();
             }
 
             UpdateAimPosition(GetForwardSectorOrigin() + Vector3.right * minAimDistance);
@@ -220,7 +221,7 @@ namespace SBabchuk
         private void UpdateAimPosition(Vector3 aimPosition)
         {
             transform.position = aimPosition;
-            sightPosition = new Vector2(aimPosition.x, aimPosition.y - offsetY);
+            CurrentAimPosition = new Vector2(aimPosition.x, aimPosition.y - offsetY);
         }
 
         private bool IsAngleInForwardSector(float angle)

@@ -979,7 +979,6 @@ GameObject:
   m_Component:
   - component: {fileID: 57883956}
   - component: {fileID: 57883958}
-  - component: {fileID: 57883957}
   m_Layer: 5
   m_Name: Pistol
   m_TagString: Untagged
@@ -1009,18 +1008,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0.000061035156, y: 0}
   m_SizeDelta: {x: 604, y: 211}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &57883957
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 57883955}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aac4ec292386d7a449274e4596f57cdf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!222 &57883958
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -4893,7 +4880,6 @@ GameObject:
   m_Component:
   - component: {fileID: 244245180}
   - component: {fileID: 244245182}
-  - component: {fileID: 244245181}
   m_Layer: 5
   m_Name: Pistol
   m_TagString: Untagged
@@ -4923,18 +4909,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0.000061035156, y: 0}
   m_SizeDelta: {x: 604, y: 211}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &244245181
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 244245179}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aac4ec292386d7a449274e4596f57cdf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!222 &244245182
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -5638,7 +5612,6 @@ GameObject:
   m_Component:
   - component: {fileID: 289936915}
   - component: {fileID: 289936917}
-  - component: {fileID: 289936916}
   m_Layer: 5
   m_Name: Pistol
   m_TagString: Untagged
@@ -5669,18 +5642,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0.000061035156, y: 0}
   m_SizeDelta: {x: 604, y: 211}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &289936916
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 289936914}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aac4ec292386d7a449274e4596f57cdf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!222 &289936917
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -16484,6 +16445,69 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 888467394}
   m_CullTransparentMesh: 0
+--- !u!1 &893117987
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 893117989}
+  - component: {fileID: 893117988}
+  m_Layer: 0
+  m_Name: SceneContext
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &893117988
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 893117987}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 89715ad69b973a14899afa2c6730b30b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Zenject::Zenject.SceneContext
+  _scriptableObjectInstallers: []
+  _monoInstallers: []
+  _installerPrefabs: []
+  _autoRun: 1
+  OnPreInstall:
+    m_PersistentCalls:
+      m_Calls: []
+  OnPostInstall:
+    m_PersistentCalls:
+      m_Calls: []
+  OnPreResolve:
+    m_PersistentCalls:
+      m_Calls: []
+  OnPostResolve:
+    m_PersistentCalls:
+      m_Calls: []
+  _parentNewObjectsUnderSceneContext: 0
+  _contractNames: []
+  _parentContractNames: []
+--- !u!4 &893117989
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 893117987}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &894876779
 GameObject:
   m_ObjectHideFlags: 0
@@ -17453,7 +17477,6 @@ GameObject:
   m_Component:
   - component: {fileID: 939237466}
   - component: {fileID: 939237468}
-  - component: {fileID: 939237467}
   m_Layer: 5
   m_Name: Pistol
   m_TagString: Untagged
@@ -17484,18 +17507,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0.000061035156, y: 0}
   m_SizeDelta: {x: 604, y: 211}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &939237467
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 939237465}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aac4ec292386d7a449274e4596f57cdf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!222 &939237468
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -19741,7 +19752,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1045981482}
   - component: {fileID: 1045981484}
-  - component: {fileID: 1045981483}
   m_Layer: 5
   m_Name: Pistol
   m_TagString: Untagged
@@ -19772,18 +19782,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0.000061035156, y: 0}
   m_SizeDelta: {x: 604, y: 211}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1045981483
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1045981481}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aac4ec292386d7a449274e4596f57cdf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!222 &1045981484
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -19802,7 +19800,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1046295729}
   - component: {fileID: 1046295731}
-  - component: {fileID: 1046295730}
   m_Layer: 5
   m_Name: Pistol
   m_TagString: Untagged
@@ -19833,18 +19830,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0.000061035156, y: 0}
   m_SizeDelta: {x: 604, y: 211}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1046295730
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1046295728}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aac4ec292386d7a449274e4596f57cdf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!222 &1046295731
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -20468,7 +20453,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1076666139}
   - component: {fileID: 1076666141}
-  - component: {fileID: 1076666140}
   m_Layer: 5
   m_Name: Pistol
   m_TagString: Untagged
@@ -20499,18 +20483,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0.000061035156, y: 0}
   m_SizeDelta: {x: 604, y: 211}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1076666140
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1076666138}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aac4ec292386d7a449274e4596f57cdf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!222 &1076666141
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -24318,7 +24290,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1270308950}
   - component: {fileID: 1270308952}
-  - component: {fileID: 1270308951}
   m_Layer: 5
   m_Name: Pistol
   m_TagString: Untagged
@@ -24348,18 +24319,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0.000061035156, y: 0}
   m_SizeDelta: {x: 604, y: 211}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1270308951
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1270308949}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aac4ec292386d7a449274e4596f57cdf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!222 &1270308952
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -27139,7 +27098,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1372723010}
   - component: {fileID: 1372723012}
-  - component: {fileID: 1372723011}
   m_Layer: 5
   m_Name: Pistol
   m_TagString: Untagged
@@ -27170,18 +27128,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0.000061035156, y: 0}
   m_SizeDelta: {x: 604, y: 211}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1372723011
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1372723009}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aac4ec292386d7a449274e4596f57cdf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!222 &1372723012
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -32257,7 +32203,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1639081880}
   - component: {fileID: 1639081882}
-  - component: {fileID: 1639081881}
   m_Layer: 5
   m_Name: Pistol
   m_TagString: Untagged
@@ -32288,18 +32233,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0.000061035156, y: 0}
   m_SizeDelta: {x: 604, y: 211}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1639081881
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1639081879}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aac4ec292386d7a449274e4596f57cdf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!222 &1639081882
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -33819,7 +33752,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1691443441}
   - component: {fileID: 1691443443}
-  - component: {fileID: 1691443442}
   m_Layer: 5
   m_Name: Pistol
   m_TagString: Untagged
@@ -33849,18 +33781,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0.000061035156, y: 0}
   m_SizeDelta: {x: 604, y: 211}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1691443442
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1691443440}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aac4ec292386d7a449274e4596f57cdf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!222 &1691443443
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -39175,7 +39095,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1985761630}
   - component: {fileID: 1985761632}
-  - component: {fileID: 1985761631}
   m_Layer: 5
   m_Name: Pistol
   m_TagString: Untagged
@@ -39206,18 +39125,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0.000061035156, y: 0}
   m_SizeDelta: {x: 604, y: 211}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1985761631
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1985761629}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aac4ec292386d7a449274e4596f57cdf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!222 &1985761632
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -42609,3 +42516,4 @@ SceneRoots:
   - {fileID: 282272838}
   - {fileID: 1923587391}
   - {fileID: 902967265}
+  - {fileID: 893117989}

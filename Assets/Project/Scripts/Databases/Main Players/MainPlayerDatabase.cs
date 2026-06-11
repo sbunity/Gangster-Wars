@@ -51,29 +51,6 @@ namespace SBabchuk
             return null;
         }
 
-        /// <summary>
-        /// Повертає ссилку на базу даних
-        /// </summary>
-        /// <returns></returns>
-        public static MainPlayerDatabase GetDatabase()
-        {
-            #if UNITY_EDITOR
-            return Utils.GetAsset<MainPlayerDatabase>();
-            #endif
-
-            #if UNITY_ANDROID || UNITY_IPHONE
-            return Utils.GetAsset2<MainPlayerDatabase>();
-            #endif
-        }
-
-        /// <summary>
-        /// Збереження
-        /// </summary>
-        void Save()
-        {
-            if (PersistableSO.Instance)
-                PersistableSO.Instance.SaveSO(this);
-        }
     }
 
     [System.Serializable]

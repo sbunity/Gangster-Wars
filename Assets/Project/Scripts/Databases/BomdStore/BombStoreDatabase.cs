@@ -22,29 +22,6 @@ namespace SBabchuk
             return index != -1 ? grenades[index] : null;
         }
 
-        /// <summary>
-        /// Повертає ссилку на базу даних
-        /// </summary>
-        /// <returns></returns>
-        public static BombStoreDatabase GetDatabase()
-        {
-        #if UNITY_EDITOR
-            return Utils.GetAsset<BombStoreDatabase>();
-        #endif
-
-        #if UNITY_ANDROID || UNITY_IPHONE
-            return Utils.GetAsset2<BombStoreDatabase>();
-        #endif
-        }
-
-        /// <summary>
-        /// Збереження
-        /// </summary>
-        void Save()
-        {
-            if (PersistableSO.Instance)
-                PersistableSO.Instance.SaveSO(this);
-        }
     }
 
     [System.Serializable]

@@ -52,7 +52,8 @@ namespace SBabchuk
                 {
                     if (GUILayout.Button("Зберегти зміни в pPrefs"))
                     {
-                        _database.Save();
+                        EditorUtility.SetDirty(_database);
+                        AssetDatabase.SaveAssets();
                     }
                 }
                 EditorGUILayout.EndHorizontal();

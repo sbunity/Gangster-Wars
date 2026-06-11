@@ -1,4 +1,4 @@
-п»їusing UnityEngine;
+using UnityEngine;
 using UnityEditor;
 using System.Collections.Generic;
 
@@ -7,17 +7,17 @@ namespace SBabchuk
     public class LevelInfoDrawer
     {
         /// <summary>
-        /// Р”РµС„РѕР»С‚РЅРёР№ РєРѕР»С–СЂ
+        /// Дефолтний колір
         /// </summary>
         static Color defaultColor;
 
         /// <summary>
-        /// Р‘Р°Р·Р° РґР°РЅРёС…
+        /// База даних
         /// </summary>
         static PlayerPrefsDatabase database;
 
         /// <summary>
-        /// Р—Р°РіРѕР»РѕРІРѕРє РґР»СЏ РєРЅРѕРїРєРё
+        /// Заголовок для кнопки
         /// </summary>
         static string titleLevel = "Show Levels";
 
@@ -31,7 +31,7 @@ namespace SBabchuk
         }
 
         /// <summary>
-        /// РџРѕРєР°Р·СѓС”Рј Р·Р°РіРѕР»РѕРІРѕРє
+        /// Показуєм заголовок
         /// </summary>
         public static void DrawTittle()
         {
@@ -63,11 +63,11 @@ namespace SBabchuk
                 {
                     GUILayout.BeginVertical();
                     {
-                        EditorGUILayout.LabelField("Р†РЅС„РѕСЂРјР°С†С–СЏ РїСЂРѕ РїРµСЂСЃРѕРЅР°Р¶С–РІ:");
+                        EditorGUILayout.LabelField("Інформація про персонажів:");
 
                         if (database.PlayerPrefs.levels != null)
                         {
-                            if (database.PlayerPrefs.levels.Count == LevelDatabase.GetDatabase().levels.Count)
+                            if (database.PlayerPrefs.levels.Count == EditorDatabaseLookup.Get<LevelDatabase>().levels.Count)
                             {
                                 foreach (LevelShortInfo _level in database.PlayerPrefs.levels)
                                 {
@@ -80,7 +80,7 @@ namespace SBabchuk
 
                                 database.PlayerPrefs.levels.Clear();
 
-                                foreach (Level _level in LevelDatabase.GetDatabase().levels)
+                                foreach (Level _level in EditorDatabaseLookup.Get<LevelDatabase>().levels)
                                 {
                                     database.PlayerPrefs.levels.Add(new LevelShortInfo(_level));
                                 }
@@ -100,12 +100,12 @@ namespace SBabchuk
         }
 
         /// <summary>
-        /// РџРѕРєР°Р·СѓС”Рј С–РЅС„РѕСЂРјР°С†С–СЋ
+        /// Показуєм інформацію
         /// </summary>
         /// <param name="_value"></param>
         public static void DrawInfo(LevelShortInfo _value)
         {
-            Level _record = LevelDatabase.GetDatabase().GetLevel(_value.id);
+            Level _record = EditorDatabaseLookup.Get<LevelDatabase>().GetLevel(_value.id);
 
             GUI.color = defaultColor;
 
@@ -126,14 +126,14 @@ namespace SBabchuk
                     {
                         _record.id = EditorGUILayout.IntField("ID: ", _record.id);
 
-                        _record.name = EditorGUILayout.TextField("РќР°Р№РјРµРЅСѓРІР°РЅРЅСЏ: ", _record.name);
+                        _record.name = EditorGUILayout.TextField("Найменування: ", _record.name);
 
-                        //_value.isOpened = ((mySwitch)EditorGUILayout.EnumPopup("Р§Рё РІС–РґРєСЂРёС‚РёР№: ", (mySwitch)_value.isOpened));
+                        //_value.isOpened = ((mySwitch)EditorGUILayout.EnumPopup("Чи відкритий: ", (mySwitch)_value.isOpened));
 
-                        _value.isCompleted = ((mySwitch)EditorGUILayout.EnumPopup("Р§Рё РїСЂРѕРґРµРЅРёР№: ", (mySwitch)_value.isCompleted));
+                        _value.isCompleted = ((mySwitch)EditorGUILayout.EnumPopup("Чи продений: ", (mySwitch)_value.isCompleted));
 
                         if (_value.isCompleted == mySwitch.On)
-                            _value.stars = EditorGUILayout.IntSlider("РЈСЃРїС–С€РЅС–СЃС‚СЊ РїСЂРѕС…РѕРґР¶РµРЅРЅСЏ: ", _value.stars, 0, 3);
+                            _value.stars = EditorGUILayout.IntSlider("Успішність проходження: ", _value.stars, 0, 3);
                     }
                     GUILayout.EndVertical();
                 }

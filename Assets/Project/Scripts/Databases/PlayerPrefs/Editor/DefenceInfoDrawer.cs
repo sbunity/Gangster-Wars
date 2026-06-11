@@ -1,4 +1,4 @@
-п»їusing UnityEngine;
+using UnityEngine;
 using UnityEditor;
 using System.Collections.Generic;
 
@@ -7,17 +7,17 @@ namespace SBabchuk
     public class DefenceInfoDrawer
     {
         /// <summary>
-        /// Р”РµС„РѕР»С‚РЅРёР№ РєРѕР»С–СЂ
+        /// Дефолтний колір
         /// </summary>
         static Color defaultColor;
 
         /// <summary>
-        /// Р‘Р°Р·Р° РґР°РЅРёС…
+        /// База даних
         /// </summary>
         static PlayerPrefsDatabase database;
 
         /// <summary>
-        /// Р—Р°РіРѕР»РѕРІРѕРє РґР»СЏ РєРЅРѕРїРєРё
+        /// Заголовок для кнопки
         /// </summary>
         static string titleDefence = "Show Defences";
 
@@ -32,7 +32,7 @@ namespace SBabchuk
 
 
         /// <summary>
-        /// РџРѕРєР°Р·СѓС”Рј РїРµСЂРµРїРѕРЅРё
+        /// Показуєм перепони
         /// </summary>
         public static void DrawTittle()
         {
@@ -64,11 +64,11 @@ namespace SBabchuk
                 {
                     GUILayout.BeginVertical();
                     {
-                        EditorGUILayout.LabelField("Р†РЅС„РѕСЂРјР°С†С–СЏ РїСЂРѕ РїРµСЂРµРїРѕРЅРё:");
+                        EditorGUILayout.LabelField("Інформація про перепони:");
 
                         if (database.PlayerPrefs.defences != null)
                         {
-                            if (database.PlayerPrefs.defences.Count == DefenseStoreDatabase.GetDatabase().defenses.Count)
+                            if (database.PlayerPrefs.defences.Count == EditorDatabaseLookup.Get<DefenseStoreDatabase>().defenses.Count)
                             {
                                 foreach (DefenceShortInfo _defence in database.PlayerPrefs.defences)
                                 {
@@ -81,7 +81,7 @@ namespace SBabchuk
 
                                 database.PlayerPrefs.defences.Clear();
 
-                                foreach (Defense _defence in DefenseStoreDatabase.GetDatabase().defenses)
+                                foreach (Defense _defence in EditorDatabaseLookup.Get<DefenseStoreDatabase>().defenses)
                                 {
                                     database.PlayerPrefs.defences.Add(new DefenceShortInfo(_defence));
                                 }
@@ -101,12 +101,12 @@ namespace SBabchuk
         }
 
         /// <summary>
-        /// РџРѕРєР°Р·СѓС”Рј Р·Р°РіРѕР»РѕРІРѕРє С–РЅС„Рё РїСЂРѕ РїРµСЂРµРїРѕРЅРё
+        /// Показуєм заголовок інфи про перепони
         /// </summary>
         /// <param name="_value"></param>
         public static void DrawInfo(DefenceShortInfo _value)
         {
-            Defense _defence = DefenseStoreDatabase.GetDatabase().GetDefense(_value.id);
+            Defense _defence = EditorDatabaseLookup.Get<DefenseStoreDatabase>().GetDefense(_value.id);
 
             GUI.color = defaultColor;
 
@@ -130,14 +130,14 @@ namespace SBabchuk
                     {
                         _defence.id = EditorGUILayout.IntField("ID: ", _defence.id);
 
-                        _defence.name = EditorGUILayout.TextField("РќР°Р№РјРµРЅСѓРІР°РЅРЅСЏ: ", _defence.name);
+                        _defence.name = EditorGUILayout.TextField("Найменування: ", _defence.name);
 
-                        _value.isBuy = ((mySwitch)EditorGUILayout.EnumPopup("Р§Рё РґРѕСЃС‚СѓРїРЅР°: ", (mySwitch)_value.isBuy));
+                        _value.isBuy = ((mySwitch)EditorGUILayout.EnumPopup("Чи доступна: ", (mySwitch)_value.isBuy));
 
                         if (_value.isBuy == mySwitch.On)
                         {
                             GUI.color = Color.green;
-                            _value.upgradeID = EditorGUILayout.IntField("ID Р°РїРіСЂРµР№РґР°: ", _value.upgradeID);
+                            _value.upgradeID = EditorGUILayout.IntField("ID апгрейда: ", _value.upgradeID);
                         }
                     }
                     GUILayout.EndVertical();
@@ -158,7 +158,7 @@ namespace SBabchuk
         }
 
         /// <summary>
-        /// РџРѕРєР°Р·СѓС”Рј РІР»Р°СЃС‚РёРІРѕСЃС‚С– РїРµСЂРµРїРѕРЅРё
+        /// Показуєм властивості перепони
         /// </summary>
         /// <param name="_stuff"></param>
         /// <param name="_upgradeID"></param>
@@ -167,15 +167,15 @@ namespace SBabchuk
             GUILayout.BeginVertical();
             {
                 GUI.color = Color.yellow;
-                DUpgrade _upgrade = DefenseStoreDatabase.GetDatabase().GetUpgrade(_defence, _upgradeID);
+                DUpgrade _upgrade = EditorDatabaseLookup.Get<DefenseStoreDatabase>().GetUpgrade(_defence, _upgradeID);
 
                 if (_upgrade != null)
                 {
-                    _upgrade.settings.health = EditorGUILayout.IntSlider("Рљ-СЃС‚СЊ Р¶РёС‚С‚С–РІ: ", _upgrade.settings.health, 0, 1000);
+                    _upgrade.settings.health = EditorGUILayout.IntSlider("К-сть життів: ", _upgrade.settings.health, 0, 1000);
                 }
                 else
                 {
-                    _defence.settings.health = EditorGUILayout.IntSlider("Рљ-СЃС‚СЊ Р¶РёС‚С‚С–РІ(Р±РµР· Р°РїРіСЂРµР№РґР°): ", _defence.settings.health, 0, 1000);
+                    _defence.settings.health = EditorGUILayout.IntSlider("К-сть життів(без апгрейда): ", _defence.settings.health, 0, 1000);
                 }
                 GUI.color = defaultColor;
             }

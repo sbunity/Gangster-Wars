@@ -17,22 +17,6 @@ namespace SBabchuk
             return index != -1 ? enemies[index] : null;
         }
 
-        public static EnemyDatabase GetDatabase()
-        {
-            #if UNITY_EDITOR
-            return Utils.GetAsset<EnemyDatabase>();
-            #endif
-
-            #if UNITY_ANDROID || UNITY_IPHONE
-            return Utils.GetAsset2<EnemyDatabase>();
-            #endif
-        }
-
-        void SaveData()
-        {
-            if (PersistableSO.Instance)
-                PersistableSO.Instance.SaveSO(this);
-        }
     }
 
     [System.Serializable]

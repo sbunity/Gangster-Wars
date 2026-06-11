@@ -1,7 +1,7 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+using SBabchuk.Runtime.Architecture;
 using UnityEngine;
 using UnityEngine.UI;
+using Zenject;
 
 namespace SBabchuk
 {
@@ -16,39 +16,60 @@ namespace SBabchuk
         [Header("Спрайд порожнього патрона")]
         public Sprite emptySprite;
 
-        [Header("Іконка")]
-        Image ico;
+        private Image _ico;
+        private SignalBus _signalBus;
+        private bool _isSubscribed;
+
+        [Inject]
+        private void Construct(SignalBus signalBus)
+        {
+            _signalBus = signalBus;
+            Subscribe();
+        }
 
         private void OnEnable()
         {
-            LeaderGangsterController.OnInitMagazine += Init;
-            LeaderGangsterController.OnInitPatrons += Check;
-            LeaderGangsterController.OnUpdateCountPatrons += Check;
+            Subscribe();
         }
 
         private void OnDisable()
         {
-            LeaderGangsterController.OnInitMagazine -= Init;
-            LeaderGangsterController.OnInitPatrons -= Check;
-            LeaderGangsterController.OnUpdateCountPatrons -= Check;
+            Unsubscribe();
         }
 
         private void Awake()
         {
-            ico = GetComponentInChildren<Image>();
+            _ico = GetComponentInChildren<Image>();
         }
 
-        private void Init(int _value)
+        private void Init(LeaderMagazineInitializedSignal signal)
         {
-            ico.gameObject.SetActive(index <= _value);
-
-            //Check(_value);
+            _ico.gameObject.SetActive(index <= signal.Capacity);
         }
 
-        private void Check(int _value)
+        private void Check(LeaderPatronsChangedSignal signal)
         {
-            ico.sprite = (index <= _value) ? fullSprite : emptySprite;
+            _ico.sprite = index <= signal.Count ? fullSprite : emptySprite;
         }
 
+        private void Subscribe()
+        {
+            if (_isSubscribed || _signalBus == null)
+                return;
+
+            _signalBus.Subscribe<LeaderMagazineInitializedSignal>(Init);
+            _signalBus.Subscribe<LeaderPatronsChangedSignal>(Check);
+            _isSubscribed = true;
+        }
+
+        private void Unsubscribe()
+        {
+            if (!_isSubscribed || _signalBus == null)
+                return;
+
+            _signalBus.Unsubscribe<LeaderMagazineInitializedSignal>(Init);
+            _signalBus.Unsubscribe<LeaderPatronsChangedSignal>(Check);
+            _isSubscribed = false;
+        }
     }
 }

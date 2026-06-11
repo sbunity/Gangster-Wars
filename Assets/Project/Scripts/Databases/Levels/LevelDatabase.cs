@@ -105,21 +105,11 @@ namespace SBabchuk
             return wave.enemies.Count - 1;
         }
 
-        public static LevelDatabase GetDatabase()
-        {
-            #if UNITY_EDITOR
-            return Utils.GetAsset<LevelDatabase>();
-            #endif
-
-            #if UNITY_ANDROID || UNITY_IPHONE
-            return Utils.GetAsset2<LevelDatabase>();
-            #endif
-        }
-
         public void SaveData()
         {
-            if (PersistableSO.Instance)
-                PersistableSO.Instance.SaveSO(this);
+#if UNITY_EDITOR
+            UnityEditor.EditorUtility.SetDirty(this);
+#endif
         }
     }
 

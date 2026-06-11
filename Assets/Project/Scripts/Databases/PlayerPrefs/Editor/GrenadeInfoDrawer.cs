@@ -1,4 +1,4 @@
-п»їusing UnityEngine;
+using UnityEngine;
 using UnityEditor;
 using System.Collections.Generic;
 
@@ -8,17 +8,17 @@ namespace SBabchuk
     public class GrenadeInfoDrawer
     {
         /// <summary>
-        /// Р”РµС„РѕР»С‚РЅРёР№ РєРѕР»С–СЂ
+        /// Дефолтний колір
         /// </summary>
         static Color defaultColor;
 
         /// <summary>
-        /// Р‘Р°Р·Р° РґР°РЅРёС…
+        /// База даних
         /// </summary>
         static PlayerPrefsDatabase database;
 
         /// <summary>
-        /// Р—Р°РіРѕР»РѕРІРѕРє РґР»СЏ РєРЅРѕРїРєРё
+        /// Заголовок для кнопки
         /// </summary>
         static string titleGrenade = "Show Grenades";
 
@@ -33,7 +33,7 @@ namespace SBabchuk
 
 
         /// <summary>
-        /// РџРѕРєР°Р·СѓС”Рј РіСЂР°РЅР°С‚Рё
+        /// Показуєм гранати
         /// </summary>
         public static void DrawTittle()
         {
@@ -65,11 +65,11 @@ namespace SBabchuk
                 {
                     GUILayout.BeginVertical();
                     {
-                        EditorGUILayout.LabelField("Р†РЅС„РѕСЂРјР°С†С–СЏ РїСЂРѕ РіСЂР°РЅР°С‚Рё:");
+                        EditorGUILayout.LabelField("Інформація про гранати:");
 
                         if (database.PlayerPrefs.grenades != null)
                         {
-                            if (database.PlayerPrefs.grenades.Count == BombStoreDatabase.GetDatabase().grenades.Count)
+                            if (database.PlayerPrefs.grenades.Count == EditorDatabaseLookup.Get<BombStoreDatabase>().grenades.Count)
                             {
                                 foreach (GrenadeShortInfo _grenade in database.PlayerPrefs.grenades)
                                 {
@@ -82,7 +82,7 @@ namespace SBabchuk
 
                                 database.PlayerPrefs.grenades.Clear();
 
-                                foreach (Grenade _grenade in BombStoreDatabase.GetDatabase().grenades)
+                                foreach (Grenade _grenade in EditorDatabaseLookup.Get<BombStoreDatabase>().grenades)
                                 {
                                     database.PlayerPrefs.grenades.Add(new GrenadeShortInfo(_grenade));
                                 }
@@ -102,12 +102,12 @@ namespace SBabchuk
         }
 
         /// <summary>
-        /// РџРѕРєР°Р·СѓС”Рј Р·Р°РіРѕР»РѕРІРѕРє С–РЅС„Рё РїСЂРѕ РіСЂР°РЅР°С‚Рё
+        /// Показуєм заголовок інфи про гранати
         /// </summary>
         /// <param name="_value"></param>
         public static void DrawInfo(GrenadeShortInfo _value)
         {
-            Grenade _grenade = BombStoreDatabase.GetDatabase().GetGrenade(_value.id);
+            Grenade _grenade = EditorDatabaseLookup.Get<BombStoreDatabase>().GetGrenade(_value.id);
 
             GUI.color = defaultColor;
 
@@ -127,15 +127,15 @@ namespace SBabchuk
                     {
                         _grenade.id = EditorGUILayout.IntField("ID: ", _grenade.id);
 
-                        _grenade.name = EditorGUILayout.TextField("РќР°Р№РјРµРЅСѓРІР°РЅРЅСЏ: ", _grenade.name);
+                        _grenade.name = EditorGUILayout.TextField("Найменування: ", _grenade.name);
 
                         if (_value.isBuy == mySwitch.On)
                             GUI.color = Color.green;
-                        _value.isBuy = ((mySwitch)EditorGUILayout.EnumPopup("Р§Рё РєСѓРїР»РµРЅa: ", (mySwitch)_value.isBuy));
+                        _value.isBuy = ((mySwitch)EditorGUILayout.EnumPopup("Чи купленa: ", (mySwitch)_value.isBuy));
 
 
                         GUI.color = Color.green;
-                        _value.count = EditorGUILayout.IntField("РљС–Р»СЊРєС–СЃС‚СЊ РіСЂР°РЅР°С‚ С†СЊРѕРіРѕ С‚РёРїСѓ РЅР° СЂСѓРєР°С…: ", _value.count);
+                        _value.count = EditorGUILayout.IntField("Кількість гранат цього типу на руках: ", _value.count);
                     }
                     GUILayout.EndVertical();
                 }
