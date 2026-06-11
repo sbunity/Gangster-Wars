@@ -3,6 +3,8 @@ using UnityEngine;
 
 namespace SBabchuk.Runtime.Gameplay.Characters
 {
+    // Deferred: not yet wired into the gangster attack flow.
+    // Kept intentionally — see memory composition-migration-state. Do not delete as "unused".
     public sealed class CharacterAttack : MonoBehaviour
     {
         private Tween _attackTween;

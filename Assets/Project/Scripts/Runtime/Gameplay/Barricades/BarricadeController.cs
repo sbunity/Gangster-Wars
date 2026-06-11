@@ -102,7 +102,7 @@ namespace SBabchuk
                 _spriteRenderer.sprite = _defenceIcons[2].Icon;
             else
                 _spriteRenderer.sprite = _defenceIcons[3].Icon;
-            _healthBar.UpdateFlled((float)value / (float)MaxHealth);
+            _healthBar.UpdateFilled((float)value / (float)MaxHealth);
         }
     }
 }

@@ -16,7 +16,7 @@ namespace SBabchuk
         private float _currentvalue;
         private Tween _twn;
 
-        public void UpdateFlled(float value)
+        public void UpdateFilled(float value)
         {
             _twn?.Kill();
             _currentvalue += value;

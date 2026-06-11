@@ -12,23 +12,23 @@ namespace SBabchuk
     {
         [SerializeField, FormerlySerializedAs("e_animation")]
         private EnemyAnimationControllerBase _animation;
-        public EnemyAnimationControllerBase Animation { get => _animation; set => _animation = value; }
+        public EnemyAnimationControllerBase Animation { get => _animation; private set => _animation = value; }
 
         [SerializeField, FormerlySerializedAs("properties")]
         private Enemy _properties;
-        public Enemy Properties { get => _properties; set => _properties = value; }
+        public Enemy Properties { get => _properties; private set => _properties = value; }
 
         [SerializeField, FormerlySerializedAs("isAttacked")]
         private bool _isAttacked;
-        public bool IsAttacked { get => _isAttacked; set => _isAttacked = value; }
+        public bool IsAttacked { get => _isAttacked; protected set => _isAttacked = value; }
 
         [SerializeField, FormerlySerializedAs("target")]
         private Transform _target;
-        public Transform Target { get => _target; set => _target = value; }
+        public Transform Target { get => _target; private set => _target = value; }
 
         [SerializeField, FormerlySerializedAs("center")]
         private Center _center;
-        public Center Center { get => _center; set => _center = value; }
+        public Center Center { get => _center; private set => _center = value; }
 
         private bool _collided;
         private bool _isDie;
@@ -137,14 +137,10 @@ namespace SBabchuk
             _view.SetAnimation(AnimationsName.Idle);
         }
 
-        public void ContinueMove() 
+        public void ContinueMove()
             => StartMove(_target);
 
-        public void ContinueSpeedMove()
-        {
-        }
-
-        public bool CheckDistance() 
+        public bool CheckDistance()
             => _movement.IsInAttackRange(_properties.AttackRadius);
 
         public virtual void Attack()
@@ -168,10 +164,7 @@ namespace SBabchuk
             if (_barricadeController != null)
                 _barricadeController.TakeDamage(_properties.Damage);
 
-            if (_gameFactory != null)
-                _gameFactory.CreateCollision(7, _target.position);
-            else
-                _levelRuntimeService?.SpawnCollision(7, _target.position, null);
+            _gameFactory.CreateCollision(CollisionEffectId.Impact, _target.position);
         }
 
         public void TakeDamage(int _damage) 

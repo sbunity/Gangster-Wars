@@ -11,7 +11,6 @@ The project now has a Zenject-driven service layer under `Assets/Project/Scripts
 - `IGameFactory` creates enemies, bullets, grenades, collisions, and bonuses through the pool service, then injects dependencies into pooled objects.
 - `ISceneLoaderService` loads scenes through `ZenjectSceneLoader` when available and falls back to Unity scene loading.
 - `ILevelService` and `ILevelFlowService` track the current level state and finish panel.
-- `IWaveSpawnerService` is prepared as a pure wave scheduling service for the next migration step.
 - `IDamageService` and `ICombatService` isolate common damage, hit, and reward operations.
 - `IAudioSettingsService` wraps saved music and sound settings.
 - `IInputService` wraps pointer input and world pointer position.
@@ -82,5 +81,5 @@ Remaining cleanup is limited to non-gameplay editor/constructor tooling and deep
 - Constructor/debug scripts under `Assets/Project/Scripts/Constructor` still access legacy singletons because they are editor-like tooling around the old level constructor workflow.
 - Legacy static events remain at their source in `PlayerPrefsDatabase`, `EnemyControllerBase`, `BarricadeController`, and `BonusController`; production listeners are bridged to Zenject signals where migrated.
 - `PoolManager` still owns the actual pool implementation; it is isolated behind `IPoolService` for migrated code.
-- `LevelController` still schedules waves internally for gameplay compatibility. `IWaveSpawnerService` is available but not yet the production scheduler.
+- `LevelController` schedules waves internally (DOTween-based) for gameplay compatibility.
 - Some legacy controllers still contain behavior orchestration while the newly added blocks own view, health, reward, weapon, projectile movement, and visual adapter responsibilities.

@@ -111,10 +111,7 @@ namespace SBabchuk
             this.gameObject.SetActive(false);
             transform.tag = "Bullet";
 
-            if (_gameFactory != null)
-                _gameFactory.CreateCollision(7, this.transform.position);
-            else
-                _levelRuntimeService?.SpawnCollision(7, this.transform.position);
+            _gameFactory.CreateCollision(CollisionEffectId.Impact, this.transform.position);
         }
 
         public virtual void OnBecameInvisible()

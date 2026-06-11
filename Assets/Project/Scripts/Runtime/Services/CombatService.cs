@@ -23,10 +23,6 @@ namespace SBabchuk.Runtime.Services
             _damageService.DamageEnemy(enemy, bullet.Damage);
         }
 
-        public void ApplyGrenadeDamage(Vector3 position, int damage, float radius)
-        {
-        }
-
         public void RewardEnemyDeath(Enemy enemy)
         {
             if (enemy != null)

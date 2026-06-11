@@ -11,7 +11,6 @@ namespace SBabchuk.Runtime.Services.Contracts
     public interface ICombatService
     {
         void ApplyBulletHit(EnemyControllerBase enemy, BaseBulletController bullet);
-        void ApplyGrenadeDamage(Vector3 position, int damage, float radius);
         void RewardEnemyDeath(Enemy enemy);
     }
 }

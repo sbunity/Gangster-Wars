@@ -10,8 +10,6 @@ namespace SBabchuk
 {
     public class LevelController : MonoBehaviour, ILevelRuntimeService
     {
-        private const int AMMO_BONUS_DROP_CHANCE = 35;
-
         [SerializeField, FormerlySerializedAs("spawnPoints")]
         private List<Transform> _spawnPoints;
 
@@ -26,7 +24,7 @@ namespace SBabchuk
 
         private LevelDatabase _database;
         private PlayerPrefsDatabase _pPrefs;
-        private int[] _listRandomPath;
+        private RandomPathPicker _pathPicker;
         private Level _properties;
         private int _currentWave;
         private int _maxEnemyCount;
@@ -40,9 +38,9 @@ namespace SBabchuk
         private bool _isLevelFinished;
         private IAssetProvider _assetProvider;
         private IPlayerProgressService _progressService;
-        private IPoolService _poolService;
         private IGameFactory _gameFactory;
         private ILevelFlowService _levelFlowService;
+        private IBonusDropService _bonusDropService;
         private BarricadeController _barricadeController;
         private SignalBus _signalBus;
         private bool _isSubscribedToSignals;
@@ -60,13 +58,13 @@ namespace SBabchuk
         }
 
         [Inject]
-        public void Construct(IAssetProvider assetProvider, IPlayerProgressService progressService, IPoolService poolService, IGameFactory gameFactory, ILevelFlowService levelFlowService, BarricadeController barricadeController, SignalBus signalBus)
+        public void Construct(IAssetProvider assetProvider, IPlayerProgressService progressService, IGameFactory gameFactory, ILevelFlowService levelFlowService, IBonusDropService bonusDropService, BarricadeController barricadeController, SignalBus signalBus)
         {
             _assetProvider = assetProvider;
             _progressService = progressService;
-            _poolService = poolService;
             _gameFactory = gameFactory;
             _levelFlowService = levelFlowService;
+            _bonusDropService = bonusDropService;
             _barricadeController = barricadeController;
             _signalBus = signalBus;
             SubscribeSignals();
@@ -74,15 +72,7 @@ namespace SBabchuk
 
         private void Awake()
         {
-            _listRandomPath = new int[]
-            {
-                0,
-                1,
-                2,
-                3,
-                4,
-                5
-            };
+            _pathPicker = new RandomPathPicker(_spawnPoints.Count);
         }
 
         private void Start()
@@ -206,15 +196,12 @@ namespace SBabchuk
             if (_isLevelFinished)
                 return;
 
-            var path = GetRandomPath();
-            var enemy = _gameFactory != null ? _gameFactory.CreateEnemy(enemyOfWave, _spawnPoints[path], _targetPoints[path]) : (GetPool(enemyOfWave.EnemyId, NamesPool.Enemies).GetPooledObject()).GetComponent<EnemyControllerBase>();
+            var path = _pathPicker.Next();
+            var enemy = _gameFactory.CreateEnemy(enemyOfWave, _spawnPoints[path], _targetPoints[path]);
             if (enemy != null)
             {
                 _enemies.Add(enemy);
-                if (_gameFactory == null)
-                    enemy.Init(enemyOfWave, _spawnPoints[path], _targetPoints[path], enemyOfWave.DropChance);
-
-                _waveBar.UpdateFlled(_fillStep);
+                _waveBar.UpdateFilled(_fillStep);
             }
             else
             {
@@ -281,7 +268,7 @@ namespace SBabchuk
                 return;
 
             _signalBus.Subscribe<EnemyDiedSignal>(DeleteEnemy);
-            _signalBus.Subscribe<BonusPoppedSignal>(PopedBonus);
+            _signalBus.Subscribe<BonusPoppedSignal>(PopBonus);
             _signalBus.Subscribe<GameFinishedSignal>(HandleGameOver);
             _isSubscribedToSignals = true;
         }
@@ -292,17 +279,17 @@ namespace SBabchuk
                 return;
 
             _signalBus.Unsubscribe<EnemyDiedSignal>(DeleteEnemy);
-            _signalBus.Unsubscribe<BonusPoppedSignal>(PopedBonus);
+            _signalBus.Unsubscribe<BonusPoppedSignal>(PopBonus);
             _signalBus.Unsubscribe<GameFinishedSignal>(HandleGameOver);
             _isSubscribedToSignals = false;
         }
 
-        private void PopedBonus(BonusPoppedSignal signal)
+        private void PopBonus(BonusPoppedSignal signal)
         {
-            PopedBonus(signal.Bonus);
+            PopBonus(signal.Bonus);
         }
 
-        public void PopedBonus(BonusController bonus)
+        public void PopBonus(BonusController bonus)
         {
             _bonuses.Remove(bonus);
             if (_enemies.Count == 0)
@@ -318,160 +305,36 @@ namespace SBabchuk
 
         public void SpawnGrenadeOnPlace(GrenadesName grenadesName, Vector3 position)
         {
-            var grenade = _gameFactory != null ? _gameFactory.CreateGrenade(grenadesName, position) : (GetPool((int)grenadesName, NamesPool.Grenades).GetPooledObject()).GetComponent<GrenadeController>();
-            if (grenade != null)
-            {
-                if (_gameFactory == null)
-                    grenade.Init((int)grenadesName, 5, position);
-            }
-            else
-            {
+            var grenade = _gameFactory.CreateGrenade(grenadesName, position);
+            if (grenade == null)
                 Debug.LogWarning("GrenadeController is missing from the spawned grenade.");
-            }
         }
 
         public void SpawnCollision(int collisionId, Vector3 position, Grenade grenade = null)
         {
-            var collision = _gameFactory != null ? _gameFactory.CreateCollision(collisionId, position, grenade) : (GetPool(collisionId, NamesPool.Collisions).GetPooledObject()).GetComponent<CollisionController>();
-            if (collision != null)
-            {
-                if (_gameFactory == null && grenade != null)
-                    collision.Init(position: position, damage: grenade.Damage, radius: grenade.Radius, time: grenade.Time);
-                else if (_gameFactory == null)
-                    collision.Init(position: position);
-            }
-            else
-            {
+            var collision = _gameFactory.CreateCollision(collisionId, position, grenade);
+            if (collision == null)
                 Debug.LogWarning("CollisionController is missing from the spawned collision.");
-            }
         }
 
         public void SpawnBonus(Vector3 position)
         {
-            var bonusID = GetAvailableBonusID();
+            var bonusID = _bonusDropService.GetAvailableBonusId();
             if (bonusID < 0)
                 return;
 
-            var bonus = _gameFactory != null ? _gameFactory.CreateBonus(bonusID, position) : (GetPool(bonusID, NamesPool.Bonuses).GetPooledObject()).GetComponent<BonusController>();
+            var bonus = _gameFactory.CreateBonus(bonusID, position);
             if (bonus != null)
-            {
                 _bonuses.Add(bonus);
-                if (_gameFactory == null)
-                    bonus.Init(position);
-            }
             else
-            {
                 Debug.LogWarning("BonusController is missing from the spawned bonus.");
-            }
-        }
-
-        private int GetAvailableBonusID()
-        {
-            var ammoBonuses = new List<int>();
-            var otherBonuses = new List<int>();
-
-            for (int bonusID = 0; bonusID < 8; bonusID++)
-            {
-                if (!CanDropBonus(bonusID))
-                    continue;
-
-                if (IsAmmoBonus(bonusID))
-                    ammoBonuses.Add(bonusID);
-                else
-                    otherBonuses.Add(bonusID);
-            }
-
-            if (ammoBonuses.Count == 0 && otherBonuses.Count == 0)
-                return -1;
-
-            if (ammoBonuses.Count > 0 && Random.Range(0, 100) < AMMO_BONUS_DROP_CHANCE)
-                return ammoBonuses[Random.Range(0, ammoBonuses.Count)];
-
-            if (otherBonuses.Count > 0)
-                return otherBonuses[Random.Range(0, otherBonuses.Count)];
-
-            return -1;
-        }
-
-        private bool IsAmmoBonus(int bonusID)
-        {
-            return bonusID >= 0 && bonusID <= 3;
-        }
-
-        private bool CanDropBonus(int bonusID)
-        {
-            if (_progressService == null)
-                return false;
-
-            if (bonusID >= 0 && bonusID <= 3)
-            {
-                var weaponInfo = _progressService.GetWeaponShortInfo(bonusID + 1);
-                return weaponInfo != null && weaponInfo.IsBuy == mySwitch.On;
-            }
-
-            if (bonusID >= 4 && bonusID <= 7)
-            {
-                var grenadeInfo = _progressService.GetGrenadeShortInfo(bonusID - 4);
-                return grenadeInfo != null && grenadeInfo.IsBuy == mySwitch.On;
-            }
-
-            return false;
         }
 
         public void SpawnBullet(int bulletId, int damage = 0, Vector3 position = default(Vector3), Vector3 target = default(Vector3), float offset = 0, string tag = "Bullet")
         {
-            var bullet = _gameFactory != null ? _gameFactory.CreateBullet(bulletId, damage, position, target, offset, tag) : (GetPool(bulletId, NamesPool.Bullets).GetPooledObject()).GetComponent<BaseBulletController>();
-            if (bullet != null)
-            {
-                if (_gameFactory == null)
-                {
-                    bullet.transform.tag = tag;
-                    bullet.Init(bulletId, damage, position, target, offset);
-                }
-            }
-            else
-            {
+            var bullet = _gameFactory.CreateBullet(bulletId, damage, position, target, offset, tag);
+            if (bullet == null)
                 Debug.LogWarning("BaseBulletController is missing from the spawned bullet.");
-            }
-        }
-
-        public Pool GetPool(int id, NamesPool pool)
-        {
-            if (_poolService == null)
-                return null;
-                
-            return _poolService.GetPool(pool, id);
-        }
-
-        public int GetRandomPath()
-        {
-            if (_listRandomPath.Length == 0)
-            {
-                _listRandomPath = new int[]
-                {
-                    0,
-                    1,
-                    2,
-                    3,
-                    4,
-                    5
-                };
-            }
-
-            var numToRemove = Random.Range(0, _listRandomPath.Length);
-            var index = _listRandomPath[numToRemove];
-            RemoveAt(ref _listRandomPath, numToRemove);
-            return index;
-        }
-
-        public void RemoveAt<T>(ref T[] arr, int index)
-        {
-            for (var i = index; i < arr.Length - 1; i++)
-            {
-                arr[i] = arr[i + 1];
-            }
-
-            System.Array.Resize(ref arr, arr.Length - 1);
         }
     }
 }

@@ -26,7 +26,6 @@ namespace SBabchuk.Runtime.Installers
             Container.Bind<PoolManager>().FromInstance(_poolManager).AsSingle();
             Container.Bind<IPoolService>().To<PoolService>().AsSingle();
             Container.Bind<IGameFactory>().To<GameFactory>().AsSingle();
-            Container.Bind<IWaveSpawnerService>().To<WaveSpawnerService>().AsSingle();
             BindIfAssigned(_levelController);
             BindIfAssigned(_barricadeController);
             BindIfAssigned(_waveBar);

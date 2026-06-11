@@ -1,6 +1,4 @@
 using System;
-using System.Collections.Generic;
-using Cysharp.Threading.Tasks;
 using UnityEngine;
 
 namespace SBabchuk.Runtime.Services.Contracts
@@ -26,12 +24,6 @@ namespace SBabchuk.Runtime.Services.Contracts
 
         void Start(Level level);
         void Finish(Panels panel);
-    }
-
-    public interface IWaveSpawnerService
-    {
-        UniTask SpawnAsync(Level level, IReadOnlyList<Transform> spawnPoints, IReadOnlyList<Transform> targetPoints);
-        void Stop();
     }
 
     public interface ILevelRuntimeService

@@ -2,6 +2,8 @@ using UnityEngine;
 
 namespace SBabchuk.Runtime.Gameplay.Characters
 {
+    // Deferred: not yet wired into the Leader's per-weapon ammo/reload state machine.
+    // Kept intentionally — see memory composition-migration-state. Do not delete as "unused".
     public sealed class CharacterAmmo : MonoBehaviour
     {
         public int Current { get; private set; }

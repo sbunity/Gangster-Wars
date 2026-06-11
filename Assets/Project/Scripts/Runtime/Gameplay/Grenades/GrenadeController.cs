@@ -21,16 +21,14 @@ namespace SBabchuk
         private Tween _timerTween;
         private IAssetProvider _assetProvider;
         private IGameFactory _gameFactory;
-        private ILevelRuntimeService _levelRuntimeService;
         private SignalBus _signalBus;
         private GrenadeView _view;
 
         [Inject]
-        public void Construct(IAssetProvider assetProvider, IGameFactory gameFactory, ILevelRuntimeService levelRuntimeService, SignalBus signalBus)
+        public void Construct(IAssetProvider assetProvider, IGameFactory gameFactory, SignalBus signalBus)
         {
             _assetProvider = assetProvider;
             _gameFactory = gameFactory;
-            _levelRuntimeService = levelRuntimeService;
             _signalBus = signalBus;
         }
 
@@ -71,10 +69,7 @@ namespace SBabchuk
         public void Explosion()
         {
             Pop();
-            if (_gameFactory != null)
-                _gameFactory.CreateCollision((int)_properties.Collision, transform.position, _properties);
-            else
-                _levelRuntimeService?.SpawnCollision((int)_properties.Collision, transform.position, _properties);
+            _gameFactory.CreateCollision((int)_properties.Collision, transform.position, _properties);
         }
 
         public void Pop()

@@ -8,6 +8,9 @@ namespace SBabchuk
 {
     public class ObjectControllerBase : MonoBehaviour
     {
+        // Parking spot used to move a placed object off the visible play area.
+        private static readonly Vector3 OffScreenPosition = new Vector3(100, 100, 0);
+
         [SerializeField, FormerlySerializedAs("collisionCollider")]
         private Collider2D _collisionCollider;
 
@@ -117,16 +120,8 @@ namespace SBabchuk
 
         public virtual void OnTriggerStay2D(Collider2D other)
         {
-            if (_otherCollider)
-            {
-                if (other.tag == _otherCollider.tag)
-                {
-                    _onTrigger = true;
-                }
-            }
-            else
-            {
-            }
+            if (_otherCollider && other.tag == _otherCollider.tag)
+                _onTrigger = true;
         }
 
         public virtual void OnTouchMove(Gesture gesture)
@@ -179,11 +174,7 @@ namespace SBabchuk
 
         public virtual void Checked()
         {
-            if (_otherCollider)
-            {
-            }
-
-            transform.position = new Vector3(100, 100, 0);
+            transform.position = OffScreenPosition;
         }
 
         public virtual void SwimBackOnTable(float time = 0.5f)
