@@ -43,6 +43,7 @@ namespace SBabchuk.Runtime.UI.WeaponStore
         {
             InitialisationUpgrade(id);
             InitialisationMagazine(id);
+            InitialisationBuyMagazine(id);
         }
 
         private void InitialisationUpgrade(int id)
@@ -80,6 +81,12 @@ namespace SBabchuk.Runtime.UI.WeaponStore
 
             if (_bttnMagazine)
                 _bttnMagazine.interactable = _progressService.CanBuy(_price);
+        }
+
+        private void InitialisationBuyMagazine(int id)
+        {
+            if (id == 0)
+                _buyMagazineElements.SetActive(false);
         }
 
         public void BuyUpgrade()

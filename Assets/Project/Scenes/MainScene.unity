@@ -11676,9 +11676,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e5d310bf694bd48dfa24d7f6114aac3d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SBabchuk.ScrollArrowIndicator
-  scrollRect: {fileID: 0}
-  arrowDown: {fileID: 0}
-  arrowUp: {fileID: 0}
+  scrollRect: {fileID: 652202796}
+  arrowDown: {fileID: 1831125303}
+  arrowUp: {fileID: 815573818}
 --- !u!1 &654837498
 GameObject:
   m_ObjectHideFlags: 0
