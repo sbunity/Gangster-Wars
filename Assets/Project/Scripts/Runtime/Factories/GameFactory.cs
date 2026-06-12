@@ -48,7 +48,7 @@ namespace SBabchuk.Runtime.Factories
             if (grenadeController == null)
                 return null;
             Inject(grenadeController.gameObject);
-            grenadeController.Init((int)grenade, 5, position);
+            grenadeController.Init((int)grenade, position);
             return grenadeController;
         }
 

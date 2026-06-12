@@ -2,10 +2,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using SBabchuk.Runtime.Gameplay.Bonuses;
 using SBabchuk.Runtime.Gameplay.Enemies;
+using SBabchuk.Runtime.Services.Contracts;
 
 namespace SBabchuk.Runtime.Gameplay.Levels
 {
-    public sealed class LevelEntityTracker
+    public sealed class LevelEntityTracker : IEnemyTargetProvider
     {
         private readonly List<EnemyControllerBase> _enemies = new();
         private readonly List<BonusController> _bonuses = new();

@@ -32,11 +32,14 @@ namespace SBabchuk.Runtime.Databases.PlayerPrefs
             return _playerPrefs.Coin >= price;
         }
 
+        private const float ThreeStarHealthThreshold = 0.75f;
+        private const float TwoStarHealthThreshold = 0.50f;
+
         public void SetStars(LevelShortInfo levelShortInfo, float value)
         {
-            if (value >= 0.75f)
+            if (value >= ThreeStarHealthThreshold)
                 levelShortInfo.Stars = Mathf.Max(3, levelShortInfo.Stars);
-            else if (value >= 0.50f)
+            else if (value >= TwoStarHealthThreshold)
                 levelShortInfo.Stars = Mathf.Max(2, levelShortInfo.Stars);
             else
                 levelShortInfo.Stars = Mathf.Max(1, levelShortInfo.Stars);

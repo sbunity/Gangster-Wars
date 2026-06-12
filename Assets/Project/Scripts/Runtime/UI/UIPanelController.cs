@@ -22,24 +22,20 @@ namespace SBabchuk.Runtime.UI
         public int InstanceID { get => _instanceID; set => _instanceID = value; }
 
         private SignalBus _signalBus;
-        private bool _isSubscribed;
+        private SignalSubscriptions _signals;
 
         [Inject]
         public void Construct(SignalBus signalBus)
         {
             _signalBus = signalBus;
-            Subscribe();
+            _signals = new SignalSubscriptions(signalBus)
+                .Add<UIPanelReplaceSignal>(Replace);
+            _signals.Enable();
         }
 
-        private void OnEnable()
-        {
-            Subscribe();
-        }
+        private void OnEnable() => _signals?.Enable();
 
-        private void OnDisable()
-        {
-            Unsubscribe();
-        }
+        private void OnDisable() => _signals?.Disable();
 
         private void Awake()
         {
@@ -73,24 +69,6 @@ namespace SBabchuk.Runtime.UI
                 return;
 
             _panel.SetActive(false);
-        }
-
-        private void Subscribe()
-        {
-            if (_isSubscribed || _signalBus == null)
-                return;
-
-            _signalBus.Subscribe<UIPanelReplaceSignal>(Replace);
-            _isSubscribed = true;
-        }
-
-        private void Unsubscribe()
-        {
-            if (!_isSubscribed || _signalBus == null)
-                return;
-            
-            _signalBus.Unsubscribe<UIPanelReplaceSignal>(Replace);
-            _isSubscribed = false;
         }
     }
 }

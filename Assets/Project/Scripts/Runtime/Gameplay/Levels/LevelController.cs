@@ -19,7 +19,7 @@ using SBabchuk.Runtime.UI;
 
 namespace SBabchuk.Runtime.Gameplay.Levels
 {
-    public class LevelController : MonoBehaviour, ILevelSpawnService, IEnemyTargetProvider
+    public class LevelController : MonoBehaviour
     {
         [SerializeField, FormerlySerializedAs("spawnPoints")]
         private List<Transform> _spawnPoints;
@@ -46,40 +46,40 @@ namespace SBabchuk.Runtime.Gameplay.Levels
         private IPlayerProgressService _progressService;
         private IGameFactory _gameFactory;
         private ILevelFlowService _levelFlowService;
-        private IBonusDropService _bonusDropService;
         private BarricadeController _barricadeController;
-        private SignalBus _signalBus;
-        private bool _isSubscribedToSignals;
+        private SignalSubscriptions _signals;
         private bool _isWaveFull;
 
         private void OnEnable()
         {
-            SubscribeSignals();
+            _signals?.Enable();
         }
 
         private void OnDisable()
         {
-            UnsubscribeSignals();
+            _signals?.Disable();
             StopLevelScheduling();
         }
 
         [Inject]
-        public void Construct(IAssetProvider assetProvider, IPlayerProgressService progressService, IGameFactory gameFactory, ILevelFlowService levelFlowService, IBonusDropService bonusDropService, BarricadeController barricadeController, SignalBus signalBus)
+        public void Construct(IAssetProvider assetProvider, IPlayerProgressService progressService, IGameFactory gameFactory, ILevelFlowService levelFlowService, LevelEntityTracker entityTracker, BarricadeController barricadeController, SignalBus signalBus)
         {
             _assetProvider = assetProvider;
             _progressService = progressService;
             _gameFactory = gameFactory;
             _levelFlowService = levelFlowService;
-            _bonusDropService = bonusDropService;
+            _entityTracker = entityTracker;
             _barricadeController = barricadeController;
-            _signalBus = signalBus;
-            SubscribeSignals();
+            _signals = new SignalSubscriptions(signalBus)
+                .Add<EnemyDiedSignal>(DeleteEnemy)
+                .Add<BonusPoppedSignal>(PopBonus)
+                .Add<GameFinishedSignal>(HandleGameOver);
+            _signals.Enable();
         }
 
         private void Awake()
         {
             _pathPicker = new RandomPathPicker(_spawnPoints.Count);
-            _entityTracker = new LevelEntityTracker();
             _waveScheduler = new LevelWaveScheduler(SpawnEnemies);
         }
 
@@ -227,28 +227,6 @@ namespace SBabchuk.Runtime.Gameplay.Levels
             _waveScheduler?.Stop();
         }
 
-        private void SubscribeSignals()
-        {
-            if (_isSubscribedToSignals || _signalBus == null)
-                return;
-
-            _signalBus.Subscribe<EnemyDiedSignal>(DeleteEnemy);
-            _signalBus.Subscribe<BonusPoppedSignal>(PopBonus);
-            _signalBus.Subscribe<GameFinishedSignal>(HandleGameOver);
-            _isSubscribedToSignals = true;
-        }
-
-        private void UnsubscribeSignals()
-        {
-            if (!_isSubscribedToSignals || _signalBus == null)
-                return;
-
-            _signalBus.Unsubscribe<EnemyDiedSignal>(DeleteEnemy);
-            _signalBus.Unsubscribe<BonusPoppedSignal>(PopBonus);
-            _signalBus.Unsubscribe<GameFinishedSignal>(HandleGameOver);
-            _isSubscribedToSignals = false;
-        }
-
         private void PopBonus(BonusPoppedSignal signal)
         {
             PopBonus(signal.Bonus);
@@ -261,45 +239,6 @@ namespace SBabchuk.Runtime.Gameplay.Levels
             {
                 CheckGameOver();
             }
-        }
-
-        public Transform GetRandomEnemy()
-        {
-            return _entityTracker.GetRandomEnemy();
-        }
-
-        public void SpawnGrenadeOnPlace(GrenadesName grenadesName, Vector3 position)
-        {
-            var grenade = _gameFactory.CreateGrenade(grenadesName, position);
-            if (grenade == null)
-                Debug.LogWarning("GrenadeController is missing from the spawned grenade.");
-        }
-
-        public void SpawnCollision(int collisionId, Vector3 position, Grenade grenade = null)
-        {
-            var collision = _gameFactory.CreateCollision(collisionId, position, grenade);
-            if (collision == null)
-                Debug.LogWarning("CollisionController is missing from the spawned collision.");
-        }
-
-        public void SpawnBonus(Vector3 position)
-        {
-            var bonusID = _bonusDropService.GetAvailableBonusId();
-            if (bonusID < 0)
-                return;
-
-            var bonus = _gameFactory.CreateBonus(bonusID, position);
-            if (bonus != null)
-                _entityTracker.AddBonus(bonus);
-            else
-                Debug.LogWarning("BonusController is missing from the spawned bonus.");
-        }
-
-        public void SpawnBullet(int bulletId, int damage = 0, Vector3 position = default(Vector3), Vector3 target = default(Vector3), float offset = 0, string tag = "Bullet")
-        {
-            var bullet = _gameFactory.CreateBullet(bulletId, damage, position, target, offset, tag);
-            if (bullet == null)
-                Debug.LogWarning("BaseBulletController is missing from the spawned bullet.");
         }
     }
 }

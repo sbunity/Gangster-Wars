@@ -39,13 +39,15 @@ namespace SBabchuk.Runtime.Gameplay.Enemies
         private Center _center;
         public Center Center { get => _center; private set => _center = value; }
 
+        private const int MaxDropChancePercent = 100;
+
         private bool _collided;
         private IAssetProvider _assetProvider;
         private IGameFactory _gameFactory;
         private ILevelSpawnService _levelSpawnService;
         private BarricadeController _barricadeController;
         private SignalBus _signalBus;
-        private bool _isSubscribedToSignals;
+        private SignalSubscriptions _signals;
         private EnemyView _view;
         private EnemyHealth _health;
         private EnemyMovement _movement;
@@ -63,18 +65,20 @@ namespace SBabchuk.Runtime.Gameplay.Enemies
             _levelSpawnService = levelSpawnService;
             _barricadeController = barricadeController;
             _signalBus = signalBus;
-            SubscribeSignals();
+            _signals = new SignalSubscriptions(signalBus)
+                .Add<GrenadeDamageSignal>(DealingDamage);
+            _signals.Enable();
         }
 
         private void OnDisable()
         {
-            UnsubscribeSignals();
+            _signals?.Disable();
             StopAllTweens();
         }
 
         private void OnEnable()
         {
-            SubscribeSignals();
+            _signals?.Enable();
         }
 
         private void DealingDamage(GrenadeDamageSignal signal) 
@@ -212,28 +216,10 @@ namespace SBabchuk.Runtime.Gameplay.Enemies
 
         private void CheckSpawnBonus()
         {
-            if (UnityEngine.Random.Range(0, 100) <= _properties.DropChance)
+            if (UnityEngine.Random.Range(0, MaxDropChancePercent) <= _properties.DropChance)
             {
                 _levelSpawnService?.SpawnBonus(this.gameObject.transform.position);
             }
-        }
-
-        private void SubscribeSignals()
-        {
-            if (_isSubscribedToSignals || _signalBus == null)
-                return;
-
-            _signalBus.Subscribe<GrenadeDamageSignal>(DealingDamage);
-            _isSubscribedToSignals = true;
-        }
-
-        private void UnsubscribeSignals()
-        {
-            if (!_isSubscribedToSignals || _signalBus == null)
-                return;
-
-            _signalBus.Unsubscribe<GrenadeDamageSignal>(DealingDamage);
-            _isSubscribedToSignals = false;
         }
 
         public void Pop()

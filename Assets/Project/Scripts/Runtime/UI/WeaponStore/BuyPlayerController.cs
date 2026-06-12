@@ -30,27 +30,27 @@ namespace SBabchuk.Runtime.UI.WeaponStore
 
         private Collider2D _coll;
         private IPlayerProgressService _progressService;
-        private SignalBus _signalBus;
+        private SignalSubscriptions _signals;
 
         [Inject]
         public void Construct(IPlayerProgressService progressService, SignalBus signalBus)
         {
             _progressService = progressService;
-            _signalBus = signalBus;
+            _signals = new SignalSubscriptions(signalBus)
+                .Add<ProgressUpgradedSignal>(OnProgressUpgraded)
+                .Add<UIPanelReplaceSignal>(Replace);
         }
 
         void OnEnable()
         {
             EasyTouch.On_TouchUp += OnTouchUp;
-            _signalBus.Subscribe<ProgressUpgradedSignal>(OnProgressUpgraded);
-            _signalBus.Subscribe<UIPanelReplaceSignal>(Replace);
+            _signals?.Enable();
         }
 
         void OnDisable()
         {
             EasyTouch.On_TouchUp -= OnTouchUp;
-            _signalBus.Unsubscribe<ProgressUpgradedSignal>(OnProgressUpgraded);
-            _signalBus.Unsubscribe<UIPanelReplaceSignal>(Replace);
+            _signals?.Disable();
         }
 
         private void OnProgressUpgraded(ProgressUpgradedSignal signal)

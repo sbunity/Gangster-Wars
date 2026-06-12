@@ -1,5 +1,4 @@
 using System;
-using UnityEngine;
 using SBabchuk.Runtime.Databases.Levels;
 
 namespace SBabchuk.Runtime.Services.Contracts
@@ -8,15 +7,8 @@ namespace SBabchuk.Runtime.Services.Contracts
     {
         event Action<Panels> Finished;
         Panels LastPanel { get; }
-
         bool IsFinished { get; }
-
         void Start(Level level);
         void Finish(Panels panel);
-    }
-
-    public interface IAimService
-    {
-        Vector2 CurrentAimPosition { get; }
     }
 }

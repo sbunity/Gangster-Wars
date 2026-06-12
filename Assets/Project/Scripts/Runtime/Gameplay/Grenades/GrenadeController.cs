@@ -40,7 +40,7 @@ namespace SBabchuk.Runtime.Gameplay.Grenades
             _parent = transform.parent;
         }
 
-        public void Init(int id = 0, int damage = 0, Vector3 position = default(Vector3), Transform target = null)
+        public void Init(int id = 0, Vector3 position = default(Vector3))
         {
             this.gameObject.SetActive(true);
             transform.position = position;

@@ -15,19 +15,20 @@ namespace SBabchuk.Runtime.Audio
 
         private Coroutine _refreshCoroutine;
         private IPlayerProgressService _progressService;
-        private SignalBus _signalBus;
+        private SignalSubscriptions _signals;
 
         [Inject]
         public void Construct(IPlayerProgressService progressService, SignalBus signalBus)
         {
             _progressService = progressService;
-            _signalBus = signalBus;
+            _signals = new SignalSubscriptions(signalBus)
+                .Add<AudioSettingsChangedSignal>(ApplyInternal);
         }
 
         private void OnEnable()
         {
             SceneManager.sceneLoaded += OnSceneLoaded;
-            _signalBus.Subscribe<AudioSettingsChangedSignal>(ApplyInternal);
+            _signals?.Enable();
             ApplyInternal();
             StartRefresh();
         }
@@ -35,7 +36,7 @@ namespace SBabchuk.Runtime.Audio
         private void OnDisable()
         {
             SceneManager.sceneLoaded -= OnSceneLoaded;
-            _signalBus.Unsubscribe<AudioSettingsChangedSignal>(ApplyInternal);
+            _signals?.Disable();
 
             if (_refreshCoroutine != null)
             {
