@@ -1,6 +1,8 @@
 using UnityEngine;
 using UnityEditor;
 using System.Collections.Generic;
+using System.IO;
+using System.Runtime.Serialization.Formatters.Binary;
 
 namespace SBabchuk.Runtime.Databases.PlayerPrefs
 {
@@ -15,6 +17,10 @@ namespace SBabchuk.Runtime.Databases.PlayerPrefs
         public static void Draw(PlayerPrefsDatabase database)
         {
             _defaultColor = GUI.color;
+            if (database == null)
+                return;
+
+            _database = database;
             if (database.PlayerPrefs == null)
             {
                 EditorGUILayout.BeginHorizontal();
@@ -29,13 +35,14 @@ namespace SBabchuk.Runtime.Databases.PlayerPrefs
             }
             else
             {
-                _database = database;
                 GUI.color = Color.red;
                 EditorGUILayout.BeginHorizontal();
                 {
                     if (GUILayout.Button("Видалити pPrefs"))
                     {
                         database.PlayerPrefs = null;
+                        GUI.color = _defaultColor;
+                        return;
                     }
                 }
 
@@ -47,6 +54,7 @@ namespace SBabchuk.Runtime.Databases.PlayerPrefs
                     {
                         EditorUtility.SetDirty(database);
                         AssetDatabase.SaveAssets();
+                        SavePersistentDatabase(database);
                     }
                 }
 
@@ -58,6 +66,9 @@ namespace SBabchuk.Runtime.Databases.PlayerPrefs
 
         public static void DrawInfo(PlayerPrefsDatabase _database)
         {
+            if (_database == null || _database.PlayerPrefs == null)
+                return;
+
             GUI.color = Color.grey;
             GUILayout.BeginVertical("box");
             {
@@ -230,6 +241,16 @@ namespace SBabchuk.Runtime.Databases.PlayerPrefs
             }
 
             GUILayout.EndVertical();
+        }
+
+        private static void SavePersistentDatabase(PlayerPrefsDatabase database)
+        {
+            var path = Path.Combine(Application.persistentDataPath, $"Main_{database.name}.pso");
+            Directory.CreateDirectory(Path.GetDirectoryName(path));
+
+            var formatter = new BinaryFormatter();
+            using var file = File.Create(path);
+            formatter.Serialize(file, JsonUtility.ToJson(database));
         }
     }
 }

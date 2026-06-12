@@ -12,95 +12,95 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb21dbdfe8227184cb2b7436087f42f6, type: 3}
   m_Name: PlayerPrefsDatabase
   m_EditorClassIdentifier: 
-  PlayerPrefs:
-    musik: 0
-    sound: 0
-    coin: 0
-    levelID: 0
-    selectedWeaponID: 0
-    selectedGrenadeID: 0
-    selectedDefenceID: 0
-    weapons:
-    - id: 0
-      name: Weapon_0
-      isBuy: 0
-      upgradeID: -1
-      countPatrons: 75
-    - id: 1
-      name: Weapon_1
-      isBuy: 1
-      upgradeID: -1
-      countPatrons: 0
-    - id: 2
-      name: Weapon_2
-      isBuy: 1
-      upgradeID: -1
-      countPatrons: 0
-    - id: 3
-      name: Weapon_3
-      isBuy: 1
-      upgradeID: -1
-      countPatrons: 0
-    - id: 4
-      name: Weapon_4
-      isBuy: 1
-      upgradeID: -1
-      countPatrons: 0
-    grenades:
-    - id: 0
-      isBuy: 1
-      count: 0
-    - id: 1
-      isBuy: 1
-      count: 0
-    - id: 2
-      isBuy: 1
-      count: 0
-    - id: 3
-      isBuy: 1
-      count: 0
-    defences:
-    - id: 0
-      isBuy: 0
-      upgradeID: -1
-    - id: 1
-      isBuy: 1
-      upgradeID: -1
-    - id: 2
-      isBuy: 1
-      upgradeID: -1
-    - id: 3
-      isBuy: 1
-      upgradeID: -1
-    personages:
-    - id: 0
-      isBuy: 1
-      upgradeID: 0
-    - id: 1
-      isBuy: 1
-      upgradeID: 0
-    levels:
-    - id: 0
-      isCompleted: 1
-      stars: 0
-    - id: 1
-      isCompleted: 1
-      stars: 0
-    - id: 2
-      isCompleted: 1
-      stars: 0
-    - id: 3
-      isCompleted: 1
-      stars: 0
-    - id: 4
-      isCompleted: 1
-      stars: 0
-    - id: 5
-      isCompleted: 1
-      stars: 0
-    - id: 6
-      isCompleted: 1
-      stars: 0
-    - id: 7
-      isCompleted: 1
-      stars: 0
+  _playerPrefs:
+    _music: 0
+    _sound: 0
+    _coin: 3000
+    _levelId: 0
+    _selectedWeaponId: 0
+    _selectedGrenadeId: 0
+    _selectedDefenceId: 0
+    _weapons:
+    - _id: 0
+      _name: Weapon_0
+      _isBuy: 0
+      _upgradeId: -1
+      _ammoCount: 75
+    - _id: 1
+      _name: Weapon_1
+      _isBuy: 1
+      _upgradeId: -1
+      _ammoCount: 0
+    - _id: 2
+      _name: Weapon_2
+      _isBuy: 1
+      _upgradeId: -1
+      _ammoCount: 0
+    - _id: 3
+      _name: Weapon_3
+      _isBuy: 1
+      _upgradeId: -1
+      _ammoCount: 0
+    - _id: 4
+      _name: Weapon_4
+      _isBuy: 1
+      _upgradeId: -1
+      _ammoCount: 0
+    _grenades:
+    - _id: 0
+      _isBuy: 1
+      _count: 0
+    - _id: 1
+      _isBuy: 1
+      _count: 0
+    - _id: 2
+      _isBuy: 1
+      _count: 0
+    - _id: 3
+      _isBuy: 1
+      _count: 0
+    _defences:
+    - _id: 0
+      _isBuy: 0
+      _upgradeId: -1
+    - _id: 1
+      _isBuy: 1
+      _upgradeId: -1
+    - _id: 2
+      _isBuy: 1
+      _upgradeId: -1
+    - _id: 3
+      _isBuy: 1
+      _upgradeId: -1
+    _personages:
+    - _id: 0
+      _isBuy: 1
+      _upgradeId: 0
+    - _id: 1
+      _isBuy: 1
+      _upgradeId: 0
+    _levels:
+    - _id: 0
+      _isCompleted: 0
+      _stars: 3
+    - _id: 1
+      _isCompleted: 1
+      _stars: 0
+    - _id: 2
+      _isCompleted: 1
+      _stars: 0
+    - _id: 3
+      _isCompleted: 1
+      _stars: 0
+    - _id: 4
+      _isCompleted: 1
+      _stars: 0
+    - _id: 5
+      _isCompleted: 1
+      _stars: 0
+    - _id: 6
+      _isCompleted: 1
+      _stars: 0
+    - _id: 7
+      _isCompleted: 1
+      _stars: 0

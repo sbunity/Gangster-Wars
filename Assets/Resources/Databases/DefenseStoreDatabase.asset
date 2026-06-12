@@ -12,176 +12,176 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 39aa2ad84e1d9bf49b58a33448d8e5f1, type: 3}
   m_Name: DefenseStoreDatabase
   m_EditorClassIdentifier: 
-  defenses:
-  - id: 0
-    name: Defense_1
-    ico: {fileID: 21300000, guid: db216c5e9e980694cbbff22cc5cdd63c, type: 3}
-    price: 0
-    countUpgrades: 5
-    upgrades:
-    - id: 0
-      name: Upgrade_1
-      price: 45
-      settings:
-        health: 82
-    - id: 1
-      name: Upgrade_2
-      price: 75
-      settings:
-        health: 100
-    - id: 2
-      name: Upgrade_3
-      price: 115
-      settings:
-        health: 120
-    - id: 3
-      name: Upgrade_4
-      price: 165
-      settings:
-        health: 145
-    - id: 4
-      name: Upgrade_5
-      price: 235
-      settings:
-        health: 175
-    settings:
-      health: 65
-    countIcons: 4
-    icons:
-    - id: 0
-      ico: {fileID: 21300000, guid: 232d8dfb8b442da448c557a0c3c86add, type: 3}
-    - id: 1
-      ico: {fileID: 21300000, guid: ce68841de67f0d24795d2d1dcc7657a1, type: 3}
-    - id: 2
-      ico: {fileID: 21300000, guid: d6b8a9b4abdbec44891e2e2e2ea20c15, type: 3}
-    - id: 3
-      ico: {fileID: 21300000, guid: aeaa1ae13779d0b49afa0973a578d402, type: 3}
-  - id: 1
-    name: Defense_2
-    ico: {fileID: 21300000, guid: 60c481d33c103e449949a0b64641f49c, type: 3}
-    price: 100
-    countUpgrades: 5
-    upgrades:
-    - id: 0
-      name: Upgrade_1
-      price: 95
-      settings:
-        health: 150
-    - id: 1
-      name: Upgrade_2
-      price: 145
-      settings:
-        health: 180
-    - id: 2
-      name: Upgrade_3
-      price: 210
-      settings:
-        health: 215
-    - id: 3
-      name: Upgrade_4
-      price: 300
-      settings:
-        health: 255
-    - id: 4
-      name: Upgrade_5
-      price: 420
-      settings:
-        health: 305
-    settings:
-      health: 120
-    countIcons: 4
-    icons:
-    - id: 0
-      ico: {fileID: 21300000, guid: 32cd308499da4984e97eb7baf8dfad58, type: 3}
-    - id: 1
-      ico: {fileID: 21300000, guid: df98a9dab6567514e83a740bd118508e, type: 3}
-    - id: 2
-      ico: {fileID: 21300000, guid: b3a3418c5a1a0b74e9a1d502e1dcc953, type: 3}
-    - id: 3
-      ico: {fileID: 21300000, guid: 5935e35a9cf1a004b8def008f3a6e2f2, type: 3}
-  - id: 2
-    name: Defense_3
-    ico: {fileID: 21300000, guid: 436ca8aae28a8a241a5d8aec1dcfb321, type: 3}
-    price: 240
-    countUpgrades: 5
-    upgrades:
-    - id: 0
-      name: Upgrade_1
-      price: 175
-      settings:
-        health: 255
-    - id: 1
-      name: Upgrade_2
-      price: 255
-      settings:
-        health: 305
-    - id: 2
-      name: Upgrade_3
-      price: 360
-      settings:
-        health: 365
-    - id: 3
-      name: Upgrade_4
-      price: 500
-      settings:
-        health: 430
-    - id: 4
-      name: Upgrade_5
-      price: 690
-      settings:
-        health: 515
-    settings:
-      health: 205
-    countIcons: 4
-    icons:
-    - id: 0
-      ico: {fileID: 21300000, guid: 9148db5c588fa894f8c939730441276d, type: 3}
-    - id: 1
-      ico: {fileID: 21300000, guid: 798eaa86b25130c4d8d4b048c1e80ddc, type: 3}
-    - id: 2
-      ico: {fileID: 21300000, guid: f3bd2d74499d3e34486001e76cab1797, type: 3}
-    - id: 3
-      ico: {fileID: 21300000, guid: 9444b87194a2e744796c41bfa0a19590, type: 3}
-  - id: 3
-    name: Defense_4
-    ico: {fileID: 21300000, guid: f8c9233a30f42a141b6f7d317822e650, type: 3}
-    price: 460
-    countUpgrades: 5
-    upgrades:
-    - id: 0
-      name: Upgrade_1
-      price: 310
-      settings:
-        health: 385
-    - id: 1
-      name: Upgrade_2
-      price: 450
-      settings:
-        health: 460
-    - id: 2
-      name: Upgrade_3
-      price: 640
-      settings:
-        health: 545
-    - id: 3
-      name: Upgrade_4
-      price: 880
-      settings:
-        health: 645
-    - id: 4
-      name: Upgrade_5
-      price: 1180
-      settings:
-        health: 750
-    settings:
-      health: 310
-    countIcons: 4
-    icons:
-    - id: 0
-      ico: {fileID: 21300000, guid: 4423344dcfced4a4892edd6ac049a237, type: 3}
-    - id: 1
-      ico: {fileID: 21300000, guid: 4f8f9d97e84422b4c841b9b94195fe37, type: 3}
-    - id: 2
-      ico: {fileID: 21300000, guid: 130dba8fc80b43749878ed870b32e404, type: 3}
-    - id: 3
-      ico: {fileID: 21300000, guid: f111a7f0f9e63a6499792e29f2c478ac, type: 3}
+  _defenses:
+  - _id: 0
+    _name: Defense_1
+    _icon: {fileID: 21300000, guid: db216c5e9e980694cbbff22cc5cdd63c, type: 3}
+    _price: 5
+    _countUpgrades: 5
+    _upgrades:
+    - _id: 0
+      _name: Upgrade_1
+      _price: 45
+      _settings:
+        _health: 82
+    - _id: 1
+      _name: Upgrade_2
+      _price: 75
+      _settings:
+        _health: 100
+    - _id: 2
+      _name: Upgrade_3
+      _price: 115
+      _settings:
+        _health: 120
+    - _id: 3
+      _name: Upgrade_4
+      _price: 165
+      _settings:
+        _health: 145
+    - _id: 4
+      _name: Upgrade_5
+      _price: 235
+      _settings:
+        _health: 175
+    _settings:
+      _health: 65
+    _countIcons: 4
+    _icons:
+    - _id: 0
+      _icon: {fileID: 21300000, guid: 232d8dfb8b442da448c557a0c3c86add, type: 3}
+    - _id: 1
+      _icon: {fileID: 21300000, guid: ce68841de67f0d24795d2d1dcc7657a1, type: 3}
+    - _id: 2
+      _icon: {fileID: 21300000, guid: d6b8a9b4abdbec44891e2e2e2ea20c15, type: 3}
+    - _id: 3
+      _icon: {fileID: 21300000, guid: aeaa1ae13779d0b49afa0973a578d402, type: 3}
+  - _id: 1
+    _name: Defense_2
+    _icon: {fileID: 21300000, guid: 60c481d33c103e449949a0b64641f49c, type: 3}
+    _price: 100
+    _countUpgrades: 5
+    _upgrades:
+    - _id: 0
+      _name: Upgrade_1
+      _price: 95
+      _settings:
+        _health: 150
+    - _id: 1
+      _name: Upgrade_2
+      _price: 145
+      _settings:
+        _health: 180
+    - _id: 2
+      _name: Upgrade_3
+      _price: 210
+      _settings:
+        _health: 215
+    - _id: 3
+      _name: Upgrade_4
+      _price: 300
+      _settings:
+        _health: 255
+    - _id: 4
+      _name: Upgrade_5
+      _price: 420
+      _settings:
+        _health: 305
+    _settings:
+      _health: 120
+    _countIcons: 4
+    _icons:
+    - _id: 0
+      _icon: {fileID: 21300000, guid: 32cd308499da4984e97eb7baf8dfad58, type: 3}
+    - _id: 1
+      _icon: {fileID: 21300000, guid: df98a9dab6567514e83a740bd118508e, type: 3}
+    - _id: 2
+      _icon: {fileID: 21300000, guid: b3a3418c5a1a0b74e9a1d502e1dcc953, type: 3}
+    - _id: 3
+      _icon: {fileID: 21300000, guid: 5935e35a9cf1a004b8def008f3a6e2f2, type: 3}
+  - _id: 2
+    _name: Defense_3
+    _icon: {fileID: 21300000, guid: 436ca8aae28a8a241a5d8aec1dcfb321, type: 3}
+    _price: 240
+    _countUpgrades: 5
+    _upgrades:
+    - _id: 0
+      _name: Upgrade_1
+      _price: 175
+      _settings:
+        _health: 255
+    - _id: 1
+      _name: Upgrade_2
+      _price: 255
+      _settings:
+        _health: 305
+    - _id: 2
+      _name: Upgrade_3
+      _price: 360
+      _settings:
+        _health: 365
+    - _id: 3
+      _name: Upgrade_4
+      _price: 500
+      _settings:
+        _health: 430
+    - _id: 4
+      _name: Upgrade_5
+      _price: 690
+      _settings:
+        _health: 515
+    _settings:
+      _health: 205
+    _countIcons: 4
+    _icons:
+    - _id: 0
+      _icon: {fileID: 21300000, guid: 9148db5c588fa894f8c939730441276d, type: 3}
+    - _id: 1
+      _icon: {fileID: 21300000, guid: 798eaa86b25130c4d8d4b048c1e80ddc, type: 3}
+    - _id: 2
+      _icon: {fileID: 21300000, guid: f3bd2d74499d3e34486001e76cab1797, type: 3}
+    - _id: 3
+      _icon: {fileID: 21300000, guid: 9444b87194a2e744796c41bfa0a19590, type: 3}
+  - _id: 3
+    _name: Defense_4
+    _icon: {fileID: 21300000, guid: f8c9233a30f42a141b6f7d317822e650, type: 3}
+    _price: 460
+    _countUpgrades: 5
+    _upgrades:
+    - _id: 0
+      _name: Upgrade_1
+      _price: 310
+      _settings:
+        _health: 385
+    - _id: 1
+      _name: Upgrade_2
+      _price: 450
+      _settings:
+        _health: 460
+    - _id: 2
+      _name: Upgrade_3
+      _price: 640
+      _settings:
+        _health: 545
+    - _id: 3
+      _name: Upgrade_4
+      _price: 880
+      _settings:
+        _health: 645
+    - _id: 4
+      _name: Upgrade_5
+      _price: 1180
+      _settings:
+        _health: 750
+    _settings:
+      _health: 310
+    _countIcons: 4
+    _icons:
+    - _id: 0
+      _icon: {fileID: 21300000, guid: 4423344dcfced4a4892edd6ac049a237, type: 3}
+    - _id: 1
+      _icon: {fileID: 21300000, guid: 4f8f9d97e84422b4c841b9b94195fe37, type: 3}
+    - _id: 2
+      _icon: {fileID: 21300000, guid: 130dba8fc80b43749878ed870b32e404, type: 3}
+    - _id: 3
+      _icon: {fileID: 21300000, guid: f111a7f0f9e63a6499792e29f2c478ac, type: 3}
