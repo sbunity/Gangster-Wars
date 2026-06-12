@@ -30,6 +30,7 @@ namespace SBabchuk.Runtime.Gameplay.Levels
                                         && _level != null
                                         && CurrentWave < _level.Waves.Count
                                         && (_startedWaves == null || !_startedWaves[CurrentWave]);
+        public float SecondsUntilNextWave => CanStartNextWave ? GetSecondsUntilNextWave() : 0f;
 
         public void Initialize(Level level)
         {
@@ -183,6 +184,27 @@ namespace SBabchuk.Runtime.Gameplay.Levels
             _nextWaveTween = null;
             _enemySpawnTween = null;
             _nextEnemyGroupTween = null;
+        }
+
+        private float GetSecondsUntilNextWave()
+        {
+            if (_waveDelayTween != null && _waveDelayTween.IsActive())
+                return GetRemainingSeconds(_waveDelayTween);
+
+            var scheduledDelay = _nextWaveTween != null && _nextWaveTween.IsActive()
+                ? GetRemainingSeconds(_nextWaveTween)
+                : 0f;
+
+            var nextWaveDelay = _level?.Waves[CurrentWave].StartDelay ?? 0f;
+            return scheduledDelay + nextWaveDelay;
+        }
+
+        private static float GetRemainingSeconds(Tween tween)
+        {
+            if (tween == null || !tween.IsActive())
+                return 0f;
+
+            return Math.Max(0f, tween.Duration(false) - tween.Elapsed(false));
         }
     }
 }

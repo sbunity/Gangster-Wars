@@ -25,6 +25,7 @@ namespace SBabchuk.Runtime.Installers
             Container.BindInterfacesTo<LevelService>().AsSingle();
             Container.Bind<IDamageService>().To<DamageService>().AsSingle();
             Container.Bind<ICombatService>().To<CombatService>().AsSingle();
+            Container.Bind<IWaveSkipRewardService>().To<WaveSkipRewardService>().AsSingle();
             Container.Bind<IBonusDropService>().To<BonusDropService>().AsSingle();
             Container.Bind<IAudioSettingsService>().To<AudioSettingsService>().AsSingle();
             Container.Bind<IInputService>().To<InputService>().AsSingle();

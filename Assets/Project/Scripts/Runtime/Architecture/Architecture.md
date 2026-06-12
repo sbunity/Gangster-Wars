@@ -12,6 +12,7 @@ The project now has a Zenject-driven service layer under `Assets/Project/Scripts
 - `ISceneLoaderService` loads scenes through `ZenjectSceneLoader` when available and falls back to Unity scene loading.
 - `ILevelService` and `ILevelFlowService` track the current level state and finish panel.
 - `IDamageService` and `ICombatService` isolate common damage, hit, and reward operations.
+- `IWaveSkipRewardService` grants the coin reward for manually starting a wave early.
 - `IAudioSettingsService` wraps saved music and sound settings.
 - `IInputService` wraps pointer input and world pointer position.
 - `IHandService` exposes grenade dragging state and placement without `HandController.Instance`.
