@@ -9,6 +9,9 @@ namespace SBabchuk.Runtime.UI
 {
     public class HandController : MonoBehaviour, IHandService
     {
+        // Parked off-screen instead of disabled so DOTween/colliders keep a valid transform.
+        private static readonly Vector3 OffscreenPosition = new Vector3(100, 100, 0);
+
         public bool IsHoldingGrenade => _focus;
 
         [SerializeField, FormerlySerializedAs("scaleToTouch"), Range(1, 2)]
@@ -128,7 +131,7 @@ namespace SBabchuk.Runtime.UI
             _grenade.CheckIco(true);
             _progressService.UseGrenade((int)_currentGrenadeName);
             _levelSpawnService?.SpawnGrenadeOnPlace(_currentGrenadeName, transform.position);
-            transform.position = new Vector3(100, 100, 0);
+            transform.position = OffscreenPosition;
         }
 
         public void OnTouchDown()
@@ -167,7 +170,7 @@ namespace SBabchuk.Runtime.UI
         private void CompleteMovingToBack()
         {
             _grenade.CheckIco(true);
-            transform.position = new Vector3(100, 100, 0);
+            transform.position = OffscreenPosition;
             _touchCollider.enabled = true;
             _collisionCollider.enabled = true;
             _isMovingToBack = false;

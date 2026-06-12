@@ -29,19 +29,19 @@ namespace SBabchuk.Runtime.UI.WeaponStore
             _progressService = progressService;
         }
 
-        private int GetUp(int _id)
+        private int GetUp(int id)
         {
             if (_type == ShortInfoName.Weapon)
             {
-                return _progressService.GetWeaponShortInfo(_id).UpgradeId;
+                return _progressService.GetWeaponShortInfo(id).UpgradeId;
             }
             else if (_type == ShortInfoName.Defence)
             {
-                return _progressService.GetDefenceShortInfo(_id).UpgradeId;
+                return _progressService.GetDefenceShortInfo(id).UpgradeId;
             }
             else if (_type == ShortInfoName.Personage)
             {
-                return _progressService.GetPersonageShortInfo(_id).UpgradeId;
+                return _progressService.GetPersonageShortInfo(id).UpgradeId;
             }
             else
             {
@@ -49,9 +49,9 @@ namespace SBabchuk.Runtime.UI.WeaponStore
             }
         }
 
-        public void Initialisation(int _id)
+        public void Initialisation(int id)
         {
-            for (int i = 0; i <= GetUp(_id); i++)
+            for (int i = 0; i <= GetUp(id); i++)
             {
                 _patrons[i].sprite = _buySprite;
             }

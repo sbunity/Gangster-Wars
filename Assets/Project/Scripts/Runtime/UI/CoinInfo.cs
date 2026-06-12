@@ -10,24 +10,19 @@ namespace SBabchuk.Runtime.UI
     {
         private Text _txt;
         private IPlayerProgressService _progressService;
-        private SignalBus _signalBus;
+        private SignalSubscriptions _signals;
 
         [Inject]
         public void Construct(IPlayerProgressService progressService, SignalBus signalBus)
         {
             _progressService = progressService;
-            _signalBus = signalBus;
+            _signals = new SignalSubscriptions(signalBus)
+                .Add<CoinsChangedSignal>(OnCoinsChanged);
         }
 
-        private void OnEnable()
-        {
-            _signalBus?.Subscribe<CoinsChangedSignal>(OnCoinsChanged);
-        }
+        private void OnEnable() => _signals?.Enable();
 
-        private void OnDisable()
-        {
-            _signalBus?.Unsubscribe<CoinsChangedSignal>(OnCoinsChanged);
-        }
+        private void OnDisable() => _signals?.Disable();
 
         private void Awake()
         {

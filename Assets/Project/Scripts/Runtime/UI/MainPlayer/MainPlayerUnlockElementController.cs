@@ -32,18 +32,18 @@ namespace SBabchuk.Runtime.UI.MainPlayer
             _progressService = progressService;
         }
 
-        public void Initialisation(int _id)
+        public void Initialisation(int id)
         {
-            InitialisationUpgrade(_id);
+            InitialisationUpgrade(id);
         }
 
-        private void InitialisationUpgrade(int _id)
+        private void InitialisationUpgrade(int id)
         {
-            _personageID = _id;
-            var personageShortInfo = _progressService.GetPersonageShortInfo(_id);
+            _personageID = id;
+            var personageShortInfo = _progressService.GetPersonageShortInfo(id);
             int _upgradeID = personageShortInfo.UpgradeId + 1;
             var playerStore = _assetProvider.MainPlayerDatabase;
-            PUpgrade _upgrade = playerStore.GetUpgrade(_id, _upgradeID);
+            PUpgrade _upgrade = playerStore.GetUpgrade(id, _upgradeID);
             
             if (_upgrade != null)
             {

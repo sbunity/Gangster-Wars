@@ -21,23 +21,18 @@ namespace SBabchuk.Runtime.UI.WeaponStore
         [SerializeField, FormerlySerializedAs("bttn")]
         private Button _bttn;
 
-        private SignalBus _signalBus;
+        private SignalSubscriptions _signals;
 
         [Inject]
         public void Construct(SignalBus signalBus)
         {
-            _signalBus = signalBus;
+            _signals = new SignalSubscriptions(signalBus)
+                .Add<WeaponAmmoChangedSignal>(OnWeaponAmmoChanged);
         }
 
-        private void OnEnable()
-        {
-            _signalBus?.Subscribe<WeaponAmmoChangedSignal>(OnWeaponAmmoChanged);
-        }
+        private void OnEnable() => _signals?.Enable();
 
-        private void OnDisable()
-        {
-            _signalBus?.Unsubscribe<WeaponAmmoChangedSignal>(OnWeaponAmmoChanged);
-        }
+        private void OnDisable() => _signals?.Disable();
 
         private void OnWeaponAmmoChanged(WeaponAmmoChangedSignal signal)
         {

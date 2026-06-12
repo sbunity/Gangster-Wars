@@ -8,9 +8,9 @@ namespace SBabchuk.Runtime.UI.WeaponStore
     {
         private Grenade _grenadeInfo;
 
-        public override void Initialisation(int _id)
+        public override void Initialisation(int id)
         {
-            Id = _id;
+            Id = id;
             var bombStore = _assetProvider.BombStoreDatabase;
             _grenadeInfo = bombStore.GetGrenade(Id);
             

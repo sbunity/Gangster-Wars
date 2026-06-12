@@ -16,24 +16,19 @@ namespace SBabchuk.Runtime.UI
         private GameObject _panel;
 
         private ISceneLoaderService _sceneLoaderService;
-        private SignalBus _signalBus;
+        private SignalSubscriptions _signals;
 
         [Inject]
         public void Construct(ISceneLoaderService sceneLoaderService, SignalBus signalBus)
         {
             _sceneLoaderService = sceneLoaderService;
-            _signalBus = signalBus;
+            _signals = new SignalSubscriptions(signalBus)
+                .Add<GameFinishedSignal>(OnGameFinished);
         }
 
-        private void OnEnable()
-        {
-            _signalBus?.Subscribe<GameFinishedSignal>(OnGameFinished);
-        }
+        private void OnEnable() => _signals?.Enable();
 
-        private void OnDisable()
-        {
-            _signalBus?.Unsubscribe<GameFinishedSignal>(OnGameFinished);
-        }
+        private void OnDisable() => _signals?.Disable();
 
         public void Show(Panels panelType)
         {

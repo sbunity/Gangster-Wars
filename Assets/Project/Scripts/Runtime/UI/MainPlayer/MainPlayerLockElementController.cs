@@ -1,6 +1,3 @@
-using SBabchuk.Runtime.Services.Contracts;
-using UnityEngine;
-using Zenject;
 using SBabchuk.Runtime.Databases.MainPlayers;
 using SBabchuk.Runtime.UI.WeaponStore;
 
@@ -9,15 +6,6 @@ namespace SBabchuk.Runtime.UI.MainPlayer
     public class MainPlayerLockElementController : LockElementControllerBase
     {
         private Personage _personage;
-        private IAssetProvider _assetProvider;
-        private IPlayerProgressService _progressService;
-
-        [Inject]
-        public void Construct(IAssetProvider assetProvider, IPlayerProgressService progressService)
-        {
-            _assetProvider = assetProvider;
-            _progressService = progressService;
-        }
 
         public override void Initialisation(int personageId)
         {

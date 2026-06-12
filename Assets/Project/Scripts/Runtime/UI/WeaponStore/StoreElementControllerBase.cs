@@ -8,7 +8,7 @@ namespace SBabchuk.Runtime.UI.WeaponStore
 {
     public abstract class StoreElementControllerBase : MonoBehaviour
     {
-        private SignalBus _signalBus;
+        private SignalSubscriptions _signals;
 
         protected IAssetProvider AssetProvider { get; private set; }
         protected IPlayerProgressService ProgressService { get; private set; }
@@ -18,18 +18,13 @@ namespace SBabchuk.Runtime.UI.WeaponStore
         {
             AssetProvider = assetProvider;
             ProgressService = progressService;
-            _signalBus = signalBus;
+            _signals = new SignalSubscriptions(signalBus)
+                .Add<ProgressUpgradedSignal>(OnProgressUpgraded);
         }
 
-        protected virtual void OnEnable()
-        {
-            _signalBus?.Subscribe<ProgressUpgradedSignal>(OnProgressUpgraded);
-        }
+        protected virtual void OnEnable() => _signals?.Enable();
 
-        protected virtual void OnDisable()
-        {
-            _signalBus?.Unsubscribe<ProgressUpgradedSignal>(OnProgressUpgraded);
-        }
+        protected virtual void OnDisable() => _signals?.Disable();
 
         protected abstract void RefreshState();
 

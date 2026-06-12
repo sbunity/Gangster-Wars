@@ -20,9 +20,9 @@ namespace SBabchuk.Runtime.UI.WeaponStore
 
         private Defense _defenceInfo;
 
-        public override void Initialisation(int _id)
+        public override void Initialisation(int id)
         {
-            Id = _id;
+            Id = id;
             var defenceStore = _assetProvider.DefenseStoreDatabase;
             _defenceInfo = defenceStore.GetDefense(Id);
 
@@ -32,17 +32,17 @@ namespace SBabchuk.Runtime.UI.WeaponStore
             if (BttnBuy)
                 BttnBuy.interactable = _progressService.CanBuy(_defenceInfo.Price);
 
-            var defenceShortInfo = _progressService.GetDefenceShortInfo(_id);
+            var defenceShortInfo = _progressService.GetDefenceShortInfo(id);
             var selectedDefenceId = _progressService.SelectedDefenceId;
 
             if (_levelUp)
                 _levelUp.SetActive(defenceShortInfo.UpgradeId < _defenceInfo.CountUpgrades - 1 || selectedDefenceId == -1);
 
             if (_changed)
-                _changed.gameObject.SetActive(selectedDefenceId == _id);
+                _changed.gameObject.SetActive(selectedDefenceId == id);
 
             if (_select)
-                _select.gameObject.SetActive(selectedDefenceId != _id);
+                _select.gameObject.SetActive(selectedDefenceId != id);
         }
 
         public override void Buy()

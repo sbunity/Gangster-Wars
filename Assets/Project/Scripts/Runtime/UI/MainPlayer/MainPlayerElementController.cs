@@ -21,24 +21,19 @@ namespace SBabchuk.Runtime.UI.MainPlayer
         private AmmunitionsController _ammunitionsController;
         private PersonageShortInfo _personageShortInfo;
         private IPlayerProgressService _progressService;
-        private SignalBus _signalBus;
+        private SignalSubscriptions _signals;
 
         [Inject]
         public void Construct(IPlayerProgressService progressService, SignalBus signalBus)
         {
             _progressService = progressService;
-            _signalBus = signalBus;
+            _signals = new SignalSubscriptions(signalBus)
+                .Add<ProgressUpgradedSignal>(OnProgressUpgraded);
         }
 
-        private void OnEnable()
-        {
-            _signalBus?.Subscribe<ProgressUpgradedSignal>(OnProgressUpgraded);
-        }
+        private void OnEnable() => _signals?.Enable();
 
-        private void OnDisable()
-        {
-            _signalBus?.Unsubscribe<ProgressUpgradedSignal>(OnProgressUpgraded);
-        }
+        private void OnDisable() => _signals?.Disable();
 
         private void OnProgressUpgraded(ProgressUpgradedSignal signal)
         {
@@ -59,10 +54,10 @@ namespace SBabchuk.Runtime.UI.MainPlayer
             ChangeLock(_personageShortInfo.IsBuy == mySwitch.On);
         }
 
-        private void ChangeLock(bool _value = false)
+        private void ChangeLock(bool value = false)
         {
-            _lockElementController.gameObject.SetActive(!_value);
-            _unlockElementController.gameObject.SetActive(_value);
+            _lockElementController.gameObject.SetActive(!value);
+            _unlockElementController.gameObject.SetActive(value);
             if (_lockElementController.gameObject.activeSelf)
             {
                 _lockElementController.Initialisation((int)_personage);

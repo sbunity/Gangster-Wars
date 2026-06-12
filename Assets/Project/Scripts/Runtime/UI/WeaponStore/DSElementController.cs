@@ -44,9 +44,9 @@ namespace SBabchuk.Runtime.UI.WeaponStore
             ChangeLock(_defenceShortInfo.IsBuy == mySwitch.On);
         }
 
-        private void ChangeLock(bool _value = false)
+        private void ChangeLock(bool value = false)
         {
-            ApplyLockState(_panel, _lockDElementController.gameObject, _unlockDElementController.gameObject, _value);
+            ApplyLockState(_panel, _lockDElementController.gameObject, _unlockDElementController.gameObject, value);
             if (_lockDElementController.gameObject.activeSelf)
                 _lockDElementController.Initialisation((int)_defence);
                 

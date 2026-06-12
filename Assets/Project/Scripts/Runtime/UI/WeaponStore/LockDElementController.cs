@@ -8,9 +8,9 @@ namespace SBabchuk.Runtime.UI.WeaponStore
     {
         private Defense defenceInfo;
 
-        public override void Initialisation(int _id)
+        public override void Initialisation(int id)
         {
-            Id = _id;
+            Id = id;
             var defenceStore = _assetProvider.DefenseStoreDatabase;
             defenceInfo = defenceStore.GetDefense(Id);
 

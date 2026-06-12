@@ -6,7 +6,7 @@ using Zenject;
 
 namespace SBabchuk.Runtime.UI.WeaponStore
 {
-    public class LockElementControllerBase : MonoBehaviour
+    public abstract class LockElementControllerBase : MonoBehaviour
     {
         protected IAssetProvider _assetProvider;
         protected IPlayerProgressService _progressService;
@@ -30,12 +30,8 @@ namespace SBabchuk.Runtime.UI.WeaponStore
         private int _id;
         public int Id { get => _id; set => _id = value; }
 
-        public virtual void Initialisation(int _id)
-        {
-        }
+        public abstract void Initialisation(int id);
 
-        public virtual void Buy()
-        {
-        }
+        public abstract void Buy();
     }
 }

@@ -39,10 +39,10 @@ namespace SBabchuk.Runtime.UI.WeaponStore
             _progressService = progressService;
         }
 
-        public void Initialisation(int _id)
+        public void Initialisation(int id)
         {
-            InitialisationUpgrade(_id);
-            InitialisationMagazine(_id);
+            InitialisationUpgrade(id);
+            InitialisationMagazine(id);
         }
 
         private void InitialisationUpgrade(int id)
