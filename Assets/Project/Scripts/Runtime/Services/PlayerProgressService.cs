@@ -82,11 +82,15 @@ namespace SBabchuk.Runtime.Services
             if (weaponShortInfo == null)
                 return;
 
+            var previousAmmoCount = weaponShortInfo.AmmoCount;
             weaponShortInfo.AmmoCount += value;
-            SaveProgress();
-            _signalBus.Fire(new WeaponAmmoChangedSignal(weapon, weaponShortInfo.AmmoCount));
+            if (weaponShortInfo.AmmoCount < 0)
+                weaponShortInfo.AmmoCount = 0;
 
-            if (weaponShortInfo.AmmoCount == 0)
+            SaveProgress();
+            FireWeaponAmmoChanged(weapon, weaponShortInfo.AmmoCount);
+
+            if (HasWeaponAvailabilityChanged(previousAmmoCount, weaponShortInfo.AmmoCount))
                 FireProgressChanged();
         }
 
@@ -116,6 +120,7 @@ namespace SBabchuk.Runtime.Services
             else
                 SaveProgress();
 
+            FireWeaponAmmoChanged((WeaponsName)id, weaponShortInfo.AmmoCount);
             FireProgressChanged();
         }
 
@@ -245,6 +250,12 @@ namespace SBabchuk.Runtime.Services
 
         private void SaveProgress() 
             => _saveService.SaveAsync(Preferences).Forget();
+
+        private void FireWeaponAmmoChanged(WeaponsName weapon, int count)
+            => _signalBus.Fire(new WeaponAmmoChangedSignal(weapon, count));
+
+        private static bool HasWeaponAvailabilityChanged(int previousAmmoCount, int currentAmmoCount)
+            => (previousAmmoCount <= 0) != (currentAmmoCount <= 0);
 
         private void FireProgressChanged() 
             => _signalBus.Fire<ProgressUpgradedSignal>();

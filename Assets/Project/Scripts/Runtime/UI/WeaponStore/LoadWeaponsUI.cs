@@ -20,12 +20,15 @@ namespace SBabchuk.Runtime.UI.WeaponStore
             RebuildList(_rect, _elements, _offset, element =>
             {
                 var shortInfo = ProgressService.GetWeaponShortInfo((int)element.Type);
-                if (shortInfo.AmmoCount <= 0)
+                if (shortInfo == null || !IsWeaponAvailable(element, shortInfo.AmmoCount))
                     return false;
 
                 element.Initialized(shortInfo.AmmoCount);
                 return true;
             });
         }
+
+        private static bool IsWeaponAvailable(LoadWeaponUIInfo element, int ammoCount)
+            => element.Type == WeaponsName.Weapon_1 || ammoCount > 0;
     }
 }
