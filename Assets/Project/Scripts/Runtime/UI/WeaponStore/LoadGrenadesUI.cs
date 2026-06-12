@@ -19,10 +19,13 @@ namespace SBabchuk.Runtime.UI.WeaponStore
             RebuildList(_rect, _elements, ElementOffset, element =>
             {
                 var shortInfo = ProgressService.GetGrenadeShortInfo((int)element.Type);
-                if (shortInfo.Count <= 0)
+                if (shortInfo == null || shortInfo.Count <= 0)
                     return false;
 
                 var grenade = AssetProvider.BombStoreDatabase.GetGrenade((int)element.Type);
+                if (grenade == null)
+                    return false;
+
                 element.Initialized(grenade.Icon, shortInfo.Count);
                 return true;
             });

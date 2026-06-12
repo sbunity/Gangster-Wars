@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using Cysharp.Threading.Tasks;
 using SBabchuk.Runtime.Architecture;
 using SBabchuk.Runtime.Services.Contracts;
@@ -25,7 +26,7 @@ namespace SBabchuk.Runtime.Services
 
         public void Initialize()
         {
-            if (!NormalizeGrenadeInventory())
+            if (!EnsureProgressData())
                 return;
 
             SaveProgress();
@@ -289,6 +290,157 @@ namespace SBabchuk.Runtime.Services
         private void SaveProgress() 
             => _saveService.SaveAsync(Preferences).Forget();
 
+        private bool EnsureProgressData()
+        {
+            var changed = false;
+            changed |= EnsureProgressLists();
+            changed |= EnsureWeaponProgress();
+            changed |= EnsureGrenadeProgress();
+            changed |= EnsureDefenceProgress();
+            changed |= EnsurePersonageProgress();
+            changed |= EnsureLevelProgress();
+            changed |= NormalizeGrenadeInventory();
+            return changed;
+        }
+
+        private bool EnsureProgressLists()
+        {
+            var changed = false;
+
+            if (PlayerPrefs.Weapons == null)
+            {
+                PlayerPrefs.Weapons = new List<WeaponShortInfo>();
+                changed = true;
+            }
+
+            if (PlayerPrefs.Grenades == null)
+            {
+                PlayerPrefs.Grenades = new List<GrenadeShortInfo>();
+                changed = true;
+            }
+
+            if (PlayerPrefs.Defences == null)
+            {
+                PlayerPrefs.Defences = new List<DefenceShortInfo>();
+                changed = true;
+            }
+
+            if (PlayerPrefs.Personages == null)
+            {
+                PlayerPrefs.Personages = new List<PersonageShortInfo>();
+                changed = true;
+            }
+
+            if (PlayerPrefs.Levels == null)
+            {
+                PlayerPrefs.Levels = new List<LevelShortInfo>();
+                changed = true;
+            }
+
+            changed |= RemoveNullEntries(PlayerPrefs.Weapons);
+            changed |= RemoveNullEntries(PlayerPrefs.Grenades);
+            changed |= RemoveNullEntries(PlayerPrefs.Defences);
+            changed |= RemoveNullEntries(PlayerPrefs.Personages);
+            changed |= RemoveNullEntries(PlayerPrefs.Levels);
+
+            return changed;
+        }
+
+        private bool EnsureWeaponProgress()
+        {
+            var weapons = _assetProvider.WeaponStoreDatabase.Weapons;
+            if (weapons == null)
+                return false;
+
+            var changed = false;
+            foreach (var weapon in weapons)
+            {
+                if (weapon != null && PlayerPrefs.GetWeaponShortInfo(weapon.Id) == null)
+                {
+                    PlayerPrefs.Weapons.Add(new WeaponShortInfo(weapon));
+                    changed = true;
+                }
+            }
+
+            return changed;
+        }
+
+        private bool EnsureGrenadeProgress()
+        {
+            var grenades = _assetProvider.BombStoreDatabase.Grenades;
+            if (grenades == null)
+                return false;
+
+            var changed = false;
+            foreach (var grenade in grenades)
+            {
+                if (grenade != null && PlayerPrefs.GetGrenadeShortInfo(grenade.Id) == null)
+                {
+                    PlayerPrefs.Grenades.Add(new GrenadeShortInfo(grenade));
+                    changed = true;
+                }
+            }
+
+            return changed;
+        }
+
+        private bool EnsureDefenceProgress()
+        {
+            var defences = _assetProvider.DefenseStoreDatabase.Defenses;
+            if (defences == null)
+                return false;
+
+            var changed = false;
+            foreach (var defence in defences)
+            {
+                if (defence != null && PlayerPrefs.GetDefenceShortInfo(defence.Id) == null)
+                {
+                    PlayerPrefs.Defences.Add(new DefenceShortInfo(defence));
+                    changed = true;
+                }
+            }
+
+            return changed;
+        }
+
+        private bool EnsurePersonageProgress()
+        {
+            var personages = _assetProvider.MainPlayerDatabase.Personages;
+            if (personages == null)
+                return false;
+
+            var changed = false;
+            foreach (var personage in personages)
+            {
+                if (personage != null && PlayerPrefs.GetPersonageShortInfo(personage.Id) == null)
+                {
+                    PlayerPrefs.Personages.Add(new PersonageShortInfo(personage));
+                    changed = true;
+                }
+            }
+
+            return changed;
+        }
+
+        private bool EnsureLevelProgress()
+        {
+            var levels = _assetProvider.LevelDatabase.Levels;
+            if (levels == null)
+                return false;
+
+            var changed = false;
+            foreach (var level in levels)
+            {
+                if (level != null && PlayerPrefs.GetLevelShortInfo(level.Id) == null)
+                {
+                    PlayerPrefs.Levels.Add(new LevelShortInfo(level));
+                    changed = true;
+                }
+            }
+
+            return changed;
+        }
+
         private bool NormalizeGrenadeInventory()
         {
             var grenades = PlayerPrefs?.Grenades;
@@ -300,6 +452,15 @@ namespace SBabchuk.Runtime.Services
                 hasChanges |= NormalizeGrenadeCount(grenade);
 
             return hasChanges;
+        }
+
+        private bool RemoveNullEntries<T>(List<T> entries) where T : class
+        {
+            if (entries == null)
+                return false;
+
+            var removedCount = entries.RemoveAll(entry => entry == null);
+            return removedCount > 0;
         }
 
         private bool NormalizeGrenadeCount(GrenadeShortInfo grenadeShortInfo)

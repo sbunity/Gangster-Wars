@@ -1,5 +1,4 @@
 using DG.Tweening;
-using SBabchuk.Runtime.Architecture;
 using SBabchuk.Runtime.Gameplay.Grenades;
 using SBabchuk.Runtime.Services.Contracts;
 using UnityEngine;
@@ -22,15 +21,13 @@ namespace SBabchuk.Runtime.Gameplay.Grenades
         private Tween _timerTween;
         private IAssetProvider _assetProvider;
         private IGameFactory _gameFactory;
-        private SignalBus _signalBus;
         private GrenadeView _view;
 
         [Inject]
-        public void Construct(IAssetProvider assetProvider, IGameFactory gameFactory, SignalBus signalBus)
+        public void Construct(IAssetProvider assetProvider, IGameFactory gameFactory)
         {
             _assetProvider = assetProvider;
             _gameFactory = gameFactory;
-            _signalBus = signalBus;
         }
 
         private void Awake()
@@ -95,7 +92,6 @@ namespace SBabchuk.Runtime.Gameplay.Grenades
 
         public void Pop()
         {
-            _signalBus.Fire(new GrenadeDamageSignal(transform.position, _properties.Damage, _properties.Radius));
             transform.SetParent(_parent);
             _collisionCollider.isTrigger = false;
             this.gameObject.SetActive(false);

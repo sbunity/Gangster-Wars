@@ -111,9 +111,12 @@ namespace SBabchuk.Runtime.Databases.PlayerPrefs
 
         public WeaponShortInfo GetWeaponShortInfo(int id)
         {
+            if (_weapons == null)
+                return null;
+
             foreach (var weapon in _weapons)
             {
-                if (weapon.Id == id)
+                if (weapon != null && weapon.Id == id)
                     return weapon;
             }
 
@@ -122,9 +125,12 @@ namespace SBabchuk.Runtime.Databases.PlayerPrefs
 
         public GrenadeShortInfo GetGrenadeShortInfo(int id)
         {
+            if (_grenades == null)
+                return null;
+
             foreach (var grenade in _grenades)
             {
-                if (grenade.Id == id)
+                if (grenade != null && grenade.Id == id)
                     return grenade;
             }
 
@@ -133,9 +139,12 @@ namespace SBabchuk.Runtime.Databases.PlayerPrefs
 
         public DefenceShortInfo GetDefenceShortInfo(int id)
         {
+            if (_defences == null)
+                return null;
+
             foreach (var defence in _defences)
             {
-                if (defence.Id == id)
+                if (defence != null && defence.Id == id)
                     return defence;
             }
 
@@ -144,9 +153,12 @@ namespace SBabchuk.Runtime.Databases.PlayerPrefs
 
         public PersonageShortInfo GetPersonageShortInfo(int id)
         {
+            if (_personages == null)
+                return null;
+
             foreach (var personage in _personages)
             {
-                if (personage.Id == id)
+                if (personage != null && personage.Id == id)
                     return personage;
             }
 
@@ -155,9 +167,12 @@ namespace SBabchuk.Runtime.Databases.PlayerPrefs
 
         public LevelShortInfo GetLevelShortInfo(int id)
         {
+            if (_levels == null)
+                return null;
+
             foreach (var info in _levels)
             {
-                if (info.Id == id)
+                if (info != null && info.Id == id)
                     return info;
             }
 

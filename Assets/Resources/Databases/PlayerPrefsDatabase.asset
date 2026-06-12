@@ -15,7 +15,7 @@ MonoBehaviour:
   _playerPrefs:
     _music: 0
     _sound: 0
-    _coin: 3000
+    _coin: 2000
     _levelId: 0
     _selectedWeaponId: 0
     _selectedGrenadeId: 0
@@ -46,19 +46,7 @@ MonoBehaviour:
       _isBuy: 1
       _upgradeId: -1
       _ammoCount: 0
-    _grenades:
-    - _id: 0
-      _isBuy: 1
-      _count: 0
-    - _id: 1
-      _isBuy: 1
-      _count: 0
-    - _id: 2
-      _isBuy: 1
-      _count: 0
-    - _id: 3
-      _isBuy: 1
-      _count: 0
+    _grenades: []
     _defences:
     - _id: 0
       _isBuy: 0
@@ -79,28 +67,4 @@ MonoBehaviour:
     - _id: 1
       _isBuy: 1
       _upgradeId: 0
-    _levels:
-    - _id: 0
-      _isCompleted: 0
-      _stars: 3
-    - _id: 1
-      _isCompleted: 1
-      _stars: 0
-    - _id: 2
-      _isCompleted: 1
-      _stars: 0
-    - _id: 3
-      _isCompleted: 1
-      _stars: 0
-    - _id: 4
-      _isCompleted: 1
-      _stars: 0
-    - _id: 5
-      _isCompleted: 1
-      _stars: 0
-    - _id: 6
-      _isCompleted: 1
-      _stars: 0
-    - _id: 7
-      _isCompleted: 1
-      _stars: 0
+    _levels: []
