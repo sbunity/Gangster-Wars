@@ -37,9 +37,7 @@ namespace SBabchuk.Runtime.Gameplay.Enemies
             }
             else if (other.CompareTag("Grenade") && !_controller.IsCollided)
             {
-                var grenade = other.GetComponent<GrenadeController>();
-                if (grenade != null && grenade.Properties != null && (GrenadesName)grenade.Properties.Id == GrenadesName.Grenade_3)
-                    grenade.Action(0);
+                other.GetComponent<GrenadeController>()?.NotifyContact();
             }
         }
     }

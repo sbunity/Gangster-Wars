@@ -69,8 +69,18 @@ namespace SBabchuk.Runtime.Gameplay.Grenades
             }
 
             _collisionCollider.isTrigger = false;
-            Action(_properties.Delay);
+            if (_properties.TriggerType != GrenadeTriggerType.Contact)
+                Action(_properties.Delay);
             return true;
+        }
+
+        // Detonation request raised when an enemy steps on / touches the grenade.
+        // Only grenades whose policy includes contact (mines and contact-fused grenades)
+        // react; purely timed grenades ignore it.
+        public void NotifyContact()
+        {
+            if (_properties != null && _properties.TriggerType != GrenadeTriggerType.Timed)
+                Action(0);
         }
 
         public void Action(float delay)

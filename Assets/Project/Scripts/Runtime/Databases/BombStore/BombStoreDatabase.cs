@@ -70,6 +70,10 @@ namespace SBabchuk.Runtime.Databases.BombStore
         private CollisionsName _collision;
         public CollisionsName Collision { get => _collision; set => _collision = value; }
 
+        [SerializeField]
+        private GrenadeTriggerType _triggerType;
+        public GrenadeTriggerType TriggerType { get => _triggerType; set => _triggerType = value; }
+
         public Grenade(int _id)
         {
             this._id = _id;

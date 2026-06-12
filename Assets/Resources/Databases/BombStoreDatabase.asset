@@ -22,6 +22,7 @@ MonoBehaviour:
     time: 0
     radius: 2.2
     collision: 4
+    _triggerType: 0
   - id: 1
     name: Grenade_2
     ico: {fileID: 21300000, guid: 7c4ef542666421d4b831229fd7eebb14, type: 3}
@@ -31,6 +32,7 @@ MonoBehaviour:
     time: 0
     radius: 3
     collision: 3
+    _triggerType: 0
   - id: 2
     name: Grenade_3
     ico: {fileID: 21300000, guid: af03ae9984a066941ba4886369c4656c, type: 3}
@@ -40,6 +42,7 @@ MonoBehaviour:
     time: 4.2
     radius: 3.2
     collision: 1
+    _triggerType: 1
   - id: 3
     name: Grenade_4
     ico: {fileID: 21300000, guid: 2c8107853715e094cbd00a185d06babb, type: 3}
@@ -49,3 +52,4 @@ MonoBehaviour:
     time: 0
     radius: 3.5
     collision: 2
+    _triggerType: 2

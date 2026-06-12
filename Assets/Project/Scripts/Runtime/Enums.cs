@@ -22,6 +22,15 @@ namespace SBabchuk.Runtime
         Grenade_4 = 3,
     }
 
+    // Detonation policy of a grenade. Drives whether it arms a delay timer, detonates on
+    // enemy contact, or both. Contact-only grenades act as proximity mines.
+    public enum GrenadeTriggerType
+    {
+        Timed = 0,           // only the delay timer (default)
+        TimedAndContact = 1, // delay timer and detonation on enemy contact
+        Contact = 2,         // no timer, detonates only on enemy contact (mine)
+    }
+
     public enum CollisionsName
     {
         None = -1,

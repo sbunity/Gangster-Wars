@@ -121,6 +121,7 @@ namespace SBabchuk.Runtime.Databases.BombStore
                     _record.Radius = EditorGUILayout.Slider("Радіус дії: ", _record.Radius, 0, 10);
                     Utils.ChangeColor(defaultColor);
                     _record.Collision = ((CollisionsName)EditorGUILayout.EnumPopup("Партікл зриву", (CollisionsName)_record.Collision));
+                    _record.TriggerType = ((GrenadeTriggerType)EditorGUILayout.EnumPopup("Тип спрацювання", _record.TriggerType));
                 }
 
                 GUILayout.EndVertical();
