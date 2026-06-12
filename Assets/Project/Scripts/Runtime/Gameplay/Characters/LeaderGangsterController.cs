@@ -39,6 +39,7 @@ namespace SBabchuk.Runtime.Gameplay.Characters
         private WeaponsName _weaponsName;
         private int _index;
         private readonly Dictionary<int, int> _inGunCount = new();
+        private readonly LeaderShotGate _shotGate = new();
         private SignalBus _signalBus;
 
         [Inject]
@@ -93,6 +94,9 @@ namespace SBabchuk.Runtime.Gameplay.Characters
 
         public override void SpawnBullet()
         {
+            if (_countPatrons <= 0 || !_shotGate.TryConsumeShot(out var shouldFinishAfterShot))
+                return;
+
             _characterWeapon.Fire(_weapon.BulletId, _properties.Damage, _createBulletPointList[_index].GetPosition(), default(Vector3), 0);
             _index = _index + 1 < _createBulletPointList.Count ? _index + 1 : 0;
 
@@ -100,16 +104,22 @@ namespace SBabchuk.Runtime.Gameplay.Characters
                 _progressService.SetWeaponAmmo(_weaponsName, -1);
 
             UpdatePatrons(-1);
+
+            if (shouldFinishAfterShot)
+                FinishShooting();
         }
 
         public override void Attack()
         {
-            if (_countPatrons <= 0)
+            if (_countPatrons <= 0 || _isAttacking)
                 return;
 
+            _shotGate.Press();
             _isAttacking = true;
             _reloadTween?.Kill();
-            Animation.SetAnimation(AnimationsName.Shoot);
+
+            if (Animation.GetCurrentAnimation() != AnimationsName.Shoot)
+                Animation.SetAnimation(AnimationsName.Shoot);
         }
 
         public void Reload()
@@ -151,10 +161,22 @@ namespace SBabchuk.Runtime.Gameplay.Characters
         public void StopAttack()
         {
             _isAttacking = false;
+
+            if (_shotGate.Release())
+                FinishShooting();
+        }
+
+        public void CancelAttack()
+        {
+            _isAttacking = false;
+
+            if (_shotGate.Cancel() || Animation.GetCurrentAnimation() == AnimationsName.Shoot)
+                FinishShooting();
         }
 
         public void StopShootingFinished()
         {
+            _shotGate.Cancel();
             _index = 0;
             Reload();
         }
@@ -174,6 +196,14 @@ namespace SBabchuk.Runtime.Gameplay.Characters
             _signalBus.Fire(new LeaderPatronsChangedSignal(_countPatrons));
             if (_countPatrons == 0)
                 StopAttack();
+        }
+
+        private void FinishShooting()
+        {
+            if (Animation.GetCurrentAnimation() == AnimationsName.Shoot)
+                Animation.SetAnimation(AnimationsName.Idle);
+
+            StopShootingFinished();
         }
     }
 }

@@ -8,6 +8,7 @@ namespace SBabchuk.Runtime.Services.Contracts
 
         void Attack();
         void StopAttack();
+        void CancelAttack();
         Vector3 GetAimOrigin();
     }
 }

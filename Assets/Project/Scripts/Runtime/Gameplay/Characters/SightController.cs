@@ -63,7 +63,7 @@ namespace SBabchuk.Runtime.Gameplay.Characters
 
             if (!canShoot && _leaderWeaponController != null)
             {
-                _leaderWeaponController.StopAttack();
+                _leaderWeaponController.CancelAttack();
             }
             else if (canShoot && _isTouchingFireArea && _leaderWeaponController != null && !_leaderWeaponController.IsAttacking)
             {
@@ -99,7 +99,7 @@ namespace SBabchuk.Runtime.Gameplay.Characters
                     }
                     else
                     {
-                        _leaderWeaponController?.StopAttack();
+                        _leaderWeaponController?.CancelAttack();
                     }
                 }
             }
@@ -162,7 +162,7 @@ namespace SBabchuk.Runtime.Gameplay.Characters
         private void HoldAimForward()
         {
             _isTouchingFireArea = false;
-            _leaderWeaponController?.StopAttack();
+            _leaderWeaponController?.CancelAttack();
 
             UpdateAimPosition(GetForwardSectorOrigin() + Vector3.right * minAimDistance);
         }
