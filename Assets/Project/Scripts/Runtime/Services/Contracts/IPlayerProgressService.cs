@@ -1,3 +1,4 @@
+using SBabchuk.Runtime.Databases.PlayerPrefs;
 namespace SBabchuk.Runtime.Services.Contracts
 {
     public interface IPlayerProgressService

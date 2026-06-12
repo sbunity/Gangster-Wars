@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using Zenject;
 
-namespace SBabchuk
+namespace SBabchuk.Runtime.UI
 {
     public class CoinInfo : MonoBehaviour
     {

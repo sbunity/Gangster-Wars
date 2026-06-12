@@ -1,6 +1,7 @@
 using SBabchuk.Runtime.Services.Contracts;
 using UnityEngine;
 using Zenject;
+using SBabchuk.Runtime.Databases.Enemies;
 
 namespace SBabchuk.Runtime.Gameplay.Enemies
 {

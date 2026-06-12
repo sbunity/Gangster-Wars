@@ -4,6 +4,14 @@ using Cysharp.Threading.Tasks;
 using SBabchuk.Runtime.Services.Contracts;
 using UnityEngine;
 using Zenject;
+using SBabchuk.Runtime.Databases.BombStore;
+using SBabchuk.Runtime.Databases.Bullets;
+using SBabchuk.Runtime.Databases.DefenseStore;
+using SBabchuk.Runtime.Databases.Enemies;
+using SBabchuk.Runtime.Databases.Levels;
+using SBabchuk.Runtime.Databases.MainPlayers;
+using SBabchuk.Runtime.Databases.PlayerPrefs;
+using SBabchuk.Runtime.Databases.WeaponStore;
 
 namespace SBabchuk.Runtime.Services
 {

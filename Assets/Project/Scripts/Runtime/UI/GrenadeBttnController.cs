@@ -4,7 +4,7 @@ using SBabchuk.Runtime.Services.Contracts;
 using Zenject;
 using UnityEngine.Serialization;
 
-namespace SBabchuk
+namespace SBabchuk.Runtime.UI
 {
     public class GrenadeBttnController : MonoBehaviour
     {

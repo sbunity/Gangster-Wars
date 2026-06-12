@@ -4,8 +4,12 @@ using SBabchuk.Runtime.Gameplay.Enemies;
 using SBabchuk.Runtime.Services.Contracts;
 using Zenject;
 using UnityEngine.Serialization;
+using SBabchuk.Runtime.Databases.Enemies;
+using SBabchuk.Runtime.Databases.Levels;
+using SBabchuk.Runtime.Gameplay.Barricades;
+using SBabchuk.Runtime.Gameplay.Collisions;
 
-namespace SBabchuk
+namespace SBabchuk.Runtime.Gameplay.Enemies
 {
     [RequireComponent(typeof(EnemyView))]
     [RequireComponent(typeof(EnemyHealth))]

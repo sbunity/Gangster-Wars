@@ -5,7 +5,7 @@ using UnityEngine;
 using Zenject;
 using UnityEngine.Serialization;
 
-namespace SBabchuk
+namespace SBabchuk.Runtime.Gameplay.Characters
 {
     public class AssetDataController : MonoBehaviour
     {

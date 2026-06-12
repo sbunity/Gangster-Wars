@@ -5,7 +5,7 @@ using Spine.Unity;
 using Spine;
 using UnityEngine.Serialization;
 
-namespace SBabchuk
+namespace SBabchuk.Runtime.Gameplay.Enemies
 {
     public class EnemyAnimationControllerBase : MonoBehaviour
     {

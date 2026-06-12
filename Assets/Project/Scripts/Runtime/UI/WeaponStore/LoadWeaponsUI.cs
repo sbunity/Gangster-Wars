@@ -4,8 +4,9 @@ using SBabchuk.Runtime.Services.Contracts;
 using UnityEngine;
 using Zenject;
 using UnityEngine.Serialization;
+using SBabchuk.Runtime.Databases.WeaponStore;
 
-namespace SBabchuk
+namespace SBabchuk.Runtime.UI.WeaponStore
 {
     public class LoadWeaponsUI : MonoBehaviour
     {

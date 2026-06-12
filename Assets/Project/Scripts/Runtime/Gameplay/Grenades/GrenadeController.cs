@@ -5,8 +5,9 @@ using SBabchuk.Runtime.Services.Contracts;
 using UnityEngine;
 using Zenject;
 using UnityEngine.Serialization;
+using SBabchuk.Runtime.Databases.BombStore;
 
-namespace SBabchuk
+namespace SBabchuk.Runtime.Gameplay.Grenades
 {
     public class GrenadeController : MonoBehaviour
     {

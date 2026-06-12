@@ -5,8 +5,9 @@ using SBabchuk.Runtime.Services.Contracts;
 using UnityEngine;
 using Zenject;
 using UnityEngine.Serialization;
+using SBabchuk.Runtime.Databases.WeaponStore;
 
-namespace SBabchuk
+namespace SBabchuk.Runtime.Gameplay.Bonuses
 {
     public class BonusController : MonoBehaviour
     {

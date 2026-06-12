@@ -1,4 +1,5 @@
 using UnityEngine;
+using SBabchuk.Runtime.Gameplay.Enemies;
 
 namespace SBabchuk.Runtime.Gameplay.Characters
 {

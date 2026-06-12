@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace SBabchuk
+namespace SBabchuk.Runtime.Gameplay.Enemies
 {
     public sealed class EnemySpawnPointScreenEdge : MonoBehaviour
     {

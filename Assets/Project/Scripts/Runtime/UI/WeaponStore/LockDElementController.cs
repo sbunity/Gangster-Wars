@@ -1,7 +1,8 @@
 using SBabchuk.Runtime.Services.Contracts;
 using Zenject;
+using SBabchuk.Runtime.Databases.DefenseStore;
 
-namespace SBabchuk
+namespace SBabchuk.Runtime.UI.WeaponStore
 {
     public class LockDElementController : LockElementControllerBase
     {

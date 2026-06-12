@@ -1,4 +1,6 @@
 using SBabchuk.Runtime.Services.Contracts;
+using SBabchuk.Runtime.Gameplay.Barricades;
+using SBabchuk.Runtime.Gameplay.Enemies;
 
 namespace SBabchuk.Runtime.Services
 {

@@ -4,8 +4,9 @@ using SBabchuk.Runtime.Gameplay.Characters;
 using SBabchuk.Runtime.Services.Contracts;
 using Zenject;
 using UnityEngine.Serialization;
+using SBabchuk.Runtime.Gameplay.Enemies;
 
-namespace SBabchuk
+namespace SBabchuk.Runtime.Gameplay.Characters
 {
     public class GangsterControllerBase : MonoBehaviour
     {

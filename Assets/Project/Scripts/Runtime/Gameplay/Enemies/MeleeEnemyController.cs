@@ -1,4 +1,4 @@
-namespace SBabchuk
+namespace SBabchuk.Runtime.Gameplay.Enemies
 {
     public class MeleeEnemyController : EnemyControllerBase
     {

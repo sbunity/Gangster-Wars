@@ -14,7 +14,7 @@ namespace SBabchuk.Runtime.Services
             _sceneLoader = sceneLoader;
         }
 
-        public UniTask LoadAsync(SBabchuk.Scene scene, LoadSceneMode mode = LoadSceneMode.Single) 
+        public UniTask LoadAsync(SBabchuk.Runtime.Scene scene, LoadSceneMode mode = LoadSceneMode.Single) 
             => LoadAsync(scene.ToString(), mode);
 
         public async UniTask LoadAsync(string sceneName, LoadSceneMode mode = LoadSceneMode.Single)

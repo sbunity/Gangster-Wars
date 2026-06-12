@@ -3,7 +3,7 @@ using UnityEngine.UI;
 using SBabchuk.Runtime.Services.Contracts;
 using Zenject;
 
-namespace SBabchuk
+namespace SBabchuk.Runtime.UI
 {
     public class SettingsPopupController : MonoBehaviour
     {

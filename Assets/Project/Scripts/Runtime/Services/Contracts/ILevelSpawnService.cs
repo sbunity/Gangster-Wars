@@ -1,4 +1,6 @@
 using UnityEngine;
+using SBabchuk.Runtime.Databases.BombStore;
+using SBabchuk.Runtime.Databases.Bullets;
 
 namespace SBabchuk.Runtime.Services.Contracts
 {

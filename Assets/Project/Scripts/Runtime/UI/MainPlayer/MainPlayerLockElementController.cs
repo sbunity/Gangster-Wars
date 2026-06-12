@@ -1,8 +1,10 @@
 using SBabchuk.Runtime.Services.Contracts;
 using UnityEngine;
 using Zenject;
+using SBabchuk.Runtime.Databases.MainPlayers;
+using SBabchuk.Runtime.UI.WeaponStore;
 
-namespace SBabchuk
+namespace SBabchuk.Runtime.UI.MainPlayer
 {
     public class MainPlayerLockElementController : LockElementControllerBase
     {

@@ -5,8 +5,9 @@ using UnityEngine;
 using UnityEngine.UI;
 using Zenject;
 using UnityEngine.Serialization;
+using SBabchuk.Runtime.Databases.MainPlayers;
 
-namespace SBabchuk
+namespace SBabchuk.Runtime.UI.MainPlayer
 {
     public class MainPlayerUnlockElementController : MonoBehaviour
     {

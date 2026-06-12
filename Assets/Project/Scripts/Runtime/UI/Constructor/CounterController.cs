@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Serialization;
 
-namespace SBabchuk
+namespace SBabchuk.Runtime.UI.Constructor
 {
     public class CounterController : MonoBehaviour
     {

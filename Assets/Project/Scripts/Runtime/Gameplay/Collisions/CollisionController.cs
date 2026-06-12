@@ -8,7 +8,7 @@ using SBabchuk.Runtime.Architecture;
 using Zenject;
 using UnityEngine.Serialization;
 
-namespace SBabchuk
+namespace SBabchuk.Runtime.Gameplay.Collisions
 {
     public class CollisionController : MonoBehaviour
     {

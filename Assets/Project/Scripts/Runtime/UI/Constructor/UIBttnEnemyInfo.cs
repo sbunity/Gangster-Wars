@@ -1,12 +1,13 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using SBabchuk.Runtime.Services.Contracts;
 using UnityEngine;
 using UnityEngine.UI;
 using Zenject;
 using UnityEngine.Serialization;
+using SBabchuk.Runtime.Databases.Enemies;
 
-namespace SBabchuk
+namespace SBabchuk.Runtime.UI.Constructor
 {
     public class UIBttnEnemyInfo : MonoBehaviour
     {

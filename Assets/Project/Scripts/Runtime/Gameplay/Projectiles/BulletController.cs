@@ -5,7 +5,7 @@ using Spine.Unity;
 using Spine;
 using DG.Tweening;
 
-namespace SBabchuk
+namespace SBabchuk.Runtime.Gameplay.Projectiles
 {
     public class BulletController : BaseBulletController
     {

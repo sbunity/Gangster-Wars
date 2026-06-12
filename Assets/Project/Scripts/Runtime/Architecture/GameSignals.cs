@@ -1,4 +1,7 @@
 using UnityEngine;
+using SBabchuk.Runtime.Databases.WeaponStore;
+using SBabchuk.Runtime.Gameplay.Bonuses;
+using SBabchuk.Runtime.UI;
 
 namespace SBabchuk.Runtime.Architecture
 {

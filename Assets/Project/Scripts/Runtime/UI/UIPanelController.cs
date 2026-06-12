@@ -3,91 +3,94 @@ using UnityEngine;
 using Zenject;
 using UnityEngine.Serialization;
 
-public class UIPanelController : MonoBehaviour
+namespace SBabchuk.Runtime.UI
 {
-    [SerializeField, FormerlySerializedAs("parentPanel")]
-    private UIPanelController _parentPanel;
-    public UIPanelController ParentPanel { get => _parentPanel; set => _parentPanel = value; }
-
-    [SerializeField, FormerlySerializedAs("hideIfShowChild")]
-    private bool _hideIfShowChild;
-    public bool HideIfShowChild { get => _hideIfShowChild; set => _hideIfShowChild = value; }
-
-    [SerializeField, FormerlySerializedAs("panel")]
-    private GameObject _panel;
-
-    private int _instanceID;
-    public int InstanceID { get => _instanceID; set => _instanceID = value; }
-
-    private SignalBus _signalBus;
-    private bool _isSubscribed;
-
-    [Inject]
-    public void Construct(SignalBus signalBus)
+    public class UIPanelController : MonoBehaviour
     {
-        _signalBus = signalBus;
-        Subscribe();
-    }
+        [SerializeField, FormerlySerializedAs("parentPanel")]
+        private UIPanelController _parentPanel;
+        public UIPanelController ParentPanel { get => _parentPanel; set => _parentPanel = value; }
 
-    private void OnEnable()
-    {
-        Subscribe();
-    }
+        [SerializeField, FormerlySerializedAs("hideIfShowChild")]
+        private bool _hideIfShowChild;
+        public bool HideIfShowChild { get => _hideIfShowChild; set => _hideIfShowChild = value; }
 
-    private void OnDisable()
-    {
-        Unsubscribe();
-    }
+        [SerializeField, FormerlySerializedAs("panel")]
+        private GameObject _panel;
 
-    private void Awake()
-    {
-        InstanceID = gameObject.GetInstanceID();
-    }
+        private int _instanceID;
+        public int InstanceID { get => _instanceID; set => _instanceID = value; }
 
-    public void Show(UIPanelController targetPanel)
-    {
-        _signalBus.Fire(new UIPanelReplaceSignal(targetPanel));
-        if (targetPanel.InstanceID != InstanceID)
-            return;
+        private SignalBus _signalBus;
+        private bool _isSubscribed;
 
-        _panel.SetActive(true);
-    }
+        [Inject]
+        public void Construct(SignalBus signalBus)
+        {
+            _signalBus = signalBus;
+            Subscribe();
+        }
 
-    public void Hide(UIPanelController targetPanel)
-    {
-        if (targetPanel.InstanceID != InstanceID)
-            return;
+        private void OnEnable()
+        {
+            Subscribe();
+        }
 
-        _panel.SetActive(false);
-    }
+        private void OnDisable()
+        {
+            Unsubscribe();
+        }
 
-    private void Replace(UIPanelReplaceSignal signal)
-    {
-        var targetPanel = signal.Panel;
-        if (targetPanel.InstanceID == InstanceID)
-            return;
+        private void Awake()
+        {
+            InstanceID = gameObject.GetInstanceID();
+        }
 
-        if (targetPanel.ParentPanel && InstanceID == targetPanel.ParentPanel.InstanceID && !targetPanel.ParentPanel.HideIfShowChild)
-            return;
+        public void Show(UIPanelController targetPanel)
+        {
+            _signalBus.Fire(new UIPanelReplaceSignal(targetPanel));
+            if (targetPanel.InstanceID != InstanceID)
+                return;
 
-        _panel.SetActive(false);
-    }
+            _panel.SetActive(true);
+        }
 
-    private void Subscribe()
-    {
-        if (_isSubscribed || _signalBus == null)
-            return;
+        public void Hide(UIPanelController targetPanel)
+        {
+            if (targetPanel.InstanceID != InstanceID)
+                return;
 
-        _signalBus.Subscribe<UIPanelReplaceSignal>(Replace);
-        _isSubscribed = true;
-    }
+            _panel.SetActive(false);
+        }
 
-    private void Unsubscribe()
-    {
-        if (!_isSubscribed || _signalBus == null)
-            return;
+        private void Replace(UIPanelReplaceSignal signal)
+        {
+            var targetPanel = signal.Panel;
+            if (targetPanel.InstanceID == InstanceID)
+                return;
+
+            if (targetPanel.ParentPanel && InstanceID == targetPanel.ParentPanel.InstanceID && !targetPanel.ParentPanel.HideIfShowChild)
+                return;
+
+            _panel.SetActive(false);
+        }
+
+        private void Subscribe()
+        {
+            if (_isSubscribed || _signalBus == null)
+                return;
+
+            _signalBus.Subscribe<UIPanelReplaceSignal>(Replace);
+            _isSubscribed = true;
+        }
+
+        private void Unsubscribe()
+        {
+            if (!_isSubscribed || _signalBus == null)
+                return;
             
-        _signalBus.Unsubscribe<UIPanelReplaceSignal>(Replace);
-        _isSubscribed = false;
+            _signalBus.Unsubscribe<UIPanelReplaceSignal>(Replace);
+            _isSubscribed = false;
+        }
     }
 }

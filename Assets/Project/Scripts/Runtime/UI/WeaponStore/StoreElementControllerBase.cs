@@ -2,8 +2,9 @@ using SBabchuk.Runtime.Architecture;
 using SBabchuk.Runtime.Services.Contracts;
 using UnityEngine;
 using Zenject;
+using SBabchuk.Runtime.Services;
 
-namespace SBabchuk
+namespace SBabchuk.Runtime.UI.WeaponStore
 {
     public abstract class StoreElementControllerBase : MonoBehaviour
     {

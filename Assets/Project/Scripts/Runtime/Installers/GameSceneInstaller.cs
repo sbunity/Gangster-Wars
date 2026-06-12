@@ -4,6 +4,10 @@ using SBabchuk.Runtime.Services;
 using SBabchuk.Runtime.Services.Contracts;
 using UnityEngine;
 using Zenject;
+using SBabchuk.Runtime.Gameplay.Barricades;
+using SBabchuk.Runtime.Gameplay.Characters;
+using SBabchuk.Runtime.Gameplay.Levels;
+using SBabchuk.Runtime.UI;
 
 namespace SBabchuk.Runtime.Installers
 {

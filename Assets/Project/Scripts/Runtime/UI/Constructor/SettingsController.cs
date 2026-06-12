@@ -2,8 +2,10 @@ using SBabchuk.Runtime.Services.Contracts;
 using UnityEngine;
 using Zenject;
 using UnityEngine.Serialization;
+using SBabchuk.Runtime.Databases.Levels;
+using SBabchuk.Runtime.Gameplay.Levels;
 
-namespace SBabchuk
+namespace SBabchuk.Runtime.UI.Constructor
 {
     public class SettingsController : MonoBehaviour
     {

@@ -6,8 +6,10 @@ using UnityEngine;
 using UnityEngine.UI;
 using Zenject;
 using UnityEngine.Serialization;
+using SBabchuk.Runtime.Databases.PlayerPrefs;
+using SBabchuk.Runtime.UI.WeaponStore;
 
-namespace SBabchuk
+namespace SBabchuk.Runtime.UI.MainPlayer
 {
     public class MainPlayerElementController : MonoBehaviour
     {

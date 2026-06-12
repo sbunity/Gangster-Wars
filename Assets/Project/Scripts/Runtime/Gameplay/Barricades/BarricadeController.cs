@@ -4,8 +4,12 @@ using SBabchuk.Runtime.Services.Contracts;
 using UnityEngine;
 using UnityEngine.Serialization;
 using Zenject;
+using SBabchuk.Runtime.Databases.Bullets;
+using SBabchuk.Runtime.Databases.DefenseStore;
+using SBabchuk.Runtime.Gameplay.Projectiles;
+using SBabchuk.Runtime.UI;
 
-namespace SBabchuk
+namespace SBabchuk.Runtime.Gameplay.Barricades
 {
     public class BarricadeController : MonoBehaviour
     {

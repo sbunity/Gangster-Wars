@@ -2,6 +2,9 @@ using DG.Tweening;
 using SBabchuk.Runtime.Services.Contracts;
 using UnityEngine;
 using Zenject;
+using SBabchuk.Runtime.Databases.BombStore;
+using SBabchuk.Runtime.Gameplay.Grenades;
+using SBabchuk.Runtime.Gameplay.Projectiles;
 
 namespace SBabchuk.Runtime.Gameplay.Enemies
 {

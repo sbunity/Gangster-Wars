@@ -5,8 +5,11 @@ using SBabchuk.Runtime.Services.Contracts;
 using UnityEngine;
 using Zenject;
 using UnityEngine.Serialization;
+using SBabchuk.Runtime.Databases.PlayerPrefs;
+using SBabchuk.Runtime.Databases.WeaponStore;
+using SBabchuk.Runtime.Gameplay.Enemies;
 
-namespace SBabchuk
+namespace SBabchuk.Runtime.Gameplay.Characters
 {
     [System.Serializable]
     public class CreateBulletPoints

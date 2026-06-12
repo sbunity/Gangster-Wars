@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace SBabchuk
+namespace SBabchuk.Runtime.UI
 {
     public class ScrollArrowIndicator : MonoBehaviour
     {

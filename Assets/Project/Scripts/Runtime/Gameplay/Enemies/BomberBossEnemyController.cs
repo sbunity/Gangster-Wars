@@ -3,7 +3,7 @@ using UnityEngine;
 using DG.Tweening;
 using UnityEngine.Serialization;
 
-namespace SBabchuk
+namespace SBabchuk.Runtime.Gameplay.Enemies
 {
     public class BomberBossEnemyController : EnemyControllerBase
     {

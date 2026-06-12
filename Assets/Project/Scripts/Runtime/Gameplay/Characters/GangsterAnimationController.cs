@@ -5,7 +5,7 @@ using Spine.Unity;
 using Spine;
 using UnityEngine.Serialization;
 
-namespace SBabchuk
+namespace SBabchuk.Runtime.Gameplay.Characters
 {
     public class GangsterAnimationController : MonoBehaviour
     {

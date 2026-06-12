@@ -3,71 +3,74 @@ using Spine.Unity;
 using UnityEngine;
 using UnityEngine.Serialization;
 
-public class SortingEnemy : MonoBehaviour
+namespace SBabchuk.Runtime.Gameplay.Enemies
 {
-    private const float UNITS_PER_SORTING_ORDER = 0.03f;
-    [SerializeField, FormerlySerializedAs("IsStatic")]
-    private bool _isStatic;
-
-    [SerializeField, FormerlySerializedAs("InChildren")]
-    private bool _inChildren;
-
-    [SerializeField, FormerlySerializedAs("sortAnchor")]
-    private Transform _sortAnchor;
-
-    [SerializeField, FormerlySerializedAs("AnchorOffset")]
-    private float _anchorOffset;
-    public float AnchorOffset { get => _anchorOffset; set => _anchorOffset = value; }
-
-    [SerializeField, FormerlySerializedAs("renderList")]
-    private List<Renderer> _renderList;
-
-    private SkeletonAnimation _skeletonAnimation;
-
-    private void Awake()
+    public class SortingEnemy : MonoBehaviour
     {
-        _skeletonAnimation = GetComponentInChildren<SkeletonAnimation>();
-        if (_inChildren)
+        private const float UNITS_PER_SORTING_ORDER = 0.03f;
+        [SerializeField, FormerlySerializedAs("IsStatic")]
+        private bool _isStatic;
+
+        [SerializeField, FormerlySerializedAs("InChildren")]
+        private bool _inChildren;
+
+        [SerializeField, FormerlySerializedAs("sortAnchor")]
+        private Transform _sortAnchor;
+
+        [SerializeField, FormerlySerializedAs("AnchorOffset")]
+        private float _anchorOffset;
+        public float AnchorOffset { get => _anchorOffset; set => _anchorOffset = value; }
+
+        [SerializeField, FormerlySerializedAs("renderList")]
+        private List<Renderer> _renderList;
+
+        private SkeletonAnimation _skeletonAnimation;
+
+        private void Awake()
         {
-            _renderList = new List<Renderer>(GetComponentsInChildren<Renderer>());
-        }
-        else
-        {
-            var objectRenderer = GetComponent<Renderer>();
-            _renderList = objectRenderer != null ? new List<Renderer>
+            _skeletonAnimation = GetComponentInChildren<SkeletonAnimation>();
+            if (_inChildren)
             {
-                objectRenderer
+                _renderList = new List<Renderer>(GetComponentsInChildren<Renderer>());
             }
-            : new List<Renderer>();
+            else
+            {
+                var objectRenderer = GetComponent<Renderer>();
+                _renderList = objectRenderer != null ? new List<Renderer>
+                {
+                    objectRenderer
+                }
+                : new List<Renderer>();
+            }
         }
-    }
 
-    private void LateUpdate()
-    {
-        if (!_isStatic)
-            AssignSortOrder();
-    }
-
-    private void AssignSortOrder()
-    {
-        var sortingOrder = GetSortOrder();
-        if (_skeletonAnimation)
+        private void LateUpdate()
         {
-            var meshRenderer = _skeletonAnimation.gameObject.GetComponent<MeshRenderer>();
-            if (meshRenderer)
-                meshRenderer.sortingOrder = sortingOrder;
+            if (!_isStatic)
+                AssignSortOrder();
         }
 
-        foreach (var objectRenderer in _renderList)
+        private void AssignSortOrder()
         {
-            if (objectRenderer)
-                objectRenderer.sortingOrder = sortingOrder;
-        }
-    }
+            var sortingOrder = GetSortOrder();
+            if (_skeletonAnimation)
+            {
+                var meshRenderer = _skeletonAnimation.gameObject.GetComponent<MeshRenderer>();
+                if (meshRenderer)
+                    meshRenderer.sortingOrder = sortingOrder;
+            }
 
-    private int GetSortOrder()
-    {
-        var anchorY = _sortAnchor ? _sortAnchor.position.y : transform.position.y + _anchorOffset;
-        return -Mathf.RoundToInt(anchorY / UNITS_PER_SORTING_ORDER);
+            foreach (var objectRenderer in _renderList)
+            {
+                if (objectRenderer)
+                    objectRenderer.sortingOrder = sortingOrder;
+            }
+        }
+
+        private int GetSortOrder()
+        {
+            var anchorY = _sortAnchor ? _sortAnchor.position.y : transform.position.y + _anchorOffset;
+            return -Mathf.RoundToInt(anchorY / UNITS_PER_SORTING_ORDER);
+        }
     }
 }

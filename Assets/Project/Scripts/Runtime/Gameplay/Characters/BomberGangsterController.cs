@@ -5,8 +5,10 @@ using Spine.Unity;
 using Spine;
 using DG.Tweening;
 using UnityEngine.Serialization;
+using SBabchuk.Runtime.Databases.MainPlayers;
+using SBabchuk.Runtime.Gameplay.Enemies;
 
-namespace SBabchuk
+namespace SBabchuk.Runtime.Gameplay.Characters
 {
     public class BomberGangsterController : GangsterControllerBase
     {

@@ -3,8 +3,9 @@ using UnityEngine;
 using UnityEngine.UI;
 using Zenject;
 using UnityEngine.Serialization;
+using SBabchuk.Runtime.Databases.WeaponStore;
 
-namespace SBabchuk
+namespace SBabchuk.Runtime.UI.WeaponStore
 {
     public class UnlockElementController : MonoBehaviour
     {

@@ -6,7 +6,7 @@ using Spine.Unity;
 using Spine;
 using UnityEngine.Serialization;
 
-namespace SBabchuk
+namespace SBabchuk.Runtime.Gameplay.Collisions
 {
     public class ExplosionCollisionController : CollisionController
     {

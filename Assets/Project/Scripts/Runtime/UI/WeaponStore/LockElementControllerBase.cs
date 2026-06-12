@@ -4,7 +4,7 @@ using UnityEngine.UI;
 using UnityEngine.Serialization;
 using Zenject;
 
-namespace SBabchuk
+namespace SBabchuk.Runtime.UI.WeaponStore
 {
     public class LockElementControllerBase : MonoBehaviour
     {

@@ -3,8 +3,11 @@ using SBabchuk.Runtime.Gameplay.Projectiles;
 using SBabchuk.Runtime.Services.Contracts;
 using Zenject;
 using UnityEngine.Serialization;
+using SBabchuk.Runtime.Databases.Bullets;
+using SBabchuk.Runtime.Gameplay.Collisions;
+using SBabchuk.Runtime.Gameplay.Enemies;
 
-namespace SBabchuk
+namespace SBabchuk.Runtime.Gameplay.Projectiles
 {
     public class BaseBulletController : MonoBehaviour
     {

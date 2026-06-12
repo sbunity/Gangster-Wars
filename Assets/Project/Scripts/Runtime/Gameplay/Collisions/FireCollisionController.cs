@@ -5,7 +5,7 @@ using DG.Tweening;
 using Spine.Unity;
 using Spine;
 
-namespace SBabchuk
+namespace SBabchuk.Runtime.Gameplay.Collisions
 {
     public class FireCollisionController : CollisionController
     {

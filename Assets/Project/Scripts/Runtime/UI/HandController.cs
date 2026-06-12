@@ -3,8 +3,9 @@ using SBabchuk.Runtime.Services.Contracts;
 using UnityEngine;
 using Zenject;
 using UnityEngine.Serialization;
+using SBabchuk.Runtime.Databases.BombStore;
 
-namespace SBabchuk
+namespace SBabchuk.Runtime.UI
 {
     public class HandController : MonoBehaviour, IHandService
     {

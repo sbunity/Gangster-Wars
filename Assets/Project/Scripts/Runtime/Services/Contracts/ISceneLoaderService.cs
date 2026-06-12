@@ -5,7 +5,7 @@ namespace SBabchuk.Runtime.Services.Contracts
 {
     public interface ISceneLoaderService
     {
-        UniTask LoadAsync(SBabchuk.Scene scene, LoadSceneMode mode = LoadSceneMode.Single);
+        UniTask LoadAsync(SBabchuk.Runtime.Scene scene, LoadSceneMode mode = LoadSceneMode.Single);
         UniTask LoadAsync(string sceneName, LoadSceneMode mode = LoadSceneMode.Single);
     }
 }

@@ -1,8 +1,11 @@
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Serialization;
+using SBabchuk.Runtime.Databases.DefenseStore;
+using SBabchuk.Runtime.Databases.PlayerPrefs;
+using SBabchuk.Runtime.Services;
 
-namespace SBabchuk
+namespace SBabchuk.Runtime.UI.WeaponStore
 {
     public class DSElementController : StoreElementControllerBase
     {
