@@ -19,7 +19,7 @@ using SBabchuk.Runtime.UI;
 
 namespace SBabchuk.Runtime.Gameplay.Levels
 {
-    public class LevelController : MonoBehaviour
+    public class LevelController : MonoBehaviour, ILevelWaveControlService
     {
         [SerializeField, FormerlySerializedAs("spawnPoints")]
         private List<Transform> _spawnPoints;
@@ -49,6 +49,9 @@ namespace SBabchuk.Runtime.Gameplay.Levels
         private BarricadeController _barricadeController;
         private SignalSubscriptions _signals;
         private bool _isWaveFull;
+        public bool CanStartNextWave => !_isLevelFinished
+                                        && _waveScheduler != null
+                                        && _waveScheduler.CanStartNextWave;
 
         private void OnEnable()
         {
@@ -148,6 +151,14 @@ namespace SBabchuk.Runtime.Gameplay.Levels
                 return;
 
             _waveScheduler.StartWave(waveIndex);
+        }
+
+        public void StartNextWave()
+        {
+            if (_isLevelFinished)
+                return;
+
+            _waveScheduler?.StartNextWave();
         }
 
         public void WaveHandler(int waveIndex, int currentEnemyIndex)

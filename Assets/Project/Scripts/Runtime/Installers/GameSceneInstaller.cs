@@ -41,6 +41,8 @@ namespace SBabchuk.Runtime.Installers
             BindInstance(_handController);
             BindInstance(_sightController);
 
+            if (_levelController != null)
+                Container.Bind<ILevelWaveControlService>().FromInstance(_levelController).AsSingle();
             if (_leaderController != null)
                 Container.Bind<ILeaderWeaponController>().FromInstance(_leaderController).AsSingle();
             if (_handController != null)
