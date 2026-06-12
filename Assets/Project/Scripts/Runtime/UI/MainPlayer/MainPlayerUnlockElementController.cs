@@ -6,10 +6,11 @@ using UnityEngine.UI;
 using Zenject;
 using UnityEngine.Serialization;
 using SBabchuk.Runtime.Databases.MainPlayers;
+using SBabchuk.Runtime.UI.WeaponStore;
 
 namespace SBabchuk.Runtime.UI.MainPlayer
 {
-    public class MainPlayerUnlockElementController : MonoBehaviour
+    public class MainPlayerUnlockElementController : MonoBehaviour, IStoreElementView
     {
         [SerializeField, FormerlySerializedAs("priceUpgrade")]
         private Text _priceUpgrade;

@@ -6,7 +6,7 @@ using Zenject;
 
 namespace SBabchuk.Runtime.UI.WeaponStore
 {
-    public abstract class LockElementControllerBase : MonoBehaviour
+    public abstract class LockElementControllerBase : MonoBehaviour, IStoreElementView
     {
         protected IAssetProvider _assetProvider;
         protected IPlayerProgressService _progressService;

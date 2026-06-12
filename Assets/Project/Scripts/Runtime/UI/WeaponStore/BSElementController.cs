@@ -48,12 +48,13 @@ namespace SBabchuk.Runtime.UI.WeaponStore
 
         private void ChangeLock(bool value = false)
         {
-            ApplyLockState(_panel, _lockGElementController.gameObject, _unlockGElementController.gameObject, value);
-            
-            if (_unlockGElementController.gameObject.activeSelf)
-            {
-                _unlockGElementController.Initialisation((int)_grenade);
-            }
+            StoreElementView.Apply(
+                _panel,
+                _lockGElementController.gameObject,
+                _unlockGElementController.gameObject,
+                (int)_grenade,
+                value,
+                unlockInit: _unlockGElementController);
         }
     }
 }

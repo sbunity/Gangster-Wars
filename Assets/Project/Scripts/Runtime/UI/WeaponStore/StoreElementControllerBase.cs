@@ -28,13 +28,6 @@ namespace SBabchuk.Runtime.UI.WeaponStore
 
         protected abstract void RefreshState();
 
-        protected void ApplyLockState(SpriteSwap panel, GameObject lockView, GameObject unlockView, bool isUnlocked)
-        {
-            panel.Change(isUnlocked);
-            lockView.SetActive(!isUnlocked);
-            unlockView.SetActive(isUnlocked);
-        }
-
         private void OnProgressUpgraded(ProgressUpgradedSignal signal)
         {
             RefreshState();

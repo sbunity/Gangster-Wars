@@ -46,16 +46,15 @@ namespace SBabchuk.Runtime.UI.WeaponStore
 
         private void ChangeLock(bool value = false)
         {
-            ApplyLockState(_panel, _lockElementController.gameObject, _unlockElementController.gameObject, value);
-            
-            if (_lockElementController.gameObject.activeSelf)
-                _lockElementController.Initialisation((int)_weapon);
-
-            if (_unlockElementController.gameObject.activeSelf)
-            {
-                _unlockElementController.Initialisation((int)_weapon);
-                _ammunitionsController.Initialisation((int)_weapon);
-            }
+            StoreElementView.Apply(
+                _panel,
+                _lockElementController.gameObject,
+                _unlockElementController.gameObject,
+                (int)_weapon,
+                value,
+                _lockElementController,
+                _unlockElementController,
+                _ammunitionsController);
         }
     }
 }

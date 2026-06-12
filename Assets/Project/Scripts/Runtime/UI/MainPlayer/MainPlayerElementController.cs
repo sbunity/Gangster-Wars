@@ -56,18 +56,15 @@ namespace SBabchuk.Runtime.UI.MainPlayer
 
         private void ChangeLock(bool value = false)
         {
-            _lockElementController.gameObject.SetActive(!value);
-            _unlockElementController.gameObject.SetActive(value);
-            if (_lockElementController.gameObject.activeSelf)
-            {
-                _lockElementController.Initialisation((int)_personage);
-            }
-
-            if (_unlockElementController.gameObject.activeSelf)
-            {
-                _unlockElementController.Initialisation((int)_personage);
-                _ammunitionsController.Initialisation((int)_personage);
-            }
+            StoreElementView.Apply(
+                null,
+                _lockElementController.gameObject,
+                _unlockElementController.gameObject,
+                (int)_personage,
+                value,
+                _lockElementController,
+                _unlockElementController,
+                _ammunitionsController);
         }
     }
 }

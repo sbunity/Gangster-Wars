@@ -7,7 +7,7 @@ using SBabchuk.Runtime.Databases.WeaponStore;
 
 namespace SBabchuk.Runtime.UI.WeaponStore
 {
-    public class UnlockElementController : MonoBehaviour
+    public class UnlockElementController : MonoBehaviour, IStoreElementView
     {
         [SerializeField, FormerlySerializedAs("priceUpgrade")]
         private Text _priceUpgrade;
