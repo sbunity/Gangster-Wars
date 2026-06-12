@@ -29,11 +29,14 @@ namespace SBabchuk.Runtime.Gameplay.Levels
                 Debug.LogWarning("BaseBulletController is missing from the spawned bullet.");
         }
 
-        public void SpawnGrenadeOnPlace(GrenadesName grenade, Vector3 position)
+        public bool SpawnGrenadeOnPlace(GrenadesName grenade, Vector3 position)
         {
             var grenadeController = _gameFactory.CreateGrenade(grenade, position);
-            if (grenadeController == null)
-                Debug.LogWarning("GrenadeController is missing from the spawned grenade.");
+            if (grenadeController != null)
+                return true;
+
+            Debug.LogWarning("GrenadeController is missing from the spawned grenade.");
+            return false;
         }
 
         public void SpawnCollision(int collisionId, Vector3 position, Grenade properties = null)

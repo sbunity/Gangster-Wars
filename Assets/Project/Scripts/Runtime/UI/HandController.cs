@@ -129,8 +129,20 @@ namespace SBabchuk.Runtime.UI
         public void Checked()
         {
             _grenade.CheckIco(true);
+
+            if (!_progressService.CanUseGrenade((int)_currentGrenadeName))
+            {
+                SwimBackOnTable();
+                return;
+            }
+
+            if (_levelSpawnService == null || !_levelSpawnService.SpawnGrenadeOnPlace(_currentGrenadeName, transform.position))
+            {
+                SwimBackOnTable();
+                return;
+            }
+
             _progressService.UseGrenade((int)_currentGrenadeName);
-            _levelSpawnService?.SpawnGrenadeOnPlace(_currentGrenadeName, transform.position);
             transform.position = OffscreenPosition;
         }
 

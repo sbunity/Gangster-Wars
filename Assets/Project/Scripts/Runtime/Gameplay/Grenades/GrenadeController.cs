@@ -33,19 +33,38 @@ namespace SBabchuk.Runtime.Gameplay.Grenades
             _signalBus = signalBus;
         }
 
-        private void Start()
+        private void Awake()
         {
-            _view = GetOrAdd<GrenadeView>();
-            _view.Initialize();
-            _parent = transform.parent;
+            EnsureComponents();
         }
 
-        public void Init(int id = 0, Vector3 position = default(Vector3))
+        private void Start()
         {
-            this.gameObject.SetActive(true);
+            EnsureComponents();
+        }
+
+        public bool Init(int id = 0, Vector3 position = default(Vector3))
+        {
+            gameObject.SetActive(true);
+            EnsureComponents();
+
+            if (_assetProvider == null || _assetProvider.BombStoreDatabase == null)
+            {
+                Debug.LogWarning("GrenadeController cannot initialize without BombStoreDatabase.", this);
+                gameObject.SetActive(false);
+                return false;
+            }
+
             transform.position = position;
             var bombStore = _assetProvider.BombStoreDatabase;
             _properties = bombStore.GetGrenade(id);
+            if (_properties == null)
+            {
+                Debug.LogWarning($"Grenade data with id {id} was not found.", this);
+                gameObject.SetActive(false);
+                return false;
+            }
+
             if (_collisionCollider == null)
             {
                 _collisionCollider = gameObject.AddComponent<PolygonCollider2D>();
@@ -54,6 +73,7 @@ namespace SBabchuk.Runtime.Gameplay.Grenades
 
             _collisionCollider.isTrigger = false;
             Action(_properties.Delay);
+            return true;
         }
 
         public void Action(float delay)
@@ -86,6 +106,20 @@ namespace SBabchuk.Runtime.Gameplay.Grenades
         {
             var component = GetComponent<T>();
             return component ?? gameObject.AddComponent<T>();
+        }
+
+        private void EnsureComponents()
+        {
+            if (_view == null)
+                _view = GetOrAdd<GrenadeView>();
+
+            _view.Initialize();
+
+            if (_collisionCollider == null)
+                _collisionCollider = GetComponent<Collider2D>();
+
+            if (_parent == null)
+                _parent = transform.parent;
         }
     }
 }

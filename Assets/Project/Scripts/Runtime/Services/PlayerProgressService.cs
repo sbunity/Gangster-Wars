@@ -10,7 +10,7 @@ using SBabchuk.Runtime.Databases.WeaponStore;
 
 namespace SBabchuk.Runtime.Services
 {
-    public sealed class PlayerProgressService : IPlayerProgressService
+    public sealed class PlayerProgressService : IPlayerProgressService, IInitializable
     {
         private readonly IAssetProvider _assetProvider;
         private readonly ISaveService _saveService;
@@ -21,6 +21,15 @@ namespace SBabchuk.Runtime.Services
             _assetProvider = assetProvider;
             _saveService = saveService;
             _signalBus = signalBus;
+        }
+
+        public void Initialize()
+        {
+            if (!NormalizeGrenadeInventory())
+                return;
+
+            SaveProgress();
+            FireProgressChanged();
         }
 
         public PlayerPrefs PlayerPrefs => Preferences.PlayerPrefs;
@@ -152,27 +161,56 @@ namespace SBabchuk.Runtime.Services
             if (grenadeShortInfo == null || grenade == null)
                 return;
 
-            if (grenadeShortInfo.IsBuy == mySwitch.On)
-            {
-                grenadeShortInfo.Count++;
-                if (!isFree)
-                    AddCoins(-grenade.Price);
-                else
-                    SaveProgress();
-            }
+            NormalizeGrenadeCount(grenadeShortInfo);
+
+            grenadeShortInfo.IsBuy = mySwitch.On;
+            grenadeShortInfo.Count++;
+
+            if (!isFree)
+                AddCoins(-grenade.Price);
+            else
+                SaveProgress();
 
             FireProgressChanged();
         }
 
-        public void UseGrenade(int id)
+        public bool CanUseGrenade(int id)
         {
             var grenadeShortInfo = PlayerPrefs.GetGrenadeShortInfo(id);
             if (grenadeShortInfo == null)
-                return;
+                return false;
+
+            if (NormalizeGrenadeCount(grenadeShortInfo))
+            {
+                SaveProgress();
+                FireProgressChanged();
+            }
+
+            return grenadeShortInfo.Count > 0;
+        }
+
+        public bool UseGrenade(int id)
+        {
+            var grenadeShortInfo = PlayerPrefs.GetGrenadeShortInfo(id);
+            if (grenadeShortInfo == null)
+                return false;
+
+            var wasNormalized = NormalizeGrenadeCount(grenadeShortInfo);
+            if (grenadeShortInfo.Count <= 0)
+            {
+                if (wasNormalized)
+                {
+                    SaveProgress();
+                    FireProgressChanged();
+                }
+
+                return false;
+            }
 
             grenadeShortInfo.Count--;
             SaveProgress();
             FireProgressChanged();
+            return true;
         }
 
         public void BuyDefence(int id)
@@ -250,6 +288,28 @@ namespace SBabchuk.Runtime.Services
 
         private void SaveProgress() 
             => _saveService.SaveAsync(Preferences).Forget();
+
+        private bool NormalizeGrenadeInventory()
+        {
+            var grenades = PlayerPrefs?.Grenades;
+            if (grenades == null)
+                return false;
+
+            var hasChanges = false;
+            foreach (var grenade in grenades)
+                hasChanges |= NormalizeGrenadeCount(grenade);
+
+            return hasChanges;
+        }
+
+        private bool NormalizeGrenadeCount(GrenadeShortInfo grenadeShortInfo)
+        {
+            if (grenadeShortInfo == null || grenadeShortInfo.Count >= 0)
+                return false;
+
+            grenadeShortInfo.Count = 0;
+            return true;
+        }
 
         private void FireWeaponAmmoChanged(WeaponsName weapon, int count)
             => _signalBus.Fire(new WeaponAmmoChangedSignal(weapon, count));

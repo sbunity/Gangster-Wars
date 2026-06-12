@@ -31,7 +31,8 @@ namespace SBabchuk.Runtime.Services.Contracts
         void BuyWeaponMagazine(int id, bool isFree = false);
         void BuyWeaponUpgrade(int id);
         void BuyGrenade(int id, bool isFree = false);
-        void UseGrenade(int id);
+        bool CanUseGrenade(int id);
+        bool UseGrenade(int id);
         void BuyDefence(int id);
         void SelectDefence(int id);
         void BuyDefenceUpgrade(int id);

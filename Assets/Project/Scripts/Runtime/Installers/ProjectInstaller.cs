@@ -20,7 +20,7 @@ namespace SBabchuk.Runtime.Installers
             Container.Bind<IPoolAssetResolver>().To<PoolAssetResolver>().AsSingle();
             Container.Bind<IAssetProvider>().To<AssetProvider>().AsSingle();
             Container.BindInterfacesTo<SaveService>().AsSingle();
-            Container.Bind<IPlayerProgressService>().To<PlayerProgressService>().AsSingle();
+            Container.BindInterfacesTo<PlayerProgressService>().AsSingle();
             Container.Bind<ISceneLoaderService>().To<SceneLoaderService>().AsSingle();
             Container.BindInterfacesTo<LevelService>().AsSingle();
             Container.Bind<IDamageService>().To<DamageService>().AsSingle();

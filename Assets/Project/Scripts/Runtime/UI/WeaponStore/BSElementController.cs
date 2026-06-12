@@ -3,7 +3,6 @@ using UnityEngine.UI;
 using UnityEngine.Serialization;
 using SBabchuk.Runtime.Databases.BombStore;
 using SBabchuk.Runtime.Databases.PlayerPrefs;
-using SBabchuk.Runtime.Services;
 
 namespace SBabchuk.Runtime.UI.WeaponStore
 {
@@ -42,8 +41,8 @@ namespace SBabchuk.Runtime.UI.WeaponStore
         protected override void RefreshState()
         {
             _grenadeShortInfo = ProgressService.GetGrenadeShortInfo((int)_grenade);
-            _count.text = _grenadeShortInfo.Count.ToString();
-            ChangeLock(_grenadeShortInfo.IsBuy == mySwitch.On);
+            _count.text = _grenadeShortInfo != null ? Mathf.Max(0, _grenadeShortInfo.Count).ToString() : "0";
+            ChangeLock(CanBuyFromStore());
         }
 
         private void ChangeLock(bool value = false)
@@ -55,6 +54,11 @@ namespace SBabchuk.Runtime.UI.WeaponStore
                 (int)_grenade,
                 value,
                 unlockInit: _unlockGElementController);
+        }
+
+        private bool CanBuyFromStore()
+        {
+            return _grenadeInfo != null && _grenadeShortInfo != null;
         }
     }
 }
