@@ -5,6 +5,7 @@ namespace SBabchuk.Runtime.Gameplay.Enemies
 {
     public sealed class EnemyHealth : MonoBehaviour
     {
+        public event Action Damaged;
         public event Action<float> Changed;
         public event Action Died;
         public int Current { get; private set; }
@@ -24,7 +25,12 @@ namespace SBabchuk.Runtime.Gameplay.Enemies
             if (IsDead)
                 return;
 
+            var previous = Current;
             Current = Mathf.Max(0, Current - Mathf.Max(0, damage));
+
+            if (Current < previous)
+                Damaged?.Invoke();
+
             Changed?.Invoke((float)Current / Max);
 
             if (Current > 0)

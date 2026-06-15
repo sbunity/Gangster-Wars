@@ -17,6 +17,7 @@ namespace SBabchuk.Runtime.Gameplay.Enemies
     [RequireComponent(typeof(EnemyAttack))]
     [RequireComponent(typeof(EnemyDeath))]
     [RequireComponent(typeof(EnemyReward))]
+    [RequireComponent(typeof(EnemyDamageFlash))]
     public class EnemyControllerBase : MonoBehaviour
     {
         [SerializeField, FormerlySerializedAs("e_animation")]
@@ -54,6 +55,7 @@ namespace SBabchuk.Runtime.Gameplay.Enemies
         private EnemyAttack _attack;
         private EnemyDeath _death;
         private EnemyReward _reward;
+        private IEnemyDamageFeedback _damageFeedback;
         protected ILevelSpawnService LevelSpawnService => _levelSpawnService;
         public bool IsCollided => _collided;
 
@@ -73,6 +75,7 @@ namespace SBabchuk.Runtime.Gameplay.Enemies
         private void OnDisable()
         {
             _signals?.Disable();
+            _damageFeedback?.ResetFeedback();
             StopAllTweens();
         }
 
@@ -103,9 +106,11 @@ namespace SBabchuk.Runtime.Gameplay.Enemies
             _attack = GetRequired<EnemyAttack>();
             _death = GetRequired<EnemyDeath>();
             _reward = GetRequired<EnemyReward>();
+            _damageFeedback = GetComponent<IEnemyDamageFeedback>();
             _view.Initialize();
             _animation = _view.Animation;
             _center = _view.Center;
+            _health.Damaged += OnHealthDamaged;
             _health.Changed += OnHealthChanged;
             _health.Died += OnHealthDied;
         }
@@ -115,6 +120,7 @@ namespace SBabchuk.Runtime.Gameplay.Enemies
             if (_health == null)
                 return;
 
+            _health.Damaged -= OnHealthDamaged;
             _health.Changed -= OnHealthChanged;
             _health.Died -= OnHealthDied;
         }
@@ -133,6 +139,7 @@ namespace SBabchuk.Runtime.Gameplay.Enemies
             };
 
             _health.Initialize(_properties.Health);
+            _damageFeedback?.ResetFeedback();
             _movement.Initialize(_view, _target, _properties.SpeedMove);
             _attack.Initialize(_view);
 
@@ -187,6 +194,11 @@ namespace SBabchuk.Runtime.Gameplay.Enemies
         {
             if (_properties != null)
                 _properties.Health = _health.Current;
+        }
+
+        private void OnHealthDamaged()
+        {
+            _damageFeedback?.Play();
         }
 
         private void OnHealthDied()
