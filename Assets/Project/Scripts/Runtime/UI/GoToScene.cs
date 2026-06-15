@@ -11,17 +11,17 @@ namespace SBabchuk.Runtime.UI
         [SerializeField, FormerlySerializedAs("target")]
         private Scene _target;
 
-        private ISceneLoaderService _sceneLoaderService;
-        
+        private ISceneTransitionService _sceneTransitionService;
+
         [Inject]
-        public void Construct(ISceneLoaderService sceneLoaderService)
+        public void Construct(ISceneTransitionService sceneTransitionService)
         {
-            _sceneLoaderService = sceneLoaderService;
+            _sceneTransitionService = sceneTransitionService;
         }
 
         public void SwitchScene()
         {
-            _sceneLoaderService?.LoadAsync(_target).Forget();
+            _sceneTransitionService?.TransitionToAsync(_target).Forget();
         }
     }
 }

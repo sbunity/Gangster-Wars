@@ -38,14 +38,14 @@ namespace SBabchuk.Runtime.UI
         private Level _properties;
         private IAssetProvider _assetProvider;
         private IPlayerProgressService _progressService;
-        private ISceneLoaderService _sceneLoaderService;
+        private ISceneTransitionService _sceneTransitionService;
 
         [Inject]
-        public void Construct(IAssetProvider assetProvider, IPlayerProgressService progressService, ISceneLoaderService sceneLoaderService)
+        public void Construct(IAssetProvider assetProvider, IPlayerProgressService progressService, ISceneTransitionService sceneTransitionService)
         {
             _assetProvider = assetProvider;
             _progressService = progressService;
-            _sceneLoaderService = sceneLoaderService;
+            _sceneTransitionService = sceneTransitionService;
         }
 
         private IEnumerator Start()
@@ -94,7 +94,7 @@ namespace SBabchuk.Runtime.UI
                 return;
                 
             _progressService.SetCurrentLevel((int)_level);
-            _sceneLoaderService.LoadAsync(Scene.GameScene).Forget();
+            _sceneTransitionService.TransitionToAsync(Scene.GameScene).Forget();
         }
     }
 }

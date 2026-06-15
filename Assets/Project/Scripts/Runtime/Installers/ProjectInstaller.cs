@@ -1,6 +1,8 @@
 using SBabchuk.Runtime.Architecture;
+using SBabchuk.Runtime.Factories;
 using SBabchuk.Runtime.Services;
 using SBabchuk.Runtime.Services.Contracts;
+using SBabchuk.Runtime.UI;
 using UnityEngine;
 using Zenject;
 
@@ -8,6 +10,9 @@ namespace SBabchuk.Runtime.Installers
 {
     public sealed class ProjectInstaller : MonoInstaller
     {
+        [SerializeField]
+        private LoadingScreenView _loadingScreenPrefab;
+
         public override void InstallBindings()
         {
             SignalBusInstaller.Install(Container);
@@ -22,6 +27,9 @@ namespace SBabchuk.Runtime.Installers
             Container.BindInterfacesTo<SaveService>().AsSingle();
             Container.BindInterfacesTo<PlayerProgressService>().AsSingle();
             Container.Bind<ISceneLoaderService>().To<SceneLoaderService>().AsSingle();
+            Container.Bind<ILoadingScreenFactory>().To<LoadingScreenFactory>().AsSingle()
+                .WithArguments(_loadingScreenPrefab);
+            Container.Bind<ISceneTransitionService>().To<SceneTransitionService>().AsSingle();
             Container.BindInterfacesTo<LevelService>().AsSingle();
             Container.Bind<IDamageService>().To<DamageService>().AsSingle();
             Container.Bind<ICombatService>().To<CombatService>().AsSingle();

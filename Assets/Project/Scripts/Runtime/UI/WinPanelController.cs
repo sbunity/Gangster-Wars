@@ -15,13 +15,13 @@ namespace SBabchuk.Runtime.UI
         [SerializeField, FormerlySerializedAs("panel")]
         private GameObject _panel;
 
-        private ISceneLoaderService _sceneLoaderService;
+        private ISceneTransitionService _sceneTransitionService;
         private SignalSubscriptions _signals;
 
         [Inject]
-        public void Construct(ISceneLoaderService sceneLoaderService, SignalBus signalBus)
+        public void Construct(ISceneTransitionService sceneTransitionService, SignalBus signalBus)
         {
-            _sceneLoaderService = sceneLoaderService;
+            _sceneTransitionService = sceneTransitionService;
             _signals = new SignalSubscriptions(signalBus)
                 .Add<GameFinishedSignal>(OnGameFinished);
         }
@@ -52,7 +52,7 @@ namespace SBabchuk.Runtime.UI
         public void SwitchScene()
         {
             Time.timeScale = 1;
-            _sceneLoaderService?.LoadAsync(Scene.MainScene).Forget();
+            _sceneTransitionService?.TransitionToAsync(Scene.MainScene).Forget();
             Hide();
         }
     }
