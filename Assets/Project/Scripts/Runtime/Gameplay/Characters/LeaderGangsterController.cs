@@ -97,15 +97,16 @@ namespace SBabchuk.Runtime.Gameplay.Characters
             if (_countPatrons <= 0 || !_shotGate.TryConsumeShot(out var shouldFinishAfterShot))
                 return;
 
+            var firedWeapon = _weaponsName;
             _characterWeapon.Fire(_weapon.BulletId, _properties.Damage, _createBulletPointList[_index].GetPosition(), default(Vector3), 0);
             _index = _index + 1 < _createBulletPointList.Count ? _index + 1 : 0;
 
-            if (_weaponsName != WeaponsName.Weapon_1)
-                _progressService.SetWeaponAmmo(_weaponsName, -1);
-
             UpdatePatrons(-1);
 
-            if (shouldFinishAfterShot)
+            if (firedWeapon != WeaponsName.Weapon_1)
+                _progressService.SetWeaponAmmo(firedWeapon, -1);
+
+            if (shouldFinishAfterShot && _weaponsName == firedWeapon)
                 FinishShooting();
         }
 

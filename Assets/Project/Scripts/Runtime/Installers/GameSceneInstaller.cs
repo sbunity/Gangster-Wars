@@ -29,6 +29,8 @@ namespace SBabchuk.Runtime.Installers
             Container.Bind<PoolManager>().FromInstance(_poolManager).AsSingle();
             Container.Bind<IPoolService>().To<PoolService>().AsSingle();
             Container.Bind<IGameFactory>().To<GameFactory>().AsSingle();
+            Container.Bind<ILeaderWeaponSelectionService>().To<AssetDataController>().FromComponentInHierarchy().AsSingle();
+            Container.BindInterfacesTo<DefaultWeaponFallbackService>().AsSingle();
 
             // Level runtime: command (spawn) and query (targeting) are now separate services
             // sharing a single entity tracker, instead of both living on LevelController.

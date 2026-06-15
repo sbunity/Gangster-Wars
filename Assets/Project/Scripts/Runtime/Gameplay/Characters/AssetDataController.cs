@@ -7,7 +7,7 @@ using UnityEngine.Serialization;
 
 namespace SBabchuk.Runtime.Gameplay.Characters
 {
-    public class AssetDataController : MonoBehaviour
+    public class AssetDataController : MonoBehaviour, ILeaderWeaponSelectionService
     {
         [SerializeField, FormerlySerializedAs("skeletonDataAsset")]
         private List<SkeletonDataAsset> _skeletonDataAsset;
@@ -16,6 +16,7 @@ namespace SBabchuk.Runtime.Gameplay.Characters
         private GangsterAnimationController gangsterAnimationController;
         private LeaderGangsterController leaderGangsterController;
         private IPlayerProgressService _progressService;
+        public WeaponsName CurrentWeapon { get; private set; } = WeaponsName.None;
 
         [Inject]
         public void Construct(IPlayerProgressService progressService)
@@ -35,11 +36,21 @@ namespace SBabchuk.Runtime.Gameplay.Characters
             SetAssetData(_progressService.SelectedWeaponId);
         }
 
-        private void SetAssetData(int value = 0)
+        public void SetAssetData(int value = 0)
         {
-            skltn.skeletonDataAsset = _skeletonDataAsset[value];
+            SelectWeapon((WeaponsName)value);
+        }
+
+        public void SelectWeapon(WeaponsName weapon)
+        {
+            var weaponId = (int)weapon;
+            if (weaponId < 0 || weaponId >= _skeletonDataAsset.Count)
+                return;
+
+            CurrentWeapon = weapon;
+            skltn.skeletonDataAsset = _skeletonDataAsset[weaponId];
             skltn.Initialize(true);
-            leaderGangsterController.InitWeapon(value);
+            leaderGangsterController.InitWeapon(weaponId);
             gangsterAnimationController.Subscribe();
         }
     }
