@@ -43,12 +43,13 @@ namespace SBabchuk.Runtime.Services
 
         public void AddCoins(int value)
         {
+            var previousCoins = PlayerPrefs.Coin;
             PlayerPrefs.Coin += value;
             if (PlayerPrefs.Coin < 0)
                 PlayerPrefs.Coin = 0;
 
             SaveProgress();
-            _signalBus.Fire(new CoinsChangedSignal(PlayerPrefs.Coin));
+            _signalBus.Fire(new CoinsChangedSignal(PlayerPrefs.Coin, PlayerPrefs.Coin - previousCoins));
         }
 
         public bool CanBuy(int price) 

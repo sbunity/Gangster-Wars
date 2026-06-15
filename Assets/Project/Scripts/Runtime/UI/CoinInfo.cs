@@ -9,6 +9,7 @@ namespace SBabchuk.Runtime.UI
     public class CoinInfo : MonoBehaviour
     {
         private Text _txt;
+        private CountPulse _countPulse;
         private IPlayerProgressService _progressService;
         private SignalSubscriptions _signals;
 
@@ -27,6 +28,9 @@ namespace SBabchuk.Runtime.UI
         private void Awake()
         {
             _txt = GetComponentInChildren<Text>();
+            _countPulse = GetOrAdd<CountPulse>();
+            if (_txt != null)
+                _countPulse.SetTarget(_txt.transform);
         }
 
         private void Start()
@@ -43,6 +47,22 @@ namespace SBabchuk.Runtime.UI
         private void OnCoinsChanged(CoinsChangedSignal signal)
         {
             _txt.text = signal.Coins.ToString();
+            if (signal.Delta > 0)
+                PlayCollectFeedback();
+        }
+
+        private void PlayCollectFeedback()
+        {
+            _countPulse ??= GetOrAdd<CountPulse>();
+            if (_txt != null)
+                _countPulse.SetTarget(_txt.transform);
+            _countPulse.Play();
+        }
+
+        private T GetOrAdd<T>() where T : Component
+        {
+            var component = GetComponent<T>();
+            return component ?? gameObject.AddComponent<T>();
         }
     }
 }

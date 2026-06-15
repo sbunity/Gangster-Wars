@@ -37,12 +37,14 @@ namespace SBabchuk.Runtime.Architecture
 
     public readonly struct CoinsChangedSignal
     {
-        public CoinsChangedSignal(int coins)
+        public CoinsChangedSignal(int coins, int delta = 0)
         {
             Coins = coins;
+            Delta = delta;
         }
 
         public int Coins { get; }
+        public int Delta { get; }
     }
 
     public readonly struct ProgressUpgradedSignal
