@@ -58,14 +58,14 @@ namespace SBabchuk.Runtime.Gameplay.Cameras
             {
                 var progress = elapsed / duration;
                 var amplitude = strength * (1f - progress);
-                var sample = (Time.time + seed) * _frequency;
+                var sample = (Time.unscaledTime + seed) * _frequency;
                 var offset = new Vector3(
                     (Mathf.PerlinNoise(sample, seed) - 0.5f) * 2f,
                     (Mathf.PerlinNoise(seed, sample) - 0.5f) * 2f,
                     0f) * amplitude;
 
                 _target.localPosition = _originLocalPosition + offset;
-                elapsed += Time.deltaTime;
+                elapsed += Time.unscaledDeltaTime;
                 yield return null;
             }
 
