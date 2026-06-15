@@ -1,3 +1,4 @@
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Serialization;
@@ -9,6 +10,8 @@ namespace SBabchuk.Runtime.UI.WeaponStore
 {
     public class WSElementController : StoreElementControllerBase
     {
+        private const string InfiniteAmmoLabel = "∞";
+
         [SerializeField, FormerlySerializedAs("weapon")]
         private WeaponsName _weapon;
 
@@ -17,6 +20,9 @@ namespace SBabchuk.Runtime.UI.WeaponStore
 
         [SerializeField, FormerlySerializedAs("txt")]
         private Text _text;
+
+        [SerializeField]
+        private TMP_Text _ammoCountText;
 
         private SpriteSwap _panel;
         private LockElementController _lockElementController;
@@ -55,6 +61,25 @@ namespace SBabchuk.Runtime.UI.WeaponStore
                 _lockElementController,
                 _unlockElementController,
                 _ammunitionsController);
+
+            UpdateAmmoCount(value);
+        }
+
+        private void UpdateAmmoCount(bool isOwned)
+        {
+            if (_ammoCountText == null)
+                return;
+
+            var hasInfiniteAmmo = _weapon == WeaponsName.Weapon_1;
+            var isVisible = isOwned || hasInfiniteAmmo;
+            _ammoCountText.gameObject.SetActive(isVisible);
+
+            if (!isVisible)
+                return;
+
+            _ammoCountText.text = hasInfiniteAmmo
+                ? InfiniteAmmoLabel
+                : (_weaponShortInfo?.AmmoCount ?? 0).ToString();
         }
     }
 }
