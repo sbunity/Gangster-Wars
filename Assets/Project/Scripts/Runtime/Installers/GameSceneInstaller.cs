@@ -8,6 +8,7 @@ using SBabchuk.Runtime.Gameplay.Cameras;
 using SBabchuk.Runtime.Gameplay.Characters;
 using SBabchuk.Runtime.Gameplay.Levels;
 using SBabchuk.Runtime.UI;
+using SBabchuk.Runtime.UI.FlyingCoins;
 
 namespace SBabchuk.Runtime.Installers
 {
@@ -21,6 +22,7 @@ namespace SBabchuk.Runtime.Installers
         [SerializeField] private CameraShakeController _cameraShakeController;
         [SerializeField] private PoolManager _poolManager;
         [SerializeField] private FilledBarController _waveBar;
+        [SerializeField] private CoinFlightSpawner _coinFlightSpawner;
 
         public override void InstallBindings()
         {
@@ -60,6 +62,9 @@ namespace SBabchuk.Runtime.Installers
                 Container.Bind<ICameraShakeService>().FromInstance(_cameraShakeController).AsSingle();
             else
                 Container.Bind<ICameraShakeService>().To<NullCameraShakeService>().AsSingle();
+
+            if (_coinFlightSpawner != null)
+                Container.Bind<ICoinFlightService>().FromInstance(_coinFlightSpawner).AsSingle();
         }
 
         private void ValidateReferences()

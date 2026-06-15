@@ -8535,6 +8535,69 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 622443008}
   m_CullTransparentMesh: 0
+--- !u!1 &623863265
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 623863267}
+  - component: {fileID: 623863266}
+  m_Layer: 0
+  m_Name: CoinFlightSpawner
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &623863266
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 623863265}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c113b1ffb71651e4abe64e611bf65094, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SBabchuk.Runtime.UI.FlyingCoins.CoinFlightSpawner
+  _enabled: 1
+  _coinPrefab: {fileID: 6524976894420335347, guid: a06d2ff6c222cf1419de8bb793c292d6,
+    type: 3}
+  _target: {fileID: 599532067}
+  _spawnRoot: {fileID: 623863267}
+  _maxCoins: 12
+  _burstRadiusPixels: 70
+  _burstDuration: 0.18
+  _flightDuration: 0.5
+  _flightDurationVariance: 0.12
+  _coinStagger: 0.04
+  _startScale: 1
+  _arriveScale: 0.6
+  _burstEase: 6
+  _flightEase: 5
+--- !u!224 &623863267
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 623863265}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 815223737}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &644213164
 GameObject:
   m_ObjectHideFlags: 0
@@ -10744,6 +10807,7 @@ RectTransform:
   - {fileID: 249105038}
   - {fileID: 1361490163}
   - {fileID: 1906614376}
+  - {fileID: 623863267}
   m_Father: {fileID: 1397584121}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -28173,6 +28237,7 @@ MonoBehaviour:
   _cameraShakeController: {fileID: 1709368628}
   _poolManager: {fileID: 1616555664}
   _waveBar: {fileID: 1769325672}
+  _coinFlightSpawner: {fileID: 623863266}
 --- !u!114 &1977259311
 MonoBehaviour:
   m_ObjectHideFlags: 0

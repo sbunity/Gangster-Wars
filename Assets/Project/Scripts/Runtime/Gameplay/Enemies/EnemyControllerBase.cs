@@ -207,6 +207,7 @@ namespace SBabchuk.Runtime.Gameplay.Enemies
             _attack.MarkDead();
             StopAllTweens();
             _death.Play(_view);
+            _reward.Grant(_properties);
         }
 
         public virtual void StopAllTweens()
@@ -221,7 +222,6 @@ namespace SBabchuk.Runtime.Gameplay.Enemies
         public void Dead()
         {
             _signalBus.Fire(new EnemyDiedSignal(_properties.Id));
-            _reward.Grant(_properties);
             CheckSpawnBonus();
             Pop();
         }

@@ -47,6 +47,18 @@ namespace SBabchuk.Runtime.Architecture
         public int Delta { get; }
     }
 
+    public readonly struct CoinFlightRequestedSignal
+    {
+        public CoinFlightRequestedSignal(Vector3 worldOrigin, int amount)
+        {
+            WorldOrigin = worldOrigin;
+            Amount = amount;
+        }
+
+        public Vector3 WorldOrigin { get; }
+        public int Amount { get; }
+    }
+
     public readonly struct ProgressUpgradedSignal
     {
     }

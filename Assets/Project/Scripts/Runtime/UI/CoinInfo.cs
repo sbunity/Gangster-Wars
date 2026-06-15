@@ -1,3 +1,4 @@
+using DG.Tweening;
 using SBabchuk.Runtime.Architecture;
 using SBabchuk.Runtime.Services.Contracts;
 using UnityEngine;
@@ -8,10 +9,14 @@ namespace SBabchuk.Runtime.UI
 {
     public class CoinInfo : MonoBehaviour
     {
+        private const float CountUpDuration = 0.55f;
+
         private Text _txt;
         private CountPulse _countPulse;
         private IPlayerProgressService _progressService;
         private SignalSubscriptions _signals;
+        private Tween _countTween;
+        private int _displayed;
 
         [Inject]
         public void Construct(IPlayerProgressService progressService, SignalBus signalBus)
@@ -23,7 +28,11 @@ namespace SBabchuk.Runtime.UI
 
         private void OnEnable() => _signals?.Enable();
 
-        private void OnDisable() => _signals?.Disable();
+        private void OnDisable()
+        {
+            _signals?.Disable();
+            _countTween?.Kill();
+        }
 
         private void Awake()
         {
@@ -35,20 +44,40 @@ namespace SBabchuk.Runtime.UI
 
         private void Start()
         {
-            UpdateCoin();
-        }
-
-        private void UpdateCoin()
-        {
-            var coins = _progressService.Coins;
-            _txt.text = coins.ToString();
+            SetImmediate(_progressService.Coins);
         }
 
         private void OnCoinsChanged(CoinsChangedSignal signal)
         {
-            _txt.text = signal.Coins.ToString();
             if (signal.Delta > 0)
-                PlayCollectFeedback();
+                AnimateTo(signal.Coins);
+            else
+                SetImmediate(signal.Coins);
+        }
+
+        private void AnimateTo(int value)
+        {
+            _countTween?.Kill();
+            _countTween = DOTween.To(() => _displayed, SetDisplayed, value, CountUpDuration)
+                .SetEase(Ease.OutQuad)
+                .OnComplete(() =>
+                {
+                    SetDisplayed(value);
+                    PlayCollectFeedback();
+                });
+        }
+
+        private void SetImmediate(int value)
+        {
+            _countTween?.Kill();
+            SetDisplayed(value);
+        }
+
+        private void SetDisplayed(int value)
+        {
+            _displayed = value;
+            if (_txt != null)
+                _txt.text = value.ToString();
         }
 
         private void PlayCollectFeedback()
