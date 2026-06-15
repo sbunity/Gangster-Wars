@@ -1,27 +1,13 @@
 using System.Collections.Generic;
-using Cysharp.Threading.Tasks;
-using DG.Tweening;
-using SBabchuk.Runtime.Architecture;
 using SBabchuk.Runtime.Services.Contracts;
 using UnityEngine;
 using UnityEngine.UI;
 using Zenject;
-using UnityEngine.Serialization;
 
 namespace SBabchuk.Runtime.UI
 {
-    public class WinPanelController : MonoBehaviour
+    public class WinPanelController : GameResultPanelController
     {
-        [SerializeField, FormerlySerializedAs("type")]
-        private Panels _type;
-
-        [SerializeField, FormerlySerializedAs("panel")]
-        private GameObject _panel;
-
-        [SerializeField] private CanvasGroup _canvasGroup;
-
-        [SerializeField, Min(0f)] private float _fadeDuration = 0.4f;
-
         [SerializeField] private Button _continueButton;
 
         [Header("Stars (Win panel only)")]
@@ -29,68 +15,30 @@ namespace SBabchuk.Runtime.UI
 
         [SerializeField] private List<Sprite> _starsSprites;
 
-        private ISceneTransitionService _sceneTransitionService;
         private IPlayerProgressService _progressService;
-        private SignalSubscriptions _signals;
-        private Tween _fadeTween;
 
         [Inject]
-        public void Construct(
-            ISceneTransitionService sceneTransitionService,
-            IPlayerProgressService progressService,
-            SignalBus signalBus)
+        public void Construct(IPlayerProgressService progressService)
         {
-            _sceneTransitionService = sceneTransitionService;
             _progressService = progressService;
-            _signals = new SignalSubscriptions(signalBus)
-                .Add<GameFinishedSignal>(OnGameFinished);
         }
 
         private void Awake()
         {
             if (_continueButton != null)
-                _continueButton.onClick.AddListener(SwitchScene);
+                _continueButton.onClick.AddListener(ReturnToMainMenu);
         }
 
-        private void OnEnable() => _signals?.Enable();
-
-        private void OnDisable() => _signals?.Disable();
-
-        private void OnDestroy()
+        protected override void OnDestroy()
         {
-            _fadeTween?.Kill();
+            base.OnDestroy();
             if (_continueButton != null)
-                _continueButton.onClick.RemoveListener(SwitchScene);
+                _continueButton.onClick.RemoveListener(ReturnToMainMenu);
         }
 
-        public void Show(Panels panelType)
-        {
-            if (_type != panelType)
-                return;
+        protected override void OnShow() => UpdateStars();
 
-            UpdateStars();
-            _panel.SetActive(true);
-            Time.timeScale = 0f;
-            PlayFadeIn();
-        }
-
-        public void Hide()
-        {
-            _fadeTween?.Kill();
-            _panel.SetActive(false);
-        }
-
-        public void SwitchScene()
-        {
-            Time.timeScale = 1f;
-            _sceneTransitionService?.TransitionToAsync(Scene.MainScene).Forget();
-            Hide();
-        }
-
-        private void OnGameFinished(GameFinishedSignal signal)
-        {
-            Show(signal.Panel);
-        }
+        public void ReturnToMainMenu() => TransitionTo(Scene.MainScene);
 
         private void UpdateStars()
         {
@@ -101,18 +49,6 @@ namespace SBabchuk.Runtime.UI
             var stars = levelInfo != null ? levelInfo.Stars : 0;
             stars = Mathf.Clamp(stars, 0, _starsSprites.Count - 1);
             _starsImage.sprite = _starsSprites[stars];
-        }
-
-        private void PlayFadeIn()
-        {
-            if (_canvasGroup == null)
-                return;
-
-            _fadeTween?.Kill();
-            _canvasGroup.alpha = 0f;
-            _fadeTween = DOTween
-                .To(() => _canvasGroup.alpha, value => _canvasGroup.alpha = value, 1f, _fadeDuration)
-                .SetUpdate(true);
         }
     }
 }
