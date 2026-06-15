@@ -4,6 +4,7 @@ using SBabchuk.Runtime.Services.Contracts;
 using UnityEngine;
 using Zenject;
 using SBabchuk.Runtime.Gameplay.Barricades;
+using SBabchuk.Runtime.Gameplay.Cameras;
 using SBabchuk.Runtime.Gameplay.Characters;
 using SBabchuk.Runtime.Gameplay.Levels;
 using SBabchuk.Runtime.UI;
@@ -17,6 +18,7 @@ namespace SBabchuk.Runtime.Installers
         [SerializeField] private LeaderGangsterController _leaderController;
         [SerializeField] private HandController _handController;
         [SerializeField] private SightController _sightController;
+        [SerializeField] private CameraShakeController _cameraShakeController;
         [SerializeField] private PoolManager _poolManager;
         [SerializeField] private FilledBarController _waveBar;
 
@@ -51,6 +53,11 @@ namespace SBabchuk.Runtime.Installers
                 Container.Bind<IAimService>().FromInstance(_sightController).AsSingle();
             else
                 Container.Bind<IAimService>().To<NullAimService>().AsSingle();
+
+            if (_cameraShakeController != null)
+                Container.Bind<ICameraShakeService>().FromInstance(_cameraShakeController).AsSingle();
+            else
+                Container.Bind<ICameraShakeService>().To<NullCameraShakeService>().AsSingle();
         }
 
         private void ValidateReferences()

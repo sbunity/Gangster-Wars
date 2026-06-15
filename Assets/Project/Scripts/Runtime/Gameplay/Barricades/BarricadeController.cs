@@ -15,6 +15,8 @@ namespace SBabchuk.Runtime.Gameplay.Barricades
     {
         [SerializeField, FormerlySerializedAs("healthbar")]
         private FilledBarController _healthBar;
+
+        [SerializeField, Min(0f)] private float _damageShakeStrength = 0.04f;
         
         public int CurrentHealth { get; private set; } = 10;
         public int MaxHealth { get; private set; }
@@ -24,14 +26,16 @@ namespace SBabchuk.Runtime.Gameplay.Barricades
         private IAssetProvider _assetProvider;
         private IPlayerProgressService _progressService;
         private ILevelFlowService _levelFlowService;
+        private ICameraShakeService _cameraShakeService;
         private SignalBus _signalBus;
         
         [Inject]
-        public void Construct(IAssetProvider assetProvider, IPlayerProgressService progressService, ILevelFlowService levelFlowService, SignalBus signalBus)
+        public void Construct(IAssetProvider assetProvider, IPlayerProgressService progressService, ILevelFlowService levelFlowService, ICameraShakeService cameraShakeService, SignalBus signalBus)
         {
             _assetProvider = assetProvider;
             _progressService = progressService;
             _levelFlowService = levelFlowService;
+            _cameraShakeService = cameraShakeService;
             _signalBus = signalBus;
         }
 
@@ -73,6 +77,11 @@ namespace SBabchuk.Runtime.Gameplay.Barricades
 
         public void TakeDamage(int damage)
         {
+            if (damage <= 0 || CurrentHealth <= 0)
+                return;
+
+            _cameraShakeService?.Shake(_damageShakeStrength);
+
             if (CurrentHealth - damage <= 0)
             {
                 SetHealth(-CurrentHealth);

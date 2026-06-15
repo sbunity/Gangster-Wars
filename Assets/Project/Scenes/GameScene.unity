@@ -22416,6 +22416,7 @@ GameObject:
   - component: {fileID: 1709368627}
   - component: {fileID: 1709368626}
   - component: {fileID: 1709368625}
+  - component: {fileID: 1709368628}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -22497,6 +22498,21 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1993380052}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1709368628
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1709368624}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b735a7c0af3de794bb28767025159e43, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SBabchuk.Runtime.Gameplay.Cameras.CameraShakeController
+  _target: {fileID: 1709368627}
+  _defaultDuration: 0.16
+  _frequency: 38
 --- !u!1 &1712784283
 GameObject:
   m_ObjectHideFlags: 0
@@ -27276,6 +27292,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _healthBar: {fileID: 536196646}
+  _damageShakeStrength: 0.04
 --- !u!60 &1974793441
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -27781,6 +27798,7 @@ MonoBehaviour:
   _leaderController: {fileID: 1073950070}
   _handController: {fileID: 1949213165}
   _sightController: {fileID: 1865941192}
+  _cameraShakeController: {fileID: 1709368628}
   _poolManager: {fileID: 1616555664}
   _waveBar: {fileID: 1769325672}
 --- !u!114 &1977259311
