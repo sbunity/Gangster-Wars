@@ -51,6 +51,8 @@ namespace SBabchuk.Runtime.Installers
             Container.DeclareSignal<WeaponAmmoChangedSignal>().OptionalSubscriber();
             Container.DeclareSignal<LeaderMagazineInitializedSignal>().OptionalSubscriber();
             Container.DeclareSignal<LeaderPatronsChangedSignal>().OptionalSubscriber();
+            Container.DeclareSignal<WaveCountdownStartedSignal>().OptionalSubscriber();
+            Container.DeclareSignal<WaveCountdownSkippedSignal>().OptionalSubscriber();
             Container.DeclareSignal<BarricadeHealthChangedSignal>().OptionalSubscriber();
             Container.DeclareSignal<GrenadeDamageSignal>().OptionalSubscriber();
             Container.DeclareSignal<AudioSettingsChangedSignal>().OptionalSubscriber();

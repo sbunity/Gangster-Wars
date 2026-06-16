@@ -24,6 +24,10 @@ namespace SBabchuk.Runtime.Gameplay.Levels
             _spawnEnemy = spawnEnemy;
         }
 
+        public event Action<float> CountdownStarted;
+
+        public event Action CountdownSkipped;
+
         public int CurrentWave { get; private set; }
         public bool IsWaveFull { get; private set; }
         public bool CanStartNextWave => !_isStopped
@@ -65,6 +69,7 @@ namespace SBabchuk.Runtime.Gameplay.Levels
             if (!CanStartNextWave)
                 return false;
 
+            CountdownSkipped?.Invoke();
             StartWave(CurrentWave);
             return true;
         }
@@ -95,6 +100,12 @@ namespace SBabchuk.Runtime.Gameplay.Levels
                 if (CurrentWave == expectedNextWave)
                     Wave();
             }).SetUpdate(false));
+
+            if (expectedNextWave < _level.Waves.Count)
+            {
+                var secondsUntilNextWave = _level.Waves[waveIndex].Delay + _level.Waves[expectedNextWave].StartDelay;
+                CountdownStarted?.Invoke(secondsUntilNextWave);
+            }
 
             WaveHandler(waveIndex, 0);
         }

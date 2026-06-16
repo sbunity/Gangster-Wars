@@ -95,6 +95,20 @@ namespace SBabchuk.Runtime.Architecture
         public int Count { get; }
     }
 
+    public readonly struct WaveCountdownStartedSignal
+    {
+        public WaveCountdownStartedSignal(float duration)
+        {
+            Duration = duration;
+        }
+
+        public float Duration { get; }
+    }
+
+    public readonly struct WaveCountdownSkippedSignal
+    {
+    }
+
     public readonly struct BarricadeHealthChangedSignal
     {
         public BarricadeHealthChangedSignal(float normalizedHealth)

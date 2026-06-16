@@ -48,6 +48,7 @@ namespace SBabchuk.Runtime.Gameplay.Levels
         private IGameFactory _gameFactory;
         private ILevelFlowService _levelFlowService;
         private BarricadeController _barricadeController;
+        private SignalBus _signalBus;
         private SignalSubscriptions _signals;
         private bool _isWaveFull;
         public bool CanStartNextWave => !_isLevelFinished
@@ -75,6 +76,7 @@ namespace SBabchuk.Runtime.Gameplay.Levels
             _levelFlowService = levelFlowService;
             _entityTracker = entityTracker;
             _barricadeController = barricadeController;
+            _signalBus = signalBus;
             _signals = new SignalSubscriptions(signalBus)
                 .Add<EnemyDiedSignal>(DeleteEnemy)
                 .Add<BonusPoppedSignal>(PopBonus)
@@ -86,7 +88,24 @@ namespace SBabchuk.Runtime.Gameplay.Levels
         {
             _pathPicker = new RandomPathPicker(_spawnPoints.Count);
             _waveScheduler = new LevelWaveScheduler(SpawnEnemies);
+            _waveScheduler.CountdownStarted += OnWaveCountdownStarted;
+            _waveScheduler.CountdownSkipped += OnWaveCountdownSkipped;
         }
+
+        private void OnDestroy()
+        {
+            if (_waveScheduler == null)
+                return;
+
+            _waveScheduler.CountdownStarted -= OnWaveCountdownStarted;
+            _waveScheduler.CountdownSkipped -= OnWaveCountdownSkipped;
+        }
+
+        private void OnWaveCountdownStarted(float duration)
+            => _signalBus?.Fire(new WaveCountdownStartedSignal(duration));
+
+        private void OnWaveCountdownSkipped()
+            => _signalBus?.Fire(new WaveCountdownSkippedSignal());
 
         private void Start()
         {

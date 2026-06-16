@@ -9,6 +9,7 @@ namespace SBabchuk.Runtime.UI
     public sealed class NextWaveButtonController : MonoBehaviour
     {
         [SerializeField] private Button _button;
+        [SerializeField] private UIPulseAnimation _pulse;
 
         private ILevelWaveControlService _waveControl;
 
@@ -23,6 +24,9 @@ namespace SBabchuk.Runtime.UI
         {
             if (_button == null)
                 _button = GetComponent<Button>();
+
+            if (_pulse == null)
+                _pulse = GetComponent<UIPulseAnimation>();
         }
 
         private void OnEnable()
@@ -53,8 +57,21 @@ namespace SBabchuk.Runtime.UI
 
         private void RefreshInteractable()
         {
-            if (_button != null && _waveControl != null)
-                _button.interactable = _waveControl.CanStartNextWave;
+            if (_waveControl == null)
+                return;
+
+            var canStartNextWave = _waveControl.CanStartNextWave;
+
+            if (_button != null)
+                _button.interactable = canStartNextWave;
+
+            if (_pulse != null)
+            {
+                if (canStartNextWave)
+                    _pulse.Play();
+                else
+                    _pulse.Stop();
+            }
         }
     }
 }
