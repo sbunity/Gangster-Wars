@@ -25,6 +25,16 @@ namespace SBabchuk.Runtime.Gameplay.Enemies
         private List<Renderer> _renderList;
 
         private SkeletonAnimation _skeletonAnimation;
+        private SortingEnemy _followTarget;
+        private int _followOffset;
+
+        public void FollowInFrontOf(SortingEnemy target, int orderOffset = 2)
+        {
+            _followTarget = target;
+            _followOffset = orderOffset;
+        }
+
+        public void ClearFollow() => _followTarget = null;
 
         private void Awake()
         {
@@ -52,7 +62,7 @@ namespace SBabchuk.Runtime.Gameplay.Enemies
 
         private void AssignSortOrder()
         {
-            var sortingOrder = GetSortOrder();
+            var sortingOrder = ResolveSortOrder();
             if (_skeletonAnimation)
             {
                 var meshRenderer = _skeletonAnimation.gameObject.GetComponent<MeshRenderer>();
@@ -65,6 +75,14 @@ namespace SBabchuk.Runtime.Gameplay.Enemies
                 if (objectRenderer)
                     objectRenderer.sortingOrder = sortingOrder;
             }
+        }
+
+        private int ResolveSortOrder()
+        {
+            if (_followTarget != null && _followTarget.isActiveAndEnabled)
+                return _followTarget.GetSortOrder() + _followOffset;
+
+            return GetSortOrder();
         }
 
         private int GetSortOrder()

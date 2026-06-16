@@ -43,6 +43,8 @@ namespace SBabchuk.Runtime.Gameplay.Enemies
         private const int MaxDropChancePercent = 100;
 
         private bool _collided;
+        private SortingEnemy _sorting;
+        public SortingEnemy Sorting => _sorting;
         private IAssetProvider _assetProvider;
         private IGameFactory _gameFactory;
         private ILevelSpawnService _levelSpawnService;
@@ -100,6 +102,7 @@ namespace SBabchuk.Runtime.Gameplay.Enemies
 
         private void Awake()
         {
+            _sorting = GetComponent<SortingEnemy>();
             _view = GetRequired<EnemyView>();
             _health = GetRequired<EnemyHealth>();
             _movement = GetRequired<EnemyMovement>();

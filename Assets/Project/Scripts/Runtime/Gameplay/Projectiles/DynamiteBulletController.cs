@@ -4,6 +4,7 @@ using UnityEngine;
 using Spine.Unity;
 using Spine;
 using DG.Tweening;
+using SBabchuk.Runtime.Gameplay.Collisions;
 
 namespace SBabchuk.Runtime.Gameplay.Projectiles
 {
@@ -21,10 +22,11 @@ namespace SBabchuk.Runtime.Gameplay.Projectiles
             }
         }
 
-        public override void Pop()
+        public override CollisionController Pop()
         {
-            base.Pop();
+            var impact = base.Pop();
             LevelSpawnService?.SpawnCollision(4, transform.position);
+            return impact;
         }
 
         void FixedUpdate()

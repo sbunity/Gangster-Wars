@@ -21,8 +21,9 @@ namespace SBabchuk.Runtime.Services
         {
             if (enemy == null || bullet == null)
                 return;
-                
-            bullet.Pop();
+
+            var impact = bullet.Pop();
+            impact?.SortInFrontOf(enemy.Sorting);
             _damageService.DamageEnemy(enemy, bullet.Damage);
         }
 

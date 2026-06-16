@@ -1,5 +1,6 @@
 using UnityEngine;
 using SBabchuk.Runtime.Architecture;
+using SBabchuk.Runtime.Gameplay.Enemies;
 using Zenject;
 using UnityEngine.Serialization;
 
@@ -23,6 +24,8 @@ namespace SBabchuk.Runtime.Gameplay.Collisions
         private float _time;
         public float Time { get => _time; set => _time = value; }
 
+        private SortingEnemy _sorting;
+
         [Inject]
         public void Construct(SignalBus signalBus)
         {
@@ -32,6 +35,13 @@ namespace SBabchuk.Runtime.Gameplay.Collisions
         protected virtual void Awake()
         {
             EnsureParent();
+            _sorting = GetComponent<SortingEnemy>();
+        }
+
+        public void SortInFrontOf(SortingEnemy target)
+        {
+            if (target != null)
+                _sorting?.FollowInFrontOf(target);
         }
 
         public virtual void Start()
@@ -43,6 +53,7 @@ namespace SBabchuk.Runtime.Gameplay.Collisions
         {
             gameObject.SetActive(true);
             EnsureParent();
+            _sorting?.ClearFollow();
             transform.position = position;
             _damage = damage;
             _radius = radius;

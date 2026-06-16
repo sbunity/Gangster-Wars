@@ -105,7 +105,7 @@ namespace SBabchuk.Runtime.Gameplay.Projectiles
             transform.rotation = Quaternion.Euler(0, 0, rotationZ);
         }
 
-        public virtual void Pop()
+        public virtual CollisionController Pop()
         {
             transform.SetParent(_parent);
             if (_collisionCollider)
@@ -114,7 +114,7 @@ namespace SBabchuk.Runtime.Gameplay.Projectiles
             this.gameObject.SetActive(false);
             transform.tag = "Bullet";
 
-            _gameFactory.CreateCollision(CollisionEffectId.Impact, this.transform.position);
+            return _gameFactory.CreateCollision(CollisionEffectId.Impact, this.transform.position);
         }
 
         public virtual void OnBecameInvisible()
