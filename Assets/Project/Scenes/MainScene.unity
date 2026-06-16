@@ -6557,13 +6557,14 @@ GameObject:
   - component: {fileID: 344648245}
   - component: {fileID: 344648247}
   - component: {fileID: 344648246}
+  - component: {fileID: 344648248}
   m_Layer: 5
   m_Name: Image
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &344648245
 RectTransform:
   m_ObjectHideFlags: 0
@@ -6621,6 +6622,26 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 344648244}
   m_CullTransparentMesh: 0
+--- !u!114 &344648248
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 344648244}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7ce0aa123b60c6a4aaefbf75e9632d60, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SBabchuk.Runtime.UI.Scroll.ScrollNudgeButton
+  _scrollRect: {fileID: 868717081}
+  _direction: 1
+  _tapStep: 90
+  _tapDuration: 0.25
+  _tapEase: 9
+  _holdSpeed: 900
+  _holdDelay: 0.2
+  _hideWhenAtEdge: 1
 --- !u!1 &348181893
 GameObject:
   m_ObjectHideFlags: 0
@@ -8168,13 +8189,14 @@ GameObject:
   - component: {fileID: 448643293}
   - component: {fileID: 448643295}
   - component: {fileID: 448643294}
+  - component: {fileID: 448643296}
   m_Layer: 5
   m_Name: ArrowUp
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &448643293
 RectTransform:
   m_ObjectHideFlags: 0
@@ -8232,6 +8254,26 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 448643292}
   m_CullTransparentMesh: 0
+--- !u!114 &448643296
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 448643292}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7ce0aa123b60c6a4aaefbf75e9632d60, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SBabchuk.Runtime.UI.Scroll.ScrollNudgeButton
+  _scrollRect: {fileID: 842154433}
+  _direction: 0
+  _tapStep: 90
+  _tapDuration: 0.25
+  _tapEase: 9
+  _holdSpeed: 900
+  _holdDelay: 0.2
+  _hideWhenAtEdge: 1
 --- !u!1 &455301242
 GameObject:
   m_ObjectHideFlags: 0
@@ -10920,13 +10962,14 @@ GameObject:
   - component: {fileID: 574865698}
   - component: {fileID: 574865700}
   - component: {fileID: 574865699}
+  - component: {fileID: 574865701}
   m_Layer: 5
   m_Name: ArrowUp
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &574865698
 RectTransform:
   m_ObjectHideFlags: 0
@@ -10984,6 +11027,26 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 574865697}
   m_CullTransparentMesh: 0
+--- !u!114 &574865701
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 574865697}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7ce0aa123b60c6a4aaefbf75e9632d60, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SBabchuk.Runtime.UI.Scroll.ScrollNudgeButton
+  _scrollRect: {fileID: 868717081}
+  _direction: 0
+  _tapStep: 90
+  _tapDuration: 0.25
+  _tapEase: 9
+  _holdSpeed: 900
+  _holdDelay: 0.2
+  _hideWhenAtEdge: 1
 --- !u!1 &574869394
 GameObject:
   m_ObjectHideFlags: 0
@@ -12106,7 +12169,6 @@ GameObject:
   - component: {fileID: 652202798}
   - component: {fileID: 652202797}
   - component: {fileID: 652202796}
-  - component: {fileID: 652202800}
   m_Layer: 5
   m_Name: List
   m_TagString: Untagged
@@ -12215,21 +12277,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 652202794}
   m_CullTransparentMesh: 0
---- !u!114 &652202800
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 652202794}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e5d310bf694bd48dfa24d7f6114aac3d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::SBabchuk.ScrollArrowIndicator
-  scrollRect: {fileID: 652202796}
-  arrowDown: {fileID: 1831125303}
-  arrowUp: {fileID: 815573818}
 --- !u!1 &654837498
 GameObject:
   m_ObjectHideFlags: 0
@@ -15003,13 +15050,14 @@ GameObject:
   - component: {fileID: 815573819}
   - component: {fileID: 815573821}
   - component: {fileID: 815573820}
+  - component: {fileID: 815573822}
   m_Layer: 5
   m_Name: ArrowUp
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &815573819
 RectTransform:
   m_ObjectHideFlags: 0
@@ -15067,6 +15115,26 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 815573818}
   m_CullTransparentMesh: 0
+--- !u!114 &815573822
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 815573818}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7ce0aa123b60c6a4aaefbf75e9632d60, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SBabchuk.Runtime.UI.Scroll.ScrollNudgeButton
+  _scrollRect: {fileID: 652202796}
+  _direction: 0
+  _tapStep: 90
+  _tapDuration: 0.25
+  _tapEase: 9
+  _holdSpeed: 900
+  _holdDelay: 0.2
+  _hideWhenAtEdge: 1
 --- !u!1 &817781908
 GameObject:
   m_ObjectHideFlags: 0
@@ -15621,7 +15689,6 @@ GameObject:
   - component: {fileID: 842154435}
   - component: {fileID: 842154434}
   - component: {fileID: 842154433}
-  - component: {fileID: 842154437}
   m_Layer: 5
   m_Name: List
   m_TagString: Untagged
@@ -15730,21 +15797,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 842154431}
   m_CullTransparentMesh: 0
---- !u!114 &842154437
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 842154431}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e5d310bf694bd48dfa24d7f6114aac3d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::SBabchuk.ScrollArrowIndicator
-  scrollRect: {fileID: 0}
-  arrowDown: {fileID: 0}
-  arrowUp: {fileID: 0}
 --- !u!21 &842703163
 Material:
   serializedVersion: 8
@@ -16361,7 +16413,6 @@ GameObject:
   - component: {fileID: 868717083}
   - component: {fileID: 868717082}
   - component: {fileID: 868717081}
-  - component: {fileID: 868717085}
   m_Layer: 5
   m_Name: List
   m_TagString: Untagged
@@ -16470,21 +16521,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 868717079}
   m_CullTransparentMesh: 0
---- !u!114 &868717085
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 868717079}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e5d310bf694bd48dfa24d7f6114aac3d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::SBabchuk.ScrollArrowIndicator
-  scrollRect: {fileID: 0}
-  arrowDown: {fileID: 0}
-  arrowUp: {fileID: 0}
 --- !u!1 &870639680
 GameObject:
   m_ObjectHideFlags: 0
@@ -30914,7 +30950,6 @@ GameObject:
   - component: {fileID: 1533442669}
   - component: {fileID: 1533442668}
   - component: {fileID: 1533442667}
-  - component: {fileID: 1533442671}
   m_Layer: 5
   m_Name: List
   m_TagString: Untagged
@@ -31023,21 +31058,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1533442665}
   m_CullTransparentMesh: 0
---- !u!114 &1533442671
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1533442665}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e5d310bf694bd48dfa24d7f6114aac3d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::SBabchuk.ScrollArrowIndicator
-  scrollRect: {fileID: 0}
-  arrowDown: {fileID: 0}
-  arrowUp: {fileID: 0}
 --- !u!1 &1533589852
 GameObject:
   m_ObjectHideFlags: 0
@@ -33470,13 +33490,14 @@ GameObject:
   - component: {fileID: 1658643126}
   - component: {fileID: 1658643128}
   - component: {fileID: 1658643127}
+  - component: {fileID: 1658643129}
   m_Layer: 5
   m_Name: Image
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1658643126
 RectTransform:
   m_ObjectHideFlags: 0
@@ -33534,6 +33555,26 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1658643125}
   m_CullTransparentMesh: 0
+--- !u!114 &1658643129
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1658643125}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7ce0aa123b60c6a4aaefbf75e9632d60, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SBabchuk.Runtime.UI.Scroll.ScrollNudgeButton
+  _scrollRect: {fileID: 842154433}
+  _direction: 1
+  _tapStep: 90
+  _tapDuration: 0.25
+  _tapEase: 9
+  _holdSpeed: 900
+  _holdDelay: 0.2
+  _hideWhenAtEdge: 1
 --- !u!1 &1664880109
 GameObject:
   m_ObjectHideFlags: 0
@@ -37048,6 +37089,7 @@ GameObject:
   - component: {fileID: 1831125304}
   - component: {fileID: 1831125306}
   - component: {fileID: 1831125305}
+  - component: {fileID: 1831125307}
   m_Layer: 5
   m_Name: Image
   m_TagString: Untagged
@@ -37112,6 +37154,26 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1831125303}
   m_CullTransparentMesh: 0
+--- !u!114 &1831125307
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1831125303}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7ce0aa123b60c6a4aaefbf75e9632d60, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SBabchuk.Runtime.UI.Scroll.ScrollNudgeButton
+  _scrollRect: {fileID: 652202796}
+  _direction: 1
+  _tapStep: 90
+  _tapDuration: 0.25
+  _tapEase: 9
+  _holdSpeed: 900
+  _holdDelay: 0.2
+  _hideWhenAtEdge: 1
 --- !u!1 &1834484705
 GameObject:
   m_ObjectHideFlags: 0
