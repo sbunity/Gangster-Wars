@@ -1,11 +1,8 @@
 using System.Collections.Generic;
-using DG.Tweening;
-using SBabchuk.Runtime.Architecture;
 using SBabchuk.Runtime.Services.Contracts;
 using UnityEngine;
 using Zenject;
 using UnityEngine.Serialization;
-using SBabchuk.Runtime.Databases.PlayerPrefs;
 using SBabchuk.Runtime.Databases.WeaponStore;
 using SBabchuk.Runtime.Gameplay.Enemies;
 
@@ -31,132 +28,74 @@ namespace SBabchuk.Runtime.Gameplay.Characters
         private bool _isAttacking = false;
         public bool IsAttacking => _isAttacking;
 
-        private WeaponShortInfo _weaponShortInfo;
         private Weapon _weapon;
         private WeaponSettings _properties;
-        private int _countPatrons;
-        private Tween _reloadTween;
-        private WeaponsName _weaponsName;
         private int _index;
-        private readonly Dictionary<int, int> _inGunCount = new();
         private readonly LeaderShotGate _shotGate = new();
-        private SignalBus _signalBus;
+        private IWeaponAmmoService _ammoService;
 
         [Inject]
-        public void ConstructLeader(SignalBus signalBus)
+        public void ConstructLeader(IWeaponAmmoService ammoService)
         {
-            _signalBus = signalBus;
+            _ammoService = ammoService;
+            _ammoService.ReloadAdvanced += OnReloadAdvanced;
+            _ammoService.ReloadCompleted += OnReloadCompleted;
+            _ammoService.MagazineEmptied += OnMagazineEmptied;
         }
 
         private void OnDestroy()
         {
-            _reloadTween?.Kill();
+            if (_ammoService == null)
+                return;
+
+            _ammoService.ReloadAdvanced -= OnReloadAdvanced;
+            _ammoService.ReloadCompleted -= OnReloadCompleted;
+            _ammoService.MagazineEmptied -= OnMagazineEmptied;
         }
 
         public void InitWeapon(int weaponId)
         {
-            if (_weaponShortInfo != null)
-                _inGunCount[(int)_weaponsName] = _countPatrons;
-
-            _reloadTween?.Kill();
-
-            _weaponsName = (WeaponsName)weaponId;
-            _weaponShortInfo = _progressService.GetWeaponShortInfo(weaponId);
-
             var weaponStore = _assetProvider.WeaponStoreDatabase;
+            var weaponShortInfo = _progressService.GetWeaponShortInfo(weaponId);
             _weapon = weaponStore.GetWeapon(weaponId);
 
-            var upgrade = weaponStore.GetUpgrade(weaponId, _weaponShortInfo.UpgradeId);
-            _properties = upgrade != null ? upgrade.Settings : _weapon.Settings;
+            var upgrade = weaponShortInfo != null ? weaponStore.GetUpgrade(weaponId, weaponShortInfo.UpgradeId) : null;
+            _properties = upgrade != null ? upgrade.Settings : _weapon?.Settings;
 
             Init();
 
-            if (_inGunCount.TryGetValue(weaponId, out var savedAmmo))
-            {
-                _countPatrons = savedAmmo;
-            }
-            else
-            {
-                _countPatrons = _weaponShortInfo.AmmoCount;
-
-                if (_countPatrons >= _weapon.Magazine)
-                    _countPatrons = _weapon.Magazine;
-            }
-
-            _signalBus.Fire(new LeaderMagazineInitializedSignal(_weapon.Magazine));
-            _signalBus.Fire(new LeaderPatronsChangedSignal(_countPatrons));
             _createBulletPointList = _bulletPoints[weaponId].Points;
             _index = 0;
 
-            if (_countPatrons < _weapon.Magazine)
-                Reload();
+            _ammoService.SelectWeapon(weaponId);
         }
 
         public override void SpawnBullet()
         {
-            if (_countPatrons <= 0 || !_shotGate.TryConsumeShot(out var shouldFinishAfterShot))
+            if (_ammoService.IsEmpty || !_shotGate.TryConsumeShot(out var shouldFinishAfterShot))
                 return;
 
-            var firedWeapon = _weaponsName;
+            var firedWeapon = _ammoService.ActiveWeapon;
             _characterWeapon.Fire(_weapon.BulletId, _properties.Damage, _createBulletPointList[_index].GetPosition(), default(Vector3), 0);
             _index = _index + 1 < _createBulletPointList.Count ? _index + 1 : 0;
 
-            UpdatePatrons(-1);
+            _ammoService.TryConsumeRound();
 
-            if (firedWeapon != WeaponsName.Weapon_1)
-                _progressService.SetWeaponAmmo(firedWeapon, -1);
-
-            if (shouldFinishAfterShot && _weaponsName == firedWeapon)
+            if (shouldFinishAfterShot && _ammoService.ActiveWeapon == firedWeapon)
                 FinishShooting();
         }
 
         public override void Attack()
         {
-            if (_countPatrons <= 0 || _isAttacking)
+            if (_ammoService.IsEmpty || _isAttacking)
                 return;
 
             _shotGate.Press();
             _isAttacking = true;
-            _reloadTween?.Kill();
+            _ammoService.StopReload();
 
             if (Animation.GetCurrentAnimation() != AnimationsName.Shoot)
                 Animation.SetAnimation(AnimationsName.Shoot);
-        }
-
-        public void Reload()
-        {
-            _reloadTween?.Kill();
-            _reloadTween = DOVirtual.DelayedCall(1f, () =>
-            {
-                var weaponStore = _assetProvider.WeaponStoreDatabase;
-                _reloadTween = DOVirtual.DelayedCall(weaponStore.GetWeapon(_weaponShortInfo.Id).SpeedReload, () =>
-                {
-                    if (_countPatrons < _weapon.Magazine)
-                    {
-                        if (Animation.GetCurrentAnimation() != AnimationsName.Reload)
-                            Animation.SetAnimation(AnimationsName.Reload);
-                        
-                        if (_countPatrons < _weaponShortInfo.AmmoCount)
-                        {
-                            UpdatePatrons(1);
-                        }
-                        else
-                        {
-                            if (Animation.GetCurrentAnimation() != AnimationsName.Idle)
-                                Animation.SetAnimation(AnimationsName.Idle);
-
-                            _reloadTween?.Kill();
-                        }
-                    }
-                    else
-                    {
-                        if (Animation.GetCurrentAnimation() != AnimationsName.Idle)
-                            Animation.SetAnimation(AnimationsName.Idle);
-
-                        _reloadTween?.Kill();
-                    }
-                }).SetLoops(-1);
-            });
         }
 
         public void StopAttack()
@@ -179,7 +118,7 @@ namespace SBabchuk.Runtime.Gameplay.Characters
         {
             _shotGate.Cancel();
             _index = 0;
-            Reload();
+            _ammoService.BeginReload();
         }
 
         public Vector3 GetAimOrigin()
@@ -191,13 +130,19 @@ namespace SBabchuk.Runtime.Gameplay.Characters
             return transform.position;
         }
 
-        private void UpdatePatrons(int value)
+        private void OnReloadAdvanced()
         {
-            _countPatrons += value;
-            _signalBus.Fire(new LeaderPatronsChangedSignal(_countPatrons));
-            if (_countPatrons == 0)
-                StopAttack();
+            if (Animation.GetCurrentAnimation() != AnimationsName.Reload)
+                Animation.SetAnimation(AnimationsName.Reload);
         }
+
+        private void OnReloadCompleted()
+        {
+            if (Animation.GetCurrentAnimation() != AnimationsName.Idle)
+                Animation.SetAnimation(AnimationsName.Idle);
+        }
+
+        private void OnMagazineEmptied() => StopAttack();
 
         private void FinishShooting()
         {

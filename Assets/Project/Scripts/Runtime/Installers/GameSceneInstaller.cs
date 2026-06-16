@@ -31,6 +31,7 @@ namespace SBabchuk.Runtime.Installers
             Container.Bind<PoolManager>().FromInstance(_poolManager).AsSingle();
             Container.Bind<IPoolService>().To<PoolService>().AsSingle();
             Container.Bind<IGameFactory>().To<GameFactory>().AsSingle();
+            Container.BindInterfacesAndSelfTo<WeaponAmmoService>().AsSingle();
             Container.Bind<ILeaderWeaponSelectionService>().To<AssetDataController>().FromComponentInHierarchy().AsSingle();
             Container.BindInterfacesTo<DefaultWeaponFallbackService>().AsSingle();
 
