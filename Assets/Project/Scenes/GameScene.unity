@@ -13506,7 +13506,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SBabchuk.EnemySpawnPointScreenEdge
   _camera: {fileID: 1709368626}
-  _rightOffset: 0.1
+  _rightOffset: 0.3
 --- !u!1 &1055493652
 GameObject:
   m_ObjectHideFlags: 0
