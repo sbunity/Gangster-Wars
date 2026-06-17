@@ -24,6 +24,8 @@ namespace SBabchuk.Runtime.UI.WeaponStore
 
         public Vector3 ScreenPosition => GetScreenPosition();
 
+        public Canvas Canvas => ResolveCanvas();
+
         [Inject]
         public void Construct(IBonusCollectTargetRegistry collectTargets)
         {
@@ -89,6 +91,12 @@ namespace SBabchuk.Runtime.UI.WeaponStore
             var canvas = rectTransform.GetComponentInParent<Canvas>();
             var camera = canvas != null && canvas.renderMode != RenderMode.ScreenSpaceOverlay ? canvas.worldCamera : null;
             return RectTransformUtility.WorldToScreenPoint(camera, rectTransform.position);
+        }
+
+        private Canvas ResolveCanvas()
+        {
+            var rectTransform = _count != null ? _count.rectTransform : transform as RectTransform;
+            return rectTransform != null ? rectTransform.GetComponentInParent<Canvas>() : null;
         }
 
         private T GetOrAdd<T>()

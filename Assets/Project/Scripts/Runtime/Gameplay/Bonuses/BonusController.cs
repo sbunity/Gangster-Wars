@@ -86,6 +86,7 @@ namespace SBabchuk.Runtime.Gameplay.Bonuses
 
             InitColliders();
             _view.Initialize();
+            _view.RestoreSorting();
             transform.position = position;
             transform.localScale = _defaultScale;
             SetCollisionEnabled(true);
@@ -134,6 +135,7 @@ namespace SBabchuk.Runtime.Gameplay.Bonuses
         private void PlayCollectAnimation(IBonusCollectTarget target)
         {
             var targetPosition = ScreenToBonusWorldPosition(target.ScreenPosition);
+            _view.RenderAbove(target.Canvas);
             _collectTween?.Kill();
             _collectTween = DOTween.Sequence()
                 .Join(transform.DOMove(targetPosition, COLLECT_FLY_DURATION).SetEase(Ease.InOutSine))

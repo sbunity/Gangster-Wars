@@ -6,6 +6,8 @@ namespace SBabchuk.Runtime.Services.Contracts
     {
         Vector3 ScreenPosition { get; }
 
+        Canvas Canvas { get; }
+
         void PlayCollectFeedback();
     }
 }
