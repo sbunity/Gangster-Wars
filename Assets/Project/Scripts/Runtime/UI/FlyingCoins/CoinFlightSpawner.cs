@@ -40,7 +40,8 @@ namespace SBabchuk.Runtime.UI.FlyingCoins
         public void Construct(SignalBus signalBus)
         {
             _signals = new SignalSubscriptions(signalBus)
-                .Add<CoinFlightRequestedSignal>(OnFlightRequested);
+                .Add<CoinFlightRequestedSignal>(OnFlightRequested)
+                .Add<CoinFlightFromScreenRequestedSignal>(OnFlightFromScreenRequested);
         }
 
         private void OnEnable() => _signals?.Enable();
@@ -54,27 +55,37 @@ namespace SBabchuk.Runtime.UI.FlyingCoins
         private void OnFlightRequested(CoinFlightRequestedSignal signal)
             => Play(signal.WorldOrigin, signal.Amount);
 
+        private void OnFlightFromScreenRequested(CoinFlightFromScreenRequestedSignal signal)
+            => PlayFromScreen(signal.ScreenOrigin, signal.Amount);
+
         public void Play(Vector3 worldOrigin, int amount)
         {
-            if (!_enabled || amount <= 0 || _coinPrefab == null || _target == null)
+            if (!_enabled || amount <= 0)
                 return;
 
             var gameCamera = Camera.main;
             if (gameCamera == null)
                 return;
 
+            PlayFromScreen(gameCamera.WorldToScreenPoint(worldOrigin), amount);
+        }
+
+        public void PlayFromScreen(Vector2 screenOrigin, int amount)
+        {
+            if (!_enabled || amount <= 0 || _coinPrefab == null || _target == null)
+                return;
+
             var spawnRoot = SpawnRoot;
             var canvasCamera = ResolveCanvasCamera();
-            var originScreen = (Vector2)gameCamera.WorldToScreenPoint(worldOrigin);
 
-            if (!RectTransformUtility.ScreenPointToWorldPointInRectangle(spawnRoot, originScreen, canvasCamera, out var worldStart))
+            if (!RectTransformUtility.ScreenPointToWorldPointInRectangle(spawnRoot, screenOrigin, canvasCamera, out var worldStart))
                 return;
 
             var coinCount = Mathf.Clamp(amount, 1, _maxCoins);
             var targetWorld = _target.position;
 
             for (var index = 0; index < coinCount; index++)
-                LaunchCoin(index, originScreen, worldStart, targetWorld, spawnRoot, canvasCamera);
+                LaunchCoin(index, screenOrigin, worldStart, targetWorld, spawnRoot, canvasCamera);
         }
 
         private void LaunchCoin(int index, Vector2 originScreen, Vector3 worldStart, Vector3 targetWorld, RectTransform spawnRoot, Camera canvasCamera)

@@ -47,6 +47,7 @@ namespace SBabchuk.Runtime.Installers
             Container.DeclareSignal<GameFinishedSignal>().OptionalSubscriber();
             Container.DeclareSignal<CoinsChangedSignal>().OptionalSubscriber();
             Container.DeclareSignal<CoinFlightRequestedSignal>().OptionalSubscriber();
+            Container.DeclareSignal<CoinFlightFromScreenRequestedSignal>().OptionalSubscriber();
             Container.DeclareSignal<ProgressUpgradedSignal>().OptionalSubscriber();
             Container.DeclareSignal<WeaponAmmoChangedSignal>().OptionalSubscriber();
             Container.DeclareSignal<LeaderMagazineInitializedSignal>().OptionalSubscriber();

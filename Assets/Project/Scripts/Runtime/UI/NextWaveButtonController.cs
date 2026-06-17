@@ -1,3 +1,4 @@
+using SBabchuk.Runtime.Architecture;
 using SBabchuk.Runtime.Services.Contracts;
 using UnityEngine;
 using UnityEngine.UI;
@@ -12,11 +13,15 @@ namespace SBabchuk.Runtime.UI
         [SerializeField] private UIPulseAnimation _pulse;
 
         private ILevelWaveControlService _waveControl;
+        private SignalBus _signalBus;
+        private RectTransform _rect;
+        private Canvas _canvas;
 
         [Inject]
-        public void Construct(ILevelWaveControlService waveControl)
+        public void Construct(ILevelWaveControlService waveControl, SignalBus signalBus)
         {
             _waveControl = waveControl;
+            _signalBus = signalBus;
             RefreshInteractable();
         }
 
@@ -27,6 +32,9 @@ namespace SBabchuk.Runtime.UI
 
             if (_pulse == null)
                 _pulse = GetComponent<UIPulseAnimation>();
+
+            _rect = (RectTransform)transform;
+            _canvas = GetComponentInParent<Canvas>();
         }
 
         private void OnEnable()
@@ -51,8 +59,23 @@ namespace SBabchuk.Runtime.UI
 
         private void HandleClick()
         {
-            _waveControl?.StartNextWave();
+            var reward = _waveControl?.StartNextWave() ?? 0;
+            if (reward > 0)
+                RequestCoinFlight(reward);
+
             RefreshInteractable();
+        }
+
+        private void RequestCoinFlight(int reward)
+        {
+            if (_signalBus == null || _rect == null)
+                return;
+
+            var uiCamera = _canvas != null && _canvas.renderMode != RenderMode.ScreenSpaceOverlay
+                ? _canvas.worldCamera
+                : null;
+            var screenOrigin = RectTransformUtility.WorldToScreenPoint(uiCamera, _rect.position);
+            _signalBus.Fire(new CoinFlightFromScreenRequestedSignal(screenOrigin, reward));
         }
 
         private void RefreshInteractable()

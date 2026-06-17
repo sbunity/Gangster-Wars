@@ -174,20 +174,19 @@ namespace SBabchuk.Runtime.Gameplay.Levels
             _waveScheduler.StartWave(waveIndex);
         }
 
-        public bool StartNextWave()
+        public int StartNextWave()
         {
             if (_isLevelFinished)
-                return false;
+                return 0;
 
             if (_waveScheduler == null)
-                return false;
+                return 0;
 
             var secondsUntilNextWave = _waveScheduler.SecondsUntilNextWave;
             if (!_waveScheduler.StartNextWave())
-                return false;
+                return 0;
 
-            _waveSkipRewardService?.GrantReward(secondsUntilNextWave);
-            return true;
+            return _waveSkipRewardService?.GrantReward(secondsUntilNextWave) ?? 0;
         }
 
         public void WaveHandler(int waveIndex, int currentEnemyIndex)

@@ -59,6 +59,18 @@ namespace SBabchuk.Runtime.Architecture
         public int Amount { get; }
     }
 
+    public readonly struct CoinFlightFromScreenRequestedSignal
+    {
+        public CoinFlightFromScreenRequestedSignal(Vector2 screenOrigin, int amount)
+        {
+            ScreenOrigin = screenOrigin;
+            Amount = amount;
+        }
+
+        public Vector2 ScreenOrigin { get; }
+        public int Amount { get; }
+    }
+
     public readonly struct ProgressUpgradedSignal
     {
     }
