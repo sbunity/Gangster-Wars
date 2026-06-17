@@ -81,6 +81,18 @@ namespace SBabchuk.Runtime.UI
             EasyTouch.On_TouchUp -= OnTouchUp;
         }
 
+        private void OnApplicationPause(bool pauseStatus)
+        {
+            if (pauseStatus)
+                CancelCurrentPlacement();
+        }
+
+        private void OnApplicationFocus(bool hasFocus)
+        {
+            if (!hasFocus)
+                CancelCurrentPlacement();
+        }
+
         private void OnTriggerExit2D(Collider2D other)
         {
             if (_onTrigger)
@@ -181,13 +193,32 @@ namespace SBabchuk.Runtime.UI
 
         private void CompleteMovingToBack()
         {
-            _grenade.CheckIco(true);
+            ResetHandState();
+        }
+
+        private void CancelCurrentPlacement()
+        {
+            if (!_focus && !_isMovingToBack)
+                return;
+
+            _twn?.Kill();
+            ResetHandState();
+        }
+
+        private void ResetHandState()
+        {
+            _grenade?.CheckIco(true);
             transform.position = OffscreenPosition;
-            _touchCollider.enabled = true;
-            _collisionCollider.enabled = true;
+            if (_touchCollider != null)
+                _touchCollider.enabled = true;
+            if (_collisionCollider != null)
+                _collisionCollider.enabled = true;
             _isMovingToBack = false;
-            if (this.gameObject.transform.localScale.x > 1)
-                this.gameObject.transform.localScale /= _scaleToTouch;
+            _focus = false;
+            _onTrigger = false;
+            _otherCollider = null;
+            if (transform.localScale.x > 1)
+                transform.localScale /= _scaleToTouch;
         }
     }
 }
