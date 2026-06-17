@@ -4187,6 +4187,8 @@ GameObject:
   m_Component:
   - component: {fileID: 249105038}
   - component: {fileID: 249105039}
+  - component: {fileID: 249105041}
+  - component: {fileID: 249105040}
   m_Layer: 0
   m_Name: Lose
   m_TagString: Untagged
@@ -4230,8 +4232,51 @@ MonoBehaviour:
   _panel: {fileID: 84370544}
   _canvasGroup: {fileID: 84370548}
   _fadeDuration: 0.4
+  _sortingCanvas: {fileID: 0}
+  _overrideSorting: 1
+  _sortingOrder: 10000
   _continueButton: {fileID: 1297641290}
   _restartButton: {fileID: 764440986}
+--- !u!114 &249105040
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 249105037}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc42784cf147c0c48a680349fa168899, type: 3}
+  m_Name:
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.GraphicRaycaster
+  m_IgnoreReversedGraphics: 1
+  m_BlockingObjects: 0
+  m_BlockingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+--- !u!223 &249105041
+Canvas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 249105037}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_RenderMode: 2
+  m_Camera: {fileID: 0}
+  m_PlaneDistance: 100
+  m_PixelPerfect: 0
+  m_ReceivesEvents: 1
+  m_OverrideSorting: 1
+  m_OverridePixelPerfect: 0
+  m_SortingBucketNormalizedSize: 0
+  m_VertexColorAlwaysGammaSpace: 0
+  m_AdditionalShaderChannelsFlag: 0
+  m_UpdateRectTransformForStandalone: 0
+  m_SortingLayerID: 703089779
+  m_SortingOrder: 10000
+  m_TargetDisplay: 0
 --- !u!1 &251943244
 GameObject:
   m_ObjectHideFlags: 0
@@ -10803,11 +10848,11 @@ RectTransform:
   - {fileID: 2038733036}
   - {fileID: 1289643748}
   - {fileID: 1692929232}
-  - {fileID: 1333109397}
-  - {fileID: 249105038}
   - {fileID: 1361490163}
   - {fileID: 1906614376}
   - {fileID: 623863267}
+  - {fileID: 1333109397}
+  - {fileID: 249105038}
   m_Father: {fileID: 1397584121}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -17296,6 +17341,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1333109397}
   - component: {fileID: 1333109398}
+  - component: {fileID: 1333109400}
+  - component: {fileID: 1333109399}
   m_Layer: 0
   m_Name: Win
   m_TagString: Untagged
@@ -17339,6 +17386,9 @@ MonoBehaviour:
   _panel: {fileID: 1448598036}
   _canvasGroup: {fileID: 1448598040}
   _fadeDuration: 0.4
+  _sortingCanvas: {fileID: 0}
+  _overrideSorting: 1
+  _sortingOrder: 10000
   _continueButton: {fileID: 505811728}
   _starsImage: {fileID: 236529628}
   _starsSprites:
@@ -17346,6 +17396,46 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 5111781b2345a9443801cf99c61f259f, type: 3}
   - {fileID: 21300000, guid: 0e0f9499d62b5bb43bbbcdbd894d27e6, type: 3}
   - {fileID: 21300000, guid: 3efd80ffdc20b1441a58ea341fd100e7, type: 3}
+--- !u!114 &1333109399
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1333109396}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc42784cf147c0c48a680349fa168899, type: 3}
+  m_Name:
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.GraphicRaycaster
+  m_IgnoreReversedGraphics: 1
+  m_BlockingObjects: 0
+  m_BlockingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+--- !u!223 &1333109400
+Canvas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1333109396}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_RenderMode: 2
+  m_Camera: {fileID: 0}
+  m_PlaneDistance: 100
+  m_PixelPerfect: 0
+  m_ReceivesEvents: 1
+  m_OverrideSorting: 1
+  m_OverridePixelPerfect: 0
+  m_SortingBucketNormalizedSize: 0
+  m_VertexColorAlwaysGammaSpace: 0
+  m_AdditionalShaderChannelsFlag: 0
+  m_UpdateRectTransformForStandalone: 0
+  m_SortingLayerID: 703089779
+  m_SortingOrder: 10000
+  m_TargetDisplay: 0
 --- !u!1 &1337787091
 GameObject:
   m_ObjectHideFlags: 0

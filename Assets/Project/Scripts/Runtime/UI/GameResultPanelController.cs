@@ -4,6 +4,7 @@ using SBabchuk.Runtime.Architecture;
 using SBabchuk.Runtime.Services.Contracts;
 using UnityEngine;
 using UnityEngine.Serialization;
+using UnityEngine.UI;
 using Zenject;
 
 namespace SBabchuk.Runtime.UI
@@ -19,6 +20,11 @@ namespace SBabchuk.Runtime.UI
         [SerializeField] private CanvasGroup _canvasGroup;
 
         [SerializeField, Min(0f)] private float _fadeDuration = 0.4f;
+
+        [Header("Sorting")]
+        [SerializeField] private Canvas _sortingCanvas;
+        [SerializeField] private bool _overrideSorting = true;
+        [SerializeField] private int _sortingOrder = 10000;
 
         private ISceneTransitionService _sceneTransitionService;
         private SignalSubscriptions _signals;
@@ -44,6 +50,7 @@ namespace SBabchuk.Runtime.UI
                 return;
 
             OnShow();
+            ApplyTopMostSorting();
             _panel.SetActive(true);
             Time.timeScale = 0f;
             PlayFadeIn();
@@ -67,6 +74,40 @@ namespace SBabchuk.Runtime.UI
         }
 
         private void OnGameFinished(GameFinishedSignal signal) => Show(signal.Panel);
+
+        private void ApplyTopMostSorting()
+        {
+            transform.SetAsLastSibling();
+
+            var canvas = ResolveSortingCanvas();
+            if (canvas == null)
+                return;
+
+            canvas.overrideSorting = _overrideSorting;
+            canvas.sortingOrder = _sortingOrder;
+
+            var parentCanvas = transform.parent != null
+                ? transform.parent.GetComponentInParent<Canvas>()
+                : null;
+
+            if (parentCanvas != null)
+                canvas.sortingLayerID = parentCanvas.sortingLayerID;
+        }
+
+        private Canvas ResolveSortingCanvas()
+        {
+            if (_sortingCanvas != null)
+                return _sortingCanvas;
+
+            _sortingCanvas = GetComponent<Canvas>();
+            if (_sortingCanvas == null)
+                _sortingCanvas = gameObject.AddComponent<Canvas>();
+
+            if (GetComponent<GraphicRaycaster>() == null)
+                gameObject.AddComponent<GraphicRaycaster>();
+
+            return _sortingCanvas;
+        }
 
         private void PlayFadeIn()
         {
