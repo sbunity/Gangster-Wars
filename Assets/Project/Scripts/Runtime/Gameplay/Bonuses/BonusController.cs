@@ -123,19 +123,19 @@ namespace SBabchuk.Runtime.Gameplay.Bonuses
             _autoCollectTween?.Kill();
             SetCollisionEnabled(false);
 
-            if (TryGetCollectTarget(out var target))
-            {
-                PlayCollectAnimation(target);
-                return;
-            }
-
-            CompleteCollection(null);
+            TryGetCollectTarget(out var target);
+            PlayCollectAnimation(target);
         }
 
         private void PlayCollectAnimation(IBonusCollectTarget target)
         {
-            var targetPosition = ScreenToBonusWorldPosition(target.ScreenPosition);
-            _view.RenderAbove(target.Canvas);
+            var targetPosition = target != null
+                ? ScreenToBonusWorldPosition(target.ScreenPosition)
+                : transform.position;
+
+            if (target != null)
+                _view.RenderAbove(target.Canvas);
+
             _collectTween?.Kill();
             _collectTween = DOTween.Sequence()
                 .Join(transform.DOMove(targetPosition, COLLECT_FLY_DURATION).SetEase(Ease.InOutSine))

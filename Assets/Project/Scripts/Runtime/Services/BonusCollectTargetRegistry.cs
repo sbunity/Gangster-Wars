@@ -24,7 +24,16 @@ namespace SBabchuk.Runtime.Services
 
         public bool TryGet(ShortInfoName kind, int id, out IBonusCollectTarget target)
         {
-            return _targets.TryGetValue(new Key(kind, id), out target) && target != null;
+            if (_targets.TryGetValue(new Key(kind, id), out target) && !IsDestroyed(target))
+                return true;
+
+            target = null;
+            return false;
+        }
+
+        private static bool IsDestroyed(IBonusCollectTarget target)
+        {
+            return target == null || (target is UnityEngine.Object unityObject && unityObject == null);
         }
 
         private readonly struct Key
