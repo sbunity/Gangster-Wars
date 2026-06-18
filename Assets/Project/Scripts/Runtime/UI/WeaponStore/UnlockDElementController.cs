@@ -25,12 +25,22 @@ namespace SBabchuk.Runtime.UI.WeaponStore
             Id = id;
             var defenceStore = _assetProvider.DefenseStoreDatabase;
             _defenceInfo = defenceStore.GetDefense(Id);
+            if (_defenceInfo == null)
+                return;
+
+            var hasUpgrade = _progressService.TryGetNextDefenceUpgradePrice(Id, out var upgradePrice);
 
             if (PriceBuy)
-                PriceBuy.text = _defenceInfo.Price.ToString();
+            {
+                PriceBuy.text = hasUpgrade
+                    ? upgradePrice.ToString()
+                    : string.Empty;
+            }
 
             if (BttnBuy)
-                BttnBuy.interactable = _progressService.CanBuy(_defenceInfo.Price);
+            {
+                BttnBuy.interactable = hasUpgrade && _progressService.CanBuy(upgradePrice);
+            }
 
             var defenceShortInfo = _progressService.GetDefenceShortInfo(id);
             var selectedDefenceId = _progressService.SelectedDefenceId;

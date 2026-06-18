@@ -49,14 +49,10 @@ namespace SBabchuk.Runtime.UI.WeaponStore
         private void InitialisationUpgrade(int id)
         {
             _weaponID = id;
-            var weaponShortInfo = _progressService.GetWeaponShortInfo(id);
-            var _upgradeID = weaponShortInfo.UpgradeId + 1;
-            var weaponStore = _assetProvider.WeaponStoreDatabase;
-            var _upgrade = weaponStore.GetUpgrade(id, _upgradeID);
 
-            if (_upgrade != null)
+            if (_progressService.TryGetNextWeaponUpgradePrice(id, out var price))
             {
-                _price = _upgrade.Price;
+                _price = price;
                 if (_priceUpgrade)
                     _priceUpgrade.text = _price.ToString();
 
@@ -71,10 +67,12 @@ namespace SBabchuk.Runtime.UI.WeaponStore
 
         private void InitialisationMagazine(int id)
         {
-            var weaponShortInfo = _progressService.GetWeaponShortInfo(id);
             var weaponStore = _assetProvider.WeaponStoreDatabase;
             var weapon = weaponStore.GetWeapon(id);
-            _price = weaponStore.GetWeapon(id).PriceMagazine;
+            if (weapon == null)
+                return;
+
+            _price = weapon.PriceMagazine;
 
             if (_priceMagazine)
                 _priceMagazine.text = _price.ToString();

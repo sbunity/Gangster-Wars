@@ -1,11 +1,8 @@
-using System.Collections;
-using System.Collections.Generic;
 using SBabchuk.Runtime.Services.Contracts;
 using UnityEngine;
 using UnityEngine.UI;
 using Zenject;
 using UnityEngine.Serialization;
-using SBabchuk.Runtime.Databases.MainPlayers;
 using SBabchuk.Runtime.UI.WeaponStore;
 
 namespace SBabchuk.Runtime.UI.MainPlayer
@@ -23,13 +20,11 @@ namespace SBabchuk.Runtime.UI.MainPlayer
 
         private int _price;
         private int _personageID;
-        private IAssetProvider _assetProvider;
         private IPlayerProgressService _progressService;
 
         [Inject]
-        public void Construct(IAssetProvider assetProvider, IPlayerProgressService progressService)
+        public void Construct(IPlayerProgressService progressService)
         {
-            _assetProvider = assetProvider;
             _progressService = progressService;
         }
 
@@ -41,14 +36,10 @@ namespace SBabchuk.Runtime.UI.MainPlayer
         private void InitialisationUpgrade(int id)
         {
             _personageID = id;
-            var personageShortInfo = _progressService.GetPersonageShortInfo(id);
-            int _upgradeID = personageShortInfo.UpgradeId + 1;
-            var playerStore = _assetProvider.MainPlayerDatabase;
-            PUpgrade _upgrade = playerStore.GetUpgrade(id, _upgradeID);
             
-            if (_upgrade != null)
+            if (_progressService.TryGetNextPersonageUpgradePrice(id, out var price))
             {
-                _price = _upgrade.Price;
+                _price = price;
                 if (_priceUpgrade)
                 {
                     _priceUpgrade.text = _price.ToString();

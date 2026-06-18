@@ -55,6 +55,54 @@ namespace SBabchuk.Runtime.Services
         public bool CanBuy(int price) 
             => Preferences.OpportunityBuy(price);
 
+        public bool TryGetNextWeaponUpgradePrice(int id, out int price)
+        {
+            price = 0;
+            var weaponShortInfo = PlayerPrefs.GetWeaponShortInfo(id);
+            var weapon = _assetProvider.WeaponStoreDatabase.GetWeapon(id);
+            if (weaponShortInfo == null || weapon?.Upgrades == null || weaponShortInfo.UpgradeId >= weapon.Upgrades.Count - 1)
+                return false;
+
+            var upgrade = _assetProvider.WeaponStoreDatabase.GetUpgrade(id, weaponShortInfo.UpgradeId + 1);
+            if (upgrade == null)
+                return false;
+
+            price = upgrade.Price;
+            return true;
+        }
+
+        public bool TryGetNextDefenceUpgradePrice(int id, out int price)
+        {
+            price = 0;
+            var defenceShortInfo = PlayerPrefs.GetDefenceShortInfo(id);
+            var defence = _assetProvider.DefenseStoreDatabase.GetDefense(id);
+            if (defenceShortInfo == null || defence?.Upgrades == null || defenceShortInfo.UpgradeId >= defence.Upgrades.Count - 1)
+                return false;
+
+            var upgrade = _assetProvider.DefenseStoreDatabase.GetUpgrade(id, defenceShortInfo.UpgradeId + 1);
+            if (upgrade == null)
+                return false;
+
+            price = upgrade.Price;
+            return true;
+        }
+
+        public bool TryGetNextPersonageUpgradePrice(int id, out int price)
+        {
+            price = 0;
+            var personageShortInfo = PlayerPrefs.GetPersonageShortInfo(id);
+            var personage = _assetProvider.MainPlayerDatabase.GetPersonage(id);
+            if (personageShortInfo == null || personage?.Upgrades == null || personageShortInfo.UpgradeId >= personage.Upgrades.Count - 1)
+                return false;
+
+            var upgrade = _assetProvider.MainPlayerDatabase.GetUpgrade(id, personageShortInfo.UpgradeId + 1);
+            if (upgrade == null)
+                return false;
+
+            price = upgrade.Price;
+            return true;
+        }
+
         public void SetCurrentLevel(int id)
         {
             PlayerPrefs.LevelId = id;
@@ -112,6 +160,9 @@ namespace SBabchuk.Runtime.Services
             if (weaponShortInfo == null || weapon == null)
                 return;
 
+            if (!CanBuy(weapon.Price))
+                return;
+
             weaponShortInfo.IsBuy = mySwitch.On;
             AddCoins(-weapon.Price);
             FireProgressChanged();
@@ -122,6 +173,9 @@ namespace SBabchuk.Runtime.Services
             var weaponShortInfo = PlayerPrefs.GetWeaponShortInfo(id);
             var weapon = _assetProvider.WeaponStoreDatabase.GetWeapon(id);
             if (weaponShortInfo == null || weapon == null)
+                return;
+
+            if (!isFree && !CanBuy(weapon.PriceMagazine))
                 return;
 
             weaponShortInfo.AmmoCount += weapon.Magazine;
@@ -138,20 +192,14 @@ namespace SBabchuk.Runtime.Services
         public void BuyWeaponUpgrade(int id)
         {
             var weaponShortInfo = PlayerPrefs.GetWeaponShortInfo(id);
-            var weapon = _assetProvider.WeaponStoreDatabase.GetWeapon(id);
-            if (weaponShortInfo == null || weapon == null)
+            if (weaponShortInfo == null)
                 return;
 
-            if (weaponShortInfo.UpgradeId >= weapon.Upgrades.Count - 1)
+            if (!TryGetNextWeaponUpgradePrice(id, out var price) || !CanBuy(price))
                 return;
 
             weaponShortInfo.UpgradeId++;
-            var upgrade = _assetProvider.WeaponStoreDatabase.GetUpgrade(id, weaponShortInfo.UpgradeId);
-            
-            if (upgrade != null)
-                AddCoins(-upgrade.Price);
-            else
-                SaveProgress();
+            AddCoins(-price);
 
             FireProgressChanged();
         }
@@ -164,6 +212,9 @@ namespace SBabchuk.Runtime.Services
                 return;
 
             NormalizeGrenadeCount(grenadeShortInfo);
+
+            if (!isFree && !CanBuy(grenade.Price))
+                return;
 
             grenadeShortInfo.IsBuy = mySwitch.On;
             grenadeShortInfo.Count++;
@@ -222,6 +273,9 @@ namespace SBabchuk.Runtime.Services
             if (defenceShortInfo == null || defence == null)
                 return;
 
+            if (!CanBuy(defence.Price))
+                return;
+
             defenceShortInfo.IsBuy = mySwitch.On;
             AddCoins(-defence.Price);
             FireProgressChanged();
@@ -237,20 +291,14 @@ namespace SBabchuk.Runtime.Services
         public void BuyDefenceUpgrade(int id)
         {
             var defenceShortInfo = PlayerPrefs.GetDefenceShortInfo(id);
-            var defence = _assetProvider.DefenseStoreDatabase.GetDefense(id);
-            if (defenceShortInfo == null || defence == null)
+            if (defenceShortInfo == null)
                 return;
 
-            if (defenceShortInfo.UpgradeId >= defence.Upgrades.Count - 1)
+            if (!TryGetNextDefenceUpgradePrice(id, out var price) || !CanBuy(price))
                 return;
 
             defenceShortInfo.UpgradeId++;
-            var upgrade = _assetProvider.DefenseStoreDatabase.GetUpgrade(id, defenceShortInfo.UpgradeId);
-            
-            if (upgrade != null)
-                AddCoins(-upgrade.Price);
-            else
-                SaveProgress();
+            AddCoins(-price);
 
             FireProgressChanged();
         }
@@ -262,6 +310,9 @@ namespace SBabchuk.Runtime.Services
             if (personageShortInfo == null || personage == null)
                 return;
 
+            if (!CanBuy(personage.Price))
+                return;
+
             personageShortInfo.IsBuy = mySwitch.On;
             AddCoins(-personage.Price);
             FireProgressChanged();
@@ -270,20 +321,14 @@ namespace SBabchuk.Runtime.Services
         public void BuyPersonageUpgrade(int id)
         {
             var personageShortInfo = PlayerPrefs.GetPersonageShortInfo(id);
-            var personage = _assetProvider.MainPlayerDatabase.GetPersonage(id);
-            if (personageShortInfo == null || personage == null)
+            if (personageShortInfo == null)
                 return;
 
-            if (personageShortInfo.UpgradeId >= personage.Upgrades.Count - 1)
+            if (!TryGetNextPersonageUpgradePrice(id, out var price) || !CanBuy(price))
                 return;
 
             personageShortInfo.UpgradeId++;
-            var upgrade = _assetProvider.MainPlayerDatabase.GetUpgrade(id, personageShortInfo.UpgradeId);
-            
-            if (upgrade != null)
-                AddCoins(-upgrade.Price);
-            else
-                SaveProgress();
+            AddCoins(-price);
 
             FireProgressChanged();
         }

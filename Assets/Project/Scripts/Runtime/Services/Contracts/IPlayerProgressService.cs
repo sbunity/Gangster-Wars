@@ -19,6 +19,9 @@ namespace SBabchuk.Runtime.Services.Contracts
 
         void AddCoins(int value);
         bool CanBuy(int price);
+        bool TryGetNextWeaponUpgradePrice(int id, out int price);
+        bool TryGetNextDefenceUpgradePrice(int id, out int price);
+        bool TryGetNextPersonageUpgradePrice(int id, out int price);
         void SetCurrentLevel(int id);
         void CompleteCurrentLevel(float barricadeHealthPercent);
         WeaponShortInfo GetWeaponShortInfo(int id);
