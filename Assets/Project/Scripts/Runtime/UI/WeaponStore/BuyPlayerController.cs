@@ -80,7 +80,8 @@ namespace SBabchuk.Runtime.UI.WeaponStore
         {
             if (gesture.pickedObject == gameObject)
             {
-                _coll.enabled = false;
+                if (_coll)
+                    _coll.enabled = false;
                 _panel.Show(_panel);
             }
         }
@@ -88,18 +89,24 @@ namespace SBabchuk.Runtime.UI.WeaponStore
         private void Replace(UIPanelReplaceSignal signal)
         {
             if (signal.Panel != _panel)
-                _coll.enabled = true;
+                SetColliderEnabled(true);
         }
 
         public void Hide()
         {
             _panel.Hide(_panel);
-            _coll.enabled = true;
+            SetColliderEnabled(true);
         }
 
         public void Buy()
         {
             _progressService.BuyPersonage((int)_personage);
+        }
+
+        private void SetColliderEnabled(bool value)
+        {
+            if (_coll)
+                _coll.enabled = value;
         }
     }
 }

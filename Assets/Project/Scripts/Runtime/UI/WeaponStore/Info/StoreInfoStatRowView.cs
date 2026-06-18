@@ -33,16 +33,26 @@ namespace SBabchuk.Runtime.UI.WeaponStore.Info
             }
 
             if (_upgradeFill)
-            {
-                _upgradeFill.color = _upgradeFillColor;
-                _upgradeFill.fillAmount = Mathf.Clamp01(stat.UpgradedValue / stat.MaxValue);
-            }
+                RenderFill(_upgradeFill, _upgradeFillColor, stat.UpgradedValue / stat.MaxValue);
 
             if (_currentFill)
-            {
-                _currentFill.color = _currentFillColor;
-                _currentFill.fillAmount = Mathf.Clamp01(stat.CurrentValue / stat.MaxValue);
-            }
+                RenderFill(_currentFill, _currentFillColor, stat.CurrentValue / stat.MaxValue);
+        }
+
+        private void RenderFill(Image fill, Color color, float normalizedValue)
+        {
+            var amount = Mathf.Clamp01(normalizedValue);
+            fill.color = color;
+            fill.type = Image.Type.Filled;
+            fill.fillMethod = Image.FillMethod.Horizontal;
+            fill.fillOrigin = (int)Image.OriginHorizontal.Left;
+            fill.fillAmount = amount;
+
+            var fillRect = fill.rectTransform;
+            fillRect.anchorMin = Vector2.zero;
+            fillRect.anchorMax = new Vector2(amount, 1f);
+            fillRect.offsetMin = Vector2.zero;
+            fillRect.offsetMax = Vector2.zero;
         }
 
         private string FormatValue(float value) 

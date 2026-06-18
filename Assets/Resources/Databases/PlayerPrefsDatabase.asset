@@ -15,7 +15,7 @@ MonoBehaviour:
   _playerPrefs:
     _music: 0
     _sound: 0
-    _coin: 3331
+    _coin: 33310
     _levelId: 7
     _selectedWeaponId: 0
     _selectedGrenadeId: 0
@@ -74,11 +74,11 @@ MonoBehaviour:
       _upgradeId: -1
     _personages:
     - _id: 0
-      _isBuy: 0
-      _upgradeId: 4
+      _isBuy: 1
+      _upgradeId: 0
     - _id: 1
       _isBuy: 1
-      _upgradeId: 4
+      _upgradeId: 0
     _levels:
     - _id: 0
       _isCompleted: 0
