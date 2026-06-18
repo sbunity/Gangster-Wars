@@ -36,6 +36,7 @@ namespace SBabchuk.Runtime.Installers
             Container.Bind<IWaveSkipRewardService>().To<WaveSkipRewardService>().AsSingle();
             Container.Bind<IBonusDropService>().To<BonusDropService>().AsSingle();
             Container.Bind<IBonusCollectTargetRegistry>().To<BonusCollectTargetRegistry>().AsSingle();
+            Container.Bind<IStoreItemStatsService>().To<StoreItemStatsService>().AsSingle();
             Container.Bind<IAudioSettingsService>().To<AudioSettingsService>().AsSingle();
             Container.Bind<IInputService>().To<InputService>().AsSingle();
         }
