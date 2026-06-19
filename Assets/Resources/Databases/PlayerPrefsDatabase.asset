@@ -15,7 +15,7 @@ MonoBehaviour:
   _playerPrefs:
     _music: 0
     _sound: 0
-    _coin: 595
+    _coin: 613
     _levelId: 0
     _chapterId: 0
     _selectedWeaponId: 0
