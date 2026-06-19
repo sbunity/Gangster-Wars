@@ -1,0 +1,573 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 34597a496a956ca4bbca9ccbccce0d04, type: 3}
+  m_Name: Chapter3
+  m_EditorClassIdentifier: Assembly-CSharp::SBabchuk.Runtime.Databases.Levels.ChapterDatabase
+  _id: 2
+  _name: 'Chapter 3: Kings of Ash'
+  _levels:
+  - _id: 16
+    _name: Broken Badge Deal
+    _icon: {fileID: 21300000, guid: 9bcf9fff2912a904ba03310970dbbcd3, type: 3}
+    _waves:
+    - _id: 0
+      _startDelay: 0
+      _delay: 24
+      _enemies:
+      - _enemyId: 5
+        _countEnemy: 2
+        _interval: 0
+        _dropChance: 50
+      - _enemyId: 6
+        _countEnemy: 2
+        _interval: 2.5
+        _dropChance: 50
+      - _enemyId: 8
+        _countEnemy: 2
+        _interval: 4.5
+        _dropChance: 50
+      - _enemyId: 9
+        _countEnemy: 2
+        _interval: 5
+        _dropChance: 50
+    - _id: 1
+      _startDelay: 0
+      _delay: 26
+      _enemies:
+      - _enemyId: 10
+        _countEnemy: 1
+        _interval: 0
+        _dropChance: 58
+      - _enemyId: 12
+        _countEnemy: 1
+        _interval: 2.5
+        _dropChance: 58
+      - _enemyId: 4
+        _countEnemy: 1
+        _interval: 4.5
+        _dropChance: 58
+      - _enemyId: 11
+        _countEnemy: 1
+        _interval: 5
+        _dropChance: 58
+    - _id: 2
+      _startDelay: 0
+      _delay: 27
+      _enemies:
+      - _enemyId: 13
+        _countEnemy: 1
+        _interval: 0
+        _dropChance: 62
+      - _enemyId: 14
+        _countEnemy: 1
+        _interval: 3.5
+        _dropChance: 62
+      - _enemyId: 7
+        _countEnemy: 2
+        _interval: 4.5
+        _dropChance: 58
+      - _enemyId: 6
+        _countEnemy: 2
+        _interval: 5
+        _dropChance: 58
+  - _id: 17
+    _name: Foundry Ambush
+    _icon: {fileID: 21300000, guid: ad4246397e049a64d91ef5afcfd6559e, type: 3}
+    _waves:
+    - _id: 0
+      _startDelay: 0
+      _delay: 25
+      _enemies:
+      - _enemyId: 6
+        _countEnemy: 2
+        _interval: 0
+        _dropChance: 54
+      - _enemyId: 7
+        _countEnemy: 2
+        _interval: 2.5
+        _dropChance: 54
+      - _enemyId: 10
+        _countEnemy: 1
+        _interval: 4.5
+        _dropChance: 58
+      - _enemyId: 12
+        _countEnemy: 1
+        _interval: 5
+        _dropChance: 58
+    - _id: 1
+      _startDelay: 0
+      _delay: 27
+      _enemies:
+      - _enemyId: 8
+        _countEnemy: 2
+        _interval: 0
+        _dropChance: 58
+      - _enemyId: 9
+        _countEnemy: 2
+        _interval: 2.5
+        _dropChance: 58
+      - _enemyId: 11
+        _countEnemy: 1
+        _interval: 4.5
+        _dropChance: 62
+      - _enemyId: 4
+        _countEnemy: 1
+        _interval: 5
+        _dropChance: 62
+    - _id: 2
+      _startDelay: 0
+      _delay: 28
+      _enemies:
+      - _enemyId: 14
+        _countEnemy: 1
+        _interval: 0
+        _dropChance: 66
+      - _enemyId: 13
+        _countEnemy: 1
+        _interval: 3.5
+        _dropChance: 66
+      - _enemyId: 12
+        _countEnemy: 1
+        _interval: 4.5
+        _dropChance: 66
+      - _enemyId: 10
+        _countEnemy: 1
+        _interval: 5
+        _dropChance: 66
+  - _id: 18
+    _name: Bridge of Debts
+    _icon: {fileID: 21300000, guid: 2d6618fb5d5deb74091e0971b8dc5a4f, type: 3}
+    _waves:
+    - _id: 0
+      _startDelay: 0
+      _delay: 25
+      _enemies:
+      - _enemyId: 8
+        _countEnemy: 2
+        _interval: 0
+        _dropChance: 56
+      - _enemyId: 9
+        _countEnemy: 2
+        _interval: 2.5
+        _dropChance: 56
+      - _enemyId: 11
+        _countEnemy: 1
+        _interval: 4.5
+        _dropChance: 62
+      - _enemyId: 13
+        _countEnemy: 1
+        _interval: 5
+        _dropChance: 62
+    - _id: 1
+      _startDelay: 0
+      _delay: 27
+      _enemies:
+      - _enemyId: 5
+        _countEnemy: 2
+        _interval: 0
+        _dropChance: 58
+      - _enemyId: 6
+        _countEnemy: 2
+        _interval: 2.5
+        _dropChance: 58
+      - _enemyId: 10
+        _countEnemy: 1
+        _interval: 4.5
+        _dropChance: 64
+      - _enemyId: 12
+        _countEnemy: 1
+        _interval: 5
+        _dropChance: 64
+    - _id: 2
+      _startDelay: 0
+      _delay: 29
+      _enemies:
+      - _enemyId: 4
+        _countEnemy: 1
+        _interval: 0
+        _dropChance: 68
+      - _enemyId: 14
+        _countEnemy: 1
+        _interval: 3.5
+        _dropChance: 68
+      - _enemyId: 11
+        _countEnemy: 1
+        _interval: 4.5
+        _dropChance: 68
+      - _enemyId: 13
+        _countEnemy: 1
+        _interval: 5
+        _dropChance: 68
+  - _id: 19
+    _name: The Family Split
+    _icon: {fileID: 21300000, guid: 975e59beecc318a41874130e1fe5a4aa, type: 3}
+    _waves:
+    - _id: 0
+      _startDelay: 0
+      _delay: 26
+      _enemies:
+      - _enemyId: 7
+        _countEnemy: 2
+        _interval: 0
+        _dropChance: 58
+      - _enemyId: 6
+        _countEnemy: 2
+        _interval: 2.5
+        _dropChance: 58
+      - _enemyId: 8
+        _countEnemy: 2
+        _interval: 4.5
+        _dropChance: 60
+      - _enemyId: 9
+        _countEnemy: 2
+        _interval: 5
+        _dropChance: 60
+    - _id: 1
+      _startDelay: 0
+      _delay: 28
+      _enemies:
+      - _enemyId: 10
+        _countEnemy: 1
+        _interval: 0
+        _dropChance: 66
+      - _enemyId: 11
+        _countEnemy: 1
+        _interval: 2.5
+        _dropChance: 66
+      - _enemyId: 12
+        _countEnemy: 1
+        _interval: 4.5
+        _dropChance: 66
+      - _enemyId: 13
+        _countEnemy: 1
+        _interval: 5
+        _dropChance: 66
+    - _id: 2
+      _startDelay: 0
+      _delay: 29
+      _enemies:
+      - _enemyId: 14
+        _countEnemy: 1
+        _interval: 0
+        _dropChance: 70
+      - _enemyId: 4
+        _countEnemy: 1
+        _interval: 3.5
+        _dropChance: 70
+      - _enemyId: 10
+        _countEnemy: 1
+        _interval: 4.5
+        _dropChance: 70
+      - _enemyId: 12
+        _countEnemy: 1
+        _interval: 5
+        _dropChance: 70
+  - _id: 20
+    _name: Last Shipment
+    _icon: {fileID: 21300000, guid: f5ce587ffa3541f4da44740160a4bb7e, type: 3}
+    _waves:
+    - _id: 0
+      _startDelay: 0
+      _delay: 26
+      _enemies:
+      - _enemyId: 8
+        _countEnemy: 2
+        _interval: 0
+        _dropChance: 60
+      - _enemyId: 9
+        _countEnemy: 2
+        _interval: 2.5
+        _dropChance: 60
+      - _enemyId: 4
+        _countEnemy: 1
+        _interval: 4.5
+        _dropChance: 66
+      - _enemyId: 11
+        _countEnemy: 1
+        _interval: 5
+        _dropChance: 66
+    - _id: 1
+      _startDelay: 0
+      _delay: 29
+      _enemies:
+      - _enemyId: 6
+        _countEnemy: 2
+        _interval: 0
+        _dropChance: 62
+      - _enemyId: 7
+        _countEnemy: 2
+        _interval: 2.5
+        _dropChance: 62
+      - _enemyId: 10
+        _countEnemy: 1
+        _interval: 4.5
+        _dropChance: 68
+      - _enemyId: 12
+        _countEnemy: 1
+        _interval: 5
+        _dropChance: 68
+    - _id: 2
+      _startDelay: 0
+      _delay: 30
+      _enemies:
+      - _enemyId: 13
+        _countEnemy: 1
+        _interval: 0
+        _dropChance: 74
+      - _enemyId: 14
+        _countEnemy: 1
+        _interval: 3.5
+        _dropChance: 74
+      - _enemyId: 8
+        _countEnemy: 2
+        _interval: 4.5
+        _dropChance: 70
+      - _enemyId: 9
+        _countEnemy: 2
+        _interval: 5
+        _dropChance: 70
+      - _enemyId: 4
+        _countEnemy: 1
+        _interval: 6
+        _dropChance: 74
+  - _id: 21
+    _name: City Hall Inferno
+    _icon: {fileID: 21300000, guid: 975e59beecc318a41874130e1fe5a4aa, type: 3}
+    _waves:
+    - _id: 0
+      _startDelay: 0
+      _delay: 27
+      _enemies:
+      - _enemyId: 5
+        _countEnemy: 2
+        _interval: 0
+        _dropChance: 64
+      - _enemyId: 6
+        _countEnemy: 2
+        _interval: 2.5
+        _dropChance: 64
+      - _enemyId: 8
+        _countEnemy: 2
+        _interval: 4.5
+        _dropChance: 64
+      - _enemyId: 9
+        _countEnemy: 2
+        _interval: 5
+        _dropChance: 64
+    - _id: 1
+      _startDelay: 0
+      _delay: 29
+      _enemies:
+      - _enemyId: 10
+        _countEnemy: 1
+        _interval: 0
+        _dropChance: 72
+      - _enemyId: 12
+        _countEnemy: 1
+        _interval: 2.5
+        _dropChance: 72
+      - _enemyId: 14
+        _countEnemy: 1
+        _interval: 4.5
+        _dropChance: 72
+      - _enemyId: 7
+        _countEnemy: 2
+        _interval: 5
+        _dropChance: 68
+    - _id: 2
+      _startDelay: 0
+      _delay: 31
+      _enemies:
+      - _enemyId: 11
+        _countEnemy: 1
+        _interval: 0
+        _dropChance: 78
+      - _enemyId: 13
+        _countEnemy: 1
+        _interval: 3.5
+        _dropChance: 78
+      - _enemyId: 4
+        _countEnemy: 1
+        _interval: 4.5
+        _dropChance: 78
+      - _enemyId: 8
+        _countEnemy: 2
+        _interval: 5
+        _dropChance: 74
+      - _enemyId: 9
+        _countEnemy: 2
+        _interval: 6
+        _dropChance: 74
+  - _id: 22
+    _name: Five Families Closing In
+    _icon: {fileID: 21300000, guid: 2d6618fb5d5deb74091e0971b8dc5a4f, type: 3}
+    _waves:
+    - _id: 0
+      _startDelay: 0
+      _delay: 28
+      _enemies:
+      - _enemyId: 6
+        _countEnemy: 2
+        _interval: 0
+        _dropChance: 68
+      - _enemyId: 7
+        _countEnemy: 2
+        _interval: 2.5
+        _dropChance: 68
+      - _enemyId: 10
+        _countEnemy: 1
+        _interval: 4.5
+        _dropChance: 74
+      - _enemyId: 12
+        _countEnemy: 1
+        _interval: 5
+        _dropChance: 74
+    - _id: 1
+      _startDelay: 0
+      _delay: 30
+      _enemies:
+      - _enemyId: 8
+        _countEnemy: 2
+        _interval: 0
+        _dropChance: 72
+      - _enemyId: 9
+        _countEnemy: 2
+        _interval: 2.5
+        _dropChance: 72
+      - _enemyId: 11
+        _countEnemy: 1
+        _interval: 4.5
+        _dropChance: 78
+      - _enemyId: 13
+        _countEnemy: 1
+        _interval: 5
+        _dropChance: 78
+    - _id: 2
+      _startDelay: 0
+      _delay: 32
+      _enemies:
+      - _enemyId: 4
+        _countEnemy: 1
+        _interval: 0
+        _dropChance: 82
+      - _enemyId: 10
+        _countEnemy: 1
+        _interval: 3.5
+        _dropChance: 82
+      - _enemyId: 11
+        _countEnemy: 1
+        _interval: 4.5
+        _dropChance: 82
+      - _enemyId: 12
+        _countEnemy: 1
+        _interval: 5
+        _dropChance: 82
+      - _enemyId: 14
+        _countEnemy: 1
+        _interval: 6
+        _dropChance: 82
+  - _id: 23
+    _name: The Last Syndicate
+    _icon: {fileID: 21300000, guid: 9e3dd99936990fb449f5448707dcc06c, type: 3}
+    _waves:
+    - _id: 0
+      _startDelay: 0
+      _delay: 28
+      _enemies:
+      - _enemyId: 5
+        _countEnemy: 2
+        _interval: 0
+        _dropChance: 70
+      - _enemyId: 6
+        _countEnemy: 2
+        _interval: 2.5
+        _dropChance: 70
+      - _enemyId: 8
+        _countEnemy: 2
+        _interval: 4.5
+        _dropChance: 70
+      - _enemyId: 9
+        _countEnemy: 2
+        _interval: 5
+        _dropChance: 70
+    - _id: 1
+      _startDelay: 0
+      _delay: 31
+      _enemies:
+      - _enemyId: 10
+        _countEnemy: 1
+        _interval: 0
+        _dropChance: 80
+      - _enemyId: 12
+        _countEnemy: 1
+        _interval: 2.5
+        _dropChance: 80
+      - _enemyId: 11
+        _countEnemy: 1
+        _interval: 4.5
+        _dropChance: 80
+      - _enemyId: 13
+        _countEnemy: 1
+        _interval: 5
+        _dropChance: 80
+      - _enemyId: 14
+        _countEnemy: 1
+        _interval: 6
+        _dropChance: 80
+    - _id: 2
+      _startDelay: 0
+      _delay: 34
+      _enemies:
+      - _enemyId: 6
+        _countEnemy: 2
+        _interval: 0
+        _dropChance: 85
+      - _enemyId: 8
+        _countEnemy: 2
+        _interval: 2.5
+        _dropChance: 85
+      - _enemyId: 9
+        _countEnemy: 2
+        _interval: 4.5
+        _dropChance: 85
+      - _enemyId: 7
+        _countEnemy: 2
+        _interval: 5
+        _dropChance: 85
+    - _id: 3
+      _startDelay: 0
+      _delay: 42
+      _enemies:
+      - _enemyId: 4
+        _countEnemy: 1
+        _interval: 0
+        _dropChance: 100
+      - _enemyId: 10
+        _countEnemy: 1
+        _interval: 3.5
+        _dropChance: 100
+      - _enemyId: 11
+        _countEnemy: 1
+        _interval: 4.5
+        _dropChance: 100
+      - _enemyId: 12
+        _countEnemy: 1
+        _interval: 5.5
+        _dropChance: 100
+      - _enemyId: 13
+        _countEnemy: 1
+        _interval: 6.5
+        _dropChance: 100
+      - _enemyId: 14
+        _countEnemy: 1
+        _interval: 7.5
+        _dropChance: 100

@@ -15,3 +15,5 @@ MonoBehaviour:
   _legacyLevels: []
   _chapters:
   - {fileID: 11400000, guid: f71bb817a4249314bbae0e7b5b51d7a0, type: 2}
+  - {fileID: 11400000, guid: d087853e00af8af46bb4d78822bcdfc3, type: 2}
+  - {fileID: 11400000, guid: 14be936e7a518074bbc387f45a126dc5, type: 2}

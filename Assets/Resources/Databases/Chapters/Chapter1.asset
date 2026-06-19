@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: Chapter1
   m_EditorClassIdentifier: Assembly-CSharp::SBabchuk.Runtime.Databases.Levels.ChapterDatabase
   _id: 0
-  _name: Chapter 1
+  _name: 'Chapter 1: Dockside Blood Money'
   _levels:
   - _id: 0
-    _name: First Blood
+    _name: First Blood on Black Pier
     _icon: {fileID: 21300000, guid: 9bcf9fff2912a904ba03310970dbbcd3, type: 3}
     _waves:
     - _id: 0
@@ -26,1320 +26,468 @@ MonoBehaviour:
       - _enemyId: 0
         _countEnemy: 1
         _interval: 0
-        _dropChance: 5
+        _dropChance: 8
       - _enemyId: 1
         _countEnemy: 1
         _interval: 0.75
-        _dropChance: 5
-      - _enemyId: 1
+        _dropChance: 8
+      - _enemyId: 0
         _countEnemy: 1
         _interval: 5
-        _dropChance: 5
+        _dropChance: 8
     - _id: 1
       _startDelay: 0
       _delay: 18
       _enemies:
-      - _enemyId: 0
-        _countEnemy: 1
-        _interval: 0
-        _dropChance: 6
-      - _enemyId: 1
-        _countEnemy: 1
-        _interval: 0.75
-        _dropChance: 6
-      - _enemyId: 2
-        _countEnemy: 1
-        _interval: 5
-        _dropChance: 8
-      - _enemyId: 3
-        _countEnemy: 1
-        _interval: 5
-        _dropChance: 8
-    - _id: 2
-      _startDelay: 0
-      _delay: 12
-      _enemies:
       - _enemyId: 1
         _countEnemy: 1
         _interval: 0
-        _dropChance: 8
+        _dropChance: 10
       - _enemyId: 0
         _countEnemy: 1
         _interval: 0.75
-        _dropChance: 8
-      - _enemyId: 2
+        _dropChance: 10
+      - _enemyId: 1
         _countEnemy: 1
         _interval: 5
         _dropChance: 10
-      - _enemyId: 7
+      - _enemyId: 0
         _countEnemy: 1
-        _interval: 5
-        _dropChance: 14
-  - _id: 1
-    _name: Street Rush
-    _icon: {fileID: 21300000, guid: ad4246397e049a64d91ef5afcfd6559e, type: 3}
-    _waves:
-    - _id: 0
+        _interval: 0.75
+        _dropChance: 10
+    - _id: 2
       _startDelay: 0
       _delay: 16
       _enemies:
       - _enemyId: 0
-        _countEnemy: 1
+        _countEnemy: 2
         _interval: 0
-        _dropChance: 6
+        _dropChance: 12
       - _enemyId: 1
         _countEnemy: 1
-        _interval: 0.75
-        _dropChance: 6
-      - _enemyId: 1
-        _countEnemy: 1
-        _interval: 5
-        _dropChance: 6
+        _interval: 3.5
+        _dropChance: 12
       - _enemyId: 0
         _countEnemy: 1
         _interval: 0.75
-        _dropChance: 6
-    - _id: 1
+        _dropChance: 12
+  - _id: 1
+    _name: Alley Tax Collectors
+    _icon: {fileID: 21300000, guid: ad4246397e049a64d91ef5afcfd6559e, type: 3}
+    _waves:
+    - _id: 0
       _startDelay: 0
       _delay: 17
       _enemies:
+      - _enemyId: 0
+        _countEnemy: 2
+        _interval: 0
+        _dropChance: 12
       - _enemyId: 2
         _countEnemy: 1
-        _interval: 0
-        _dropChance: 8
-      - _enemyId: 3
+        _interval: 4.5
+        _dropChance: 14
+      - _enemyId: 1
         _countEnemy: 1
         _interval: 0.75
-        _dropChance: 8
+        _dropChance: 12
+    - _id: 1
+      _startDelay: 0
+      _delay: 18
+      _enemies:
       - _enemyId: 3
         _countEnemy: 1
-        _interval: 5
-        _dropChance: 8
-      - _enemyId: 7
+        _interval: 0
+        _dropChance: 14
+      - _enemyId: 0
+        _countEnemy: 1
+        _interval: 0.75
+        _dropChance: 12
+      - _enemyId: 2
         _countEnemy: 1
         _interval: 5
+        _dropChance: 14
+      - _enemyId: 1
+        _countEnemy: 1
+        _interval: 0.75
         _dropChance: 12
     - _id: 2
       _startDelay: 0
-      _delay: 17
+      _delay: 16
       _enemies:
-      - _enemyId: 0
+      - _enemyId: 2
         _countEnemy: 1
         _interval: 0
-        _dropChance: 7
+        _dropChance: 15
+      - _enemyId: 3
+        _countEnemy: 1
+        _interval: 0.75
+        _dropChance: 15
+      - _enemyId: 0
+        _countEnemy: 2
+        _interval: 4.5
+        _dropChance: 12
       - _enemyId: 1
         _countEnemy: 1
         _interval: 0.75
-        _dropChance: 7
-      - _enemyId: 5
-        _countEnemy: 1
-        _interval: 5
         _dropChance: 12
-      - _enemyId: 2
-        _countEnemy: 1
-        _interval: 5
-        _dropChance: 10
-      - _enemyId: 3
-        _countEnemy: 1
-        _interval: 0.75
-        _dropChance: 10
-    - _id: 3
-      _startDelay: 0
-      _delay: 12
-      _enemies:
-      - _enemyId: 7
-        _countEnemy: 1
-        _interval: 0
-        _dropChance: 14
-      - _enemyId: 5
-        _countEnemy: 1
-        _interval: 0.75
-        _dropChance: 14
-      - _enemyId: 3
-        _countEnemy: 1
-        _interval: 5
-        _dropChance: 12
-      - _enemyId: 2
-        _countEnemy: 1
-        _interval: 0.75
-        _dropChance: 12
-      - _enemyId: 5
-        _countEnemy: 1
-        _interval: 5
-        _dropChance: 16
   - _id: 2
-    _name: Back Alley
+    _name: Rooftop Gunline
     _icon: {fileID: 21300000, guid: 2d6618fb5d5deb74091e0971b8dc5a4f, type: 3}
     _waves:
     - _id: 0
       _startDelay: 0
-      _delay: 17
+      _delay: 18
       _enemies:
       - _enemyId: 0
-        _countEnemy: 1
+        _countEnemy: 2
         _interval: 0
-        _dropChance: 8
+        _dropChance: 16
+      - _enemyId: 8
+        _countEnemy: 1
+        _interval: 4
+        _dropChance: 18
       - _enemyId: 1
         _countEnemy: 1
         _interval: 0.75
-        _dropChance: 8
-      - _enemyId: 0
-        _countEnemy: 1
-        _interval: 0.75
-        _dropChance: 8
-      - _enemyId: 3
-        _countEnemy: 1
-        _interval: 4.5
-        _dropChance: 10
-      - _enemyId: 2
-        _countEnemy: 1
-        _interval: 0.75
-        _dropChance: 10
-      - _enemyId: 7
-        _countEnemy: 1
-        _interval: 5
-        _dropChance: 14
+        _dropChance: 16
     - _id: 1
       _startDelay: 0
       _delay: 18
       _enemies:
-      - _enemyId: 2
+      - _enemyId: 9
         _countEnemy: 1
         _interval: 0
-        _dropChance: 10
-      - _enemyId: 3
-        _countEnemy: 1
-        _interval: 0.75
-        _dropChance: 10
+        _dropChance: 18
       - _enemyId: 2
         _countEnemy: 1
+        _interval: 4.5
+        _dropChance: 16
+      - _enemyId: 8
+        _countEnemy: 1
         _interval: 0.75
-        _dropChance: 10
-      - _enemyId: 5
+        _dropChance: 18
+      - _enemyId: 3
         _countEnemy: 1
         _interval: 4.5
-        _dropChance: 14
-      - _enemyId: 7
-        _countEnemy: 1
-        _interval: 0.75
-        _dropChance: 14
-      - _enemyId: 1
-        _countEnemy: 1
-        _interval: 5
-        _dropChance: 10
-      - _enemyId: 0
-        _countEnemy: 1
-        _interval: 0.75
-        _dropChance: 10
+        _dropChance: 16
     - _id: 2
       _startDelay: 0
-      _delay: 18
+      _delay: 17
       _enemies:
-      - _enemyId: 7
-        _countEnemy: 1
-        _interval: 0
-        _dropChance: 16
-      - _enemyId: 5
-        _countEnemy: 1
-        _interval: 0.75
-        _dropChance: 16
-      - _enemyId: 3
-        _countEnemy: 1
-        _interval: 4.5
-        _dropChance: 12
-      - _enemyId: 2
-        _countEnemy: 1
-        _interval: 0.75
-        _dropChance: 12
-      - _enemyId: 4
-        _countEnemy: 1
-        _interval: 5
-        _dropChance: 24
       - _enemyId: 8
         _countEnemy: 1
-        _interval: 5.5
-        _dropChance: 28
-    - _id: 3
-      _startDelay: 0
-      _delay: 12
-      _enemies:
-      - _enemyId: 5
-        _countEnemy: 1
         _interval: 0
-        _dropChance: 18
-      - _enemyId: 7
+        _dropChance: 20
+      - _enemyId: 9
         _countEnemy: 1
         _interval: 0.75
-        _dropChance: 18
-      - _enemyId: 2
-        _countEnemy: 1
+        _dropChance: 20
+      - _enemyId: 0
+        _countEnemy: 2
         _interval: 4.5
-        _dropChance: 12
-      - _enemyId: 3
-        _countEnemy: 1
+        _dropChance: 16
+      - _enemyId: 1
+        _countEnemy: 2
         _interval: 0.75
-        _dropChance: 12
-      - _enemyId: 6
-        _countEnemy: 1
-        _interval: 5.5
-        _dropChance: 58
-      - _enemyId: 8
-        _countEnemy: 1
-        _interval: 5.5
-        _dropChance: 30
+        _dropChance: 16
   - _id: 3
-    _name: Crossfire
+    _name: The Pistol Don Arrives
     _icon: {fileID: 21300000, guid: 975e59beecc318a41874130e1fe5a4aa, type: 3}
     _waves:
     - _id: 0
       _startDelay: 0
-      _delay: 17
-      _enemies:
-      - _enemyId: 1
-        _countEnemy: 1
-        _interval: 0
-        _dropChance: 12
-      - _enemyId: 0
-        _countEnemy: 1
-        _interval: 0.75
-        _dropChance: 12
-      - _enemyId: 1
-        _countEnemy: 1
-        _interval: 0.75
-        _dropChance: 12
-      - _enemyId: 7
-        _countEnemy: 1
-        _interval: 4.5
-        _dropChance: 18
-      - _enemyId: 5
-        _countEnemy: 1
-        _interval: 0.75
-        _dropChance: 18
-      - _enemyId: 4
-        _countEnemy: 1
-        _interval: 5
-        _dropChance: 28
-    - _id: 1
-      _startDelay: 0
       _delay: 18
       _enemies:
-      - _enemyId: 5
-        _countEnemy: 1
-        _interval: 0
-        _dropChance: 18
-      - _enemyId: 7
-        _countEnemy: 1
-        _interval: 0.75
-        _dropChance: 18
-      - _enemyId: 5
-        _countEnemy: 1
-        _interval: 0.75
-        _dropChance: 18
-      - _enemyId: 3
-        _countEnemy: 1
-        _interval: 4.5
-        _dropChance: 14
-      - _enemyId: 2
-        _countEnemy: 1
-        _interval: 0.75
-        _dropChance: 14
       - _enemyId: 8
-        _countEnemy: 1
-        _interval: 5
-        _dropChance: 34
-      - _enemyId: 9
-        _countEnemy: 1
-        _interval: 0.75
-        _dropChance: 34
-    - _id: 2
-      _startDelay: 0
-      _delay: 18
-      _enemies:
-      - _enemyId: 7
-        _countEnemy: 1
+        _countEnemy: 2
         _interval: 0
         _dropChance: 20
-      - _enemyId: 5
-        _countEnemy: 1
-        _interval: 0.75
-        _dropChance: 20
-      - _enemyId: 7
-        _countEnemy: 1
-        _interval: 0.75
-        _dropChance: 20
-      - _enemyId: 2
-        _countEnemy: 1
+      - _enemyId: 0
+        _countEnemy: 2
         _interval: 4.5
-        _dropChance: 14
-      - _enemyId: 3
-        _countEnemy: 1
-        _interval: 0.75
-        _dropChance: 14
-      - _enemyId: 2
-        _countEnemy: 1
-        _interval: 0.75
-        _dropChance: 14
-      - _enemyId: 4
-        _countEnemy: 1
-        _interval: 5
-        _dropChance: 34
+        _dropChance: 16
       - _enemyId: 9
         _countEnemy: 1
-        _interval: 5.5
-        _dropChance: 38
-    - _id: 3
+        _interval: 0.75
+        _dropChance: 20
+    - _id: 1
       _startDelay: 0
       _delay: 19
       _enemies:
-      - _enemyId: 10
-        _countEnemy: 1
-        _interval: 0
-        _dropChance: 24
-      - _enemyId: 10
-        _countEnemy: 1
-        _interval: 0.75
-        _dropChance: 24
-      - _enemyId: 4
-        _countEnemy: 1
-        _interval: 4.5
-        _dropChance: 38
-      - _enemyId: 5
-        _countEnemy: 1
-        _interval: 0.75
-        _dropChance: 38
       - _enemyId: 9
         _countEnemy: 1
-        _interval: 5
-        _dropChance: 42
-      - _enemyId: 6
-        _countEnemy: 1
-        _interval: 6
-        _dropChance: 62
-    - _id: 4
-      _startDelay: 0
-      _delay: 12
-      _enemies:
-      - _enemyId: 6
-        _countEnemy: 1
         _interval: 0
-        _dropChance: 70
+        _dropChance: 22
+      - _enemyId: 8
+        _countEnemy: 2
+        _interval: 0.75
+        _dropChance: 22
+      - _enemyId: 1
+        _countEnemy: 2
+        _interval: 5
+        _dropChance: 18
       - _enemyId: 8
         _countEnemy: 1
-        _interval: 4.5
-        _dropChance: 44
+        _interval: 0.75
+        _dropChance: 22
+    - _id: 2
+      _startDelay: 0
+      _delay: 24
+      _enemies:
+      - _enemyId: 8
+        _countEnemy: 2
+        _interval: 0
+        _dropChance: 25
       - _enemyId: 9
+        _countEnemy: 2
+        _interval: 2.5
+        _dropChance: 25
+      - _enemyId: 8
         _countEnemy: 1
-        _interval: 0.75
-        _dropChance: 44
-      - _enemyId: 5
+        _interval: 3.5
+        _dropChance: 25
+      - _enemyId: 4
         _countEnemy: 1
-        _interval: 4.5
-        _dropChance: 24
-      - _enemyId: 7
-        _countEnemy: 1
-        _interval: 0.75
-        _dropChance: 24
-      - _enemyId: 5
-        _countEnemy: 1
-        _interval: 0.75
-        _dropChance: 24
-      - _enemyId: 11
-        _countEnemy: 1
-        _interval: 6
-        _dropChance: 78
+        _interval: 6.5
+        _dropChance: 35
   - _id: 4
-    _name: Warehouse Siege
+    _name: Warehouse Knife Roll
     _icon: {fileID: 21300000, guid: f5ce587ffa3541f4da44740160a4bb7e, type: 3}
     _waves:
     - _id: 0
       _startDelay: 0
-      _delay: 17
-      _enemies:
-      - _enemyId: 2
-        _countEnemy: 1
-        _interval: 0
-        _dropChance: 14
-      - _enemyId: 3
-        _countEnemy: 1
-        _interval: 0.75
-        _dropChance: 14
-      - _enemyId: 2
-        _countEnemy: 1
-        _interval: 0.75
-        _dropChance: 14
-      - _enemyId: 7
-        _countEnemy: 1
-        _interval: 4.5
-        _dropChance: 22
-      - _enemyId: 5
-        _countEnemy: 1
-        _interval: 0.75
-        _dropChance: 22
-      - _enemyId: 7
-        _countEnemy: 1
-        _interval: 0.75
-        _dropChance: 22
-      - _enemyId: 4
-        _countEnemy: 1
-        _interval: 5
-        _dropChance: 32
-    - _id: 1
-      _startDelay: 0
       _delay: 18
       _enemies:
       - _enemyId: 5
         _countEnemy: 1
         _interval: 0
         _dropChance: 22
-      - _enemyId: 7
-        _countEnemy: 1
+      - _enemyId: 0
+        _countEnemy: 2
         _interval: 0.75
-        _dropChance: 22
-      - _enemyId: 5
-        _countEnemy: 1
-        _interval: 0.75
-        _dropChance: 22
-      - _enemyId: 8
+        _dropChance: 18
+      - _enemyId: 6
         _countEnemy: 1
         _interval: 4.5
-        _dropChance: 40
-      - _enemyId: 9
-        _countEnemy: 1
-        _interval: 0.75
-        _dropChance: 40
-      - _enemyId: 10
-        _countEnemy: 1
-        _interval: 5
-        _dropChance: 28
-      - _enemyId: 10
-        _countEnemy: 1
-        _interval: 0.75
-        _dropChance: 28
-    - _id: 2
+        _dropChance: 22
+    - _id: 1
       _startDelay: 0
       _delay: 19
       _enemies:
-      - _enemyId: 7
-        _countEnemy: 1
+      - _enemyId: 1
+        _countEnemy: 2
         _interval: 0
-        _dropChance: 26
+        _dropChance: 18
       - _enemyId: 5
         _countEnemy: 1
-        _interval: 0.75
-        _dropChance: 26
-      - _enemyId: 7
-        _countEnemy: 1
-        _interval: 0.75
-        _dropChance: 26
-      - _enemyId: 9
-        _countEnemy: 1
-        _interval: 4.5
-        _dropChance: 46
-      - _enemyId: 8
-        _countEnemy: 1
-        _interval: 0.75
-        _dropChance: 46
+        _interval: 2.5
+        _dropChance: 22
       - _enemyId: 6
         _countEnemy: 1
-        _interval: 5.5
-        _dropChance: 70
+        _interval: 4.5
+        _dropChance: 22
+      - _enemyId: 2
+        _countEnemy: 1
+        _interval: 0.75
+        _dropChance: 18
+    - _id: 2
+      _startDelay: 0
+      _delay: 18
+      _enemies:
+      - _enemyId: 6
+        _countEnemy: 1
+        _interval: 0
+        _dropChance: 24
+      - _enemyId: 5
+        _countEnemy: 2
+        _interval: 0.75
+        _dropChance: 22
+      - _enemyId: 3
+        _countEnemy: 2
+        _interval: 4.5
+        _dropChance: 20
       - _enemyId: 4
         _countEnemy: 1
         _interval: 5
-        _dropChance: 38
-    - _id: 3
-      _startDelay: 0
-      _delay: 19
-      _enemies:
-      - _enemyId: 10
-        _countEnemy: 1
-        _interval: 0
-        _dropChance: 30
-      - _enemyId: 10
-        _countEnemy: 1
-        _interval: 0.75
-        _dropChance: 30
-      - _enemyId: 10
-        _countEnemy: 1
-        _interval: 0.75
-        _dropChance: 30
-      - _enemyId: 8
-        _countEnemy: 1
-        _interval: 4.5
-        _dropChance: 50
-      - _enemyId: 9
-        _countEnemy: 1
-        _interval: 0.75
-        _dropChance: 50
-      - _enemyId: 11
-        _countEnemy: 1
-        _interval: 5.5
-        _dropChance: 82
-      - _enemyId: 12
-        _countEnemy: 1
-        _interval: 6
-        _dropChance: 62
-    - _id: 4
-      _startDelay: 0
-      _delay: 12
-      _enemies:
-      - _enemyId: 6
-        _countEnemy: 1
-        _interval: 0
-        _dropChance: 78
-      - _enemyId: 11
-        _countEnemy: 1
-        _interval: 5.5
-        _dropChance: 86
-      - _enemyId: 8
-        _countEnemy: 1
-        _interval: 4.5
-        _dropChance: 56
-      - _enemyId: 9
-        _countEnemy: 1
-        _interval: 0.75
-        _dropChance: 56
-      - _enemyId: 13
-        _countEnemy: 1
-        _interval: 6
-        _dropChance: 88
+        _dropChance: 24
   - _id: 5
-    _name: Boss Blockade
+    _name: Butcher of Pier Nine
     _icon: {fileID: 21300000, guid: 975e59beecc318a41874130e1fe5a4aa, type: 3}
     _waves:
     - _id: 0
       _startDelay: 0
-      _delay: 17
+      _delay: 19
       _enemies:
       - _enemyId: 5
-        _countEnemy: 1
+        _countEnemy: 2
         _interval: 0
         _dropChance: 24
-      - _enemyId: 7
+      - _enemyId: 6
         _countEnemy: 1
-        _interval: 0.75
+        _interval: 2.5
         _dropChance: 24
-      - _enemyId: 5
-        _countEnemy: 1
-        _interval: 0.75
-        _dropChance: 24
-      - _enemyId: 7
-        _countEnemy: 1
-        _interval: 0.75
-        _dropChance: 24
-      - _enemyId: 7
-        _countEnemy: 1
-        _interval: 4.2
-        _dropChance: 26
-      - _enemyId: 5
-        _countEnemy: 1
-        _interval: 0.75
-        _dropChance: 26
-      - _enemyId: 7
-        _countEnemy: 1
-        _interval: 0.75
-        _dropChance: 26
-      - _enemyId: 8
-        _countEnemy: 1
-        _interval: 4.8
-        _dropChance: 44
-      - _enemyId: 9
-        _countEnemy: 1
-        _interval: 0.75
-        _dropChance: 44
+      - _enemyId: 0
+        _countEnemy: 2
+        _interval: 4.5
+        _dropChance: 18
     - _id: 1
-      _startDelay: 0
-      _delay: 18
-      _enemies:
-      - _enemyId: 10
-        _countEnemy: 1
-        _interval: 0
-        _dropChance: 32
-      - _enemyId: 10
-        _countEnemy: 1
-        _interval: 0.75
-        _dropChance: 32
-      - _enemyId: 10
-        _countEnemy: 1
-        _interval: 0.75
-        _dropChance: 32
-      - _enemyId: 4
-        _countEnemy: 1
-        _interval: 4.5
-        _dropChance: 44
-      - _enemyId: 5
-        _countEnemy: 1
-        _interval: 0.75
-        _dropChance: 44
-      - _enemyId: 9
-        _countEnemy: 1
-        _interval: 5
-        _dropChance: 50
-      - _enemyId: 8
-        _countEnemy: 1
-        _interval: 0.75
-        _dropChance: 50
-      - _enemyId: 6
-        _countEnemy: 1
-        _interval: 5.8
-        _dropChance: 74
-    - _id: 2
-      _startDelay: 0
-      _delay: 19
-      _enemies:
-      - _enemyId: 7
-        _countEnemy: 1
-        _interval: 0
-        _dropChance: 30
-      - _enemyId: 5
-        _countEnemy: 1
-        _interval: 0.75
-        _dropChance: 30
-      - _enemyId: 7
-        _countEnemy: 1
-        _interval: 0.75
-        _dropChance: 30
-      - _enemyId: 8
-        _countEnemy: 1
-        _interval: 4.5
-        _dropChance: 56
-      - _enemyId: 9
-        _countEnemy: 1
-        _interval: 0.75
-        _dropChance: 56
-      - _enemyId: 8
-        _countEnemy: 1
-        _interval: 0.75
-        _dropChance: 56
-      - _enemyId: 12
-        _countEnemy: 1
-        _interval: 5.5
-        _dropChance: 66
-      - _enemyId: 11
-        _countEnemy: 1
-        _interval: 5.8
-        _dropChance: 84
-    - _id: 3
-      _startDelay: 0
-      _delay: 19
-      _enemies:
-      - _enemyId: 10
-        _countEnemy: 1
-        _interval: 0
-        _dropChance: 36
-      - _enemyId: 10
-        _countEnemy: 1
-        _interval: 0.75
-        _dropChance: 36
-      - _enemyId: 10
-        _countEnemy: 1
-        _interval: 0.75
-        _dropChance: 36
-      - _enemyId: 9
-        _countEnemy: 1
-        _interval: 4.5
-        _dropChance: 58
-      - _enemyId: 8
-        _countEnemy: 1
-        _interval: 0.75
-        _dropChance: 58
-      - _enemyId: 13
-        _countEnemy: 1
-        _interval: 5.8
-        _dropChance: 90
-      - _enemyId: 6
-        _countEnemy: 1
-        _interval: 5.8
-        _dropChance: 82
-    - _id: 4
       _startDelay: 0
       _delay: 20
       _enemies:
-      - _enemyId: 11
-        _countEnemy: 1
+      - _enemyId: 6
+        _countEnemy: 2
         _interval: 0
-        _dropChance: 90
-      - _enemyId: 8
+        _dropChance: 26
+      - _enemyId: 5
         _countEnemy: 1
+        _interval: 2.5
+        _dropChance: 24
+      - _enemyId: 3
+        _countEnemy: 2
         _interval: 4.5
-        _dropChance: 64
-      - _enemyId: 9
-        _countEnemy: 1
+        _dropChance: 20
+      - _enemyId: 1
+        _countEnemy: 2
         _interval: 0.75
-        _dropChance: 64
-      - _enemyId: 8
-        _countEnemy: 1
-        _interval: 0.75
-        _dropChance: 64
-      - _enemyId: 12
-        _countEnemy: 1
-        _interval: 5
-        _dropChance: 72
-      - _enemyId: 12
-        _countEnemy: 1
-        _interval: 0.75
-        _dropChance: 72
-      - _enemyId: 14
-        _countEnemy: 1
-        _interval: 6
-        _dropChance: 92
-    - _id: 5
+        _dropChance: 20
+    - _id: 2
       _startDelay: 0
-      _delay: 12
+      _delay: 25
       _enemies:
-      - _enemyId: 14
-        _countEnemy: 1
+      - _enemyId: 6
+        _countEnemy: 2
         _interval: 0
-        _dropChance: 96
+        _dropChance: 28
+      - _enemyId: 5
+        _countEnemy: 2
+        _interval: 2.5
+        _dropChance: 28
       - _enemyId: 6
         _countEnemy: 1
-        _interval: 5.5
-        _dropChance: 88
-      - _enemyId: 13
+        _interval: 4
+        _dropChance: 28
+      - _enemyId: 10
         _countEnemy: 1
-        _interval: 6
-        _dropChance: 96
-      - _enemyId: 9
-        _countEnemy: 1
-        _interval: 4.5
-        _dropChance: 66
-      - _enemyId: 8
-        _countEnemy: 1
-        _interval: 0.75
-        _dropChance: 66
+        _interval: 6.5
+        _dropChance: 38
   - _id: 6
-    _name: Last Stand
+    _name: Rat Run Underpass
     _icon: {fileID: 21300000, guid: 2d6618fb5d5deb74091e0971b8dc5a4f, type: 3}
     _waves:
     - _id: 0
       _startDelay: 0
-      _delay: 17
-      _enemies:
-      - _enemyId: 10
-        _countEnemy: 1
-        _interval: 0
-        _dropChance: 34
-      - _enemyId: 10
-        _countEnemy: 1
-        _interval: 0.75
-        _dropChance: 34
-      - _enemyId: 10
-        _countEnemy: 1
-        _interval: 0.75
-        _dropChance: 34
-      - _enemyId: 10
-        _countEnemy: 1
-        _interval: 0.75
-        _dropChance: 34
-      - _enemyId: 7
-        _countEnemy: 1
-        _interval: 4.2
-        _dropChance: 30
-      - _enemyId: 5
-        _countEnemy: 1
-        _interval: 0.75
-        _dropChance: 30
-      - _enemyId: 7
-        _countEnemy: 1
-        _interval: 0.75
-        _dropChance: 30
-      - _enemyId: 8
-        _countEnemy: 1
-        _interval: 4.8
-        _dropChance: 54
-      - _enemyId: 9
-        _countEnemy: 1
-        _interval: 0.75
-        _dropChance: 54
-      - _enemyId: 6
-        _countEnemy: 1
-        _interval: 5.8
-        _dropChance: 78
-    - _id: 1
-      _startDelay: 0
-      _delay: 18
-      _enemies:
-      - _enemyId: 6
-        _countEnemy: 1
-        _interval: 0
-        _dropChance: 82
-      - _enemyId: 9
-        _countEnemy: 1
-        _interval: 4.5
-        _dropChance: 60
-      - _enemyId: 8
-        _countEnemy: 1
-        _interval: 0.75
-        _dropChance: 60
-      - _enemyId: 9
-        _countEnemy: 1
-        _interval: 0.75
-        _dropChance: 60
-      - _enemyId: 12
-        _countEnemy: 1
-        _interval: 5
-        _dropChance: 74
-      - _enemyId: 12
-        _countEnemy: 1
-        _interval: 0.75
-        _dropChance: 74
-      - _enemyId: 10
-        _countEnemy: 1
-        _interval: 4.5
-        _dropChance: 38
-      - _enemyId: 10
-        _countEnemy: 1
-        _interval: 0.75
-        _dropChance: 38
-      - _enemyId: 10
-        _countEnemy: 1
-        _interval: 0.75
-        _dropChance: 38
-    - _id: 2
-      _startDelay: 0
       _delay: 19
       _enemies:
-      - _enemyId: 11
-        _countEnemy: 1
-        _interval: 0
-        _dropChance: 88
-      - _enemyId: 14
-        _countEnemy: 1
-        _interval: 0.75
-        _dropChance: 88
       - _enemyId: 7
         _countEnemy: 1
-        _interval: 4.5
-        _dropChance: 34
+        _interval: 0
+        _dropChance: 26
+      - _enemyId: 1
+        _countEnemy: 2
+        _interval: 0.75
+        _dropChance: 22
       - _enemyId: 5
+        _countEnemy: 2
+        _interval: 4
+        _dropChance: 26
+    - _id: 1
+      _startDelay: 0
+      _delay: 20
+      _enemies:
+      - _enemyId: 7
+        _countEnemy: 2
+        _interval: 0
+        _dropChance: 28
+      - _enemyId: 6
         _countEnemy: 1
-        _interval: 0.75
-        _dropChance: 34
+        _interval: 2.5
+        _dropChance: 28
+      - _enemyId: 8
+        _countEnemy: 1
+        _interval: 4.5
+        _dropChance: 28
       - _enemyId: 7
         _countEnemy: 1
         _interval: 0.75
-        _dropChance: 34
-      - _enemyId: 8
-        _countEnemy: 1
-        _interval: 4.8
-        _dropChance: 66
-      - _enemyId: 9
-        _countEnemy: 1
-        _interval: 0.75
-        _dropChance: 66
-      - _enemyId: 8
-        _countEnemy: 1
-        _interval: 0.75
-        _dropChance: 66
-      - _enemyId: 6
-        _countEnemy: 1
-        _interval: 5.8
-        _dropChance: 84
-    - _id: 3
+        _dropChance: 28
+    - _id: 2
       _startDelay: 0
       _delay: 20
       _enemies:
-      - _enemyId: 13
-        _countEnemy: 1
+      - _enemyId: 5
+        _countEnemy: 2
         _interval: 0
-        _dropChance: 96
-      - _enemyId: 12
-        _countEnemy: 1
-        _interval: 5
-        _dropChance: 78
-      - _enemyId: 12
-        _countEnemy: 1
+        _dropChance: 28
+      - _enemyId: 7
+        _countEnemy: 2
         _interval: 0.75
-        _dropChance: 78
-      - _enemyId: 9
+        _dropChance: 28
+      - _enemyId: 4
         _countEnemy: 1
         _interval: 4.5
-        _dropChance: 68
-      - _enemyId: 8
-        _countEnemy: 1
-        _interval: 0.75
-        _dropChance: 68
-      - _enemyId: 9
-        _countEnemy: 1
-        _interval: 0.75
-        _dropChance: 68
-      - _enemyId: 14
-        _countEnemy: 1
-        _interval: 6
-        _dropChance: 96
-    - _id: 4
-      _startDelay: 0
-      _delay: 20
-      _enemies:
+        _dropChance: 30
       - _enemyId: 6
-        _countEnemy: 1
-        _interval: 0
-        _dropChance: 88
-      - _enemyId: 6
-        _countEnemy: 1
-        _interval: 0.75
-        _dropChance: 88
-      - _enemyId: 11
-        _countEnemy: 1
-        _interval: 5.5
-        _dropChance: 92
-      - _enemyId: 8
-        _countEnemy: 1
-        _interval: 4.5
-        _dropChance: 72
-      - _enemyId: 9
-        _countEnemy: 1
-        _interval: 0.75
-        _dropChance: 72
-      - _enemyId: 8
-        _countEnemy: 1
-        _interval: 0.75
-        _dropChance: 72
-      - _enemyId: 13
-        _countEnemy: 1
-        _interval: 6
-        _dropChance: 98
-      - _enemyId: 12
-        _countEnemy: 1
+        _countEnemy: 2
         _interval: 5
-        _dropChance: 82
-    - _id: 5
-      _startDelay: 0
-      _delay: 12
-      _enemies:
-      - _enemyId: 14
-        _countEnemy: 1
-        _interval: 0
-        _dropChance: 100
-      - _enemyId: 13
-        _countEnemy: 1
-        _interval: 5.8
-        _dropChance: 100
-      - _enemyId: 11
-        _countEnemy: 1
-        _interval: 5.8
-        _dropChance: 96
-      - _enemyId: 6
-        _countEnemy: 1
-        _interval: 5.8
-        _dropChance: 94
-      - _enemyId: 6
-        _countEnemy: 1
-        _interval: 0.75
-        _dropChance: 94
-      - _enemyId: 12
-        _countEnemy: 1
-        _interval: 5
-        _dropChance: 88
+        _dropChance: 30
   - _id: 7
-    _name: Kingpin Night
+    _name: High-Caliber Witness
     _icon: {fileID: 21300000, guid: 9e3dd99936990fb449f5448707dcc06c, type: 3}
     _waves:
     - _id: 0
       _startDelay: 0
-      _delay: 17
+      _delay: 20
       _enemies:
-      - _enemyId: 7
-        _countEnemy: 1
+      - _enemyId: 8
+        _countEnemy: 2
         _interval: 0
-        _dropChance: 34
-      - _enemyId: 5
-        _countEnemy: 1
-        _interval: 0.75
-        _dropChance: 34
-      - _enemyId: 7
-        _countEnemy: 1
-        _interval: 0.75
-        _dropChance: 34
-      - _enemyId: 5
-        _countEnemy: 1
-        _interval: 0.75
-        _dropChance: 34
-      - _enemyId: 10
-        _countEnemy: 1
-        _interval: 4.2
-        _dropChance: 38
-      - _enemyId: 10
-        _countEnemy: 1
-        _interval: 0.75
-        _dropChance: 38
-      - _enemyId: 10
-        _countEnemy: 1
-        _interval: 0.75
-        _dropChance: 38
-      - _enemyId: 10
-        _countEnemy: 1
-        _interval: 0.75
-        _dropChance: 38
+        _dropChance: 30
+      - _enemyId: 9
+        _countEnemy: 2
+        _interval: 2.5
+        _dropChance: 30
       - _enemyId: 4
         _countEnemy: 1
-        _interval: 4.8
-        _dropChance: 48
-      - _enemyId: 5
-        _countEnemy: 1
-        _interval: 0.75
-        _dropChance: 48
-      - _enemyId: 8
-        _countEnemy: 1
-        _interval: 4.8
-        _dropChance: 62
-      - _enemyId: 9
-        _countEnemy: 1
-        _interval: 0.75
-        _dropChance: 62
+        _interval: 4.5
+        _dropChance: 30
     - _id: 1
-      _startDelay: 0
-      _delay: 18
-      _enemies:
-      - _enemyId: 6
-        _countEnemy: 1
-        _interval: 0
-        _dropChance: 88
-      - _enemyId: 6
-        _countEnemy: 1
-        _interval: 0.75
-        _dropChance: 88
-      - _enemyId: 9
-        _countEnemy: 1
-        _interval: 4.5
-        _dropChance: 68
-      - _enemyId: 8
-        _countEnemy: 1
-        _interval: 0.75
-        _dropChance: 68
-      - _enemyId: 9
-        _countEnemy: 1
-        _interval: 0.75
-        _dropChance: 68
-      - _enemyId: 12
-        _countEnemy: 1
-        _interval: 5
-        _dropChance: 82
-      - _enemyId: 12
-        _countEnemy: 1
-        _interval: 0.75
-        _dropChance: 82
-      - _enemyId: 10
-        _countEnemy: 1
-        _interval: 4.5
-        _dropChance: 44
-      - _enemyId: 10
-        _countEnemy: 1
-        _interval: 0.75
-        _dropChance: 44
-      - _enemyId: 10
-        _countEnemy: 1
-        _interval: 0.75
-        _dropChance: 44
-    - _id: 2
-      _startDelay: 0
-      _delay: 19
-      _enemies:
-      - _enemyId: 11
-        _countEnemy: 1
-        _interval: 0
-        _dropChance: 94
-      - _enemyId: 14
-        _countEnemy: 1
-        _interval: 0.75
-        _dropChance: 94
-      - _enemyId: 8
-        _countEnemy: 1
-        _interval: 4.5
-        _dropChance: 76
-      - _enemyId: 9
-        _countEnemy: 1
-        _interval: 0.75
-        _dropChance: 76
-      - _enemyId: 8
-        _countEnemy: 1
-        _interval: 0.75
-        _dropChance: 76
-      - _enemyId: 13
-        _countEnemy: 1
-        _interval: 5.8
-        _dropChance: 100
-      - _enemyId: 13
-        _countEnemy: 1
-        _interval: 0.75
-        _dropChance: 100
-      - _enemyId: 7
-        _countEnemy: 1
-        _interval: 4.5
-        _dropChance: 40
-      - _enemyId: 5
-        _countEnemy: 1
-        _interval: 0.75
-        _dropChance: 40
-      - _enemyId: 7
-        _countEnemy: 1
-        _interval: 0.75
-        _dropChance: 40
-    - _id: 3
-      _startDelay: 0
-      _delay: 20
-      _enemies:
-      - _enemyId: 14
-        _countEnemy: 1
-        _interval: 0
-        _dropChance: 100
-      - _enemyId: 11
-        _countEnemy: 1
-        _interval: 0.75
-        _dropChance: 100
-      - _enemyId: 12
-        _countEnemy: 1
-        _interval: 5
-        _dropChance: 86
-      - _enemyId: 12
-        _countEnemy: 1
-        _interval: 0.75
-        _dropChance: 86
-      - _enemyId: 12
-        _countEnemy: 1
-        _interval: 0.75
-        _dropChance: 86
-      - _enemyId: 9
-        _countEnemy: 1
-        _interval: 4.5
-        _dropChance: 78
-      - _enemyId: 8
-        _countEnemy: 1
-        _interval: 0.75
-        _dropChance: 78
-      - _enemyId: 9
-        _countEnemy: 1
-        _interval: 0.75
-        _dropChance: 78
-      - _enemyId: 6
-        _countEnemy: 1
-        _interval: 5.8
-        _dropChance: 92
-    - _id: 4
-      _startDelay: 0
-      _delay: 20
-      _enemies:
-      - _enemyId: 13
-        _countEnemy: 1
-        _interval: 0
-        _dropChance: 100
-      - _enemyId: 13
-        _countEnemy: 1
-        _interval: 0.75
-        _dropChance: 100
-      - _enemyId: 11
-        _countEnemy: 1
-        _interval: 5.5
-        _dropChance: 98
-      - _enemyId: 14
-        _countEnemy: 1
-        _interval: 0.75
-        _dropChance: 98
-      - _enemyId: 8
-        _countEnemy: 1
-        _interval: 4.5
-        _dropChance: 84
-      - _enemyId: 9
-        _countEnemy: 1
-        _interval: 0.75
-        _dropChance: 84
-      - _enemyId: 8
-        _countEnemy: 1
-        _interval: 0.75
-        _dropChance: 84
-      - _enemyId: 14
-        _countEnemy: 1
-        _interval: 6
-        _dropChance: 100
-      - _enemyId: 12
-        _countEnemy: 1
-        _interval: 5
-        _dropChance: 90
-      - _enemyId: 12
-        _countEnemy: 1
-        _interval: 0.75
-        _dropChance: 90
-    - _id: 5
       _startDelay: 0
       _delay: 21
       _enemies:
-      - _enemyId: 6
-        _countEnemy: 1
+      - _enemyId: 9
+        _countEnemy: 2
         _interval: 0
-        _dropChance: 96
-      - _enemyId: 6
-        _countEnemy: 1
+        _dropChance: 32
+      - _enemyId: 8
+        _countEnemy: 2
         _interval: 0.75
-        _dropChance: 96
-      - _enemyId: 12
+        _dropChance: 32
+      - _enemyId: 0
+        _countEnemy: 2
+        _interval: 4.5
+        _dropChance: 24
+      - _enemyId: 4
         _countEnemy: 1
         _interval: 5
-        _dropChance: 94
-      - _enemyId: 12
-        _countEnemy: 1
-        _interval: 0.75
-        _dropChance: 94
-      - _enemyId: 12
-        _countEnemy: 1
-        _interval: 0.75
-        _dropChance: 94
-      - _enemyId: 13
-        _countEnemy: 1
-        _interval: 5.8
-        _dropChance: 100
-      - _enemyId: 14
-        _countEnemy: 1
-        _interval: 6
-        _dropChance: 100
-      - _enemyId: 11
-        _countEnemy: 1
-        _interval: 5.8
-        _dropChance: 100
-      - _enemyId: 14
-        _countEnemy: 1
-        _interval: 0.75
-        _dropChance: 100
-    - _id: 6
+        _dropChance: 32
+    - _id: 2
       _startDelay: 0
-      _delay: 12
+      _delay: 26
       _enemies:
-      - _enemyId: 14
-        _countEnemy: 1
+      - _enemyId: 8
+        _countEnemy: 2
         _interval: 0
-        _dropChance: 100
+        _dropChance: 35
+      - _enemyId: 9
+        _countEnemy: 2
+        _interval: 2.5
+        _dropChance: 35
+      - _enemyId: 4
+        _countEnemy: 1
+        _interval: 4.5
+        _dropChance: 35
       - _enemyId: 11
         _countEnemy: 1
-        _interval: 0.75
-        _dropChance: 100
-      - _enemyId: 13
-        _countEnemy: 1
-        _interval: 5.8
-        _dropChance: 100
-      - _enemyId: 13
-        _countEnemy: 1
-        _interval: 0.75
-        _dropChance: 100
-      - _enemyId: 11
-        _countEnemy: 1
-        _interval: 5.8
-        _dropChance: 100
-      - _enemyId: 14
-        _countEnemy: 1
-        _interval: 0.75
-        _dropChance: 100
-      - _enemyId: 6
-        _countEnemy: 1
-        _interval: 5.8
-        _dropChance: 100
-      - _enemyId: 6
-        _countEnemy: 1
-        _interval: 0.75
-        _dropChance: 100
-      - _enemyId: 12
-        _countEnemy: 1
-        _interval: 5
-        _dropChance: 100
-      - _enemyId: 12
-        _countEnemy: 1
-        _interval: 0.75
-        _dropChance: 100
+        _interval: 7
+        _dropChance: 45
