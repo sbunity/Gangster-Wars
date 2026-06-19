@@ -12,6 +12,9 @@ namespace SBabchuk.Runtime.UI
 {
     public class BttnSelectLvlController : MonoBehaviour
     {
+        [SerializeField]
+        private int _levelId = -1;
+
         [SerializeField, FormerlySerializedAs("level")]
         private LevelsName _level;
 
@@ -40,6 +43,8 @@ namespace SBabchuk.Runtime.UI
         private IPlayerProgressService _progressService;
         private ISceneTransitionService _sceneTransitionService;
 
+        public int LevelId => _levelId >= 0 ? _levelId : (int)_level;
+
         [Inject]
         public void Construct(IAssetProvider assetProvider, IPlayerProgressService progressService, ISceneTransitionService sceneTransitionService)
         {
@@ -51,7 +56,7 @@ namespace SBabchuk.Runtime.UI
         private IEnumerator Start()
         {
             _database = _assetProvider.LevelDatabase;
-            Init(_level);
+            Init(LevelId);
 
             yield return null;
 
@@ -59,12 +64,27 @@ namespace SBabchuk.Runtime.UI
         }
 
         public void Init(LevelsName targetLevel)
+            => Init((int)targetLevel);
+
+        public void Init(int levelId)
         {
-            _properties = _database.GetLevel((int)targetLevel);
+            _levelId = levelId;
+            _properties = _database.GetLevel(levelId);
+            if (_properties == null)
+                return;
+
             _title.text = _properties.Name;
-            var levelShortInfo = _progressService.GetLevelShortInfo((int)targetLevel);
+            var levelShortInfo = _progressService.GetLevelShortInfo(levelId);
+            if (levelShortInfo == null)
+                return;
+
             _isCompleted = levelShortInfo.IsCompleted;
             _stars.sprite = GetSpriteStar(levelShortInfo.Stars);
+        }
+
+        public void SetPredecessors(List<BttnSelectLvlController> predecessors)
+        {
+            _predecessors = predecessors ?? new List<BttnSelectLvlController>();
         }
 
         public Sprite GetSpriteStar(int value)
@@ -93,7 +113,7 @@ namespace SBabchuk.Runtime.UI
             if (_lockImg.activeSelf)
                 return;
                 
-            _progressService.SetCurrentLevel((int)_level);
+            _progressService.SetCurrentLevel(LevelId);
             _sceneTransitionService.TransitionToAsync(Scene.GameScene).Forget();
         }
     }

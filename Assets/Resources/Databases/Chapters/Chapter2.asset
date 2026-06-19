@@ -24,16 +24,28 @@ MonoBehaviour:
       _delay: 20
       _enemies:
       - _enemyId: 5
-        _countEnemy: 2
+        _countEnemy: 1
         _interval: 0
         _dropChance: 30
+      - _enemyId: 5
+        _countEnemy: 1
+        _interval: 0.45
+        _dropChance: 30
       - _enemyId: 6
-        _countEnemy: 2
+        _countEnemy: 1
         _interval: 2.5
         _dropChance: 30
+      - _enemyId: 6
+        _countEnemy: 1
+        _interval: 0.45
+        _dropChance: 30
       - _enemyId: 7
-        _countEnemy: 2
+        _countEnemy: 1
         _interval: 4.5
+        _dropChance: 30
+      - _enemyId: 7
+        _countEnemy: 1
+        _interval: 0.45
         _dropChance: 30
     - _id: 1
       _startDelay: 0
@@ -44,32 +56,52 @@ MonoBehaviour:
         _interval: 0
         _dropChance: 35
       - _enemyId: 6
-        _countEnemy: 2
+        _countEnemy: 1
         _interval: 2.5
         _dropChance: 32
+      - _enemyId: 6
+        _countEnemy: 1
+        _interval: 0.45
+        _dropChance: 32
       - _enemyId: 7
-        _countEnemy: 2
+        _countEnemy: 1
         _interval: 4.5
         _dropChance: 32
+      - _enemyId: 7
+        _countEnemy: 1
+        _interval: 0.45000017
+        _dropChance: 32
       - _enemyId: 5
-        _countEnemy: 2
+        _countEnemy: 1
         _interval: 0.75
+        _dropChance: 32
+      - _enemyId: 5
+        _countEnemy: 1
+        _interval: 0.45000017
         _dropChance: 32
     - _id: 2
       _startDelay: 0
       _delay: 27
       _enemies:
       - _enemyId: 6
-        _countEnemy: 2
+        _countEnemy: 1
         _interval: 0
+        _dropChance: 38
+      - _enemyId: 6
+        _countEnemy: 1
+        _interval: 0.45
         _dropChance: 38
       - _enemyId: 10
         _countEnemy: 1
         _interval: 3.5
         _dropChance: 38
       - _enemyId: 7
-        _countEnemy: 2
+        _countEnemy: 1
         _interval: 4.5
+        _dropChance: 38
+      - _enemyId: 7
+        _countEnemy: 1
+        _interval: 0.45000017
         _dropChance: 38
       - _enemyId: 12
         _countEnemy: 1
@@ -84,12 +116,20 @@ MonoBehaviour:
       _delay: 21
       _enemies:
       - _enemyId: 8
-        _countEnemy: 2
+        _countEnemy: 1
         _interval: 0
         _dropChance: 32
+      - _enemyId: 8
+        _countEnemy: 1
+        _interval: 0.45
+        _dropChance: 32
       - _enemyId: 9
-        _countEnemy: 2
+        _countEnemy: 1
         _interval: 2.5
+        _dropChance: 32
+      - _enemyId: 9
+        _countEnemy: 1
+        _interval: 0.45
         _dropChance: 32
       - _enemyId: 11
         _countEnemy: 1
@@ -104,12 +144,20 @@ MonoBehaviour:
         _interval: 0
         _dropChance: 35
       - _enemyId: 8
-        _countEnemy: 2
+        _countEnemy: 1
         _interval: 2.5
         _dropChance: 35
+      - _enemyId: 8
+        _countEnemy: 1
+        _interval: 0.45
+        _dropChance: 35
       - _enemyId: 9
-        _countEnemy: 2
+        _countEnemy: 1
         _interval: 4.5
+        _dropChance: 35
+      - _enemyId: 9
+        _countEnemy: 1
+        _interval: 0.45000017
         _dropChance: 35
       - _enemyId: 11
         _countEnemy: 1
@@ -120,8 +168,12 @@ MonoBehaviour:
       _delay: 28
       _enemies:
       - _enemyId: 9
-        _countEnemy: 2
+        _countEnemy: 1
         _interval: 0
+        _dropChance: 40
+      - _enemyId: 9
+        _countEnemy: 1
+        _interval: 0.45
         _dropChance: 40
       - _enemyId: 11
         _countEnemy: 1
@@ -144,12 +196,20 @@ MonoBehaviour:
       _delay: 22
       _enemies:
       - _enemyId: 6
-        _countEnemy: 2
+        _countEnemy: 1
         _interval: 0
         _dropChance: 36
+      - _enemyId: 6
+        _countEnemy: 1
+        _interval: 0.45
+        _dropChance: 36
       - _enemyId: 7
-        _countEnemy: 2
+        _countEnemy: 1
         _interval: 2.5
+        _dropChance: 36
+      - _enemyId: 7
+        _countEnemy: 1
+        _interval: 0.45
         _dropChance: 36
       - _enemyId: 10
         _countEnemy: 1
@@ -164,12 +224,20 @@ MonoBehaviour:
         _interval: 0
         _dropChance: 40
       - _enemyId: 6
-        _countEnemy: 2
+        _countEnemy: 1
         _interval: 2.5
         _dropChance: 38
+      - _enemyId: 6
+        _countEnemy: 1
+        _interval: 0.45
+        _dropChance: 38
       - _enemyId: 5
-        _countEnemy: 2
+        _countEnemy: 1
         _interval: 4.5
+        _dropChance: 38
+      - _enemyId: 5
+        _countEnemy: 1
+        _interval: 0.45000017
         _dropChance: 38
       - _enemyId: 10
         _countEnemy: 1
@@ -180,8 +248,12 @@ MonoBehaviour:
       _delay: 29
       _enemies:
       - _enemyId: 7
-        _countEnemy: 2
+        _countEnemy: 1
         _interval: 0
+        _dropChance: 42
+      - _enemyId: 7
+        _countEnemy: 1
+        _interval: 0.45
         _dropChance: 42
       - _enemyId: 12
         _countEnemy: 1
@@ -204,16 +276,28 @@ MonoBehaviour:
       _delay: 22
       _enemies:
       - _enemyId: 8
-        _countEnemy: 2
+        _countEnemy: 1
         _interval: 0
         _dropChance: 38
+      - _enemyId: 8
+        _countEnemy: 1
+        _interval: 0.45
+        _dropChance: 38
       - _enemyId: 9
-        _countEnemy: 2
+        _countEnemy: 1
         _interval: 2.5
         _dropChance: 38
+      - _enemyId: 9
+        _countEnemy: 1
+        _interval: 0.45
+        _dropChance: 38
       - _enemyId: 5
-        _countEnemy: 2
+        _countEnemy: 1
         _interval: 4.5
+        _dropChance: 36
+      - _enemyId: 5
+        _countEnemy: 1
+        _interval: 0.45
         _dropChance: 36
       - _enemyId: 4
         _countEnemy: 1
@@ -228,16 +312,24 @@ MonoBehaviour:
         _interval: 0
         _dropChance: 42
       - _enemyId: 8
-        _countEnemy: 2
+        _countEnemy: 1
         _interval: 2.5
+        _dropChance: 42
+      - _enemyId: 8
+        _countEnemy: 1
+        _interval: 0.45
         _dropChance: 42
       - _enemyId: 12
         _countEnemy: 1
         _interval: 4.5
         _dropChance: 42
       - _enemyId: 6
-        _countEnemy: 2
+        _countEnemy: 1
         _interval: 5
+        _dropChance: 40
+      - _enemyId: 6
+        _countEnemy: 1
+        _interval: 0.45000017
         _dropChance: 40
     - _id: 2
       _startDelay: 0
@@ -248,8 +340,12 @@ MonoBehaviour:
         _interval: 0
         _dropChance: 45
       - _enemyId: 9
-        _countEnemy: 2
+        _countEnemy: 1
         _interval: 3.5
+        _dropChance: 44
+      - _enemyId: 9
+        _countEnemy: 1
+        _interval: 0.45
         _dropChance: 44
       - _enemyId: 10
         _countEnemy: 1
@@ -268,20 +364,36 @@ MonoBehaviour:
       _delay: 23
       _enemies:
       - _enemyId: 5
-        _countEnemy: 2
+        _countEnemy: 1
         _interval: 0
         _dropChance: 40
+      - _enemyId: 5
+        _countEnemy: 1
+        _interval: 0.45
+        _dropChance: 40
       - _enemyId: 8
-        _countEnemy: 2
+        _countEnemy: 1
         _interval: 2.5
         _dropChance: 42
+      - _enemyId: 8
+        _countEnemy: 1
+        _interval: 0.45
+        _dropChance: 42
       - _enemyId: 6
-        _countEnemy: 2
+        _countEnemy: 1
         _interval: 4.5
         _dropChance: 42
+      - _enemyId: 6
+        _countEnemy: 1
+        _interval: 0.45
+        _dropChance: 42
       - _enemyId: 9
-        _countEnemy: 2
+        _countEnemy: 1
         _interval: 5
+        _dropChance: 42
+      - _enemyId: 9
+        _countEnemy: 1
+        _interval: 0.45000017
         _dropChance: 42
     - _id: 1
       _startDelay: 0
@@ -300,8 +412,12 @@ MonoBehaviour:
         _interval: 4.5
         _dropChance: 45
       - _enemyId: 7
-        _countEnemy: 2
+        _countEnemy: 1
         _interval: 5
+        _dropChance: 44
+      - _enemyId: 7
+        _countEnemy: 1
+        _interval: 0.45000017
         _dropChance: 44
     - _id: 2
       _startDelay: 0
@@ -320,8 +436,12 @@ MonoBehaviour:
         _interval: 4.5
         _dropChance: 48
       - _enemyId: 8
-        _countEnemy: 2
+        _countEnemy: 1
         _interval: 5
+        _dropChance: 48
+      - _enemyId: 8
+        _countEnemy: 1
+        _interval: 0.45000017
         _dropChance: 48
   - _id: 13
     _name: Casino Backdoor
@@ -332,16 +452,28 @@ MonoBehaviour:
       _delay: 23
       _enemies:
       - _enemyId: 7
-        _countEnemy: 2
+        _countEnemy: 1
         _interval: 0
         _dropChance: 42
+      - _enemyId: 7
+        _countEnemy: 1
+        _interval: 0.45
+        _dropChance: 42
       - _enemyId: 6
-        _countEnemy: 2
+        _countEnemy: 1
         _interval: 2.5
         _dropChance: 42
+      - _enemyId: 6
+        _countEnemy: 1
+        _interval: 0.45
+        _dropChance: 42
       - _enemyId: 9
-        _countEnemy: 2
+        _countEnemy: 1
         _interval: 4.5
+        _dropChance: 42
+      - _enemyId: 9
+        _countEnemy: 1
+        _interval: 0.45
         _dropChance: 42
       - _enemyId: 10
         _countEnemy: 1
@@ -356,8 +488,12 @@ MonoBehaviour:
         _interval: 0
         _dropChance: 48
       - _enemyId: 5
-        _countEnemy: 2
+        _countEnemy: 1
         _interval: 2.5
+        _dropChance: 46
+      - _enemyId: 5
+        _countEnemy: 1
+        _interval: 0.45
         _dropChance: 46
       - _enemyId: 13
         _countEnemy: 1
@@ -376,8 +512,12 @@ MonoBehaviour:
         _interval: 0
         _dropChance: 50
       - _enemyId: 8
-        _countEnemy: 2
+        _countEnemy: 1
         _interval: 2.5
+        _dropChance: 50
+      - _enemyId: 8
+        _countEnemy: 1
+        _interval: 0.45
         _dropChance: 50
       - _enemyId: 14
         _countEnemy: 1
@@ -396,20 +536,36 @@ MonoBehaviour:
       _delay: 24
       _enemies:
       - _enemyId: 6
-        _countEnemy: 2
+        _countEnemy: 1
         _interval: 0
         _dropChance: 46
+      - _enemyId: 6
+        _countEnemy: 1
+        _interval: 0.45
+        _dropChance: 46
       - _enemyId: 7
-        _countEnemy: 2
+        _countEnemy: 1
         _interval: 2.5
         _dropChance: 46
+      - _enemyId: 7
+        _countEnemy: 1
+        _interval: 0.45
+        _dropChance: 46
       - _enemyId: 8
-        _countEnemy: 2
+        _countEnemy: 1
         _interval: 4.5
         _dropChance: 46
+      - _enemyId: 8
+        _countEnemy: 1
+        _interval: 0.45
+        _dropChance: 46
       - _enemyId: 9
-        _countEnemy: 2
+        _countEnemy: 1
         _interval: 5
+        _dropChance: 46
+      - _enemyId: 9
+        _countEnemy: 1
+        _interval: 0.45000017
         _dropChance: 46
     - _id: 1
       _startDelay: 0
@@ -444,12 +600,20 @@ MonoBehaviour:
         _interval: 3.5
         _dropChance: 54
       - _enemyId: 6
-        _countEnemy: 2
+        _countEnemy: 1
         _interval: 4.5
         _dropChance: 52
+      - _enemyId: 6
+        _countEnemy: 1
+        _interval: 0.45000017
+        _dropChance: 52
       - _enemyId: 8
-        _countEnemy: 2
+        _countEnemy: 1
         _interval: 5
+        _dropChance: 54
+      - _enemyId: 8
+        _countEnemy: 1
+        _interval: 0.45000017
         _dropChance: 54
   - _id: 15
     _name: Neon Siege
@@ -460,20 +624,36 @@ MonoBehaviour:
       _delay: 24
       _enemies:
       - _enemyId: 8
-        _countEnemy: 2
+        _countEnemy: 1
         _interval: 0
         _dropChance: 48
+      - _enemyId: 8
+        _countEnemy: 1
+        _interval: 0.45
+        _dropChance: 48
       - _enemyId: 9
-        _countEnemy: 2
+        _countEnemy: 1
         _interval: 2.5
         _dropChance: 48
+      - _enemyId: 9
+        _countEnemy: 1
+        _interval: 0.45
+        _dropChance: 48
       - _enemyId: 5
-        _countEnemy: 2
+        _countEnemy: 1
         _interval: 4.5
         _dropChance: 48
+      - _enemyId: 5
+        _countEnemy: 1
+        _interval: 0.45
+        _dropChance: 48
       - _enemyId: 6
-        _countEnemy: 2
+        _countEnemy: 1
         _interval: 5
+        _dropChance: 48
+      - _enemyId: 6
+        _countEnemy: 1
+        _interval: 0.45000017
         _dropChance: 48
     - _id: 1
       _startDelay: 0
@@ -508,12 +688,20 @@ MonoBehaviour:
         _interval: 3.5
         _dropChance: 60
       - _enemyId: 8
-        _countEnemy: 2
+        _countEnemy: 1
         _interval: 4.5
         _dropChance: 58
+      - _enemyId: 8
+        _countEnemy: 1
+        _interval: 0.45000017
+        _dropChance: 58
       - _enemyId: 9
-        _countEnemy: 2
+        _countEnemy: 1
         _interval: 5
+        _dropChance: 58
+      - _enemyId: 9
+        _countEnemy: 1
+        _interval: 0.45000017
         _dropChance: 58
       - _enemyId: 4
         _countEnemy: 1
