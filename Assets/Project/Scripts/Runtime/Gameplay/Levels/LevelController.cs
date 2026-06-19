@@ -45,6 +45,7 @@ namespace SBabchuk.Runtime.Gameplay.Levels
         private IAssetProvider _assetProvider;
         private IPlayerProgressService _progressService;
         private IWaveSkipRewardService _waveSkipRewardService;
+        private IEnemyDiscoveryService _enemyDiscoveryService;
         private IGameFactory _gameFactory;
         private ILevelFlowService _levelFlowService;
         private BarricadeController _barricadeController;
@@ -67,11 +68,12 @@ namespace SBabchuk.Runtime.Gameplay.Levels
         }
 
         [Inject]
-        public void Construct(IAssetProvider assetProvider, IPlayerProgressService progressService, IWaveSkipRewardService waveSkipRewardService, IGameFactory gameFactory, ILevelFlowService levelFlowService, LevelEntityTracker entityTracker, BarricadeController barricadeController, SignalBus signalBus)
+        public void Construct(IAssetProvider assetProvider, IPlayerProgressService progressService, IWaveSkipRewardService waveSkipRewardService, IEnemyDiscoveryService enemyDiscoveryService, IGameFactory gameFactory, ILevelFlowService levelFlowService, LevelEntityTracker entityTracker, BarricadeController barricadeController, SignalBus signalBus)
         {
             _assetProvider = assetProvider;
             _progressService = progressService;
             _waveSkipRewardService = waveSkipRewardService;
+            _enemyDiscoveryService = enemyDiscoveryService;
             _gameFactory = gameFactory;
             _levelFlowService = levelFlowService;
             _entityTracker = entityTracker;
@@ -207,6 +209,7 @@ namespace SBabchuk.Runtime.Gameplay.Levels
             if (enemy != null)
             {
                 _entityTracker.AddEnemy(enemy);
+                _enemyDiscoveryService?.TryDiscover(enemy.Properties);
                 _waveBar.UpdateFilled(_fillStep);
             }
             else

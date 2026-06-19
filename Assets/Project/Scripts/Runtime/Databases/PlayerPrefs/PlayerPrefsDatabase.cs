@@ -119,6 +119,9 @@ namespace SBabchuk.Runtime.Databases.PlayerPrefs
         private List<ChapterShortInfo> _chapters = new List<ChapterShortInfo>();
         public List<ChapterShortInfo> Chapters { get => _chapters; set => _chapters = value; }
 
+        [SerializeField] private List<int> _seenEnemyIds = new();
+        public List<int> SeenEnemyIds { get => _seenEnemyIds; set => _seenEnemyIds = value; }
+
         public WeaponShortInfo GetWeaponShortInfo(int id)
         {
             if (_weapons == null)
@@ -202,6 +205,9 @@ namespace SBabchuk.Runtime.Databases.PlayerPrefs
 
             return null;
         }
+
+        public bool HasSeenEnemy(int id)
+            => _seenEnemyIds != null && _seenEnemyIds.Contains(id);
     }
 
     [System.Serializable]

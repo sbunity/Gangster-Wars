@@ -15,32 +15,33 @@ MonoBehaviour:
   _playerPrefs:
     _music: 0
     _sound: 0
-    _coin: 0
+    _coin: 595
     _levelId: 0
+    _chapterId: 0
     _selectedWeaponId: 0
     _selectedGrenadeId: 0
-    _selectedDefenceId: 0
+    _selectedDefenceId: 3
     _weapons:
     - _id: 0
       _name: Weapon_0
       _isBuy: 0
-      _upgradeId: -1
+      _upgradeId: 4
       _ammoCount: 75
     - _id: 1
       _name: Weapon_1
-      _isBuy: 1
-      _upgradeId: -1
-      _ammoCount: 0
+      _isBuy: 0
+      _upgradeId: 4
+      _ammoCount: 51
     - _id: 2
       _name: Weapon_2
-      _isBuy: 1
-      _upgradeId: -1
-      _ammoCount: 0
+      _isBuy: 0
+      _upgradeId: 4
+      _ammoCount: 131
     - _id: 3
       _name: Weapon_3
-      _isBuy: 1
-      _upgradeId: -1
-      _ammoCount: 0
+      _isBuy: 0
+      _upgradeId: 4
+      _ammoCount: 48
     - _id: 4
       _name: Weapon_4
       _isBuy: 1
@@ -62,45 +63,131 @@ MonoBehaviour:
     _defences:
     - _id: 0
       _isBuy: 0
-      _upgradeId: -1
+      _upgradeId: 0
     - _id: 1
-      _isBuy: 1
+      _isBuy: 0
       _upgradeId: -1
     - _id: 2
-      _isBuy: 1
-      _upgradeId: -1
+      _isBuy: 0
+      _upgradeId: 0
     - _id: 3
-      _isBuy: 1
+      _isBuy: 0
       _upgradeId: -1
     _personages:
     - _id: 0
-      _isBuy: 1
-      _upgradeId: 0
+      _isBuy: 0
+      _upgradeId: 3
     - _id: 1
-      _isBuy: 1
-      _upgradeId: 0
+      _isBuy: 0
+      _upgradeId: 3
     _levels:
+    - _chapterId: 0
+      _id: 0
+      _isCompleted: 0
+      _stars: 3
+    - _chapterId: 0
+      _id: 1
+      _isCompleted: 0
+      _stars: 3
+    - _chapterId: 0
+      _id: 2
+      _isCompleted: 0
+      _stars: 3
+    - _chapterId: 0
+      _id: 3
+      _isCompleted: 0
+      _stars: 3
+    - _chapterId: 0
+      _id: 4
+      _isCompleted: 0
+      _stars: 3
+    - _chapterId: 0
+      _id: 5
+      _isCompleted: 0
+      _stars: 3
+    - _chapterId: 0
+      _id: 6
+      _isCompleted: 0
+      _stars: 3
+    - _chapterId: 0
+      _id: 7
+      _isCompleted: 0
+      _stars: 1
+    - _chapterId: 1
+      _id: 8
+      _isCompleted: 0
+      _stars: 1
+    - _chapterId: 1
+      _id: 9
+      _isCompleted: 0
+      _stars: 1
+    - _chapterId: 1
+      _id: 10
+      _isCompleted: 0
+      _stars: 2
+    - _chapterId: 1
+      _id: 11
+      _isCompleted: 0
+      _stars: 1
+    - _chapterId: 1
+      _id: 12
+      _isCompleted: 0
+      _stars: 1
+    - _chapterId: 1
+      _id: 13
+      _isCompleted: 0
+      _stars: 1
+    - _chapterId: 1
+      _id: 14
+      _isCompleted: 0
+      _stars: 1
+    - _chapterId: 1
+      _id: 15
+      _isCompleted: 0
+      _stars: 1
+    - _chapterId: 2
+      _id: 16
+      _isCompleted: 0
+      _stars: 2
+    - _chapterId: 2
+      _id: 17
+      _isCompleted: 0
+      _stars: 1
+    - _chapterId: 2
+      _id: 18
+      _isCompleted: 0
+      _stars: 1
+    - _chapterId: 2
+      _id: 19
+      _isCompleted: 0
+      _stars: 1
+    - _chapterId: 2
+      _id: 20
+      _isCompleted: 0
+      _stars: 1
+    - _chapterId: 2
+      _id: 21
+      _isCompleted: 0
+      _stars: 2
+    - _chapterId: 2
+      _id: 22
+      _isCompleted: 0
+      _stars: 1
+    - _chapterId: 2
+      _id: 23
+      _isCompleted: 0
+      _stars: 2
+    _chapters:
     - _id: 0
-      _isCompleted: 1
-      _stars: 0
+      _name: 'Chapter 1: Dockside Blood Money'
+      _isUnlocked: 0
+      _isCompleted: 0
     - _id: 1
-      _isCompleted: 1
-      _stars: 0
+      _name: 'Chapter 2: Neon District War'
+      _isUnlocked: 1
+      _isCompleted: 0
     - _id: 2
-      _isCompleted: 1
-      _stars: 0
-    - _id: 3
-      _isCompleted: 1
-      _stars: 0
-    - _id: 4
-      _isCompleted: 1
-      _stars: 0
-    - _id: 5
-      _isCompleted: 1
-      _stars: 0
-    - _id: 6
-      _isCompleted: 1
-      _stars: 0
-    - _id: 7
-      _isCompleted: 1
-      _stars: 0
+      _name: 'Chapter 3: Kings of Ash'
+      _isUnlocked: 1
+      _isCompleted: 0
+    _seenEnemyIds: 

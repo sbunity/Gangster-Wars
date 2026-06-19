@@ -396,6 +396,12 @@ namespace SBabchuk.Runtime.Services
                 changed = true;
             }
 
+            if (PlayerPrefs.SeenEnemyIds == null)
+            {
+                PlayerPrefs.SeenEnemyIds = new List<int>();
+                changed = true;
+            }
+
             changed |= RemoveNullEntries(PlayerPrefs.Weapons);
             changed |= RemoveNullEntries(PlayerPrefs.Grenades);
             changed |= RemoveNullEntries(PlayerPrefs.Defences);

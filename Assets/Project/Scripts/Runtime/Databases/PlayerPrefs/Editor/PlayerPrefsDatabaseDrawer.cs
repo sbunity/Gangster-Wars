@@ -162,6 +162,15 @@ namespace SBabchuk.Runtime.Databases.PlayerPrefs
 
             GUILayout.EndVertical();
             GUI.color = _defaultColor;
+            GUI.color = Color.grey;
+            GUILayout.BeginVertical("box");
+            {
+                GUI.color = _defaultColor;
+                SeenEnemyInfoDrawer.Draw();
+            }
+
+            GUILayout.EndVertical();
+            GUI.color = _defaultColor;
         }
 
         public static void DrawDefenceIDInfo()
