@@ -5,6 +5,7 @@ using SBabchuk.Runtime.Services.Contracts;
 using Zenject;
 using SBabchuk.Runtime.Databases.BombStore;
 using SBabchuk.Runtime.Databases.DefenseStore;
+using SBabchuk.Runtime.Databases.Levels;
 using SBabchuk.Runtime.Databases.MainPlayers;
 using SBabchuk.Runtime.Databases.PlayerPrefs;
 using SBabchuk.Runtime.Databases.WeaponStore;
@@ -37,6 +38,7 @@ namespace SBabchuk.Runtime.Services
         public PlayerPrefsDatabase Preferences => _assetProvider.PlayerPrefsDatabase;
         public int Coins => PlayerPrefs.Coin;
         public int CurrentLevelId => PlayerPrefs.LevelId;
+        public int CurrentChapterId => PlayerPrefs.ChapterId;
         public int SelectedWeaponId => PlayerPrefs.SelectedWeaponId;
         public int SelectedGrenadeId => PlayerPrefs.SelectedGrenadeId;
         public int SelectedDefenceId => PlayerPrefs.SelectedDefenceId;
@@ -106,6 +108,7 @@ namespace SBabchuk.Runtime.Services
         public void SetCurrentLevel(int id)
         {
             PlayerPrefs.LevelId = id;
+            PlayerPrefs.ChapterId = _assetProvider.LevelDatabase.GetChapterIdByLevelId(id);
             SaveProgress();
         }
 
@@ -117,6 +120,7 @@ namespace SBabchuk.Runtime.Services
 
             levelShortInfo.IsCompleted = mySwitch.On;
             Preferences.SetStars(levelShortInfo, barricadeHealthPercent);
+            UpdateChapterCompletion(levelShortInfo.ChapterId);
             SaveProgress();
         }
 
@@ -134,6 +138,9 @@ namespace SBabchuk.Runtime.Services
 
         public LevelShortInfo GetLevelShortInfo(int id) 
             => PlayerPrefs.GetLevelShortInfo(id);
+
+        public ChapterShortInfo GetChapterShortInfo(int id)
+            => PlayerPrefs.GetChapterShortInfo(id);
 
         public void SetWeaponAmmo(WeaponsName weapon, int value)
         {
@@ -383,11 +390,18 @@ namespace SBabchuk.Runtime.Services
                 changed = true;
             }
 
+            if (PlayerPrefs.Chapters == null)
+            {
+                PlayerPrefs.Chapters = new List<ChapterShortInfo>();
+                changed = true;
+            }
+
             changed |= RemoveNullEntries(PlayerPrefs.Weapons);
             changed |= RemoveNullEntries(PlayerPrefs.Grenades);
             changed |= RemoveNullEntries(PlayerPrefs.Defences);
             changed |= RemoveNullEntries(PlayerPrefs.Personages);
             changed |= RemoveNullEntries(PlayerPrefs.Levels);
+            changed |= RemoveNullEntries(PlayerPrefs.Chapters);
 
             return changed;
         }
@@ -470,21 +484,102 @@ namespace SBabchuk.Runtime.Services
 
         private bool EnsureLevelProgress()
         {
-            var levels = _assetProvider.LevelDatabase.Levels;
-            if (levels == null)
+            var levelDatabase = _assetProvider.LevelDatabase;
+            if (levelDatabase == null)
                 return false;
 
             var changed = false;
-            foreach (var level in levels)
+            var chapters = levelDatabase.Chapters;
+            if (chapters != null)
             {
-                if (level != null && PlayerPrefs.GetLevelShortInfo(level.Id) == null)
+                foreach (var chapter in chapters)
                 {
-                    PlayerPrefs.Levels.Add(new LevelShortInfo(level));
-                    changed = true;
+                    if (chapter == null)
+                        continue;
+
+                    changed |= EnsureChapterProgress(chapter);
+
+                    if (chapter.Levels == null)
+                        continue;
+
+                    foreach (var level in chapter.Levels)
+                        changed |= EnsureLevelProgress(level, chapter.Id);
                 }
             }
 
+            foreach (var level in levelDatabase.Levels)
+                changed |= EnsureLevelProgress(level, levelDatabase.GetChapterIdByLevelId(level.Id));
+
+            PlayerPrefs.ChapterId = levelDatabase.GetChapterIdByLevelId(PlayerPrefs.LevelId);
+
             return changed;
+        }
+
+        private bool EnsureChapterProgress(ChapterDatabase chapter)
+        {
+            if (chapter == null)
+                return false;
+
+            var changed = false;
+            var chapterShortInfo = PlayerPrefs.GetChapterShortInfo(chapter.Id);
+            if (chapterShortInfo == null)
+            {
+                PlayerPrefs.Chapters.Add(new ChapterShortInfo(chapter));
+                changed = true;
+            }
+            else if (chapterShortInfo.Name != chapter.Name)
+            {
+                chapterShortInfo.Name = chapter.Name;
+                changed = true;
+            }
+
+            return changed | UpdateChapterCompletion(chapter.Id);
+        }
+
+        private bool EnsureLevelProgress(Level level, int chapterId)
+        {
+            if (level == null)
+                return false;
+
+            var levelShortInfo = PlayerPrefs.GetLevelShortInfo(level.Id);
+            if (levelShortInfo == null)
+            {
+                PlayerPrefs.Levels.Add(new LevelShortInfo(level, chapterId));
+                return true;
+            }
+
+            if (levelShortInfo.ChapterId == chapterId)
+                return false;
+
+            levelShortInfo.ChapterId = chapterId;
+            return true;
+        }
+
+        private bool UpdateChapterCompletion(int chapterId)
+        {
+            var chapterShortInfo = PlayerPrefs.GetChapterShortInfo(chapterId);
+            var chapter = _assetProvider.LevelDatabase.GetChapter(chapterId);
+            if (chapterShortInfo == null || chapter?.Levels == null || chapter.Levels.Count == 0)
+                return false;
+
+            foreach (var level in chapter.Levels)
+            {
+                var levelShortInfo = level != null ? PlayerPrefs.GetLevelShortInfo(level.Id) : null;
+                if (levelShortInfo == null || levelShortInfo.IsCompleted != mySwitch.On)
+                {
+                    if (chapterShortInfo.IsCompleted == mySwitch.Off)
+                        return false;
+
+                    chapterShortInfo.IsCompleted = mySwitch.Off;
+                    return true;
+                }
+            }
+
+            if (chapterShortInfo.IsCompleted == mySwitch.On)
+                return false;
+
+            chapterShortInfo.IsCompleted = mySwitch.On;
+            return true;
         }
 
         private bool NormalizeGrenadeInventory()

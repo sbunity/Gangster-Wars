@@ -9,7 +9,7 @@ namespace SBabchuk.Runtime.Databases.Levels
     {
         static Waves wave;
         static EnemyOfWave enemyOfWave;
-        static private LevelDatabase database;
+        static private ChapterDatabase database;
         static Color defaultColor;
         static int selectedIndexLevel = 0;
         static int selectedIndexWave = 0;
@@ -23,9 +23,9 @@ namespace SBabchuk.Runtime.Databases.Levels
             "|",
             "--"
         };
-        public static void Draw(LevelDatabase _database, int selectedMode)
+        public static void Draw(ChapterDatabase _database, int selectedMode)
         {
-            if (database == null)
+            if (database != _database)
                 database = _database;
             defaultColor = GUI.color;
             Utils.ChangeColor(Color.grey);
@@ -33,6 +33,7 @@ namespace SBabchuk.Runtime.Databases.Levels
             {
                 Utils.ChangeColor(defaultColor);
                 EditorGUILayout.LabelField("Налаштування:");
+                database.Name = EditorGUILayout.TextField("Chapter Name: ", database.Name);
                 GUILayout.BeginHorizontal();
                 {
                     if (GUILayout.Button("Добавити новий запис"))

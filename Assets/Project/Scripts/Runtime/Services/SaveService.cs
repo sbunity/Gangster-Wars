@@ -1,4 +1,5 @@
 using System.IO;
+using System.Collections.Generic;
 using System.Runtime.Serialization.Formatters.Binary;
 using Cysharp.Threading.Tasks;
 using SBabchuk.Runtime.Services.Contracts;
@@ -53,8 +54,9 @@ namespace SBabchuk.Runtime.Services
             return UniTask.CompletedTask;
         }
 
-        private ScriptableObject[] GetPersistentAssets() 
-            => new ScriptableObject[]
+        private ScriptableObject[] GetPersistentAssets()
+        {
+            var assets = new List<ScriptableObject>
             {
                 _assetProvider.PlayerPrefsDatabase,
                 _assetProvider.WeaponStoreDatabase,
@@ -65,6 +67,19 @@ namespace SBabchuk.Runtime.Services
                 _assetProvider.LevelDatabase,
                 _assetProvider.BulletDatabase
             };
+
+            var chapters = _assetProvider.LevelDatabase?.Chapters;
+            if (chapters != null)
+            {
+                foreach (var chapter in chapters)
+                {
+                    if (chapter != null)
+                        assets.Add(chapter);
+                }
+            }
+
+            return assets.ToArray();
+        }
 
         private void LoadAsset(ScriptableObject asset)
         {

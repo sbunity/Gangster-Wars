@@ -11,6 +11,8 @@ namespace SBabchuk.Runtime.Services.Contracts
 
         int CurrentLevelId { get; }
 
+        int CurrentChapterId { get; }
+
         int SelectedWeaponId { get; }
 
         int SelectedGrenadeId { get; }
@@ -29,6 +31,7 @@ namespace SBabchuk.Runtime.Services.Contracts
         DefenceShortInfo GetDefenceShortInfo(int id);
         PersonageShortInfo GetPersonageShortInfo(int id);
         LevelShortInfo GetLevelShortInfo(int id);
+        ChapterShortInfo GetChapterShortInfo(int id);
         void SetWeaponAmmo(WeaponsName weapon, int value);
         void BuyWeapon(int id);
         void BuyWeaponMagazine(int id, bool isFree = false);

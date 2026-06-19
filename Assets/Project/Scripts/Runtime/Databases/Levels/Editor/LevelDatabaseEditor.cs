@@ -10,7 +10,17 @@ namespace SBabchuk.Runtime.Databases.Levels
     {
         public override void Draw()
         {
-            LevelDatabaseDrawer.Draw((LevelDatabase)Database, SelectedMode);
+            serializedObject.Update();
+
+            var chapters = serializedObject.FindProperty("_chapters");
+            EditorGUILayout.PropertyField(chapters, true);
+
+            serializedObject.ApplyModifiedProperties();
+
+            var levelDatabase = (LevelDatabase)Database;
+            EditorGUILayout.Space();
+            EditorGUILayout.LabelField("Total Chapters", levelDatabase.Chapters?.Count.ToString() ?? "0");
+            EditorGUILayout.LabelField("Total Levels", levelDatabase.Levels.Count.ToString());
         }
     }
 }

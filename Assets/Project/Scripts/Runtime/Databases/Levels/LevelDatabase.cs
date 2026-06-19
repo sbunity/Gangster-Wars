@@ -10,23 +10,90 @@ namespace SBabchuk.Runtime.Databases.Levels
     {
         [FormerlySerializedAs("levels")]
         [SerializeField, HideInInspector]
-        private List<Level> _levels = new List<Level>();
-        public List<Level> Levels { get => _levels; set => _levels = value; }
+        private List<Level> _legacyLevels = new List<Level>();
+
+        [FormerlySerializedAs("chapters")]
+        [SerializeField]
+        private List<ChapterDatabase> _chapters = new List<ChapterDatabase>();
+        public List<ChapterDatabase> Chapters { get => _chapters; set => _chapters = value; }
+
+        public List<Level> LegacyLevels => _legacyLevels;
+
+        public List<Level> Levels
+        {
+            get
+            {
+                var levels = new List<Level>();
+
+                if (_chapters != null)
+                {
+                    foreach (var chapter in _chapters)
+                    {
+                        if (chapter?.Levels == null)
+                            continue;
+
+                        levels.AddRange(chapter.Levels);
+                    }
+                }
+
+                if (levels.Count == 0 && _legacyLevels != null)
+                    levels.AddRange(_legacyLevels);
+
+                return levels;
+            }
+        }
 
         public Level GetLevel(int id)
         {
-            int index = _levels.FindIndex(x => x.Id == id);
-            return index != -1 ? _levels[index] : null;
+            var chapter = GetChapterByLevelId(id);
+            if (chapter != null)
+                return chapter.GetLevel(id);
+
+            if (_legacyLevels == null)
+                return null;
+
+            int index = _legacyLevels.FindIndex(x => x != null && x.Id == id);
+            return index != -1 ? _legacyLevels[index] : null;
+        }
+
+        public ChapterDatabase GetChapter(int id)
+        {
+            if (_chapters == null)
+                return null;
+
+            int index = _chapters.FindIndex(x => x != null && x.Id == id);
+            return index != -1 ? _chapters[index] : null;
+        }
+
+        public ChapterDatabase GetChapterByLevelId(int levelId)
+        {
+            if (_chapters == null)
+                return null;
+
+            foreach (var chapter in _chapters)
+            {
+                if (chapter != null && chapter.GetLevel(levelId) != null)
+                    return chapter;
+            }
+
+            return null;
+        }
+
+        public int GetChapterIdByLevelId(int levelId)
+        {
+            var chapter = GetChapterByLevelId(levelId);
+            return chapter != null ? chapter.Id : 0;
         }
 
         public Waves GetWave(Level _level, int _waveID)
         {
+            if (_level?.Waves == null)
+                return null;
+
             foreach (Waves _waves in _level.Waves)
             {
                 if (_waves.Id == _waveID)
-                {
                     return _waves;
-                }
             }
 
             return null;
@@ -34,26 +101,22 @@ namespace SBabchuk.Runtime.Databases.Levels
 
         public Waves GetWave(int _levelID, int _waveID)
         {
-            Level _level = GetLevel(_levelID);
-            foreach (Waves _waves in _level.Waves)
-            {
-                if (_waves.Id == _waveID)
-                {
-                    return _waves;
-                }
-            }
-
-            return null;
+            var chapter = GetChapterByLevelId(_levelID);
+            return chapter != null ? chapter.GetWave(_levelID, _waveID) : GetWave(GetLevel(_levelID), _waveID);
         }
 
         public int CreateWave(int _levelID, int _time = -1)
         {
+            var chapter = GetChapterByLevelId(_levelID);
+            if (chapter != null)
+                return chapter.CreateWave(_levelID, _time);
+
             Level level = GetLevel(_levelID);
-            if (_time != -1)
-            {
-                if (level.Waves.Count != 0)
-                    level.Waves[level.Waves.Count - 1].Delay = _time;
-            }
+            if (level == null)
+                return -1;
+
+            if (_time != -1 && level.Waves.Count != 0)
+                level.Waves[level.Waves.Count - 1].Delay = _time;
 
             level.Waves.Add(new Waves(level.Waves.Count));
             SaveData();
@@ -62,10 +125,23 @@ namespace SBabchuk.Runtime.Databases.Levels
 
         public int CreateEnemyOnWave(int _levelID, int _waveID, int _enemyId, int _count = 1, int _time = -1)
         {
+            var chapter = GetChapterByLevelId(_levelID);
+            if (chapter != null)
+                return chapter.CreateEnemyOnWave(_levelID, _waveID, _enemyId, _count, _time);
+
             Waves wave = GetWave(_levelID, _waveID);
+            if (wave == null)
+                return -1;
+
             wave.Enemies.Add(new EnemyOfWave(_enemyId, _count, _time, 0));
             SaveData();
             return wave.Enemies.Count - 1;
+        }
+
+        public void ClearLegacyLevels()
+        {
+            _legacyLevels?.Clear();
+            SaveData();
         }
 
         public void SaveData()

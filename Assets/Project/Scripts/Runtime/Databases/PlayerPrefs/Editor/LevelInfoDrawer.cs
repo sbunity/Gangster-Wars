@@ -50,7 +50,8 @@ namespace SBabchuk.Runtime.Databases.PlayerPrefs
                         EditorGUILayout.LabelField("Інформація про персонажів:");
                         if (database.PlayerPrefs.Levels != null)
                         {
-                            if (database.PlayerPrefs.Levels.Count == EditorDatabaseLookup.Get<LevelDatabase>().Levels.Count)
+                            var levelDatabase = EditorDatabaseLookup.Get<LevelDatabase>();
+                            if (database.PlayerPrefs.Levels.Count == levelDatabase.Levels.Count)
                             {
                                 foreach (LevelShortInfo _level in database.PlayerPrefs.Levels)
                                 {
@@ -60,9 +61,9 @@ namespace SBabchuk.Runtime.Databases.PlayerPrefs
                             else
                             {
                                 database.PlayerPrefs.Levels.Clear();
-                                foreach (Level _level in EditorDatabaseLookup.Get<LevelDatabase>().Levels)
+                                foreach (Level _level in levelDatabase.Levels)
                                 {
-                                    database.PlayerPrefs.Levels.Add(new LevelShortInfo(_level));
+                                    database.PlayerPrefs.Levels.Add(new LevelShortInfo(_level, levelDatabase.GetChapterIdByLevelId(_level.Id)));
                                 }
                             }
                         }
@@ -81,7 +82,12 @@ namespace SBabchuk.Runtime.Databases.PlayerPrefs
 
         public static void DrawInfo(LevelShortInfo _value)
         {
-            Level _record = EditorDatabaseLookup.Get<LevelDatabase>().GetLevel(_value.Id);
+            var levelDatabase = EditorDatabaseLookup.Get<LevelDatabase>();
+            Level _record = levelDatabase.GetLevel(_value.Id);
+            if (_record == null)
+                return;
+
+            _value.ChapterId = levelDatabase.GetChapterIdByLevelId(_value.Id);
             GUI.color = defaultColor;
             GUILayout.BeginVertical("box");
             {

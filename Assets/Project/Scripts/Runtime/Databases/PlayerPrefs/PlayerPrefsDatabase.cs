@@ -70,6 +70,11 @@ namespace SBabchuk.Runtime.Databases.PlayerPrefs
         public int LevelId { get => _levelId; set => _levelId = value; }
 
         [SerializeField]
+        [FormerlySerializedAs("chapterID")]
+        private int _chapterId;
+        public int ChapterId { get => _chapterId; set => _chapterId = value; }
+
+        [SerializeField]
         [FormerlySerializedAs("selectedWeaponID")]
         private int _selectedWeaponId = 0;
         public int SelectedWeaponId { get => _selectedWeaponId; set => _selectedWeaponId = value; }
@@ -108,6 +113,11 @@ namespace SBabchuk.Runtime.Databases.PlayerPrefs
         [FormerlySerializedAs("levels")]
         private List<LevelShortInfo> _levels = new List<LevelShortInfo>();
         public List<LevelShortInfo> Levels { get => _levels; set => _levels = value; }
+
+        [SerializeField]
+        [FormerlySerializedAs("chapters")]
+        private List<ChapterShortInfo> _chapters = new List<ChapterShortInfo>();
+        public List<ChapterShortInfo> Chapters { get => _chapters; set => _chapters = value; }
 
         public WeaponShortInfo GetWeaponShortInfo(int id)
         {
@@ -171,6 +181,20 @@ namespace SBabchuk.Runtime.Databases.PlayerPrefs
                 return null;
 
             foreach (var info in _levels)
+            {
+                if (info != null && info.Id == id)
+                    return info;
+            }
+
+            return null;
+        }
+
+        public ChapterShortInfo GetChapterShortInfo(int id)
+        {
+            if (_chapters == null)
+                return null;
+
+            foreach (var info in _chapters)
             {
                 if (info != null && info.Id == id)
                     return info;
@@ -298,6 +322,11 @@ namespace SBabchuk.Runtime.Databases.PlayerPrefs
     public class LevelShortInfo
     {
         [SerializeField]
+        [FormerlySerializedAs("chapterId")]
+        private int _chapterId;
+        public int ChapterId { get => _chapterId; set => _chapterId = value; }
+
+        [SerializeField]
         [FormerlySerializedAs("id")]
         private int _id;
         public int Id { get => _id; set => _id = value; }
@@ -312,11 +341,44 @@ namespace SBabchuk.Runtime.Databases.PlayerPrefs
         private int _stars;
         public int Stars { get => _stars; set => _stars = value; }
 
-        public LevelShortInfo(Level value)
+        public LevelShortInfo(Level value, int chapterId = 0)
         {
+            _chapterId = chapterId;
             _id = value.Id;
             _isCompleted = mySwitch.Off;
             _stars = 0;
+        }
+    }
+
+    [System.Serializable]
+    public class ChapterShortInfo
+    {
+        [SerializeField]
+        [FormerlySerializedAs("id")]
+        private int _id;
+        public int Id { get => _id; set => _id = value; }
+
+        [SerializeField]
+        [FormerlySerializedAs("name")]
+        private string _name;
+        public string Name { get => _name; set => _name = value; }
+
+        [SerializeField]
+        [FormerlySerializedAs("isUnlocked")]
+        private mySwitch _isUnlocked;
+        public mySwitch IsUnlocked { get => _isUnlocked; set => _isUnlocked = value; }
+
+        [SerializeField]
+        [FormerlySerializedAs("isCompleted")]
+        private mySwitch _isCompleted;
+        public mySwitch IsCompleted { get => _isCompleted; set => _isCompleted = value; }
+
+        public ChapterShortInfo(ChapterDatabase value)
+        {
+            _id = value.Id;
+            _name = value.Name;
+            _isUnlocked = value.Id == 0 ? mySwitch.On : mySwitch.Off;
+            _isCompleted = mySwitch.Off;
         }
     }
 }
