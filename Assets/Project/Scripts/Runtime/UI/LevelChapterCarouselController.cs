@@ -12,23 +12,12 @@ namespace SBabchuk.Runtime.UI
 {
     public sealed class LevelChapterCarouselController : MonoBehaviour, IBeginDragHandler, IEndDragHandler
     {
-        [SerializeField]
-        private ScrollRect _scrollRect;
-
-        [SerializeField]
-        private Button _previousButton;
-
-        [SerializeField]
-        private Button _nextButton;
-
-        [SerializeField]
-        private List<RectTransform> _chapterPanels = new List<RectTransform>();
-
-        [SerializeField]
-        private float _snapDuration = 0.28f;
-
-        [SerializeField]
-        private float _swipeThreshold = 80f;
+        [SerializeField] private ScrollRect _scrollRect;
+        [SerializeField] private Button _previousButton;
+        [SerializeField] private Button _nextButton;
+        [SerializeField] private List<RectTransform> _chapterPanels = new List<RectTransform>();
+        [SerializeField] private float _snapDuration = 0.28f;
+        [SerializeField] private float _swipeThreshold = 80f;
 
         private IAssetProvider _assetProvider;
         private IPlayerProgressService _progressService;
@@ -56,6 +45,7 @@ namespace SBabchuk.Runtime.UI
         {
             yield return null;
 
+            RebuildContentLayout();
             InitializeChapters();
             SetChapter(GetInitialChapterIndex(), true);
         }
@@ -109,6 +99,42 @@ namespace SBabchuk.Runtime.UI
                 InitializeChapterPanel(_chapterPanels[i], chapters[i]);
         }
 
+        private void RebuildContentLayout()
+        {
+            if (_scrollRect?.content == null || _chapterPanels.Count == 0)
+                return;
+
+            var panelSize = GetPanelSize();
+            if (panelSize.x <= 0f || panelSize.y <= 0f)
+                return;
+
+            _scrollRect.content.sizeDelta = new Vector2(panelSize.x * _chapterPanels.Count, panelSize.y);
+
+            for (var i = 0; i < _chapterPanels.Count; i++)
+            {
+                var panel = _chapterPanels[i];
+                if (panel == null)
+                    continue;
+
+                panel.anchorMin = new Vector2(0f, 0.5f);
+                panel.anchorMax = new Vector2(0f, 0.5f);
+                panel.pivot = new Vector2(0.5f, 0.5f);
+                panel.sizeDelta = panelSize;
+                panel.anchoredPosition = new Vector2(panelSize.x * i + panelSize.x * 0.5f, 0f);
+            }
+        }
+
+        private Vector2 GetPanelSize()
+        {
+            foreach (var panel in _chapterPanels)
+            {
+                if (panel != null && panel.sizeDelta.x > 0f && panel.sizeDelta.y > 0f)
+                    return panel.sizeDelta;
+            }
+
+            return Vector2.zero;
+        }
+
         private void InitializeChapterPanel(RectTransform panel, ChapterDatabase chapter)
         {
             if (panel == null || chapter == null)
@@ -134,7 +160,7 @@ namespace SBabchuk.Runtime.UI
                 buttons[i].Init(chapter.Levels[i].Id);
         }
 
-        private static void SetChapterTitle(RectTransform panel, string title)
+        private void SetChapterTitle(RectTransform panel, string title)
         {
             var titleTransform = panel.Find("ChapterName");
             if (titleTransform == null)
@@ -221,10 +247,10 @@ namespace SBabchuk.Runtime.UI
         private void UpdateArrowState()
         {
             if (_previousButton != null)
-                _previousButton.interactable = _currentChapterIndex > 0;
+                _previousButton.gameObject.SetActive(_currentChapterIndex > 0);
 
             if (_nextButton != null)
-                _nextButton.interactable = _currentChapterIndex < _chapterPanels.Count - 1;
+                _nextButton.gameObject.SetActive(_currentChapterIndex < _chapterPanels.Count - 1);
         }
     }
 }
