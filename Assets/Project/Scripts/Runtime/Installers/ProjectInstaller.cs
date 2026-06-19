@@ -34,6 +34,7 @@ namespace SBabchuk.Runtime.Installers
             Container.Bind<IDamageService>().To<DamageService>().AsSingle();
             Container.Bind<ICombatService>().To<CombatService>().AsSingle();
             Container.Bind<IEnemyDiscoveryService>().To<EnemyDiscoveryService>().AsSingle();
+            Container.Bind<IEnemyInfoService>().To<EnemyInfoService>().AsSingle();
             Container.Bind<IWaveSkipRewardService>().To<WaveSkipRewardService>().AsSingle();
             Container.Bind<IBonusDropService>().To<BonusDropService>().AsSingle();
             Container.Bind<IBonusCollectTargetRegistry>().To<BonusCollectTargetRegistry>().AsSingle();
@@ -47,6 +48,7 @@ namespace SBabchuk.Runtime.Installers
         {
             Container.DeclareSignal<EnemyDiedSignal>().OptionalSubscriber();
             Container.DeclareSignal<NewEnemyDiscoveredSignal>().OptionalSubscriber();
+            Container.DeclareSignal<NewEnemyNotificationSelectedSignal>().OptionalSubscriber();
             Container.DeclareSignal<BonusPoppedSignal>().OptionalSubscriber();
             Container.DeclareSignal<GameFinishedSignal>().OptionalSubscriber();
             Container.DeclareSignal<CoinsChangedSignal>().OptionalSubscriber();

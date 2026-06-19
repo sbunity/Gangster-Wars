@@ -1,3 +1,4 @@
+using System;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -12,6 +13,12 @@ namespace SBabchuk.Runtime.UI
         [SerializeField] private TMP_Text _badgeText;
 
         private RectTransform _rectTransform;
+        private Button _button;
+        private int _enemyId;
+
+        public event Action<int> Clicked;
+        public int EnemyId => _enemyId;
+
         public RectTransform RectTransform
         {
             get
@@ -26,10 +33,20 @@ namespace SBabchuk.Runtime.UI
         private void Awake()
         {
             _rectTransform = (RectTransform)transform;
+            _button = GetComponent<Button>();
+            if (_button != null)
+                _button.onClick.AddListener(HandleClick);
+        }
+
+        private void OnDestroy()
+        {
+            if (_button != null)
+                _button.onClick.RemoveListener(HandleClick);
         }
 
         public void Initialize(int enemyId, string enemyName, Sprite icon)
         {
+            _enemyId = enemyId;
             gameObject.name = "NewEnemy_" + enemyId;
 
             if (_icon != null)
@@ -41,6 +58,11 @@ namespace SBabchuk.Runtime.UI
 
             if (_badgeText != null)
                 _badgeText.text = "!";
+        }
+
+        private void HandleClick()
+        {
+            Clicked?.Invoke(_enemyId);
         }
     }
 }

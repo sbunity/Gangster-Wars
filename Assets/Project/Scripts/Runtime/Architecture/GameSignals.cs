@@ -29,6 +29,16 @@ namespace SBabchuk.Runtime.Architecture
         public Sprite Icon { get; }
     }
 
+    public readonly struct NewEnemyNotificationSelectedSignal
+    {
+        public NewEnemyNotificationSelectedSignal(int enemyId)
+        {
+            EnemyId = enemyId;
+        }
+
+        public int EnemyId { get; }
+    }
+
     public readonly struct BonusPoppedSignal
     {
         public BonusPoppedSignal(BonusController bonus)

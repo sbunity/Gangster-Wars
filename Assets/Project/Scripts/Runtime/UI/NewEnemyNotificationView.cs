@@ -16,10 +16,12 @@ namespace SBabchuk.Runtime.UI
 
         private readonly List<NewEnemyNotificationElementView> _elements = new List<NewEnemyNotificationElementView>();
         private SignalSubscriptions _signals;
+        private SignalBus _signalBus;
 
         [Inject]
         public void Construct(SignalBus signalBus)
         {
+            _signalBus = signalBus;
             _signals = new SignalSubscriptions(signalBus)
                 .Add<NewEnemyDiscoveredSignal>(Show);
             _signals.Enable();
@@ -41,13 +43,13 @@ namespace SBabchuk.Runtime.UI
 
             while (_elements.Count >= _maxVisibleButtons)
             {
-                Destroy(_elements[0].gameObject);
-                _elements.RemoveAt(0);
+                RemoveElementAt(0);
             }
 
             var element = Instantiate(_elementPrefab, _itemsRoot);
             element.gameObject.layer = gameObject.layer;
             element.Initialize(signal.EnemyId, signal.EnemyName, signal.Icon);
+            element.Clicked += SelectEnemy;
             _elements.Add(element);
             LayoutButtons();
             Animate(element.transform);
@@ -70,6 +72,37 @@ namespace SBabchuk.Runtime.UI
         {
             target.localScale = Vector3.one * 0.55f;
             target.DOScale(1f, 0.28f).SetEase(Ease.OutBack);
+        }
+
+        private void SelectEnemy(int enemyId)
+        {
+            _signalBus?.Fire(new NewEnemyNotificationSelectedSignal(enemyId));
+            RemoveElement(enemyId);
+            LayoutButtons();
+        }
+
+        private void RemoveElement(int enemyId)
+        {
+            for (var i = 0; i < _elements.Count; i++)
+            {
+                if (_elements[i] != null && _elements[i].EnemyId == enemyId)
+                {
+                    RemoveElementAt(i);
+                    return;
+                }
+            }
+        }
+
+        private void RemoveElementAt(int index)
+        {
+            var element = _elements[index];
+            if (element != null)
+            {
+                element.Clicked -= SelectEnemy;
+                Destroy(element.gameObject);
+            }
+
+            _elements.RemoveAt(index);
         }
 
         private void EnsureRoot()
