@@ -88,6 +88,11 @@ namespace SBabchuk.Runtime.Databases.PlayerPrefs
                 {
                     EditorGUILayout.IntField("Enemy ID: ", enemyId);
                     EditorGUILayout.LabelField("Name: ", enemy != null ? enemy.Name : "Missing enemy record");
+                    if (enemy != null)
+                    {
+                        EditorGUILayout.LabelField("Kind: ", enemy.Kind.ToString());
+                        EditorGUILayout.LabelField("Description: ", enemy.Description);
+                    }
 
                     if (enemy == null)
                     {

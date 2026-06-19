@@ -98,6 +98,10 @@ namespace SBabchuk.Runtime.Databases.Enemies
                 {
                     _enemy.Id = EditorGUILayout.IntField("ID: ", _enemy.Id);
                     _enemy.Name = EditorGUILayout.TextField("Найменування: ", _enemy.Name);
+                    _enemy.DisplayName = EditorGUILayout.TextField("Display Name: ", _enemy.DisplayName);
+                    _enemy.Kind = (EnemyKind)EditorGUILayout.EnumPopup("Kind: ", _enemy.Kind);
+                    EditorGUILayout.LabelField("Description:");
+                    _enemy.Description = EditorGUILayout.TextArea(_enemy.Description, GUILayout.MinHeight(45));
                     Utils.CheckColor(_enemy.Gold, 0);
                     _enemy.Gold = EditorGUILayout.IntField("Кошти за смерть: ", _enemy.Gold);
                     Utils.ChangeColor(defaultColor);

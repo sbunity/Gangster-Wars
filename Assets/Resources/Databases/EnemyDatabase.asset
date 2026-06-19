@@ -15,6 +15,10 @@ MonoBehaviour:
   _enemies:
   - _id: 0
     _name: Enemy_1
+    _displayName: Knuckles Malone
+    _description: Old street enforcer in a dusty coat. Closes distance with a blade
+      and relies on cheap shots instead of armor.
+    _kind: 0
     _icon: {fileID: 21300000, guid: ce065baf5fde0e643b6ec1f0ee8b786e, type: 3}
     _health: 10
     _gold: 3
@@ -27,6 +31,10 @@ MonoBehaviour:
     _bonusId: -1
   - _id: 1
     _name: Enemy_2
+    _displayName: Bluecap Bruno
+    _description: Corrupt beat cop turned mob bruiser. Slow, stubborn, and always
+      ready to club anyone blocking the take.
+    _kind: 0
     _icon: {fileID: 21300000, guid: 38a38b8bcc8a27a449d33429f0f51964, type: 3}
     _health: 11
     _gold: 3
@@ -39,6 +47,10 @@ MonoBehaviour:
     _bonusId: -1
   - _id: 2
     _name: Enemy_3
+    _displayName: Razor Frankie
+    _description: Lean alley cutter who fights dirty and moves fast. Not tough alone,
+      but dangerous when he slips through a crowd.
+    _kind: 0
     _icon: {fileID: 21300000, guid: 71fe12af2280736409ee0e43a4d5dd67, type: 3}
     _health: 15
     _gold: 4
@@ -51,6 +63,10 @@ MonoBehaviour:
     _bonusId: -1
   - _id: 3
     _name: Enemy_4
+    _displayName: Tommy Two-Vests
+    _description: Heavy gun thug carrying more hardware than sense. Soaks up fire
+      while spraying pressure from the front line.
+    _kind: 0
     _icon: {fileID: 21300000, guid: a3b8185d35ce82249b0fe3d5bb009c13, type: 3}
     _health: 16
     _gold: 4
@@ -63,6 +79,10 @@ MonoBehaviour:
     _bonusId: -1
   - _id: 4
     _name: Enemy_5
+    _displayName: Madam Rosso
+    _description: First crew boss with a pistol and a temper. Commands small-time
+      muscle and punishes weak defenses with precise shots.
+    _kind: 1
     _icon: {fileID: 21300000, guid: ccea40b2c102da545b06c297cb0545de, type: 3}
     _health: 70
     _gold: 16
@@ -75,6 +95,10 @@ MonoBehaviour:
     _bonusId: -1
   - _id: 5
     _name: Enemy_6
+    _displayName: Slugger Joey
+    _description: 'Baseball-bat debt collector. Simple plan: walk in, break barricades,
+      and leave before the sirens get close.'
+    _kind: 0
     _icon: {fileID: 21300000, guid: 1e5866238ba7a144bab01b6fef8636d5, type: 3}
     _health: 28
     _gold: 5
@@ -87,6 +111,10 @@ MonoBehaviour:
     _bonusId: -1
   - _id: 6
     _name: Enemy_7
+    _displayName: Shield O'Hara
+    _description: Riot-shield fixer on the mob payroll. Harder to drop than regular
+      soldiers and useful for covering weaker crooks.
+    _kind: 0
     _icon: {fileID: 21300000, guid: 6cca83e082bc5f64293567806745923d, type: 3}
     _health: 40
     _gold: 7
@@ -99,6 +127,10 @@ MonoBehaviour:
     _bonusId: -1
   - _id: 7
     _name: Enemy_8
+    _displayName: Orange Ace
+    _description: Flashy street shooter in a bright jacket. Keeps distance when he
+      can and backs up melee crews with sidearm fire.
+    _kind: 0
     _icon: {fileID: 21300000, guid: fe48665c5435bff4a9fe4a43aebba657, type: 3}
     _health: 36
     _gold: 6
@@ -111,6 +143,10 @@ MonoBehaviour:
     _bonusId: -1
   - _id: 8
     _name: Enemy_9
+    _displayName: Silencer Nick
+    _description: Masked pistol man who prefers clean work and no witnesses. Medium
+      threat with reliable ranged pressure.
+    _kind: 0
     _icon: {fileID: 21300000, guid: 538c80308c6d77146826c8fc68b15bb1, type: 3}
     _health: 20
     _gold: 7
@@ -123,6 +159,10 @@ MonoBehaviour:
     _bonusId: -1
   - _id: 9
     _name: Enemy_10
+    _displayName: Captain Cobalt
+    _description: Crooked precinct captain with a badge in one hand and mob money
+      in the other. Tougher than most patrol goons.
+    _kind: 0
     _icon: {fileID: 21300000, guid: 339874edd482a6b498f581473270b986, type: 3}
     _health: 22
     _gold: 7
@@ -135,6 +175,10 @@ MonoBehaviour:
     _bonusId: -1
   - _id: 10
     _name: Enemy_11
+    _displayName: Fusebox Vinnie
+    _description: Bomb-happy boss who lugs explosives into the fight. If he reaches
+      the line, the whole defense feels it.
+    _kind: 1
     _icon: {fileID: 21300000, guid: a97dd653d87e9c34dad0369228b0baa6, type: 3}
     _health: 105
     _gold: 22
@@ -147,6 +191,10 @@ MonoBehaviour:
     _bonusId: -1
   - _id: 11
     _name: Enemy_12
+    _displayName: Big Al Casket
+    _description: Massive undertaker boss dressed for somebody else's funeral. Slow,
+      brutal, and built to outlast panic fire.
+    _kind: 1
     _icon: {fileID: 21300000, guid: 53ccf0e6c4d5ace4a9b9fe7af9765b77, type: 3}
     _health: 135
     _gold: 28
@@ -159,6 +207,10 @@ MonoBehaviour:
     _bonusId: -1
   - _id: 12
     _name: Enemy_13
+    _displayName: Chef Molotov
+    _description: Kitchen-made demolition boss with bottles, flames, and no patience.
+      Breaks formations with explosive pressure.
+    _kind: 1
     _icon: {fileID: 21300000, guid: 2f09617cd66f9f641b6453a584844cb5, type: 3}
     _health: 155
     _gold: 30
@@ -171,6 +223,10 @@ MonoBehaviour:
     _bonusId: -1
   - _id: 13
     _name: Enemy_14
+    _displayName: Goldtooth Mamba
+    _description: High-ranking cartel boss in a loud coat. Fast for his size and
+      mean enough to turn a clean wave into a mess.
+    _kind: 1
     _icon: {fileID: 21300000, guid: 306610180d7e87846932f55f0a9b3d25, type: 3}
     _health: 185
     _gold: 34
@@ -183,6 +239,10 @@ MonoBehaviour:
     _bonusId: -1
   - _id: 14
     _name: Enemy_15
+    _displayName: Don Black Tie
+    _description: Final syndicate boss with a polished suit and a cruel smile. Carries
+      authority, muscle, and enough health to test the whole crew.
+    _kind: 1
     _icon: {fileID: 21300000, guid: 85d433e11bae2364b8c5c9bad412fb9f, type: 3}
     _health: 215
     _gold: 38

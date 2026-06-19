@@ -5,6 +5,12 @@ using UnityEngine.Serialization;
 
 namespace SBabchuk.Runtime.Databases.Enemies
 {
+    public enum EnemyKind
+    {
+        Soldier,
+        Boss
+    }
+
     [CreateAssetMenu(menuName = "Databases/Create EnemyDatabase", fileName = "EnemyDatabase")]
     public class EnemyDatabase : ScriptableObject
     {
@@ -33,6 +39,15 @@ namespace SBabchuk.Runtime.Databases.Enemies
         private string _name;
         public string Name { get => _name; set => _name = value; }
 
+        [SerializeField] private string _displayName;
+        public string DisplayName { get => string.IsNullOrEmpty(_displayName) ? _name : _displayName; set => _displayName = value; }
+
+        [SerializeField] private string _description;
+        public string Description { get => _description; set => _description = value; }
+
+        [SerializeField] private EnemyKind _kind;
+        public EnemyKind Kind { get => _kind; set => _kind = value; }
+
         [SerializeField]
         [FormerlySerializedAs("ico")]
         private Sprite _icon;
@@ -41,7 +56,6 @@ namespace SBabchuk.Runtime.Databases.Enemies
 
         [SerializeField]
         [FormerlySerializedAs("health")]
-
         private int _health;
         public int Health { get => _health; set => _health = value; }
 
@@ -89,6 +103,9 @@ namespace SBabchuk.Runtime.Databases.Enemies
         {
             this._id = _id;
             this._name = "Enemy_" + (_id + 1);
+            this._displayName = this._name;
+            this._description = string.Empty;
+            this._kind = EnemyKind.Soldier;
             this._health = 0;
             this._gold = 0;
             this._speedMove = 0;
@@ -103,6 +120,9 @@ namespace SBabchuk.Runtime.Databases.Enemies
         {
             this._id = enemy.Id;
             this._name = enemy.Name;
+            this._displayName = enemy.DisplayName;
+            this._description = enemy.Description;
+            this._kind = enemy.Kind;
             this._icon = enemy.Icon;
             this._gold = enemy.Gold;
             this._health = enemy.Health;
