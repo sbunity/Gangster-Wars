@@ -18343,6 +18343,7 @@ MonoBehaviour:
   _type: 1
   _panel: {fileID: 1448598036}
   _canvasGroup: {fileID: 1448598040}
+  _showDelay: 1
   _fadeDuration: 0.4
   _sortingCanvas: {fileID: 0}
   _overrideSorting: 1

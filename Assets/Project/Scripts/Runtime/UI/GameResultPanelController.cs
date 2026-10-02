@@ -19,6 +19,8 @@ namespace SBabchuk.Runtime.UI
 
         [SerializeField] private CanvasGroup _canvasGroup;
 
+        [SerializeField, Min(0f)] private float _showDelay;
+
         [SerializeField, Min(0f)] private float _fadeDuration = 0.4f;
 
         [Header("Sorting")]
@@ -29,6 +31,7 @@ namespace SBabchuk.Runtime.UI
         private ISceneTransitionService _sceneTransitionService;
         private SignalSubscriptions _signals;
         private Tween _fadeTween;
+        private Tween _showDelayTween;
 
         [Inject]
         public void Construct(ISceneTransitionService sceneTransitionService, SignalBus signalBus)
@@ -42,7 +45,11 @@ namespace SBabchuk.Runtime.UI
 
         protected virtual void OnDisable() => _signals?.Disable();
 
-        protected virtual void OnDestroy() => _fadeTween?.Kill();
+        protected virtual void OnDestroy()
+        {
+            _showDelayTween?.Kill();
+            _fadeTween?.Kill();
+        }
 
         public void Show(Panels panelType)
         {
@@ -58,14 +65,13 @@ namespace SBabchuk.Runtime.UI
 
         public void Hide()
         {
+            _showDelayTween?.Kill();
             _fadeTween?.Kill();
             _panel.SetActive(false);
         }
 
-        /// <summary>Hook for concrete panels to refresh their content right before the panel appears.</summary>
         protected virtual void OnShow() { }
 
-        /// <summary>Resumes time and transitions to the target scene, then hides the panel.</summary>
         protected void TransitionTo(Scene scene)
         {
             Time.timeScale = 1f;
@@ -73,7 +79,23 @@ namespace SBabchuk.Runtime.UI
             Hide();
         }
 
-        private void OnGameFinished(GameFinishedSignal signal) => Show(signal.Panel);
+        private void OnGameFinished(GameFinishedSignal signal) => ScheduleShow(signal.Panel);
+
+        private void ScheduleShow(Panels panelType)
+        {
+            if (_type != panelType)
+                return;
+
+            _showDelayTween?.Kill();
+
+            if (_showDelay <= 0f)
+            {
+                Show(panelType);
+                return;
+            }
+
+            _showDelayTween = DOVirtual.DelayedCall(_showDelay, () => Show(panelType), false);
+        }
 
         private void ApplyTopMostSorting()
         {
