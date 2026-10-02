@@ -121,6 +121,9 @@ namespace SBabchuk.Runtime.Databases.WeaponStore
                     Utils.CheckColor(_weapon.SpeedReload, 0);
                     _weapon.SpeedReload = EditorGUILayout.Slider("Швидкість перезарядки 1 патрона: ", _weapon.SpeedReload, 0, 3);
                     Utils.ChangeColor(defaultColor);
+                    Utils.CheckColor(_weapon.FireRate, 0);
+                    _weapon.FireRate = EditorGUILayout.Slider("Постріли в секунду: ", _weapon.FireRate, 0, 20);
+                    Utils.ChangeColor(defaultColor);
                     Utils.CheckColor(_weapon.Settings.Damage, 0);
                     _weapon.Settings.Damage = EditorGUILayout.IntField("Урон без апгрейда: ", _weapon.Settings.Damage);
                     Utils.ChangeColor(defaultColor);

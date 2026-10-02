@@ -10,6 +10,8 @@ namespace SBabchuk.Runtime.Services
 {
     public sealed class StoreItemStatsService : IStoreItemStatsService
     {
+        private const float MaxWeaponFireRate = 10f;
+
         private readonly IAssetProvider _assetProvider;
         private readonly IPlayerProgressService _progressService;
 
@@ -48,6 +50,7 @@ namespace SBabchuk.Runtime.Services
             var stats = new List<StoreStatSnapshot>
             {
                 new("Damage", currentDamage, upgradedDamage, maxDamage),
+                new("Fire Rate", weapon.FireRate, weapon.FireRate, MaxWeaponFireRate),
                 new("Magazine", weapon.Magazine, weapon.Magazine, maxMagazine),
                 new("Reload Time", weapon.SpeedReload, weapon.SpeedReload, maxReload)
             };

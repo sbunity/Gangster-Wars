@@ -31,7 +31,8 @@ namespace SBabchuk.Runtime.Gameplay.Characters
         private Weapon _weapon;
         private WeaponSettings _properties;
         private int _index;
-        private readonly LeaderShotGate _shotGate = new();
+        private bool _isShooting;
+        private readonly WeaponFireCooldown _fireCooldown = new();
         private IWeaponAmmoService _ammoService;
 
         [Inject]
@@ -61,28 +62,29 @@ namespace SBabchuk.Runtime.Gameplay.Characters
 
             var upgrade = weaponShortInfo != null ? weaponStore.GetUpgrade(weaponId, weaponShortInfo.UpgradeId) : null;
             _properties = upgrade != null ? upgrade.Settings : _weapon?.Settings;
+            _fireCooldown.SetFireRate(_weapon?.FireRate ?? 0f);
 
             Init();
 
             _createBulletPointList = _bulletPoints[weaponId].Points;
             _index = 0;
+            _isShooting = false;
 
             _ammoService.SelectWeapon(weaponId);
         }
 
+        public override void Update()
+        {
+            base.Update();
+
+            if (_isAttacking)
+                TryShoot();
+            else if (_isShooting && _fireCooldown.IsReady(Time.time))
+                FinishShooting();
+        }
+
         public override void SpawnBullet()
         {
-            if (_ammoService.IsEmpty || !_shotGate.TryConsumeShot(out var shouldFinishAfterShot))
-                return;
-
-            var firedWeapon = _ammoService.ActiveWeapon;
-            _characterWeapon.Fire(_weapon.BulletId, _properties.Damage, _createBulletPointList[_index].GetPosition(), default(Vector3), 0);
-            _index = _index + 1 < _createBulletPointList.Count ? _index + 1 : 0;
-
-            _ammoService.TryConsumeRound();
-
-            if (shouldFinishAfterShot && _ammoService.ActiveWeapon == firedWeapon)
-                FinishShooting();
         }
 
         public override void Attack()
@@ -90,35 +92,21 @@ namespace SBabchuk.Runtime.Gameplay.Characters
             if (_ammoService.IsEmpty || _isAttacking)
                 return;
 
-            _shotGate.Press();
             _isAttacking = true;
-            _ammoService.StopReload();
-
-            if (Animation.GetCurrentAnimation() != AnimationsName.Shoot)
-                Animation.SetAnimation(AnimationsName.Shoot);
+            TryShoot();
         }
 
         public void StopAttack()
         {
             _isAttacking = false;
-
-            if (_shotGate.Release())
-                FinishShooting();
         }
 
         public void CancelAttack()
         {
             _isAttacking = false;
 
-            if (_shotGate.Cancel() || Animation.GetCurrentAnimation() == AnimationsName.Shoot)
+            if (_isShooting || Animation.GetCurrentAnimation() == AnimationsName.Shoot)
                 FinishShooting();
-        }
-
-        public void StopShootingFinished()
-        {
-            _shotGate.Cancel();
-            _index = 0;
-            _ammoService.BeginReload();
         }
 
         public Vector3 GetAimOrigin()
@@ -144,12 +132,39 @@ namespace SBabchuk.Runtime.Gameplay.Characters
 
         private void OnMagazineEmptied() => StopAttack();
 
+        private void TryShoot()
+        {
+            if (_ammoService.IsEmpty || !_fireCooldown.TryConsume(Time.time, Time.deltaTime))
+                return;
+
+            if (!_isShooting)
+                BeginShooting();
+
+            Shoot();
+        }
+
+        private void BeginShooting()
+        {
+            _isShooting = true;
+            _ammoService.StopReload();
+            Animation.PlayFireLoop(_weapon.FireRate);
+        }
+
+        private void Shoot()
+        {
+            _characterWeapon.Fire(_weapon.BulletId, _properties.Damage, _createBulletPointList[_index].GetPosition(), default(Vector3), 0);
+            _index = _index + 1 < _createBulletPointList.Count ? _index + 1 : 0;
+            _ammoService.TryConsumeRound();
+        }
+
         private void FinishShooting()
         {
             if (Animation.GetCurrentAnimation() == AnimationsName.Shoot)
                 Animation.SetAnimation(AnimationsName.Idle);
 
-            StopShootingFinished();
+            _isShooting = false;
+            _index = 0;
+            _ammoService.BeginReload();
         }
     }
 }

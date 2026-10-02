@@ -20,6 +20,7 @@ MonoBehaviour:
     magazine: 12
     priceMagazine: 0
     speedReload: 0.42
+    _fireRate: 3
     countUpgrades: 5
     bulletID: 6
     upgrades:
@@ -62,6 +63,7 @@ MonoBehaviour:
     magazine: 16
     priceMagazine: 8
     speedReload: 0.45
+    _fireRate: 6
     countUpgrades: 5
     bulletID: 5
     upgrades:
@@ -104,6 +106,7 @@ MonoBehaviour:
     magazine: 18
     priceMagazine: 13
     speedReload: 0.8
+    _fireRate: 3
     countUpgrades: 5
     bulletID: 7
     upgrades:
@@ -146,6 +149,7 @@ MonoBehaviour:
     magazine: 24
     priceMagazine: 18
     speedReload: 0.28
+    _fireRate: 6
     countUpgrades: 5
     bulletID: 8
     upgrades:
@@ -188,6 +192,7 @@ MonoBehaviour:
     magazine: 40
     priceMagazine: 28
     speedReload: 0.14
+    _fireRate: 6
     countUpgrades: 5
     bulletID: 8
     upgrades:

@@ -45,24 +45,51 @@ namespace SBabchuk.Runtime.Gameplay.Characters
             _skeletonAnimation.state.SetAnimation(0, _animation.ToString(), GetLoop(_animation));
         }
 
-        public AnimationsName GetCurrentAnimation() 
+        public void PlayFireLoop(float shotsPerSecond)
+        {
+            _currentAnimation = AnimationsName.Shoot;
+            var entry = _skeletonAnimation.state.SetAnimation(0, AnimationsName.Shoot.ToString(), true);
+            entry.MixDuration = 0f;
+
+            if (shotsPerSecond <= 0f || !TryGetFireEvents(entry.Animation, out var firstEventTime, out var eventsCount))
+                return;
+
+            entry.TimeScale = entry.Animation.Duration / eventsCount * shotsPerSecond;
+            entry.TrackTime = firstEventTime;
+        }
+
+        public AnimationsName GetCurrentAnimation()
             => _currentAnimation;
+
+        private bool TryGetFireEvents(Spine.Animation animation, out float firstEventTime, out int eventsCount)
+        {
+            firstEventTime = float.MaxValue;
+            eventsCount = 0;
+
+            foreach (var timeline in animation.Timelines)
+            {
+                if (timeline is not EventTimeline eventTimeline)
+                    continue;
+
+                for (var i = 0; i < eventTimeline.FrameCount; i++)
+                {
+                    if (eventTimeline.Events[i].Data.Name != _fireEvent)
+                        continue;
+
+                    eventsCount++;
+                    firstEventTime = Mathf.Min(firstEventTime, eventTimeline.Frames[i]);
+                }
+            }
+
+            return eventsCount > 0 && animation.Duration > 0f;
+        }
 
         private bool GetLoop(AnimationsName _animation) 
             => _animation == AnimationsName.Idle || _animation == AnimationsName.Shoot || _animation == AnimationsName.Reload;
 
         private void OnCompleteAnimation(TrackEntry trackEntry)
         {
-            if (trackEntry.Animation.Name == AnimationsName.Shoot.ToString())
-            {
-                var leader = _controller as LeaderGangsterController;
-                if (leader != null && !leader.IsAttacking)
-                {
-                    SetAnimation(AnimationsName.Idle);
-                    leader.StopShootingFinished();
-                }
-            }
-            else if (trackEntry.Animation.Name == AnimationsName.Shoot_prev.ToString())
+            if (trackEntry.Animation.Name == AnimationsName.Shoot_prev.ToString())
             {
                 SetAnimation(AnimationsName.Idle);
                 _controller.AttackEnded();

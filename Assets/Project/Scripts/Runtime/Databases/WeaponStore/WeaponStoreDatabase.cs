@@ -87,6 +87,9 @@ namespace SBabchuk.Runtime.Databases.WeaponStore
         private float _speedReload;
         public float SpeedReload { get => _speedReload; set => _speedReload = value; }
 
+        [SerializeField] private float _fireRate;
+        public float FireRate { get => _fireRate; set => _fireRate = value; }
+
         [SerializeField]
         [FormerlySerializedAs("countUpgrades")]
         private int _countUpgrades;
@@ -120,6 +123,7 @@ namespace SBabchuk.Runtime.Databases.WeaponStore
             this._icon = _weapon.Icon;
             this._magazine = _weapon.Magazine;
             this._priceMagazine = _weapon.PriceMagazine;
+            this._fireRate = _weapon.FireRate;
             this._settings = _weapon.Settings;
             this._upgrades = _weapon.Upgrades;
         }
