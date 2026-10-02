@@ -25,28 +25,18 @@ namespace SBabchuk.Runtime.UI.WeaponStore
             Id = id;
             var defenceStore = _assetProvider.DefenseStoreDatabase;
             _defenceInfo = defenceStore.GetDefense(Id);
-            if (_defenceInfo == null)
-                return;
 
             var hasUpgrade = _progressService.TryGetNextDefenceUpgradePrice(Id, out var upgradePrice);
+            StoreElementView.ApplyPrice(PriceBuy, BttnBuy, hasUpgrade ? upgradePrice : (int?)null, _progressService);
 
-            if (PriceBuy)
-            {
-                PriceBuy.text = hasUpgrade
-                    ? upgradePrice.ToString()
-                    : string.Empty;
-            }
-
-            if (BttnBuy)
-            {
-                BttnBuy.interactable = hasUpgrade && _progressService.CanBuy(upgradePrice);
-            }
+            if (_defenceInfo == null)
+                return;
 
             var defenceShortInfo = _progressService.GetDefenceShortInfo(id);
             var selectedDefenceId = _progressService.SelectedDefenceId;
 
             if (_levelUp)
-                _levelUp.SetActive(defenceShortInfo.UpgradeId < _defenceInfo.CountUpgrades - 1 || selectedDefenceId == -1);
+                _levelUp.SetActive(defenceShortInfo != null && defenceShortInfo.UpgradeId < _defenceInfo.CountUpgrades - 1 || selectedDefenceId == -1);
 
             if (_changed)
                 _changed.gameObject.SetActive(selectedDefenceId == id);

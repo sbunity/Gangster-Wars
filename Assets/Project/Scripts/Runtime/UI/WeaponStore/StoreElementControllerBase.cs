@@ -22,7 +22,8 @@ namespace SBabchuk.Runtime.UI.WeaponStore
             AssetProvider = assetProvider;
             ProgressService = progressService;
             _signals = new SignalSubscriptions(signalBus)
-                .Add<ProgressUpgradedSignal>(OnProgressUpgraded);
+                .Add<ProgressUpgradedSignal>(RefreshState)
+                .Add<CoinsChangedSignal>(RefreshState);
 
             TryActivate();
         }
@@ -72,11 +73,6 @@ namespace SBabchuk.Runtime.UI.WeaponStore
             }
 
             _signals.Enable();
-            RefreshState();
-        }
-
-        private void OnProgressUpgraded(ProgressUpgradedSignal signal)
-        {
             RefreshState();
         }
     }

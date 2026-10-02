@@ -14,11 +14,7 @@ namespace SBabchuk.Runtime.UI.WeaponStore
             var defenceStore = _assetProvider.DefenseStoreDatabase;
             defenceInfo = defenceStore.GetDefense(Id);
 
-            if (PriceBuy)
-                PriceBuy.text = defenceInfo.Price.ToString();
-
-            if (BttnBuy)
-                BttnBuy.interactable = _progressService.CanBuy(defenceInfo.Price);
+            StoreElementView.ApplyPrice(PriceBuy, BttnBuy, defenceInfo?.Price, _progressService);
         }
 
         public override void Buy()

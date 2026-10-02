@@ -18,7 +18,6 @@ namespace SBabchuk.Runtime.UI.MainPlayer
         [SerializeField, FormerlySerializedAs("BuyUpgradeElements")]
         private GameObject _buyUpgradeElements;
 
-        private int _price;
         private int _personageID;
         private IPlayerProgressService _progressService;
 
@@ -36,24 +35,12 @@ namespace SBabchuk.Runtime.UI.MainPlayer
         private void InitialisationUpgrade(int id)
         {
             _personageID = id;
-            
-            if (_progressService.TryGetNextPersonageUpgradePrice(id, out var price))
-            {
-                _price = price;
-                if (_priceUpgrade)
-                {
-                    _priceUpgrade.text = _price.ToString();
-                }
 
-                if (_bttnUpgrade)
-                {
-                    _bttnUpgrade.interactable = _progressService.CanBuy(_price);
-                }
-            }
-            else
-            {
-                _buyUpgradeElements.SetActive(false);
-            }
+            var hasUpgrade = _progressService.TryGetNextPersonageUpgradePrice(id, out var price);
+            StoreElementView.ApplyPrice(_priceUpgrade, _bttnUpgrade, hasUpgrade ? price : (int?)null, _progressService);
+
+            if (_buyUpgradeElements)
+                _buyUpgradeElements.SetActive(hasUpgrade);
         }
 
         public void BuyUpgrade()

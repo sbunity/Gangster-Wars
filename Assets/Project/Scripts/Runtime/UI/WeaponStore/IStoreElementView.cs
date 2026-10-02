@@ -1,4 +1,6 @@
+using SBabchuk.Runtime.Services.Contracts;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace SBabchuk.Runtime.UI.WeaponStore
 {
@@ -34,6 +36,15 @@ namespace SBabchuk.Runtime.UI.WeaponStore
             {
                 lockInit?.Initialisation(id);
             }
+        }
+
+        public static void ApplyPrice(Text priceLabel, Button buyButton, int? price, IPlayerProgressService progressService)
+        {
+            if (priceLabel)
+                priceLabel.text = price?.ToString() ?? string.Empty;
+
+            if (buyButton)
+                buyButton.interactable = price.HasValue && progressService.CanBuy(price.Value);
         }
     }
 }

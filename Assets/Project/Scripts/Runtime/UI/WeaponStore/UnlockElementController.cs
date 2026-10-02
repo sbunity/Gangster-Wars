@@ -27,7 +27,6 @@ namespace SBabchuk.Runtime.UI.WeaponStore
         [SerializeField, FormerlySerializedAs("BuyMagazineElements")]
         private GameObject _buyMagazineElements;
 
-        private int _price;
         private int _weaponID;
         private IAssetProvider _assetProvider;
         private IPlayerProgressService _progressService;
@@ -50,41 +49,23 @@ namespace SBabchuk.Runtime.UI.WeaponStore
         {
             _weaponID = id;
 
-            if (_progressService.TryGetNextWeaponUpgradePrice(id, out var price))
-            {
-                _price = price;
-                if (_priceUpgrade)
-                    _priceUpgrade.text = _price.ToString();
+            var hasUpgrade = _progressService.TryGetNextWeaponUpgradePrice(id, out var price);
+            StoreElementView.ApplyPrice(_priceUpgrade, _bttnUpgrade, hasUpgrade ? price : (int?)null, _progressService);
 
-                if (_bttnUpgrade)
-                    _bttnUpgrade.interactable = _progressService.CanBuy(_price);
-            }
-            else
-            {
-                _buyUpgradeElements.SetActive(false);
-            }
+            if (_buyUpgradeElements)
+                _buyUpgradeElements.SetActive(hasUpgrade);
         }
 
         private void InitialisationMagazine(int id)
         {
-            var weaponStore = _assetProvider.WeaponStoreDatabase;
-            var weapon = weaponStore.GetWeapon(id);
-            if (weapon == null)
-                return;
-
-            _price = weapon.PriceMagazine;
-
-            if (_priceMagazine)
-                _priceMagazine.text = _price.ToString();
-
-            if (_bttnMagazine)
-                _bttnMagazine.interactable = _progressService.CanBuy(_price);
+            var weapon = _assetProvider.WeaponStoreDatabase.GetWeapon(id);
+            StoreElementView.ApplyPrice(_priceMagazine, _bttnMagazine, weapon?.PriceMagazine, _progressService);
         }
 
         private void InitialisationBuyMagazine(int id)
         {
-            if (id == 0)
-                _buyMagazineElements.SetActive(false);
+            if (_buyMagazineElements)
+                _buyMagazineElements.SetActive(id != 0);
         }
 
         public void BuyUpgrade()

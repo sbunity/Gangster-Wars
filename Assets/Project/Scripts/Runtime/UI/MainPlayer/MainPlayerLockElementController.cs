@@ -12,15 +12,8 @@ namespace SBabchuk.Runtime.UI.MainPlayer
             Id = personageId;
             var playerStore = _assetProvider.MainPlayerDatabase;
             _personage = playerStore.GetPersonage(Id);
-            if (PriceBuy)
-            {
-                PriceBuy.text = _personage.Price.ToString();
-            }
 
-            if (BttnBuy)
-            {
-                BttnBuy.interactable = _progressService.CanBuy(_personage.Price);
-            }
+            StoreElementView.ApplyPrice(PriceBuy, BttnBuy, _personage?.Price, _progressService);
         }
 
         public override void Buy()

@@ -13,12 +13,8 @@ namespace SBabchuk.Runtime.UI.WeaponStore
             Id = id;
             var bombStore = _assetProvider.BombStoreDatabase;
             _grenadeInfo = bombStore.GetGrenade(Id);
-            
-            if (PriceBuy)
-                PriceBuy.text = _grenadeInfo.Price.ToString();
 
-            if (BttnBuy)
-                BttnBuy.interactable = _progressService.CanBuy(_grenadeInfo.Price);
+            StoreElementView.ApplyPrice(PriceBuy, BttnBuy, _grenadeInfo?.Price, _progressService);
         }
 
         public override void Buy()
