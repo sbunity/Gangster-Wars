@@ -297,10 +297,12 @@ namespace SBabchuk.Runtime.Databases.PlayerPrefs
         private int _upgradeId;
         public int UpgradeId { get => _upgradeId; set => _upgradeId = value; }
 
+        private const int DefaultDefenceId = (int)DefencesName.Defence_1;
+
         public DefenceShortInfo(Defense value)
         {
             _id = value.Id;
-            _isBuy = mySwitch.Off;
+            _isBuy = value.Id == DefaultDefenceId ? mySwitch.On : mySwitch.Off;
             _upgradeId = -1;
         }
     }
