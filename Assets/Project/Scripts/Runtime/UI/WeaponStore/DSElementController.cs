@@ -25,23 +25,28 @@ namespace SBabchuk.Runtime.UI.WeaponStore
         private DefenceShortInfo _defenceShortInfo;
         private Defense _defenceInfo;
 
-        private void Start()
+        protected override void CacheView()
         {
             _panel = GetComponentInChildren<SpriteSwap>();
             _unlockDElementController = GetComponentInChildren<UnlockDElementController>(true);
             _lockDElementController = GetComponentInChildren<LockDElementController>(true);
-            var defenceStore = AssetProvider.DefenseStoreDatabase;
-            _defenceInfo = defenceStore.GetDefense((int)_defence);
             _ammunitionsController = GetComponentInChildren<AmmunitionsController>(true);
+        }
+
+        protected override void BindDefinition()
+        {
+            _defenceInfo = AssetProvider.DefenseStoreDatabase.GetDefense((int)_defence);
+            if (_defenceInfo == null)
+                return;
+
             _icon.sprite = _defenceInfo.Icon;
             _text.text = _defenceInfo.Name;
-            RefreshState();
         }
 
         protected override void RefreshState()
         {
             _defenceShortInfo = ProgressService.GetDefenceShortInfo((int)_defence);
-            ChangeLock(_defenceShortInfo.IsBuy == mySwitch.On);
+            ChangeLock(_defenceShortInfo != null && _defenceShortInfo.IsBuy == mySwitch.On);
         }
 
         private void ChangeLock(bool value = false)

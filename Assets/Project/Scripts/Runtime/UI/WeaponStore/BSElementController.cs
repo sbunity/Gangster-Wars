@@ -26,16 +26,21 @@ namespace SBabchuk.Runtime.UI.WeaponStore
         private GrenadeShortInfo _grenadeShortInfo;
         private Grenade _grenadeInfo;
 
-        private void Start()
+        protected override void CacheView()
         {
             _panel = GetComponentInChildren<SpriteSwap>();
             _unlockGElementController = GetComponentInChildren<UnlockGElementController>(true);
             _lockGElementController = GetComponentInChildren<LockGElementController>(true);
-            var bombStore = AssetProvider.BombStoreDatabase;
-            _grenadeInfo = bombStore.GetGrenade((int)_grenade);
+        }
+
+        protected override void BindDefinition()
+        {
+            _grenadeInfo = AssetProvider.BombStoreDatabase.GetGrenade((int)_grenade);
+            if (_grenadeInfo == null)
+                return;
+
             _icon.sprite = _grenadeInfo.Icon;
             _text.text = _grenadeInfo.Name;
-            RefreshState();
         }
 
         protected override void RefreshState()

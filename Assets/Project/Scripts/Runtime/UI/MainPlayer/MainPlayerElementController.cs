@@ -1,17 +1,11 @@
-using System.Collections;
-using System.Collections.Generic;
-using SBabchuk.Runtime.Architecture;
-using SBabchuk.Runtime.Services.Contracts;
-using UnityEngine;
-using UnityEngine.UI;
-using Zenject;
-using UnityEngine.Serialization;
 using SBabchuk.Runtime.Databases.PlayerPrefs;
 using SBabchuk.Runtime.UI.WeaponStore;
+using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace SBabchuk.Runtime.UI.MainPlayer
 {
-    public class MainPlayerElementController : MonoBehaviour
+    public class MainPlayerElementController : StoreElementControllerBase
     {
         [SerializeField, FormerlySerializedAs("personage")]
         private PersonagesName _personage;
@@ -20,38 +14,18 @@ namespace SBabchuk.Runtime.UI.MainPlayer
         private MainPlayerUnlockElementController _unlockElementController;
         private AmmunitionsController _ammunitionsController;
         private PersonageShortInfo _personageShortInfo;
-        private IPlayerProgressService _progressService;
-        private SignalSubscriptions _signals;
 
-        [Inject]
-        public void Construct(IPlayerProgressService progressService, SignalBus signalBus)
-        {
-            _progressService = progressService;
-            _signals = new SignalSubscriptions(signalBus)
-                .Add<ProgressUpgradedSignal>(OnProgressUpgraded);
-        }
-
-        private void OnEnable() => _signals?.Enable();
-
-        private void OnDisable() => _signals?.Disable();
-
-        private void OnProgressUpgraded(ProgressUpgradedSignal signal)
-        {
-            CheckInteractive();
-        }
-
-        private void Start()
+        protected override void CacheView()
         {
             _lockElementController = GetComponentInChildren<MainPlayerLockElementController>(true);
             _unlockElementController = GetComponentInChildren<MainPlayerUnlockElementController>(true);
             _ammunitionsController = GetComponentInChildren<AmmunitionsController>(true);
-            CheckInteractive();
         }
 
-        private void CheckInteractive()
+        protected override void RefreshState()
         {
-            _personageShortInfo = _progressService.GetPersonageShortInfo((int)_personage);
-            ChangeLock(_personageShortInfo.IsBuy == mySwitch.On);
+            _personageShortInfo = ProgressService.GetPersonageShortInfo((int)_personage);
+            ChangeLock(_personageShortInfo != null && _personageShortInfo.IsBuy == mySwitch.On);
         }
 
         private void ChangeLock(bool value = false)

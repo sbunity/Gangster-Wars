@@ -67,7 +67,7 @@ namespace SBabchuk.Runtime.UI.WeaponStore
         private void CheckInteractive()
         {
             _personageShortInfo = _progressService.GetPersonageShortInfo((int)_personage);
-            ChangeLock(_personageShortInfo.IsBuy == mySwitch.On);
+            ChangeLock(_personageShortInfo != null && _personageShortInfo.IsBuy == mySwitch.On);
         }
 
         private void ChangeLock(bool _value = false)

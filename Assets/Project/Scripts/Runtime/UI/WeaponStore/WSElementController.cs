@@ -31,23 +31,28 @@ namespace SBabchuk.Runtime.UI.WeaponStore
         private WeaponShortInfo _weaponShortInfo;
         private Weapon _weaponInfo;
 
-        private void Start()
+        protected override void CacheView()
         {
             _panel = GetComponentInChildren<SpriteSwap>();
             _lockElementController = GetComponentInChildren<LockElementController>(true);
             _unlockElementController = GetComponentInChildren<UnlockElementController>(true);
             _ammunitionsController = GetComponentInChildren<AmmunitionsController>(true);
-            var weaponStore = AssetProvider.WeaponStoreDatabase;
-            _weaponInfo = weaponStore.GetWeapon((int)_weapon);
+        }
+
+        protected override void BindDefinition()
+        {
+            _weaponInfo = AssetProvider.WeaponStoreDatabase.GetWeapon((int)_weapon);
+            if (_weaponInfo == null)
+                return;
+
             _icon.sprite = _weaponInfo.Icon;
             _text.text = _weaponInfo.Name;
-            RefreshState();
         }
 
         protected override void RefreshState()
         {
             _weaponShortInfo = ProgressService.GetWeaponShortInfo((int)_weapon);
-            ChangeLock(_weaponShortInfo.IsBuy == mySwitch.On);
+            ChangeLock(_weaponShortInfo != null && _weaponShortInfo.IsBuy == mySwitch.On);
         }
 
         private void ChangeLock(bool value = false)

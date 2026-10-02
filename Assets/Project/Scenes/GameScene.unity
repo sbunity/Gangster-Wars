@@ -4742,7 +4742,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 279873755}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: -0.04455355, w: 0.999007}
+  m_LocalRotation: {x: 0, y: 0, z: -0.01623085, w: 0.9998683}
   m_LocalPosition: {x: -0.2178, y: 0.3832, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -16599,7 +16599,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1230115033}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: -0.485701, w: 0.87412506}
+  m_LocalRotation: {x: 0, y: 0, z: -0.47692868, w: 0.878942}
   m_LocalPosition: {x: 0.059699997, y: 0.057399996, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -21648,95 +21648,6 @@ MonoBehaviour:
   zPosition: 1
   overrideAlpha: 1
   hierarchy: {fileID: 1288661726}
---- !u!1 &1495391185
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1495391189}
-  - component: {fileID: 1495391188}
-  - component: {fileID: 1495391187}
-  - component: {fileID: 1495391186}
-  m_Layer: 0
-  m_Name: ProjectContext(Clone)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1495391186
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1495391185}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 374b2cd725ea28a46a6377959bb73c9c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Zenject::Zenject.ProjectKernel
---- !u!114 &1495391187
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1495391185}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7a1acfdb402756945960e56c142e626f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::SBabchuk.Runtime.Installers.ProjectInstaller
-  _loadingScreenPrefab: {fileID: 1176312090100629387, guid: 919f9a563433e5b47ac1720f8219cf4f,
-    type: 3}
---- !u!114 &1495391188
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1495391185}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a4e6589720da476459dc6dd71624b071, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Zenject::Zenject.ProjectContext
-  _scriptableObjectInstallers: []
-  _monoInstallers:
-  - {fileID: 1495391187}
-  _installerPrefabs: []
-  _parentNewObjectsUnderContext: 1
-  _editorReflectionBakingCoverageMode: 0
-  _buildsReflectionBakingCoverageMode: 0
-  _settings:
-    _ensureDeterministicDestructionOrderOnApplicationQuit: 0
-    _displayWarningWhenResolvingDuringInstall: 1
-    _validationRootResolveMethod: 0
-    _validationErrorResponse: 0
-    _signalSettings:
-      _defaultSyncMode: 0
-      _missingHandlerDefaultResponse: 2
-      _requireStrictUnsubscribe: 0
-      _defaultAsyncTickPriority: 1
---- !u!4 &1495391189
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1495391185}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1507114915
 GameObject:
   m_ObjectHideFlags: 0
@@ -32896,4 +32807,3 @@ SceneRoots:
   - {fileID: 1949213164}
   - {fileID: 1055493657}
   - {fileID: 1977259312}
-  - {fileID: 1495391189}
