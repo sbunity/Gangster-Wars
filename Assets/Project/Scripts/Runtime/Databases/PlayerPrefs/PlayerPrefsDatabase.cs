@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Serialization;
 using SBabchuk.Runtime.Databases.BombStore;
@@ -238,12 +238,18 @@ namespace SBabchuk.Runtime.Databases.PlayerPrefs
         private int _ammoCount;
         public int AmmoCount { get => _ammoCount; set => _ammoCount = value; }
 
+        private const int DefaultWeaponId = (int)WeaponsName.Weapon_1;
+        private const int DefaultWeaponAmmoCount = 70;
+
         public WeaponShortInfo(Weapon weapon)
         {
+            var isDefaultWeapon = weapon.Id == DefaultWeaponId;
+
             _id = weapon.Id;
             _name = weapon.Name;
-            _isBuy = mySwitch.Off;
+            _isBuy = isDefaultWeapon ? mySwitch.On : mySwitch.Off;
             _upgradeId = -1;
+            _ammoCount = isDefaultWeapon ? DefaultWeaponAmmoCount : 0;
         }
     }
 
