@@ -224,8 +224,8 @@ namespace SBabchuk.Runtime.Gameplay.Enemies
 
         public void Dead()
         {
-            _signalBus.Fire(new EnemyDiedSignal(_properties.Id));
             CheckSpawnBonus();
+            _signalBus.Fire(new EnemyDiedSignal(_properties.Id));
             Pop();
         }
 

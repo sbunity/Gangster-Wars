@@ -37,6 +37,7 @@ namespace SBabchuk.Runtime.Installers
             Container.Bind<IEnemyInfoService>().To<EnemyInfoService>().AsSingle();
             Container.Bind<IWaveSkipRewardService>().To<WaveSkipRewardService>().AsSingle();
             Container.Bind<IBonusDropService>().To<BonusDropService>().AsSingle();
+            Container.Bind<IBonusRewardService>().To<BonusRewardService>().AsSingle();
             Container.Bind<IBonusCollectTargetRegistry>().To<BonusCollectTargetRegistry>().AsSingle();
             Container.Bind<IStoreItemStatsService>().To<StoreItemStatsService>().AsSingle();
             Container.Bind<IMainPlayerStatsService>().To<MainPlayerStatsService>().AsSingle();

@@ -234,12 +234,15 @@ namespace SBabchuk.Runtime.Gameplay.Levels
 
         private void CheckGameOver()
         {
+            if (_isLevelFinished || _levelFlowService.IsFinished)
+                return;
+
             _isWaveFull = _waveScheduler.IsWaveFull;
             if (_waveScheduler.CurrentWave == _properties.Waves.Count)
             {
                 if (_isWaveFull)
                 {
-                    if (_entityTracker.BonusCount == 0 && _entityTracker.EnemyCount == 0)
+                    if (_entityTracker.EnemyCount == 0)
                     {
                         var barricadeController = _barricadeController;
                         if (barricadeController == null)
@@ -277,10 +280,6 @@ namespace SBabchuk.Runtime.Gameplay.Levels
         public void PopBonus(BonusController bonus)
         {
             _entityTracker.RemoveBonus(bonus);
-            if (_entityTracker.EnemyCount == 0)
-            {
-                CheckGameOver();
-            }
         }
     }
 }

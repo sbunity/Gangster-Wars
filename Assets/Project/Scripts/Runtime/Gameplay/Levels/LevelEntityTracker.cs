@@ -12,7 +12,7 @@ namespace SBabchuk.Runtime.Gameplay.Levels
         private readonly List<BonusController> _bonuses = new();
 
         public int EnemyCount => _enemies.Count;
-        public int BonusCount => _bonuses.Count;
+        public IReadOnlyList<BonusController> Bonuses => _bonuses;
 
         public void Clear()
         {

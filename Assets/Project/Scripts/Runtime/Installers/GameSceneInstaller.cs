@@ -35,11 +35,10 @@ namespace SBabchuk.Runtime.Installers
             Container.Bind<ILeaderWeaponSelectionService>().To<AssetDataController>().FromComponentInHierarchy().AsSingle();
             Container.BindInterfacesTo<DefaultWeaponFallbackService>().AsSingle();
 
-            // Level runtime: command (spawn) and query (targeting) are now separate services
-            // sharing a single entity tracker, instead of both living on LevelController.
             Container.Bind<LevelEntityTracker>().AsSingle();
             Container.Bind<IEnemyTargetProvider>().To<LevelEntityTracker>().FromResolve();
             Container.Bind<ILevelSpawnService>().To<LevelSpawnService>().AsSingle();
+            Container.BindInterfacesTo<LevelEndBonusCollector>().AsSingle();
 
             BindInstance(_levelController);
             BindInstance(_barricadeController);

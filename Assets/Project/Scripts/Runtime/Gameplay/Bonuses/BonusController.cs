@@ -1,16 +1,15 @@
 using DG.Tweening;
 using SBabchuk.Runtime.Architecture;
 using SBabchuk.Runtime.Services.Contracts;
+using SBabchuk.Runtime.Services.Models;
 using UnityEngine;
 using Zenject;
 using UnityEngine.Serialization;
-using SBabchuk.Runtime.Databases.WeaponStore;
 
 namespace SBabchuk.Runtime.Gameplay.Bonuses
 {
     public class BonusController : MonoBehaviour
     {
-        private const float FREE_AMMO_MAGAZINE_MULTIPLIER = 0.6f;
         private const float AUTO_COLLECT_DELAY = 2f;
         private const float COLLECT_FLY_DURATION = 0.45f;
         private const float COLLECT_LINGER_DURATION = 0.1f;
@@ -24,23 +23,23 @@ namespace SBabchuk.Runtime.Gameplay.Bonuses
 
         private Tween _autoCollectTween;
         private Tween _collectTween;
-        private IAssetProvider _assetProvider;
+        private IBonusRewardService _rewardService;
         private IBonusCollectTargetRegistry _collectTargetRegistry;
-        private IPlayerProgressService _progressService;
         private SignalBus _signalBus;
         private BonusView _view;
         private Vector3 _defaultScale;
         private bool _isCollecting;
-        
+        private bool _isRewardGranted;
+
+        public BonusReward Reward => new(_weaponsName, _grenadesName);
+
         [Inject]
         public void Construct(
-            IAssetProvider assetProvider,
-            IPlayerProgressService progressService,
+            IBonusRewardService rewardService,
             IBonusCollectTargetRegistry collectTargetRegistry,
             SignalBus signalBus)
         {
-            _assetProvider = assetProvider;
-            _progressService = progressService;
+            _rewardService = rewardService;
             _collectTargetRegistry = collectTargetRegistry;
             _signalBus = signalBus;
         }
@@ -83,6 +82,7 @@ namespace SBabchuk.Runtime.Gameplay.Bonuses
             _collectTween?.Kill();
             _collectTween = null;
             _isCollecting = false;
+            _isRewardGranted = false;
 
             InitColliders();
             _view.Initialize();
@@ -93,7 +93,6 @@ namespace SBabchuk.Runtime.Gameplay.Bonuses
             _autoCollectTween = DOVirtual.DelayedCall(AUTO_COLLECT_DELAY, Collect);
         }
 
-        // The bonus needs a kinematic trigger collider so EasyTouch can pick it and trigger collection.
         private void InitColliders()
         {
             var touchCollider = GetComponent<Collider2D>();
@@ -147,26 +146,27 @@ namespace SBabchuk.Runtime.Gameplay.Bonuses
         private void CompleteCollection(IBonusCollectTarget target)
         {
             _collectTween = null;
-            Pop();
-            ApplyReward();
+            GrantReward();
             target?.PlayCollectFeedback();
+            Pop();
         }
 
-        private void ApplyReward()
+        public void CollectImmediately()
         {
-            if (_weaponsName != WeaponsName.None)
-            {
-                var weapon = _assetProvider.WeaponStoreDatabase.GetWeapon((int)_weaponsName);
-                if (weapon != null)
-                {
-                    var ammoCount = Mathf.Max(1, Mathf.CeilToInt(weapon.Magazine * FREE_AMMO_MAGAZINE_MULTIPLIER));
-                    _progressService.SetWeaponAmmo(_weaponsName, ammoCount);
-                }
-            }
-            else
-            {
-                _progressService.BuyGrenade((int)_grenadesName, true);
-            }
+            if (!gameObject.activeSelf)
+                return;
+
+            GrantReward();
+            Pop();
+        }
+
+        private void GrantReward()
+        {
+            if (_isRewardGranted)
+                return;
+
+            _isRewardGranted = true;
+            _rewardService.Grant(Reward);
         }
 
         public void Pop()
