@@ -24,6 +24,7 @@ namespace SBabchuk.Runtime.UI
         private Coroutine _snapCoroutine;
         private int _currentChapterIndex;
         private float _dragStartPosition;
+        private bool _isInitialized;
 
         [Inject]
         public void Construct(IAssetProvider assetProvider, IPlayerProgressService progressService)
@@ -48,6 +49,16 @@ namespace SBabchuk.Runtime.UI
             RebuildContentLayout();
             InitializeChapters();
             SetChapter(GetInitialChapterIndex(), true);
+            _isInitialized = true;
+        }
+
+        private void OnRectTransformDimensionsChange()
+        {
+            if (!_isInitialized)
+                return;
+
+            RebuildContentLayout();
+            SetChapter(_currentChapterIndex, true);
         }
 
         private void OnDestroy()
@@ -104,7 +115,7 @@ namespace SBabchuk.Runtime.UI
             if (_scrollRect?.content == null || _chapterPanels.Count == 0)
                 return;
 
-            var panelSize = GetPanelSize();
+            var panelSize = _scrollRect.viewport.rect.size;
             if (panelSize.x <= 0f || panelSize.y <= 0f)
                 return;
 
@@ -122,17 +133,6 @@ namespace SBabchuk.Runtime.UI
                 panel.sizeDelta = panelSize;
                 panel.anchoredPosition = new Vector2(panelSize.x * i + panelSize.x * 0.5f, 0f);
             }
-        }
-
-        private Vector2 GetPanelSize()
-        {
-            foreach (var panel in _chapterPanels)
-            {
-                if (panel != null && panel.sizeDelta.x > 0f && panel.sizeDelta.y > 0f)
-                    return panel.sizeDelta;
-            }
-
-            return Vector2.zero;
         }
 
         private void InitializeChapterPanel(RectTransform panel, ChapterDatabase chapter)
@@ -198,15 +198,18 @@ namespace SBabchuk.Runtime.UI
             _currentChapterIndex = Mathf.Clamp(index, 0, _chapterPanels.Count - 1);
             UpdateArrowState();
 
+            if (_snapCoroutine != null)
+            {
+                StopCoroutine(_snapCoroutine);
+                _snapCoroutine = null;
+            }
+
             var target = GetNormalizedPosition(_currentChapterIndex);
             if (immediate || _snapDuration <= 0f)
             {
                 SetNormalizedPosition(target);
                 return;
             }
-
-            if (_snapCoroutine != null)
-                StopCoroutine(_snapCoroutine);
 
             _snapCoroutine = StartCoroutine(SnapTo(target));
         }
