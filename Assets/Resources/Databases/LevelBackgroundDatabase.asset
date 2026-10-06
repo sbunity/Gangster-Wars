@@ -1,0 +1,89 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4364cd63b95e87a45b3ee53a5566dbcd, type: 3}
+  m_Name: LevelBackgroundDatabase
+  m_EditorClassIdentifier: Assembly-CSharp::SBabchuk.Runtime.Databases.Levels.LevelBackgroundDatabase
+  _defaultBackground: {fileID: 6410838733555743521, guid: 4c8d7f8f1edb8594d9d318ff1537d6a6,
+    type: 3}
+  _levels:
+  - _levelId: 0
+    _background: {fileID: 6410838733555743521, guid: 4c8d7f8f1edb8594d9d318ff1537d6a6,
+      type: 3}
+  - _levelId: 1
+    _background: {fileID: 6410838733555743521, guid: 4c8d7f8f1edb8594d9d318ff1537d6a6,
+      type: 3}
+  - _levelId: 2
+    _background: {fileID: 6410838733555743521, guid: 4c8d7f8f1edb8594d9d318ff1537d6a6,
+      type: 3}
+  - _levelId: 3
+    _background: {fileID: 6410838733555743521, guid: 4c8d7f8f1edb8594d9d318ff1537d6a6,
+      type: 3}
+  - _levelId: 4
+    _background: {fileID: 6410838733555743521, guid: 4c8d7f8f1edb8594d9d318ff1537d6a6,
+      type: 3}
+  - _levelId: 5
+    _background: {fileID: 6410838733555743521, guid: 4c8d7f8f1edb8594d9d318ff1537d6a6,
+      type: 3}
+  - _levelId: 6
+    _background: {fileID: 6410838733555743521, guid: 4c8d7f8f1edb8594d9d318ff1537d6a6,
+      type: 3}
+  - _levelId: 7
+    _background: {fileID: 6410838733555743521, guid: 4c8d7f8f1edb8594d9d318ff1537d6a6,
+      type: 3}
+  - _levelId: 8
+    _background: {fileID: 6410838733555743521, guid: 4c8d7f8f1edb8594d9d318ff1537d6a6,
+      type: 3}
+  - _levelId: 9
+    _background: {fileID: 6410838733555743521, guid: 4c8d7f8f1edb8594d9d318ff1537d6a6,
+      type: 3}
+  - _levelId: 10
+    _background: {fileID: 6410838733555743521, guid: 4c8d7f8f1edb8594d9d318ff1537d6a6,
+      type: 3}
+  - _levelId: 11
+    _background: {fileID: 6410838733555743521, guid: 4c8d7f8f1edb8594d9d318ff1537d6a6,
+      type: 3}
+  - _levelId: 12
+    _background: {fileID: 6410838733555743521, guid: 4c8d7f8f1edb8594d9d318ff1537d6a6,
+      type: 3}
+  - _levelId: 13
+    _background: {fileID: 6410838733555743521, guid: 4c8d7f8f1edb8594d9d318ff1537d6a6,
+      type: 3}
+  - _levelId: 14
+    _background: {fileID: 6410838733555743521, guid: 4c8d7f8f1edb8594d9d318ff1537d6a6,
+      type: 3}
+  - _levelId: 15
+    _background: {fileID: 6410838733555743521, guid: 4c8d7f8f1edb8594d9d318ff1537d6a6,
+      type: 3}
+  - _levelId: 16
+    _background: {fileID: 6410838733555743521, guid: 4c8d7f8f1edb8594d9d318ff1537d6a6,
+      type: 3}
+  - _levelId: 17
+    _background: {fileID: 6410838733555743521, guid: 4c8d7f8f1edb8594d9d318ff1537d6a6,
+      type: 3}
+  - _levelId: 18
+    _background: {fileID: 6410838733555743521, guid: 4c8d7f8f1edb8594d9d318ff1537d6a6,
+      type: 3}
+  - _levelId: 19
+    _background: {fileID: 6410838733555743521, guid: 4c8d7f8f1edb8594d9d318ff1537d6a6,
+      type: 3}
+  - _levelId: 20
+    _background: {fileID: 6410838733555743521, guid: 4c8d7f8f1edb8594d9d318ff1537d6a6,
+      type: 3}
+  - _levelId: 21
+    _background: {fileID: 6410838733555743521, guid: 4c8d7f8f1edb8594d9d318ff1537d6a6,
+      type: 3}
+  - _levelId: 22
+    _background: {fileID: 6410838733555743521, guid: 4c8d7f8f1edb8594d9d318ff1537d6a6,
+      type: 3}
+  - _levelId: 23
+    _background: {fileID: 6410838733555743521, guid: 4c8d7f8f1edb8594d9d318ff1537d6a6,
+      type: 3}

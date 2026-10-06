@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using UnityEngine;
 using SBabchuk.Runtime.Architecture;
 using SBabchuk.Runtime.Gameplay.Levels;
@@ -21,15 +20,6 @@ namespace SBabchuk.Runtime.Gameplay.Levels
 {
     public class LevelController : MonoBehaviour, ILevelWaveControlService
     {
-        [SerializeField, FormerlySerializedAs("spawnPoints")]
-        private List<Transform> _spawnPoints;
-
-        [SerializeField, FormerlySerializedAs("targetsPoints")]
-        private List<Transform> _targetPoints;
-
-        [SerializeField, FormerlySerializedAs("background")]
-        private SpriteRenderer _background;
-
         [SerializeField, FormerlySerializedAs("WaveBar")]
         private FilledBarController _waveBar;
 
@@ -49,6 +39,7 @@ namespace SBabchuk.Runtime.Gameplay.Levels
         private IGameFactory _gameFactory;
         private ILevelFlowService _levelFlowService;
         private BarricadeController _barricadeController;
+        private LevelBackground _levelBackground;
         private SignalBus _signalBus;
         private SignalSubscriptions _signals;
         private bool _isWaveFull;
@@ -68,7 +59,7 @@ namespace SBabchuk.Runtime.Gameplay.Levels
         }
 
         [Inject]
-        public void Construct(IAssetProvider assetProvider, IPlayerProgressService progressService, IWaveSkipRewardService waveSkipRewardService, IEnemyDiscoveryService enemyDiscoveryService, IGameFactory gameFactory, ILevelFlowService levelFlowService, LevelEntityTracker entityTracker, BarricadeController barricadeController, SignalBus signalBus)
+        public void Construct(IAssetProvider assetProvider, IPlayerProgressService progressService, IWaveSkipRewardService waveSkipRewardService, IEnemyDiscoveryService enemyDiscoveryService, IGameFactory gameFactory, ILevelFlowService levelFlowService, LevelEntityTracker entityTracker, BarricadeController barricadeController, LevelBackground levelBackground, SignalBus signalBus)
         {
             _assetProvider = assetProvider;
             _progressService = progressService;
@@ -78,6 +69,8 @@ namespace SBabchuk.Runtime.Gameplay.Levels
             _levelFlowService = levelFlowService;
             _entityTracker = entityTracker;
             _barricadeController = barricadeController;
+            _levelBackground = levelBackground;
+            _pathPicker = new RandomPathPicker(levelBackground.PathCount);
             _signalBus = signalBus;
             _signals = new SignalSubscriptions(signalBus)
                 .Add<EnemyDiedSignal>(DeleteEnemy)
@@ -88,7 +81,6 @@ namespace SBabchuk.Runtime.Gameplay.Levels
 
         private void Awake()
         {
-            _pathPicker = new RandomPathPicker(_spawnPoints.Count);
             _waveScheduler = new LevelWaveScheduler(SpawnEnemies);
             _waveScheduler.CountdownStarted += OnWaveCountdownStarted;
             _waveScheduler.CountdownSkipped += OnWaveCountdownSkipped;
@@ -205,7 +197,7 @@ namespace SBabchuk.Runtime.Gameplay.Levels
                 return;
 
             var path = _pathPicker.Next();
-            var enemy = _gameFactory.CreateEnemy(enemyOfWave, _spawnPoints[path], _targetPoints[path]);
+            var enemy = _gameFactory.CreateEnemy(enemyOfWave, _levelBackground.SpawnPoints[path], _levelBackground.TargetPoints[path]);
             if (enemy != null)
             {
                 _entityTracker.AddEnemy(enemy);

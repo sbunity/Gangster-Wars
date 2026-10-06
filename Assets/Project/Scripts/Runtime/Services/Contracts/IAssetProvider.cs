@@ -26,6 +26,8 @@ namespace SBabchuk.Runtime.Services.Contracts
 
         LevelDatabase LevelDatabase { get; }
 
+        LevelBackgroundDatabase LevelBackgroundDatabase { get; }
+
         BulletDatabase BulletDatabase { get; }
 
         T LoadAsset<T>() where T : Object;

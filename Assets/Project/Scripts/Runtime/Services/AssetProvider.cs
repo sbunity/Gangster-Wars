@@ -34,6 +34,7 @@ namespace SBabchuk.Runtime.Services
         public MainPlayerDatabase MainPlayerDatabase => GetDatabase<MainPlayerDatabase>();
         public EnemyDatabase EnemyDatabase => GetDatabase<EnemyDatabase>();
         public LevelDatabase LevelDatabase => GetDatabase<LevelDatabase>();
+        public LevelBackgroundDatabase LevelBackgroundDatabase => GetDatabase<LevelBackgroundDatabase>();
         public BulletDatabase BulletDatabase => GetDatabase<BulletDatabase>();
 
         public T LoadAsset<T>() where T : UnityEngine.Object

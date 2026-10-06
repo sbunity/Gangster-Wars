@@ -23,6 +23,7 @@ namespace SBabchuk.Runtime.Installers
         [SerializeField] private PoolManager _poolManager;
         [SerializeField] private FilledBarController _waveBar;
         [SerializeField] private CoinFlightSpawner _coinFlightSpawner;
+        [SerializeField] private Transform _backgroundRoot;
 
         public override void InstallBindings()
         {
@@ -39,6 +40,7 @@ namespace SBabchuk.Runtime.Installers
             Container.Bind<IEnemyTargetProvider>().To<LevelEntityTracker>().FromResolve();
             Container.Bind<ILevelSpawnService>().To<LevelSpawnService>().AsSingle();
             Container.BindInterfacesTo<LevelEndBonusCollector>().AsSingle();
+            BindLevelBackground();
 
             BindInstance(_levelController);
             BindInstance(_barricadeController);
@@ -67,6 +69,16 @@ namespace SBabchuk.Runtime.Installers
                 Container.Bind<ICoinFlightService>().FromInstance(_coinFlightSpawner).AsSingle();
         }
 
+        private void BindLevelBackground()
+        {
+            Container.Bind<ILevelBackgroundFactory>().To<LevelBackgroundFactory>().AsSingle();
+            Container.Bind<LevelBackground>()
+                .FromMethod(ctx => ctx.Container.Resolve<ILevelBackgroundFactory>()
+                    .Create(ctx.Container.Resolve<IPlayerProgressService>().CurrentLevelId, _backgroundRoot))
+                .AsSingle()
+                .NonLazy();
+        }
+
         private void ValidateReferences()
         {
             ValidateRequired(_levelController, nameof(_levelController));
@@ -75,6 +87,7 @@ namespace SBabchuk.Runtime.Installers
             ValidateRequired(_handController, nameof(_handController));
             ValidateRequired(_poolManager, nameof(_poolManager));
             ValidateRequired(_waveBar, nameof(_waveBar));
+            ValidateRequired(_backgroundRoot, nameof(_backgroundRoot));
         }
 
         private void ValidateRequired(Object reference, string fieldName)

@@ -75,6 +75,16 @@ Prefab spawning currently flows through:
 
 `IGameFactory` -> `IPoolService` -> legacy `PoolManager` -> existing pooled prefabs.
 
+## Level Backgrounds
+
+Each level's background is a prefab with a `LevelBackground` component on its root. The prefab owns the layered art, the gameplay zones (`Place` and `FireZone` colliders), the enemy paths (`[SpawnPoints]`, `[Targets]`) and the anchors for the barricade and the gangsters.
+
+- `LevelBackgroundDatabase` (`Assets/Resources/Databases/LevelBackgroundDatabase.asset`) maps level id to background prefab, with a default prefab as fallback. It is kept outside `LevelDatabase`/`ChapterDatabase` on purpose: those are overwritten from `.pso` saves through JsonUtility, which cannot restore prefab references.
+- `ILevelBackgroundFactory` (`LevelBackgroundFactory`) instantiates the prefab for a level through the container.
+- `GameSceneInstaller` binds `LevelBackground` as a non-lazy single, created under `_backgroundRoot` for `IPlayerProgressService.CurrentLevelId`.
+- `LevelController` takes its enemy spawn and target points from the injected `LevelBackground`.
+- `LevelActorsLayout` (on `[Scripts]` in `GameScene`) moves the barricade and the gangsters to the background anchors, keeping their z.
+
 ## Helpers Extracted From LevelController
 
 - `BonusDropService` (`IBonusDropService`, Project-scoped) decides which bonus id is eligible to drop, based on owned weapons/grenades.
