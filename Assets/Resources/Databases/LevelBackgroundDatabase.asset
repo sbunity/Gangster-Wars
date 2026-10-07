@@ -19,7 +19,7 @@ MonoBehaviour:
     _background: {fileID: 6410838733555743521, guid: 4c8d7f8f1edb8594d9d318ff1537d6a6,
       type: 3}
   - _levelId: 1
-    _background: {fileID: 6410838733555743521, guid: 4c8d7f8f1edb8594d9d318ff1537d6a6,
+    _background: {fileID: 6410838733555743521, guid: 901517bef0f64b149abd1302ef43e76f,
       type: 3}
   - _levelId: 2
     _background: {fileID: 6410838733555743521, guid: 4c8d7f8f1edb8594d9d318ff1537d6a6,
