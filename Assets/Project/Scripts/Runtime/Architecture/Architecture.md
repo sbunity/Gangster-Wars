@@ -84,6 +84,7 @@ Each level's background is a prefab with a `LevelBackground` component on its ro
 - `GameSceneInstaller` binds `LevelBackground` as a non-lazy single, created under `_backgroundRoot` for `IPlayerProgressService.CurrentLevelId`.
 - `LevelController` takes its enemy spawn and target points from the injected `LevelBackground`.
 - `LevelActorsLayout` (on `[Scripts]` in `GameScene`) moves the barricade and the gangsters to the background anchors, keeping their z.
+- The car sprites (`Car_Red`, `Car_Black`) in every background prefab use sorting `Default/-1000`, and the sniper renderer uses `Default/-1001`. That puts the sniper behind the car, leaning on its roof, while the leader, bomber and barricade still draw in front. New backgrounds must keep the car at this sorting.
 
 ## Helpers Extracted From LevelController
 
