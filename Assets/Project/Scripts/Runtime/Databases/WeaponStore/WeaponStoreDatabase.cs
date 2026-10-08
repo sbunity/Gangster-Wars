@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using SBabchuk.Runtime.Audio;
 using UnityEngine;
 using UnityEngine.Serialization;
 
@@ -110,6 +111,9 @@ namespace SBabchuk.Runtime.Databases.WeaponStore
         private WeaponSettings _settings = new WeaponSettings();
         public WeaponSettings Settings { get => _settings; set => _settings = value; }
 
+        [SerializeField] private WeaponSounds _sounds = new WeaponSounds();
+        public WeaponSounds Sounds { get => _sounds; set => _sounds = value; }
+
         public Weapon(int _id)
         {
             this._id = _id;
@@ -126,7 +130,18 @@ namespace SBabchuk.Runtime.Databases.WeaponStore
             this._fireRate = _weapon.FireRate;
             this._settings = _weapon.Settings;
             this._upgrades = _weapon.Upgrades;
+            this._sounds = _weapon.Sounds;
         }
+    }
+
+    [System.Serializable]
+    public class WeaponSounds
+    {
+        [SerializeField] private SoundConfig _shot;
+        public SoundConfig Shot { get => _shot; set => _shot = value; }
+
+        [SerializeField] private SoundConfig _reload;
+        public SoundConfig Reload { get => _reload; set => _reload = value; }
     }
 
     [System.Serializable]

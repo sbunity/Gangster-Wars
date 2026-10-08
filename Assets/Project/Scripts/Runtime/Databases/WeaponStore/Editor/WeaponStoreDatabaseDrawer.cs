@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEditor;
 using System.Collections.Generic;
+using SBabchuk.Runtime.Audio;
 using SBabchuk.Runtime.Databases.Bullets;
 
 namespace SBabchuk.Runtime.Databases.WeaponStore
@@ -132,6 +133,8 @@ namespace SBabchuk.Runtime.Databases.WeaponStore
                     Utils.ChangeColor(defaultColor);
                     if (_weapon.BulletId != -1)
                         DrawBulletInfo(_weapon.BulletId);
+                    _weapon.Sounds.Shot = (SoundConfig)EditorGUILayout.ObjectField("Звук пострілу: ", _weapon.Sounds.Shot, typeof(SoundConfig), false);
+                    _weapon.Sounds.Reload = (SoundConfig)EditorGUILayout.ObjectField("Звук перезарядки 1 патрона: ", _weapon.Sounds.Reload, typeof(SoundConfig), false);
                     Utils.ChangeColor(Color.green);
                     _weapon.CountUpgrades = EditorGUILayout.IntSlider("Кількість апгрейдів: ", _weapon.CountUpgrades, 1, 5);
                     Utils.ChangeColor(defaultColor);

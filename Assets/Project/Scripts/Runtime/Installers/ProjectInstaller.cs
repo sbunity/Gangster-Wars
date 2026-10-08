@@ -42,6 +42,7 @@ namespace SBabchuk.Runtime.Installers
             Container.Bind<IStoreItemStatsService>().To<StoreItemStatsService>().AsSingle();
             Container.Bind<IMainPlayerStatsService>().To<MainPlayerStatsService>().AsSingle();
             Container.Bind<IAudioSettingsService>().To<AudioSettingsService>().AsSingle();
+            Container.BindInterfacesTo<AudioService>().AsSingle();
             Container.Bind<IInputService>().To<InputService>().AsSingle();
         }
 

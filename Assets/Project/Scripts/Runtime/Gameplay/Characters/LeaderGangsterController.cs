@@ -34,11 +34,13 @@ namespace SBabchuk.Runtime.Gameplay.Characters
         private bool _isShooting;
         private readonly WeaponFireCooldown _fireCooldown = new();
         private IWeaponAmmoService _ammoService;
+        private IAudioService _audioService;
 
         [Inject]
-        public void ConstructLeader(IWeaponAmmoService ammoService)
+        public void ConstructLeader(IWeaponAmmoService ammoService, IAudioService audioService)
         {
             _ammoService = ammoService;
+            _audioService = audioService;
             _ammoService.ReloadAdvanced += OnReloadAdvanced;
             _ammoService.ReloadCompleted += OnReloadCompleted;
             _ammoService.MagazineEmptied += OnMagazineEmptied;
@@ -120,6 +122,8 @@ namespace SBabchuk.Runtime.Gameplay.Characters
 
         private void OnReloadAdvanced()
         {
+            _audioService.Play(_weapon?.Sounds.Reload);
+
             if (Animation.GetCurrentAnimation() != AnimationsName.Reload)
                 Animation.SetAnimation(AnimationsName.Reload);
         }
@@ -153,6 +157,7 @@ namespace SBabchuk.Runtime.Gameplay.Characters
         private void Shoot()
         {
             _characterWeapon.Fire(_weapon.BulletId, _properties.Damage, _createBulletPointList[_index].GetPosition(), default(Vector3), 0);
+            _audioService.Play(_weapon.Sounds.Shot);
             _index = _index + 1 < _createBulletPointList.Count ? _index + 1 : 0;
             _ammoService.TryConsumeRound();
         }
