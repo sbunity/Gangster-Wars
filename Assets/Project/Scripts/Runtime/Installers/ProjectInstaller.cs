@@ -1,4 +1,5 @@
 using SBabchuk.Runtime.Architecture;
+using SBabchuk.Runtime.Audio;
 using SBabchuk.Runtime.Factories;
 using SBabchuk.Runtime.Services;
 using SBabchuk.Runtime.Services.Contracts;
@@ -12,6 +13,9 @@ namespace SBabchuk.Runtime.Installers
     {
         [SerializeField]
         private LoadingScreenView _loadingScreenPrefab;
+
+        [SerializeField]
+        private UISoundsConfig _uiSounds;
 
         public override void InstallBindings()
         {
@@ -43,6 +47,7 @@ namespace SBabchuk.Runtime.Installers
             Container.Bind<IMainPlayerStatsService>().To<MainPlayerStatsService>().AsSingle();
             Container.Bind<IAudioSettingsService>().To<AudioSettingsService>().AsSingle();
             Container.BindInterfacesTo<AudioService>().AsSingle();
+            Container.Bind<UISoundsConfig>().FromInstance(_uiSounds).AsSingle();
             Container.Bind<IInputService>().To<InputService>().AsSingle();
         }
 

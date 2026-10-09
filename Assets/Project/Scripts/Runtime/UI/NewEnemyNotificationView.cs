@@ -17,11 +17,13 @@ namespace SBabchuk.Runtime.UI
         private readonly List<NewEnemyNotificationElementView> _elements = new List<NewEnemyNotificationElementView>();
         private SignalSubscriptions _signals;
         private SignalBus _signalBus;
+        private IInstantiator _instantiator;
 
         [Inject]
-        public void Construct(SignalBus signalBus)
+        public void Construct(SignalBus signalBus, IInstantiator instantiator)
         {
             _signalBus = signalBus;
+            _instantiator = instantiator;
             _signals = new SignalSubscriptions(signalBus)
                 .Add<NewEnemyDiscoveredSignal>(Show);
             _signals.Enable();
@@ -46,7 +48,7 @@ namespace SBabchuk.Runtime.UI
                 RemoveElementAt(0);
             }
 
-            var element = Instantiate(_elementPrefab, _itemsRoot);
+            var element = _instantiator.InstantiatePrefabForComponent<NewEnemyNotificationElementView>(_elementPrefab, _itemsRoot);
             element.gameObject.layer = gameObject.layer;
             element.Initialize(signal.EnemyId, signal.EnemyName, signal.Icon);
             element.Clicked += SelectEnemy;
