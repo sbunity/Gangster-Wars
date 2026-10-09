@@ -14,6 +14,8 @@ The project now has a Zenject-driven service layer under `Assets/Project/Scripts
 - `IDamageService` and `ICombatService` isolate common damage, hit, and reward operations.
 - `IWaveSkipRewardService` grants the coin reward for manually starting a wave early.
 - `IAudioSettingsService` wraps saved music and sound settings.
+- `IAudioService` plays one-shot `SoundConfig` sounds from a pooled set of voices.
+- `IMusicService` plays looped background `MusicTrack`s with fade out/in and survives scene loads.
 - `IInputService` wraps pointer input and world pointer position.
 - `IHandService` exposes grenade dragging state and placement without `HandController.Instance`.
 - `ILeaderWeaponController` exposes the leader weapon controls used by the sight/aim UI.
@@ -95,6 +97,14 @@ Each level's background is a prefab with a `LevelBackground` component on its ro
 ## Game Result Sounds
 
 `GameResultPanelController` has a `_showSound` field (`SoundConfig`) and plays it through `IAudioService` when the panel is shown. The sound plays together with the panel, so the win sound waits for the win panel's `_showDelay`. In `GameScene` the win panel uses `Assets/Resources/Sounds/Endgame/Level_Win.asset` and the lose panel uses `Level_Lose.asset`. Surrendering also shows the lose panel, so it plays the same sound.
+
+## Background Music
+
+- `MusicService` (`IMusicService`, Project-scoped) owns one looping `AudioSource` on a `DontDestroyOnLoad` `[Music]` object and mutes it when music is disabled in the settings.
+- Each scene has a `[SceneMusic]` root object with a `SceneMusic` component, which asks for that scene's `MusicTrack` in `Start`. If the requested track is already playing, the service leaves it alone. That is why the music keeps playing without a restart between `MainScene` and `LevelSelect` (both use `Music_Menu`).
+- A different track first fades out over the current track's `FadeOutDuration` and then fades in over the new track's `FadeInDuration`. Fades ignore `Time.timeScale`.
+- `GameResultPanelController.Show` calls `IMusicService.Stop()`, so the game music (`Music_Game`) fades out when the win/lose panel appears. The next scene's `SceneMusic` starts music again.
+- Tracks live in `Assets/Resources/Sounds/Music/`. The music clips are imported as streamed Vorbis.
 
 ## Helpers Extracted From LevelController
 

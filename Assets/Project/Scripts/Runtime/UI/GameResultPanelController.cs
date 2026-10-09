@@ -33,15 +33,17 @@ namespace SBabchuk.Runtime.UI
 
         private ISceneTransitionService _sceneTransitionService;
         private IAudioService _audioService;
+        private IMusicService _musicService;
         private SignalSubscriptions _signals;
         private Tween _fadeTween;
         private Tween _showDelayTween;
 
         [Inject]
-        public void Construct(ISceneTransitionService sceneTransitionService, IAudioService audioService, SignalBus signalBus)
+        public void Construct(ISceneTransitionService sceneTransitionService, IAudioService audioService, IMusicService musicService, SignalBus signalBus)
         {
             _sceneTransitionService = sceneTransitionService;
             _audioService = audioService;
+            _musicService = musicService;
             _signals = new SignalSubscriptions(signalBus)
                 .Add<GameFinishedSignal>(OnGameFinished);
         }
@@ -66,6 +68,7 @@ namespace SBabchuk.Runtime.UI
             _panel.SetActive(true);
             Time.timeScale = 0f;
             PlayFadeIn();
+            _musicService?.Stop();
             _audioService?.Play(_showSound);
         }
 
