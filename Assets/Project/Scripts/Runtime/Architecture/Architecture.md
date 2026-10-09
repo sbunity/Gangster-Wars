@@ -92,6 +92,10 @@ Each level's background is a prefab with a `LevelBackground` component on its ro
 - `UIClickSound` goes on any clickable UI object (`Button`, `Toggle`, `ScrollNudgeButton`). On a left click it plays `UISoundsConfig.Click` through `IAudioService`. It plays only when the object was interactable at pointer down, so a disabled button stays silent, and a buy button that becomes disabled after it is clicked still plays the sound.
 - Buttons without the component stay silent: the in-game weapon switch buttons, the grenade drag buttons, and the store card backgrounds that do nothing on click. New buttons need the component added. UI prefabs created at runtime must be instantiated through the container (`IInstantiator`) so the component gets its dependencies.
 
+## Game Result Sounds
+
+`GameResultPanelController` has a `_showSound` field (`SoundConfig`) and plays it through `IAudioService` when the panel is shown. The sound plays together with the panel, so the win sound waits for the win panel's `_showDelay`. In `GameScene` the win panel uses `Assets/Resources/Sounds/Endgame/Level_Win.asset` and the lose panel uses `Level_Lose.asset`. Surrendering also shows the lose panel, so it plays the same sound.
+
 ## Helpers Extracted From LevelController
 
 - `BonusDropService` (`IBonusDropService`, Project-scoped) decides which bonus id is eligible to drop, based on owned weapons/grenades.

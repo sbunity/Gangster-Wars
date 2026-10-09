@@ -1,6 +1,7 @@
 using Cysharp.Threading.Tasks;
 using DG.Tweening;
 using SBabchuk.Runtime.Architecture;
+using SBabchuk.Runtime.Audio;
 using SBabchuk.Runtime.Services.Contracts;
 using UnityEngine;
 using UnityEngine.Serialization;
@@ -23,20 +24,24 @@ namespace SBabchuk.Runtime.UI
 
         [SerializeField, Min(0f)] private float _fadeDuration = 0.4f;
 
+        [SerializeField] private SoundConfig _showSound;
+
         [Header("Sorting")]
         [SerializeField] private Canvas _sortingCanvas;
         [SerializeField] private bool _overrideSorting = true;
         [SerializeField] private int _sortingOrder = 10000;
 
         private ISceneTransitionService _sceneTransitionService;
+        private IAudioService _audioService;
         private SignalSubscriptions _signals;
         private Tween _fadeTween;
         private Tween _showDelayTween;
 
         [Inject]
-        public void Construct(ISceneTransitionService sceneTransitionService, SignalBus signalBus)
+        public void Construct(ISceneTransitionService sceneTransitionService, IAudioService audioService, SignalBus signalBus)
         {
             _sceneTransitionService = sceneTransitionService;
+            _audioService = audioService;
             _signals = new SignalSubscriptions(signalBus)
                 .Add<GameFinishedSignal>(OnGameFinished);
         }
@@ -61,6 +66,7 @@ namespace SBabchuk.Runtime.UI
             _panel.SetActive(true);
             Time.timeScale = 0f;
             PlayFadeIn();
+            _audioService?.Play(_showSound);
         }
 
         public void Hide()

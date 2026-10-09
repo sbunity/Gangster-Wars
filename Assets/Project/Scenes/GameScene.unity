@@ -4301,6 +4301,7 @@ MonoBehaviour:
   _canvasGroup: {fileID: 84370548}
   _showDelay: 0
   _fadeDuration: 0.4
+  _showSound: {fileID: 11400000, guid: 196d468b0fdf86943b43092aba838627, type: 2}
   _sortingCanvas: {fileID: 0}
   _overrideSorting: 1
   _sortingOrder: 10000
@@ -18028,6 +18029,7 @@ MonoBehaviour:
   _canvasGroup: {fileID: 1448598040}
   _showDelay: 1
   _fadeDuration: 0.4
+  _showSound: {fileID: 11400000, guid: 44db1d4f9a5e36443b92b7f8e473ddeb, type: 2}
   _sortingCanvas: {fileID: 0}
   _overrideSorting: 1
   _sortingOrder: 10000
