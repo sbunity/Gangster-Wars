@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SBabchuk.Runtime.Audio.SoundConfig
   _clips:
   - {fileID: 8300000, guid: a3260825d3a451546a86bda2053a68f1, type: 3}
-  _volume: 1
+  _volume: 0.3
   _pitchRange: {x: 0.95, y: 1.05}
   _maxInstances: 2
   _minInterval: 0

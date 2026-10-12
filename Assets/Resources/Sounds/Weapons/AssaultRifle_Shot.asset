@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: AssaultRifle_Shot
   m_EditorClassIdentifier: Assembly-CSharp::SBabchuk.Runtime.Audio.SoundConfig
   _clips:
-  - {fileID: 8300000, guid: b823a8be4bd96534785f2885120cc982, type: 3}
-  _volume: 1
+  - {fileID: 8300000, guid: fa5635b7b1ae0814b9d4128258f39d6d, type: 3}
+  _volume: 0.2
   _pitchRange: {x: 0.95, y: 1.05}
   _maxInstances: 4
   _minInterval: 0

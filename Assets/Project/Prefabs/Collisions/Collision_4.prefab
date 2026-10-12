@@ -47,11 +47,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f0d067f6259a0bb41bb7a541a431323c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  IsStatic: 0
-  InChildren: 1
-  sortAnchor: {fileID: 0}
-  AnchorOffset: -0.5
-  renderList: []
+  _isStatic: 0
+  _inChildren: 1
+  _sortAnchor: {fileID: 0}
+  _anchorOffset: -0.5
+  _renderList: []
 --- !u!114 &8635823340961072817
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -65,10 +65,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _parent: {fileID: 0}
-  damage: 0
-  radius: 0
-  time: 0
-  timeParticle: 1
+  _damage: 0
+  _radius: 0
+  _time: 0
+  _sound: {fileID: 11400000, guid: 9d582e1cb38617a459a0b6cb30d7d51a, type: 2}
+  _timeParticle: 1
 --- !u!114 &5032129720409336735
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -185,7 +186,8 @@ PrefabInstance:
       propertyPath: m_SortingLayerID
       value: 949104003
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 8235076, guid: e6ea0c2b13012484ba2f5dc1054e6d75, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []

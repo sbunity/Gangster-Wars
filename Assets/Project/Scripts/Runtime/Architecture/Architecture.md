@@ -103,6 +103,13 @@ Each level's background is a prefab with a `LevelBackground` component on its ro
 
 `GameResultPanelController` has a `_showSound` field (`SoundConfig`) and plays it through `IAudioService` when the panel is shown. The sound plays together with the panel, so the win sound waits for the win panel's `_showDelay`. In `GameScene` the win panel uses `Assets/Resources/Sounds/Endgame/Level_Win.asset` and the lose panel uses `Level_Lose.asset`. Surrendering also shows the lose panel, so it plays the same sound.
 
+## Explosion Sounds
+
+- `CollisionController` has a `_sound` field (`SoundConfig`) and plays it through `IAudioService` in `Init`, the moment a collision comes out of the pool. Collisions are created only by `GameFactory.CreateCollision`, which injects the dependencies.
+- Explosion sounds live in `Assets/Resources/Sounds/Weapons/Explosions/`. `Collision_5` uses `Explosion_SpikyFire` and `Collision_4` uses `Explosion_RoundFire`. Both use the Epic Toon FX `etfx_explosion_rocket` clip with a fixed pitch (1.1 and 1.2).
+- `Collision_5` is spawned by every dynamite (`DynamiteBulletController`: the player Bomber, Enemy_9, Enemy_14) and by Grenade_1. `Collision_4` is Grenade_2. Grenade_3 (`Collision_2`, fire) and Grenade_4 (`Collision_3`) have no sound.
+- The Epic Toon FX effect prefabs carry their own `AudioSource`s. `Collision_4` and `Collision_5` remove them as prefab overrides, so explosion audio goes only through `IAudioService`. New collision prefabs built from Epic Toon FX effects must remove the `AudioSource` too and set `_sound` instead.
+
 ## Background Music
 
 - `MusicService` (`IMusicService`, Project-scoped) owns one looping `AudioSource` on a `DontDestroyOnLoad` `[Music]` object and mutes it when music is disabled in the settings.

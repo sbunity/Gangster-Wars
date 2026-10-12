@@ -1,6 +1,8 @@
 using UnityEngine;
 using SBabchuk.Runtime.Architecture;
+using SBabchuk.Runtime.Audio;
 using SBabchuk.Runtime.Gameplay.Enemies;
+using SBabchuk.Runtime.Services.Contracts;
 using Zenject;
 using UnityEngine.Serialization;
 
@@ -24,12 +26,16 @@ namespace SBabchuk.Runtime.Gameplay.Collisions
         private float _time;
         public float Time { get => _time; set => _time = value; }
 
+        [SerializeField] private SoundConfig _sound;
+
         private SortingEnemy _sorting;
+        private IAudioService _audioService;
 
         [Inject]
-        public void Construct(SignalBus signalBus)
+        public void Construct(SignalBus signalBus, IAudioService audioService)
         {
             _signalBus = signalBus;
+            _audioService = audioService;
         }
 
         protected virtual void Awake()
@@ -58,6 +64,7 @@ namespace SBabchuk.Runtime.Gameplay.Collisions
             _damage = damage;
             _radius = radius;
             _time = time;
+            _audioService?.Play(_sound);
         }
 
         public virtual void Pop()
