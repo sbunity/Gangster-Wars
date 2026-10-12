@@ -110,6 +110,14 @@ Each level's background is a prefab with a `LevelBackground` component on its ro
 - `Collision_5` is spawned by every dynamite (`DynamiteBulletController`: the player Bomber, Enemy_9, Enemy_14) and by Grenade_1. `Collision_4` is Grenade_2. Grenade_3 (`Collision_2`, fire) and Grenade_4 (`Collision_3`) have no sound.
 - The Epic Toon FX effect prefabs carry their own `AudioSource`s. `Collision_4` and `Collision_5` remove them as prefab overrides, so explosion audio goes only through `IAudioService`. New collision prefabs built from Epic Toon FX effects must remove the `AudioSource` too and set `_sound` instead.
 
+## Gangster And Enemy Shot Sounds
+
+- Shot sounds are data, set per entry in the database editors ("Звук пострілу"): `Weapon.Sounds` (`WeaponStoreDatabase`) for the leader's weapons, `Personage.Sounds` (`PersonageSounds`, `MainPlayerDatabase`) for the ally gangsters, `Enemy.Sounds` (`EnemySounds`, `EnemyDatabase`) for enemies. Each has a `Shot` `SoundConfig`; an empty one stays silent.
+- `SniperGangsterController` and `BomberGangsterController` play `Sounds.Shot` through `IAudioService` in `SpawnBullet`, so the sound matches the Spine fire/throw event, not the start of the animation.
+- `EnemyControllerBase.PlayShotSound()` plays the enemy's `Sounds.Shot`. Every ranged enemy controller calls it where it spawns bullets: `RangeEnemyController` (Enemy_5, Enemy_10) and `BomberEnemyController` (Enemy_9) once per attack, `BomberBossEnemyController` (Enemy_14) once for its two simultaneous dynamites, `BigBossEnemyController` (Enemy_12) once per bullet of its 4-shot burst (0.1 s apart), so the shot `SoundConfig` needs `MaxInstances` of at least 4.
+- Enemy_5, Enemy_10 and Enemy_12 share `Weapons/Enemy/Enemy_Shot.asset` (`EnemyShots.wav`, trimmed to the 1.1 s shot so silent tails don't hold pool voices).
+- The ally Bomber has its own `SoundConfig` (`Weapons/Gangsters/Bomber_Throw.asset`), separate from the enemies, so they can be tuned apart even though both use `ThrowDinamite.wav`. Enemy_9 and Enemy_14 share `Weapons/Enemy/Enemy_DynamiteThrow.asset`. Sound folders under `Assets/Resources/Sounds/Weapons/`: `Player` (leader weapons), `Gangsters` (Sniper, Bomber), `Enemy`, `Explosions`.
+
 ## Background Music
 
 - `MusicService` (`IMusicService`, Project-scoped) owns one looping `AudioSource` on a `DontDestroyOnLoad` `[Music]` object and mutes it when music is disabled in the settings.

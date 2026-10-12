@@ -7,6 +7,8 @@ using DG.Tweening;
 using UnityEngine.Serialization;
 using SBabchuk.Runtime.Databases.MainPlayers;
 using SBabchuk.Runtime.Databases.PlayerPrefs;
+using SBabchuk.Runtime.Services.Contracts;
+using Zenject;
 
 namespace SBabchuk.Runtime.Gameplay.Characters
 {
@@ -29,6 +31,13 @@ namespace SBabchuk.Runtime.Gameplay.Characters
         private Vector3 _aimDefaultPosition;
         private bool _readyToFire;
         private float _aimTimer;
+        private IAudioService _audioService;
+
+        [Inject]
+        public void ConstructSniper(IAudioService audioService)
+        {
+            _audioService = audioService;
+        }
 
         public override void Init()
         {
@@ -94,6 +103,7 @@ namespace SBabchuk.Runtime.Gameplay.Characters
         public override void SpawnBullet()
         {
             _characterWeapon.Fire(_personage.BulletId, _properties.Damage, CreateBulletPoint.GetPosition(), _target.position, 0);
+            _audioService.Play(_personage.Sounds.Shot);
         }
 
         public override void AttackEnded()

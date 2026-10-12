@@ -7,6 +7,8 @@ using DG.Tweening;
 using UnityEngine.Serialization;
 using SBabchuk.Runtime.Databases.MainPlayers;
 using SBabchuk.Runtime.Gameplay.Enemies;
+using SBabchuk.Runtime.Services.Contracts;
+using Zenject;
 
 namespace SBabchuk.Runtime.Gameplay.Characters
 {
@@ -22,6 +24,13 @@ namespace SBabchuk.Runtime.Gameplay.Characters
         private bool _hasLastTargetPosition;
         private PersonageSettings _properties;
         private Personage _personage;
+        private IAudioService _audioService;
+
+        [Inject]
+        public void ConstructBomber(IAudioService audioService)
+        {
+            _audioService = audioService;
+        }
 
         public override void Awake()
         {
@@ -70,6 +79,7 @@ namespace SBabchuk.Runtime.Gameplay.Characters
         {
             var offset = Vector2.Distance(_center.GetPosition(), CreateBulletPoint.GetPosition());
             _characterWeapon.Fire(_personage.BulletId, _properties.Damage, CreateBulletPoint.GetPosition(), GetTargetPosition(), offset);
+            _audioService.Play(_personage.Sounds.Shot);
         }
 
         public bool FindEnemy()

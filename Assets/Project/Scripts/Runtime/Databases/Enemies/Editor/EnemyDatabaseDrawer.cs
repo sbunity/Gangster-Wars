@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEditor;
 using System.Collections.Generic;
+using SBabchuk.Runtime.Audio;
 using SBabchuk.Runtime.Databases.Bullets;
 
 namespace SBabchuk.Runtime.Databases.Enemies
@@ -125,6 +126,7 @@ namespace SBabchuk.Runtime.Databases.Enemies
                     Utils.ChangeColor(defaultColor);
                     if (_enemy.BulletId != -1)
                         DrawBulletInfo(_enemy.BulletId);
+                    _enemy.Sounds.Shot = (SoundConfig)EditorGUILayout.ObjectField("Звук пострілу: ", _enemy.Sounds.Shot, typeof(SoundConfig), false);
                 }
 
                 GUILayout.EndVertical();

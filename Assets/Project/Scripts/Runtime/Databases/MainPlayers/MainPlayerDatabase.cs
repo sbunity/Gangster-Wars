@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using SBabchuk.Runtime.Audio;
 using UnityEngine;
 using UnityEngine.Serialization;
 
@@ -92,12 +93,22 @@ namespace SBabchuk.Runtime.Databases.MainPlayers
         private PersonageSettings _settings = new PersonageSettings();
         public PersonageSettings Settings { get => _settings; set => _settings = value; }
 
+        [SerializeField] private PersonageSounds _sounds = new();
+        public PersonageSounds Sounds { get => _sounds; set => _sounds = value; }
+
         public Personage(int _id)
         {
             this._id = _id;
             this._name = "Personage_" + (_id + 1);
             this._bulletId = -1;
         }
+    }
+
+    [System.Serializable]
+    public class PersonageSounds
+    {
+        [SerializeField] private SoundConfig _shot;
+        public SoundConfig Shot { get => _shot; set => _shot = value; }
     }
 
     [System.Serializable]

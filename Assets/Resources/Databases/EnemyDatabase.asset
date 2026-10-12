@@ -29,6 +29,8 @@ MonoBehaviour:
     _bulletId: -1
     _dropChance: 0
     _bonusId: -1
+    _sounds:
+      _shot: {fileID: 0}
   - _id: 1
     _name: Enemy_2
     _displayName: Bluecap Bruno
@@ -45,6 +47,8 @@ MonoBehaviour:
     _bulletId: -1
     _dropChance: 0
     _bonusId: -1
+    _sounds:
+      _shot: {fileID: 0}
   - _id: 2
     _name: Enemy_3
     _displayName: Razor Frankie
@@ -61,6 +65,8 @@ MonoBehaviour:
     _bulletId: -1
     _dropChance: 0
     _bonusId: -1
+    _sounds:
+      _shot: {fileID: 0}
   - _id: 3
     _name: Enemy_4
     _displayName: Tommy Two-Vests
@@ -77,6 +83,8 @@ MonoBehaviour:
     _bulletId: -1
     _dropChance: 0
     _bonusId: -1
+    _sounds:
+      _shot: {fileID: 0}
   - _id: 4
     _name: Enemy_5
     _displayName: Madam Rosso
@@ -93,6 +101,8 @@ MonoBehaviour:
     _bulletId: 5
     _dropChance: 0
     _bonusId: -1
+    _sounds:
+      _shot: {fileID: 11400000, guid: 573fac3d1041f734f8108a7cce7147d4, type: 2}
   - _id: 5
     _name: Enemy_6
     _displayName: Slugger Joey
@@ -109,6 +119,8 @@ MonoBehaviour:
     _bulletId: -1
     _dropChance: 0
     _bonusId: -1
+    _sounds:
+      _shot: {fileID: 0}
   - _id: 6
     _name: Enemy_7
     _displayName: Shield O'Hara
@@ -125,6 +137,8 @@ MonoBehaviour:
     _bulletId: -1
     _dropChance: 0
     _bonusId: -1
+    _sounds:
+      _shot: {fileID: 0}
   - _id: 7
     _name: Enemy_8
     _displayName: Orange Ace
@@ -141,6 +155,8 @@ MonoBehaviour:
     _bulletId: -1
     _dropChance: 0
     _bonusId: -1
+    _sounds:
+      _shot: {fileID: 0}
   - _id: 8
     _name: Enemy_9
     _displayName: Silencer Nick
@@ -157,6 +173,8 @@ MonoBehaviour:
     _bulletId: 4
     _dropChance: 0
     _bonusId: -1
+    _sounds:
+      _shot: {fileID: 11400000, guid: f657aedc56a947b42805141b5fd43ec2, type: 2}
   - _id: 9
     _name: Enemy_10
     _displayName: Captain Cobalt
@@ -173,6 +191,8 @@ MonoBehaviour:
     _bulletId: 6
     _dropChance: 0
     _bonusId: -1
+    _sounds:
+      _shot: {fileID: 11400000, guid: 573fac3d1041f734f8108a7cce7147d4, type: 2}
   - _id: 10
     _name: Enemy_11
     _displayName: Fusebox Vinnie
@@ -189,6 +209,8 @@ MonoBehaviour:
     _bulletId: -1
     _dropChance: 0
     _bonusId: -1
+    _sounds:
+      _shot: {fileID: 0}
   - _id: 11
     _name: Enemy_12
     _displayName: Big Al Casket
@@ -205,6 +227,8 @@ MonoBehaviour:
     _bulletId: 8
     _dropChance: 0
     _bonusId: -1
+    _sounds:
+      _shot: {fileID: 11400000, guid: 573fac3d1041f734f8108a7cce7147d4, type: 2}
   - _id: 12
     _name: Enemy_13
     _displayName: Chef Molotov
@@ -221,6 +245,8 @@ MonoBehaviour:
     _bulletId: -1
     _dropChance: 0
     _bonusId: -1
+    _sounds:
+      _shot: {fileID: 0}
   - _id: 13
     _name: Enemy_14
     _displayName: Goldtooth Mamba
@@ -237,6 +263,8 @@ MonoBehaviour:
     _bulletId: 3
     _dropChance: 0
     _bonusId: -1
+    _sounds:
+      _shot: {fileID: 11400000, guid: f657aedc56a947b42805141b5fd43ec2, type: 2}
   - _id: 14
     _name: Enemy_15
     _displayName: Don Black Tie
@@ -253,3 +281,5 @@ MonoBehaviour:
     _bulletId: -1
     _dropChance: 0
     _bonusId: -1
+    _sounds:
+      _shot: {fileID: 0}

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using SBabchuk.Runtime.Audio;
 using UnityEngine;
 using UnityEngine.Serialization;
 
@@ -99,6 +100,9 @@ namespace SBabchuk.Runtime.Databases.Enemies
         private int _bonusId;
         public int BonusId { get => _bonusId; set => _bonusId = value; }
 
+        [SerializeField] private EnemySounds _sounds = new();
+        public EnemySounds Sounds { get => _sounds; set => _sounds = value; }
+
         public Enemy(int _id)
         {
             this._id = _id;
@@ -132,6 +136,14 @@ namespace SBabchuk.Runtime.Databases.Enemies
             this._attackRadius = enemy.AttackRadius;
             this._bulletId = enemy.BulletId;
             this._bonusId = -1;
+            this._sounds = enemy.Sounds;
         }
+    }
+
+    [System.Serializable]
+    public class EnemySounds
+    {
+        [SerializeField] private SoundConfig _shot;
+        public SoundConfig Shot { get => _shot; set => _shot = value; }
     }
 }

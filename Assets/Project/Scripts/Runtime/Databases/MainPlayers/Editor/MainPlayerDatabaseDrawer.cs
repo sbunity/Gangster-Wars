@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEditor;
 using System.Collections.Generic;
+using SBabchuk.Runtime.Audio;
 using SBabchuk.Runtime.Databases.Bullets;
 
 namespace SBabchuk.Runtime.Databases.MainPlayers
@@ -122,6 +123,7 @@ namespace SBabchuk.Runtime.Databases.MainPlayers
                     Utils.ChangeColor(defaultColor);
                     if (_record.BulletId != -1)
                         DrawBulletInfo(_record.BulletId);
+                    _record.Sounds.Shot = (SoundConfig)EditorGUILayout.ObjectField("Звук пострілу: ", _record.Sounds.Shot, typeof(SoundConfig), false);
                     Utils.ChangeColor(Color.green);
                     _record.CountUpgrades = EditorGUILayout.IntSlider("Кількість апгрейдів: ", _record.CountUpgrades, 1, 5);
                     Utils.ChangeColor(defaultColor);

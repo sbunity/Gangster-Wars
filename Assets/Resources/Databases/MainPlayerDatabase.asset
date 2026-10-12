@@ -12,84 +12,88 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6db3aca03db68cd4d84680a02a06d844, type: 3}
   m_Name: MainPlayerDatabase
   m_EditorClassIdentifier: 
-  personages:
-  - id: 0
-    name: Sniper
-    ico: {fileID: 21300000, guid: 00337818850f83b4e94c8982320aba5e, type: 3}
-    price: 260
-    countUpgrades: 5
-    bulletID: 5
-    upgrades:
-    - id: 0
-      name: Upgrade_1
-      price: 70
-      settings:
-        speedAtack: 3.1
-        damage: 7
-    - id: 1
-      name: Upgrade_2
-      price: 130
-      settings:
-        speedAtack: 2.9
-        damage: 8
-    - id: 2
-      name: Upgrade_3
-      price: 215
-      settings:
-        speedAtack: 2.6
-        damage: 10
-    - id: 3
-      name: Upgrade_4
-      price: 330
-      settings:
-        speedAtack: 2.35
-        damage: 13
-    - id: 4
-      name: Upgrade_5
-      price: 500
-      settings:
-        speedAtack: 2.1
-        damage: 17
-    settings:
-      speedAtack: 3.3
-      damage: 5
-  - id: 1
-    name: Bomber
-    ico: {fileID: 21300000, guid: 732628794ef987045881d629caa195ca, type: 3}
-    price: 520
-    countUpgrades: 5
-    bulletID: 2
-    upgrades:
-    - id: 0
-      name: Upgrade_1
-      price: 95
-      settings:
-        speedAtack: 3.5
-        damage: 8
-    - id: 1
-      name: Upgrade_2
-      price: 190
-      settings:
-        speedAtack: 3.25
-        damage: 10
-    - id: 2
-      name: Upgrade_3
-      price: 320
-      settings:
-        speedAtack: 2.95
-        damage: 13
-    - id: 3
-      name: Upgrade_4
-      price: 500
-      settings:
-        speedAtack: 2.65
-        damage: 17
-    - id: 4
-      name: Upgrade_5
-      price: 720
-      settings:
-        speedAtack: 2.4
-        damage: 22
-    settings:
-      speedAtack: 3.7
-      damage: 6
+  _personages:
+  - _id: 0
+    _name: Sniper
+    _icon: {fileID: 21300000, guid: 00337818850f83b4e94c8982320aba5e, type: 3}
+    _price: 260
+    _countUpgrades: 5
+    _bulletId: 5
+    _upgrades:
+    - _id: 0
+      _name: Upgrade_1
+      _price: 70
+      _settings:
+        _attackSpeed: 3.1
+        _damage: 7
+    - _id: 1
+      _name: Upgrade_2
+      _price: 130
+      _settings:
+        _attackSpeed: 2.9
+        _damage: 8
+    - _id: 2
+      _name: Upgrade_3
+      _price: 215
+      _settings:
+        _attackSpeed: 2.6
+        _damage: 10
+    - _id: 3
+      _name: Upgrade_4
+      _price: 330
+      _settings:
+        _attackSpeed: 2.35
+        _damage: 13
+    - _id: 4
+      _name: Upgrade_5
+      _price: 500
+      _settings:
+        _attackSpeed: 2.1
+        _damage: 17
+    _settings:
+      _attackSpeed: 3.3
+      _damage: 5
+    _sounds:
+      _shot: {fileID: 11400000, guid: 420e90aea1ef4d47a0281ac624f70312, type: 2}
+  - _id: 1
+    _name: Bomber
+    _icon: {fileID: 21300000, guid: 732628794ef987045881d629caa195ca, type: 3}
+    _price: 520
+    _countUpgrades: 5
+    _bulletId: 2
+    _upgrades:
+    - _id: 0
+      _name: Upgrade_1
+      _price: 95
+      _settings:
+        _attackSpeed: 3.5
+        _damage: 8
+    - _id: 1
+      _name: Upgrade_2
+      _price: 190
+      _settings:
+        _attackSpeed: 3.25
+        _damage: 10
+    - _id: 2
+      _name: Upgrade_3
+      _price: 320
+      _settings:
+        _attackSpeed: 2.95
+        _damage: 13
+    - _id: 3
+      _name: Upgrade_4
+      _price: 500
+      _settings:
+        _attackSpeed: 2.65
+        _damage: 17
+    - _id: 4
+      _name: Upgrade_5
+      _price: 720
+      _settings:
+        _attackSpeed: 2.4
+        _damage: 22
+    _settings:
+      _attackSpeed: 3.7
+      _damage: 6
+    _sounds:
+      _shot: {fileID: 11400000, guid: 1a523bd201aaa554781d9e0ccdcc3b03, type: 2}
