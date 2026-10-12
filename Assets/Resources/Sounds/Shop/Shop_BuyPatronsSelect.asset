@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Shop_BuyPatronsSelect
   m_EditorClassIdentifier: Assembly-CSharp::SBabchuk.Runtime.Audio.SoundConfig
   _clips:
-  - {fileID: 8300000, guid: 3ac04e2eaf641da40b6583bdec612f11, type: 3}
+  - {fileID: 8300000, guid: 2dbebcd0e19b7ef4fb0e27d2ffde5fa7, type: 3}
   _volume: 1
   _pitchRange: {x: 1, y: 1}
   _maxInstances: 2
