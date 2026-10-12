@@ -1,5 +1,6 @@
 using DG.Tweening;
 using SBabchuk.Runtime.Architecture;
+using SBabchuk.Runtime.Audio;
 using SBabchuk.Runtime.Services.Contracts;
 using UnityEngine;
 using UnityEngine.UI;
@@ -11,17 +12,21 @@ namespace SBabchuk.Runtime.UI
     {
         private const float CountUpDuration = 0.55f;
 
+        [SerializeField] private SoundConfig _addSound;
+
         private Text _txt;
         private CountPulse _countPulse;
         private IPlayerProgressService _progressService;
+        private IAudioService _audioService;
         private SignalSubscriptions _signals;
         private Tween _countTween;
         private int _displayed;
 
         [Inject]
-        public void Construct(IPlayerProgressService progressService, SignalBus signalBus)
+        public void Construct(IPlayerProgressService progressService, IAudioService audioService, SignalBus signalBus)
         {
             _progressService = progressService;
+            _audioService = audioService;
             _signals = new SignalSubscriptions(signalBus)
                 .Add<CoinsChangedSignal>(OnCoinsChanged);
         }
@@ -86,6 +91,7 @@ namespace SBabchuk.Runtime.UI
             if (_txt != null)
                 _countPulse.SetTarget(_txt.transform);
             _countPulse.Play();
+            _audioService?.Play(_addSound);
         }
 
         private T GetOrAdd<T>() where T : Component

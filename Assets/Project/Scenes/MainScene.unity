@@ -385,6 +385,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e39149d30e040d45ac76426d897ba51, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SBabchuk.Runtime.UI.UIClickSound
+  _type: 2
+  _customSound: {fileID: 0}
 --- !u!1 &9712442
 GameObject:
   m_ObjectHideFlags: 0
@@ -2143,6 +2145,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e39149d30e040d45ac76426d897ba51, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SBabchuk.Runtime.UI.UIClickSound
+  _type: 1
+  _customSound: {fileID: 0}
 --- !u!1 &81256173
 GameObject:
   m_ObjectHideFlags: 0
@@ -3189,6 +3193,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e39149d30e040d45ac76426d897ba51, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SBabchuk.Runtime.UI.UIClickSound
+  _type: 1
+  _customSound: {fileID: 0}
 --- !u!1 &116466977
 GameObject:
   m_ObjectHideFlags: 0
@@ -3486,6 +3492,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e39149d30e040d45ac76426d897ba51, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SBabchuk.Runtime.UI.UIClickSound
+  _type: 1
+  _customSound: {fileID: 0}
 --- !u!1 &136705737
 GameObject:
   m_ObjectHideFlags: 0
@@ -4659,6 +4667,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e39149d30e040d45ac76426d897ba51, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SBabchuk.Runtime.UI.UIClickSound
+  _type: 0
+  _customSound: {fileID: 0}
 --- !u!1 &193782408
 GameObject:
   m_ObjectHideFlags: 0
@@ -4805,6 +4815,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e39149d30e040d45ac76426d897ba51, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SBabchuk.Runtime.UI.UIClickSound
+  _type: 1
+  _customSound: {fileID: 0}
 --- !u!1 &199325637
 GameObject:
   m_ObjectHideFlags: 0
@@ -5410,6 +5422,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e39149d30e040d45ac76426d897ba51, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SBabchuk.Runtime.UI.UIClickSound
+  _type: 1
+  _customSound: {fileID: 0}
 --- !u!1 &230085618
 GameObject:
   m_ObjectHideFlags: 0
@@ -5803,6 +5817,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e39149d30e040d45ac76426d897ba51, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SBabchuk.Runtime.UI.UIClickSound
+  _type: 1
+  _customSound: {fileID: 0}
 --- !u!1 &234861709
 GameObject:
   m_ObjectHideFlags: 0
@@ -7962,6 +7978,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e39149d30e040d45ac76426d897ba51, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SBabchuk.Runtime.UI.UIClickSound
+  _type: 0
+  _customSound: {fileID: 0}
 --- !u!1 &348181893
 GameObject:
   m_ObjectHideFlags: 0
@@ -8962,6 +8980,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e39149d30e040d45ac76426d897ba51, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SBabchuk.Runtime.UI.UIClickSound
+  _type: 0
+  _customSound: {fileID: 0}
 --- !u!1 &392845331
 GameObject:
   m_ObjectHideFlags: 0
@@ -10061,6 +10081,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e39149d30e040d45ac76426d897ba51, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SBabchuk.Runtime.UI.UIClickSound
+  _type: 0
+  _customSound: {fileID: 0}
 --- !u!1 &455301242
 GameObject:
   m_ObjectHideFlags: 0
@@ -10282,6 +10304,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e39149d30e040d45ac76426d897ba51, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SBabchuk.Runtime.UI.UIClickSound
+  _type: 2
+  _customSound: {fileID: 0}
 --- !u!1 &457436263
 GameObject:
   m_ObjectHideFlags: 0
@@ -11456,6 +11480,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e39149d30e040d45ac76426d897ba51, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SBabchuk.Runtime.UI.UIClickSound
+  _type: 2
+  _customSound: {fileID: 0}
 --- !u!1 &514471337
 GameObject:
   m_ObjectHideFlags: 0
@@ -12297,6 +12323,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e39149d30e040d45ac76426d897ba51, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SBabchuk.Runtime.UI.UIClickSound
+  _type: 0
+  _customSound: {fileID: 0}
 --- !u!1 &556097046
 GameObject:
   m_ObjectHideFlags: 0
@@ -12597,6 +12625,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e39149d30e040d45ac76426d897ba51, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SBabchuk.Runtime.UI.UIClickSound
+  _type: 0
+  _customSound: {fileID: 11400000, guid: ca8b007cd14241846b5e81781c3cfb2b, type: 2}
 --- !u!1 &564931671
 GameObject:
   m_ObjectHideFlags: 0
@@ -13134,6 +13164,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e39149d30e040d45ac76426d897ba51, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SBabchuk.Runtime.UI.UIClickSound
+  _type: 0
+  _customSound: {fileID: 0}
 --- !u!1 &574869394
 GameObject:
   m_ObjectHideFlags: 0
@@ -14907,6 +14939,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e39149d30e040d45ac76426d897ba51, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SBabchuk.Runtime.UI.UIClickSound
+  _type: 1
+  _customSound: {fileID: 0}
 --- !u!1 &672180578
 GameObject:
   m_ObjectHideFlags: 0
@@ -15202,6 +15236,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e39149d30e040d45ac76426d897ba51, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SBabchuk.Runtime.UI.UIClickSound
+  _type: 0
+  _customSound: {fileID: 0}
 --- !u!1 &680974078
 GameObject:
   m_ObjectHideFlags: 0
@@ -16401,6 +16437,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e39149d30e040d45ac76426d897ba51, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SBabchuk.Runtime.UI.UIClickSound
+  _type: 0
+  _customSound: {fileID: 0}
 --- !u!1 &749309818
 GameObject:
   m_ObjectHideFlags: 0
@@ -16999,6 +17037,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e39149d30e040d45ac76426d897ba51, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SBabchuk.Runtime.UI.UIClickSound
+  _type: 1
+  _customSound: {fileID: 0}
 --- !u!1 &776766159
 GameObject:
   m_ObjectHideFlags: 0
@@ -17145,6 +17185,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e39149d30e040d45ac76426d897ba51, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SBabchuk.Runtime.UI.UIClickSound
+  _type: 1
+  _customSound: {fileID: 0}
 --- !u!1 &778591640
 GameObject:
   m_ObjectHideFlags: 0
@@ -18159,6 +18201,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e39149d30e040d45ac76426d897ba51, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SBabchuk.Runtime.UI.UIClickSound
+  _type: 0
+  _customSound: {fileID: 0}
 --- !u!1 &817781908
 GameObject:
   m_ObjectHideFlags: 0
@@ -19272,6 +19316,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e39149d30e040d45ac76426d897ba51, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SBabchuk.Runtime.UI.UIClickSound
+  _type: 2
+  _customSound: {fileID: 0}
 --- !u!1 &856149807
 GameObject:
   m_ObjectHideFlags: 0
@@ -21393,6 +21439,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e39149d30e040d45ac76426d897ba51, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SBabchuk.Runtime.UI.UIClickSound
+  _type: 2
+  _customSound: {fileID: 0}
 --- !u!1 &937714230
 GameObject:
   m_ObjectHideFlags: 0
@@ -22636,6 +22684,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e39149d30e040d45ac76426d897ba51, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SBabchuk.Runtime.UI.UIClickSound
+  _type: 0
+  _customSound: {fileID: 0}
 --- !u!1 &985477377
 GameObject:
   m_ObjectHideFlags: 0
@@ -23721,6 +23771,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e39149d30e040d45ac76426d897ba51, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SBabchuk.Runtime.UI.UIClickSound
+  _type: 0
+  _customSound: {fileID: 0}
 --- !u!1 &1023493046
 GameObject:
   m_ObjectHideFlags: 0
@@ -23942,6 +23994,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e39149d30e040d45ac76426d897ba51, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SBabchuk.Runtime.UI.UIClickSound
+  _type: 1
+  _customSound: {fileID: 0}
 --- !u!1 &1026411560
 GameObject:
   m_ObjectHideFlags: 0
@@ -25160,6 +25214,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e39149d30e040d45ac76426d897ba51, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SBabchuk.Runtime.UI.UIClickSound
+  _type: 0
+  _customSound: {fileID: 0}
 --- !u!1 &1073385724
 GameObject:
   m_ObjectHideFlags: 0
@@ -25732,6 +25788,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e39149d30e040d45ac76426d897ba51, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SBabchuk.Runtime.UI.UIClickSound
+  _type: 2
+  _customSound: {fileID: 0}
 --- !u!1 &1092636236
 GameObject:
   m_ObjectHideFlags: 0
@@ -25892,6 +25950,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e39149d30e040d45ac76426d897ba51, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SBabchuk.Runtime.UI.UIClickSound
+  _type: 0
+  _customSound: {fileID: 0}
 --- !u!1 &1093819212
 GameObject:
   m_ObjectHideFlags: 0
@@ -26269,6 +26329,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e39149d30e040d45ac76426d897ba51, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SBabchuk.Runtime.UI.UIClickSound
+  _type: 0
+  _customSound: {fileID: 0}
 --- !u!1 &1103038180
 GameObject:
   m_ObjectHideFlags: 0
@@ -26706,6 +26768,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e39149d30e040d45ac76426d897ba51, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SBabchuk.Runtime.UI.UIClickSound
+  _type: 1
+  _customSound: {fileID: 0}
 --- !u!1 &1117182677
 GameObject:
   m_ObjectHideFlags: 0
@@ -29280,6 +29344,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e39149d30e040d45ac76426d897ba51, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SBabchuk.Runtime.UI.UIClickSound
+  _type: 1
+  _customSound: {fileID: 0}
 --- !u!1 &1253370755
 GameObject:
   m_ObjectHideFlags: 0
@@ -30052,6 +30118,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e39149d30e040d45ac76426d897ba51, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SBabchuk.Runtime.UI.UIClickSound
+  _type: 2
+  _customSound: {fileID: 0}
 --- !u!1 &1279172957
 GameObject:
   m_ObjectHideFlags: 0
@@ -30272,6 +30340,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e39149d30e040d45ac76426d897ba51, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SBabchuk.Runtime.UI.UIClickSound
+  _type: 1
+  _customSound: {fileID: 0}
 --- !u!1 &1287255632
 GameObject:
   m_ObjectHideFlags: 0
@@ -30722,6 +30792,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e39149d30e040d45ac76426d897ba51, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SBabchuk.Runtime.UI.UIClickSound
+  _type: 1
+  _customSound: {fileID: 0}
 --- !u!1 &1310180063
 GameObject:
   m_ObjectHideFlags: 0
@@ -32320,6 +32392,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e39149d30e040d45ac76426d897ba51, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SBabchuk.Runtime.UI.UIClickSound
+  _type: 1
+  _customSound: {fileID: 0}
 --- !u!1 &1364792381
 GameObject:
   m_ObjectHideFlags: 0
@@ -33630,6 +33704,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e39149d30e040d45ac76426d897ba51, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SBabchuk.Runtime.UI.UIClickSound
+  _type: 2
+  _customSound: {fileID: 0}
 --- !u!1 &1450751204
 GameObject:
   m_ObjectHideFlags: 0
@@ -33768,6 +33844,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e39149d30e040d45ac76426d897ba51, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SBabchuk.Runtime.UI.UIClickSound
+  _type: 0
+  _customSound: {fileID: 0}
 --- !u!1 &1451028331
 GameObject:
   m_ObjectHideFlags: 0
@@ -34248,6 +34326,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e39149d30e040d45ac76426d897ba51, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SBabchuk.Runtime.UI.UIClickSound
+  _type: 2
+  _customSound: {fileID: 0}
 --- !u!1 &1479857485
 GameObject:
   m_ObjectHideFlags: 0
@@ -34861,6 +34941,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e39149d30e040d45ac76426d897ba51, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SBabchuk.Runtime.UI.UIClickSound
+  _type: 0
+  _customSound: {fileID: 11400000, guid: 4b68243c88fd6ba4783c3a512ecc9c99, type: 2}
 --- !u!1 &1505738983
 GameObject:
   m_ObjectHideFlags: 0
@@ -35394,6 +35476,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e39149d30e040d45ac76426d897ba51, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SBabchuk.Runtime.UI.UIClickSound
+  _type: 2
+  _customSound: {fileID: 0}
 --- !u!1 &1525597384
 GameObject:
   m_ObjectHideFlags: 0
@@ -35532,6 +35616,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e39149d30e040d45ac76426d897ba51, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SBabchuk.Runtime.UI.UIClickSound
+  _type: 0
+  _customSound: {fileID: 0}
 --- !u!1 &1525732912
 GameObject:
   m_ObjectHideFlags: 0
@@ -36307,6 +36393,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e39149d30e040d45ac76426d897ba51, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SBabchuk.Runtime.UI.UIClickSound
+  _type: 0
+  _customSound: {fileID: 0}
 --- !u!1 &1543538918
 GameObject:
   m_ObjectHideFlags: 0
@@ -36662,6 +36750,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e39149d30e040d45ac76426d897ba51, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SBabchuk.Runtime.UI.UIClickSound
+  _type: 2
+  _customSound: {fileID: 0}
 --- !u!1 &1549385660
 GameObject:
   m_ObjectHideFlags: 0
@@ -37395,6 +37485,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e39149d30e040d45ac76426d897ba51, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SBabchuk.Runtime.UI.UIClickSound
+  _type: 1
+  _customSound: {fileID: 0}
 --- !u!1 &1576524715
 GameObject:
   m_ObjectHideFlags: 0
@@ -37546,6 +37638,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e39149d30e040d45ac76426d897ba51, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SBabchuk.Runtime.UI.UIClickSound
+  _type: 0
+  _customSound: {fileID: 0}
 --- !u!1 &1579857557
 GameObject:
   m_ObjectHideFlags: 0
@@ -38246,6 +38340,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e39149d30e040d45ac76426d897ba51, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SBabchuk.Runtime.UI.UIClickSound
+  _type: 0
+  _customSound: {fileID: 0}
 --- !u!1 &1611418368
 GameObject:
   m_ObjectHideFlags: 0
@@ -38450,6 +38546,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e39149d30e040d45ac76426d897ba51, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SBabchuk.Runtime.UI.UIClickSound
+  _type: 0
+  _customSound: {fileID: 0}
 --- !u!1 &1628335329
 GameObject:
   m_ObjectHideFlags: 0
@@ -39278,6 +39376,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e39149d30e040d45ac76426d897ba51, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SBabchuk.Runtime.UI.UIClickSound
+  _type: 0
+  _customSound: {fileID: 0}
 --- !u!1 &1664880109
 GameObject:
   m_ObjectHideFlags: 0
@@ -39424,6 +39524,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e39149d30e040d45ac76426d897ba51, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SBabchuk.Runtime.UI.UIClickSound
+  _type: 2
+  _customSound: {fileID: 0}
 --- !u!1 &1667777506
 GameObject:
   m_ObjectHideFlags: 0
@@ -39720,6 +39822,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e39149d30e040d45ac76426d897ba51, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SBabchuk.Runtime.UI.UIClickSound
+  _type: 1
+  _customSound: {fileID: 0}
 --- !u!1 &1671124903
 GameObject:
   m_ObjectHideFlags: 0
@@ -39999,6 +40103,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e39149d30e040d45ac76426d897ba51, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SBabchuk.Runtime.UI.UIClickSound
+  _type: 0
+  _customSound: {fileID: 0}
 --- !u!1 &1676936648
 GameObject:
   m_ObjectHideFlags: 0
@@ -40299,6 +40405,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e39149d30e040d45ac76426d897ba51, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SBabchuk.Runtime.UI.UIClickSound
+  _type: 2
+  _customSound: {fileID: 0}
 --- !u!1 &1684266189
 GameObject:
   m_ObjectHideFlags: 0
@@ -41652,6 +41760,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e39149d30e040d45ac76426d897ba51, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SBabchuk.Runtime.UI.UIClickSound
+  _type: 0
+  _customSound: {fileID: 0}
 --- !u!1 &1740648352
 GameObject:
   m_ObjectHideFlags: 0
@@ -42773,6 +42883,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e39149d30e040d45ac76426d897ba51, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SBabchuk.Runtime.UI.UIClickSound
+  _type: 0
+  _customSound: {fileID: 0}
 --- !u!1 &1795540783
 GameObject:
   m_ObjectHideFlags: 0
@@ -43541,6 +43653,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e39149d30e040d45ac76426d897ba51, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SBabchuk.Runtime.UI.UIClickSound
+  _type: 0
+  _customSound: {fileID: 0}
 --- !u!1 &1834484705
 GameObject:
   m_ObjectHideFlags: 0
@@ -44792,6 +44906,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e39149d30e040d45ac76426d897ba51, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SBabchuk.Runtime.UI.UIClickSound
+  _type: 0
+  _customSound: {fileID: 0}
 --- !u!1 &1886815237
 GameObject:
   m_ObjectHideFlags: 0
@@ -45033,6 +45149,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e39149d30e040d45ac76426d897ba51, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SBabchuk.Runtime.UI.UIClickSound
+  _type: 1
+  _customSound: {fileID: 0}
 --- !u!1 &1889882081
 GameObject:
   m_ObjectHideFlags: 0
@@ -46270,6 +46388,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e39149d30e040d45ac76426d897ba51, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SBabchuk.Runtime.UI.UIClickSound
+  _type: 0
+  _customSound: {fileID: 0}
 --- !u!1 &1960710291
 GameObject:
   m_ObjectHideFlags: 0
@@ -46526,6 +46646,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e39149d30e040d45ac76426d897ba51, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SBabchuk.Runtime.UI.UIClickSound
+  _type: 0
+  _customSound: {fileID: 0}
 --- !u!1 &1965342449
 GameObject:
   m_ObjectHideFlags: 0
@@ -46672,6 +46794,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e39149d30e040d45ac76426d897ba51, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SBabchuk.Runtime.UI.UIClickSound
+  _type: 1
+  _customSound: {fileID: 0}
 --- !u!1 &1968178026
 GameObject:
   m_ObjectHideFlags: 0
@@ -48932,6 +49056,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e39149d30e040d45ac76426d897ba51, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SBabchuk.Runtime.UI.UIClickSound
+  _type: 0
+  _customSound: {fileID: 0}
 --- !u!1 &2049214734
 GameObject:
   m_ObjectHideFlags: 0
@@ -50406,6 +50532,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e39149d30e040d45ac76426d897ba51, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SBabchuk.Runtime.UI.UIClickSound
+  _type: 1
+  _customSound: {fileID: 0}
 --- !u!1 &2122755207
 GameObject:
   m_ObjectHideFlags: 0
@@ -50557,6 +50685,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e39149d30e040d45ac76426d897ba51, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SBabchuk.Runtime.UI.UIClickSound
+  _type: 0
+  _customSound: {fileID: 0}
 --- !u!1 &2124550650
 GameObject:
   m_ObjectHideFlags: 0
@@ -50862,6 +50992,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e39149d30e040d45ac76426d897ba51, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SBabchuk.Runtime.UI.UIClickSound
+  _type: 0
+  _customSound: {fileID: 0}
 --- !u!1 &2128690426
 GameObject:
   m_ObjectHideFlags: 0

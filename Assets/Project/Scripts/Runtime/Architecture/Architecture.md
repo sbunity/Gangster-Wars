@@ -92,7 +92,12 @@ Each level's background is a prefab with a `LevelBackground` component on its ro
 
 - `UISoundsConfig` (`Assets/Resources/Sounds/UI/UISoundsConfig.asset`) holds the shared UI `SoundConfig`s. `ProjectInstaller` binds it from its `_uiSounds` field.
 - `UIClickSound` goes on any clickable UI object (`Button`, `Toggle`, `ScrollNudgeButton`). On a left click it plays `UISoundsConfig.Click` through `IAudioService`. It plays only when the object was interactable at pointer down, so a disabled button stays silent, and a buy button that becomes disabled after it is clicked still plays the sound.
+- `UIClickSound._type` picks the sound: `Click` (default) plays `UISoundsConfig.Click`, `Purchase` plays `UISoundsConfig.Purchase` (`Assets/Resources/Sounds/Shop/Shop_BuyUpgrade.asset`), `Supply` plays `UISoundsConfig.Supply` (`Assets/Resources/Sounds/Shop/Shop_BuyPatronsSelect.asset`). In `MainScene` the `Purchase` type is set on the buy and upgrade buttons of weapons (`LockElementController`, `UnlockElementController.BuyUpgrade`) and barricades (`LockDElementController`, `UnlockDElementController`), and on the character upgrade buttons (`MainPlayerUnlockElementController`). The `Supply` type is set on the magazine buttons (`UnlockElementController.BuyMagazine`), the grenade buy buttons (`UnlockGElementController`) and the barricade select buttons (`UnlockDElementController.Select`). `UIClickSound._customSound` overrides the type when set: the Bomber buy button (`[Canvas]/BuyBomber`) plays `Shop_BuyBomber.asset`, the Sniper buy button (`[Canvas]/Sniper`) plays `Shop_BuySniper.asset`.
 - Buttons without the component stay silent: the in-game weapon switch buttons, the grenade drag buttons, and the store card backgrounds that do nothing on click. New buttons need the component added. UI prefabs created at runtime must be instantiated through the container (`IInstantiator`) so the component gets its dependencies.
+
+## Coin Sound
+
+`CoinInfo` has an `_addSound` field (`SoundConfig`). When coins go up (enemy kill reward, early wave start reward), the counter counts up and then pulses; the sound plays together with the pulse. A fast series of rewards restarts the count-up, so the sound plays once when it settles. Only the `GameScene` coin counter has the sound set (`Assets/Resources/Sounds/UI/UI_AddMoney.asset`); in `MainScene` the field is empty and coins only go down there.
 
 ## Game Result Sounds
 

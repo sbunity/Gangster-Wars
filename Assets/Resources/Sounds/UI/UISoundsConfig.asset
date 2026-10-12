@@ -13,3 +13,5 @@ MonoBehaviour:
   m_Name: UISoundsConfig
   m_EditorClassIdentifier: Assembly-CSharp::SBabchuk.Runtime.Audio.UISoundsConfig
   _click: {fileID: 11400000, guid: f377d410a7842934182b05a5e3afa2cd, type: 2}
+  _purchase: {fileID: 11400000, guid: f35732769387fa44998ca36ee9b596fe, type: 2}
+  _supply: {fileID: 11400000, guid: cc088a3df4a5c304db76b9361bc6c4a5, type: 2}
