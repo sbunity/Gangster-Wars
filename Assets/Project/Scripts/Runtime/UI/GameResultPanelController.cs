@@ -83,7 +83,6 @@ namespace SBabchuk.Runtime.UI
 
         protected void TransitionTo(Scene scene)
         {
-            Time.timeScale = 1f;
             _sceneTransitionService?.TransitionToAsync(scene).Forget();
             Hide();
         }

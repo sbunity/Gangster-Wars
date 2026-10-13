@@ -99,6 +99,12 @@ Each level's background is a prefab with a `LevelBackground` component on its ro
 
 `CoinInfo` has an `_addSound` field (`SoundConfig`). When coins go up (enemy kill reward, early wave start reward), the counter counts up and then pulses; the sound plays together with the pulse. A fast series of rewards restarts the count-up, so the sound plays once when it settles. Only the `GameScene` coin counter has the sound set (`Assets/Resources/Sounds/UI/UI_AddMoney.asset`); in `MainScene` the field is empty and coins only go down there.
 
+## Scene Transition And Pause
+
+- `GameResultPanelController.Show` pauses the game (`Time.timeScale = 0`). The panel buttons (`TransitionTo`) do not unpause it; the game stays paused while the loading screen fades in and the next scene loads, so the leaving `GameScene` cannot play shots, reloads or other gameplay sounds under the fade.
+- `SceneTransitionService.TransitionToAsync` sets `Time.timeScale = 1` right after the new scene has loaded, before the settle frames and the fade-out. Every scene reached through the transition service starts unpaused, whatever paused the previous one.
+- The loading screen fade, the music fades and the result panel fade use unscaled time, so they keep running while the game is paused.
+
 ## Game Result Sounds
 
 `GameResultPanelController` has a `_showSound` field (`SoundConfig`) and plays it through `IAudioService` when the panel is shown. The sound plays together with the panel, so the win sound waits for the win panel's `_showDelay`. In `GameScene` the win panel uses `Assets/Resources/Sounds/Endgame/Level_Win.asset` and the lose panel uses `Level_Lose.asset`. Surrendering also shows the lose panel, so it plays the same sound.
