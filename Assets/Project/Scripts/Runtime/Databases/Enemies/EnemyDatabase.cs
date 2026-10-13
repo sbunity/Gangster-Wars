@@ -145,5 +145,8 @@ namespace SBabchuk.Runtime.Databases.Enemies
     {
         [SerializeField] private SoundConfig _shot;
         public SoundConfig Shot { get => _shot; set => _shot = value; }
+
+        [SerializeField] private SoundConfig _death;
+        public SoundConfig Death { get => _death; set => _death = value; }
     }
 }

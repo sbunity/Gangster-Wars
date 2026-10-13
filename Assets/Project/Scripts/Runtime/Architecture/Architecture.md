@@ -131,6 +131,12 @@ Each level's background is a prefab with a `LevelBackground` component on its ro
 - Enemy_5, Enemy_10 and Enemy_12 share `Weapons/Enemy/Enemy_Shot.asset` (`EnemyShots.wav`, trimmed to the 1.1 s shot so silent tails don't hold pool voices).
 - The ally Bomber has its own `SoundConfig` (`Weapons/Gangsters/Bomber_Throw.asset`), separate from the enemies, so they can be tuned apart even though both use `ThrowDinamite.wav`. Enemy_9 and Enemy_14 share `Weapons/Enemy/Enemy_DynamiteThrow.asset`. Sound folders under `Assets/Resources/Sounds/Weapons/`: `Player` (leader weapons), `Gangsters` (Sniper, Bomber), `Enemy`, `Explosions`.
 
+## Enemy Death Sounds
+
+- `EnemySounds.Death` (`SoundConfig`, "Звук смерті" in the `EnemyDatabase` editor) is the enemy's death sound; an empty one stays silent.
+- `EnemyControllerBase.OnHealthDied` plays it through `IAudioService` right after `EnemyDeath.Play` starts the `Death` animation. `EnemyHealth` raises `Died` only once per life, so the sound plays once per kill.
+- All 15 enemies share `Assets/Resources/Sounds/Enemies/Enemy_Die.asset` (`Audio/Enemies/EnemyDie1.wav`, preloaded). It has `MaxInstances` 4 and `MinInterval` 0.05 s, so a grenade that kills a crowd doesn't stack a wall of identical voices. `EnemyDie2.wav` is imported but unused; adding it to `_clips` makes the sound pick one of the two at random.
+
 ## Enemy Shots At The Barricade
 
 - Ranged enemies that shoot bullets (`RangeEnemyController`: Enemy_5, Enemy_10; `BigBossEnemyController`: Enemy_12) aim at the barricade instead of shooting straight left. `EnemyControllerBase.GetShotTarget()` asks `IBarricadeTarget` for the hit point of the enemy's lane (`Target`, the lane point at the barricade) and the bullet flies from the muzzle to that point.

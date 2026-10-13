@@ -127,6 +127,7 @@ namespace SBabchuk.Runtime.Databases.Enemies
                     if (_enemy.BulletId != -1)
                         DrawBulletInfo(_enemy.BulletId);
                     _enemy.Sounds.Shot = (SoundConfig)EditorGUILayout.ObjectField("Звук пострілу: ", _enemy.Sounds.Shot, typeof(SoundConfig), false);
+                    _enemy.Sounds.Death = (SoundConfig)EditorGUILayout.ObjectField("Звук смерті: ", _enemy.Sounds.Death, typeof(SoundConfig), false);
                 }
 
                 GUILayout.EndVertical();

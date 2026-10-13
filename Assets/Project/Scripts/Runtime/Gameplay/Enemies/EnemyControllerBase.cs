@@ -220,6 +220,7 @@ namespace SBabchuk.Runtime.Gameplay.Enemies
             _attack.MarkDead();
             StopAllTweens();
             _death.Play(_view);
+            _audioService.Play(_properties.Sounds.Death);
             _reward.Grant(_properties);
         }
 
