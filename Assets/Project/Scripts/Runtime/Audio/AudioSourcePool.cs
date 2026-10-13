@@ -110,6 +110,7 @@ namespace SBabchuk.Runtime.Audio
                 _source.clip = clip;
                 _source.volume = sound.Volume;
                 _source.pitch = sound.GetRandomPitch();
+                _source.time = Mathf.Clamp(sound.StartOffset, 0f, clip.length);
                 _source.Play();
             }
 

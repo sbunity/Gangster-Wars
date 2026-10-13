@@ -10,8 +10,10 @@ namespace SBabchuk.Runtime.Audio
         [SerializeField] private Vector2 _pitchRange = new(0.95f, 1.05f);
         [SerializeField, Min(1)] private int _maxInstances = 4;
         [SerializeField, Min(0f)] private float _minInterval;
+        [SerializeField, Min(0f)] private float _startOffset;
 
         public float Volume => _volume;
+        public float StartOffset => _startOffset;
         public int MaxInstances => _maxInstances;
         public float MinInterval => _minInterval;
 

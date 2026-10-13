@@ -137,6 +137,14 @@ Each level's background is a prefab with a `LevelBackground` component on its ro
 - `EnemyControllerBase.OnHealthDied` plays it through `IAudioService` right after `EnemyDeath.Play` starts the `Death` animation. `EnemyHealth` raises `Died` only once per life, so the sound plays once per kill.
 - All 15 enemies share `Assets/Resources/Sounds/Enemies/Enemy_Die.asset` (`Audio/Enemies/EnemyDie1.wav`, preloaded). It has `MaxInstances` 4 and `MinInterval` 0.05 s, so a grenade that kills a crowd doesn't stack a wall of identical voices. `EnemyDie2.wav` is imported but unused; adding it to `_clips` makes the sound pick one of the two at random.
 
+## Enemy Melee Attack Sounds
+
+- `EnemySounds.Attack` (`SoundConfig`, "Звук атаки" in the `EnemyDatabase` editor) is the enemy's melee hit sound; an empty one stays silent.
+- `EnemyControllerBase.GiveDamage` plays it through `IAudioService` together with the barricade damage and the impact effect, so the sound matches the Spine `Fire` event, not the start of the `Attack` animation. Ranged controllers override `GiveDamage` and play `Sounds.Shot` instead, so only melee enemies (`MeleeEnemyController`) use `Attack`.
+- The melee enemies (Enemy_1, 2, 3, 4, 6, 7, 8, 11, 13, 15) share `Assets/Resources/Sounds/Enemies/Enemy_Attack.asset` (`Audio/Enemies/EnemyAttack.wav`, preloaded, trimmed to the 0.4 s hit so silent tails don't hold pool voices). It has `MaxInstances` 4 and `MinInterval` 0.05 s, so a crowd at the barricade hitting on the same frame doesn't stack identical voices. The ranged enemies leave the field empty.
+- The clip fades in over its first ~0.1 s and peaks at 0.13 s, so played from the start it lands late against the `Fire` event. `Enemy_Attack` sets `StartOffset` to 0.08 s to skip the fade-in.
+- `SoundConfig.StartOffset` (seconds, default 0) is where playback starts inside the clip; `AudioSourcePool` sets `AudioSource.time` to it before `Play`. It works for any sound whose clip has a slow attack or a silent head, without re-cutting the wav.
+
 ## Enemy Shots At The Barricade
 
 - Ranged enemies that shoot bullets (`RangeEnemyController`: Enemy_5, Enemy_10; `BigBossEnemyController`: Enemy_12) aim at the barricade instead of shooting straight left. `EnemyControllerBase.GetShotTarget()` asks `IBarricadeTarget` for the hit point of the enemy's lane (`Target`, the lane point at the barricade) and the bullet flies from the muzzle to that point.

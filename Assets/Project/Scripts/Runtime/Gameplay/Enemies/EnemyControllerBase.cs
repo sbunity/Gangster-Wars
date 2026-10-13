@@ -192,6 +192,7 @@ namespace SBabchuk.Runtime.Gameplay.Enemies
                 _barricadeController.TakeDamage(_properties.Damage);
 
             _gameFactory.CreateCollision(CollisionEffectId.Impact, _target.position);
+            _audioService.Play(_properties.Sounds.Attack);
         }
 
         protected Vector3 GetShotTarget()

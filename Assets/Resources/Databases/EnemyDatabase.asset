@@ -31,6 +31,7 @@ MonoBehaviour:
     _bonusId: -1
     _sounds:
       _shot: {fileID: 0}
+      _attack: {fileID: 11400000, guid: 85f8b5f53a1f4707b473dbbead350da8, type: 2}
       _death: {fileID: 11400000, guid: df31c7e7404b49e1a6ef39cb003c29f3, type: 2}
   - _id: 1
     _name: Enemy_2
@@ -50,6 +51,7 @@ MonoBehaviour:
     _bonusId: -1
     _sounds:
       _shot: {fileID: 0}
+      _attack: {fileID: 11400000, guid: 85f8b5f53a1f4707b473dbbead350da8, type: 2}
       _death: {fileID: 11400000, guid: df31c7e7404b49e1a6ef39cb003c29f3, type: 2}
   - _id: 2
     _name: Enemy_3
@@ -69,6 +71,7 @@ MonoBehaviour:
     _bonusId: -1
     _sounds:
       _shot: {fileID: 0}
+      _attack: {fileID: 11400000, guid: 85f8b5f53a1f4707b473dbbead350da8, type: 2}
       _death: {fileID: 11400000, guid: df31c7e7404b49e1a6ef39cb003c29f3, type: 2}
   - _id: 3
     _name: Enemy_4
@@ -88,6 +91,7 @@ MonoBehaviour:
     _bonusId: -1
     _sounds:
       _shot: {fileID: 0}
+      _attack: {fileID: 11400000, guid: 85f8b5f53a1f4707b473dbbead350da8, type: 2}
       _death: {fileID: 11400000, guid: df31c7e7404b49e1a6ef39cb003c29f3, type: 2}
   - _id: 4
     _name: Enemy_5
@@ -107,6 +111,7 @@ MonoBehaviour:
     _bonusId: -1
     _sounds:
       _shot: {fileID: 11400000, guid: 573fac3d1041f734f8108a7cce7147d4, type: 2}
+      _attack: {fileID: 0}
       _death: {fileID: 11400000, guid: df31c7e7404b49e1a6ef39cb003c29f3, type: 2}
   - _id: 5
     _name: Enemy_6
@@ -126,6 +131,7 @@ MonoBehaviour:
     _bonusId: -1
     _sounds:
       _shot: {fileID: 0}
+      _attack: {fileID: 11400000, guid: 85f8b5f53a1f4707b473dbbead350da8, type: 2}
       _death: {fileID: 11400000, guid: df31c7e7404b49e1a6ef39cb003c29f3, type: 2}
   - _id: 6
     _name: Enemy_7
@@ -145,6 +151,7 @@ MonoBehaviour:
     _bonusId: -1
     _sounds:
       _shot: {fileID: 0}
+      _attack: {fileID: 11400000, guid: 85f8b5f53a1f4707b473dbbead350da8, type: 2}
       _death: {fileID: 11400000, guid: df31c7e7404b49e1a6ef39cb003c29f3, type: 2}
   - _id: 7
     _name: Enemy_8
@@ -164,6 +171,7 @@ MonoBehaviour:
     _bonusId: -1
     _sounds:
       _shot: {fileID: 0}
+      _attack: {fileID: 11400000, guid: 85f8b5f53a1f4707b473dbbead350da8, type: 2}
       _death: {fileID: 11400000, guid: df31c7e7404b49e1a6ef39cb003c29f3, type: 2}
   - _id: 8
     _name: Enemy_9
@@ -183,6 +191,7 @@ MonoBehaviour:
     _bonusId: -1
     _sounds:
       _shot: {fileID: 11400000, guid: f657aedc56a947b42805141b5fd43ec2, type: 2}
+      _attack: {fileID: 0}
       _death: {fileID: 11400000, guid: df31c7e7404b49e1a6ef39cb003c29f3, type: 2}
   - _id: 9
     _name: Enemy_10
@@ -202,6 +211,7 @@ MonoBehaviour:
     _bonusId: -1
     _sounds:
       _shot: {fileID: 11400000, guid: 573fac3d1041f734f8108a7cce7147d4, type: 2}
+      _attack: {fileID: 0}
       _death: {fileID: 11400000, guid: df31c7e7404b49e1a6ef39cb003c29f3, type: 2}
   - _id: 10
     _name: Enemy_11
@@ -221,6 +231,7 @@ MonoBehaviour:
     _bonusId: -1
     _sounds:
       _shot: {fileID: 0}
+      _attack: {fileID: 11400000, guid: 85f8b5f53a1f4707b473dbbead350da8, type: 2}
       _death: {fileID: 11400000, guid: df31c7e7404b49e1a6ef39cb003c29f3, type: 2}
   - _id: 11
     _name: Enemy_12
@@ -240,6 +251,7 @@ MonoBehaviour:
     _bonusId: -1
     _sounds:
       _shot: {fileID: 11400000, guid: 573fac3d1041f734f8108a7cce7147d4, type: 2}
+      _attack: {fileID: 0}
       _death: {fileID: 11400000, guid: df31c7e7404b49e1a6ef39cb003c29f3, type: 2}
   - _id: 12
     _name: Enemy_13
@@ -259,6 +271,7 @@ MonoBehaviour:
     _bonusId: -1
     _sounds:
       _shot: {fileID: 0}
+      _attack: {fileID: 11400000, guid: 85f8b5f53a1f4707b473dbbead350da8, type: 2}
       _death: {fileID: 11400000, guid: df31c7e7404b49e1a6ef39cb003c29f3, type: 2}
   - _id: 13
     _name: Enemy_14
@@ -278,6 +291,7 @@ MonoBehaviour:
     _bonusId: -1
     _sounds:
       _shot: {fileID: 11400000, guid: f657aedc56a947b42805141b5fd43ec2, type: 2}
+      _attack: {fileID: 0}
       _death: {fileID: 11400000, guid: df31c7e7404b49e1a6ef39cb003c29f3, type: 2}
   - _id: 14
     _name: Enemy_15
@@ -297,4 +311,5 @@ MonoBehaviour:
     _bonusId: -1
     _sounds:
       _shot: {fileID: 0}
+      _attack: {fileID: 11400000, guid: 85f8b5f53a1f4707b473dbbead350da8, type: 2}
       _death: {fileID: 11400000, guid: df31c7e7404b49e1a6ef39cb003c29f3, type: 2}
