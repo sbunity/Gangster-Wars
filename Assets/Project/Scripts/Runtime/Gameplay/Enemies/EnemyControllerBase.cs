@@ -50,6 +50,7 @@ namespace SBabchuk.Runtime.Gameplay.Enemies
         private ILevelSpawnService _levelSpawnService;
         private IAudioService _audioService;
         private BarricadeController _barricadeController;
+        private IBarricadeTarget _barricadeTarget;
         private SignalBus _signalBus;
         private SignalSubscriptions _signals;
         private EnemyView _view;
@@ -63,13 +64,14 @@ namespace SBabchuk.Runtime.Gameplay.Enemies
         public bool IsCollided => _collided;
 
         [Inject]
-        public void Construct(IAssetProvider assetProvider, IGameFactory gameFactory, ILevelSpawnService levelSpawnService, IAudioService audioService, BarricadeController barricadeController, SignalBus signalBus)
+        public void Construct(IAssetProvider assetProvider, IGameFactory gameFactory, ILevelSpawnService levelSpawnService, IAudioService audioService, BarricadeController barricadeController, IBarricadeTarget barricadeTarget, SignalBus signalBus)
         {
             _assetProvider = assetProvider;
             _gameFactory = gameFactory;
             _levelSpawnService = levelSpawnService;
             _audioService = audioService;
             _barricadeController = barricadeController;
+            _barricadeTarget = barricadeTarget;
             _signalBus = signalBus;
             _signals = new SignalSubscriptions(signalBus)
                 .Add<GrenadeDamageSignal>(DealingDamage);
@@ -191,6 +193,9 @@ namespace SBabchuk.Runtime.Gameplay.Enemies
 
             _gameFactory.CreateCollision(CollisionEffectId.Impact, _target.position);
         }
+
+        protected Vector3 GetShotTarget()
+            => _barricadeTarget.GetHitPoint(_target.position);
 
         protected void PlayShotSound()
             => _audioService.Play(_properties.Sounds.Shot);

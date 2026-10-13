@@ -118,6 +118,13 @@ Each level's background is a prefab with a `LevelBackground` component on its ro
 - Enemy_5, Enemy_10 and Enemy_12 share `Weapons/Enemy/Enemy_Shot.asset` (`EnemyShots.wav`, trimmed to the 1.1 s shot so silent tails don't hold pool voices).
 - The ally Bomber has its own `SoundConfig` (`Weapons/Gangsters/Bomber_Throw.asset`), separate from the enemies, so they can be tuned apart even though both use `ThrowDinamite.wav`. Enemy_9 and Enemy_14 share `Weapons/Enemy/Enemy_DynamiteThrow.asset`. Sound folders under `Assets/Resources/Sounds/Weapons/`: `Player` (leader weapons), `Gangsters` (Sniper, Bomber), `Enemy`, `Explosions`.
 
+## Enemy Shots At The Barricade
+
+- Ranged enemies that shoot bullets (`RangeEnemyController`: Enemy_5, Enemy_10; `BigBossEnemyController`: Enemy_12) aim at the barricade instead of shooting straight left. `EnemyControllerBase.GetShotTarget()` asks `IBarricadeTarget` for the hit point of the enemy's lane (`Target`, the lane point at the barricade) and the bullet flies from the muzzle to that point.
+- `IBarricadeTarget` is implemented by `BarricadeHitArea` on the `Barrcade` object in `GameScene` and bound by `GameSceneInstaller` (`_barricadeHitArea`). The hit point is the lane point raised by `_hitHeight` (1 unit), clamped into the barricade `PolygonCollider2D` with `ClosestPoint`, so it stays inside the barricade for every lane.
+- Without it, tall enemies on the top lane missed: Enemy_12 raises its weapon in `Attack`, its muzzle ends up 1.9–2.5 units above the lane, and a horizontal shot passed over the barricade top. Aimed shots tilt down by about 4–10°.
+- The barricade art and collider are unchanged. Dynamite throwers (`BomberEnemyController`, `BomberBossEnemyController`) already throw at `Target` and are not affected.
+
 ## Background Music
 
 - `MusicService` (`IMusicService`, Project-scoped) owns one looping `AudioSource` on a `DontDestroyOnLoad` `[Music]` object and mutes it when music is disabled in the settings.

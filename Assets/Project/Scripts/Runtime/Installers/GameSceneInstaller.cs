@@ -16,6 +16,7 @@ namespace SBabchuk.Runtime.Installers
     {
         [SerializeField] private LevelController _levelController;
         [SerializeField] private BarricadeController _barricadeController;
+        [SerializeField] private BarricadeHitArea _barricadeHitArea;
         [SerializeField] private LeaderGangsterController _leaderController;
         [SerializeField] private HandController _handController;
         [SerializeField] private SightController _sightController;
@@ -44,6 +45,7 @@ namespace SBabchuk.Runtime.Installers
 
             BindInstance(_levelController);
             BindInstance(_barricadeController);
+            Container.Bind<IBarricadeTarget>().FromInstance(_barricadeHitArea).AsSingle();
             BindInstance(_waveBar);
             BindInstance(_leaderController);
             BindInstance(_handController);
@@ -83,6 +85,7 @@ namespace SBabchuk.Runtime.Installers
         {
             ValidateRequired(_levelController, nameof(_levelController));
             ValidateRequired(_barricadeController, nameof(_barricadeController));
+            ValidateRequired(_barricadeHitArea, nameof(_barricadeHitArea));
             ValidateRequired(_leaderController, nameof(_leaderController));
             ValidateRequired(_handController, nameof(_handController));
             ValidateRequired(_poolManager, nameof(_poolManager));

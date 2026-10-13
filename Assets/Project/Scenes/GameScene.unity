@@ -28983,6 +28983,7 @@ GameObject:
   - component: {fileID: 1974793439}
   - component: {fileID: 1974793440}
   - component: {fileID: 1974793441}
+  - component: {fileID: 1974793442}
   m_Layer: 10
   m_Name: Barrcade
   m_TagString: Untagged
@@ -29133,6 +29134,20 @@ PolygonCollider2D:
       - {x: -2.44, y: -0.73}
       - {x: -3.22, y: -2.14}
   m_UseDelaunayMesh: 1
+--- !u!114 &1974793442
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1974793437}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b93138f36f191944293424a0b8505b9b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SBabchuk.Runtime.Gameplay.Barricades.BarricadeHitArea
+  _collider: {fileID: 1974793441}
+  _hitHeight: 1
 --- !u!1 &1977259309
 GameObject:
   m_ObjectHideFlags: 0
@@ -29165,6 +29180,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SBabchuk.Runtime.Installers.GameSceneInstaller
   _levelController: {fileID: 1616555666}
   _barricadeController: {fileID: 1974793440}
+  _barricadeHitArea: {fileID: 1974793442}
   _leaderController: {fileID: 1073950070}
   _handController: {fileID: 1949213165}
   _sightController: {fileID: 1865941192}

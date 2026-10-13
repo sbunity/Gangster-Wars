@@ -39,7 +39,7 @@ namespace SBabchuk.Runtime.Gameplay.Enemies
 
             var bulletPosition = _bulletPoint.GetPosition();
             var offset = Vector2.Distance(Center.GetPosition(), bulletPosition);
-            LevelSpawnService?.SpawnBullet(Properties.BulletId, Properties.Damage, bulletPosition, new Vector3(bulletPosition.x - 20, bulletPosition.y, 0), offset);
+            LevelSpawnService?.SpawnBullet(Properties.BulletId, Properties.Damage, bulletPosition, GetShotTarget(), offset);
             PlayShotSound();
         }
 
