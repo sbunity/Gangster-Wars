@@ -5,6 +5,7 @@ namespace SBabchuk.Runtime.Services.Contracts
     public interface ILeaderWeaponController
     {
         bool IsAttacking { get; }
+        float AimOffsetY { get; }
 
         void Attack();
         void StopAttack();

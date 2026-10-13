@@ -9,11 +9,15 @@ using SBabchuk.Runtime.Gameplay.Enemies;
 namespace SBabchuk.Runtime.Gameplay.Characters
 {
     [System.Serializable]
-    public class CreateBulletPoints
+    public class LeaderWeaponRig
     {
         [SerializeField, FormerlySerializedAs("points")]
         private List<Center> _points;
         public List<Center> Points { get => _points; set => _points = value; }
+
+        [SerializeField, Range(-2, 2)]
+        private float _aimOffsetY;
+        public float AimOffsetY => _aimOffsetY;
     }
 
     public class LeaderGangsterController : GangsterControllerBase, ILeaderWeaponController
@@ -21,14 +25,16 @@ namespace SBabchuk.Runtime.Gameplay.Characters
         [SerializeField, FormerlySerializedAs("createBulletPointList")]
         private List<Center> _createBulletPointList;
 
-        [SerializeField, FormerlySerializedAs("bulletPoints")]
-        private List<CreateBulletPoints> _bulletPoints;
+        [SerializeField, FormerlySerializedAs("bulletPoints"), FormerlySerializedAs("_bulletPoints")]
+        private List<LeaderWeaponRig> _weaponRigs;
 
         [SerializeField, FormerlySerializedAs("isAttacking")]
         private bool _isAttacking = false;
         public bool IsAttacking => _isAttacking;
+        public float AimOffsetY => _weaponRig?.AimOffsetY ?? 0f;
 
         private Weapon _weapon;
+        private LeaderWeaponRig _weaponRig;
         private WeaponSettings _properties;
         private int _index;
         private bool _isShooting;
@@ -68,7 +74,8 @@ namespace SBabchuk.Runtime.Gameplay.Characters
 
             Init();
 
-            _createBulletPointList = _bulletPoints[weaponId].Points;
+            _weaponRig = _weaponRigs[weaponId];
+            _createBulletPointList = _weaponRig.Points;
             _index = 0;
             _isShooting = false;
 

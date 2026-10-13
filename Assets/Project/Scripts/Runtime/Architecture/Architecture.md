@@ -99,6 +99,13 @@ Each level's background is a prefab with a `LevelBackground` component on its ro
 
 `CoinInfo` has an `_addSound` field (`SoundConfig`). When coins go up (enemy kill reward, early wave start reward), the counter counts up and then pulses; the sound plays together with the pulse. A fast series of rewards restarts the count-up, so the sound plays once when it settles. Only the `GameScene` coin counter has the sound set (`Assets/Resources/Sounds/UI/UI_AddMoney.asset`); in `MainScene` the field is empty and coins only go down there.
 
+## Leader Aiming
+
+- The leader's weapon is aimed by Spine IK. `SightController` sits on the `Aim` bone (`SkeletonUtilityBone`, Override mode) and moves it to the touch point shifted by the current weapon's `AimOffsetY`. Bullets fly from the muzzle (`Center`) to `IAimService.CurrentAimPosition`, the touch point without the shift.
+- Each weapon has its own Spine skeleton (`AssetDataController._skeletonDataAsset`) and its own IK setup, so the shift is per weapon: `LeaderGangsterController._weaponRigs` (`LeaderWeaponRig`: muzzle `Points` + `AimOffsetY`, indexed by weapon id). `ILeaderWeaponController.AimOffsetY` exposes the selected weapon's value to `SightController`.
+- Weapons 0–3 aim their arms (`LeftArmAim`, `RightArmAim`, `RightHandAim`) at `Aim`, so the barrel ends up above the bone; their `AimOffsetY` is `-0.58`, which lowers `Aim` so the barrel points near the touch point. The minigun (weapon 4) aims the `Weapon` bone itself (`WeaponAim` IK), so its barrel points exactly at `Aim`; its `AimOffsetY` is `0`. With the old shared `-0.58` its bullets flew 4–5° above the barrel.
+- A new weapon rig needs its `AimOffsetY` tuned: `0` when IK aims the weapon bone directly, a negative value when IK aims an arm and the barrel sits above it.
+
 ## Scene Transition And Pause
 
 - `GameResultPanelController.Show` pauses the game (`Time.timeScale = 0`). The panel buttons (`TransitionTo`) do not unpause it; the game stays paused while the loading screen fades in and the next scene loads, so the leaving `GameScene` cannot play shots, reloads or other gameplay sounds under the fade.

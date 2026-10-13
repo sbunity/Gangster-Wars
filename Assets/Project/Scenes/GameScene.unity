@@ -14535,18 +14535,23 @@ MonoBehaviour:
   _animation: {fileID: 0}
   _createBulletPoint: {fileID: 0}
   _createBulletPointList: []
-  _bulletPoints:
+  _weaponRigs:
   - _points:
     - {fileID: 668602240}
+    _aimOffsetY: -0.58
   - _points:
     - {fileID: 1550391897}
     - {fileID: 1639593320}
+    _aimOffsetY: -0.58
   - _points:
     - {fileID: 972537969}
+    _aimOffsetY: -0.58
   - _points:
     - {fileID: 1139037526}
+    _aimOffsetY: -0.58
   - _points:
     - {fileID: 71165805}
+    _aimOffsetY: 0
   _isAttacking: 0
 --- !u!114 &1073950071
 MonoBehaviour:
@@ -26595,7 +26600,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e38637da1fecaa645803e577ad9b5b52, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  offsetY: -0.58
   minForwardAngle: -35
   maxForwardAngle: 35
   clampAimToForwardSector: 1

@@ -7,7 +7,6 @@ namespace SBabchuk.Runtime.Gameplay.Characters
 {
     public class SightController : MonoBehaviour, IAimService
     {
-        [SerializeField, Range(-2, 2)] private float offsetY;
         [SerializeField, Range(-180, 180)] private float minForwardAngle = -70f;
         [SerializeField, Range(-180, 180)] private float maxForwardAngle = 70f;
         [SerializeField] private bool clampAimToForwardSector = true;
@@ -18,6 +17,7 @@ namespace SBabchuk.Runtime.Gameplay.Characters
         private ILeaderWeaponController _leaderWeaponController;
         private IHandService _handService;
         public Vector2 CurrentAimPosition { get; private set; }
+        private float AimOffsetY => _leaderWeaponController?.AimOffsetY ?? 0f;
 
         [Inject]
         public void Construct(ILeaderWeaponController leaderWeaponController, IHandService handService)
@@ -54,7 +54,7 @@ namespace SBabchuk.Runtime.Gameplay.Characters
             }
 
             var pos = gesture.GetTouchToWorldPoint(9f);
-            var targetPosition = new Vector3(pos.x, pos.y + offsetY, 0);
+            var targetPosition = new Vector3(pos.x, pos.y + AimOffsetY, 0);
             var canShoot = IsTargetInForwardSector(targetPosition);
             if (canShoot || clampAimToForwardSector)
             {
@@ -86,7 +86,7 @@ namespace SBabchuk.Runtime.Gameplay.Characters
                 {
                     _isTouchingFireArea = true;
                     var pos = gesture.GetTouchToWorldPoint(9f);
-                    var targetPosition = new Vector3(pos.x, pos.y + offsetY, 0);
+                    var targetPosition = new Vector3(pos.x, pos.y + AimOffsetY, 0);
                     var canShoot = IsTargetInForwardSector(targetPosition);
                     if (canShoot || clampAimToForwardSector)
                     {
@@ -170,7 +170,7 @@ namespace SBabchuk.Runtime.Gameplay.Characters
         private void UpdateAimPosition(Vector3 aimPosition)
         {
             transform.position = aimPosition;
-            CurrentAimPosition = new Vector2(aimPosition.x, aimPosition.y - offsetY);
+            CurrentAimPosition = new Vector2(aimPosition.x, aimPosition.y - AimOffsetY);
         }
 
         private bool IsAngleInForwardSector(float angle)
