@@ -119,8 +119,8 @@ Each level's background is a prefab with a `LevelBackground` component on its ro
 ## Explosion Sounds
 
 - `CollisionController` has a `_sound` field (`SoundConfig`) and plays it through `IAudioService` in `Init`, the moment a collision comes out of the pool. Collisions are created only by `GameFactory.CreateCollision`, which injects the dependencies.
-- Explosion sounds live in `Assets/Resources/Sounds/Weapons/Explosions/`. `Collision_5` uses `Explosion_SpikyFire` and `Collision_4` uses `Explosion_RoundFire`. Both use the Epic Toon FX `etfx_explosion_rocket` clip with a fixed pitch (1.1 and 1.2).
-- `Collision_5` is spawned by every dynamite (`DynamiteBulletController`: the player Bomber, Enemy_9, Enemy_14) and by Grenade_1. `Collision_4` is Grenade_2. Grenade_3 (`Collision_2`, fire) and Grenade_4 (`Collision_3`) have no sound.
+- Explosion sounds live in `Assets/Resources/Sounds/Weapons/Explosions/`. `Collision_5` uses `Explosion_SpikyFire`, `Collision_4` uses `Explosion_RoundFire` and `Collision_3` uses `Explosion_TallFire`. All three use the Epic Toon FX `etfx_explosion_rocket` clip with a fixed pitch (1.1, 1.2 and 1.0).
+- `Collision_5` is spawned by every dynamite (`DynamiteBulletController`: the player Bomber, Enemy_9, Enemy_14) and by Grenade_1. `Collision_4` is Grenade_2, `Collision_3` (`TallExplosionFire`) is Grenade_4. Grenade_3, the Molotov (`Collision_2`, fire), has no sound.
 - The Epic Toon FX effect prefabs carry their own `AudioSource`s. `Collision_4` and `Collision_5` remove them as prefab overrides, so explosion audio goes only through `IAudioService`. New collision prefabs built from Epic Toon FX effects must remove the `AudioSource` too and set `_sound` instead.
 
 ## Gangster And Enemy Shot Sounds
