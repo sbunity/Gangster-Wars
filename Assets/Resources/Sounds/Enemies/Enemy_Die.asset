@@ -13,8 +13,9 @@ MonoBehaviour:
   m_Name: Enemy_Die
   m_EditorClassIdentifier: Assembly-CSharp::SBabchuk.Runtime.Audio.SoundConfig
   _clips:
-  - {fileID: 8300000, guid: c9e504264ce20c04dbc4bff10308f3a2, type: 3}
+  - {fileID: 8300000, guid: 58dac031107719b4db1ac3e1793377b3, type: 3}
   _volume: 0.2
   _pitchRange: {x: 0.95, y: 1.05}
   _maxInstances: 4
   _minInterval: 0.05
+  _startOffset: 0
