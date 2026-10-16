@@ -12,11 +12,17 @@ namespace SBabchuk.Runtime.Gameplay.Enemies
         [SerializeField, FormerlySerializedAs("bulletPoint")]
         private Center _bulletPoint;
 
+        [SerializeField] private EnemyWeaponAim _weaponAim;
+        [SerializeField, Min(0f)] private float _shotDistance = 20f;
+
         private Tween _correctionMixDuration;
 
         public override void Attack()
         {
             IsAttacked = true;
+            if (_weaponAim != null)
+                _weaponAim.AimAt(GetShotTarget());
+
             Animation.SetAnimation(AnimationsName.Attack);
             _correctionMixDuration = DOVirtual.DelayedCall(_mixDuration, () =>
             {
@@ -38,8 +44,9 @@ namespace SBabchuk.Runtime.Gameplay.Enemies
                 return;
 
             var bulletPosition = _bulletPoint.GetPosition();
+            var direction = _bulletPoint.GetTransform().right;
             var offset = Vector2.Distance(Center.GetPosition(), bulletPosition);
-            LevelSpawnService?.SpawnBullet(Properties.BulletId, Properties.Damage, bulletPosition, GetShotTarget(), offset);
+            LevelSpawnService?.SpawnBullet(Properties.BulletId, Properties.Damage, bulletPosition, bulletPosition + direction * _shotDistance, offset);
             PlayShotSound();
         }
 
@@ -47,6 +54,8 @@ namespace SBabchuk.Runtime.Gameplay.Enemies
         {
             base.StopAllTweens();
             _correctionMixDuration?.Kill();
+            if (_weaponAim != null)
+                _weaponAim.Release();
         }
     }
 }

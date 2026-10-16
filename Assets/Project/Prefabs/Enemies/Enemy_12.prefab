@@ -55,7 +55,7 @@ GameObject:
   - component: {fileID: 3018767050444243337}
   - component: {fileID: 487251586659858586}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: Muzzle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -69,7 +69,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3236584091105694663}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0.20304358, w: 0.9791697}
   m_LocalPosition: {x: 1.1, y: 0.11, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -324,6 +324,7 @@ GameObject:
   - component: {fileID: 1642991456671908270}
   - component: {fileID: 4200485961358763876}
   - component: {fileID: 2503256679672030882}
+  - component: {fileID: 1004413878243202653}
   m_Layer: 10
   m_Name: Enemy_12
   m_TagString: Enemy
@@ -459,6 +460,9 @@ MonoBehaviour:
   _properties:
     _id: 0
     _name: 
+    _displayName: 
+    _description: 
+    _kind: 0
     _icon: {fileID: 0}
     _health: 0
     _gold: 0
@@ -469,11 +473,17 @@ MonoBehaviour:
     _bulletId: 0
     _dropChance: 0
     _bonusId: 0
+    _sounds:
+      _shot: {fileID: 0}
+      _attack: {fileID: 0}
+      _death: {fileID: 0}
   _isAttacked: 0
   _target: {fileID: 0}
   _center: {fileID: 0}
   _mixDuration: 0.2
   _bulletPoint: {fileID: 487251586659858586}
+  _weaponAim: {fileID: 1004413878243202653}
+  _shotDistance: 20
 --- !u!114 &8917153817608916892
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -573,3 +583,21 @@ MonoBehaviour:
   _flashColor: {r: 1, g: 1, b: 1, a: 0.65}
   _fadeOutDuration: 0.12
   _fillShader: {fileID: 4800000, guid: 45495790b394f894a967dbf44489b57b, type: 3}
+--- !u!114 &1004413878243202653
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9203159638082935601}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 02e5050c36ae1bd4e9c8590ea4b04986, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SBabchuk.Runtime.Gameplay.Enemies.EnemyWeaponAim
+  _skeleton: {fileID: 9203159638046779307}
+  _pivotBoneName: Hand B1
+  _weaponFollower: {fileID: 2200776634684040781}
+  _muzzle: {fileID: 3018767050444243337}
+  _maxAngle: 60
+  _blendTime: 0.15
