@@ -4,6 +4,7 @@ using SBabchuk.Runtime.Factories;
 using SBabchuk.Runtime.Services;
 using SBabchuk.Runtime.Services.Contracts;
 using SBabchuk.Runtime.UI;
+using SBabchuk.Runtime.Vibration;
 using UnityEngine;
 using Zenject;
 
@@ -50,6 +51,20 @@ namespace SBabchuk.Runtime.Installers
             Container.BindInterfacesTo<MusicService>().AsSingle();
             Container.Bind<UISoundsConfig>().FromInstance(_uiSounds).AsSingle();
             Container.Bind<IInputService>().To<InputService>().AsSingle();
+            BindVibration();
+        }
+
+        private void BindVibration()
+        {
+            Container.Bind<IVibrationSettingsService>().To<VibrationSettingsService>().AsSingle();
+            Container.Bind<IVibrationService>().To<VibrationService>().AsSingle();
+#if UNITY_ANDROID && !UNITY_EDITOR
+            Container.BindInterfacesTo<AndroidHapticDevice>().AsSingle();
+#elif UNITY_IOS && !UNITY_EDITOR
+            Container.Bind<IHapticDevice>().To<IosHapticDevice>().AsSingle();
+#else
+            Container.Bind<IHapticDevice>().To<NullHapticDevice>().AsSingle();
+#endif
         }
 
         private void DeclareSignals()
@@ -69,6 +84,7 @@ namespace SBabchuk.Runtime.Installers
             Container.DeclareSignal<WaveCountdownStartedSignal>().OptionalSubscriber();
             Container.DeclareSignal<WaveCountdownSkippedSignal>().OptionalSubscriber();
             Container.DeclareSignal<BarricadeHealthChangedSignal>().OptionalSubscriber();
+            Container.DeclareSignal<BarricadeDamagedSignal>().OptionalSubscriber();
             Container.DeclareSignal<GrenadeDamageSignal>().OptionalSubscriber();
             Container.DeclareSignal<AudioSettingsChangedSignal>().OptionalSubscriber();
             Container.DeclareSignal<UIPanelReplaceSignal>().OptionalSubscriber();

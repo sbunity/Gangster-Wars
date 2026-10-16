@@ -3,6 +3,7 @@ using DG.Tweening;
 using SBabchuk.Runtime.Architecture;
 using SBabchuk.Runtime.Audio;
 using SBabchuk.Runtime.Services.Contracts;
+using SBabchuk.Runtime.Vibration;
 using UnityEngine;
 using UnityEngine.Serialization;
 using UnityEngine.UI;
@@ -26,6 +27,8 @@ namespace SBabchuk.Runtime.UI
 
         [SerializeField] private SoundConfig _showSound;
 
+        [SerializeField] private VibrationConfig _showVibration;
+
         [Header("Sorting")]
         [SerializeField] private Canvas _sortingCanvas;
         [SerializeField] private bool _overrideSorting = true;
@@ -34,16 +37,18 @@ namespace SBabchuk.Runtime.UI
         private ISceneTransitionService _sceneTransitionService;
         private IAudioService _audioService;
         private IMusicService _musicService;
+        private IVibrationService _vibrationService;
         private SignalSubscriptions _signals;
         private Tween _fadeTween;
         private Tween _showDelayTween;
 
         [Inject]
-        public void Construct(ISceneTransitionService sceneTransitionService, IAudioService audioService, IMusicService musicService, SignalBus signalBus)
+        public void Construct(ISceneTransitionService sceneTransitionService, IAudioService audioService, IMusicService musicService, IVibrationService vibrationService, SignalBus signalBus)
         {
             _sceneTransitionService = sceneTransitionService;
             _audioService = audioService;
             _musicService = musicService;
+            _vibrationService = vibrationService;
             _signals = new SignalSubscriptions(signalBus)
                 .Add<GameFinishedSignal>(OnGameFinished);
         }
@@ -70,6 +75,7 @@ namespace SBabchuk.Runtime.UI
             PlayFadeIn();
             _musicService?.Stop();
             _audioService?.Play(_showSound);
+            _vibrationService?.Vibrate(_showVibration);
         }
 
         public void Hide()

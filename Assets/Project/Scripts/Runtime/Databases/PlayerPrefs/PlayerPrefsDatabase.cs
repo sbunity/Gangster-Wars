@@ -27,6 +27,11 @@ namespace SBabchuk.Runtime.Databases.PlayerPrefs
             return _playerPrefs.Sound == mySwitch.On;
         }
 
+        public bool IsVibrationEnabled()
+        {
+            return _playerPrefs.Vibration == mySwitch.On;
+        }
+
         public bool OpportunityBuy(int price)
         {
             return _playerPrefs.Coin >= price;
@@ -58,6 +63,10 @@ namespace SBabchuk.Runtime.Databases.PlayerPrefs
         [FormerlySerializedAs("sound")]
         private mySwitch _sound;
         public mySwitch Sound { get => _sound; set => _sound = value; }
+
+        [SerializeField]
+        private mySwitch _vibration;
+        public mySwitch Vibration { get => _vibration; set => _vibration = value; }
 
         [SerializeField]
         [FormerlySerializedAs("coin")]

@@ -81,6 +81,7 @@ namespace SBabchuk.Runtime.Gameplay.Barricades
                 return;
 
             _cameraShakeService?.Shake(_damageShakeStrength);
+            _signalBus.Fire(new BarricadeDamagedSignal(damage));
 
             if (CurrentHealth - damage <= 0)
             {

@@ -10,6 +10,7 @@ namespace SBabchuk.Runtime.UI
         [SerializeField] private GameObject panel;
         [SerializeField] private Toggle musicToggle;
         [SerializeField] private Toggle soundToggle;
+        [SerializeField] private Toggle vibrationToggle;
         [SerializeField] private Button closeButton;
         [SerializeField] private bool pauseGameOnOpen;
 
@@ -17,11 +18,13 @@ namespace SBabchuk.Runtime.UI
         private bool _isOpened;
         private bool _isInitialized;
         private IAudioSettingsService _audioSettingsService;
+        private IVibrationSettingsService _vibrationSettingsService;
 
         [Inject]
-        public void Construct(IAudioSettingsService audioSettingsService)
+        public void Construct(IAudioSettingsService audioSettingsService, IVibrationSettingsService vibrationSettingsService)
         {
             _audioSettingsService = audioSettingsService;
+            _vibrationSettingsService = vibrationSettingsService;
         }
 
         private void Awake()
@@ -34,6 +37,9 @@ namespace SBabchuk.Runtime.UI
             
             if (soundToggle)
                 soundToggle.onValueChanged.AddListener(SetSoundEnabled);
+
+            if (vibrationToggle)
+                vibrationToggle.onValueChanged.AddListener(SetVibrationEnabled);
         }
 
         private void Start()
@@ -51,6 +57,9 @@ namespace SBabchuk.Runtime.UI
             
             if (soundToggle)
                 soundToggle.onValueChanged.RemoveListener(SetSoundEnabled);
+
+            if (vibrationToggle)
+                vibrationToggle.onValueChanged.RemoveListener(SetVibrationEnabled);
         }
 
         public void Open()
@@ -92,6 +101,14 @@ namespace SBabchuk.Runtime.UI
             _audioSettingsService?.SetSoundEnabled(_value);
         }
 
+        public void SetVibrationEnabled(bool _value)
+        {
+            if (!_isInitialized)
+                return;
+
+            _vibrationSettingsService?.SetVibrationEnabled(_value);
+        }
+
         private void RefreshView()
         {
             if (musicToggle)
@@ -99,6 +116,9 @@ namespace SBabchuk.Runtime.UI
             
             if (soundToggle)
                 soundToggle.SetIsOnWithoutNotify(_audioSettingsService == null || _audioSettingsService.IsSoundEnabled);
+
+            if (vibrationToggle)
+                vibrationToggle.SetIsOnWithoutNotify(_vibrationSettingsService == null || _vibrationSettingsService.IsVibrationEnabled);
             
             _isInitialized = true;
         }

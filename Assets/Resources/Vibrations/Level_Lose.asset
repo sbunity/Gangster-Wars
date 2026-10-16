@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 91ff40553981f224c9082252f7a72d42, type: 3}
+  m_Name: Level_Lose
+  m_EditorClassIdentifier: Assembly-CSharp::SBabchuk.Runtime.Vibration.VibrationConfig
+  _pulses:
+  - _delayMs: 0
+    _durationMs: 300
+    _intensity: 0.85
+    _sharpness: 0.15
+  - _delayMs: 220
+    _durationMs: 300
+    _intensity: 0.6
+    _sharpness: 0.1
+  - _delayMs: 240
+    _durationMs: 600
+    _intensity: 0.4
+    _sharpness: 0
+  _priority: 10

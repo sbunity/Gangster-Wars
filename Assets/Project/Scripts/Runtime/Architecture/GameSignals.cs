@@ -155,6 +155,16 @@ namespace SBabchuk.Runtime.Architecture
         public float NormalizedHealth { get; }
     }
 
+    public readonly struct BarricadeDamagedSignal
+    {
+        public BarricadeDamagedSignal(int damage)
+        {
+            Damage = damage;
+        }
+
+        public int Damage { get; }
+    }
+
     public readonly struct GrenadeDamageSignal
     {
         public GrenadeDamageSignal(Vector3 position, int damage, float radius)

@@ -246,6 +246,7 @@ namespace SBabchuk.Runtime.Databases.PlayerPrefs
                 GUI.color = Color.yellow;
                 _database.PlayerPrefs.Music = (mySwitch)EditorGUILayout.EnumPopup("Музика: ", _database.PlayerPrefs.Music);
                 _database.PlayerPrefs.Sound = (mySwitch)EditorGUILayout.EnumPopup("Звуки: ", _database.PlayerPrefs.Sound);
+                _database.PlayerPrefs.Vibration = (mySwitch)EditorGUILayout.EnumPopup("Вібрація: ", _database.PlayerPrefs.Vibration);
                 GUI.color = _defaultColor;
             }
 

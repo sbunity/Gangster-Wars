@@ -16,6 +16,8 @@ The project now has a Zenject-driven service layer under `Assets/Project/Scripts
 - `IAudioSettingsService` wraps saved music and sound settings.
 - `IAudioService` plays one-shot `SoundConfig` sounds from a pooled set of voices.
 - `IMusicService` plays looped background `MusicTrack`s with fade out/in and survives scene loads.
+- `IVibrationSettingsService` wraps the saved vibration setting.
+- `IVibrationService` plays one-shot `VibrationConfig` haptics through the platform `IHapticDevice` and drops a request while the previous vibration is still running.
 - `IInputService` wraps pointer input and world pointer position.
 - `IHandService` exposes grenade dragging state and placement without `HandController.Instance`.
 - `ILeaderWeaponController` exposes the leader weapon controls used by the sight/aim UI.
@@ -174,3 +176,21 @@ Remaining cleanup is limited to non-gameplay editor/constructor tooling and deep
 - `PoolManager` still owns the actual pool implementation; it is isolated behind `IPoolService` for migrated code.
 - `LevelController` schedules waves internally (DOTween-based) for gameplay compatibility.
 - `EnemyControllerBase` still hosts trigger-collision handling (`OnTriggerEnter2D`) directly; the focused runtime blocks own view, health, movement, attack, death, and reward responsibilities.
+
+## Vibration
+
+- `IVibrationService` (`VibrationService`, project context) is the single entry point for haptics. `Vibrate(VibrationConfig)` does nothing when vibration is off in settings or the device has no vibrator. Vibrations never run in parallel or queue: while one is running (`TotalDurationMs` of the last played config, unscaled time), a request with the same or lower `Priority` is dropped, and a request with a higher `Priority` cancels the running one and starts.
+- `VibrationConfig` (ScriptableObject, `Assets/Resources/Vibrations/`) is a pattern: `_pulses` (`VibrationPulse`: `DelayMs` pause before the pulse, `DurationMs`, `Intensity` 0–1, `Sharpness` 0–1, used on iOS only) and `_priority`.
+- Configs:
+  - `Barricade_Damage`: priority 0, one 40 ms pulse at 0.7.
+  - `Level_Win`: priority 10, 1080 ms. Three quick crisp taps of rising strength, a strong 350 ms hold, then two light sparkle taps ("ta-da-da-DAAA, tik-tik").
+  - `Level_Lose`: priority 10, 1660 ms. Three long dull pulses that get weaker and slower, the last one 600 ms ("womp, womp, wooomp").
+- The game-end configs need the higher priority: the lose panel has no `_showDelay`, so the lose vibration starts in the same frame as the killing hit's `Barricade_Damage` and would be dropped otherwise.
+- `GameResultPanelController._showVibration` plays together with `_showSound` in `Show`, so the win vibration waits for the win panel's `_showDelay` like the sound. In `GameScene` `Win` uses `Level_Win`, `Lose` uses `Level_Lose`. Surrendering shows the lose panel, so it vibrates too.
+- `IHapticDevice` is the platform adapter, picked in `ProjectInstaller.BindVibration` by define:
+  - `AndroidHapticDevice`: JNI `Vibrator`. API 26+ with amplitude control plays `VibrationEffect.createWaveform(timings, amplitudes)`; without amplitude control and on API 25 it plays the on/off timings at the device's default strength. Waveforms are built once per config.
+  - `IosHapticDevice`: Core Haptics through `Assets/Plugins/iOS/HapticFeedback.mm` (compiled with `-fobjc-arc`, links `CoreHaptics`). Pulses up to 50 ms become transient taps, longer ones continuous events with the pulse's intensity and sharpness. Devices without Core Haptics fall back to a `UIImpactFeedbackGenerator` tap per pulse.
+  - `NullHapticDevice`: Editor and other platforms.
+- Android needs `android.permission.VIBRATE`. Unity adds it only when scripts call `Handheld.Vibrate`, so `VibratePermissionInjector` (`IPostGenerateGradleAndroidProject`) adds it to the generated manifest.
+- The setting is `PlayerPrefs.Vibration` (`mySwitch`, `On` by default, so older saves without the field keep vibration on). `SettingsPopupController.vibrationToggle` drives it in `MainScene` and `GameScene`.
+- `BarricadeController.TakeDamage` fires `BarricadeDamagedSignal` for every hit (bullets, melee, explosions). `BarricadeDamageVibrationFeedback` on `[Barricade]/Barrcade` listens to it and plays its `_vibration` config. New haptic feedback follows the same shape: the gameplay or UI code that owns the moment calls `IVibrationService` with its own `VibrationConfig`, directly or through a signal.
