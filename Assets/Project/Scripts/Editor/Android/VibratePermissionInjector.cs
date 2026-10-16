@@ -3,7 +3,7 @@ using System.IO;
 using System.Xml;
 using UnityEditor.Android;
 
-namespace SBabchuk.Editor.Android
+namespace SBabchuk
 {
     public sealed class VibratePermissionInjector : IPostGenerateGradleAndroidProject
     {
