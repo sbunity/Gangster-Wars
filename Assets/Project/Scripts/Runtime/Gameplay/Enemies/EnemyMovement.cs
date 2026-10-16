@@ -6,17 +6,17 @@ namespace SBabchuk.Runtime.Gameplay.Enemies
     public sealed class EnemyMovement : MonoBehaviour
     {
         public bool IsMoving { get; private set; }
-        public Transform Target => _target;
-        private Transform _target;
+        public Vector2 TargetPoint => _targetPoint;
+        private Vector2 _targetPoint;
         private EnemyView _view;
         private Tween _moveTween;
         private float _remainingMoveTime;
         private float _moveStartedAt;
 
-        public void Initialize(EnemyView view, Transform target, float moveTime)
+        public void Initialize(EnemyView view, Vector2 targetPoint, float moveTime)
         {
             _view = view;
-            _target = target;
+            _targetPoint = targetPoint;
             _remainingMoveTime = moveTime;
             IsMoving = false;
             Stop();
@@ -24,12 +24,9 @@ namespace SBabchuk.Runtime.Gameplay.Enemies
 
         public void Move()
         {
-            if (_target == null)
-                return;
-
             IsMoving = true;
             _moveStartedAt = Time.time;
-            _moveTween = transform.DOMoveX(_target.position.x, _remainingMoveTime).SetEase(Ease.Linear);
+            _moveTween = transform.DOMoveX(_targetPoint.x, _remainingMoveTime).SetEase(Ease.Linear);
             _view.SetAnimation(AnimationsName.Walk);
         }
 
@@ -45,6 +42,6 @@ namespace SBabchuk.Runtime.Gameplay.Enemies
         }
 
         public bool IsInAttackRange(float radius) 
-            => _target != null && Mathf.Abs(transform.position.x - _target.position.x) < radius;
+            => Mathf.Abs(transform.position.x - _targetPoint.x) < radius;
     }
 }

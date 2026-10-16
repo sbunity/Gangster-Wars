@@ -22,6 +22,7 @@ namespace SBabchuk.Runtime.Gameplay.Barricades
         public int MaxHealth { get; private set; }
 
         private SpriteRenderer _spriteRenderer;
+        private BarricadeHitArea _hitArea;
         private List<Ico> _defenceIcons = new();
         private IAssetProvider _assetProvider;
         private IPlayerProgressService _progressService;
@@ -42,6 +43,7 @@ namespace SBabchuk.Runtime.Gameplay.Barricades
         private void Awake()
         {
             _spriteRenderer = GetComponent<SpriteRenderer>();
+            _hitArea = GetComponent<BarricadeHitArea>();
         }
 
         private void Start()
@@ -58,6 +60,8 @@ namespace SBabchuk.Runtime.Gameplay.Barricades
             var defence = defenceStore.GetDefense(shortInfo.Id);
             CurrentHealth = (upgrade != null) ? upgrade.Settings.Health : defence.Settings.Health;
             _defenceIcons = defence.Icons;
+            if (_hitArea != null && _defenceIcons.Count > 0)
+                _hitArea.ApplyShape(_defenceIcons[0].Icon);
             MaxHealth = CurrentHealth;
             SetHealth(MaxHealth);
         }

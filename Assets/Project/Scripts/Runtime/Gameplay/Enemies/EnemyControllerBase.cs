@@ -147,7 +147,7 @@ namespace SBabchuk.Runtime.Gameplay.Enemies
 
             _health.Initialize(_properties.Health);
             _damageFeedback?.ResetFeedback();
-            _movement.Initialize(_view, _target, _properties.SpeedMove);
+            _movement.Initialize(_view, _barricadeTarget.GetContactPoint(_target.position), _properties.SpeedMove);
             _attack.Initialize(_view);
 
             transform.position = spawnPoint.position;
@@ -191,7 +191,7 @@ namespace SBabchuk.Runtime.Gameplay.Enemies
             if (_barricadeController != null)
                 _barricadeController.TakeDamage(_properties.Damage);
 
-            _gameFactory.CreateCollision(CollisionEffectId.Impact, _target.position);
+            _gameFactory.CreateCollision(CollisionEffectId.Impact, _movement.TargetPoint);
             _audioService.Play(_properties.Sounds.Attack);
         }
 
