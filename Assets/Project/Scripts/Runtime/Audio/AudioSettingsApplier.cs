@@ -14,13 +14,13 @@ namespace SBabchuk.Runtime.Audio
         [SerializeField] private AudioSource[] _audioSources;
 
         private Coroutine _refreshCoroutine;
-        private IPlayerProgressService _progressService;
+        private IAudioSettingsService _audioSettings;
         private SignalSubscriptions _signals;
 
         [Inject]
-        public void Construct(IPlayerProgressService progressService, SignalBus signalBus)
+        public void Construct(IAudioSettingsService audioSettings, SignalBus signalBus)
         {
-            _progressService = progressService;
+            _audioSettings = audioSettings;
             _signals = new SignalSubscriptions(signalBus)
                 .Add<AudioSettingsChangedSignal>(ApplyInternal);
         }
@@ -70,9 +70,8 @@ namespace SBabchuk.Runtime.Audio
 
         private void ApplyInternal()
         {
-            var preferences = _progressService.Preferences;
-            var isMusicEnabled = preferences.IsMusicEnabled();
-            var isSoundEnabled = preferences.IsSoundEnabled();
+            var isMusicEnabled = _audioSettings.IsMusicEnabled;
+            var isSoundEnabled = _audioSettings.IsSoundEnabled;
             var audioSources = _audioSources != null && _audioSources.Length > 0 ? _audioSources : GetComponentsInChildren<AudioSource>(true);
             
             foreach (var source in audioSources)

@@ -7,7 +7,7 @@ using UnityEngine;
 using Zenject;
 using UnityEngine.Serialization;
 using SBabchuk.Runtime.Databases.MainPlayers;
-using SBabchuk.Runtime.Databases.PlayerPrefs;
+using SBabchuk.Runtime.Progress;
 
 namespace SBabchuk.Runtime.UI.WeaponStore
 {

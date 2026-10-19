@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 using SBabchuk.Runtime.Databases.MainPlayers;
-using SBabchuk.Runtime.Databases.PlayerPrefs;
+using SBabchuk.Runtime.Progress;
 using SBabchuk.Runtime.Services.Contracts;
 using SBabchuk.Runtime.UI.WeaponStore.Info;
 using UnityEngine;

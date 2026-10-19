@@ -1,66 +1,54 @@
-using System.Collections.Generic;
-using Cysharp.Threading.Tasks;
 using SBabchuk.Runtime.Architecture;
+using SBabchuk.Runtime.Progress;
 using SBabchuk.Runtime.Services.Contracts;
+using UnityEngine;
 using Zenject;
-using SBabchuk.Runtime.Databases.BombStore;
-using SBabchuk.Runtime.Databases.DefenseStore;
-using SBabchuk.Runtime.Databases.Levels;
-using SBabchuk.Runtime.Databases.MainPlayers;
-using SBabchuk.Runtime.Databases.PlayerPrefs;
-using SBabchuk.Runtime.Databases.WeaponStore;
 
 namespace SBabchuk.Runtime.Services
 {
-    public sealed class PlayerProgressService : IPlayerProgressService, IInitializable
+    public sealed class PlayerProgressService : IPlayerProgressService
     {
+        private const float ThreeStarHealthThreshold = 0.75f;
+        private const float TwoStarHealthThreshold = 0.50f;
+
         private readonly IAssetProvider _assetProvider;
-        private readonly ISaveService _saveService;
+        private readonly IPlayerProgressRepository _repository;
         private readonly SignalBus _signalBus;
 
-        public PlayerProgressService(IAssetProvider assetProvider, ISaveService saveService, SignalBus signalBus)
+        public PlayerProgressService(IAssetProvider assetProvider, IPlayerProgressRepository repository, SignalBus signalBus)
         {
             _assetProvider = assetProvider;
-            _saveService = saveService;
+            _repository = repository;
             _signalBus = signalBus;
         }
 
-        public void Initialize()
-        {
-            if (!EnsureProgressData())
-                return;
+        private PlayerProgress Progress => _repository.Progress;
 
-            SaveProgress();
-            FireProgressChanged();
-        }
-
-        public PlayerPrefs PlayerPrefs => Preferences.PlayerPrefs;
-        public PlayerPrefsDatabase Preferences => _assetProvider.PlayerPrefsDatabase;
-        public int Coins => PlayerPrefs.Coin;
-        public int CurrentLevelId => PlayerPrefs.LevelId;
-        public int CurrentChapterId => PlayerPrefs.ChapterId;
-        public int SelectedWeaponId => PlayerPrefs.SelectedWeaponId;
-        public int SelectedGrenadeId => PlayerPrefs.SelectedGrenadeId;
-        public int SelectedDefenceId => PlayerPrefs.SelectedDefenceId;
+        public int Coins => Progress.Coin;
+        public int CurrentLevelId => Progress.LevelId;
+        public int CurrentChapterId => Progress.ChapterId;
+        public int SelectedWeaponId => Progress.SelectedWeaponId;
+        public int SelectedGrenadeId => Progress.SelectedGrenadeId;
+        public int SelectedDefenceId => Progress.SelectedDefenceId;
 
         public void AddCoins(int value)
         {
-            var previousCoins = PlayerPrefs.Coin;
-            PlayerPrefs.Coin += value;
-            if (PlayerPrefs.Coin < 0)
-                PlayerPrefs.Coin = 0;
+            var previousCoins = Progress.Coin;
+            Progress.Coin += value;
+            if (Progress.Coin < 0)
+                Progress.Coin = 0;
 
             SaveProgress();
-            _signalBus.Fire(new CoinsChangedSignal(PlayerPrefs.Coin, PlayerPrefs.Coin - previousCoins));
+            _signalBus.Fire(new CoinsChangedSignal(Progress.Coin, Progress.Coin - previousCoins));
         }
 
-        public bool CanBuy(int price) 
-            => Preferences.OpportunityBuy(price);
+        public bool CanBuy(int price)
+            => Progress.Coin >= price;
 
         public bool TryGetNextWeaponUpgradePrice(int id, out int price)
         {
             price = 0;
-            var weaponShortInfo = PlayerPrefs.GetWeaponShortInfo(id);
+            var weaponShortInfo = Progress.GetWeaponShortInfo(id);
             var weapon = _assetProvider.WeaponStoreDatabase.GetWeapon(id);
             if (weaponShortInfo == null || weapon?.Upgrades == null || weaponShortInfo.UpgradeId >= weapon.Upgrades.Count - 1)
                 return false;
@@ -76,7 +64,7 @@ namespace SBabchuk.Runtime.Services
         public bool TryGetNextDefenceUpgradePrice(int id, out int price)
         {
             price = 0;
-            var defenceShortInfo = PlayerPrefs.GetDefenceShortInfo(id);
+            var defenceShortInfo = Progress.GetDefenceShortInfo(id);
             var defence = _assetProvider.DefenseStoreDatabase.GetDefense(id);
             if (defenceShortInfo == null || defence?.Upgrades == null || defenceShortInfo.UpgradeId >= defence.Upgrades.Count - 1)
                 return false;
@@ -92,7 +80,7 @@ namespace SBabchuk.Runtime.Services
         public bool TryGetNextPersonageUpgradePrice(int id, out int price)
         {
             price = 0;
-            var personageShortInfo = PlayerPrefs.GetPersonageShortInfo(id);
+            var personageShortInfo = Progress.GetPersonageShortInfo(id);
             var personage = _assetProvider.MainPlayerDatabase.GetPersonage(id);
             if (personageShortInfo == null || personage?.Upgrades == null || personageShortInfo.UpgradeId >= personage.Upgrades.Count - 1)
                 return false;
@@ -107,44 +95,44 @@ namespace SBabchuk.Runtime.Services
 
         public void SetCurrentLevel(int id)
         {
-            PlayerPrefs.LevelId = id;
-            PlayerPrefs.ChapterId = _assetProvider.LevelDatabase.GetChapterIdByLevelId(id);
+            Progress.LevelId = id;
+            Progress.ChapterId = _assetProvider.LevelDatabase.GetChapterIdByLevelId(id);
             SaveProgress();
         }
 
         public void CompleteCurrentLevel(float barricadeHealthPercent)
         {
-            var levelShortInfo = PlayerPrefs.GetLevelShortInfo(PlayerPrefs.LevelId);
+            var levelShortInfo = Progress.GetLevelShortInfo(Progress.LevelId);
             if (levelShortInfo == null)
                 return;
 
             levelShortInfo.IsCompleted = mySwitch.On;
-            Preferences.SetStars(levelShortInfo, barricadeHealthPercent);
-            UpdateChapterCompletion(levelShortInfo.ChapterId);
+            levelShortInfo.Stars = Mathf.Max(levelShortInfo.Stars, CalculateStars(barricadeHealthPercent));
+            RefreshChapterCompletion(levelShortInfo.ChapterId);
             SaveProgress();
         }
 
         public WeaponShortInfo GetWeaponShortInfo(int id) 
-            => PlayerPrefs.GetWeaponShortInfo(id);
+            => Progress.GetWeaponShortInfo(id);
 
         public GrenadeShortInfo GetGrenadeShortInfo(int id) 
-            => PlayerPrefs.GetGrenadeShortInfo(id);
+            => Progress.GetGrenadeShortInfo(id);
 
         public DefenceShortInfo GetDefenceShortInfo(int id) 
-            => PlayerPrefs.GetDefenceShortInfo(id);
+            => Progress.GetDefenceShortInfo(id);
 
         public PersonageShortInfo GetPersonageShortInfo(int id) 
-            => PlayerPrefs.GetPersonageShortInfo(id);
+            => Progress.GetPersonageShortInfo(id);
 
         public LevelShortInfo GetLevelShortInfo(int id) 
-            => PlayerPrefs.GetLevelShortInfo(id);
+            => Progress.GetLevelShortInfo(id);
 
         public ChapterShortInfo GetChapterShortInfo(int id)
-            => PlayerPrefs.GetChapterShortInfo(id);
+            => Progress.GetChapterShortInfo(id);
 
         public void SetWeaponAmmo(WeaponsName weapon, int value)
         {
-            var weaponShortInfo = PlayerPrefs.GetWeaponShortInfo((int)weapon);
+            var weaponShortInfo = Progress.GetWeaponShortInfo((int)weapon);
             if (weaponShortInfo == null)
                 return;
 
@@ -162,7 +150,7 @@ namespace SBabchuk.Runtime.Services
 
         public void BuyWeapon(int id)
         {
-            var weaponShortInfo = PlayerPrefs.GetWeaponShortInfo(id);
+            var weaponShortInfo = Progress.GetWeaponShortInfo(id);
             var weapon = _assetProvider.WeaponStoreDatabase.GetWeapon(id);
             if (weaponShortInfo == null || weapon == null)
                 return;
@@ -177,7 +165,7 @@ namespace SBabchuk.Runtime.Services
 
         public void BuyWeaponMagazine(int id, bool isFree = false)
         {
-            var weaponShortInfo = PlayerPrefs.GetWeaponShortInfo(id);
+            var weaponShortInfo = Progress.GetWeaponShortInfo(id);
             var weapon = _assetProvider.WeaponStoreDatabase.GetWeapon(id);
             if (weaponShortInfo == null || weapon == null)
                 return;
@@ -198,7 +186,7 @@ namespace SBabchuk.Runtime.Services
 
         public void BuyWeaponUpgrade(int id)
         {
-            var weaponShortInfo = PlayerPrefs.GetWeaponShortInfo(id);
+            var weaponShortInfo = Progress.GetWeaponShortInfo(id);
             if (weaponShortInfo == null)
                 return;
 
@@ -213,7 +201,7 @@ namespace SBabchuk.Runtime.Services
 
         public void BuyGrenade(int id, bool isFree = false)
         {
-            var grenadeShortInfo = PlayerPrefs.GetGrenadeShortInfo(id);
+            var grenadeShortInfo = Progress.GetGrenadeShortInfo(id);
             var grenade = _assetProvider.BombStoreDatabase.GetGrenade(id);
             if (grenadeShortInfo == null || grenade == null)
                 return;
@@ -236,7 +224,7 @@ namespace SBabchuk.Runtime.Services
 
         public bool CanUseGrenade(int id)
         {
-            var grenadeShortInfo = PlayerPrefs.GetGrenadeShortInfo(id);
+            var grenadeShortInfo = Progress.GetGrenadeShortInfo(id);
             if (grenadeShortInfo == null)
                 return false;
 
@@ -251,7 +239,7 @@ namespace SBabchuk.Runtime.Services
 
         public bool UseGrenade(int id)
         {
-            var grenadeShortInfo = PlayerPrefs.GetGrenadeShortInfo(id);
+            var grenadeShortInfo = Progress.GetGrenadeShortInfo(id);
             if (grenadeShortInfo == null)
                 return false;
 
@@ -275,7 +263,7 @@ namespace SBabchuk.Runtime.Services
 
         public void BuyDefence(int id)
         {
-            var defenceShortInfo = PlayerPrefs.GetDefenceShortInfo(id);
+            var defenceShortInfo = Progress.GetDefenceShortInfo(id);
             var defence = _assetProvider.DefenseStoreDatabase.GetDefense(id);
             if (defenceShortInfo == null || defence == null)
                 return;
@@ -290,14 +278,14 @@ namespace SBabchuk.Runtime.Services
 
         public void SelectDefence(int id)
         {
-            PlayerPrefs.SelectedDefenceId = id;
+            Progress.SelectedDefenceId = id;
             SaveProgress();
             FireProgressChanged();
         }
 
         public void BuyDefenceUpgrade(int id)
         {
-            var defenceShortInfo = PlayerPrefs.GetDefenceShortInfo(id);
+            var defenceShortInfo = Progress.GetDefenceShortInfo(id);
             if (defenceShortInfo == null)
                 return;
 
@@ -312,7 +300,7 @@ namespace SBabchuk.Runtime.Services
 
         public void BuyPersonage(int id)
         {
-            var personageShortInfo = PlayerPrefs.GetPersonageShortInfo(id);
+            var personageShortInfo = Progress.GetPersonageShortInfo(id);
             var personage = _assetProvider.MainPlayerDatabase.GetPersonage(id);
             if (personageShortInfo == null || personage == null)
                 return;
@@ -327,7 +315,7 @@ namespace SBabchuk.Runtime.Services
 
         public void BuyPersonageUpgrade(int id)
         {
-            var personageShortInfo = PlayerPrefs.GetPersonageShortInfo(id);
+            var personageShortInfo = Progress.GetPersonageShortInfo(id);
             if (personageShortInfo == null)
                 return;
 
@@ -340,274 +328,22 @@ namespace SBabchuk.Runtime.Services
             FireProgressChanged();
         }
 
-        private void SaveProgress() 
-            => _saveService.SaveAsync(Preferences).Forget();
+        private void SaveProgress()
+            => _repository.Save();
 
-        private bool EnsureProgressData()
+        private void RefreshChapterCompletion(int chapterId)
         {
-            var changed = false;
-            changed |= EnsureProgressLists();
-            changed |= EnsureWeaponProgress();
-            changed |= EnsureGrenadeProgress();
-            changed |= EnsureDefenceProgress();
-            changed |= EnsurePersonageProgress();
-            changed |= EnsureLevelProgress();
-            changed |= NormalizeGrenadeInventory();
-            return changed;
-        }
-
-        private bool EnsureProgressLists()
-        {
-            var changed = false;
-
-            if (PlayerPrefs.Weapons == null)
-            {
-                PlayerPrefs.Weapons = new List<WeaponShortInfo>();
-                changed = true;
-            }
-
-            if (PlayerPrefs.Grenades == null)
-            {
-                PlayerPrefs.Grenades = new List<GrenadeShortInfo>();
-                changed = true;
-            }
-
-            if (PlayerPrefs.Defences == null)
-            {
-                PlayerPrefs.Defences = new List<DefenceShortInfo>();
-                changed = true;
-            }
-
-            if (PlayerPrefs.Personages == null)
-            {
-                PlayerPrefs.Personages = new List<PersonageShortInfo>();
-                changed = true;
-            }
-
-            if (PlayerPrefs.Levels == null)
-            {
-                PlayerPrefs.Levels = new List<LevelShortInfo>();
-                changed = true;
-            }
-
-            if (PlayerPrefs.Chapters == null)
-            {
-                PlayerPrefs.Chapters = new List<ChapterShortInfo>();
-                changed = true;
-            }
-
-            if (PlayerPrefs.SeenEnemyIds == null)
-            {
-                PlayerPrefs.SeenEnemyIds = new List<int>();
-                changed = true;
-            }
-
-            changed |= RemoveNullEntries(PlayerPrefs.Weapons);
-            changed |= RemoveNullEntries(PlayerPrefs.Grenades);
-            changed |= RemoveNullEntries(PlayerPrefs.Defences);
-            changed |= RemoveNullEntries(PlayerPrefs.Personages);
-            changed |= RemoveNullEntries(PlayerPrefs.Levels);
-            changed |= RemoveNullEntries(PlayerPrefs.Chapters);
-
-            return changed;
-        }
-
-        private bool EnsureWeaponProgress()
-        {
-            var weapons = _assetProvider.WeaponStoreDatabase.Weapons;
-            if (weapons == null)
-                return false;
-
-            var changed = false;
-            foreach (var weapon in weapons)
-            {
-                if (weapon != null && PlayerPrefs.GetWeaponShortInfo(weapon.Id) == null)
-                {
-                    PlayerPrefs.Weapons.Add(new WeaponShortInfo(weapon));
-                    changed = true;
-                }
-            }
-
-            return changed;
-        }
-
-        private bool EnsureGrenadeProgress()
-        {
-            var grenades = _assetProvider.BombStoreDatabase.Grenades;
-            if (grenades == null)
-                return false;
-
-            var changed = false;
-            foreach (var grenade in grenades)
-            {
-                if (grenade != null && PlayerPrefs.GetGrenadeShortInfo(grenade.Id) == null)
-                {
-                    PlayerPrefs.Grenades.Add(new GrenadeShortInfo(grenade));
-                    changed = true;
-                }
-            }
-
-            return changed;
-        }
-
-        private bool EnsureDefenceProgress()
-        {
-            var defences = _assetProvider.DefenseStoreDatabase.Defenses;
-            if (defences == null)
-                return false;
-
-            var changed = false;
-            foreach (var defence in defences)
-            {
-                if (defence != null && PlayerPrefs.GetDefenceShortInfo(defence.Id) == null)
-                {
-                    PlayerPrefs.Defences.Add(new DefenceShortInfo(defence));
-                    changed = true;
-                }
-            }
-
-            return changed;
-        }
-
-        private bool EnsurePersonageProgress()
-        {
-            var personages = _assetProvider.MainPlayerDatabase.Personages;
-            if (personages == null)
-                return false;
-
-            var changed = false;
-            foreach (var personage in personages)
-            {
-                if (personage != null && PlayerPrefs.GetPersonageShortInfo(personage.Id) == null)
-                {
-                    PlayerPrefs.Personages.Add(new PersonageShortInfo(personage));
-                    changed = true;
-                }
-            }
-
-            return changed;
-        }
-
-        private bool EnsureLevelProgress()
-        {
-            var levelDatabase = _assetProvider.LevelDatabase;
-            if (levelDatabase == null)
-                return false;
-
-            var changed = false;
-            var chapters = levelDatabase.Chapters;
-            if (chapters != null)
-            {
-                foreach (var chapter in chapters)
-                {
-                    if (chapter == null)
-                        continue;
-
-                    changed |= EnsureChapterProgress(chapter);
-
-                    if (chapter.Levels == null)
-                        continue;
-
-                    foreach (var level in chapter.Levels)
-                        changed |= EnsureLevelProgress(level, chapter.Id);
-                }
-            }
-
-            foreach (var level in levelDatabase.Levels)
-                changed |= EnsureLevelProgress(level, levelDatabase.GetChapterIdByLevelId(level.Id));
-
-            PlayerPrefs.ChapterId = levelDatabase.GetChapterIdByLevelId(PlayerPrefs.LevelId);
-
-            return changed;
-        }
-
-        private bool EnsureChapterProgress(ChapterDatabase chapter)
-        {
-            if (chapter == null)
-                return false;
-
-            var changed = false;
-            var chapterShortInfo = PlayerPrefs.GetChapterShortInfo(chapter.Id);
-            if (chapterShortInfo == null)
-            {
-                PlayerPrefs.Chapters.Add(new ChapterShortInfo(chapter));
-                changed = true;
-            }
-            else if (chapterShortInfo.Name != chapter.Name)
-            {
-                chapterShortInfo.Name = chapter.Name;
-                changed = true;
-            }
-
-            return changed | UpdateChapterCompletion(chapter.Id);
-        }
-
-        private bool EnsureLevelProgress(Level level, int chapterId)
-        {
-            if (level == null)
-                return false;
-
-            var levelShortInfo = PlayerPrefs.GetLevelShortInfo(level.Id);
-            if (levelShortInfo == null)
-            {
-                PlayerPrefs.Levels.Add(new LevelShortInfo(level, chapterId));
-                return true;
-            }
-
-            if (levelShortInfo.ChapterId == chapterId)
-                return false;
-
-            levelShortInfo.ChapterId = chapterId;
-            return true;
-        }
-
-        private bool UpdateChapterCompletion(int chapterId)
-        {
-            var chapterShortInfo = PlayerPrefs.GetChapterShortInfo(chapterId);
             var chapter = _assetProvider.LevelDatabase.GetChapter(chapterId);
-            if (chapterShortInfo == null || chapter?.Levels == null || chapter.Levels.Count == 0)
-                return false;
-
-            foreach (var level in chapter.Levels)
-            {
-                var levelShortInfo = level != null ? PlayerPrefs.GetLevelShortInfo(level.Id) : null;
-                if (levelShortInfo == null || levelShortInfo.IsCompleted != mySwitch.On)
-                {
-                    if (chapterShortInfo.IsCompleted == mySwitch.Off)
-                        return false;
-
-                    chapterShortInfo.IsCompleted = mySwitch.Off;
-                    return true;
-                }
-            }
-
-            if (chapterShortInfo.IsCompleted == mySwitch.On)
-                return false;
-
-            chapterShortInfo.IsCompleted = mySwitch.On;
-            return true;
+            if (chapter != null)
+                Progress.RefreshChapterCompletion(chapterId, chapter.GetLevelIds());
         }
 
-        private bool NormalizeGrenadeInventory()
+        private static int CalculateStars(float barricadeHealthPercent)
         {
-            var grenades = PlayerPrefs?.Grenades;
-            if (grenades == null)
-                return false;
+            if (barricadeHealthPercent >= ThreeStarHealthThreshold)
+                return 3;
 
-            var hasChanges = false;
-            foreach (var grenade in grenades)
-                hasChanges |= NormalizeGrenadeCount(grenade);
-
-            return hasChanges;
-        }
-
-        private bool RemoveNullEntries<T>(List<T> entries) where T : class
-        {
-            if (entries == null)
-                return false;
-
-            var removedCount = entries.RemoveAll(entry => entry == null);
-            return removedCount > 0;
+            return barricadeHealthPercent >= TwoStarHealthThreshold ? 2 : 1;
         }
 
         private bool NormalizeGrenadeCount(GrenadeShortInfo grenadeShortInfo)

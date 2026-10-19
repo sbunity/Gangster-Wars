@@ -5,14 +5,14 @@ using SBabchuk.Runtime.Databases.DefenseStore;
 using SBabchuk.Runtime.Databases.Enemies;
 using SBabchuk.Runtime.Databases.Levels;
 using SBabchuk.Runtime.Databases.MainPlayers;
-using SBabchuk.Runtime.Databases.PlayerPrefs;
 using SBabchuk.Runtime.Databases.WeaponStore;
+using SBabchuk.Runtime.Progress;
 
 namespace SBabchuk.Runtime.Services.Contracts
 {
     public interface IAssetProvider
     {
-        PlayerPrefsDatabase PlayerPrefsDatabase { get; }
+        PlayerProgressDefaults PlayerProgressDefaults { get; }
 
         WeaponStoreDatabase WeaponStoreDatabase { get; }
 

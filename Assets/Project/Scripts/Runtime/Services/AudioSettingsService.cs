@@ -1,38 +1,34 @@
-using Cysharp.Threading.Tasks;
 using SBabchuk.Runtime.Architecture;
 using SBabchuk.Runtime.Services.Contracts;
 using Zenject;
-using SBabchuk.Runtime.Databases.PlayerPrefs;
 
 namespace SBabchuk.Runtime.Services
 {
     public sealed class AudioSettingsService : IAudioSettingsService
     {
-        private readonly IPlayerProgressService _progressService;
-        private readonly ISaveService _saveService;
+        private readonly IPlayerProgressRepository _repository;
         private readonly SignalBus _signalBus;
-        
-        public AudioSettingsService(IPlayerProgressService progressService, ISaveService saveService, SignalBus signalBus)
+
+        public AudioSettingsService(IPlayerProgressRepository repository, SignalBus signalBus)
         {
-            _progressService = progressService;
-            _saveService = saveService;
+            _repository = repository;
             _signalBus = signalBus;
         }
 
-        public bool IsMusicEnabled => _progressService.Preferences.IsMusicEnabled();
-        public bool IsSoundEnabled => _progressService.Preferences.IsSoundEnabled();
+        public bool IsMusicEnabled => _repository.Progress.Music == mySwitch.On;
+        public bool IsSoundEnabled => _repository.Progress.Sound == mySwitch.On;
 
         public void SetMusicEnabled(bool value)
         {
-            _progressService.PlayerPrefs.Music = value ? mySwitch.On : mySwitch.Off;
-            _saveService.SaveAsync(_progressService.Preferences).Forget();
+            _repository.Progress.Music = value ? mySwitch.On : mySwitch.Off;
+            _repository.Save();
             Apply();
         }
 
         public void SetSoundEnabled(bool value)
         {
-            _progressService.PlayerPrefs.Sound = value ? mySwitch.On : mySwitch.Off;
-            _saveService.SaveAsync(_progressService.Preferences).Forget();
+            _repository.Progress.Sound = value ? mySwitch.On : mySwitch.Off;
+            _repository.Save();
             Apply();
         }
 

@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Serialization;
 using SBabchuk.Runtime.Databases.DefenseStore;
-using SBabchuk.Runtime.Databases.PlayerPrefs;
+using SBabchuk.Runtime.Progress;
 using SBabchuk.Runtime.Services;
 
 namespace SBabchuk.Runtime.UI.WeaponStore

@@ -2,7 +2,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Serialization;
-using SBabchuk.Runtime.Databases.PlayerPrefs;
+using SBabchuk.Runtime.Progress;
 using SBabchuk.Runtime.Databases.WeaponStore;
 using SBabchuk.Runtime.Services;
 

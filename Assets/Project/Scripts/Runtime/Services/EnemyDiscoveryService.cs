@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using Cysharp.Threading.Tasks;
 using SBabchuk.Runtime.Architecture;
 using SBabchuk.Runtime.Databases.Enemies;
 using SBabchuk.Runtime.Services.Contracts;
@@ -9,39 +8,30 @@ namespace SBabchuk.Runtime.Services
 {
     public sealed class EnemyDiscoveryService : IEnemyDiscoveryService
     {
-        private readonly IPlayerProgressService _progressService;
-        private readonly ISaveService _saveService;
+        private readonly IPlayerProgressRepository _repository;
         private readonly SignalBus _signalBus;
-        private readonly HashSet<int> _sessionDiscoveredEnemyIds = new HashSet<int>();
+        private readonly HashSet<int> _sessionDiscoveredEnemyIds = new();
 
-        public EnemyDiscoveryService(IPlayerProgressService progressService, ISaveService saveService, SignalBus signalBus)
+        public EnemyDiscoveryService(IPlayerProgressRepository repository, SignalBus signalBus)
         {
-            _progressService = progressService;
-            _saveService = saveService;
+            _repository = repository;
             _signalBus = signalBus;
         }
 
         public bool HasSeen(int enemyId)
-            => _progressService.PlayerPrefs.HasSeenEnemy(enemyId) || _sessionDiscoveredEnemyIds.Contains(enemyId);
+            => _repository.Progress.HasSeenEnemy(enemyId) || _sessionDiscoveredEnemyIds.Contains(enemyId);
 
         public bool TryDiscover(Enemy enemy)
         {
             if (enemy == null || HasSeen(enemy.Id))
                 return false;
 
-            EnsureSeenEnemyIds();
-            _progressService.PlayerPrefs.SeenEnemyIds.Add(enemy.Id);
+            _repository.Progress.SeenEnemyIds.Add(enemy.Id);
             _sessionDiscoveredEnemyIds.Add(enemy.Id);
 
-            _saveService.SaveAsync(_progressService.Preferences).Forget();
+            _repository.Save();
             _signalBus.Fire(new NewEnemyDiscoveredSignal(enemy.Id, enemy.Name, enemy.Icon));
             return true;
-        }
-
-        private void EnsureSeenEnemyIds()
-        {
-            if (_progressService.PlayerPrefs.SeenEnemyIds == null)
-                _progressService.PlayerPrefs.SeenEnemyIds = new List<int>();
         }
     }
 }

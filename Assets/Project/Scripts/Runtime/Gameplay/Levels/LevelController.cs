@@ -7,7 +7,7 @@ using Zenject;
 using SBabchuk.Runtime.Databases.BombStore;
 using SBabchuk.Runtime.Databases.Bullets;
 using SBabchuk.Runtime.Databases.Levels;
-using SBabchuk.Runtime.Databases.PlayerPrefs;
+using SBabchuk.Runtime.Progress;
 using SBabchuk.Runtime.Gameplay.Barricades;
 using SBabchuk.Runtime.Gameplay.Bonuses;
 using SBabchuk.Runtime.Gameplay.Collisions;
@@ -24,7 +24,6 @@ namespace SBabchuk.Runtime.Gameplay.Levels
         private FilledBarController _waveBar;
 
         private LevelDatabase _database;
-        private PlayerPrefsDatabase _pPrefs;
         private RandomPathPicker _pathPicker;
         private LevelEntityTracker _entityTracker;
         private LevelWaveScheduler _waveScheduler;
@@ -104,8 +103,7 @@ namespace SBabchuk.Runtime.Gameplay.Levels
         private void Start()
         {
             _database = _assetProvider.LevelDatabase;
-            _pPrefs = _progressService.Preferences;
-            Init(_pPrefs.PlayerPrefs.LevelId);
+            Init(_progressService.CurrentLevelId);
             StartLevel();
         }
 

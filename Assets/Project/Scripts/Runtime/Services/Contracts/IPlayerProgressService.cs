@@ -1,12 +1,9 @@
-using SBabchuk.Runtime.Databases.PlayerPrefs;
+using SBabchuk.Runtime.Progress;
+
 namespace SBabchuk.Runtime.Services.Contracts
 {
     public interface IPlayerProgressService
     {
-        PlayerPrefs PlayerPrefs { get; }
-
-        PlayerPrefsDatabase Preferences { get; }
-
         int Coins { get; }
 
         int CurrentLevelId { get; }

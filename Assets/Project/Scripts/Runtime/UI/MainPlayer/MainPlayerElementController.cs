@@ -1,4 +1,4 @@
-using SBabchuk.Runtime.Databases.PlayerPrefs;
+using SBabchuk.Runtime.Progress;
 using SBabchuk.Runtime.UI.WeaponStore;
 using UnityEngine;
 using UnityEngine.Serialization;

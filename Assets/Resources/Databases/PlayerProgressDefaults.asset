@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7e662c0e1c22b154f8700e2899a8f2da, type: 3}
+  m_Name: PlayerProgressDefaults
+  m_EditorClassIdentifier: Assembly-CSharp::SBabchuk.Runtime.Progress.PlayerProgressDefaults
+  _coins: 100
+  _levelId: 0
+  _unlockedChapterId: 0
+  _starterWeapon: 0
+  _starterWeaponAmmo: 70
+  _selectedGrenade: 0
+  _starterDefence: 0
+  _musicEnabled: 1
+  _soundEnabled: 1
+  _vibrationEnabled: 1

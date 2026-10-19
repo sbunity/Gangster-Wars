@@ -6,7 +6,7 @@ using Spine;
 using DG.Tweening;
 using UnityEngine.Serialization;
 using SBabchuk.Runtime.Databases.MainPlayers;
-using SBabchuk.Runtime.Databases.PlayerPrefs;
+using SBabchuk.Runtime.Progress;
 using SBabchuk.Runtime.Services.Contracts;
 using Zenject;
 

@@ -31,6 +31,21 @@ namespace SBabchuk.Runtime.Databases.Levels
             return index != -1 ? _levels[index] : null;
         }
 
+        public IReadOnlyCollection<int> GetLevelIds()
+        {
+            var ids = new List<int>();
+            if (_levels == null)
+                return ids;
+
+            foreach (var level in _levels)
+            {
+                if (level != null)
+                    ids.Add(level.Id);
+            }
+
+            return ids;
+        }
+
         public Waves GetWave(Level level, int waveId)
         {
             if (level?.Waves == null)

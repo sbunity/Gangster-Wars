@@ -29,8 +29,7 @@ namespace SBabchuk.Runtime.Installers
         {
             Container.Bind<IPoolAssetResolver>().To<PoolAssetResolver>().AsSingle();
             Container.Bind<IAssetProvider>().To<AssetProvider>().AsSingle();
-            Container.BindInterfacesTo<SaveService>().AsSingle();
-            Container.BindInterfacesTo<PlayerProgressService>().AsSingle();
+            BindProgress();
             Container.Bind<ISceneLoaderService>().To<SceneLoaderService>().AsSingle();
             Container.Bind<ILoadingScreenFactory>().To<LoadingScreenFactory>().AsSingle()
                 .WithArguments(_loadingScreenPrefab);
@@ -52,6 +51,18 @@ namespace SBabchuk.Runtime.Installers
             Container.Bind<UISoundsConfig>().FromInstance(_uiSounds).AsSingle();
             Container.Bind<IInputService>().To<InputService>().AsSingle();
             BindVibration();
+        }
+
+        private void BindProgress()
+        {
+            Container.Bind<IDataSerializer>().To<JsonUtilityDataSerializer>().AsSingle();
+            Container.Bind<IProgressStorage>().To<FileProgressStorage>().AsSingle()
+                .WithArguments(SaveFileLocations.Progress);
+            Container.BindInterfacesTo<LegacySaveFilesCleanup>().AsSingle();
+            Container.Bind<IPlayerProgressNormalizer>().To<PlayerProgressNormalizer>().AsSingle();
+            Container.Bind<IPlayerProgressFactory>().To<PlayerProgressFactory>().AsSingle();
+            Container.Bind<IPlayerProgressRepository>().To<PlayerProgressRepository>().AsSingle();
+            Container.Bind<IPlayerProgressService>().To<PlayerProgressService>().AsSingle();
         }
 
         private void BindVibration()
