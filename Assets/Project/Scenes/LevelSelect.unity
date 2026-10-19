@@ -930,6 +930,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e39149d30e040d45ac76426d897ba51, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SBabchuk.Runtime.UI.UIClickSound
+  _type: 0
+  _customSound: {fileID: 0}
 --- !u!1 &97634827
 GameObject:
   m_ObjectHideFlags: 0
@@ -1183,6 +1185,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e39149d30e040d45ac76426d897ba51, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SBabchuk.Runtime.UI.UIClickSound
+  _type: 0
+  _customSound: {fileID: 0}
 --- !u!1 &101132419
 GameObject:
   m_ObjectHideFlags: 0
@@ -2054,6 +2058,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e39149d30e040d45ac76426d897ba51, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SBabchuk.Runtime.UI.UIClickSound
+  _type: 0
+  _customSound: {fileID: 0}
 --- !u!1 &242695772
 GameObject:
   m_ObjectHideFlags: 0
@@ -2228,6 +2234,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e39149d30e040d45ac76426d897ba51, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SBabchuk.Runtime.UI.UIClickSound
+  _type: 0
+  _customSound: {fileID: 0}
 --- !u!1 &259880339
 GameObject:
   m_ObjectHideFlags: 0
@@ -2402,6 +2410,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e39149d30e040d45ac76426d897ba51, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SBabchuk.Runtime.UI.UIClickSound
+  _type: 0
+  _customSound: {fileID: 0}
 --- !u!1 &292176475
 GameObject:
   m_ObjectHideFlags: 0
@@ -3411,6 +3421,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e39149d30e040d45ac76426d897ba51, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SBabchuk.Runtime.UI.UIClickSound
+  _type: 0
+  _customSound: {fileID: 0}
 --- !u!1 &485752903
 GameObject:
   m_ObjectHideFlags: 0
@@ -3735,6 +3747,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e39149d30e040d45ac76426d897ba51, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SBabchuk.Runtime.UI.UIClickSound
+  _type: 0
+  _customSound: {fileID: 0}
 --- !u!1 &576314273
 GameObject:
   m_ObjectHideFlags: 0
@@ -4271,6 +4285,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e39149d30e040d45ac76426d897ba51, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SBabchuk.Runtime.UI.UIClickSound
+  _type: 0
+  _customSound: {fileID: 0}
 --- !u!1 &669678174
 GameObject:
   m_ObjectHideFlags: 0
@@ -4674,6 +4690,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e39149d30e040d45ac76426d897ba51, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SBabchuk.Runtime.UI.UIClickSound
+  _type: 0
+  _customSound: {fileID: 0}
 --- !u!1 &708612051
 GameObject:
   m_ObjectHideFlags: 0
@@ -4923,6 +4941,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e39149d30e040d45ac76426d897ba51, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SBabchuk.Runtime.UI.UIClickSound
+  _type: 0
+  _customSound: {fileID: 0}
 --- !u!1 &719164260
 GameObject:
   m_ObjectHideFlags: 0
@@ -5182,7 +5202,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1699172481}
-  m_Father: {fileID: 883962074}
+  m_Father: {fileID: 1109327088}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -5308,6 +5328,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e39149d30e040d45ac76426d897ba51, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SBabchuk.Runtime.UI.UIClickSound
+  _type: 0
+  _customSound: {fileID: 0}
 --- !u!1 &740648747
 GameObject:
   m_ObjectHideFlags: 0
@@ -5632,6 +5654,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e39149d30e040d45ac76426d897ba51, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SBabchuk.Runtime.UI.UIClickSound
+  _type: 0
+  _customSound: {fileID: 0}
 --- !u!1 &797837173
 GameObject:
   m_ObjectHideFlags: 0
@@ -6055,7 +6079,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 883962074}
+  m_Father: {fileID: 1109327088}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -90}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
@@ -6156,6 +6180,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e39149d30e040d45ac76426d897ba51, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SBabchuk.Runtime.UI.UIClickSound
+  _type: 0
+  _customSound: {fileID: 0}
 --- !u!1 &861933102
 GameObject:
   m_ObjectHideFlags: 0
@@ -6551,9 +6577,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1236650536}
-  - {fileID: 844851617}
-  - {fileID: 1267211431}
-  - {fileID: 739860972}
+  - {fileID: 1109327088}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -7166,6 +7190,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e39149d30e040d45ac76426d897ba51, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SBabchuk.Runtime.UI.UIClickSound
+  _type: 0
+  _customSound: {fileID: 0}
 --- !u!1 &1002463783
 GameObject:
   m_ObjectHideFlags: 0
@@ -7627,6 +7653,58 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1109314705}
   m_CullTransparentMesh: 1
+--- !u!1 &1109327087
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1109327088}
+  - component: {fileID: 1109327089}
+  m_Layer: 5
+  m_Name: SafeArea
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1109327088
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1109327087}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 844851617}
+  - {fileID: 1267211431}
+  - {fileID: 739860972}
+  m_Father: {fileID: 883962074}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1109327089
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1109327087}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a0e317eb77477f438bb686b85347a16, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SBabchuk.Runtime.UI.SafeAreaFitter
+  _edges: 15
 --- !u!1 &1120498816
 GameObject:
   m_ObjectHideFlags: 0
@@ -7964,6 +8042,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e39149d30e040d45ac76426d897ba51, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SBabchuk.Runtime.UI.UIClickSound
+  _type: 0
+  _customSound: {fileID: 0}
 --- !u!1 &1186995353
 GameObject:
   m_ObjectHideFlags: 0
@@ -8887,7 +8967,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 883962074}
+  m_Father: {fileID: 1109327088}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
   m_AnchorMin: {x: 1, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
@@ -8988,6 +9068,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e39149d30e040d45ac76426d897ba51, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SBabchuk.Runtime.UI.UIClickSound
+  _type: 0
+  _customSound: {fileID: 0}
 --- !u!1 &1275842767
 GameObject:
   m_ObjectHideFlags: 0
@@ -9462,6 +9544,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e39149d30e040d45ac76426d897ba51, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SBabchuk.Runtime.UI.UIClickSound
+  _type: 0
+  _customSound: {fileID: 0}
 --- !u!1 &1389563970
 GameObject:
   m_ObjectHideFlags: 0
@@ -10313,6 +10397,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e39149d30e040d45ac76426d897ba51, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SBabchuk.Runtime.UI.UIClickSound
+  _type: 0
+  _customSound: {fileID: 0}
 --- !u!1 &1451522979
 GameObject:
   m_ObjectHideFlags: 0
@@ -10487,6 +10573,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e39149d30e040d45ac76426d897ba51, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SBabchuk.Runtime.UI.UIClickSound
+  _type: 0
+  _customSound: {fileID: 0}
 --- !u!1 &1456185736
 GameObject:
   m_ObjectHideFlags: 0
@@ -10661,6 +10749,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e39149d30e040d45ac76426d897ba51, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SBabchuk.Runtime.UI.UIClickSound
+  _type: 0
+  _customSound: {fileID: 0}
 --- !u!1 &1460298117
 GameObject:
   m_ObjectHideFlags: 0
@@ -11135,6 +11225,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e39149d30e040d45ac76426d897ba51, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SBabchuk.Runtime.UI.UIClickSound
+  _type: 0
+  _customSound: {fileID: 0}
 --- !u!1 &1489644818
 GameObject:
   m_ObjectHideFlags: 0
@@ -11388,6 +11480,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e39149d30e040d45ac76426d897ba51, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SBabchuk.Runtime.UI.UIClickSound
+  _type: 0
+  _customSound: {fileID: 0}
 --- !u!1 &1530645928
 GameObject:
   m_ObjectHideFlags: 0
@@ -11729,6 +11823,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e39149d30e040d45ac76426d897ba51, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SBabchuk.Runtime.UI.UIClickSound
+  _type: 0
+  _customSound: {fileID: 0}
 --- !u!1 &1567072314
 GameObject:
   m_ObjectHideFlags: 0
@@ -12046,6 +12142,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e39149d30e040d45ac76426d897ba51, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SBabchuk.Runtime.UI.UIClickSound
+  _type: 0
+  _customSound: {fileID: 0}
 --- !u!1 &1587867289
 GameObject:
   m_ObjectHideFlags: 0
@@ -13940,6 +14038,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e39149d30e040d45ac76426d897ba51, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SBabchuk.Runtime.UI.UIClickSound
+  _type: 0
+  _customSound: {fileID: 0}
 --- !u!1 &1984258073
 GameObject:
   m_ObjectHideFlags: 0
@@ -14414,6 +14514,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e39149d30e040d45ac76426d897ba51, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SBabchuk.Runtime.UI.UIClickSound
+  _type: 0
+  _customSound: {fileID: 0}
 --- !u!1 &2074115506
 GameObject:
   m_ObjectHideFlags: 0
@@ -14789,6 +14891,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e39149d30e040d45ac76426d897ba51, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SBabchuk.Runtime.UI.UIClickSound
+  _type: 0
+  _customSound: {fileID: 0}
 --- !u!1 &2117895511
 GameObject:
   m_ObjectHideFlags: 0

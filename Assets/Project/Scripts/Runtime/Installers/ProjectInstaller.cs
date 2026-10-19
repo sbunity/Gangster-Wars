@@ -1,6 +1,7 @@
 using SBabchuk.Runtime.Architecture;
 using SBabchuk.Runtime.Audio;
 using SBabchuk.Runtime.Factories;
+using SBabchuk.Runtime.SafeArea;
 using SBabchuk.Runtime.Services;
 using SBabchuk.Runtime.Services.Contracts;
 using SBabchuk.Runtime.UI;
@@ -50,7 +51,14 @@ namespace SBabchuk.Runtime.Installers
             Container.BindInterfacesTo<MusicService>().AsSingle();
             Container.Bind<UISoundsConfig>().FromInstance(_uiSounds).AsSingle();
             Container.Bind<IInputService>().To<InputService>().AsSingle();
+            BindSafeArea();
             BindVibration();
+        }
+
+        private void BindSafeArea()
+        {
+            Container.Bind<IScreenSafeAreaSource>().To<ScreenSafeAreaSource>().AsSingle();
+            Container.BindInterfacesTo<SafeAreaService>().AsSingle();
         }
 
         private void BindProgress()
@@ -99,6 +107,7 @@ namespace SBabchuk.Runtime.Installers
             Container.DeclareSignal<GrenadeDamageSignal>().OptionalSubscriber();
             Container.DeclareSignal<AudioSettingsChangedSignal>().OptionalSubscriber();
             Container.DeclareSignal<UIPanelReplaceSignal>().OptionalSubscriber();
+            Container.DeclareSignal<SafeAreaChangedSignal>().OptionalSubscriber();
         }
     }
 }

@@ -192,4 +192,14 @@ namespace SBabchuk.Runtime.Architecture
 
         public UIPanelController Panel { get; }
     }
+
+    public readonly struct SafeAreaChangedSignal
+    {
+        public SafeAreaChangedSignal(Rect normalizedArea)
+        {
+            NormalizedArea = normalizedArea;
+        }
+
+        public Rect NormalizedArea { get; }
+    }
 }
