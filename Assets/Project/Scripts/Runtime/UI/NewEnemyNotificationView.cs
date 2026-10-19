@@ -18,6 +18,7 @@ namespace SBabchuk.Runtime.UI
         private SignalSubscriptions _signals;
         private SignalBus _signalBus;
         private IInstantiator _instantiator;
+        private bool _isCapacityDirty;
 
         [Inject]
         public void Construct(SignalBus signalBus, IInstantiator instantiator)
@@ -38,15 +39,36 @@ namespace SBabchuk.Runtime.UI
 
         private void OnDisable() => _signals?.Disable();
 
+        private void OnRectTransformDimensionsChange() => _isCapacityDirty = true;
+
+        private void LateUpdate()
+        {
+            if (!_isCapacityDirty)
+                return;
+
+            _isCapacityDirty = false;
+            if (_elements.Count == 0)
+                return;
+
+            TrimToCapacity(VisibleCapacity);
+            LayoutButtons();
+        }
+
+        private int VisibleCapacity
+        {
+            get
+            {
+                var fitting = Mathf.FloorToInt((_itemsRoot.rect.height + _spacing) / (_buttonSize.y + _spacing));
+                return Mathf.Clamp(fitting, 1, _maxVisibleButtons);
+            }
+        }
+
         private void Show(NewEnemyDiscoveredSignal signal)
         {
             if (_itemsRoot == null || _elementPrefab == null)
                 return;
 
-            while (_elements.Count >= _maxVisibleButtons)
-            {
-                RemoveElementAt(0);
-            }
+            TrimToCapacity(VisibleCapacity - 1);
 
             var element = _instantiator.InstantiatePrefabForComponent<NewEnemyNotificationElementView>(_elementPrefab, _itemsRoot);
             element.gameObject.layer = gameObject.layer;
@@ -68,6 +90,12 @@ namespace SBabchuk.Runtime.UI
                 rect.sizeDelta = _buttonSize;
                 rect.anchoredPosition = new Vector2(0f, -i * (_buttonSize.y + _spacing));
             }
+        }
+
+        private void TrimToCapacity(int capacity)
+        {
+            while (_elements.Count > capacity)
+                RemoveElementAt(0);
         }
 
         private void Animate(Transform target)
