@@ -34,6 +34,9 @@ namespace SBabchuk.Runtime.Progress
         [SerializeField] private int _selectedDefenceId;
         public int SelectedDefenceId { get => _selectedDefenceId; set => _selectedDefenceId = value; }
 
+        [SerializeField] private int _selectedCarSkinId;
+        public int SelectedCarSkinId { get => _selectedCarSkinId; set => _selectedCarSkinId = value; }
+
         [SerializeField] private List<WeaponShortInfo> _weapons = new();
         public List<WeaponShortInfo> Weapons { get => _weapons; set => _weapons = value; }
 
@@ -55,6 +58,9 @@ namespace SBabchuk.Runtime.Progress
         [SerializeField] private List<int> _seenEnemyIds = new();
         public List<int> SeenEnemyIds { get => _seenEnemyIds; set => _seenEnemyIds = value; }
 
+        [SerializeField] private List<int> _ownedCarSkinIds = new();
+        public List<int> OwnedCarSkinIds { get => _ownedCarSkinIds; set => _ownedCarSkinIds = value; }
+
         public WeaponShortInfo GetWeaponShortInfo(int id)
             => Find(_weapons, entry => entry.Id == id);
 
@@ -75,6 +81,9 @@ namespace SBabchuk.Runtime.Progress
 
         public bool HasSeenEnemy(int id)
             => _seenEnemyIds != null && _seenEnemyIds.Contains(id);
+
+        public bool HasCarSkin(int id)
+            => _ownedCarSkinIds != null && _ownedCarSkinIds.Contains(id);
 
         public bool RefreshChapterCompletion(int chapterId, IReadOnlyCollection<int> levelIds)
         {

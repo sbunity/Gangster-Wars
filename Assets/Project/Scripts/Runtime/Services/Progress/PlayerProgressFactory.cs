@@ -26,7 +26,8 @@ namespace SBabchuk.Runtime.Services
                 LevelId = defaults.LevelId,
                 SelectedWeaponId = defaults.StarterWeaponId,
                 SelectedGrenadeId = defaults.SelectedGrenadeId,
-                SelectedDefenceId = defaults.StarterDefenceId
+                SelectedDefenceId = defaults.StarterDefenceId,
+                SelectedCarSkinId = defaults.StarterCarSkinId
             };
 
             _normalizer.Normalize(progress);

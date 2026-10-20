@@ -19,6 +19,7 @@ MonoBehaviour:
   _starterWeaponAmmo: 70
   _selectedGrenade: 0
   _starterDefence: 0
+  _starterCarSkin: 0
   _musicEnabled: 1
   _soundEnabled: 1
   _vibrationEnabled: 1

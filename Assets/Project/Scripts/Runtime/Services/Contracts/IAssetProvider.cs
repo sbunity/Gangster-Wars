@@ -1,6 +1,7 @@
 using UnityEngine;
 using SBabchuk.Runtime.Databases.BombStore;
 using SBabchuk.Runtime.Databases.Bullets;
+using SBabchuk.Runtime.Databases.CarSkins;
 using SBabchuk.Runtime.Databases.DefenseStore;
 using SBabchuk.Runtime.Databases.Enemies;
 using SBabchuk.Runtime.Databases.Levels;
@@ -29,6 +30,8 @@ namespace SBabchuk.Runtime.Services.Contracts
         LevelBackgroundDatabase LevelBackgroundDatabase { get; }
 
         BulletDatabase BulletDatabase { get; }
+
+        CarSkinDatabase CarSkinDatabase { get; }
 
         T LoadAsset<T>() where T : Object;
         GameObject LoadPrefab(NamesPool pool, int id);

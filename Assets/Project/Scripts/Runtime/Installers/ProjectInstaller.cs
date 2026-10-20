@@ -71,6 +71,7 @@ namespace SBabchuk.Runtime.Installers
             Container.Bind<IPlayerProgressFactory>().To<PlayerProgressFactory>().AsSingle();
             Container.Bind<IPlayerProgressRepository>().To<PlayerProgressRepository>().AsSingle();
             Container.Bind<IPlayerProgressService>().To<PlayerProgressService>().AsSingle();
+            Container.Bind<ICarSkinService>().To<CarSkinService>().AsSingle();
         }
 
         private void BindVibration()
@@ -97,6 +98,7 @@ namespace SBabchuk.Runtime.Installers
             Container.DeclareSignal<CoinFlightRequestedSignal>().OptionalSubscriber();
             Container.DeclareSignal<CoinFlightFromScreenRequestedSignal>().OptionalSubscriber();
             Container.DeclareSignal<ProgressUpgradedSignal>().OptionalSubscriber();
+            Container.DeclareSignal<CarSkinChangedSignal>().OptionalSubscriber();
             Container.DeclareSignal<WeaponAmmoChangedSignal>().OptionalSubscriber();
             Container.DeclareSignal<LeaderMagazineInitializedSignal>().OptionalSubscriber();
             Container.DeclareSignal<LeaderPatronsChangedSignal>().OptionalSubscriber();

@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using SBabchuk.Runtime.Databases.BombStore;
 using SBabchuk.Runtime.Databases.Bullets;
+using SBabchuk.Runtime.Databases.CarSkins;
 using SBabchuk.Runtime.Databases.DefenseStore;
 using SBabchuk.Runtime.Databases.Enemies;
 using SBabchuk.Runtime.Databases.Levels;
@@ -36,6 +37,7 @@ namespace SBabchuk.Runtime.Services
         public LevelDatabase LevelDatabase => GetDatabase<LevelDatabase>();
         public LevelBackgroundDatabase LevelBackgroundDatabase => GetDatabase<LevelBackgroundDatabase>();
         public BulletDatabase BulletDatabase => GetDatabase<BulletDatabase>();
+        public CarSkinDatabase CarSkinDatabase => GetDatabase<CarSkinDatabase>();
 
         public T LoadAsset<T>() where T : UnityEngine.Object
         {

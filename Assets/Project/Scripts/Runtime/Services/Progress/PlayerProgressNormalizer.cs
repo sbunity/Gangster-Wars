@@ -27,6 +27,7 @@ namespace SBabchuk.Runtime.Services
             changed |= EnsureDefences(progress, defaults);
             changed |= EnsurePersonages(progress);
             changed |= EnsureLevels(progress, defaults);
+            changed |= EnsureCarSkins(progress, defaults);
             changed |= ClampGrenadeCounts(progress);
             return changed;
         }
@@ -40,14 +41,18 @@ namespace SBabchuk.Runtime.Services
             progress.Personages = EnsureList(progress.Personages, ref changed);
             progress.Levels = EnsureList(progress.Levels, ref changed);
             progress.Chapters = EnsureList(progress.Chapters, ref changed);
-
-            if (progress.SeenEnemyIds == null)
-            {
-                progress.SeenEnemyIds = new List<int>();
-                changed = true;
-            }
-
+            progress.SeenEnemyIds = EnsureIdList(progress.SeenEnemyIds, ref changed);
+            progress.OwnedCarSkinIds = EnsureIdList(progress.OwnedCarSkinIds, ref changed);
             return changed;
+        }
+
+        private static List<int> EnsureIdList(List<int> ids, ref bool changed)
+        {
+            if (ids != null)
+                return ids;
+
+            changed = true;
+            return new List<int>();
         }
 
         private static List<T> EnsureList<T>(List<T> entries, ref bool changed) where T : class
@@ -214,6 +219,24 @@ namespace SBabchuk.Runtime.Services
 
             levelShortInfo.ChapterId = chapterId;
             return true;
+        }
+
+        private static bool EnsureCarSkins(PlayerProgress progress, PlayerProgressDefaults defaults)
+        {
+            var changed = false;
+            if (!progress.HasCarSkin(defaults.StarterCarSkinId))
+            {
+                progress.OwnedCarSkinIds.Add(defaults.StarterCarSkinId);
+                changed = true;
+            }
+
+            if (!progress.HasCarSkin(progress.SelectedCarSkinId))
+            {
+                progress.SelectedCarSkinId = defaults.StarterCarSkinId;
+                changed = true;
+            }
+
+            return changed;
         }
 
         private static bool ClampGrenadeCounts(PlayerProgress progress)

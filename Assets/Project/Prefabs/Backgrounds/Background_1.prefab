@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2567420435198255077}
   - component: {fileID: 6410838733555743521}
+  - component: {fileID: 3791317491423665183}
   m_Layer: 0
   m_Name: Background_1
   m_TagString: Untagged
@@ -68,6 +69,23 @@ MonoBehaviour:
   _leaderPoint: {fileID: 2157865021095448417}
   _sniperPoint: {fileID: 8844063632895913141}
   _bomberPoint: {fileID: 8640483410451787821}
+--- !u!114 &3791317491423665183
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 21973586277361299}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c4ccc89f79a3c92419c9a6e14deeb974, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SBabchuk.Runtime.Gameplay.Levels.LevelCarSkinVariants
+  _variants:
+  - _skin: 0
+    _root: {fileID: 7168696952199462547}
+  - _skin: 1
+    _root: {fileID: 8576021159021475552}
 --- !u!1 &39436381713537200
 GameObject:
   m_ObjectHideFlags: 0

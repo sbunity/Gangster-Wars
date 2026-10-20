@@ -18,6 +18,9 @@ namespace SBabchuk.Runtime.Progress
         [SerializeField] private GrenadesName _selectedGrenade = GrenadesName.Grenade_1;
         [SerializeField] private DefencesName _starterDefence = DefencesName.Defence_1;
 
+        [Header("Cosmetics")]
+        [SerializeField] private CarSkinsName _starterCarSkin = CarSkinsName.Black;
+
         [Header("Settings")]
         [SerializeField] private bool _musicEnabled = true;
         [SerializeField] private bool _soundEnabled = true;
@@ -30,6 +33,7 @@ namespace SBabchuk.Runtime.Progress
         public int StarterWeaponAmmo => _starterWeaponAmmo;
         public int SelectedGrenadeId => (int)_selectedGrenade;
         public int StarterDefenceId => (int)_starterDefence;
+        public int StarterCarSkinId => (int)_starterCarSkin;
         public bool MusicEnabled => _musicEnabled;
         public bool SoundEnabled => _soundEnabled;
         public bool VibrationEnabled => _vibrationEnabled;

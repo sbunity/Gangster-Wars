@@ -60,6 +60,13 @@ namespace SBabchuk.Runtime
         Defence_4 = 3,
     }
 
+    public enum CarSkinsName
+    {
+        None = -1,
+        Black = 0,
+        Red = 1,
+    }
+
     public enum ShortInfoName
     {
         None = -1,

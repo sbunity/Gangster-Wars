@@ -99,6 +99,16 @@ namespace SBabchuk.Runtime.Architecture
     {
     }
 
+    public readonly struct CarSkinChangedSignal
+    {
+        public CarSkinChangedSignal(int skinId)
+        {
+            SkinId = skinId;
+        }
+
+        public int SkinId { get; }
+    }
+
     public readonly struct WeaponAmmoChangedSignal
     {
         public WeaponAmmoChangedSignal(WeaponsName weapon, int count)

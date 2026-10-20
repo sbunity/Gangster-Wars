@@ -33,6 +33,7 @@ namespace SBabchuk.EditorTools
 
             _signalBus.Fire(new CoinsChangedSignal(_repository.Progress.Coin));
             _signalBus.Fire<ProgressUpgradedSignal>();
+            _signalBus.Fire(new CarSkinChangedSignal(_repository.Progress.SelectedCarSkinId));
             _signalBus.Fire<AudioSettingsChangedSignal>();
         }
 
