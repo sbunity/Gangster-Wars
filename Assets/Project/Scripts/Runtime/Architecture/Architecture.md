@@ -38,6 +38,7 @@ The project now has a Zenject-driven service layer under `Assets/Project/Scripts
 
 The main scenes now contain `SceneContext`:
 
+- `Init`
 - `MainScene`
 - `LevelSelect`
 - `GameScene`
@@ -49,6 +50,27 @@ The main scenes now contain `SceneContext`:
 - `ILevelRuntimeService` from `LevelController`
 - `ILeaderWeaponController` from `LeaderGangsterController`
 - `IHandService` from `HandController`
+
+## Game Bootstrap (Init Scene)
+
+- `Init` (`Assets/Project/Scenes/Init.unity`) is the first scene in Build Settings. Its `SceneContext` is the first one to wake up, so the `ProjectContext` is created there.
+- `PlayModeStartScene` (editor) sets `EditorSceneManager.playModeStartScene` to the first enabled build scene, so Play in the Editor always starts from `Init`, whatever scene is open, and then goes to `MainScene`.
+- `InitSceneInstaller` binds the bootstrap steps (`IBootstrapStep`), `GameBootstrapper` and `InitSceneEntryPoint`. Its `_settings` (`BootstrapSettings`) holds the minimum duration (5 s), the overtime tail (1 s) and the first scene (`MainScene`).
+- `GameBootstrapper` runs the steps one by one in binding order, one frame apart, so the loading screen renders before any heavy work. Steps:
+  1. `LegacySaveFilesCleanup` deletes old `Main_*.pso` saves.
+  2. `PlayerProgressLoadStep` loads the progress (`IPlayerProgressRepository.LoadAsync`).
+- `InitSceneEntryPoint` starts the minimum-duration timer and the bootstrapper together (unscaled time). When the timer ends: if the steps are done, it moves on; if not, it waits for them and then for the overtime tail. Then it goes to the first scene through `ISceneTransitionService`. The transition loading screen fades in over the `Init` screen, which looks the same, so the change is not visible.
+- The `Init` screen (`[LoadingScreen]` in the scene) is a static canvas copied from `LoadingScreen.prefab`, without `LoadingScreenView`. It is visible from the first frame and is unloaded with the scene.
+- `PlayerProgressRepository.Progress` throws until `Load` has run. Nothing may read the progress while the `ProjectContext` is being built: `AudioService` and `MusicService` apply the audio settings when their `[Audio]`/`[Music]` objects are created on first use, not in `Initialize`.
+- New startup work is a new `IBootstrapStep` bound in `InitSceneInstaller.BindBootstrapSteps`.
+
+## Progress Persistence
+
+- `IProgressStorage` is the async source of the progress: `LoadAsync` (returns `null` when there is no save) and `SaveAsync`. `FileProgressStorage` is the current implementation (`progress.json` in `Application.persistentDataPath`, written through a `.tmp` file, a broken file is moved to `.corrupted`). Another source (cloud, another format) is a new `IProgressStorage` bound in `ProjectInstaller.BindProgress`.
+- `SaveAsync` serializes the progress synchronously, before its first `await`, and then writes the text. The services keep changing `PlayerProgress` while a write is in flight, so every new storage must take its snapshot the same way.
+- `PlayerProgressRepository` keeps the progress in memory. `LoadAsync` loads it (or creates the default one and normalizes it) once, in the `Init` scene. `Save()` stays synchronous for the services: it starts the write through `CoalescingTaskRunner`, which never runs two writes at once. Calls made while a write is running are merged into one more write of the latest state.
+- `CoalescingTaskRunner` (`Architecture`) runs an async task without overlap and repeats it once if it was asked again during the run. A failed run is logged and does not stop the next one.
+- `Exists` and `Delete` are file-only, so they are on `FileProgressStorage` and not in the contract. The editor `PlayerProgressWindow` uses `FileProgressStorage` directly outside Play Mode and the live repository in Play Mode once the progress is loaded.
 
 ## Entity Composition
 

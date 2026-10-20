@@ -1,5 +1,7 @@
 using System;
 using System.IO;
+using System.Threading;
+using Cysharp.Threading.Tasks;
 using SBabchuk.Runtime.Progress;
 using SBabchuk.Runtime.Services.Contracts;
 using UnityEngine;
@@ -24,48 +26,57 @@ namespace SBabchuk.Runtime.Services
 
         public bool Exists => File.Exists(_filePath) || File.Exists(_tempPath);
 
-        public bool TryLoad(out PlayerProgress progress)
+        public async UniTask<PlayerProgress> LoadAsync(CancellationToken cancellationToken)
         {
-            progress = null;
             RecoverInterruptedSave();
 
             if (!File.Exists(_filePath))
-                return false;
+                return null;
 
-            try
-            {
-                progress = _serializer.Deserialize<PlayerProgress>(File.ReadAllText(_filePath));
-            }
-            catch (Exception exception)
-            {
-                Debug.LogError($"Failed to read progress from '{_filePath}': {exception.Message}");
-                progress = null;
-            }
-
+            var progress = await ReadAsync(cancellationToken);
             if (progress != null)
-                return true;
+                return progress;
 
             QuarantineCorruptedFile();
-            return false;
+            return null;
         }
 
-        public void Save(PlayerProgress progress)
+        public UniTask SaveAsync(PlayerProgress progress, CancellationToken cancellationToken)
         {
             if (progress == null)
                 throw new ArgumentNullException(nameof(progress));
 
-            var directory = Path.GetDirectoryName(_filePath);
-            if (!string.IsNullOrEmpty(directory))
-                Directory.CreateDirectory(directory);
-
-            File.WriteAllText(_tempPath, _serializer.Serialize(progress));
-            ReplaceWithTemp();
+            return WriteAsync(_serializer.Serialize(progress), cancellationToken);
         }
 
         public void Delete()
         {
             DeleteIfExists(_filePath);
             DeleteIfExists(_tempPath);
+        }
+
+        private async UniTask<PlayerProgress> ReadAsync(CancellationToken cancellationToken)
+        {
+            try
+            {
+                var raw = await File.ReadAllTextAsync(_filePath, cancellationToken);
+                return _serializer.Deserialize<PlayerProgress>(raw);
+            }
+            catch (Exception exception) when (exception is not OperationCanceledException)
+            {
+                Debug.LogError($"Failed to read progress from '{_filePath}': {exception.Message}");
+                return null;
+            }
+        }
+
+        private async UniTask WriteAsync(string raw, CancellationToken cancellationToken)
+        {
+            var directory = Path.GetDirectoryName(_filePath);
+            if (!string.IsNullOrEmpty(directory))
+                Directory.CreateDirectory(directory);
+
+            await File.WriteAllTextAsync(_tempPath, raw, cancellationToken);
+            ReplaceWithTemp();
         }
 
         private void RecoverInterruptedSave()

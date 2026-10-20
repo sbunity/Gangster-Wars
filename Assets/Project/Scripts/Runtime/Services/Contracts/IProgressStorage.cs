@@ -1,13 +1,12 @@
+using System.Threading;
+using Cysharp.Threading.Tasks;
 using SBabchuk.Runtime.Progress;
 
 namespace SBabchuk.Runtime.Services.Contracts
 {
     public interface IProgressStorage
     {
-        bool Exists { get; }
-
-        bool TryLoad(out PlayerProgress progress);
-        void Save(PlayerProgress progress);
-        void Delete();
+        UniTask<PlayerProgress> LoadAsync(CancellationToken cancellationToken);
+        UniTask SaveAsync(PlayerProgress progress, CancellationToken cancellationToken);
     }
 }

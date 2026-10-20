@@ -1,3 +1,6 @@
+using System;
+using System.Threading;
+using Cysharp.Threading.Tasks;
 using SBabchuk.Runtime.Services;
 using SBabchuk.Runtime.Services.Contracts;
 using UnityEditor;
@@ -15,6 +18,11 @@ namespace SBabchuk.EditorTools
         private IProgressEditSource _source;
         private Vector2 _scroll;
         private bool _isDirty;
+        private CancellationTokenSource _lifetime;
+        private int _busyOperations;
+        private int _reloadVersion;
+
+        private bool IsBusy => _busyOperations > 0;
 
         [MenuItem(MenuRoot + "Open Window", priority = 0)]
         private static void Open()
@@ -37,6 +45,7 @@ namespace SBabchuk.EditorTools
 
         private void OnEnable()
         {
+            _lifetime = new CancellationTokenSource();
             _buffer = CreateInstance<ProgressEditBuffer>();
             _buffer.hideFlags = HideFlags.DontSave;
             EditorApplication.playModeStateChanged += OnPlayModeStateChanged;
@@ -46,13 +55,15 @@ namespace SBabchuk.EditorTools
         private void OnDisable()
         {
             EditorApplication.playModeStateChanged -= OnPlayModeStateChanged;
+            _lifetime.Cancel();
+            _lifetime.Dispose();
             if (_buffer != null)
                 DestroyImmediate(_buffer);
         }
 
         private void OnFocus()
         {
-            if (_buffer != null && !_isDirty)
+            if (_buffer != null && !_isDirty && !IsBusy)
                 Reload();
         }
 
@@ -71,6 +82,7 @@ namespace SBabchuk.EditorTools
 
         private void DrawToolbar()
         {
+            using (new EditorGUI.DisabledScope(IsBusy))
             using (new EditorGUILayout.HorizontalScope())
             {
                 if (GUILayout.Button("Reload"))
@@ -100,6 +112,12 @@ namespace SBabchuk.EditorTools
         {
             if (_buffer.Progress == null)
             {
+                if (IsBusy)
+                {
+                    EditorGUILayout.HelpBox("Loading...", MessageType.None);
+                    return;
+                }
+
                 EditorGUILayout.HelpBox("No save file. Default progress will be created on the next launch.", MessageType.Info);
                 return;
             }
@@ -108,6 +126,7 @@ namespace SBabchuk.EditorTools
                 EditorGUILayout.HelpBox("Unsaved changes.", MessageType.Warning);
 
             _serializedBuffer.Update();
+            using (new EditorGUI.DisabledScope(IsBusy))
             using (var scroll = new EditorGUILayout.ScrollViewScope(_scroll))
             {
                 _scroll = scroll.scrollPosition;
@@ -120,18 +139,47 @@ namespace SBabchuk.EditorTools
         }
 
         private void Reload()
-        {
-            _source = CreateSource();
-            _buffer.Progress = _source.TryLoad(out var progress) ? progress : null;
-            _serializedBuffer = new SerializedObject(_buffer);
-            _isDirty = false;
-            Repaint();
-        }
+            => RunAsync(ReloadAsync).Forget();
 
         private void Save()
+            => RunAsync(SaveAsync).Forget();
+
+        private async UniTask ReloadAsync(CancellationToken cancellationToken)
         {
-            _source.Save(_buffer.Progress);
+            var version = ++_reloadVersion;
+            _source = CreateSource();
+
+            var progress = await _source.LoadAsync(cancellationToken);
+            cancellationToken.ThrowIfCancellationRequested();
+            if (version != _reloadVersion)
+                return;
+
+            _buffer.Progress = progress;
+            _serializedBuffer = new SerializedObject(_buffer);
             _isDirty = false;
+        }
+
+        private async UniTask SaveAsync(CancellationToken cancellationToken)
+        {
+            await _source.SaveAsync(_buffer.Progress, cancellationToken);
+            _isDirty = false;
+        }
+
+        private async UniTaskVoid RunAsync(Func<CancellationToken, UniTask> operation)
+        {
+            _busyOperations++;
+            Repaint();
+
+            try
+            {
+                await operation(_lifetime.Token);
+            }
+            finally
+            {
+                _busyOperations--;
+                if (this != null)
+                    Repaint();
+            }
         }
 
         private void OnPlayModeStateChanged(PlayModeStateChange state)
@@ -145,13 +193,15 @@ namespace SBabchuk.EditorTools
             if (EditorApplication.isPlaying && ProjectContext.HasInstance)
             {
                 var container = ProjectContext.Instance.Container;
-                return new LiveProgressEditSource(container.Resolve<IPlayerProgressRepository>(), container.Resolve<SignalBus>());
+                var repository = container.Resolve<IPlayerProgressRepository>();
+                if (repository.IsLoaded)
+                    return new LiveProgressEditSource(repository, container.Resolve<SignalBus>());
             }
 
             return new FileProgressEditSource(CreateFileStorage());
         }
 
-        private static IProgressStorage CreateFileStorage()
+        private static FileProgressStorage CreateFileStorage()
             => new FileProgressStorage(new JsonUtilityDataSerializer(), SaveFileLocations.Progress);
 
         private static bool ConfirmClear()

@@ -1,3 +1,5 @@
+using System.Threading;
+using Cysharp.Threading.Tasks;
 using SBabchuk.Runtime.Progress;
 
 namespace SBabchuk.EditorTools
@@ -7,8 +9,8 @@ namespace SBabchuk.EditorTools
         string Title { get; }
         bool CanDelete { get; }
 
-        bool TryLoad(out PlayerProgress progress);
-        void Save(PlayerProgress progress);
+        UniTask<PlayerProgress> LoadAsync(CancellationToken cancellationToken);
+        UniTask SaveAsync(PlayerProgress progress, CancellationToken cancellationToken);
         void Delete();
     }
 }

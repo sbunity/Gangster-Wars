@@ -66,7 +66,6 @@ namespace SBabchuk.Runtime.Installers
             Container.Bind<IDataSerializer>().To<JsonUtilityDataSerializer>().AsSingle();
             Container.Bind<IProgressStorage>().To<FileProgressStorage>().AsSingle()
                 .WithArguments(SaveFileLocations.Progress);
-            Container.BindInterfacesTo<LegacySaveFilesCleanup>().AsSingle();
             Container.Bind<IPlayerProgressNormalizer>().To<PlayerProgressNormalizer>().AsSingle();
             Container.Bind<IPlayerProgressFactory>().To<PlayerProgressFactory>().AsSingle();
             Container.Bind<IPlayerProgressRepository>().To<PlayerProgressRepository>().AsSingle();

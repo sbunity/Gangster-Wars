@@ -31,10 +31,7 @@ namespace SBabchuk.Runtime.Services
         private AudioSourcePool Pool => _pool ??= CreatePool();
 
         public void Initialize()
-        {
-            _signals.Enable();
-            ApplySettings();
-        }
+            => _signals.Enable();
 
         public void Dispose()
         {
@@ -71,14 +68,20 @@ namespace SBabchuk.Runtime.Services
 
         private void ApplySettings()
         {
-            Pool.SetMuted(!_audioSettings.IsSoundEnabled);
+            if (_pool != null)
+                ApplySettings(_pool);
         }
+
+        private void ApplySettings(AudioSourcePool pool)
+            => pool.SetMuted(!_audioSettings.IsSoundEnabled);
 
         private AudioSourcePool CreatePool()
         {
             _root = new GameObject("[Audio]");
             Object.DontDestroyOnLoad(_root);
-            return new AudioSourcePool(_root.transform, PrewarmVoices, MaxVoices);
+            var pool = new AudioSourcePool(_root.transform, PrewarmVoices, MaxVoices);
+            ApplySettings(pool);
+            return pool;
         }
     }
 }

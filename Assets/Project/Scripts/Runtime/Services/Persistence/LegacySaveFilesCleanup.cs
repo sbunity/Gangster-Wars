@@ -1,14 +1,22 @@
 using System.IO;
+using System.Threading;
+using Cysharp.Threading.Tasks;
+using SBabchuk.Runtime.Bootstrap;
 using UnityEngine;
-using Zenject;
 
 namespace SBabchuk.Runtime.Services
 {
-    public sealed class LegacySaveFilesCleanup : IInitializable
+    public sealed class LegacySaveFilesCleanup : IBootstrapStep
     {
         private const string LegacySavePattern = "Main_*.pso";
 
-        public void Initialize()
+        public UniTask ExecuteAsync(CancellationToken cancellationToken)
+        {
+            DeleteLegacySaves();
+            return UniTask.CompletedTask;
+        }
+
+        private static void DeleteLegacySaves()
         {
             var root = SaveFileLocations.Root;
             if (!Directory.Exists(root))

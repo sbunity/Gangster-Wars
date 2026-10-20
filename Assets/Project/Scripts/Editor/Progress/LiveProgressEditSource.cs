@@ -1,3 +1,5 @@
+using System.Threading;
+using Cysharp.Threading.Tasks;
 using SBabchuk.Runtime.Architecture;
 using SBabchuk.Runtime.Progress;
 using SBabchuk.Runtime.Services.Contracts;
@@ -20,13 +22,10 @@ namespace SBabchuk.EditorTools
         public string Title => "Live progress (Play Mode)";
         public bool CanDelete => false;
 
-        public bool TryLoad(out PlayerProgress progress)
-        {
-            progress = JsonUtility.FromJson<PlayerProgress>(JsonUtility.ToJson(_repository.Progress));
-            return true;
-        }
+        public UniTask<PlayerProgress> LoadAsync(CancellationToken cancellationToken)
+            => UniTask.FromResult(JsonUtility.FromJson<PlayerProgress>(JsonUtility.ToJson(_repository.Progress)));
 
-        public void Save(PlayerProgress progress)
+        public UniTask SaveAsync(PlayerProgress progress, CancellationToken cancellationToken)
         {
             JsonUtility.FromJsonOverwrite(JsonUtility.ToJson(progress), _repository.Progress);
             _repository.Save();
@@ -35,6 +34,7 @@ namespace SBabchuk.EditorTools
             _signalBus.Fire<ProgressUpgradedSignal>();
             _signalBus.Fire(new CarSkinChangedSignal(_repository.Progress.SelectedCarSkinId));
             _signalBus.Fire<AudioSettingsChangedSignal>();
+            return UniTask.CompletedTask;
         }
 
         public void Delete()

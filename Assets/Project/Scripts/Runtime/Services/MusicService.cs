@@ -30,10 +30,7 @@ namespace SBabchuk.Runtime.Services
         private AudioSource Source => _source != null ? _source : _source = CreateSource();
 
         public void Initialize()
-        {
-            _signals.Enable();
-            ApplySettings();
-        }
+            => _signals.Enable();
 
         public void Dispose()
         {
@@ -96,8 +93,12 @@ namespace SBabchuk.Runtime.Services
 
         private void ApplySettings()
         {
-            Source.mute = !_audioSettings.IsMusicEnabled;
+            if (_source != null)
+                ApplySettings(_source);
         }
+
+        private void ApplySettings(AudioSource source)
+            => source.mute = !_audioSettings.IsMusicEnabled;
 
         private AudioSource CreateSource()
         {
@@ -109,6 +110,7 @@ namespace SBabchuk.Runtime.Services
             source.loop = true;
             source.spatialBlend = 0f;
             source.volume = 0f;
+            ApplySettings(source);
             return source;
         }
     }
