@@ -1,23 +1,23 @@
 using System.Collections;
 using System.Collections.Generic;
-using SBabchuk.Runtime.Databases.Levels;
 using SBabchuk.Runtime.Services.Contracts;
-using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using Zenject;
 
-namespace SBabchuk.Runtime.UI
+namespace SBabchuk.Runtime.UI.LevelSelect
 {
     public sealed class LevelChapterCarouselController : MonoBehaviour, IBeginDragHandler, IEndDragHandler
     {
         [SerializeField] private ScrollRect _scrollRect;
         [SerializeField] private Button _previousButton;
         [SerializeField] private Button _nextButton;
-        [SerializeField] private List<RectTransform> _chapterPanels = new List<RectTransform>();
+        [SerializeField] private List<LevelChapterPanelView> _chapterPanels = new();
         [SerializeField] private float _snapDuration = 0.28f;
         [SerializeField] private float _swipeThreshold = 80f;
+
+        private readonly CarouselSlotLayout _layout = new CarouselSlotLayout();
 
         private IAssetProvider _assetProvider;
         private IPlayerProgressService _progressService;
@@ -107,7 +107,7 @@ namespace SBabchuk.Runtime.UI
             var count = Mathf.Min(_chapterPanels.Count, chapters.Count);
 
             for (var i = 0; i < count; i++)
-                InitializeChapterPanel(_chapterPanels[i], chapters[i]);
+                _chapterPanels[i].Bind(chapters[i]);
         }
 
         private void RebuildContentLayout()
@@ -115,65 +115,15 @@ namespace SBabchuk.Runtime.UI
             if (_scrollRect?.content == null || _chapterPanels.Count == 0)
                 return;
 
-            var panelSize = _scrollRect.viewport.rect.size;
-            if (panelSize.x <= 0f || panelSize.y <= 0f)
+            var viewportSize = _scrollRect.viewport.rect.size;
+            if (viewportSize.x <= 0f || viewportSize.y <= 0f)
                 return;
 
-            _scrollRect.content.sizeDelta = new Vector2(panelSize.x * _chapterPanels.Count, panelSize.y);
+            _layout.Clear();
+            foreach (var panel in _chapterPanels)
+                panel.SetCenter(_layout.AddSlot(panel.ApplyLayout(viewportSize)));
 
-            for (var i = 0; i < _chapterPanels.Count; i++)
-            {
-                var panel = _chapterPanels[i];
-                if (panel == null)
-                    continue;
-
-                panel.anchorMin = new Vector2(0f, 0.5f);
-                panel.anchorMax = new Vector2(0f, 0.5f);
-                panel.pivot = new Vector2(0.5f, 0.5f);
-                panel.sizeDelta = panelSize;
-                panel.anchoredPosition = new Vector2(panelSize.x * i + panelSize.x * 0.5f, 0f);
-            }
-        }
-
-        private void InitializeChapterPanel(RectTransform panel, ChapterDatabase chapter)
-        {
-            if (panel == null || chapter == null)
-                return;
-
-            SetChapterTitle(panel, chapter.Name);
-
-            var buttonsRoot = panel.Find("Buttons");
-            if (buttonsRoot == null || chapter.Levels == null)
-                return;
-
-            var buttons = new List<BttnSelectLvlController>();
-            foreach (Transform child in buttonsRoot)
-            {
-                if (child.TryGetComponent(out BttnSelectLvlController button))
-                    buttons.Add(button);
-            }
-
-            buttons.Sort((left, right) => left.transform.GetSiblingIndex().CompareTo(right.transform.GetSiblingIndex()));
-
-            var count = Mathf.Min(buttons.Count, chapter.Levels.Count);
-            for (var i = 0; i < count; i++)
-                buttons[i].Init(chapter.Levels[i].Id);
-        }
-
-        private void SetChapterTitle(RectTransform panel, string title)
-        {
-            var titleTransform = panel.Find("ChapterName");
-            if (titleTransform == null)
-                return;
-
-            if (titleTransform.TryGetComponent(out TMP_Text tmpText))
-            {
-                tmpText.text = title;
-                return;
-            }
-
-            if (titleTransform.TryGetComponent(out Text text))
-                text.text = title;
+            _scrollRect.content.sizeDelta = new Vector2(_layout.ContentWidth, viewportSize.y);
         }
 
         private int GetInitialChapterIndex()
@@ -232,12 +182,7 @@ namespace SBabchuk.Runtime.UI
         }
 
         private float GetNormalizedPosition(int index)
-        {
-            if (_chapterPanels.Count <= 1)
-                return 0f;
-
-            return index / (float)(_chapterPanels.Count - 1);
-        }
+            => _layout.GetNormalizedPosition(index, _scrollRect.viewport.rect.width);
 
         private void SetNormalizedPosition(float value)
         {
