@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e662c0e1c22b154f8700e2899a8f2da, type: 3}
   m_Name: PlayerProgressDefaults
   m_EditorClassIdentifier: Assembly-CSharp::SBabchuk.Runtime.Progress.PlayerProgressDefaults
-  _coins: 100
+  _coins: 0
   _levelId: 0
   _unlockedChapterId: 0
   _starterWeapon: 0

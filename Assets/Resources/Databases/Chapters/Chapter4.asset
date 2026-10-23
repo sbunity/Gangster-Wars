@@ -1,0 +1,601 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 34597a496a956ca4bbca9ccbccce0d04, type: 3}
+  m_Name: Chapter4
+  m_EditorClassIdentifier: Assembly-CSharp::SBabchuk.Runtime.Databases.Levels.ChapterDatabase
+  _id: 3
+  _name: 'Chapter 4: King of Downtown'
+  _levels:
+  - _id: 24
+    _name: Downtown Patrol
+    _icon: {fileID: 4972986203260505846, guid: 26e56697c87d18d4a8bb3acfcb8d78fc, type: 3}
+    _waves:
+    - _id: 0
+      _startDelay: 0
+      _delay: 17
+      _enemies:
+      - _enemyId: 1
+        _countEnemy: 1
+        _interval: 0
+        _dropChance: 70
+      - _enemyId: 1
+        _countEnemy: 1
+        _interval: 2
+        _dropChance: 70
+      - _enemyId: 9
+        _countEnemy: 1
+        _interval: 4
+        _dropChance: 70
+    - _id: 1
+      _startDelay: 0
+      _delay: 17
+      _enemies:
+      - _enemyId: 9
+        _countEnemy: 1
+        _interval: 0
+        _dropChance: 70
+      - _enemyId: 1
+        _countEnemy: 1
+        _interval: 2
+        _dropChance: 70
+      - _enemyId: 1
+        _countEnemy: 1
+        _interval: 4
+        _dropChance: 70
+    - _id: 2
+      _startDelay: 0
+      _delay: 23
+      _enemies:
+      - _enemyId: 9
+        _countEnemy: 1
+        _interval: 0
+        _dropChance: 70
+      - _enemyId: 1
+        _countEnemy: 1
+        _interval: 2
+        _dropChance: 70
+      - _enemyId: 1
+        _countEnemy: 1
+        _interval: 4
+        _dropChance: 70
+      - _enemyId: 1
+        _countEnemy: 1
+        _interval: 2
+        _dropChance: 70
+      - _enemyId: 9
+        _countEnemy: 1
+        _interval: 4
+        _dropChance: 70
+  - _id: 25
+    _name: Badges for Sale
+    _icon: {fileID: 4972986203260505846, guid: 26e56697c87d18d4a8bb3acfcb8d78fc, type: 3}
+    _waves:
+    - _id: 0
+      _startDelay: 0
+      _delay: 19
+      _enemies:
+      - _enemyId: 9
+        _countEnemy: 1
+        _interval: 0
+        _dropChance: 72
+      - _enemyId: 1
+        _countEnemy: 1
+        _interval: 2
+        _dropChance: 72
+      - _enemyId: 1
+        _countEnemy: 1
+        _interval: 4
+        _dropChance: 72
+      - _enemyId: 1
+        _countEnemy: 1
+        _interval: 2
+        _dropChance: 72
+    - _id: 1
+      _startDelay: 0
+      _delay: 23
+      _enemies:
+      - _enemyId: 9
+        _countEnemy: 1
+        _interval: 0
+        _dropChance: 72
+      - _enemyId: 9
+        _countEnemy: 1
+        _interval: 2
+        _dropChance: 72
+      - _enemyId: 1
+        _countEnemy: 1
+        _interval: 4
+        _dropChance: 72
+      - _enemyId: 1
+        _countEnemy: 1
+        _interval: 2
+        _dropChance: 72
+      - _enemyId: 1
+        _countEnemy: 1
+        _interval: 4
+        _dropChance: 72
+    - _id: 2
+      _startDelay: 0
+      _delay: 23
+      _enemies:
+      - _enemyId: 9
+        _countEnemy: 1
+        _interval: 0
+        _dropChance: 72
+      - _enemyId: 1
+        _countEnemy: 1
+        _interval: 2
+        _dropChance: 72
+      - _enemyId: 9
+        _countEnemy: 1
+        _interval: 4
+        _dropChance: 72
+      - _enemyId: 1
+        _countEnemy: 1
+        _interval: 2
+        _dropChance: 72
+      - _enemyId: 1
+        _countEnemy: 1
+        _interval: 4
+        _dropChance: 72
+  - _id: 26
+    _name: Undertaker's Parade
+    _icon: {fileID: 4972986203260505846, guid: 26e56697c87d18d4a8bb3acfcb8d78fc, type: 3}
+    _waves:
+    - _id: 0
+      _startDelay: 0
+      _delay: 23
+      _enemies:
+      - _enemyId: 1
+        _countEnemy: 1
+        _interval: 0
+        _dropChance: 74
+      - _enemyId: 1
+        _countEnemy: 1
+        _interval: 2
+        _dropChance: 74
+      - _enemyId: 9
+        _countEnemy: 1
+        _interval: 4
+        _dropChance: 74
+      - _enemyId: 9
+        _countEnemy: 1
+        _interval: 2
+        _dropChance: 74
+      - _enemyId: 1
+        _countEnemy: 1
+        _interval: 4
+        _dropChance: 74
+    - _id: 1
+      _startDelay: 0
+      _delay: 23
+      _enemies:
+      - _enemyId: 9
+        _countEnemy: 1
+        _interval: 0
+        _dropChance: 74
+      - _enemyId: 1
+        _countEnemy: 1
+        _interval: 2
+        _dropChance: 74
+      - _enemyId: 1
+        _countEnemy: 1
+        _interval: 4
+        _dropChance: 74
+      - _enemyId: 1
+        _countEnemy: 1
+        _interval: 2
+        _dropChance: 74
+      - _enemyId: 9
+        _countEnemy: 1
+        _interval: 4
+        _dropChance: 74
+    - _id: 2
+      _startDelay: 0
+      _delay: 20
+      _enemies:
+      - _enemyId: 9
+        _countEnemy: 1
+        _interval: 0
+        _dropChance: 74
+      - _enemyId: 1
+        _countEnemy: 1
+        _interval: 2
+        _dropChance: 74
+      - _enemyId: 11
+        _countEnemy: 1
+        _interval: 4
+        _dropChance: 88
+  - _id: 27
+    _name: Hotel Lobby Standoff
+    _icon: {fileID: 4972986203260505846, guid: 26e56697c87d18d4a8bb3acfcb8d78fc, type: 3}
+    _waves:
+    - _id: 0
+      _startDelay: 0
+      _delay: 23
+      _enemies:
+      - _enemyId: 9
+        _countEnemy: 1
+        _interval: 0
+        _dropChance: 76
+      - _enemyId: 1
+        _countEnemy: 1
+        _interval: 2
+        _dropChance: 76
+      - _enemyId: 1
+        _countEnemy: 1
+        _interval: 4
+        _dropChance: 76
+      - _enemyId: 1
+        _countEnemy: 1
+        _interval: 2
+        _dropChance: 76
+      - _enemyId: 9
+        _countEnemy: 1
+        _interval: 4
+        _dropChance: 76
+    - _id: 1
+      _startDelay: 0
+      _delay: 25
+      _enemies:
+      - _enemyId: 9
+        _countEnemy: 1
+        _interval: 0
+        _dropChance: 76
+      - _enemyId: 9
+        _countEnemy: 1
+        _interval: 2
+        _dropChance: 76
+      - _enemyId: 1
+        _countEnemy: 1
+        _interval: 4
+        _dropChance: 76
+      - _enemyId: 1
+        _countEnemy: 1
+        _interval: 2
+        _dropChance: 76
+      - _enemyId: 9
+        _countEnemy: 1
+        _interval: 4
+        _dropChance: 76
+      - _enemyId: 1
+        _countEnemy: 1
+        _interval: 2
+        _dropChance: 76
+    - _id: 2
+      _startDelay: 0
+      _delay: 23
+      _enemies:
+      - _enemyId: 1
+        _countEnemy: 1
+        _interval: 0
+        _dropChance: 76
+      - _enemyId: 1
+        _countEnemy: 1
+        _interval: 2
+        _dropChance: 76
+      - _enemyId: 9
+        _countEnemy: 1
+        _interval: 4
+        _dropChance: 76
+      - _enemyId: 9
+        _countEnemy: 1
+        _interval: 2
+        _dropChance: 76
+      - _enemyId: 1
+        _countEnemy: 1
+        _interval: 4
+        _dropChance: 76
+  - _id: 28
+    _name: Black Tie Affair
+    _icon: {fileID: 4972986203260505846, guid: 26e56697c87d18d4a8bb3acfcb8d78fc, type: 3}
+    _waves:
+    - _id: 0
+      _startDelay: 0
+      _delay: 23
+      _enemies:
+      - _enemyId: 1
+        _countEnemy: 1
+        _interval: 0
+        _dropChance: 78
+      - _enemyId: 1
+        _countEnemy: 1
+        _interval: 2
+        _dropChance: 78
+      - _enemyId: 9
+        _countEnemy: 1
+        _interval: 4
+        _dropChance: 78
+      - _enemyId: 9
+        _countEnemy: 1
+        _interval: 2
+        _dropChance: 78
+      - _enemyId: 1
+        _countEnemy: 1
+        _interval: 4
+        _dropChance: 78
+    - _id: 1
+      _startDelay: 0
+      _delay: 23
+      _enemies:
+      - _enemyId: 9
+        _countEnemy: 1
+        _interval: 0
+        _dropChance: 78
+      - _enemyId: 1
+        _countEnemy: 1
+        _interval: 2
+        _dropChance: 78
+      - _enemyId: 1
+        _countEnemy: 1
+        _interval: 4
+        _dropChance: 78
+      - _enemyId: 1
+        _countEnemy: 1
+        _interval: 2
+        _dropChance: 78
+      - _enemyId: 9
+        _countEnemy: 1
+        _interval: 4
+        _dropChance: 78
+    - _id: 2
+      _startDelay: 0
+      _delay: 20
+      _enemies:
+      - _enemyId: 9
+        _countEnemy: 1
+        _interval: 0
+        _dropChance: 78
+      - _enemyId: 1
+        _countEnemy: 1
+        _interval: 2
+        _dropChance: 78
+      - _enemyId: 14
+        _countEnemy: 1
+        _interval: 4
+        _dropChance: 92
+  - _id: 29
+    _name: City Hall Payroll
+    _icon: {fileID: 4972986203260505846, guid: 26e56697c87d18d4a8bb3acfcb8d78fc, type: 3}
+    _waves:
+    - _id: 0
+      _startDelay: 0
+      _delay: 25
+      _enemies:
+      - _enemyId: 9
+        _countEnemy: 1
+        _interval: 0
+        _dropChance: 80
+      - _enemyId: 1
+        _countEnemy: 1
+        _interval: 2
+        _dropChance: 80
+      - _enemyId: 1
+        _countEnemy: 1
+        _interval: 4
+        _dropChance: 80
+      - _enemyId: 1
+        _countEnemy: 1
+        _interval: 2
+        _dropChance: 80
+      - _enemyId: 9
+        _countEnemy: 1
+        _interval: 4
+        _dropChance: 80
+      - _enemyId: 9
+        _countEnemy: 1
+        _interval: 2
+        _dropChance: 80
+    - _id: 1
+      _startDelay: 0
+      _delay: 24
+      _enemies:
+      - _enemyId: 1
+        _countEnemy: 1
+        _interval: 0
+        _dropChance: 80
+      - _enemyId: 1
+        _countEnemy: 1
+        _interval: 2
+        _dropChance: 80
+      - _enemyId: 9
+        _countEnemy: 1
+        _interval: 4
+        _dropChance: 80
+      - _enemyId: 11
+        _countEnemy: 1
+        _interval: 4
+        _dropChance: 94
+    - _id: 2
+      _startDelay: 0
+      _delay: 20
+      _enemies:
+      - _enemyId: 9
+        _countEnemy: 1
+        _interval: 0
+        _dropChance: 80
+      - _enemyId: 9
+        _countEnemy: 1
+        _interval: 2
+        _dropChance: 80
+      - _enemyId: 14
+        _countEnemy: 1
+        _interval: 4
+        _dropChance: 94
+  - _id: 30
+    _name: Siege of Main Street
+    _icon: {fileID: 4972986203260505846, guid: 26e56697c87d18d4a8bb3acfcb8d78fc, type: 3}
+    _waves:
+    - _id: 0
+      _startDelay: 0
+      _delay: 25
+      _enemies:
+      - _enemyId: 1
+        _countEnemy: 1
+        _interval: 0
+        _dropChance: 82
+      - _enemyId: 1
+        _countEnemy: 1
+        _interval: 2
+        _dropChance: 82
+      - _enemyId: 9
+        _countEnemy: 1
+        _interval: 4
+        _dropChance: 82
+      - _enemyId: 9
+        _countEnemy: 1
+        _interval: 2
+        _dropChance: 82
+      - _enemyId: 9
+        _countEnemy: 1
+        _interval: 4
+        _dropChance: 82
+      - _enemyId: 1
+        _countEnemy: 1
+        _interval: 2
+        _dropChance: 82
+    - _id: 1
+      _startDelay: 0
+      _delay: 20
+      _enemies:
+      - _enemyId: 9
+        _countEnemy: 1
+        _interval: 0
+        _dropChance: 82
+      - _enemyId: 1
+        _countEnemy: 1
+        _interval: 2
+        _dropChance: 82
+      - _enemyId: 11
+        _countEnemy: 1
+        _interval: 4
+        _dropChance: 96
+    - _id: 2
+      _startDelay: 0
+      _delay: 24
+      _enemies:
+      - _enemyId: 9
+        _countEnemy: 1
+        _interval: 0
+        _dropChance: 82
+      - _enemyId: 1
+        _countEnemy: 1
+        _interval: 2
+        _dropChance: 82
+      - _enemyId: 1
+        _countEnemy: 1
+        _interval: 4
+        _dropChance: 82
+      - _enemyId: 14
+        _countEnemy: 1
+        _interval: 4
+        _dropChance: 96
+  - _id: 31
+    _name: Crown of the City
+    _icon: {fileID: 4972986203260505846, guid: 26e56697c87d18d4a8bb3acfcb8d78fc, type: 3}
+    _waves:
+    - _id: 0
+      _startDelay: 0
+      _delay: 25
+      _enemies:
+      - _enemyId: 9
+        _countEnemy: 1
+        _interval: 0
+        _dropChance: 85
+      - _enemyId: 1
+        _countEnemy: 1
+        _interval: 2
+        _dropChance: 85
+      - _enemyId: 1
+        _countEnemy: 1
+        _interval: 4
+        _dropChance: 85
+      - _enemyId: 1
+        _countEnemy: 1
+        _interval: 2
+        _dropChance: 85
+      - _enemyId: 9
+        _countEnemy: 1
+        _interval: 4
+        _dropChance: 85
+      - _enemyId: 9
+        _countEnemy: 1
+        _interval: 2
+        _dropChance: 85
+    - _id: 1
+      _startDelay: 0
+      _delay: 24
+      _enemies:
+      - _enemyId: 1
+        _countEnemy: 1
+        _interval: 0
+        _dropChance: 85
+      - _enemyId: 1
+        _countEnemy: 1
+        _interval: 2
+        _dropChance: 85
+      - _enemyId: 9
+        _countEnemy: 1
+        _interval: 4
+        _dropChance: 85
+      - _enemyId: 11
+        _countEnemy: 1
+        _interval: 4
+        _dropChance: 100
+    - _id: 2
+      _startDelay: 0
+      _delay: 25
+      _enemies:
+      - _enemyId: 9
+        _countEnemy: 1
+        _interval: 0
+        _dropChance: 85
+      - _enemyId: 9
+        _countEnemy: 1
+        _interval: 2
+        _dropChance: 85
+      - _enemyId: 1
+        _countEnemy: 1
+        _interval: 4
+        _dropChance: 85
+      - _enemyId: 1
+        _countEnemy: 1
+        _interval: 2
+        _dropChance: 85
+      - _enemyId: 9
+        _countEnemy: 1
+        _interval: 4
+        _dropChance: 85
+      - _enemyId: 1
+        _countEnemy: 1
+        _interval: 2
+        _dropChance: 85
+    - _id: 3
+      _startDelay: 0
+      _delay: 24
+      _enemies:
+      - _enemyId: 1
+        _countEnemy: 1
+        _interval: 0
+        _dropChance: 85
+      - _enemyId: 1
+        _countEnemy: 1
+        _interval: 2
+        _dropChance: 85
+      - _enemyId: 11
+        _countEnemy: 1
+        _interval: 4
+        _dropChance: 100
+      - _enemyId: 14
+        _countEnemy: 1
+        _interval: 4
+        _dropChance: 100
