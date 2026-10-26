@@ -1,4 +1,5 @@
 using DG.Tweening;
+using SBabchuk.Runtime.Architecture;
 using SBabchuk.Runtime.Services.Contracts;
 using UnityEngine;
 using Zenject;
@@ -37,13 +38,15 @@ namespace SBabchuk.Runtime.UI
         private IAssetProvider _assetProvider;
         private IPlayerProgressService _progressService;
         private ILevelSpawnService _levelSpawnService;
+        private SignalBus _signalBus;
 
         [Inject]
-        public void Construct(IAssetProvider assetProvider, IPlayerProgressService progressService, ILevelSpawnService levelSpawnService)
+        public void Construct(IAssetProvider assetProvider, IPlayerProgressService progressService, ILevelSpawnService levelSpawnService, SignalBus signalBus)
         {
             _assetProvider = assetProvider;
             _progressService = progressService;
             _levelSpawnService = levelSpawnService;
+            _signalBus = signalBus;
         }
 
         private void Awake()
@@ -156,6 +159,7 @@ namespace SBabchuk.Runtime.UI
 
             _progressService.UseGrenade((int)_currentGrenadeName);
             transform.position = OffscreenPosition;
+            _signalBus.Fire(new GrenadeThrownSignal(_currentGrenadeName));
         }
 
         public void OnTouchDown()

@@ -13,11 +13,13 @@ namespace SBabchuk.Runtime.Gameplay.Levels
         private Tween _nextWaveTween;
         private Tween _enemySpawnTween;
         private Tween _nextEnemyGroupTween;
-        private readonly List<Tween> _activeTweens = new List<Tween>();
+        private readonly List<Tween> _activeTweens = new();
+        private readonly List<Tween> _heldTweens = new();
         private bool[] _startedWaves;
         private bool[] _completedWaves;
         private Level _level;
         private bool _isStopped;
+        private int _countdownHolds;
 
         public LevelWaveScheduler(Action<EnemyOfWave> spawnEnemy)
         {
@@ -28,6 +30,10 @@ namespace SBabchuk.Runtime.Gameplay.Levels
 
         public event Action CountdownSkipped;
 
+        public event Action CountdownHeld;
+
+        public event Action CountdownReleased;
+
         public int CurrentWave { get; private set; }
         public bool IsWaveFull { get; private set; }
         public bool CanStartNextWave => !_isStopped
@@ -35,6 +41,7 @@ namespace SBabchuk.Runtime.Gameplay.Levels
                                         && CurrentWave < _level.Waves.Count
                                         && (_startedWaves == null || !_startedWaves[CurrentWave]);
         public float SecondsUntilNextWave => CanStartNextWave ? GetSecondsUntilNextWave() : 0f;
+        public bool IsCountdownHeld => _countdownHolds > 0;
 
         public void Initialize(Level level)
         {
@@ -56,7 +63,7 @@ namespace SBabchuk.Runtime.Gameplay.Levels
             {
                 IsWaveFull = false;
                 var waveIndex = CurrentWave;
-                _waveDelayTween = Track(DOVirtual.DelayedCall(_level.Waves[waveIndex].StartDelay, () =>
+                _waveDelayTween = TrackCountdown(DOVirtual.DelayedCall(_level.Waves[waveIndex].StartDelay, () =>
                 {
                     if (!_isStopped)
                         StartWave(waveIndex);
@@ -92,7 +99,7 @@ namespace SBabchuk.Runtime.Gameplay.Levels
             if (CurrentWave < expectedNextWave)
                 CurrentWave = expectedNextWave;
 
-            _nextWaveTween = Track(DOVirtual.DelayedCall(_level.Waves[waveIndex].Delay, () =>
+            _nextWaveTween = TrackCountdown(DOVirtual.DelayedCall(_level.Waves[waveIndex].Delay, () =>
             {
                 if (_isStopped)
                     return;
@@ -175,11 +182,59 @@ namespace SBabchuk.Runtime.Gameplay.Levels
             return !_startedWaves.Where((started, index) => started && !_completedWaves[index]).Any();
         }
 
+        public void HoldCountdown()
+        {
+            _countdownHolds++;
+            if (_countdownHolds > 1)
+                return;
+
+            HoldTween(_waveDelayTween);
+            HoldTween(_nextWaveTween);
+            CountdownHeld?.Invoke();
+        }
+
+        public void ReleaseCountdown()
+        {
+            if (_countdownHolds == 0)
+                return;
+
+            _countdownHolds--;
+            if (_countdownHolds > 0)
+                return;
+
+            foreach (var tween in _heldTweens)
+            {
+                if (tween != null && tween.IsActive())
+                    tween.Play();
+            }
+
+            _heldTweens.Clear();
+            CountdownReleased?.Invoke();
+        }
+
         private Tween Track(Tween tween)
         {
             _activeTweens.Add(tween);
             tween.OnKill(() => _activeTweens.Remove(tween));
             return tween;
+        }
+
+        private Tween TrackCountdown(Tween tween)
+        {
+            Track(tween);
+            if (IsCountdownHeld)
+                HoldTween(tween);
+
+            return tween;
+        }
+
+        private void HoldTween(Tween tween)
+        {
+            if (tween == null || !tween.IsActive() || _heldTweens.Contains(tween))
+                return;
+
+            tween.Pause();
+            _heldTweens.Add(tween);
         }
 
         public void Stop()
@@ -191,6 +246,7 @@ namespace SBabchuk.Runtime.Gameplay.Levels
             }
 
             _activeTweens.Clear();
+            _heldTweens.Clear();
             _waveDelayTween = null;
             _nextWaveTween = null;
             _enemySpawnTween = null;

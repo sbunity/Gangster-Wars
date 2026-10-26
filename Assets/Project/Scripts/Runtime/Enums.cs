@@ -183,4 +183,55 @@ namespace SBabchuk.Runtime
         Level_10 = 9,
     }
 
+    public enum TutorialStepId
+    {
+        Shoot = 0,
+        Reload = 1,
+        Barricade = 2,
+        NewEnemy = 3,
+        NextWave = 4,
+        Stars = 5,
+        UpgradeWeapon = 6,
+        Play = 7,
+        SelectLevel = 8,
+        Grenade = 9,
+        Bonus = 10,
+        SwitchWeapon = 11,
+    }
+
+    public enum TutorialStepScope
+    {
+        Battle = 0,
+        Scene = 1,
+    }
+
+    public enum TutorialTargetId
+    {
+        None = -1,
+        Magazine = 0,
+        BarricadeHealth = 1,
+        NextWaveButton = 2,
+        NewEnemyIcon = 3,
+        WinStars = 4,
+        WeaponSlot = 5,
+        GrenadeSlot = 6,
+        WeaponUpgradeButton = 7,
+        PlayButton = 8,
+        LevelButton = 9,
+    }
+
+    public enum TutorialGesture
+    {
+        None = 0,
+        Tap = 1,
+        HoldAndDrag = 2,
+        Point = 3,
+    }
+
+    public enum TutorialInputMode
+    {
+        PassThrough = 0,
+        TargetOnly = 1,
+    }
+
 }

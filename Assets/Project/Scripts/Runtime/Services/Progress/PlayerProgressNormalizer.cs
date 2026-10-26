@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using SBabchuk.Runtime.Databases.Levels;
 using SBabchuk.Runtime.Progress;
@@ -27,6 +28,7 @@ namespace SBabchuk.Runtime.Services
             changed |= EnsureDefences(progress, defaults);
             changed |= EnsurePersonages(progress);
             changed |= EnsureLevels(progress, defaults);
+            changed |= EnsureTutorial(progress);
             changed |= EnsureCarSkins(progress, defaults);
             changed |= ClampGrenadeCounts(progress);
             return changed;
@@ -43,6 +45,7 @@ namespace SBabchuk.Runtime.Services
             progress.Chapters = EnsureList(progress.Chapters, ref changed);
             progress.SeenEnemyIds = EnsureIdList(progress.SeenEnemyIds, ref changed);
             progress.OwnedCarSkinIds = EnsureIdList(progress.OwnedCarSkinIds, ref changed);
+            progress.CompletedTutorialSteps = EnsureIdList(progress.CompletedTutorialSteps, ref changed);
             return changed;
         }
 
@@ -218,6 +221,26 @@ namespace SBabchuk.Runtime.Services
                 return false;
 
             levelShortInfo.ChapterId = chapterId;
+            return true;
+        }
+
+        private bool EnsureTutorial(PlayerProgress progress)
+        {
+            if (progress.TutorialInitialized)
+                return false;
+
+            progress.TutorialInitialized = true;
+
+            var config = _assetProvider.TutorialConfig;
+            if (progress.GetLevelShortInfo(config.TutorialLevelId)?.IsCompleted != mySwitch.On)
+                return true;
+
+            foreach (TutorialStepId step in Enum.GetValues(typeof(TutorialStepId)))
+            {
+                if (!progress.HasCompletedTutorialStep((int)step))
+                    progress.CompletedTutorialSteps.Add((int)step);
+            }
+
             return true;
         }
 

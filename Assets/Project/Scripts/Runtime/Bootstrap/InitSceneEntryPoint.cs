@@ -10,13 +10,15 @@ namespace SBabchuk.Runtime.Bootstrap
     {
         private readonly IGameBootstrapper _bootstrapper;
         private readonly ISceneTransitionService _sceneTransitionService;
+        private readonly IFirstSceneRouter _firstSceneRouter;
         private readonly BootstrapSettings _settings;
         private readonly CancellationTokenSource _cancellation = new();
 
-        public InitSceneEntryPoint(IGameBootstrapper bootstrapper, ISceneTransitionService sceneTransitionService, BootstrapSettings settings)
+        public InitSceneEntryPoint(IGameBootstrapper bootstrapper, ISceneTransitionService sceneTransitionService, IFirstSceneRouter firstSceneRouter, BootstrapSettings settings)
         {
             _bootstrapper = bootstrapper;
             _sceneTransitionService = sceneTransitionService;
+            _firstSceneRouter = firstSceneRouter;
             _settings = settings;
         }
 
@@ -42,7 +44,7 @@ namespace SBabchuk.Runtime.Bootstrap
             if (!finishedInTime)
                 await UniTask.Delay(_settings.OvertimeTail, ignoreTimeScale: true, cancellationToken: cancellationToken);
 
-            await _sceneTransitionService.TransitionToAsync(_settings.FirstScene);
+            await _sceneTransitionService.TransitionToAsync(_firstSceneRouter.PrepareFirstScene());
         }
     }
 }

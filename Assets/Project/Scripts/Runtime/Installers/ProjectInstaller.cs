@@ -44,6 +44,7 @@ namespace SBabchuk.Runtime.Installers
             Container.Bind<IBonusDropService>().To<BonusDropService>().AsSingle();
             Container.Bind<IBonusRewardService>().To<BonusRewardService>().AsSingle();
             Container.Bind<IBonusCollectTargetRegistry>().To<BonusCollectTargetRegistry>().AsSingle();
+            Container.Bind<ITutorialTargetRegistry>().To<TutorialTargetRegistry>().AsSingle();
             Container.Bind<IStoreItemStatsService>().To<StoreItemStatsService>().AsSingle();
             Container.Bind<IMainPlayerStatsService>().To<MainPlayerStatsService>().AsSingle();
             Container.Bind<IAudioSettingsService>().To<AudioSettingsService>().AsSingle();
@@ -70,6 +71,7 @@ namespace SBabchuk.Runtime.Installers
             Container.Bind<IPlayerProgressFactory>().To<PlayerProgressFactory>().AsSingle();
             Container.Bind<IPlayerProgressRepository>().To<PlayerProgressRepository>().AsSingle();
             Container.Bind<IPlayerProgressService>().To<PlayerProgressService>().AsSingle();
+            Container.Bind<ITutorialProgressService>().To<TutorialProgressService>().AsSingle();
             Container.Bind<ICarSkinService>().To<CarSkinService>().AsSingle();
         }
 
@@ -89,8 +91,12 @@ namespace SBabchuk.Runtime.Installers
         private void DeclareSignals()
         {
             Container.DeclareSignal<EnemyDiedSignal>().OptionalSubscriber();
+            Container.DeclareSignal<EnemySpawnedSignal>().OptionalSubscriber();
+            Container.DeclareSignal<WaveClearedSignal>().OptionalSubscriber();
             Container.DeclareSignal<NewEnemyDiscoveredSignal>().OptionalSubscriber();
             Container.DeclareSignal<NewEnemyNotificationSelectedSignal>().OptionalSubscriber();
+            Container.DeclareSignal<EnemyInfoClosedSignal>().OptionalSubscriber();
+            Container.DeclareSignal<BonusSpawnedSignal>().OptionalSubscriber();
             Container.DeclareSignal<BonusPoppedSignal>().OptionalSubscriber();
             Container.DeclareSignal<GameFinishedSignal>().OptionalSubscriber();
             Container.DeclareSignal<CoinsChangedSignal>().OptionalSubscriber();
@@ -103,11 +109,15 @@ namespace SBabchuk.Runtime.Installers
             Container.DeclareSignal<LeaderPatronsChangedSignal>().OptionalSubscriber();
             Container.DeclareSignal<WaveCountdownStartedSignal>().OptionalSubscriber();
             Container.DeclareSignal<WaveCountdownSkippedSignal>().OptionalSubscriber();
+            Container.DeclareSignal<WaveCountdownHeldSignal>().OptionalSubscriber();
+            Container.DeclareSignal<WaveCountdownReleasedSignal>().OptionalSubscriber();
             Container.DeclareSignal<BarricadeHealthChangedSignal>().OptionalSubscriber();
             Container.DeclareSignal<BarricadeDamagedSignal>().OptionalSubscriber();
+            Container.DeclareSignal<GrenadeThrownSignal>().OptionalSubscriber();
             Container.DeclareSignal<GrenadeDamageSignal>().OptionalSubscriber();
             Container.DeclareSignal<AudioSettingsChangedSignal>().OptionalSubscriber();
             Container.DeclareSignal<UIPanelReplaceSignal>().OptionalSubscriber();
+            Container.DeclareSignal<SceneTransitionStartedSignal>().OptionalSubscriber();
             Container.DeclareSignal<SafeAreaChangedSignal>().OptionalSubscriber();
         }
     }

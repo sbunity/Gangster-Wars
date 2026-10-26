@@ -15,13 +15,16 @@ namespace SBabchuk.Runtime.UI
         private SignalSubscriptions _signals;
         private Sequence _sequence;
         private bool _rewindPending;
+        private bool _isHeld;
 
         [Inject]
         public void Construct(SignalBus signalBus)
         {
             _signals = new SignalSubscriptions(signalBus)
                 .Add<WaveCountdownStartedSignal>(OnCountdownStarted)
-                .Add<WaveCountdownSkippedSignal>(OnCountdownSkipped);
+                .Add<WaveCountdownSkippedSignal>(OnCountdownSkipped)
+                .Add<WaveCountdownHeldSignal>(OnCountdownHeld)
+                .Add<WaveCountdownReleasedSignal>(OnCountdownReleased);
             _signals.Enable();
         }
 
@@ -60,6 +63,9 @@ namespace SBabchuk.Runtime.UI
 
             _rewindPending = false;
             _sequence = sequence;
+
+            if (_isHeld)
+                _sequence.Pause();
         }
 
         private void OnCountdownSkipped()
@@ -70,6 +76,18 @@ namespace SBabchuk.Runtime.UI
             _rewindPending = true;
             _sequence?.Kill();
             _sequence = DOTween.Sequence().Append(Tween(0f, _rewindDuration, _rewindEase));
+        }
+
+        private void OnCountdownHeld()
+        {
+            _isHeld = true;
+            _sequence?.Pause();
+        }
+
+        private void OnCountdownReleased()
+        {
+            _isHeld = false;
+            _sequence?.Play();
         }
 
         private Tween Tween(float endValue, float duration, Ease ease)

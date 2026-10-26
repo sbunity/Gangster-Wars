@@ -1,0 +1,46 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f7a8cb2f838c12b49a5f3f3b821f43f6, type: 3}
+  m_Name: TutorialConfig
+  m_EditorClassIdentifier: Assembly-CSharp::SBabchuk.Runtime.Tutorial.TutorialConfig
+  _tutorialLevelId: 0
+  _enemyTargetWorldSize: {x: 2.4, y: 3.4}
+  _shootCaption: Hold and drag to shoot
+  _shootDelayAfterSpawn: 1
+  _shootTimeScale: 0.2
+  _reloadCaption: Release to reload
+  _reloadCompleteRounds: 3
+  _reloadMaxDuration: 6
+  _barricadeCaption: Protect the barricade!
+  _barricadeHintDuration: 2.5
+  _barricadeMinHealth: 0.2
+  _minSecondsUntilNextWave: 5
+  _waveBreakSeconds: 6
+  _newEnemyCaption: New enemy! Tap to see
+  _nextWaveCaption: Call the wave early for coins
+  _starsCaption: More barricade health, more stars
+  _upgradeWeapon: 0
+  _upgradeCaption: Upgrade your weapon
+  _playCaption: Play the next level
+  _selectLevelCaption: Tap to play
+  _grenadeLevelId: 1
+  _giftGrenade: 0
+  _giftGrenadeCount: 2
+  _grenadeCaption: Drag the grenade at enemies
+  _grenadeDelayAfterSpawn: 1
+  _grenadeTimeScale: 0.25
+  _grenadeHintMaxDuration: 8
+  _bonusCaption: Bonus! Tap to grab it faster
+  _bonusTargetWorldSize: {x: 1.4, y: 1.4}
+  _bonusSlotHintDuration: 1.5
+  _switchWeaponCaption: Tap to switch weapon
+  _switchWeaponHintDuration: 6

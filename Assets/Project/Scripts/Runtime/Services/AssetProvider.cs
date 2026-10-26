@@ -10,6 +10,7 @@ using SBabchuk.Runtime.Databases.MainPlayers;
 using SBabchuk.Runtime.Databases.WeaponStore;
 using SBabchuk.Runtime.Progress;
 using SBabchuk.Runtime.Services.Contracts;
+using SBabchuk.Runtime.Tutorial;
 using UnityEngine;
 
 #if UNITY_EDITOR
@@ -38,6 +39,7 @@ namespace SBabchuk.Runtime.Services
         public LevelBackgroundDatabase LevelBackgroundDatabase => GetDatabase<LevelBackgroundDatabase>();
         public BulletDatabase BulletDatabase => GetDatabase<BulletDatabase>();
         public CarSkinDatabase CarSkinDatabase => GetDatabase<CarSkinDatabase>();
+        public TutorialConfig TutorialConfig => GetDatabase<TutorialConfig>();
 
         public T LoadAsset<T>() where T : UnityEngine.Object
         {

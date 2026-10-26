@@ -1,6 +1,8 @@
 using Cysharp.Threading.Tasks;
+using SBabchuk.Runtime.Architecture;
 using SBabchuk.Runtime.Services.Contracts;
 using UnityEngine;
+using Zenject;
 
 namespace SBabchuk.Runtime.Services
 {
@@ -12,13 +14,15 @@ namespace SBabchuk.Runtime.Services
 
         private readonly ISceneLoaderService _sceneLoaderService;
         private readonly ILoadingScreenFactory _loadingScreenFactory;
+        private readonly SignalBus _signalBus;
 
         private ILoadingScreen _loadingScreen;
 
-        public SceneTransitionService(ISceneLoaderService sceneLoaderService, ILoadingScreenFactory loadingScreenFactory)
+        public SceneTransitionService(ISceneLoaderService sceneLoaderService, ILoadingScreenFactory loadingScreenFactory, SignalBus signalBus)
         {
             _sceneLoaderService = sceneLoaderService;
             _loadingScreenFactory = loadingScreenFactory;
+            _signalBus = signalBus;
         }
 
         public UniTask TransitionToAsync(SBabchuk.Runtime.Scene scene)
@@ -26,6 +30,7 @@ namespace SBabchuk.Runtime.Services
 
         public async UniTask TransitionToAsync(string sceneName)
         {
+            _signalBus.Fire(new SceneTransitionStartedSignal(sceneName));
             var loadingScreen = GetOrCreateLoadingScreen();
 
             await loadingScreen.ShowAsync();

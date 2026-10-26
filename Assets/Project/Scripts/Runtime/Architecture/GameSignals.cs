@@ -1,6 +1,7 @@
 using UnityEngine;
 using SBabchuk.Runtime.Databases.WeaponStore;
 using SBabchuk.Runtime.Gameplay.Bonuses;
+using SBabchuk.Runtime.Gameplay.Enemies;
 using SBabchuk.Runtime.UI;
 
 namespace SBabchuk.Runtime.Architecture
@@ -13,6 +14,26 @@ namespace SBabchuk.Runtime.Architecture
         }
 
         public int EnemyId { get; }
+    }
+
+    public readonly struct EnemySpawnedSignal
+    {
+        public EnemySpawnedSignal(EnemyControllerBase enemy)
+        {
+            Enemy = enemy;
+        }
+
+        public EnemyControllerBase Enemy { get; }
+    }
+
+    public readonly struct WaveClearedSignal
+    {
+        public WaveClearedSignal(int waveIndex)
+        {
+            WaveIndex = waveIndex;
+        }
+
+        public int WaveIndex { get; }
     }
 
     public readonly struct NewEnemyDiscoveredSignal
@@ -37,6 +58,26 @@ namespace SBabchuk.Runtime.Architecture
         }
 
         public int EnemyId { get; }
+    }
+
+    public readonly struct EnemyInfoClosedSignal
+    {
+        public EnemyInfoClosedSignal(int enemyId)
+        {
+            EnemyId = enemyId;
+        }
+
+        public int EnemyId { get; }
+    }
+
+    public readonly struct BonusSpawnedSignal
+    {
+        public BonusSpawnedSignal(BonusController bonus)
+        {
+            Bonus = bonus;
+        }
+
+        public BonusController Bonus { get; }
     }
 
     public readonly struct BonusPoppedSignal
@@ -155,6 +196,14 @@ namespace SBabchuk.Runtime.Architecture
     {
     }
 
+    public readonly struct WaveCountdownHeldSignal
+    {
+    }
+
+    public readonly struct WaveCountdownReleasedSignal
+    {
+    }
+
     public readonly struct BarricadeHealthChangedSignal
     {
         public BarricadeHealthChangedSignal(float normalizedHealth)
@@ -175,6 +224,16 @@ namespace SBabchuk.Runtime.Architecture
         public int Damage { get; }
     }
 
+    public readonly struct GrenadeThrownSignal
+    {
+        public GrenadeThrownSignal(GrenadesName grenade)
+        {
+            Grenade = grenade;
+        }
+
+        public GrenadesName Grenade { get; }
+    }
+
     public readonly struct GrenadeDamageSignal
     {
         public GrenadeDamageSignal(Vector3 position, int damage, float radius)
@@ -187,6 +246,19 @@ namespace SBabchuk.Runtime.Architecture
         public Vector3 Position { get; }
         public int Damage { get; }
         public float Radius { get; }
+    }
+
+    public readonly struct SceneTransitionStartedSignal
+    {
+        public SceneTransitionStartedSignal(string sceneName)
+        {
+            SceneName = sceneName;
+        }
+
+        public string SceneName { get; }
+
+        public bool Is(Scene scene)
+            => SceneName == scene.ToString();
     }
 
     public readonly struct AudioSettingsChangedSignal

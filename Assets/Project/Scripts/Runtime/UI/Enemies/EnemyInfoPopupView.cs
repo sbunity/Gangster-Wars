@@ -23,14 +23,17 @@ namespace SBabchuk.Runtime.UI.Enemies
 
         private readonly List<EnemyInfoStatRowView> _rows = new();
         private IEnemyInfoService _enemyInfoService;
+        private SignalBus _signalBus;
         private SignalSubscriptions _signals;
         private float _previousTimeScale = 1f;
         private bool _isOpen;
+        private int _openEnemyId = -1;
 
         [Inject]
         public void Construct(IEnemyInfoService enemyInfoService, SignalBus signalBus)
         {
             _enemyInfoService = enemyInfoService;
+            _signalBus = signalBus;
             _signals = new SignalSubscriptions(signalBus)
                 .Add<NewEnemyNotificationSelectedSignal>(Open);
             _signals.Enable();
@@ -76,6 +79,7 @@ namespace SBabchuk.Runtime.UI.Enemies
                 _panel.SetActive(true);
 
             _isOpen = true;
+            _openEnemyId = enemyId;
         }
 
         public void Close()
@@ -88,6 +92,7 @@ namespace SBabchuk.Runtime.UI.Enemies
 
             ResumeGame();
             _isOpen = false;
+            _signalBus?.Fire(new EnemyInfoClosedSignal(_openEnemyId));
         }
 
         private void Render(EnemyInfoSnapshot snapshot)

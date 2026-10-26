@@ -33,6 +33,8 @@ namespace SBabchuk.Runtime.Gameplay.Bonuses
 
         public BonusReward Reward => new(_weaponsName, _grenadesName);
 
+        public bool IsCollecting => _isCollecting;
+
         [Inject]
         public void Construct(
             IBonusRewardService rewardService,

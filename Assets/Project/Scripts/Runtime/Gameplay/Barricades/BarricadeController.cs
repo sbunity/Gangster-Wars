@@ -28,15 +28,17 @@ namespace SBabchuk.Runtime.Gameplay.Barricades
         private IPlayerProgressService _progressService;
         private ILevelFlowService _levelFlowService;
         private ICameraShakeService _cameraShakeService;
+        private IBarricadeDamagePolicy _damagePolicy;
         private SignalBus _signalBus;
         
         [Inject]
-        public void Construct(IAssetProvider assetProvider, IPlayerProgressService progressService, ILevelFlowService levelFlowService, ICameraShakeService cameraShakeService, SignalBus signalBus)
+        public void Construct(IAssetProvider assetProvider, IPlayerProgressService progressService, ILevelFlowService levelFlowService, ICameraShakeService cameraShakeService, IBarricadeDamagePolicy damagePolicy, SignalBus signalBus)
         {
             _assetProvider = assetProvider;
             _progressService = progressService;
             _levelFlowService = levelFlowService;
             _cameraShakeService = cameraShakeService;
+            _damagePolicy = damagePolicy;
             _signalBus = signalBus;
         }
 
@@ -82,6 +84,10 @@ namespace SBabchuk.Runtime.Gameplay.Barricades
         public void TakeDamage(int damage)
         {
             if (damage <= 0 || CurrentHealth <= 0)
+                return;
+
+            damage = _damagePolicy?.Apply(damage, CurrentHealth, MaxHealth) ?? damage;
+            if (damage <= 0)
                 return;
 
             _cameraShakeService?.Shake(_damageShakeStrength);

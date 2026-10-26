@@ -94,6 +94,12 @@ namespace SBabchuk.EditorTools
                         Save();
                 }
 
+                using (new EditorGUI.DisabledScope(_buffer.Progress == null))
+                {
+                    if (GUILayout.Button("Reset Tutorial"))
+                        ResetTutorial();
+                }
+
                 using (new EditorGUI.DisabledScope(!_source.CanDelete))
                 {
                     if (GUILayout.Button("Clear Save") && ConfirmClear())
@@ -136,6 +142,13 @@ namespace SBabchuk.EditorTools
 
             if (_serializedBuffer.ApplyModifiedProperties())
                 _isDirty = true;
+        }
+
+        private void ResetTutorial()
+        {
+            _buffer.Progress.CompletedTutorialSteps.Clear();
+            _serializedBuffer.Update();
+            _isDirty = true;
         }
 
         private void Reload()

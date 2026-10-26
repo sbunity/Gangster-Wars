@@ -14,6 +14,7 @@ namespace SBabchuk.Runtime.Installers
         {
             BindBootstrapSteps();
             Container.Bind<IGameBootstrapper>().To<GameBootstrapper>().AsSingle();
+            Container.Bind<IFirstSceneRouter>().To<FirstSceneRouter>().AsSingle().WithArguments(_settings);
             Container.BindInterfacesTo<InitSceneEntryPoint>().AsSingle().WithArguments(_settings);
         }
 

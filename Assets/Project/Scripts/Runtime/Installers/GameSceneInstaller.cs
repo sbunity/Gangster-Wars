@@ -7,8 +7,11 @@ using SBabchuk.Runtime.Gameplay.Barricades;
 using SBabchuk.Runtime.Gameplay.Cameras;
 using SBabchuk.Runtime.Gameplay.Characters;
 using SBabchuk.Runtime.Gameplay.Levels;
+using SBabchuk.Runtime.Tutorial;
+using SBabchuk.Runtime.Tutorial.Steps;
 using SBabchuk.Runtime.UI;
 using SBabchuk.Runtime.UI.FlyingCoins;
+using SBabchuk.Runtime.UI.Tutorial;
 
 namespace SBabchuk.Runtime.Installers
 {
@@ -25,6 +28,7 @@ namespace SBabchuk.Runtime.Installers
         [SerializeField] private FilledBarController _waveBar;
         [SerializeField] private CoinFlightSpawner _coinFlightSpawner;
         [SerializeField] private Transform _backgroundRoot;
+        [SerializeField] private TutorialOverlayView _tutorialView;
 
         public override void InstallBindings()
         {
@@ -46,6 +50,7 @@ namespace SBabchuk.Runtime.Installers
             BindInstance(_levelController);
             BindInstance(_barricadeController);
             Container.Bind<IBarricadeTarget>().FromInstance(_barricadeHitArea).AsSingle();
+            Container.Bind<IBarricadeDamagePolicy>().FromMethod(CreateBarricadeDamagePolicy).AsSingle();
             BindInstance(_waveBar);
             BindInstance(_leaderController);
             BindInstance(_handController);
@@ -69,6 +74,25 @@ namespace SBabchuk.Runtime.Installers
 
             if (_coinFlightSpawner != null)
                 Container.Bind<ICoinFlightService>().FromInstance(_coinFlightSpawner).AsSingle();
+
+            BindTutorial();
+        }
+
+        private void BindTutorial()
+        {
+            Container.BindInterfacesTo<TutorialWaveBreakGuard>().AsSingle();
+            TutorialInstaller.Install(Container, _tutorialView, new[]
+            {
+                typeof(ShootTutorialStep),
+                typeof(ReloadTutorialStep),
+                typeof(BarricadeTutorialStep),
+                typeof(NewEnemyTutorialStep),
+                typeof(NextWaveTutorialStep),
+                typeof(StarsTutorialStep),
+                typeof(GrenadeTutorialStep),
+                typeof(BonusTutorialStep),
+                typeof(SwitchWeaponTutorialStep),
+            });
         }
 
         private void BindLevelBackground()
@@ -79,6 +103,14 @@ namespace SBabchuk.Runtime.Installers
                     .Create(ctx.Container.Resolve<IPlayerProgressService>().CurrentLevelId, _backgroundRoot))
                 .AsSingle()
                 .NonLazy();
+        }
+
+        private static IBarricadeDamagePolicy CreateBarricadeDamagePolicy(InjectContext context)
+        {
+            var container = context.Container;
+            return container.Resolve<ITutorialProgressService>().IsTutorialLevelActive
+                ? container.Instantiate<TutorialBarricadeDamagePolicy>()
+                : new DefaultBarricadeDamagePolicy();
         }
 
         private void ValidateReferences()

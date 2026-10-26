@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using SBabchuk.Runtime.Architecture;
 using SBabchuk.Runtime.Gameplay.Levels;
@@ -45,6 +46,7 @@ namespace SBabchuk.Runtime.Gameplay.Levels
         public bool CanStartNextWave => !_isLevelFinished
                                         && _waveScheduler != null
                                         && _waveScheduler.CanStartNextWave;
+        public float SecondsUntilNextWave => CanStartNextWave ? _waveScheduler.SecondsUntilNextWave : 0f;
 
         private void OnEnable()
         {
@@ -83,6 +85,8 @@ namespace SBabchuk.Runtime.Gameplay.Levels
             _waveScheduler = new LevelWaveScheduler(SpawnEnemies);
             _waveScheduler.CountdownStarted += OnWaveCountdownStarted;
             _waveScheduler.CountdownSkipped += OnWaveCountdownSkipped;
+            _waveScheduler.CountdownHeld += OnWaveCountdownHeld;
+            _waveScheduler.CountdownReleased += OnWaveCountdownReleased;
         }
 
         private void OnDestroy()
@@ -92,6 +96,8 @@ namespace SBabchuk.Runtime.Gameplay.Levels
 
             _waveScheduler.CountdownStarted -= OnWaveCountdownStarted;
             _waveScheduler.CountdownSkipped -= OnWaveCountdownSkipped;
+            _waveScheduler.CountdownHeld -= OnWaveCountdownHeld;
+            _waveScheduler.CountdownReleased -= OnWaveCountdownReleased;
         }
 
         private void OnWaveCountdownStarted(float duration)
@@ -99,6 +105,12 @@ namespace SBabchuk.Runtime.Gameplay.Levels
 
         private void OnWaveCountdownSkipped()
             => _signalBus?.Fire(new WaveCountdownSkippedSignal());
+
+        private void OnWaveCountdownHeld()
+            => _signalBus?.Fire(new WaveCountdownHeldSignal());
+
+        private void OnWaveCountdownReleased()
+            => _signalBus?.Fire(new WaveCountdownReleasedSignal());
 
         private void Start()
         {
@@ -181,6 +193,13 @@ namespace SBabchuk.Runtime.Gameplay.Levels
             return _waveSkipRewardService?.GrantReward(secondsUntilNextWave) ?? 0;
         }
 
+        public IDisposable HoldCountdown()
+        {
+            var scheduler = _waveScheduler;
+            scheduler.HoldCountdown();
+            return new DisposableAction(scheduler.ReleaseCountdown);
+        }
+
         public void WaveHandler(int waveIndex, int currentEnemyIndex)
         {
             if (_isLevelFinished)
@@ -199,6 +218,7 @@ namespace SBabchuk.Runtime.Gameplay.Levels
             if (enemy != null)
             {
                 _entityTracker.AddEnemy(enemy);
+                _signalBus?.Fire(new EnemySpawnedSignal(enemy));
                 _enemyDiscoveryService?.TryDiscover(enemy.Properties);
                 _waveBar.UpdateFilled(_fillStep);
             }
@@ -219,7 +239,16 @@ namespace SBabchuk.Runtime.Gameplay.Levels
             if (_entityTracker.EnemyCount == 0)
             {
                 CheckGameOver();
+                NotifyWaveCleared();
             }
+        }
+
+        private void NotifyWaveCleared()
+        {
+            if (_isLevelFinished || _levelFlowService.IsFinished || !_waveScheduler.IsWaveFull)
+                return;
+
+            _signalBus?.Fire(new WaveClearedSignal(_waveScheduler.CurrentWave - 1));
         }
 
         private void CheckGameOver()

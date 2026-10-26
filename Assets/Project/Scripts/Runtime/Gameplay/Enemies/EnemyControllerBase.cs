@@ -62,6 +62,7 @@ namespace SBabchuk.Runtime.Gameplay.Enemies
         private IEnemyDamageFeedback _damageFeedback;
         protected ILevelSpawnService LevelSpawnService => _levelSpawnService;
         public bool IsCollided => _collided;
+        public bool IsAlive => isActiveAndEnabled && _health != null && !_health.IsDead;
 
         [Inject]
         public void Construct(IAssetProvider assetProvider, IGameFactory gameFactory, ILevelSpawnService levelSpawnService, IAudioService audioService, BarricadeController barricadeController, IBarricadeTarget barricadeTarget, SignalBus signalBus)

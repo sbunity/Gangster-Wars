@@ -8,6 +8,7 @@ using SBabchuk.Runtime.Databases.Levels;
 using SBabchuk.Runtime.Databases.MainPlayers;
 using SBabchuk.Runtime.Databases.WeaponStore;
 using SBabchuk.Runtime.Progress;
+using SBabchuk.Runtime.Tutorial;
 
 namespace SBabchuk.Runtime.Services.Contracts
 {
@@ -32,6 +33,8 @@ namespace SBabchuk.Runtime.Services.Contracts
         BulletDatabase BulletDatabase { get; }
 
         CarSkinDatabase CarSkinDatabase { get; }
+
+        TutorialConfig TutorialConfig { get; }
 
         T LoadAsset<T>() where T : Object;
         GameObject LoadPrefab(NamesPool pool, int id);

@@ -1985,7 +1985,7 @@ MonoBehaviour:
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 10
-    m_MaxSize: 40
+    m_MaxSize: 56
     m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1
@@ -4808,7 +4808,7 @@ MonoBehaviour:
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 10
-    m_MaxSize: 40
+    m_MaxSize: 58
     m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1
@@ -6956,6 +6956,7 @@ RectTransform:
   - {fileID: 856149808}
   - {fileID: 1957939695}
   - {fileID: 1737722885}
+  - {fileID: 1760494381}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -12558,7 +12559,7 @@ MonoBehaviour:
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 10
-    m_MaxSize: 40
+    m_MaxSize: 58
     m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1
@@ -15737,6 +15738,7 @@ GameObject:
   - component: {fileID: 670534421}
   - component: {fileID: 670534420}
   - component: {fileID: 670534424}
+  - component: {fileID: 670534425}
   m_Layer: 5
   m_Name: Bttn
   m_TagString: Untagged
@@ -15872,6 +15874,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SBabchuk.Runtime.UI.UIClickSound
   _type: 1
   _customSound: {fileID: 0}
+--- !u!114 &670534425
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 670534419}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7740401f57c5dec4eb0f4c5918edf17e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SBabchuk.Runtime.UI.Tutorial.TutorialTarget
+  _id: 7
+  _index: 3
+  _fitActiveChildren: 0
 --- !u!1 &672180578
 GameObject:
   m_ObjectHideFlags: 0
@@ -17983,6 +18000,7 @@ GameObject:
   - component: {fileID: 776766161}
   - component: {fileID: 776766160}
   - component: {fileID: 776766164}
+  - component: {fileID: 776766165}
   m_Layer: 5
   m_Name: Bttn
   m_TagString: Untagged
@@ -18118,6 +18136,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SBabchuk.Runtime.UI.UIClickSound
   _type: 1
   _customSound: {fileID: 0}
+--- !u!114 &776766165
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 776766159}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7740401f57c5dec4eb0f4c5918edf17e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SBabchuk.Runtime.UI.Tutorial.TutorialTarget
+  _id: 7
+  _index: 2
+  _fitActiveChildren: 0
 --- !u!1 &778591640
 GameObject:
   m_ObjectHideFlags: 0
@@ -21484,6 +21517,7 @@ GameObject:
   m_Component:
   - component: {fileID: 893117989}
   - component: {fileID: 893117988}
+  - component: {fileID: 893117990}
   m_Layer: 0
   m_Name: SceneContext
   m_TagString: Untagged
@@ -21504,7 +21538,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Zenject::Zenject.SceneContext
   _scriptableObjectInstallers: []
-  _monoInstallers: []
+  _monoInstallers:
+  - {fileID: 893117990}
   _installerPrefabs: []
   _autoRun: 1
   OnPreInstall:
@@ -21537,6 +21572,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &893117990
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 893117987}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0d7a6328b730db545ac02cd066afcec7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SBabchuk.Runtime.Installers.MainSceneInstaller
+  _tutorialView: {fileID: 1760494380}
 --- !u!1 &894876779
 GameObject:
   m_ObjectHideFlags: 0
@@ -26081,6 +26129,7 @@ GameObject:
   - component: {fileID: 1069174619}
   - component: {fileID: 1069174622}
   - component: {fileID: 1069174623}
+  - component: {fileID: 1069174624}
   m_Layer: 5
   m_Name: Button
   m_TagString: Untagged
@@ -26229,6 +26278,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SBabchuk.Runtime.UI.UIClickSound
   _type: 0
   _customSound: {fileID: 0}
+--- !u!114 &1069174624
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1069174617}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7740401f57c5dec4eb0f4c5918edf17e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SBabchuk.Runtime.UI.Tutorial.TutorialTarget
+  _id: 8
+  _index: 0
+  _fitActiveChildren: 0
 --- !u!1 &1073385724
 GameObject:
   m_ObjectHideFlags: 0
@@ -28610,7 +28674,7 @@ MonoBehaviour:
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 10
-    m_MaxSize: 40
+    m_MaxSize: 50
     m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1
@@ -30532,6 +30596,7 @@ GameObject:
   - component: {fileID: 1250474318}
   - component: {fileID: 1250474317}
   - component: {fileID: 1250474321}
+  - component: {fileID: 1250474322}
   m_Layer: 5
   m_Name: Bttn
   m_TagString: Untagged
@@ -30667,6 +30732,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SBabchuk.Runtime.UI.UIClickSound
   _type: 1
   _customSound: {fileID: 0}
+--- !u!114 &1250474322
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1250474316}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7740401f57c5dec4eb0f4c5918edf17e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SBabchuk.Runtime.UI.Tutorial.TutorialTarget
+  _id: 7
+  _index: 4
+  _fitActiveChildren: 0
 --- !u!1 &1253370755
 GameObject:
   m_ObjectHideFlags: 0
@@ -31528,6 +31608,7 @@ GameObject:
   - component: {fileID: 1282680643}
   - component: {fileID: 1282680642}
   - component: {fileID: 1282680646}
+  - component: {fileID: 1282680647}
   m_Layer: 5
   m_Name: Bttn
   m_TagString: Untagged
@@ -31663,6 +31744,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SBabchuk.Runtime.UI.UIClickSound
   _type: 1
   _customSound: {fileID: 0}
+--- !u!114 &1282680647
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1282680641}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7740401f57c5dec4eb0f4c5918edf17e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SBabchuk.Runtime.UI.Tutorial.TutorialTarget
+  _id: 7
+  _index: 1
+  _fitActiveChildren: 0
 --- !u!1 &1287255632
 GameObject:
   m_ObjectHideFlags: 0
@@ -33659,6 +33755,7 @@ GameObject:
   - component: {fileID: 1357791116}
   - component: {fileID: 1357791118}
   - component: {fileID: 1357791119}
+  - component: {fileID: 1357791120}
   m_Layer: 5
   m_Name: Bttn
   m_TagString: Untagged
@@ -33794,6 +33891,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SBabchuk.Runtime.UI.UIClickSound
   _type: 1
   _customSound: {fileID: 0}
+--- !u!114 &1357791120
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1357791114}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7740401f57c5dec4eb0f4c5918edf17e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SBabchuk.Runtime.UI.Tutorial.TutorialTarget
+  _id: 7
+  _index: 0
+  _fitActiveChildren: 0
 --- !u!1 &1364792381
 GameObject:
   m_ObjectHideFlags: 0
@@ -43866,6 +43978,142 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1758919664}
   m_CullTransparentMesh: 0
+--- !u!1001 &1760494379
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 282272838}
+    m_Modifications:
+    - target: {fileID: 2700863477945372384, guid: f9c69d25ab3135e4f894c8d876e8df9c,
+        type: 3}
+      propertyPath: m_Name
+      value: TutorialOverlay
+      objectReference: {fileID: 0}
+    - target: {fileID: 5736895088053811156, guid: f9c69d25ab3135e4f894c8d876e8df9c,
+        type: 3}
+      propertyPath: m_Pivot.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5736895088053811156, guid: f9c69d25ab3135e4f894c8d876e8df9c,
+        type: 3}
+      propertyPath: m_Pivot.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5736895088053811156, guid: f9c69d25ab3135e4f894c8d876e8df9c,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5736895088053811156, guid: f9c69d25ab3135e4f894c8d876e8df9c,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5736895088053811156, guid: f9c69d25ab3135e4f894c8d876e8df9c,
+        type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5736895088053811156, guid: f9c69d25ab3135e4f894c8d876e8df9c,
+        type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5736895088053811156, guid: f9c69d25ab3135e4f894c8d876e8df9c,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5736895088053811156, guid: f9c69d25ab3135e4f894c8d876e8df9c,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5736895088053811156, guid: f9c69d25ab3135e4f894c8d876e8df9c,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5736895088053811156, guid: f9c69d25ab3135e4f894c8d876e8df9c,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5736895088053811156, guid: f9c69d25ab3135e4f894c8d876e8df9c,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5736895088053811156, guid: f9c69d25ab3135e4f894c8d876e8df9c,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5736895088053811156, guid: f9c69d25ab3135e4f894c8d876e8df9c,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5736895088053811156, guid: f9c69d25ab3135e4f894c8d876e8df9c,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5736895088053811156, guid: f9c69d25ab3135e4f894c8d876e8df9c,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5736895088053811156, guid: f9c69d25ab3135e4f894c8d876e8df9c,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5736895088053811156, guid: f9c69d25ab3135e4f894c8d876e8df9c,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5736895088053811156, guid: f9c69d25ab3135e4f894c8d876e8df9c,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5736895088053811156, guid: f9c69d25ab3135e4f894c8d876e8df9c,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5736895088053811156, guid: f9c69d25ab3135e4f894c8d876e8df9c,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: f9c69d25ab3135e4f894c8d876e8df9c, type: 3}
+--- !u!114 &1760494380 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8443893487356275280, guid: f9c69d25ab3135e4f894c8d876e8df9c,
+    type: 3}
+  m_PrefabInstance: {fileID: 1760494379}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3d674c9ca566b3e418afb22a21dabf5b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SBabchuk.Runtime.UI.Tutorial.TutorialOverlayView
+--- !u!224 &1760494381 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 5736895088053811156, guid: f9c69d25ab3135e4f894c8d876e8df9c,
+    type: 3}
+  m_PrefabInstance: {fileID: 1760494379}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1763186969
 GameObject:
   m_ObjectHideFlags: 0
@@ -49513,7 +49761,7 @@ MonoBehaviour:
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 10
-    m_MaxSize: 40
+    m_MaxSize: 80
     m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1
@@ -52208,7 +52456,7 @@ MonoBehaviour:
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 10
-    m_MaxSize: 40
+    m_MaxSize: 58
     m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1
