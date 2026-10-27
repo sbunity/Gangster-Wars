@@ -1,4 +1,3 @@
-using System;
 using System.Threading;
 using Cysharp.Threading.Tasks;
 using SBabchuk.Runtime.Architecture;
@@ -11,27 +10,27 @@ namespace SBabchuk.Runtime.Tutorial.Steps
     public sealed class NewEnemyTutorialStep : ITutorialStep
     {
         private readonly SignalBus _signalBus;
-        private readonly IEnemyDiscoveryService _discoveryService;
         private readonly ILevelWaveControlService _waveControl;
         private readonly ITutorialTargetRegistry _targets;
         private readonly ITutorialView _view;
         private readonly TutorialConfig _config;
-        private IDisposable _notificationsHold;
+        private readonly SignalSubscriptions _signals;
+        private bool _isSelected;
 
         public NewEnemyTutorialStep(
             SignalBus signalBus,
-            IEnemyDiscoveryService discoveryService,
             ILevelWaveControlService waveControl,
             ITutorialTargetRegistry targets,
             ITutorialView view,
             IAssetProvider assetProvider)
         {
             _signalBus = signalBus;
-            _discoveryService = discoveryService;
             _waveControl = waveControl;
             _targets = targets;
             _view = view;
             _config = assetProvider.TutorialConfig;
+            _signals = new SignalSubscriptions(signalBus)
+                .Add<NewEnemyNotificationSelectedSignal>(() => _isSelected = true);
         }
 
         public TutorialStepId Id => TutorialStepId.NewEnemy;
@@ -39,27 +38,26 @@ namespace SBabchuk.Runtime.Tutorial.Steps
 
         public async UniTask WaitForTriggerAsync(CancellationToken cancellationToken)
         {
-            _notificationsHold ??= _discoveryService.HoldNotifications();
+            _signals.Enable();
 
-            while (true)
-            {
-                await _signalBus.WaitAsync<WaveClearedSignal>(cancellationToken);
-                if (CanRun())
-                    return;
-            }
+            using var trigger = CancellationTokenSource.CreateLinkedTokenSource(cancellationToken);
+            await UniTask.WhenAny(
+                UniTask.WaitUntil(() => _isSelected, cancellationToken: trigger.Token),
+                WaitForWaveBreakAsync(trigger.Token));
+            trigger.Cancel();
         }
 
         public async UniTask<bool> RunAsync(CancellationToken cancellationToken)
         {
-            if (!CanRun())
+            if (_isSelected)
+                return true;
+
+            if (!TryGetHintTarget(out var icon))
                 return false;
 
             using var countdownHold = _waveControl.HoldCountdown();
             try
             {
-                ReleaseNotifications();
-
-                var icon = await _targets.WaitForAsync(TutorialTargetId.NewEnemyIcon, cancellationToken);
                 _view.Show(new TutorialHint(icon, _config.NewEnemyCaption, TutorialGesture.Tap, TutorialInputMode.TargetOnly, true));
 
                 await _signalBus.WaitAsync<NewEnemyNotificationSelectedSignal>(cancellationToken);
@@ -74,24 +72,24 @@ namespace SBabchuk.Runtime.Tutorial.Steps
         }
 
         public void Dispose()
-        {
-            if (_notificationsHold == null)
-                return;
+            => _signals.Disable();
 
-            _discoveryService.DiscardHeldDiscoveries();
-            ReleaseNotifications();
+        private async UniTask WaitForWaveBreakAsync(CancellationToken cancellationToken)
+        {
+            while (true)
+            {
+                await _signalBus.WaitAsync<WaveClearedSignal>(cancellationToken);
+                if (TryGetHintTarget(out _))
+                    return;
+            }
         }
 
-        private bool CanRun()
-            => _discoveryService.HasHeldDiscoveries
-               && _waveControl.CanStartNextWave
-               && _waveControl.SecondsUntilNextWave >= _config.MinSecondsUntilNextWave;
-
-        private void ReleaseNotifications()
+        private bool TryGetHintTarget(out ITutorialAnchor icon)
         {
-            var hold = _notificationsHold;
-            _notificationsHold = null;
-            hold?.Dispose();
+            icon = null;
+            return _waveControl.CanStartNextWave
+                   && _waveControl.SecondsUntilNextWave >= _config.MinSecondsUntilNextWave
+                   && _targets.TryGet(TutorialTargetId.NewEnemyIcon, out icon);
         }
     }
 }
