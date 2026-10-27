@@ -20,12 +20,12 @@ MonoBehaviour:
       and relies on cheap shots instead of armor.
     _kind: 0
     _icon: {fileID: 21300000, guid: ce065baf5fde0e643b6ec1f0ee8b786e, type: 3}
-    _health: 58
-    _gold: 14
+    _health: 44
+    _gold: 11
     _speedMove: 8.8
-    _attackSpeed: 2
+    _attackSpeed: 2.15
     _attackRadius: 2
-    _damage: 7
+    _damage: 6
     _bulletId: -1
     _dropChance: 0
     _bonusId: -1
@@ -80,12 +80,12 @@ MonoBehaviour:
       while spraying pressure from the front line.
     _kind: 0
     _icon: {fileID: 21300000, guid: a3b8185d35ce82249b0fe3d5bb009c13, type: 3}
-    _health: 59
-    _gold: 15
+    _health: 78
+    _gold: 19
     _speedMove: 11
-    _attackSpeed: 2.2
+    _attackSpeed: 2.1
     _attackRadius: 2
-    _damage: 6
+    _damage: 7
     _bulletId: -1
     _dropChance: 0
     _bonusId: -1
@@ -100,10 +100,10 @@ MonoBehaviour:
       muscle and punishes weak defenses with precise shots.
     _kind: 1
     _icon: {fileID: 21300000, guid: ccea40b2c102da545b06c297cb0545de, type: 3}
-    _health: 204
-    _gold: 52
+    _health: 196
+    _gold: 48
     _speedMove: 10.6
-    _attackSpeed: 1.9
+    _attackSpeed: 2
     _attackRadius: 8
     _damage: 12
     _bulletId: 5
@@ -140,12 +140,12 @@ MonoBehaviour:
       soldiers and useful for covering weaker crooks.
     _kind: 0
     _icon: {fileID: 21300000, guid: 6cca83e082bc5f64293567806745923d, type: 3}
-    _health: 78
-    _gold: 19
+    _health: 59
+    _gold: 15
     _speedMove: 10.8
-    _attackSpeed: 2.1
+    _attackSpeed: 2.05
     _attackRadius: 2
-    _damage: 8
+    _damage: 6
     _bulletId: -1
     _dropChance: 0
     _bonusId: -1
@@ -160,12 +160,12 @@ MonoBehaviour:
       can and backs up melee crews with sidearm fire.
     _kind: 0
     _icon: {fileID: 21300000, guid: fe48665c5435bff4a9fe4a43aebba657, type: 3}
-    _health: 44
-    _gold: 11
+    _health: 58
+    _gold: 14
     _speedMove: 9.2
-    _attackSpeed: 2.2
+    _attackSpeed: 2.05
     _attackRadius: 2
-    _damage: 5
+    _damage: 6
     _bulletId: -1
     _dropChance: 0
     _bonusId: -1
@@ -180,12 +180,12 @@ MonoBehaviour:
       threat with reliable ranged pressure.
     _kind: 0
     _icon: {fileID: 21300000, guid: 538c80308c6d77146826c8fc68b15bb1, type: 3}
-    _health: 40
-    _gold: 11
+    _health: 50
+    _gold: 13
     _speedMove: 10.4
-    _attackSpeed: 2.3
+    _attackSpeed: 2.15
     _attackRadius: 6
-    _damage: 6
+    _damage: 7
     _bulletId: 4
     _dropChance: 0
     _bonusId: -1
@@ -260,10 +260,10 @@ MonoBehaviour:
       Breaks formations with explosive pressure.
     _kind: 1
     _icon: {fileID: 21300000, guid: 2f09617cd66f9f641b6453a584844cb5, type: 3}
-    _health: 266
-    _gold: 66
+    _health: 256
+    _gold: 61
     _speedMove: 11.2
-    _attackSpeed: 1.85
+    _attackSpeed: 1.95
     _attackRadius: 2
     _damage: 16
     _bulletId: -1
@@ -280,10 +280,10 @@ MonoBehaviour:
       mean enough to turn a clean wave into a mess.
     _kind: 1
     _icon: {fileID: 21300000, guid: 306610180d7e87846932f55f0a9b3d25, type: 3}
-    _health: 196
-    _gold: 48
+    _health: 204
+    _gold: 52
     _speedMove: 11.4
-    _attackSpeed: 2
+    _attackSpeed: 1.9
     _attackRadius: 10
     _damage: 12
     _bulletId: 3

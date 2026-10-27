@@ -13,330 +13,377 @@ MonoBehaviour:
   m_Name: Chapter3
   m_EditorClassIdentifier: Assembly-CSharp::SBabchuk.Runtime.Databases.Levels.ChapterDatabase
   _id: 2
-  _name: 'Chapter 3: Dinner with the Family'
+  _name: 'Chapter 3: The Midnight Freight'
   _levels:
   - _id: 16
-    _name: Table for Trouble
-    _icon: {fileID: -2782463093025066816, guid: daee83191a0295e438facb89a983e4a1,
-      type: 3}
+    _name: Night Platform
+    _icon: {fileID: 3784181004825457883, guid: 5c939f2471646474e9f94ca92d7f5e93, type: 3}
     _waves:
     - _id: 0
       _startDelay: 0
-      _delay: 17
+      _delay: 18
       _enemies:
-      - _enemyId: 0
+      - _enemyId: 7
         _countEnemy: 1
         _interval: 0
         _dropChance: 50
-      - _enemyId: 0
+      - _enemyId: 7
         _countEnemy: 1
         _interval: 2
         _dropChance: 50
-      - _enemyId: 6
+      - _enemyId: 7
         _countEnemy: 1
         _interval: 4
+        _dropChance: 50
+      - _enemyId: 8
+        _countEnemy: 1
+        _interval: 2
         _dropChance: 50
     - _id: 1
       _startDelay: 0
-      _delay: 19
+      _delay: 22
       _enemies:
-      - _enemyId: 0
+      - _enemyId: 7
         _countEnemy: 1
         _interval: 0
         _dropChance: 50
-      - _enemyId: 6
+      - _enemyId: 8
         _countEnemy: 1
         _interval: 2
         _dropChance: 50
-      - _enemyId: 0
+      - _enemyId: 7
         _countEnemy: 1
         _interval: 4
         _dropChance: 50
-      - _enemyId: 0
+      - _enemyId: 7
         _countEnemy: 1
         _interval: 2
+        _dropChance: 50
+      - _enemyId: 8
+        _countEnemy: 1
+        _interval: 4
         _dropChance: 50
     - _id: 2
       _startDelay: 0
-      _delay: 23
+      _delay: 24
       _enemies:
-      - _enemyId: 0
+      - _enemyId: 7
         _countEnemy: 1
         _interval: 0
         _dropChance: 50
-      - _enemyId: 0
+      - _enemyId: 7
         _countEnemy: 1
         _interval: 2
         _dropChance: 50
-      - _enemyId: 6
+      - _enemyId: 8
         _countEnemy: 1
         _interval: 4
         _dropChance: 50
-      - _enemyId: 6
+      - _enemyId: 8
         _countEnemy: 1
         _interval: 2
         _dropChance: 50
-      - _enemyId: 0
+      - _enemyId: 7
         _countEnemy: 1
         _interval: 4
+        _dropChance: 50
+      - _enemyId: 7
+        _countEnemy: 1
+        _interval: 2
         _dropChance: 50
   - _id: 17
-    _name: Back Alley Kitchen
-    _icon: {fileID: -2782463093025066816, guid: daee83191a0295e438facb89a983e4a1,
-      type: 3}
+    _name: Freight Yard Ambush
+    _icon: {fileID: 3784181004825457883, guid: 5c939f2471646474e9f94ca92d7f5e93, type: 3}
     _waves:
     - _id: 0
       _startDelay: 0
-      _delay: 19
+      _delay: 22
       _enemies:
-      - _enemyId: 0
+      - _enemyId: 7
         _countEnemy: 1
         _interval: 0
         _dropChance: 52
-      - _enemyId: 0
+      - _enemyId: 8
         _countEnemy: 1
         _interval: 2
         _dropChance: 52
-      - _enemyId: 0
+      - _enemyId: 7
         _countEnemy: 1
         _interval: 4
         _dropChance: 52
-      - _enemyId: 6
+      - _enemyId: 3
         _countEnemy: 1
         _interval: 2
+        _dropChance: 52
+      - _enemyId: 7
+        _countEnemy: 1
+        _interval: 4
         _dropChance: 52
     - _id: 1
       _startDelay: 0
-      _delay: 19
+      _delay: 22
       _enemies:
-      - _enemyId: 0
+      - _enemyId: 7
         _countEnemy: 1
         _interval: 0
         _dropChance: 52
-      - _enemyId: 6
+      - _enemyId: 7
         _countEnemy: 1
         _interval: 2
         _dropChance: 52
-      - _enemyId: 0
+      - _enemyId: 8
         _countEnemy: 1
         _interval: 4
         _dropChance: 52
-      - _enemyId: 0
+      - _enemyId: 3
         _countEnemy: 1
         _interval: 2
+        _dropChance: 52
+      - _enemyId: 8
+        _countEnemy: 1
+        _interval: 4
         _dropChance: 52
     - _id: 2
       _startDelay: 0
-      _delay: 23
+      _delay: 24
       _enemies:
-      - _enemyId: 0
+      - _enemyId: 8
         _countEnemy: 1
         _interval: 0
         _dropChance: 52
-      - _enemyId: 6
+      - _enemyId: 8
         _countEnemy: 1
         _interval: 2
         _dropChance: 52
-      - _enemyId: 0
+      - _enemyId: 7
         _countEnemy: 1
         _interval: 4
         _dropChance: 52
-      - _enemyId: 0
+      - _enemyId: 3
         _countEnemy: 1
         _interval: 2
         _dropChance: 52
-      - _enemyId: 0
+      - _enemyId: 7
         _countEnemy: 1
         _interval: 4
+        _dropChance: 52
+      - _enemyId: 3
+        _countEnemy: 1
+        _interval: 2
         _dropChance: 52
   - _id: 18
-    _name: Reservation for Rosso
-    _icon: {fileID: -2782463093025066816, guid: daee83191a0295e438facb89a983e4a1,
-      type: 3}
+    _name: Ticket to Trouble
+    _icon: {fileID: 3784181004825457883, guid: 5c939f2471646474e9f94ca92d7f5e93, type: 3}
     _waves:
     - _id: 0
       _startDelay: 0
-      _delay: 19
+      _delay: 22
       _enemies:
-      - _enemyId: 0
+      - _enemyId: 7
         _countEnemy: 1
         _interval: 0
         _dropChance: 54
-      - _enemyId: 0
+      - _enemyId: 3
         _countEnemy: 1
         _interval: 2
         _dropChance: 54
-      - _enemyId: 6
+      - _enemyId: 8
         _countEnemy: 1
         _interval: 4
         _dropChance: 54
-      - _enemyId: 6
+      - _enemyId: 8
         _countEnemy: 1
         _interval: 2
+        _dropChance: 54
+      - _enemyId: 3
+        _countEnemy: 1
+        _interval: 4
         _dropChance: 54
     - _id: 1
       _startDelay: 0
-      _delay: 23
+      _delay: 22
       _enemies:
-      - _enemyId: 0
+      - _enemyId: 3
         _countEnemy: 1
         _interval: 0
         _dropChance: 54
-      - _enemyId: 6
+      - _enemyId: 3
         _countEnemy: 1
         _interval: 2
         _dropChance: 54
-      - _enemyId: 0
+      - _enemyId: 7
         _countEnemy: 1
         _interval: 4
         _dropChance: 54
-      - _enemyId: 0
+      - _enemyId: 7
         _countEnemy: 1
         _interval: 2
         _dropChance: 54
-      - _enemyId: 6
+      - _enemyId: 8
         _countEnemy: 1
         _interval: 4
         _dropChance: 54
     - _id: 2
       _startDelay: 0
-      _delay: 20
+      _delay: 24
       _enemies:
-      - _enemyId: 0
+      - _enemyId: 7
         _countEnemy: 1
         _interval: 0
         _dropChance: 54
-      - _enemyId: 6
+      - _enemyId: 8
         _countEnemy: 1
         _interval: 2
         _dropChance: 54
-      - _enemyId: 4
+      - _enemyId: 3
         _countEnemy: 1
         _interval: 4
-        _dropChance: 66
+        _dropChance: 54
+      - _enemyId: 3
+        _countEnemy: 1
+        _interval: 2
+        _dropChance: 54
+      - _enemyId: 7
+        _countEnemy: 1
+        _interval: 4
+        _dropChance: 54
+      - _enemyId: 3
+        _countEnemy: 1
+        _interval: 2
+        _dropChance: 54
   - _id: 19
-    _name: Broken Plates
-    _icon: {fileID: -2782463093025066816, guid: daee83191a0295e438facb89a983e4a1,
-      type: 3}
+    _name: Gold on the Rails
+    _icon: {fileID: 3784181004825457883, guid: 5c939f2471646474e9f94ca92d7f5e93, type: 3}
     _waves:
     - _id: 0
       _startDelay: 0
-      _delay: 23
+      _delay: 22
       _enemies:
-      - _enemyId: 0
+      - _enemyId: 7
         _countEnemy: 1
         _interval: 0
         _dropChance: 56
-      - _enemyId: 6
+      - _enemyId: 8
         _countEnemy: 1
         _interval: 2
         _dropChance: 56
-      - _enemyId: 0
+      - _enemyId: 3
         _countEnemy: 1
         _interval: 4
         _dropChance: 56
-      - _enemyId: 0
+      - _enemyId: 3
         _countEnemy: 1
         _interval: 2
         _dropChance: 56
-      - _enemyId: 6
+      - _enemyId: 7
         _countEnemy: 1
         _interval: 4
         _dropChance: 56
     - _id: 1
       _startDelay: 0
-      _delay: 23
+      _delay: 22
       _enemies:
-      - _enemyId: 6
+      - _enemyId: 7
         _countEnemy: 1
         _interval: 0
         _dropChance: 56
-      - _enemyId: 6
+      - _enemyId: 7
         _countEnemy: 1
         _interval: 2
         _dropChance: 56
-      - _enemyId: 0
+      - _enemyId: 8
         _countEnemy: 1
         _interval: 4
         _dropChance: 56
-      - _enemyId: 0
+      - _enemyId: 3
         _countEnemy: 1
         _interval: 2
         _dropChance: 56
-      - _enemyId: 0
+      - _enemyId: 8
         _countEnemy: 1
         _interval: 4
         _dropChance: 56
     - _id: 2
       _startDelay: 0
-      _delay: 23
+      _delay: 25
       _enemies:
-      - _enemyId: 0
+      - _enemyId: 3
         _countEnemy: 1
         _interval: 0
         _dropChance: 56
-      - _enemyId: 0
+      - _enemyId: 3
         _countEnemy: 1
         _interval: 2
         _dropChance: 56
-      - _enemyId: 6
+      - _enemyId: 7
         _countEnemy: 1
         _interval: 4
         _dropChance: 56
-      - _enemyId: 6
+      - _enemyId: 8
         _countEnemy: 1
         _interval: 2
         _dropChance: 56
-      - _enemyId: 0
+      - _enemyId: 13
         _countEnemy: 1
         _interval: 4
-        _dropChance: 56
+        _dropChance: 68
   - _id: 20
-    _name: The Chef's Special
-    _icon: {fileID: -2782463093025066816, guid: daee83191a0295e438facb89a983e4a1,
-      type: 3}
+    _name: Signal Box Siege
+    _icon: {fileID: 3784181004825457883, guid: 5c939f2471646474e9f94ca92d7f5e93, type: 3}
     _waves:
     - _id: 0
       _startDelay: 0
-      _delay: 23
+      _delay: 24
       _enemies:
-      - _enemyId: 0
+      - _enemyId: 7
         _countEnemy: 1
         _interval: 0
         _dropChance: 58
-      - _enemyId: 0
+      - _enemyId: 3
         _countEnemy: 1
         _interval: 2
         _dropChance: 58
-      - _enemyId: 6
+      - _enemyId: 8
         _countEnemy: 1
         _interval: 4
         _dropChance: 58
-      - _enemyId: 6
+      - _enemyId: 8
         _countEnemy: 1
         _interval: 2
         _dropChance: 58
-      - _enemyId: 0
+      - _enemyId: 3
         _countEnemy: 1
         _interval: 4
+        _dropChance: 58
+      - _enemyId: 3
+        _countEnemy: 1
+        _interval: 2
         _dropChance: 58
     - _id: 1
       _startDelay: 0
-      _delay: 19
+      _delay: 24
       _enemies:
-      - _enemyId: 0
+      - _enemyId: 3
         _countEnemy: 1
         _interval: 0
         _dropChance: 58
-      - _enemyId: 6
+      - _enemyId: 3
         _countEnemy: 1
         _interval: 2
         _dropChance: 58
-      - _enemyId: 0
+      - _enemyId: 7
         _countEnemy: 1
         _interval: 4
         _dropChance: 58
-      - _enemyId: 0
+      - _enemyId: 8
+        _countEnemy: 1
+        _interval: 2
+        _dropChance: 58
+      - _enemyId: 7
+        _countEnemy: 1
+        _interval: 4
+        _dropChance: 58
+      - _enemyId: 3
         _countEnemy: 1
         _interval: 2
         _dropChance: 58
@@ -344,48 +391,55 @@ MonoBehaviour:
       _startDelay: 0
       _delay: 24
       _enemies:
-      - _enemyId: 0
+      - _enemyId: 8
         _countEnemy: 1
         _interval: 0
         _dropChance: 58
-      - _enemyId: 6
+      - _enemyId: 3
         _countEnemy: 1
         _interval: 2
         _dropChance: 58
-      - _enemyId: 0
+      - _enemyId: 7
         _countEnemy: 1
         _interval: 4
         _dropChance: 58
-      - _enemyId: 12
+      - _enemyId: 7
+        _countEnemy: 1
+        _interval: 2
+        _dropChance: 58
+      - _enemyId: 3
         _countEnemy: 1
         _interval: 4
-        _dropChance: 70
+        _dropChance: 58
+      - _enemyId: 3
+        _countEnemy: 1
+        _interval: 2
+        _dropChance: 58
   - _id: 21
-    _name: Wine Cellar Feud
-    _icon: {fileID: -2782463093025066816, guid: daee83191a0295e438facb89a983e4a1,
-      type: 3}
+    _name: Coal Smoke Crossfire
+    _icon: {fileID: 3784181004825457883, guid: 5c939f2471646474e9f94ca92d7f5e93, type: 3}
     _waves:
     - _id: 0
       _startDelay: 0
-      _delay: 23
+      _delay: 22
       _enemies:
-      - _enemyId: 0
+      - _enemyId: 7
         _countEnemy: 1
         _interval: 0
         _dropChance: 60
-      - _enemyId: 6
+      - _enemyId: 8
         _countEnemy: 1
         _interval: 2
         _dropChance: 60
-      - _enemyId: 6
+      - _enemyId: 3
         _countEnemy: 1
         _interval: 4
         _dropChance: 60
-      - _enemyId: 6
+      - _enemyId: 3
         _countEnemy: 1
         _interval: 2
         _dropChance: 60
-      - _enemyId: 0
+      - _enemyId: 8
         _countEnemy: 1
         _interval: 4
         _dropChance: 60
@@ -393,72 +447,83 @@ MonoBehaviour:
       _startDelay: 0
       _delay: 24
       _enemies:
-      - _enemyId: 0
+      - _enemyId: 7
         _countEnemy: 1
         _interval: 0
         _dropChance: 60
-      - _enemyId: 0
+      - _enemyId: 7
         _countEnemy: 1
         _interval: 2
         _dropChance: 60
-      - _enemyId: 6
+      - _enemyId: 8
         _countEnemy: 1
         _interval: 4
         _dropChance: 60
-      - _enemyId: 4
+      - _enemyId: 3
+        _countEnemy: 1
+        _interval: 2
+        _dropChance: 60
+      - _enemyId: 3
         _countEnemy: 1
         _interval: 4
-        _dropChance: 72
+        _dropChance: 60
+      - _enemyId: 3
+        _countEnemy: 1
+        _interval: 2
+        _dropChance: 60
     - _id: 2
       _startDelay: 0
-      _delay: 24
+      _delay: 25
       _enemies:
-      - _enemyId: 6
+      - _enemyId: 3
         _countEnemy: 1
         _interval: 0
         _dropChance: 60
-      - _enemyId: 6
+      - _enemyId: 3
         _countEnemy: 1
         _interval: 2
         _dropChance: 60
-      - _enemyId: 0
+      - _enemyId: 7
         _countEnemy: 1
         _interval: 4
         _dropChance: 60
-      - _enemyId: 12
+      - _enemyId: 8
+        _countEnemy: 1
+        _interval: 2
+        _dropChance: 60
+      - _enemyId: 13
         _countEnemy: 1
         _interval: 4
         _dropChance: 72
   - _id: 22
-    _name: Kitchen on Fire
-    _icon: {fileID: -2782463093025066816, guid: daee83191a0295e438facb89a983e4a1,
-      type: 3}
+    _name: Derailed Deal
+    _icon: {fileID: 3784181004825457883, guid: 5c939f2471646474e9f94ca92d7f5e93, type: 3}
     _waves:
     - _id: 0
       _startDelay: 0
-      _delay: 25
+      _delay: 24
       _enemies:
-      - _enemyId: 0
+      - _enemyId: 7
         _countEnemy: 1
         _interval: 0
         _dropChance: 63
-      - _enemyId: 0
+      - _enemyId: 7
         _countEnemy: 1
         _interval: 2
         _dropChance: 63
-      - _enemyId: 6
+      - _enemyId: 3
         _countEnemy: 1
         _interval: 4
         _dropChance: 63
-      - _enemyId: 6
+      - _enemyId: 3
         _countEnemy: 1
         _interval: 2
         _dropChance: 63
-      - _enemyId: 0
+      - _enemyId: 8
         _countEnemy: 1
         _interval: 4
         _dropChance: 63
-      - _enemyId: 6
+      - _enemyId: 8
         _countEnemy: 1
         _interval: 2
         _dropChance: 63
@@ -466,68 +531,87 @@ MonoBehaviour:
       _startDelay: 0
       _delay: 24
       _enemies:
-      - _enemyId: 0
+      - _enemyId: 7
         _countEnemy: 1
         _interval: 0
         _dropChance: 63
-      - _enemyId: 6
+      - _enemyId: 8
         _countEnemy: 1
         _interval: 2
         _dropChance: 63
-      - _enemyId: 0
+      - _enemyId: 3
         _countEnemy: 1
         _interval: 4
         _dropChance: 63
-      - _enemyId: 4
+      - _enemyId: 3
+        _countEnemy: 1
+        _interval: 2
+        _dropChance: 63
+      - _enemyId: 7
         _countEnemy: 1
         _interval: 4
-        _dropChance: 75
+        _dropChance: 63
+      - _enemyId: 3
+        _countEnemy: 1
+        _interval: 2
+        _dropChance: 63
     - _id: 2
       _startDelay: 0
-      _delay: 20
+      _delay: 29
       _enemies:
-      - _enemyId: 0
+      - _enemyId: 7
         _countEnemy: 1
         _interval: 0
         _dropChance: 63
-      - _enemyId: 6
+      - _enemyId: 7
         _countEnemy: 1
         _interval: 2
         _dropChance: 63
-      - _enemyId: 12
+      - _enemyId: 8
+        _countEnemy: 1
+        _interval: 4
+        _dropChance: 63
+      - _enemyId: 3
+        _countEnemy: 1
+        _interval: 2
+        _dropChance: 63
+      - _enemyId: 3
+        _countEnemy: 1
+        _interval: 4
+        _dropChance: 63
+      - _enemyId: 13
         _countEnemy: 1
         _interval: 4
         _dropChance: 75
   - _id: 23
-    _name: The Last Supper
-    _icon: {fileID: -2782463093025066816, guid: daee83191a0295e438facb89a983e4a1,
-      type: 3}
+    _name: Last Train Out
+    _icon: {fileID: 3784181004825457883, guid: 5c939f2471646474e9f94ca92d7f5e93, type: 3}
     _waves:
     - _id: 0
       _startDelay: 0
-      _delay: 25
+      _delay: 24
       _enemies:
-      - _enemyId: 0
+      - _enemyId: 7
         _countEnemy: 1
         _interval: 0
         _dropChance: 66
-      - _enemyId: 0
+      - _enemyId: 8
         _countEnemy: 1
         _interval: 2
         _dropChance: 66
-      - _enemyId: 6
+      - _enemyId: 3
         _countEnemy: 1
         _interval: 4
         _dropChance: 66
-      - _enemyId: 6
+      - _enemyId: 3
         _countEnemy: 1
         _interval: 2
         _dropChance: 66
-      - _enemyId: 0
+      - _enemyId: 7
         _countEnemy: 1
         _interval: 4
         _dropChance: 66
-      - _enemyId: 6
+      - _enemyId: 7
         _countEnemy: 1
         _interval: 2
         _dropChance: 66
@@ -535,63 +619,55 @@ MonoBehaviour:
       _startDelay: 0
       _delay: 24
       _enemies:
-      - _enemyId: 0
+      - _enemyId: 3
         _countEnemy: 1
         _interval: 0
         _dropChance: 66
-      - _enemyId: 6
+      - _enemyId: 3
         _countEnemy: 1
         _interval: 2
         _dropChance: 66
-      - _enemyId: 0
+      - _enemyId: 8
         _countEnemy: 1
         _interval: 4
         _dropChance: 66
-      - _enemyId: 4
+      - _enemyId: 8
+        _countEnemy: 1
+        _interval: 2
+        _dropChance: 66
+      - _enemyId: 7
         _countEnemy: 1
         _interval: 4
-        _dropChance: 85
+        _dropChance: 66
+      - _enemyId: 3
+        _countEnemy: 1
+        _interval: 2
+        _dropChance: 66
     - _id: 2
       _startDelay: 0
-      _delay: 23
+      _delay: 29
       _enemies:
-      - _enemyId: 6
+      - _enemyId: 7
         _countEnemy: 1
         _interval: 0
         _dropChance: 66
-      - _enemyId: 6
+      - _enemyId: 7
         _countEnemy: 1
         _interval: 2
         _dropChance: 66
-      - _enemyId: 0
+      - _enemyId: 8
         _countEnemy: 1
         _interval: 4
         _dropChance: 66
-      - _enemyId: 6
+      - _enemyId: 3
         _countEnemy: 1
         _interval: 2
         _dropChance: 66
-      - _enemyId: 0
-        _countEnemy: 1
-        _interval: 4
-        _dropChance: 66
-    - _id: 3
-      _startDelay: 0
-      _delay: 24
-      _enemies:
-      - _enemyId: 0
-        _countEnemy: 1
-        _interval: 0
-        _dropChance: 66
-      - _enemyId: 6
-        _countEnemy: 1
-        _interval: 2
-        _dropChance: 66
-      - _enemyId: 4
+      - _enemyId: 13
         _countEnemy: 1
         _interval: 4
         _dropChance: 85
-      - _enemyId: 12
+      - _enemyId: 13
         _countEnemy: 1
         _interval: 4
         _dropChance: 85

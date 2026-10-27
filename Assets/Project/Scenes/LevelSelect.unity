@@ -673,7 +673,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Chapter 2: The Midnight Freight'
+  m_text: 'Chapter 2: Dinner with the Family'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -5415,7 +5415,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 3784181004825457883, guid: 5c939f2471646474e9f94ca92d7f5e93,
+  m_Sprite: {fileID: -2782463093025066816, guid: daee83191a0295e438facb89a983e4a1,
     type: 3}
   m_Type: 0
   m_PreserveAspect: 0
@@ -16306,7 +16306,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -2782463093025066816, guid: daee83191a0295e438facb89a983e4a1,
+  m_Sprite: {fileID: 3784181004825457883, guid: 5c939f2471646474e9f94ca92d7f5e93,
     type: 3}
   m_Type: 0
   m_PreserveAspect: 0
@@ -17148,7 +17148,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Chapter 3: Dinner with the Family'
+  m_text: 'Chapter 3: The Midnight Freight'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
