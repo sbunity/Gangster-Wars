@@ -197,6 +197,7 @@ namespace SBabchuk.Runtime
         Grenade = 9,
         Bonus = 10,
         SwitchWeapon = 11,
+        StoreTour = 12,
     }
 
     public enum TutorialStepScope
@@ -218,6 +219,9 @@ namespace SBabchuk.Runtime
         WeaponUpgradeButton = 7,
         PlayButton = 8,
         LevelButton = 9,
+        Store = 10,
+        Showroom = 11,
+        StoreTabButton = 12,
     }
 
     public enum TutorialGesture
@@ -232,6 +236,16 @@ namespace SBabchuk.Runtime
     {
         PassThrough = 0,
         TargetOnly = 1,
+        TapToContinue = 2,
+    }
+
+    public enum StoreTab
+    {
+        None = -1,
+        Weapons = 0,
+        Grenades = 1,
+        Barricades = 2,
+        Coins = 3,
     }
 
 }

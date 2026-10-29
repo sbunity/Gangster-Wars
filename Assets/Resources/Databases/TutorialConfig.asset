@@ -44,3 +44,21 @@ MonoBehaviour:
   _bonusSlotHintDuration: 1.5
   _switchWeaponCaption: Tap to switch weapon
   _switchWeaponHintDuration: 6
+  _storeTourLevelId: 1
+  _storeTourMinPageDuration: 0.5
+  _storeTourPages:
+  - _tab: 0
+    _target: 10
+    _caption: Buy and upgrade guns here, and stock up on ammo
+  - _tab: 1
+    _target: 10
+    _caption: Buy grenades here
+  - _tab: 2
+    _target: 10
+    _caption: Buy and upgrade barricades here
+  - _tab: 3
+    _target: 10
+    _caption: Out of coins? Get more here
+  - _tab: -1
+    _target: 11
+    _caption: Unlock new gangsters and buy car skins here

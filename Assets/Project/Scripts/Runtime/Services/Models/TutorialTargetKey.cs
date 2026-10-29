@@ -22,6 +22,9 @@ namespace SBabchuk.Runtime.Services.Models
         public static TutorialTargetKey GrenadeSlot(GrenadesName grenade)
             => new(TutorialTargetId.GrenadeSlot, (int)grenade);
 
+        public static TutorialTargetKey StoreTabButton(StoreTab tab)
+            => new(TutorialTargetId.StoreTabButton, (int)tab);
+
         public bool Equals(TutorialTargetKey other)
             => Id == other.Id && Index == other.Index;
 

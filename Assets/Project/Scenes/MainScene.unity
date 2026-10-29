@@ -2772,6 +2772,57 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 96965288}
   m_CullTransparentMesh: 0
+--- !u!1 &97219209
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 97219210}
+  - component: {fileID: 97219211}
+  m_Layer: 5
+  m_Name: TutorialHighlight
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &97219210
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 97219209}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1018941483}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: -71, y: 0}
+  m_SizeDelta: {x: 142, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &97219211
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 97219209}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7740401f57c5dec4eb0f4c5918edf17e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SBabchuk.Runtime.UI.Tutorial.TutorialTarget
+  _id: 10
+  _index: 0
+  _fitActiveChildren: 0
 --- !u!1 &97706210
 GameObject:
   m_ObjectHideFlags: 0
@@ -21585,6 +21636,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SBabchuk.Runtime.Installers.MainSceneInstaller
   _tutorialView: {fileID: 1760494380}
+  _storeTabs: {fileID: 1018941486}
 --- !u!1 &894876779
 GameObject:
   m_ObjectHideFlags: 0
@@ -23599,6 +23651,7 @@ GameObject:
   - component: {fileID: 984624277}
   - component: {fileID: 984624278}
   - component: {fileID: 984624279}
+  - component: {fileID: 984624280}
   m_Layer: 5
   m_Name: Gun
   m_TagString: Untagged
@@ -23747,6 +23800,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SBabchuk.Runtime.UI.UIClickSound
   _type: 0
   _customSound: {fileID: 0}
+--- !u!114 &984624280
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 984624273}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7740401f57c5dec4eb0f4c5918edf17e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SBabchuk.Runtime.UI.Tutorial.TutorialTarget
+  _id: 12
+  _index: 0
+  _fitActiveChildren: 0
 --- !u!1 &985477377
 GameObject:
   m_ObjectHideFlags: 0
@@ -24529,6 +24597,7 @@ GameObject:
   - component: {fileID: 1018941483}
   - component: {fileID: 1018941485}
   - component: {fileID: 1018941484}
+  - component: {fileID: 1018941486}
   m_Layer: 5
   m_Name: BuyPanel
   m_TagString: Untagged
@@ -24558,6 +24627,7 @@ RectTransform:
   - {fileID: 607439865}
   - {fileID: 962039453}
   - {fileID: 1212082021}
+  - {fileID: 97219210}
   m_Father: {fileID: 1109327088}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0.5}
@@ -24603,6 +24673,27 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1018941482}
   m_CullTransparentMesh: 0
+--- !u!114 &1018941486
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1018941482}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 90c12eb739b224c4fb1e4e5b0e2bb68b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SBabchuk.Runtime.UI.WeaponStore.StoreTabsView
+  _tabs:
+  - _tab: 0
+    _controller: {fileID: 359206316}
+  - _tab: 1
+    _controller: {fileID: 1902060367}
+  - _tab: 2
+    _controller: {fileID: 329573497}
+  - _tab: 3
+    _controller: {fileID: 1287255634}
 --- !u!1 &1020793756
 GameObject:
   m_ObjectHideFlags: 0
@@ -26881,6 +26972,7 @@ GameObject:
   - component: {fileID: 1092636240}
   - component: {fileID: 1092636241}
   - component: {fileID: 1092636242}
+  - component: {fileID: 1092636243}
   m_Layer: 5
   m_Name: Gun
   m_TagString: Untagged
@@ -27029,6 +27121,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SBabchuk.Runtime.UI.UIClickSound
   _type: 0
   _customSound: {fileID: 0}
+--- !u!114 &1092636243
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1092636236}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7740401f57c5dec4eb0f4c5918edf17e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SBabchuk.Runtime.UI.Tutorial.TutorialTarget
+  _id: 12
+  _index: 3
+  _fitActiveChildren: 0
 --- !u!1 &1093819212
 GameObject:
   m_ObjectHideFlags: 0
@@ -37912,6 +38019,7 @@ GameObject:
   - component: {fileID: 1540278428}
   - component: {fileID: 1540278429}
   - component: {fileID: 1540278430}
+  - component: {fileID: 1540278431}
   m_Layer: 5
   m_Name: Gun
   m_TagString: Untagged
@@ -38060,6 +38168,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SBabchuk.Runtime.UI.UIClickSound
   _type: 0
   _customSound: {fileID: 0}
+--- !u!114 &1540278431
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1540278424}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7740401f57c5dec4eb0f4c5918edf17e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SBabchuk.Runtime.UI.Tutorial.TutorialTarget
+  _id: 12
+  _index: 2
+  _fitActiveChildren: 0
 --- !u!1 &1543538918
 GameObject:
   m_ObjectHideFlags: 0
@@ -39935,6 +40058,7 @@ GameObject:
   - component: {fileID: 1610845946}
   - component: {fileID: 1610845947}
   - component: {fileID: 1610845948}
+  - component: {fileID: 1610845949}
   m_Layer: 5
   m_Name: Gun
   m_TagString: Untagged
@@ -40083,6 +40207,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SBabchuk.Runtime.UI.UIClickSound
   _type: 0
   _customSound: {fileID: 0}
+--- !u!114 &1610845949
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1610845942}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7740401f57c5dec4eb0f4c5918edf17e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SBabchuk.Runtime.UI.Tutorial.TutorialTarget
+  _id: 12
+  _index: 1
+  _fitActiveChildren: 0
 --- !u!1 &1611418368
 GameObject:
   m_ObjectHideFlags: 0
@@ -47730,6 +47869,7 @@ Transform:
   - {fileID: 1343130032}
   - {fileID: 603705415}
   - {fileID: 1743517702}
+  - {fileID: 2106057870}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1936671669
@@ -52547,6 +52687,54 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2102123946}
   m_CullTransparentMesh: 1
+--- !u!1 &2106057869
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2106057870}
+  - component: {fileID: 2106057871}
+  m_Layer: 0
+  m_Name: ShowroomTutorialTarget
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2106057870
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2106057869}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -1.45, y: -0.03, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1923587391}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2106057871
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2106057869}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bdd836cb26463c84c890b000a1fa06e6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SBabchuk.Runtime.UI.Tutorial.WorldTutorialTarget
+  _id: 11
+  _index: 0
+  _camera: {fileID: 168393064}
+  _size: {x: 8.1, y: 7.7}
 --- !u!1 &2109201708
 GameObject:
   m_ObjectHideFlags: 0

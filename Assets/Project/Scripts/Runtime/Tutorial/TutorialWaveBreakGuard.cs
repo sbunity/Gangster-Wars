@@ -29,15 +29,16 @@ namespace SBabchuk.Runtime.Tutorial
             _config = assetProvider.TutorialConfig;
             _signals = new SignalSubscriptions(signalBus)
                 .Add<WaveClearedSignal>(ReleaseCountdown)
+                .Add<WaveCountdownSkippedSignal>(Stop)
                 .Add<GameFinishedSignal>(Stop);
         }
 
-        private bool AreWaveBreakStepsCompleted
-            => _tutorialProgress.IsCompleted(TutorialStepId.NewEnemy) && _tutorialProgress.IsCompleted(TutorialStepId.NextWave);
+        private bool IsNextWaveStepCompleted
+            => _tutorialProgress.IsCompleted(TutorialStepId.NextWave);
 
         public void Initialize()
         {
-            _isActive = _tutorialProgress.IsTutorialLevelActive && !AreWaveBreakStepsCompleted;
+            _isActive = _tutorialProgress.IsTutorialLevelActive && !IsNextWaveStepCompleted;
             if (_isActive)
                 _signals.Enable();
         }
@@ -47,7 +48,7 @@ namespace SBabchuk.Runtime.Tutorial
             if (!_isActive || _countdownHold != null)
                 return;
 
-            if (AreWaveBreakStepsCompleted)
+            if (IsNextWaveStepCompleted)
             {
                 Stop();
                 return;

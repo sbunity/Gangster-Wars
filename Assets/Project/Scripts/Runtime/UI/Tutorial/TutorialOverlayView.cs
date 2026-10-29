@@ -1,13 +1,16 @@
+using System.Threading;
+using Cysharp.Threading.Tasks;
 using DG.Tweening;
 using SBabchuk.Runtime.Services.Contracts;
 using SBabchuk.Runtime.Services.Models;
 using TMPro;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 namespace SBabchuk.Runtime.UI.Tutorial
 {
-    public sealed class TutorialOverlayView : MonoBehaviour, ITutorialView
+    public sealed class TutorialOverlayView : MonoBehaviour, ITutorialView, IPointerClickHandler
     {
         private static readonly int DimColorId = Shader.PropertyToID("_DimColor");
         private static readonly int FrameColorId = Shader.PropertyToID("_FrameColor");
@@ -29,6 +32,8 @@ namespace SBabchuk.Runtime.UI.Tutorial
         [SerializeField] private TutorialPointerView _pointer;
         [SerializeField] private RectTransform _caption;
         [SerializeField] private TMP_Text _captionText;
+        [SerializeField] private string _tapToContinuePrompt = "Tap to continue";
+        [SerializeField, Range(0.3f, 1f)] private float _tapToContinueScale = 0.7f;
 
         [Header("Spotlight")]
         [SerializeField] private Color _dimColor = new(0f, 0f, 0f, 0.65f);
@@ -54,6 +59,7 @@ namespace SBabchuk.Runtime.UI.Tutorial
         private Tween _fadeTween;
         private Tween _pulseTween;
         private float _pulse;
+        private UniTaskCompletionSource _tap;
 
         private void Awake()
         {
@@ -68,6 +74,7 @@ namespace SBabchuk.Runtime.UI.Tutorial
         {
             _fadeTween?.Kill();
             _pulseTween?.Kill();
+            _tap?.TrySetCanceled();
 
             if (_spotlightMaterial != null)
                 Destroy(_spotlightMaterial);
@@ -92,18 +99,19 @@ namespace SBabchuk.Runtime.UI.Tutorial
 
             _hint = hint;
             _content.SetActive(true);
-            _spotlight.raycastTarget = hint.InputMode == TutorialInputMode.TargetOnly;
+            _spotlight.raycastTarget = hint.InputMode != TutorialInputMode.PassThrough;
             _spotlightMaterial.SetColor(DimColorId, hint.DimBackground ? _dimColor : Color.clear);
             _spotlightMaterial.SetColor(FrameColorId, _frameColor);
             _spotlightMaterial.SetFloat(FrameWidthId, _frameWidth);
             _spotlightMaterial.SetFloat(HoleRadiusId, _holeCornerRadius);
             _spotlightMaterial.SetFloat(HoleSoftnessId, _holeSoftness);
 
-            var hasCaption = !string.IsNullOrEmpty(hint.Caption);
+            var caption = CaptionFor(hint);
+            var hasCaption = !string.IsNullOrEmpty(caption);
             _caption.gameObject.SetActive(hasCaption);
             if (hasCaption)
             {
-                _captionText.text = hint.Caption;
+                _captionText.text = caption;
                 LayoutRebuilder.ForceRebuildLayoutImmediate(_caption);
             }
 
@@ -111,6 +119,19 @@ namespace SBabchuk.Runtime.UI.Tutorial
             StartPulse();
             UpdateLayout();
             Fade(1f, null);
+        }
+
+        public UniTask WaitForTapAsync(CancellationToken cancellationToken)
+        {
+            _tap ??= new UniTaskCompletionSource();
+            return _tap.Task.AttachExternalCancellation(cancellationToken);
+        }
+
+        public void OnPointerClick(PointerEventData eventData)
+        {
+            var tap = _tap;
+            _tap = null;
+            tap?.TrySetResult();
         }
 
         public void Hide()
@@ -157,7 +178,10 @@ namespace SBabchuk.Runtime.UI.Tutorial
             var hole = Expand(target, padding);
             SetHole(HoleCenterId, HoleHalfSizeId, hole);
             _spotlightMaterial.SetFloat(HoleEnabledId, 1f);
-            _raycastFilter.SetHole(_space, hole);
+            if (_hint.InputMode == TutorialInputMode.TargetOnly)
+                _raycastFilter.SetHole(_space, hole);
+            else
+                _raycastFilter.ClearHole();
             _pointer.transform.position = _space.TransformPoint(target.center);
 
             var hasDestination = TryGetLocalRect(_hint.Destination, out var destination);
@@ -171,7 +195,8 @@ namespace SBabchuk.Runtime.UI.Tutorial
 
             var maxPadding = _holePadding + _holePulse;
             var destinationHole = hasDestination ? Expand(destination, maxPadding) : (Rect?)null;
-            PlaceCaption(Expand(target, maxPadding), destinationHole, target.center);
+            var alignment = TryGetLocalRect(_hint.CaptionAnchor, out var captionAnchor) ? captionAnchor.center : target.center;
+            PlaceCaption(Expand(target, maxPadding), destinationHole, target.center, alignment);
         }
 
         private void SetHole(int centerId, int halfSizeId, Rect hole)
@@ -187,7 +212,7 @@ namespace SBabchuk.Runtime.UI.Tutorial
             return isValid;
         }
 
-        private void PlaceCaption(Rect hole, Rect? destinationHole, Vector2 pointerOrigin)
+        private void PlaceCaption(Rect hole, Rect? destinationHole, Vector2 pointerOrigin, Vector2 alignment)
         {
             var bounds = _space.rect;
             var size = _caption.rect.size;
@@ -196,11 +221,11 @@ namespace SBabchuk.Runtime.UI.Tutorial
 
             var aboveY = hole.yMax + _captionSpacing + size.y * 0.5f;
             var belowY = hole.yMin - _captionSpacing - size.y * 0.5f;
-            var leftOfCenterX = hole.center.x - size.x * 0.5f;
-            _captionCandidates[0] = CaptionRect(new Vector2(hole.center.x, aboveY), size, bounds);
-            _captionCandidates[1] = CaptionRect(new Vector2(hole.center.x, belowY), size, bounds);
-            _captionCandidates[2] = CaptionRect(new Vector2(hole.xMax + _captionSpacing + size.x * 0.5f, hole.center.y), size, bounds);
-            _captionCandidates[3] = CaptionRect(new Vector2(hole.xMin - _captionSpacing - size.x * 0.5f, hole.center.y), size, bounds);
+            var leftOfCenterX = alignment.x - size.x * 0.5f;
+            _captionCandidates[0] = CaptionRect(new Vector2(alignment.x, aboveY), size, bounds);
+            _captionCandidates[1] = CaptionRect(new Vector2(alignment.x, belowY), size, bounds);
+            _captionCandidates[2] = CaptionRect(new Vector2(hole.xMax + _captionSpacing + size.x * 0.5f, alignment.y), size, bounds);
+            _captionCandidates[3] = CaptionRect(new Vector2(hole.xMin - _captionSpacing - size.x * 0.5f, alignment.y), size, bounds);
             _captionCandidates[4] = CaptionRect(new Vector2(leftOfCenterX, aboveY), size, bounds);
             _captionCandidates[5] = CaptionRect(new Vector2(leftOfCenterX, belowY), size, bounds);
 
@@ -231,6 +256,15 @@ namespace SBabchuk.Runtime.UI.Tutorial
             center.x = Mathf.Clamp(center.x, bounds.xMin + halfWidth, Mathf.Max(bounds.xMin + halfWidth, bounds.xMax - halfWidth));
             center.y = Mathf.Clamp(center.y, bounds.yMin + halfHeight, Mathf.Max(bounds.yMin + halfHeight, bounds.yMax - halfHeight));
             return new Rect(center - size * 0.5f, size);
+        }
+
+        private string CaptionFor(TutorialHint hint)
+        {
+            if (hint.InputMode != TutorialInputMode.TapToContinue || string.IsNullOrEmpty(_tapToContinuePrompt))
+                return hint.Caption;
+
+            var prompt = $"<size={Mathf.RoundToInt(_tapToContinueScale * 100f)}%>{_tapToContinuePrompt}</size>";
+            return string.IsNullOrEmpty(hint.Caption) ? prompt : $"{hint.Caption}\n{prompt}";
         }
 
         private bool ShouldPointDown(ITutorialAnchor anchor)

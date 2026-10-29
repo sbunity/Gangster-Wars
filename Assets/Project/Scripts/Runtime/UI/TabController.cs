@@ -17,9 +17,15 @@ namespace SBabchuk.Runtime.UI
 
         private int _id;
 
-        private void Start()
+        public bool IsActive => _active;
+
+        private void Awake()
         {
             _id = GetInstanceID();
+        }
+
+        private void Start()
+        {
             Change(_active);
         }
 

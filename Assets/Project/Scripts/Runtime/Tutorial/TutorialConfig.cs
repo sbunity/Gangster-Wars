@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Serialization;
 
@@ -60,6 +61,18 @@ namespace SBabchuk.Runtime.Tutorial
         [SerializeField] private string _switchWeaponCaption = "Tap to switch weapon";
         [SerializeField, Min(0f)] private float _switchWeaponHintDuration = 6f;
 
+        [Header("Store Tour")]
+        [SerializeField, Min(0)] private int _storeTourLevelId = 1;
+        [SerializeField, Min(0f)] private float _storeTourMinPageDuration = 0.5f;
+        [SerializeField] private List<StoreTourPage> _storeTourPages = new()
+        {
+            new StoreTourPage(StoreTab.Weapons, TutorialTargetId.Store, "Buy and upgrade guns here, and stock up on ammo"),
+            new StoreTourPage(StoreTab.Grenades, TutorialTargetId.Store, "Buy grenades here"),
+            new StoreTourPage(StoreTab.Barricades, TutorialTargetId.Store, "Buy and upgrade barricades here"),
+            new StoreTourPage(StoreTab.Coins, TutorialTargetId.Store, "Out of coins? Get more here"),
+            new StoreTourPage(StoreTab.None, TutorialTargetId.Showroom, "Unlock new gangsters and buy car skins here"),
+        };
+
         public int TutorialLevelId => _tutorialLevelId;
 
         public Vector2 EnemyTargetWorldSize => _enemyTargetWorldSize;
@@ -102,5 +115,9 @@ namespace SBabchuk.Runtime.Tutorial
 
         public string SwitchWeaponCaption => _switchWeaponCaption;
         public float SwitchWeaponHintDuration => _switchWeaponHintDuration;
+
+        public int StoreTourLevelId => _storeTourLevelId;
+        public float StoreTourMinPageDuration => _storeTourMinPageDuration;
+        public IReadOnlyList<StoreTourPage> StoreTourPages => _storeTourPages;
     }
 }

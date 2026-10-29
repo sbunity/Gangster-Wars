@@ -1,29 +1,18 @@
-using SBabchuk.Runtime.Services.Contracts;
-using SBabchuk.Runtime.Services.Models;
 using UnityEngine;
-using Zenject;
 
 namespace SBabchuk.Runtime.UI.Tutorial
 {
     [RequireComponent(typeof(RectTransform))]
-    public sealed class TutorialTarget : MonoBehaviour, ITutorialAnchor
+    public sealed class TutorialTarget : TutorialTargetBase
     {
-        [SerializeField] private TutorialTargetId _id = TutorialTargetId.None;
-        [SerializeField] private int _index;
         [SerializeField] private bool _fitActiveChildren;
 
         private readonly Vector3[] _corners = new Vector3[4];
-        private ITutorialTargetRegistry _registry;
         private RectTransform _rectTransform;
         private Camera _camera;
         private bool _isCameraResolved;
-        private bool _isRegistered;
 
-        public bool IsValid => this != null && isActiveAndEnabled;
-
-        private TutorialTargetKey Key => new(_id, _index);
-
-        public Rect ScreenRect
+        public override Rect ScreenRect
         {
             get
             {
@@ -55,35 +44,6 @@ namespace SBabchuk.Runtime.UI.Tutorial
 
                 return _rectTransform;
             }
-        }
-
-        [Inject]
-        public void Construct(ITutorialTargetRegistry registry)
-        {
-            _registry = registry;
-            TryRegister();
-        }
-
-        private void OnEnable() => TryRegister();
-
-        private void OnDisable() => Unregister();
-
-        private void TryRegister()
-        {
-            if (_isRegistered || _registry == null || !isActiveAndEnabled || _id == TutorialTargetId.None)
-                return;
-
-            _registry.Register(Key, this);
-            _isRegistered = true;
-        }
-
-        private void Unregister()
-        {
-            if (!_isRegistered || _registry == null)
-                return;
-
-            _registry.Unregister(Key, this);
-            _isRegistered = false;
         }
 
         private void Encapsulate(RectTransform rect, Camera camera, ref ScreenBounds bounds)

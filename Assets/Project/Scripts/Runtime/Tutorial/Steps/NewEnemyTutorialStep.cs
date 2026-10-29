@@ -88,7 +88,6 @@ namespace SBabchuk.Runtime.Tutorial.Steps
         {
             icon = null;
             return _waveControl.CanStartNextWave
-                   && _waveControl.SecondsUntilNextWave >= _config.MinSecondsUntilNextWave
                    && _targets.TryGet(TutorialTargetId.NewEnemyIcon, out icon);
         }
     }

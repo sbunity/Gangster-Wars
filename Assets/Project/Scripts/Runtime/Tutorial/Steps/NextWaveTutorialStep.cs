@@ -14,6 +14,8 @@ namespace SBabchuk.Runtime.Tutorial.Steps
         private readonly ITutorialTargetRegistry _targets;
         private readonly ITutorialView _view;
         private readonly TutorialConfig _config;
+        private readonly SignalSubscriptions _signals;
+        private bool _isSkipped;
 
         public NextWaveTutorialStep(SignalBus signalBus, ILevelWaveControlService waveControl, ITutorialTargetRegistry targets, ITutorialView view, IAssetProvider assetProvider)
         {
@@ -22,6 +24,8 @@ namespace SBabchuk.Runtime.Tutorial.Steps
             _targets = targets;
             _view = view;
             _config = assetProvider.TutorialConfig;
+            _signals = new SignalSubscriptions(signalBus)
+                .Add<WaveCountdownSkippedSignal>(() => _isSkipped = true);
         }
 
         public TutorialStepId Id => TutorialStepId.NextWave;
@@ -29,16 +33,20 @@ namespace SBabchuk.Runtime.Tutorial.Steps
 
         public async UniTask WaitForTriggerAsync(CancellationToken cancellationToken)
         {
-            while (true)
-            {
-                await _signalBus.WaitAsync<WaveClearedSignal>(cancellationToken);
-                if (CanRun())
-                    return;
-            }
+            _signals.Enable();
+
+            using var trigger = CancellationTokenSource.CreateLinkedTokenSource(cancellationToken);
+            await UniTask.WhenAny(
+                UniTask.WaitUntil(() => _isSkipped, cancellationToken: trigger.Token),
+                WaitForWaveBreakAsync(trigger.Token));
+            trigger.Cancel();
         }
 
         public async UniTask<bool> RunAsync(CancellationToken cancellationToken)
         {
+            if (_isSkipped)
+                return true;
+
             if (!CanRun())
                 return false;
 
@@ -50,7 +58,16 @@ namespace SBabchuk.Runtime.Tutorial.Steps
         }
 
         public void Dispose()
+            => _signals.Disable();
+
+        private async UniTask WaitForWaveBreakAsync(CancellationToken cancellationToken)
         {
+            while (true)
+            {
+                await _signalBus.WaitAsync<WaveClearedSignal>(cancellationToken);
+                if (CanRun())
+                    return;
+            }
         }
 
         private bool CanRun()

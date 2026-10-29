@@ -10,7 +10,8 @@ namespace SBabchuk.Runtime.Services.Models
             TutorialGesture gesture,
             TutorialInputMode inputMode,
             bool dimBackground,
-            ITutorialAnchor destination = null)
+            ITutorialAnchor destination = null,
+            ITutorialAnchor captionAnchor = null)
         {
             Anchor = anchor;
             Caption = caption;
@@ -18,6 +19,7 @@ namespace SBabchuk.Runtime.Services.Models
             InputMode = inputMode;
             DimBackground = dimBackground;
             Destination = destination;
+            CaptionAnchor = captionAnchor;
         }
 
         public ITutorialAnchor Anchor { get; }
@@ -26,5 +28,6 @@ namespace SBabchuk.Runtime.Services.Models
         public TutorialInputMode InputMode { get; }
         public bool DimBackground { get; }
         public ITutorialAnchor Destination { get; }
+        public ITutorialAnchor CaptionAnchor { get; }
     }
 }
