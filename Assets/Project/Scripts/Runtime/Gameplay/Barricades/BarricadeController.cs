@@ -86,21 +86,29 @@ namespace SBabchuk.Runtime.Gameplay.Barricades
             if (damage <= 0 || CurrentHealth <= 0)
                 return;
 
-            damage = _damagePolicy?.Apply(damage, CurrentHealth, MaxHealth) ?? damage;
-            if (damage <= 0)
-                return;
+            PlayHitFeedback(damage);
+            LoseHealth(_damagePolicy?.Apply(damage, CurrentHealth, MaxHealth) ?? damage);
+        }
 
+        private void PlayHitFeedback(int damage)
+        {
             _cameraShakeService?.Shake(_damageShakeStrength);
             _signalBus.Fire(new BarricadeDamagedSignal(damage));
+        }
 
-            if (CurrentHealth - damage <= 0)
+        private void LoseHealth(int amount)
+        {
+            if (amount <= 0)
+                return;
+
+            if (CurrentHealth - amount <= 0)
             {
                 SetHealth(-CurrentHealth);
                 _levelFlowService.Finish(Panels.Lose);
             }
             else
             {
-                SetHealth(-damage);
+                SetHealth(-amount);
             }
         }
 
