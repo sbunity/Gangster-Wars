@@ -114,6 +114,12 @@ Each level's background is a prefab with a `LevelBackground` component on its ro
 - `LevelActorsLayout` (on `[Scripts]` in `GameScene`) moves the barricade and the gangsters to the background anchors, keeping their z.
 - The car sprites (`Car_Red`, `Car_Black`) in every background prefab use sorting `Default/-1000`, and the sniper renderer uses `Default/-1001`. That puts the sniper behind the car, leaning on its roof, while the leader, bomber and barricade still draw in front. New backgrounds must keep the car at this sorting.
 
+## MainScene Garage
+
+- The garage is built from the layers in `Sprites/Backgrounds/Garage` (`Garage_N.png`, higher number = further back; `GarageBG.png` is the full reference image). `[Background]/Layers` holds the layers behind the car and the gangsters (sorting layer `Background`), `[Background]/Front_Layers` the ones in front of them (`Frontground`: chair, crates, near hook, forklift, barrels, vignette). Both groups are scaled 1.03 so the art covers screens up to 20:9.
+- The gangster popups (`SafeArea/Sniper/Element`, `SafeArea/BuyBomber/Element`) are placed at runtime by `MainPlayerPopupPlacement`: the tail tip of the bubble (`_tailHeight` on the left edge of `Pistol/Panel`) goes to the side of a world box around the gangster (`_target`, `_targetOffset`, `_targetSize`, gizmo in the Scene view), at `_pointHeight` of the box. The popup prefers the right side of the gangster; when the frame (bubble and `Close`) does not fit between `SafeArea` and `_rightLimits` (the store window and tab buttons), it goes to the left side with the bubble mirrored, shifted by `_bodyCenter` so the body stays under the content, and is then clamped into that area. When moving a gangster, check its box in the Scene view. `OutsideCloseArea` is 8000×8000 so it still covers the screen after the popup moves.
+- The tap zones that open these popups (`BuyPlayerController`, picked by EasyTouch) are the colliders on `[Main Players]/Sniper` (a `PolygonCollider2D` around her body and rifle) and `[Main Players]/Bomber` (a `BoxCollider2D` around him only, without the boxes at his sides). They cover both the silhouette and the bought Spine pose; reshape them when the art or the pose changes.
+
 ## UI Sounds
 
 - `UISoundsConfig` (`Assets/Resources/Sounds/UI/UISoundsConfig.asset`) holds the shared UI `SoundConfig`s. `ProjectInstaller` binds it from its `_uiSounds` field.
