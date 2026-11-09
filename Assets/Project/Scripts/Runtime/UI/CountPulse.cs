@@ -37,13 +37,14 @@ namespace SBabchuk.Runtime.UI
             Target.localScale = _baseScale;
         }
 
-        public void Play()
+        public void Play(bool ignoreTimeScale = false)
         {
             _tween?.Kill();
             Target.localScale = _baseScale;
             _tween = Target
                 .DOPunchScale(Vector3.one * _strength, _duration, _vibrato, 0.65f)
                 .SetEase(Ease.OutQuad)
+                .SetUpdate(ignoreTimeScale)
                 .OnKill(() => Target.localScale = _baseScale);
         }
     }

@@ -1,103 +1,40 @@
-using DG.Tweening;
-using SBabchuk.Runtime.Architecture;
-using SBabchuk.Runtime.Audio;
 using SBabchuk.Runtime.Services.Contracts;
-using UnityEngine;
-using UnityEngine.UI;
 using Zenject;
 
 namespace SBabchuk.Runtime.UI
 {
-    public class CoinInfo : MonoBehaviour
+    public class CoinInfo : CoinCounterView
     {
-        private const float CountUpDuration = 0.55f;
-
-        [SerializeField] private SoundConfig _addSound;
-
-        private Text _txt;
-        private CountPulse _countPulse;
-        private IPlayerProgressService _progressService;
-        private IAudioService _audioService;
-        private SignalSubscriptions _signals;
-        private Tween _countTween;
-        private int _displayed;
+        private ICoinBalance _balance;
 
         [Inject]
-        public void Construct(IPlayerProgressService progressService, IAudioService audioService, SignalBus signalBus)
+        public void Construct(ICoinBalance balance)
         {
-            _progressService = progressService;
-            _audioService = audioService;
-            _signals = new SignalSubscriptions(signalBus)
-                .Add<CoinsChangedSignal>(OnCoinsChanged);
+            _balance = balance;
         }
 
-        private void OnEnable() => _signals?.Enable();
-
-        private void OnDisable()
+        private void OnEnable()
         {
-            _signals?.Disable();
-            _countTween?.Kill();
+            if (_balance == null)
+                return;
+
+            _balance.Changed += OnCoinsChanged;
+            SetImmediate(_balance.Coins);
         }
 
-        private void Awake()
+        protected override void OnDisable()
         {
-            _txt = GetComponentInChildren<Text>();
-            _countPulse = GetOrAdd<CountPulse>();
-            if (_txt != null)
-                _countPulse.SetTarget(_txt.transform);
+            base.OnDisable();
+            if (_balance != null)
+                _balance.Changed -= OnCoinsChanged;
         }
 
-        private void Start()
+        private void OnCoinsChanged(int delta)
         {
-            SetImmediate(_progressService.Coins);
-        }
-
-        private void OnCoinsChanged(CoinsChangedSignal signal)
-        {
-            if (signal.Delta > 0)
-                AnimateTo(signal.Coins);
+            if (delta > 0)
+                AnimateTo(_balance.Coins);
             else
-                SetImmediate(signal.Coins);
-        }
-
-        private void AnimateTo(int value)
-        {
-            _countTween?.Kill();
-            _countTween = DOTween.To(() => _displayed, SetDisplayed, value, CountUpDuration)
-                .SetEase(Ease.OutQuad)
-                .OnComplete(() =>
-                {
-                    SetDisplayed(value);
-                    PlayCollectFeedback();
-                });
-        }
-
-        private void SetImmediate(int value)
-        {
-            _countTween?.Kill();
-            SetDisplayed(value);
-        }
-
-        private void SetDisplayed(int value)
-        {
-            _displayed = value;
-            if (_txt != null)
-                _txt.text = value.ToString();
-        }
-
-        private void PlayCollectFeedback()
-        {
-            _countPulse ??= GetOrAdd<CountPulse>();
-            if (_txt != null)
-                _countPulse.SetTarget(_txt.transform);
-            _countPulse.Play();
-            _audioService?.Play(_addSound);
-        }
-
-        private T GetOrAdd<T>() where T : Component
-        {
-            var component = GetComponent<T>();
-            return component ?? gameObject.AddComponent<T>();
+                SetImmediate(_balance.Coins);
         }
     }
 }

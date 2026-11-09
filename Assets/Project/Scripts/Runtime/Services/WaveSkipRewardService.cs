@@ -5,18 +5,17 @@ namespace SBabchuk.Runtime.Services
 {
     public sealed class WaveSkipRewardService : IWaveSkipRewardService
     {
-        private readonly IPlayerProgressService _progressService;
+        private readonly ILevelCoinsService _levelCoins;
 
-        public WaveSkipRewardService(IPlayerProgressService progressService)
+        public WaveSkipRewardService(ILevelCoinsService levelCoins)
         {
-            _progressService = progressService;
+            _levelCoins = levelCoins;
         }
 
         public int GrantReward(float secondsUntilNextWave)
         {
             var reward = Mathf.Max(0, Mathf.CeilToInt(secondsUntilNextWave));
-            if (reward > 0)
-                _progressService.AddCoins(reward);
+            _levelCoins.Earn(reward);
 
             return reward;
         }

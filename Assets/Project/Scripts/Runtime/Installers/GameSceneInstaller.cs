@@ -46,6 +46,7 @@ namespace SBabchuk.Runtime.Installers
             Container.Bind<ILevelSpawnService>().To<LevelSpawnService>().AsSingle();
             Container.BindInterfacesTo<LevelEndBonusCollector>().AsSingle();
             BindLevelBackground();
+            BindLevelCoins();
 
             BindInstance(_levelController);
             BindInstance(_barricadeController);
@@ -93,6 +94,13 @@ namespace SBabchuk.Runtime.Installers
                 typeof(BonusTutorialStep),
                 typeof(SwitchWeaponTutorialStep),
             });
+        }
+
+        private void BindLevelCoins()
+        {
+            Container.BindInterfacesTo<LevelCoinsService>().AsSingle();
+            Container.Bind<ICombatService>().To<CombatService>().AsSingle();
+            Container.Bind<IWaveSkipRewardService>().To<WaveSkipRewardService>().AsSingle();
         }
 
         private void BindLevelBackground()

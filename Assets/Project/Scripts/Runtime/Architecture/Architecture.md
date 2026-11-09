@@ -13,6 +13,8 @@ The project now has a Zenject-driven service layer under `Assets/Project/Scripts
 - `ILevelService` and `ILevelFlowService` track the current level state and finish panel.
 - `IDamageService` and `ICombatService` isolate common damage, hit, and reward operations.
 - `IWaveSkipRewardService` grants the coin reward for manually starting a wave early.
+- `ILevelCoinsService` keeps the coins earned in the current battle and adds them to the balance only when the level is won.
+- `ICoinBalance` is the coin amount that coin counters show.
 - `IAudioSettingsService` wraps saved music and sound settings.
 - `IAudioService` plays one-shot `SoundConfig` sounds from a pooled set of voices.
 - `IMusicService` plays looped background `MusicTrack`s with fade out/in and survives scene loads.
@@ -121,7 +123,14 @@ Each level's background is a prefab with a `LevelBackground` component on its ro
 
 ## Coin Sound
 
-`CoinInfo` has an `_addSound` field (`SoundConfig`). When coins go up (enemy kill reward, early wave start reward), the counter counts up and then pulses; the sound plays together with the pulse. A fast series of rewards restarts the count-up, so the sound plays once when it settles. Only the `GameScene` coin counter has the sound set (`Assets/Resources/Sounds/UI/UI_AddMoney.asset`); in `MainScene` the field is empty and coins only go down there.
+`CoinCounterView` (the base of `CoinInfo` and `LevelCoinsRewardView`) has an `_addSound` field (`SoundConfig`). When the HUD coins go up (enemy kill reward, early wave start reward), the counter counts up and then pulses; the sound plays together with the pulse. A fast series of rewards restarts the count-up, so the sound plays once when it settles. Only the `GameScene` coin counter has the sound set (`Assets/Resources/Sounds/UI/UI_AddMoney.asset`); in `MainScene` the field is empty and coins only go down there. `LevelCoinsReward.prefab` uses the same sound at the end of its count-up.
+
+## Level Coins
+
+- Coins earned in a battle (enemy kills through `ICombatService.RewardEnemyDeath`, the early wave start through `IWaveSkipRewardService`) are not added to the balance at once. They go to `ILevelCoinsService.Earn` and stay out of the save until the level ends. `LevelCoinsService`, `ICombatService` and `IWaveSkipRewardService` are bound in `GameSceneInstaller.BindLevelCoins`, so every battle (and every restart) starts from zero.
+- `LevelCoinsService` settles on `ILevelFlowService.Finished`. A win adds `Earned` to the balance with one `IPlayerProgressService.AddCoins` (saved, raises `CoinsChangedSignal`). A loss or a surrender drops them and sets `Earned` to 0. Coins earned after the level has ended are ignored. Leaving or killing the app in the middle of a battle loses them too, because nothing was saved. `Finished` is raised before `GameFinishedSignal`, so the lose panel, which is shown inside that signal dispatch (no `_showDelay`), already reads the settled value.
+- `ICoinBalance` (`Coins` plus `Changed` with the delta) is what coin counters show. The project binding `PlayerCoinBalance` is the saved balance, driven by `CoinsChangedSignal`. In `GameScene`, `LevelCoinsService` overrides it (Zenject resolves from the closest container) with the saved balance plus the coins earned so far. The HUD counter keeps counting up during the battle as before. After a win it already shows the new balance, and after a loss it drops back to the saved one.
+- `CoinCounterView` is the shared animated counter: the count-up tween, the `CountPulse` punch and `_addSound` at the end, and `Format` for the text. `IgnoreTimeScale` runs both tweens on unscaled time. `CoinInfo` (HUD) shows `ICoinBalance`. `LevelCoinsRewardView` sits on `Prefabs/UI/LevelCoinsReward.prefab`, the HUD coin plate, placed on the `Win` and `Lose` panels below the title and set as `GameResultPanelController._coinsReward`. `Show` calls `Play`: the plate starts at `0`, and after `_countUpDelay` (the panel fade) it counts up to `+Earned` on unscaled time, because the result panel pauses the game. After a loss it stays at `0`, with no sound.
 
 ## Leader Aiming
 

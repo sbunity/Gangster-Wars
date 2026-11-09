@@ -37,10 +37,8 @@ namespace SBabchuk.Runtime.Installers
             Container.Bind<ISceneTransitionService>().To<SceneTransitionService>().AsSingle();
             Container.BindInterfacesTo<LevelService>().AsSingle();
             Container.Bind<IDamageService>().To<DamageService>().AsSingle();
-            Container.Bind<ICombatService>().To<CombatService>().AsSingle();
             Container.Bind<IEnemyDiscoveryService>().To<EnemyDiscoveryService>().AsSingle();
             Container.Bind<IEnemyInfoService>().To<EnemyInfoService>().AsSingle();
-            Container.Bind<IWaveSkipRewardService>().To<WaveSkipRewardService>().AsSingle();
             Container.Bind<IBonusDropService>().To<BonusDropService>().AsSingle();
             Container.Bind<IBonusRewardService>().To<BonusRewardService>().AsSingle();
             Container.Bind<IBonusCollectTargetRegistry>().To<BonusCollectTargetRegistry>().AsSingle();
@@ -71,6 +69,7 @@ namespace SBabchuk.Runtime.Installers
             Container.Bind<IPlayerProgressFactory>().To<PlayerProgressFactory>().AsSingle();
             Container.Bind<IPlayerProgressRepository>().To<PlayerProgressRepository>().AsSingle();
             Container.Bind<IPlayerProgressService>().To<PlayerProgressService>().AsSingle();
+            Container.BindInterfacesTo<PlayerCoinBalance>().AsSingle();
             Container.Bind<ITutorialProgressService>().To<TutorialProgressService>().AsSingle();
             Container.Bind<ICarSkinService>().To<CarSkinService>().AsSingle();
         }

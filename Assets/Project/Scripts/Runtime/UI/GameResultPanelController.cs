@@ -29,6 +29,8 @@ namespace SBabchuk.Runtime.UI
 
         [SerializeField] private VibrationConfig _showVibration;
 
+        [SerializeField] private LevelCoinsRewardView _coinsReward;
+
         [Header("Sorting")]
         [SerializeField] private Canvas _sortingCanvas;
         [SerializeField] private bool _overrideSorting = true;
@@ -73,6 +75,7 @@ namespace SBabchuk.Runtime.UI
             _panel.SetActive(true);
             Time.timeScale = 0f;
             PlayFadeIn();
+            PlayCoinsReward();
             _musicService?.Stop();
             _audioService?.Play(_showSound);
             _vibrationService?.Vibrate(_showVibration);
@@ -143,6 +146,12 @@ namespace SBabchuk.Runtime.UI
                 gameObject.AddComponent<GraphicRaycaster>();
 
             return _sortingCanvas;
+        }
+
+        private void PlayCoinsReward()
+        {
+            if (_coinsReward != null)
+                _coinsReward.Play();
         }
 
         private void PlayFadeIn()

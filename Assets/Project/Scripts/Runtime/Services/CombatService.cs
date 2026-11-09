@@ -9,12 +9,12 @@ namespace SBabchuk.Runtime.Services
     public sealed class CombatService : ICombatService
     {
         private readonly IDamageService _damageService;
-        private readonly IPlayerProgressService _progressService;
+        private readonly ILevelCoinsService _levelCoins;
 
-        public CombatService(IDamageService damageService, IPlayerProgressService progressService)
+        public CombatService(IDamageService damageService, ILevelCoinsService levelCoins)
         {
             _damageService = damageService;
-            _progressService = progressService;
+            _levelCoins = levelCoins;
         }
 
         public void ApplyBulletHit(EnemyControllerBase enemy, BaseBulletController bullet)
@@ -30,7 +30,7 @@ namespace SBabchuk.Runtime.Services
         public void RewardEnemyDeath(Enemy enemy)
         {
             if (enemy != null)
-                _progressService.AddCoins(enemy.Gold);
+                _levelCoins.Earn(enemy.Gold);
         }
     }
 }
