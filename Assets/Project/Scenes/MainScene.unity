@@ -16679,6 +16679,7 @@ GameObject:
   - component: {fileID: 675562823}
   - component: {fileID: 675562822}
   - component: {fileID: 675562825}
+  - component: {fileID: 675562826}
   m_Layer: 5
   m_Name: Settings
   m_TagString: Untagged
@@ -16813,6 +16814,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SBabchuk.Runtime.UI.UIClickSound
   _type: 0
   _customSound: {fileID: 0}
+--- !u!114 &675562826
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 675562820}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 29704f54e5e7ad742b97c4ae2bb009dd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SBabchuk.Runtime.UI.Intro.UISlideInAnimation
+  _styleOverride: {fileID: 0}
+  _extraDelay: 0
+  _side: 3
+  _includeChildren: 1
 --- !u!1 &680974078
 GameObject:
   m_ObjectHideFlags: 0
@@ -22395,6 +22412,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SBabchuk.Runtime.Installers.MainSceneInstaller
   _tutorialView: {fileID: 1760494380}
   _storeTabs: {fileID: 1018941486}
+  _uiIntro: {fileID: 1109327090}
 --- !u!1 &894876779
 GameObject:
   m_ObjectHideFlags: 0
@@ -25629,6 +25647,7 @@ GameObject:
   - component: {fileID: 1018941485}
   - component: {fileID: 1018941484}
   - component: {fileID: 1018941486}
+  - component: {fileID: 1018941487}
   m_Layer: 5
   m_Name: BuyPanel
   m_TagString: Untagged
@@ -25725,6 +25744,22 @@ MonoBehaviour:
     _controller: {fileID: 329573497}
   - _tab: 3
     _controller: {fileID: 1287255634}
+--- !u!114 &1018941487
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1018941482}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 29704f54e5e7ad742b97c4ae2bb009dd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SBabchuk.Runtime.UI.Intro.UISlideInAnimation
+  _styleOverride: {fileID: 0}
+  _extraDelay: 0
+  _side: 0
+  _includeChildren: 1
 --- !u!1 &1020793756
 GameObject:
   m_ObjectHideFlags: 0
@@ -27252,6 +27287,7 @@ GameObject:
   - component: {fileID: 1069174622}
   - component: {fileID: 1069174623}
   - component: {fileID: 1069174624}
+  - component: {fileID: 1069174625}
   m_Layer: 5
   m_Name: Button
   m_TagString: Untagged
@@ -27415,6 +27451,22 @@ MonoBehaviour:
   _id: 8
   _index: 0
   _fitActiveChildren: 0
+--- !u!114 &1069174625
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1069174617}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 29704f54e5e7ad742b97c4ae2bb009dd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SBabchuk.Runtime.UI.Intro.UISlideInAnimation
+  _styleOverride: {fileID: 0}
+  _extraDelay: 0
+  _side: 1
+  _includeChildren: 1
 --- !u!1 &1073385724
 GameObject:
   m_ObjectHideFlags: 0
@@ -28904,6 +28956,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1109327088}
   - component: {fileID: 1109327089}
+  - component: {fileID: 1109327090}
   m_Layer: 5
   m_Name: SafeArea
   m_TagString: Untagged
@@ -28951,6 +29004,27 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SBabchuk.Runtime.UI.SafeAreaFitter
   _edges: -1
+--- !u!114 &1109327090
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1109327087}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c8b0cfc8c2a3a264dbe52990603db989, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SBabchuk.Runtime.UI.Intro.UIIntroView
+  _style: {fileID: 11400000, guid: 618f38b3a3fd8f84f951df80c6800b7a, type: 2}
+  _startDelay: 0.1
+  _stagger: 0.05
+  _animations:
+  - {fileID: 1018941487}
+  - {fileID: 2024817554}
+  - {fileID: 1069174625}
+  - {fileID: 1545414451}
+  - {fileID: 675562826}
 --- !u!1 &1110205667
 GameObject:
   m_ObjectHideFlags: 0
@@ -39894,6 +39968,7 @@ GameObject:
   - component: {fileID: 1545414449}
   - component: {fileID: 1545414448}
   - component: {fileID: 1545414450}
+  - component: {fileID: 1545414451}
   m_Layer: 5
   m_Name: CoinInfo
   m_TagString: Untagged
@@ -39973,6 +40048,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _addSound: {fileID: 0}
   _countUpDuration: 0.55
+--- !u!114 &1545414451
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1545414446}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 29704f54e5e7ad742b97c4ae2bb009dd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SBabchuk.Runtime.UI.Intro.UISlideInAnimation
+  _styleOverride: {fileID: 0}
+  _extraDelay: 0
+  _side: 0
+  _includeChildren: 1
 --- !u!1 &1546315059
 GameObject:
   m_ObjectHideFlags: 0
@@ -53052,6 +53143,7 @@ GameObject:
   - component: {fileID: 2024817551}
   - component: {fileID: 2024817550}
   - component: {fileID: 2024817553}
+  - component: {fileID: 2024817554}
   m_Layer: 5
   m_Name: InfoGrenadesPanel
   m_TagString: Untagged
@@ -53164,6 +53256,22 @@ MonoBehaviour:
   - {fileID: 2089741578}
   - {fileID: 19045646}
   - {fileID: 961822776}
+--- !u!114 &2024817554
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2024817548}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 29704f54e5e7ad742b97c4ae2bb009dd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SBabchuk.Runtime.UI.Intro.UISlideInAnimation
+  _styleOverride: {fileID: 0}
+  _extraDelay: 0
+  _side: 0
+  _includeChildren: 1
 --- !u!1 &2025462701
 GameObject:
   m_ObjectHideFlags: 0

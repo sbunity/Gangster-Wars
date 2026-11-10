@@ -13,6 +13,7 @@ namespace SBabchuk.Runtime.Tutorial
     {
         private readonly IReadOnlyList<ITutorialStep> _steps;
         private readonly ITutorialProgressService _progress;
+        private readonly ISceneIntro _sceneIntro;
         private readonly SignalSubscriptions _signals;
         private readonly List<ITutorialStep> _ready = new();
         private readonly CancellationTokenSource _sceneLifetime = new();
@@ -20,10 +21,11 @@ namespace SBabchuk.Runtime.Tutorial
         private bool _isProcessing;
         private bool _isDisposed;
 
-        public TutorialDirector(List<ITutorialStep> steps, ITutorialProgressService progress, SignalBus signalBus)
+        public TutorialDirector(List<ITutorialStep> steps, ITutorialProgressService progress, ISceneIntro sceneIntro, SignalBus signalBus)
         {
             _steps = steps.OrderBy(step => step.Id).ToList();
             _progress = progress;
+            _sceneIntro = sceneIntro;
             _battleLifetime = CancellationTokenSource.CreateLinkedTokenSource(_sceneLifetime.Token);
             _signals = new SignalSubscriptions(signalBus)
                 .Add<GameFinishedSignal>(OnGameFinished);
@@ -104,6 +106,7 @@ namespace SBabchuk.Runtime.Tutorial
             try
             {
                 await UniTask.Yield(PlayerLoopTiming.Update, _sceneLifetime.Token);
+                await _sceneIntro.WaitForCompletionAsync(_sceneLifetime.Token);
 
                 while (_ready.Count > 0)
                 {

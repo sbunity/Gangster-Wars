@@ -1,3 +1,4 @@
+using System.Threading;
 using Cysharp.Threading.Tasks;
 
 namespace SBabchuk.Runtime.Services.Contracts
@@ -6,5 +7,6 @@ namespace SBabchuk.Runtime.Services.Contracts
     {
         UniTask TransitionToAsync(SBabchuk.Runtime.Scene scene);
         UniTask TransitionToAsync(string sceneName);
+        UniTask WaitForSceneRevealAsync(CancellationToken cancellationToken);
     }
 }

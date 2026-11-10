@@ -5,6 +5,7 @@ using SBabchuk.Runtime.SafeArea;
 using SBabchuk.Runtime.Services;
 using SBabchuk.Runtime.Services.Contracts;
 using SBabchuk.Runtime.UI;
+using SBabchuk.Runtime.UI.Intro;
 using SBabchuk.Runtime.Vibration;
 using UnityEngine;
 using Zenject;
@@ -35,6 +36,7 @@ namespace SBabchuk.Runtime.Installers
             Container.Bind<ILoadingScreenFactory>().To<LoadingScreenFactory>().AsSingle()
                 .WithArguments(_loadingScreenPrefab);
             Container.Bind<ISceneTransitionService>().To<SceneTransitionService>().AsSingle();
+            Container.Bind<ISceneIntro>().To<NoSceneIntro>().AsSingle();
             Container.BindInterfacesTo<LevelService>().AsSingle();
             Container.Bind<IDamageService>().To<DamageService>().AsSingle();
             Container.Bind<IEnemyDiscoveryService>().To<EnemyDiscoveryService>().AsSingle();

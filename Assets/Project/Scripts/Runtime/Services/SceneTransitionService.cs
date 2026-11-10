@@ -1,3 +1,4 @@
+using System.Threading;
 using Cysharp.Threading.Tasks;
 using SBabchuk.Runtime.Architecture;
 using SBabchuk.Runtime.Services.Contracts;
@@ -17,6 +18,7 @@ namespace SBabchuk.Runtime.Services
         private readonly SignalBus _signalBus;
 
         private ILoadingScreen _loadingScreen;
+        private UniTaskCompletionSource _sceneReveal;
 
         public SceneTransitionService(ISceneLoaderService sceneLoaderService, ILoadingScreenFactory loadingScreenFactory, SignalBus signalBus)
         {
@@ -32,13 +34,30 @@ namespace SBabchuk.Runtime.Services
         {
             _signalBus.Fire(new SceneTransitionStartedSignal(sceneName));
             var loadingScreen = GetOrCreateLoadingScreen();
+            var sceneReveal = _sceneReveal = new UniTaskCompletionSource();
 
-            await loadingScreen.ShowAsync();
-            await _sceneLoaderService.LoadAsync(sceneName);
-            Time.timeScale = 1f;
-            await WaitForSceneToSettleAsync();
+            try
+            {
+                await loadingScreen.ShowAsync();
+                await _sceneLoaderService.LoadAsync(sceneName);
+                Time.timeScale = 1f;
+                await WaitForSceneToSettleAsync();
+            }
+            finally
+            {
+                if (_sceneReveal == sceneReveal)
+                    _sceneReveal = null;
+
+                sceneReveal.TrySetResult();
+            }
+
             await loadingScreen.HideAsync();
         }
+
+        public UniTask WaitForSceneRevealAsync(CancellationToken cancellationToken)
+            => _sceneReveal == null
+                ? UniTask.CompletedTask
+                : _sceneReveal.Task.AttachExternalCancellation(cancellationToken);
 
         private static async UniTask WaitForSceneToSettleAsync()
         {
