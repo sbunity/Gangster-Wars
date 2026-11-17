@@ -31,6 +31,26 @@ namespace SBabchuk.Runtime.Services
             changed |= EnsureTutorial(progress);
             changed |= EnsureCarSkins(progress, defaults);
             changed |= ClampGrenadeCounts(progress);
+            changed |= EnsureMonetization(progress);
+            return changed;
+        }
+
+        private static bool EnsureMonetization(PlayerProgress progress)
+        {
+            var changed = false;
+            if (progress.Ads == null)
+            {
+                progress.Ads = new AdSave();
+                changed = true;
+            }
+
+            if (progress.IAP == null)
+            {
+                progress.IAP = new IAPSave();
+                changed = true;
+            }
+
+            progress.IAP.Products = EnsureList(progress.IAP.Products, ref changed);
             return changed;
         }
 

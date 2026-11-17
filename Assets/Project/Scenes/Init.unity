@@ -153,6 +153,16 @@ MonoBehaviour:
     _minDuration: 3
     _overtimeTail: 1
     _firstScene: 0
+  _attSettings:
+    _isATTEnabled: 1
+  _umpSettings:
+    _isUMPEnabled: 1
+    _umpTagForUnderAgeOfConsent: 0
+    _umpDebugMode: 0
+    _umpDebugGeography: 0
+    _testDevices: []
+  _adsSettings: {fileID: 11400000, guid: d4e5f0bd029803349ae94df4c72b3016, type: 2}
+  _iapSettings: {fileID: 11400000, guid: d5b7b98b0b9a4ee4db05ea0adf36ceef, type: 2}
 --- !u!114 &1088026384
 MonoBehaviour:
   m_ObjectHideFlags: 0

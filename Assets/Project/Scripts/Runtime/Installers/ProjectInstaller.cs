@@ -54,6 +54,18 @@ namespace SBabchuk.Runtime.Installers
             Container.Bind<IInputService>().To<InputService>().AsSingle();
             BindSafeArea();
             BindVibration();
+            BindMonetization();
+        }
+
+        private void BindMonetization()
+        {
+            Container.Bind<IServiceLogger>().To<ServiceLogger>().AsSingle();
+            Container.Bind<ISystemMessageService>().To<LogSystemMessageService>().AsSingle();
+            Container.BindInterfacesTo<MainThreadDispatcher>().AsSingle();
+            Container.Bind<IUserService>().To<UserService>().AsSingle();
+            Container.Bind<IConsentData>().To<ConsentData>().AsSingle();
+            Container.BindInterfacesTo<AdsService>().AsSingle();
+            Container.BindInterfacesTo<IAPService>().AsSingle();
         }
 
         private void BindSafeArea()

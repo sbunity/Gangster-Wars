@@ -1,0 +1,83 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f195d2b50cc93f84ea2ae8c454326a03, type: 3}
+  m_Name: AdsSettings
+  m_EditorClassIdentifier: Assembly-CSharp::SBabchuk.Runtime.Advertisement.AdsSettings
+  _activeProvider: Dummy
+  _debugMode: 1
+  _testDevices:
+  - 91687A6357C9E0169C1471C98D0237EB
+  _loadAdsOnStart: 1
+  _bannerEnabled: 1
+  _interstitialEnabled: 1
+  _rewardedVideoEnabled: 1
+  _interstitialFirstStartDelay: 20
+  _interstitialStartDelay: 20
+  _interstitialShowingDelay: 20
+  _loadingAdDuration: 0
+  _loadingMessage: Ad is loading..
+  _providerContainers:
+  - rid: 2697974331218591804
+  - rid: 2697974331218591805
+  - rid: 2697974331218591806
+  - rid: 2697974331218591807
+  _privacyLink: 
+  _termsOfUseLink: 
+  references:
+    version: 2
+    RefIds:
+    - rid: 2697974331218591804
+      type: {class: AdDummyContainer, ns: SBabchuk.Runtime.Advertisement, asm: Assembly-CSharp}
+      data:
+        _bannerPosition: 0
+    - rid: 2697974331218591805
+      type: {class: AdMobContainer, ns: SBabchuk.Runtime.Advertisement, asm: Assembly-CSharp}
+      data:
+        _androidAppId: ca-app-pub-3940256099942544~3347511713
+        _iosAppId: ca-app-pub-3940256099942544~3347511713
+        _androidBannerID: ca-app-pub-3940256099942544/6300978111
+        _iOSBannerID: ca-app-pub-3940256099942544/2934735716
+        _androidInterstitialID: ca-app-pub-3940256099942544/1033173712
+        _iOSInterstitialID: ca-app-pub-3940256099942544/4411468910
+        _androidRewardedVideoID: ca-app-pub-3940256099942544/5224354917
+        _iOSRewardedVideoID: ca-app-pub-3940256099942544/1712485313
+        _useAppOpenAd: 1
+        _androidAppOpenAdID: ca-app-pub-3940256099942544/9257395921
+        _iOSAppOpenAdID: ca-app-pub-3940256099942544/5575463023
+        _appOpenAdExpirationHoursTime: 4
+        _bannerType: 0
+        _bannerPosition: 0
+    - rid: 2697974331218591806
+      type: {class: LevelPlayContainer, ns: SBabchuk.Runtime.Advertisement, asm: Assembly-CSharp}
+      data:
+        _androidAppKey: 
+        _androidBannerID: 
+        _androidInterstitialID: 
+        _androidRVID: 
+        _iOSAppKey: 
+        _iOSBannerID: 
+        _iOSInterstitialID: 
+        _iOSRVID: 
+        _bannerPosition: 0
+        _bannerType: 0
+    - rid: 2697974331218591807
+      type: {class: ApplovinContainer, ns: SBabchuk.Runtime.Advertisement, asm: Assembly-CSharp}
+      data:
+        _androidBannerID: 
+        _iOSBannerID: 
+        _androidInterstitialID: 
+        _iOSInterstitialID: 
+        _androidRewardedVideoID: 
+        _iOSRewardedVideoID: 
+        _bannerPosition: 7
+        _useAdaptiveBanner: 1
+        _bannerBackgroundColor: {r: 1, g: 1, b: 1, a: 1}

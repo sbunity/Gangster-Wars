@@ -67,6 +67,15 @@ namespace SBabchuk.Runtime.Progress
         [SerializeField] private List<int> _completedTutorialSteps = new();
         public List<int> CompletedTutorialSteps { get => _completedTutorialSteps; set => _completedTutorialSteps = value; }
 
+        [SerializeField] private string _userLocalId;
+        public string UserLocalId { get => _userLocalId; set => _userLocalId = value; }
+
+        [SerializeField] private AdSave _ads = new();
+        public AdSave Ads { get => _ads; set => _ads = value; }
+
+        [SerializeField] private IAPSave _iap = new();
+        public IAPSave IAP { get => _iap; set => _iap = value; }
+
         public WeaponShortInfo GetWeaponShortInfo(int id)
             => Find(_weapons, entry => entry.Id == id);
 
