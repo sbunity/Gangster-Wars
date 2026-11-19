@@ -1,3 +1,5 @@
+using System.Threading;
+using Cysharp.Threading.Tasks;
 using SBabchuk.Runtime.Services.Contracts;
 using UnityEngine;
 using Zenject;
@@ -18,11 +20,13 @@ namespace SBabchuk.Runtime.UI
             _levelCoins = levelCoins;
         }
 
-        public void Play()
+        public UniTask PlayAsync(CancellationToken cancellationToken)
         {
             SetImmediate(0);
             if (_levelCoins.Earned > 0)
                 AnimateTo(_levelCoins.Earned, _countUpDelay);
+
+            return WaitForAnimationAsync(cancellationToken);
         }
 
         protected override string Format(int value)

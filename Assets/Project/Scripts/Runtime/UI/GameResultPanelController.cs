@@ -1,3 +1,6 @@
+using System;
+using System.Collections.Generic;
+using System.Threading;
 using Cysharp.Threading.Tasks;
 using DG.Tweening;
 using SBabchuk.Runtime.Architecture;
@@ -6,6 +9,7 @@ using SBabchuk.Runtime.Services.Contracts;
 using SBabchuk.Runtime.UI.Popups;
 using SBabchuk.Runtime.Vibration;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.Serialization;
 using UnityEngine.UI;
 using Zenject;
@@ -37,16 +41,19 @@ namespace SBabchuk.Runtime.UI
         private IAudioService _audioService;
         private IMusicService _musicService;
         private IVibrationService _vibrationService;
+        private ILevelEndInterstitialService _interstitial;
         private SignalSubscriptions _signals;
         private Tween _showDelayTween;
+        private readonly List<(Button Button, UnityAction Listener)> _choices = new();
 
         [Inject]
-        public void Construct(ISceneTransitionService sceneTransitionService, IAudioService audioService, IMusicService musicService, IVibrationService vibrationService, SignalBus signalBus)
+        public void Construct(ISceneTransitionService sceneTransitionService, IAudioService audioService, IMusicService musicService, IVibrationService vibrationService, ILevelEndInterstitialService interstitial, SignalBus signalBus)
         {
             _sceneTransitionService = sceneTransitionService;
             _audioService = audioService;
             _musicService = musicService;
             _vibrationService = vibrationService;
+            _interstitial = interstitial;
             _signals = new SignalSubscriptions(signalBus)
                 .Add<GameFinishedSignal>(OnGameFinished);
         }
@@ -58,6 +65,9 @@ namespace SBabchuk.Runtime.UI
         protected virtual void OnDestroy()
         {
             _showDelayTween?.Kill();
+
+            foreach (var choice in _choices)
+                choice.Button.onClick.RemoveListener(choice.Listener);
         }
 
         public void Show(Panels panelType)
@@ -67,12 +77,12 @@ namespace SBabchuk.Runtime.UI
 
             OnShow();
             ApplyTopMostSorting();
-            _panel.ShowPopup();
+            var presentation = PlayShowAnimationAsync(destroyCancellationToken);
             Time.timeScale = 0f;
-            PlayCoinsReward();
             _musicService?.Stop();
             _audioService?.Play(_showSound);
             _vibrationService?.Vibrate(_showVibration);
+            _interstitial.ScheduleAfter(presentation);
         }
 
         public void Hide()
@@ -82,6 +92,16 @@ namespace SBabchuk.Runtime.UI
         }
 
         protected virtual void OnShow() { }
+
+        protected void AddChoice(Button button, Action action)
+        {
+            if (button == null)
+                return;
+
+            UnityAction listener = () => _interstitial.RunAfterAd(action);
+            button.onClick.AddListener(listener);
+            _choices.Add((button, listener));
+        }
 
         protected void TransitionTo(Scene scene)
         {
@@ -141,10 +161,10 @@ namespace SBabchuk.Runtime.UI
             return _sortingCanvas;
         }
 
-        private void PlayCoinsReward()
-        {
-            if (_coinsReward != null)
-                _coinsReward.Play();
-        }
+        private UniTask PlayShowAnimationAsync(CancellationToken cancellationToken)
+            => UniTask.WhenAll(_panel.ShowPopupAsync(cancellationToken), PlayCoinsRewardAsync(cancellationToken));
+
+        private UniTask PlayCoinsRewardAsync(CancellationToken cancellationToken)
+            => _coinsReward != null ? _coinsReward.PlayAsync(cancellationToken) : UniTask.CompletedTask;
     }
 }

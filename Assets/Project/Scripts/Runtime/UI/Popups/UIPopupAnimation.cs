@@ -1,4 +1,7 @@
+using System.Threading;
+using Cysharp.Threading.Tasks;
 using DG.Tweening;
+using SBabchuk.Runtime.Architecture;
 using UnityEngine;
 
 namespace SBabchuk.Runtime.UI.Popups
@@ -41,6 +44,12 @@ namespace SBabchuk.Runtime.UI.Popups
                 .Join(CanvasGroup.DOFade(1f, _style.FadeInDuration))
                 .Join(DOVirtual.Float(_scale, 1f, _style.ShowDuration, SetScale).SetEase(_style.ShowEase, _style.ShowOvershoot))
                 .OnComplete(() => _sequence = null);
+        }
+
+        public UniTask ShowAsync(CancellationToken cancellationToken)
+        {
+            Show();
+            return _sequence.WaitForCompletionAsync(cancellationToken);
         }
 
         public void Hide()

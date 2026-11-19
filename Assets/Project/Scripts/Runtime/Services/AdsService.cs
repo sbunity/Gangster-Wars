@@ -425,6 +425,12 @@ namespace SBabchuk.Runtime.Services
                 return;
             }
 
+            if (!Settings.BannerEnabled)
+            {
+                _logger.Log("[AdsManager]: ShowBanner — skipped: bannerEnabled=false");
+                return;
+            }
+
             if (!IsBannerActive)
             {
                 _logger.Log("[AdsManager]: ShowBanner — skipped: isBannerActive=false");

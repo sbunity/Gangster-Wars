@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using SBabchuk.Runtime.Advertisement;
 using SBabchuk.Runtime.Databases.BombStore;
 using SBabchuk.Runtime.Databases.Bullets;
 using SBabchuk.Runtime.Databases.CarSkins;
@@ -40,6 +41,7 @@ namespace SBabchuk.Runtime.Services
         public BulletDatabase BulletDatabase => GetDatabase<BulletDatabase>();
         public CarSkinDatabase CarSkinDatabase => GetDatabase<CarSkinDatabase>();
         public TutorialConfig TutorialConfig => GetDatabase<TutorialConfig>();
+        public AdPlacementConfig AdPlacementConfig => GetDatabase<AdPlacementConfig>();
 
         public T LoadAsset<T>() where T : UnityEngine.Object
         {

@@ -1,4 +1,7 @@
+using System.Threading;
+using Cysharp.Threading.Tasks;
 using DG.Tweening;
+using SBabchuk.Runtime.Architecture;
 using UnityEngine;
 
 namespace SBabchuk.Runtime.UI
@@ -47,5 +50,8 @@ namespace SBabchuk.Runtime.UI
                 .SetUpdate(ignoreTimeScale)
                 .OnKill(() => Target.localScale = _baseScale);
         }
+
+        public UniTask WaitForCompletionAsync(CancellationToken cancellationToken)
+            => _tween.WaitForCompletionAsync(cancellationToken);
     }
 }

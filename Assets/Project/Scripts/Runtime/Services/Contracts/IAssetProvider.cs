@@ -1,4 +1,5 @@
 using UnityEngine;
+using SBabchuk.Runtime.Advertisement;
 using SBabchuk.Runtime.Databases.BombStore;
 using SBabchuk.Runtime.Databases.Bullets;
 using SBabchuk.Runtime.Databases.CarSkins;
@@ -35,6 +36,8 @@ namespace SBabchuk.Runtime.Services.Contracts
         CarSkinDatabase CarSkinDatabase { get; }
 
         TutorialConfig TutorialConfig { get; }
+
+        AdPlacementConfig AdPlacementConfig { get; }
 
         T LoadAsset<T>() where T : Object;
         GameObject LoadPrefab(NamesPool pool, int id);

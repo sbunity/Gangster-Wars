@@ -47,6 +47,7 @@ namespace SBabchuk.Runtime.Installers
             Container.Bind<IEnemyTargetProvider>().To<LevelEntityTracker>().FromResolve();
             Container.Bind<ILevelSpawnService>().To<LevelSpawnService>().AsSingle();
             Container.BindInterfacesTo<LevelEndBonusCollector>().AsSingle();
+            Container.BindInterfacesTo<LevelEndInterstitialService>().AsSingle();
             BindLevelBackground();
             BindLevelCoins();
 

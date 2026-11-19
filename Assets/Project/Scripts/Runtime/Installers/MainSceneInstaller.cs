@@ -1,3 +1,4 @@
+using SBabchuk.Runtime.Services;
 using SBabchuk.Runtime.Services.Contracts;
 using SBabchuk.Runtime.Tutorial.Steps;
 using SBabchuk.Runtime.UI.Intro;
@@ -17,6 +18,7 @@ namespace SBabchuk.Runtime.Installers
         public override void InstallBindings()
         {
             Container.Bind<IStoreTabs>().FromInstance(_storeTabs).AsSingle();
+            Container.Bind<IRewardedCoinsService>().To<RewardedCoinsService>().AsSingle();
             SceneIntroInstaller.Install(Container, _uiIntro);
 
             TutorialInstaller.Install(Container, _tutorialView, new[]

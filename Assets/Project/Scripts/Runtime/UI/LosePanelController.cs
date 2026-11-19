@@ -11,22 +11,8 @@ namespace SBabchuk.Runtime.UI
 
         private void Awake()
         {
-            if (_continueButton != null)
-                _continueButton.onClick.AddListener(ReturnToMainMenu);
-
-            if (_restartButton != null)
-                _restartButton.onClick.AddListener(RestartLevel);
-        }
-
-        protected override void OnDestroy()
-        {
-            base.OnDestroy();
-
-            if (_continueButton != null)
-                _continueButton.onClick.RemoveListener(ReturnToMainMenu);
-
-            if (_restartButton != null)
-                _restartButton.onClick.RemoveListener(RestartLevel);
+            AddChoice(_continueButton, ReturnToMainMenu);
+            AddChoice(_restartButton, RestartLevel);
         }
 
         public void ReturnToMainMenu() => TransitionTo(Scene.MainScene);

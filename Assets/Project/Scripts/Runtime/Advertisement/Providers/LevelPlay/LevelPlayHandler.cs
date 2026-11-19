@@ -74,30 +74,8 @@ namespace SBabchuk.Runtime.Advertisement
 
         private void OnInitCompleted()
         {
-            var bannerSize = LevelPlayAdSize.BANNER;
-            switch (Container.BannerType)
-            {
-                case LevelPlayContainer.BannerPlacementType.Large:
-                    bannerSize = LevelPlayAdSize.LARGE;
-                    break;
-                case LevelPlayContainer.BannerPlacementType.Rectangle:
-                    bannerSize = LevelPlayAdSize.MEDIUM_RECTANGLE;
-                    break;
-                case LevelPlayContainer.BannerPlacementType.Leaderboard:
-                    bannerSize = LevelPlayAdSize.LEADERBOARD;
-                    break;
-            }
-
-            var bannerPosition = LevelPlayBannerPosition.BottomCenter;
-            if (Container.BannerPosition == BannerPosition.Top)
-                bannerPosition = LevelPlayBannerPosition.TopCenter;
-
-            var bannerConfig = new LevelPlayBannerAd.Config.Builder().SetPosition(bannerPosition).SetSize(bannerSize).Build();
-
-            _bannerAd = new LevelPlayBannerAd(GetBannerID(), bannerConfig);
-            _bannerAd.OnAdLoaded += BannerOnAdLoadedEvent;
-            _bannerAd.OnAdDisplayed += BannerOnAdDisplayedEvent;
-            _bannerAd.LoadAd();
+            if (_adsSettings.BannerEnabled)
+                LoadBanner();
 
             _interstitialAd = new LevelPlayInterstitialAd(GetInterstitialID());
 
@@ -293,6 +271,34 @@ namespace SBabchuk.Runtime.Advertisement
         #endregion
 
         #region Banner
+        private void LoadBanner()
+        {
+            var bannerSize = LevelPlayAdSize.BANNER;
+            switch (Container.BannerType)
+            {
+                case LevelPlayContainer.BannerPlacementType.Large:
+                    bannerSize = LevelPlayAdSize.LARGE;
+                    break;
+                case LevelPlayContainer.BannerPlacementType.Rectangle:
+                    bannerSize = LevelPlayAdSize.MEDIUM_RECTANGLE;
+                    break;
+                case LevelPlayContainer.BannerPlacementType.Leaderboard:
+                    bannerSize = LevelPlayAdSize.LEADERBOARD;
+                    break;
+            }
+
+            var bannerPosition = LevelPlayBannerPosition.BottomCenter;
+            if (Container.BannerPosition == BannerPosition.Top)
+                bannerPosition = LevelPlayBannerPosition.TopCenter;
+
+            var bannerConfig = new LevelPlayBannerAd.Config.Builder().SetPosition(bannerPosition).SetSize(bannerSize).Build();
+
+            _bannerAd = new LevelPlayBannerAd(GetBannerID(), bannerConfig);
+            _bannerAd.OnAdLoaded += BannerOnAdLoadedEvent;
+            _bannerAd.OnAdDisplayed += BannerOnAdDisplayedEvent;
+            _bannerAd.LoadAd();
+        }
+
         public override void DestroyBanner()
         {
             if(_bannerAd != null)

@@ -17,12 +17,12 @@ MonoBehaviour:
   _testDevices:
   - 91687A6357C9E0169C1471C98D0237EB
   _loadAdsOnStart: 1
-  _bannerEnabled: 1
+  _bannerEnabled: 0
   _interstitialEnabled: 1
   _rewardedVideoEnabled: 1
-  _interstitialFirstStartDelay: 20
-  _interstitialStartDelay: 20
-  _interstitialShowingDelay: 20
+  _interstitialFirstStartDelay: 15
+  _interstitialStartDelay: 15
+  _interstitialShowingDelay: 15
   _loadingAdDuration: 0
   _loadingMessage: Ad is loading..
   _providerContainers:

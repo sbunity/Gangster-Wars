@@ -1,4 +1,7 @@
+using System.Threading;
+using Cysharp.Threading.Tasks;
 using DG.Tweening;
+using SBabchuk.Runtime.Architecture;
 using SBabchuk.Runtime.Audio;
 using SBabchuk.Runtime.Services.Contracts;
 using UnityEngine;
@@ -51,6 +54,12 @@ namespace SBabchuk.Runtime.UI
                     SetDisplayed(value);
                     PlayCollectFeedback();
                 });
+        }
+
+        protected async UniTask WaitForAnimationAsync(CancellationToken cancellationToken)
+        {
+            await _countTween.WaitForCompletionAsync(cancellationToken);
+            await _countPulse.WaitForCompletionAsync(cancellationToken);
         }
 
         protected void SetImmediate(int value)
