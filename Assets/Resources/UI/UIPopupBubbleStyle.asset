@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d9eb65f54b1f3e7468972fc7612bc34a, type: 3}
+  m_Name: UIPopupBubbleStyle
+  m_EditorClassIdentifier: Assembly-CSharp::SBabchuk.Runtime.UI.Popups.UIPopupStyle
+  _showFromScale: 0.4
+  _showDuration: 0.3
+  _showEase: 27
+  _showOvershoot: 1.7
+  _fadeInDuration: 0.12
+  _hideToScale: 0.9
+  _hideDuration: 0.15
+  _hideEase: 5

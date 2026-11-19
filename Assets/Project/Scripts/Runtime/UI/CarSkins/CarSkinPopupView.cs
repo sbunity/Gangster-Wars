@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using SBabchuk.Runtime.Architecture;
 using SBabchuk.Runtime.Services.Contracts;
+using SBabchuk.Runtime.UI.Popups;
 using UnityEngine;
 using UnityEngine.UI;
 using Zenject;
@@ -55,10 +56,10 @@ namespace SBabchuk.Runtime.UI.CarSkins
         }
 
         public void Open()
-            => gameObject.SetActive(true);
+            => gameObject.ShowPopup();
 
         public void Close()
-            => gameObject.SetActive(false);
+            => gameObject.HidePopup();
 
         private void EnsureItems()
         {

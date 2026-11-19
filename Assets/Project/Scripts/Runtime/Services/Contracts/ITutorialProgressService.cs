@@ -8,6 +8,8 @@ namespace SBabchuk.Runtime.Services.Contracts
 
         bool IsTutorialLevelActive { get; }
 
+        bool IsMenuTutorialCompleted { get; }
+
         bool IsLevelCompleted(int levelId);
 
         bool IsCompleted(TutorialStepId step);

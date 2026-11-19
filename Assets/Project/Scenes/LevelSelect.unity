@@ -210,6 +210,8 @@ GameObject:
   - component: {fileID: 18594528}
   - component: {fileID: 18594529}
   - component: {fileID: 18594534}
+  - component: {fileID: 18594536}
+  - component: {fileID: 18594535}
   m_Layer: 5
   m_Name: BttnSelectLvl
   m_TagString: Untagged
@@ -242,6 +244,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 3efd80ffdc20b1441a58ea341fd100e7, type: 3}
   _predecessors:
   - {fileID: 2117274706}
+  _nextLevelPulse: {fileID: 18594535}
 --- !u!114 &18594529
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -387,6 +390,38 @@ MonoBehaviour:
   _id: 9
   _index: 24
   _fitActiveChildren: 0
+--- !u!114 &18594535
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 18594527}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e17769859790c94fbac7887a1e49047, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SBabchuk.Runtime.UI.UIPulseAnimation
+  _target: {fileID: 0}
+  _scaleMultiplier: 1.08
+  _duration: 0.6
+  _ease: 4
+  _playOnEnable: 0
+--- !u!114 &18594536
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 18594527}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5a5fc8702d1c70f4db430f19150b12fa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SBabchuk.Runtime.UI.Intro.UIScaleInAnimation
+  _styleOverride: {fileID: 0}
+  _extraDelay: 0
+  _fromScale: 0
 --- !u!1 &21881205
 GameObject:
   m_ObjectHideFlags: 0
@@ -627,6 +662,7 @@ GameObject:
   - component: {fileID: 28529405}
   - component: {fileID: 28529407}
   - component: {fileID: 28529406}
+  - component: {fileID: 28529408}
   m_Layer: 5
   m_Name: ChapterName
   m_TagString: Untagged
@@ -753,6 +789,22 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 28529404}
   m_CullTransparentMesh: 1
+--- !u!114 &28529408
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 28529404}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 29704f54e5e7ad742b97c4ae2bb009dd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SBabchuk.Runtime.UI.Intro.UISlideInAnimation
+  _styleOverride: {fileID: 0}
+  _extraDelay: 0
+  _side: 3
+  _includeChildren: 1
 --- !u!1 &39562216
 GameObject:
   m_ObjectHideFlags: 0
@@ -918,6 +970,8 @@ GameObject:
   - component: {fileID: 59064776}
   - component: {fileID: 59064777}
   - component: {fileID: 59064782}
+  - component: {fileID: 59064784}
+  - component: {fileID: 59064783}
   m_Layer: 5
   m_Name: BttnSelectLvl (5)
   m_TagString: Untagged
@@ -950,6 +1004,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 3efd80ffdc20b1441a58ea341fd100e7, type: 3}
   _predecessors:
   - {fileID: 1425823870}
+  _nextLevelPulse: {fileID: 59064783}
 --- !u!114 &59064777
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1095,6 +1150,38 @@ MonoBehaviour:
   _id: 9
   _index: 29
   _fitActiveChildren: 0
+--- !u!114 &59064783
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 59064775}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e17769859790c94fbac7887a1e49047, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SBabchuk.Runtime.UI.UIPulseAnimation
+  _target: {fileID: 0}
+  _scaleMultiplier: 1.08
+  _duration: 0.6
+  _ease: 4
+  _playOnEnable: 0
+--- !u!114 &59064784
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 59064775}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5a5fc8702d1c70f4db430f19150b12fa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SBabchuk.Runtime.UI.Intro.UIScaleInAnimation
+  _styleOverride: {fileID: 0}
+  _extraDelay: 0
+  _fromScale: 0
 --- !u!1 &60655758
 GameObject:
   m_ObjectHideFlags: 0
@@ -1553,6 +1640,8 @@ GameObject:
   - component: {fileID: 96357649}
   - component: {fileID: 96357654}
   - component: {fileID: 96357655}
+  - component: {fileID: 96357657}
+  - component: {fileID: 96357656}
   m_Layer: 5
   m_Name: BttnSelectLvl (4)
   m_TagString: Untagged
@@ -1585,6 +1674,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 3efd80ffdc20b1441a58ea341fd100e7, type: 3}
   _predecessors:
   - {fileID: 750665172}
+  _nextLevelPulse: {fileID: 96357656}
 --- !u!114 &96357650
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1730,6 +1820,38 @@ MonoBehaviour:
   _id: 9
   _index: 20
   _fitActiveChildren: 0
+--- !u!114 &96357656
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 96357648}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e17769859790c94fbac7887a1e49047, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SBabchuk.Runtime.UI.UIPulseAnimation
+  _target: {fileID: 0}
+  _scaleMultiplier: 1.08
+  _duration: 0.6
+  _ease: 4
+  _playOnEnable: 0
+--- !u!114 &96357657
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 96357648}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5a5fc8702d1c70f4db430f19150b12fa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SBabchuk.Runtime.UI.Intro.UIScaleInAnimation
+  _styleOverride: {fileID: 0}
+  _extraDelay: 0
+  _fromScale: 0
 --- !u!1 &97634827
 GameObject:
   m_ObjectHideFlags: 0
@@ -1824,6 +1946,8 @@ GameObject:
   - component: {fileID: 97925093}
   - component: {fileID: 97925097}
   - component: {fileID: 97925098}
+  - component: {fileID: 97925100}
+  - component: {fileID: 97925099}
   m_Layer: 5
   m_Name: BttnSelectLvl (1)
   m_TagString: Untagged
@@ -1878,6 +2002,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 3efd80ffdc20b1441a58ea341fd100e7, type: 3}
   _predecessors:
   - {fileID: 1979990637}
+  _nextLevelPulse: {fileID: 97925099}
 --- !u!114 &97925094
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2001,6 +2126,38 @@ MonoBehaviour:
   _id: 9
   _index: 1
   _fitActiveChildren: 0
+--- !u!114 &97925099
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 97925091}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e17769859790c94fbac7887a1e49047, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SBabchuk.Runtime.UI.UIPulseAnimation
+  _target: {fileID: 0}
+  _scaleMultiplier: 1.08
+  _duration: 0.6
+  _ease: 4
+  _playOnEnable: 0
+--- !u!114 &97925100
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 97925091}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5a5fc8702d1c70f4db430f19150b12fa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SBabchuk.Runtime.UI.Intro.UIScaleInAnimation
+  _styleOverride: {fileID: 0}
+  _extraDelay: 0
+  _fromScale: 0
 --- !u!1 &101132419
 GameObject:
   m_ObjectHideFlags: 0
@@ -2161,6 +2318,7 @@ GameObject:
   m_Component:
   - component: {fileID: 130835730}
   - component: {fileID: 130835731}
+  - component: {fileID: 130835732}
   m_Layer: 5
   m_Name: ChapterPanel_1
   m_TagString: Untagged
@@ -2206,6 +2364,31 @@ MonoBehaviour:
   _background: {fileID: 1028250116}
   _title: {fileID: 1409234413}
   _levelButtonsRoot: {fileID: 1136514635}
+--- !u!114 &130835732
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 130835729}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 58b7402d32d2ad84da5e10c3add31426, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SBabchuk.Runtime.UI.Intro.UIIntroGroup
+  _styleOverride: {fileID: 0}
+  _extraDelay: 0
+  _stagger: 0.04
+  _animations:
+  - {fileID: 1409234416}
+  - {fileID: 1979990641}
+  - {fileID: 97925100}
+  - {fileID: 1456185745}
+  - {fileID: 1328553883}
+  - {fileID: 259880348}
+  - {fileID: 982076328}
+  - {fileID: 1448628258}
+  - {fileID: 1524546438}
 --- !u!1 &131705153
 GameObject:
   m_ObjectHideFlags: 0
@@ -2769,6 +2952,8 @@ GameObject:
   - component: {fileID: 227660892}
   - component: {fileID: 227660897}
   - component: {fileID: 227660898}
+  - component: {fileID: 227660900}
+  - component: {fileID: 227660899}
   m_Layer: 5
   m_Name: BttnSelectLvl (2)
   m_TagString: Untagged
@@ -2801,6 +2986,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 3efd80ffdc20b1441a58ea341fd100e7, type: 3}
   _predecessors:
   - {fileID: 1487715942}
+  _nextLevelPulse: {fileID: 227660899}
 --- !u!114 &227660893
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2946,6 +3132,38 @@ MonoBehaviour:
   _id: 9
   _index: 18
   _fitActiveChildren: 0
+--- !u!114 &227660899
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 227660891}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e17769859790c94fbac7887a1e49047, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SBabchuk.Runtime.UI.UIPulseAnimation
+  _target: {fileID: 0}
+  _scaleMultiplier: 1.08
+  _duration: 0.6
+  _ease: 4
+  _playOnEnable: 0
+--- !u!114 &227660900
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 227660891}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5a5fc8702d1c70f4db430f19150b12fa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SBabchuk.Runtime.UI.Intro.UIScaleInAnimation
+  _styleOverride: {fileID: 0}
+  _extraDelay: 0
+  _fromScale: 0
 --- !u!1 &242695772
 GameObject:
   m_ObjectHideFlags: 0
@@ -2961,6 +3179,8 @@ GameObject:
   - component: {fileID: 242695773}
   - component: {fileID: 242695778}
   - component: {fileID: 242695779}
+  - component: {fileID: 242695781}
+  - component: {fileID: 242695780}
   m_Layer: 5
   m_Name: BttnSelectLvl (4)
   m_TagString: Untagged
@@ -2993,6 +3213,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 3efd80ffdc20b1441a58ea341fd100e7, type: 3}
   _predecessors:
   - {fileID: 696808588}
+  _nextLevelPulse: {fileID: 242695780}
 --- !u!224 &242695774
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3138,6 +3359,38 @@ MonoBehaviour:
   _id: 9
   _index: 12
   _fitActiveChildren: 0
+--- !u!114 &242695780
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 242695772}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e17769859790c94fbac7887a1e49047, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SBabchuk.Runtime.UI.UIPulseAnimation
+  _target: {fileID: 0}
+  _scaleMultiplier: 1.08
+  _duration: 0.6
+  _ease: 4
+  _playOnEnable: 0
+--- !u!114 &242695781
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 242695772}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5a5fc8702d1c70f4db430f19150b12fa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SBabchuk.Runtime.UI.Intro.UIScaleInAnimation
+  _styleOverride: {fileID: 0}
+  _extraDelay: 0
+  _fromScale: 0
 --- !u!1 &259880339
 GameObject:
   m_ObjectHideFlags: 0
@@ -3153,6 +3406,8 @@ GameObject:
   - component: {fileID: 259880341}
   - component: {fileID: 259880345}
   - component: {fileID: 259880346}
+  - component: {fileID: 259880348}
+  - component: {fileID: 259880347}
   m_Layer: 5
   m_Name: BttnSelectLvl (4)
   m_TagString: Untagged
@@ -3207,6 +3462,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 3efd80ffdc20b1441a58ea341fd100e7, type: 3}
   _predecessors:
   - {fileID: 1328553876}
+  _nextLevelPulse: {fileID: 259880347}
 --- !u!114 &259880342
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3330,6 +3586,38 @@ MonoBehaviour:
   _id: 9
   _index: 4
   _fitActiveChildren: 0
+--- !u!114 &259880347
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 259880339}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e17769859790c94fbac7887a1e49047, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SBabchuk.Runtime.UI.UIPulseAnimation
+  _target: {fileID: 0}
+  _scaleMultiplier: 1.08
+  _duration: 0.6
+  _ease: 4
+  _playOnEnable: 0
+--- !u!114 &259880348
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 259880339}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5a5fc8702d1c70f4db430f19150b12fa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SBabchuk.Runtime.UI.Intro.UIScaleInAnimation
+  _styleOverride: {fileID: 0}
+  _extraDelay: 0
+  _fromScale: 0
 --- !u!1 &292176475
 GameObject:
   m_ObjectHideFlags: 0
@@ -3728,6 +4016,8 @@ GameObject:
   - component: {fileID: 400084344}
   - component: {fileID: 400084345}
   - component: {fileID: 400084350}
+  - component: {fileID: 400084352}
+  - component: {fileID: 400084351}
   m_Layer: 5
   m_Name: BttnSelectLvl (3)
   m_TagString: Untagged
@@ -3760,6 +4050,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 3efd80ffdc20b1441a58ea341fd100e7, type: 3}
   _predecessors:
   - {fileID: 1789139731}
+  _nextLevelPulse: {fileID: 400084351}
 --- !u!114 &400084345
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3905,6 +4196,38 @@ MonoBehaviour:
   _id: 9
   _index: 27
   _fitActiveChildren: 0
+--- !u!114 &400084351
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 400084343}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e17769859790c94fbac7887a1e49047, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SBabchuk.Runtime.UI.UIPulseAnimation
+  _target: {fileID: 0}
+  _scaleMultiplier: 1.08
+  _duration: 0.6
+  _ease: 4
+  _playOnEnable: 0
+--- !u!114 &400084352
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 400084343}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5a5fc8702d1c70f4db430f19150b12fa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SBabchuk.Runtime.UI.Intro.UIScaleInAnimation
+  _styleOverride: {fileID: 0}
+  _extraDelay: 0
+  _fromScale: 0
 --- !u!1 &403161658
 GameObject:
   m_ObjectHideFlags: 0
@@ -4371,6 +4694,8 @@ GameObject:
   - component: {fileID: 468835502}
   - component: {fileID: 468835507}
   - component: {fileID: 468835508}
+  - component: {fileID: 468835510}
+  - component: {fileID: 468835509}
   m_Layer: 5
   m_Name: BttnSelectLvl (5)
   m_TagString: Untagged
@@ -4403,6 +4728,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 3efd80ffdc20b1441a58ea341fd100e7, type: 3}
   _predecessors:
   - {fileID: 242695773}
+  _nextLevelPulse: {fileID: 468835509}
 --- !u!114 &468835503
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4548,6 +4874,38 @@ MonoBehaviour:
   _id: 9
   _index: 13
   _fitActiveChildren: 0
+--- !u!114 &468835509
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 468835501}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e17769859790c94fbac7887a1e49047, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SBabchuk.Runtime.UI.UIPulseAnimation
+  _target: {fileID: 0}
+  _scaleMultiplier: 1.08
+  _duration: 0.6
+  _ease: 4
+  _playOnEnable: 0
+--- !u!114 &468835510
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 468835501}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5a5fc8702d1c70f4db430f19150b12fa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SBabchuk.Runtime.UI.Intro.UIScaleInAnimation
+  _styleOverride: {fileID: 0}
+  _extraDelay: 0
+  _fromScale: 0
 --- !u!1 &485752903
 GameObject:
   m_ObjectHideFlags: 0
@@ -5017,6 +5375,8 @@ GameObject:
   - component: {fileID: 563000833}
   - component: {fileID: 563000838}
   - component: {fileID: 563000839}
+  - component: {fileID: 563000841}
+  - component: {fileID: 563000840}
   m_Layer: 5
   m_Name: BttnSelectLvl
   m_TagString: Untagged
@@ -5049,6 +5409,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 3efd80ffdc20b1441a58ea341fd100e7, type: 3}
   _predecessors:
   - {fileID: 1574022163}
+  _nextLevelPulse: {fileID: 563000840}
 --- !u!114 &563000834
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5194,6 +5555,38 @@ MonoBehaviour:
   _id: 9
   _index: 16
   _fitActiveChildren: 0
+--- !u!114 &563000840
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 563000832}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e17769859790c94fbac7887a1e49047, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SBabchuk.Runtime.UI.UIPulseAnimation
+  _target: {fileID: 0}
+  _scaleMultiplier: 1.08
+  _duration: 0.6
+  _ease: 4
+  _playOnEnable: 0
+--- !u!114 &563000841
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 563000832}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5a5fc8702d1c70f4db430f19150b12fa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SBabchuk.Runtime.UI.Intro.UIScaleInAnimation
+  _styleOverride: {fileID: 0}
+  _extraDelay: 0
+  _fromScale: 0
 --- !u!1 &576314273
 GameObject:
   m_ObjectHideFlags: 0
@@ -5444,6 +5837,7 @@ GameObject:
   m_Component:
   - component: {fileID: 604904540}
   - component: {fileID: 604904541}
+  - component: {fileID: 604904542}
   m_Layer: 5
   m_Name: ChapterPanel_4
   m_TagString: Untagged
@@ -5489,6 +5883,31 @@ MonoBehaviour:
   _background: {fileID: 93237868}
   _title: {fileID: 1927899581}
   _levelButtonsRoot: {fileID: 1348453624}
+--- !u!114 &604904542
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 604904539}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 58b7402d32d2ad84da5e10c3add31426, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SBabchuk.Runtime.UI.Intro.UIIntroGroup
+  _styleOverride: {fileID: 0}
+  _extraDelay: 0
+  _stagger: 0.04
+  _animations:
+  - {fileID: 1927899583}
+  - {fileID: 18594536}
+  - {fileID: 1108650451}
+  - {fileID: 1789139739}
+  - {fileID: 400084352}
+  - {fileID: 1425823878}
+  - {fileID: 59064784}
+  - {fileID: 686752747}
+  - {fileID: 741294500}
 --- !u!1 &617690517
 GameObject:
   m_ObjectHideFlags: 0
@@ -5579,6 +5998,8 @@ GameObject:
   - component: {fileID: 655402053}
   - component: {fileID: 655402058}
   - component: {fileID: 655402059}
+  - component: {fileID: 655402061}
+  - component: {fileID: 655402060}
   m_Layer: 5
   m_Name: BttnSelectLvl
   m_TagString: Untagged
@@ -5611,6 +6032,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 3efd80ffdc20b1441a58ea341fd100e7, type: 3}
   _predecessors:
   - {fileID: 1524546431}
+  _nextLevelPulse: {fileID: 655402060}
 --- !u!224 &655402054
 RectTransform:
   m_ObjectHideFlags: 0
@@ -5756,6 +6178,38 @@ MonoBehaviour:
   _id: 9
   _index: 8
   _fitActiveChildren: 0
+--- !u!114 &655402060
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 655402052}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e17769859790c94fbac7887a1e49047, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SBabchuk.Runtime.UI.UIPulseAnimation
+  _target: {fileID: 0}
+  _scaleMultiplier: 1.08
+  _duration: 0.6
+  _ease: 4
+  _playOnEnable: 0
+--- !u!114 &655402061
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 655402052}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5a5fc8702d1c70f4db430f19150b12fa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SBabchuk.Runtime.UI.Intro.UIScaleInAnimation
+  _styleOverride: {fileID: 0}
+  _extraDelay: 0
+  _fromScale: 0
 --- !u!1 &669678174
 GameObject:
   m_ObjectHideFlags: 0
@@ -5921,6 +6375,8 @@ GameObject:
   - component: {fileID: 686752739}
   - component: {fileID: 686752740}
   - component: {fileID: 686752745}
+  - component: {fileID: 686752747}
+  - component: {fileID: 686752746}
   m_Layer: 5
   m_Name: BttnSelectLvl (6)
   m_TagString: Untagged
@@ -5953,6 +6409,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 3efd80ffdc20b1441a58ea341fd100e7, type: 3}
   _predecessors:
   - {fileID: 59064776}
+  _nextLevelPulse: {fileID: 686752746}
 --- !u!114 &686752740
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6098,6 +6555,38 @@ MonoBehaviour:
   _id: 9
   _index: 30
   _fitActiveChildren: 0
+--- !u!114 &686752746
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 686752738}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e17769859790c94fbac7887a1e49047, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SBabchuk.Runtime.UI.UIPulseAnimation
+  _target: {fileID: 0}
+  _scaleMultiplier: 1.08
+  _duration: 0.6
+  _ease: 4
+  _playOnEnable: 0
+--- !u!114 &686752747
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 686752738}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5a5fc8702d1c70f4db430f19150b12fa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SBabchuk.Runtime.UI.Intro.UIScaleInAnimation
+  _styleOverride: {fileID: 0}
+  _extraDelay: 0
+  _fromScale: 0
 --- !u!1 &687077778
 GameObject:
   m_ObjectHideFlags: 0
@@ -6267,6 +6756,8 @@ GameObject:
   - component: {fileID: 696808588}
   - component: {fileID: 696808593}
   - component: {fileID: 696808594}
+  - component: {fileID: 696808596}
+  - component: {fileID: 696808595}
   m_Layer: 5
   m_Name: BttnSelectLvl (3)
   m_TagString: Untagged
@@ -6299,6 +6790,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 3efd80ffdc20b1441a58ea341fd100e7, type: 3}
   _predecessors:
   - {fileID: 1554787409}
+  _nextLevelPulse: {fileID: 696808595}
 --- !u!224 &696808589
 RectTransform:
   m_ObjectHideFlags: 0
@@ -6444,6 +6936,38 @@ MonoBehaviour:
   _id: 9
   _index: 11
   _fitActiveChildren: 0
+--- !u!114 &696808595
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 696808587}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e17769859790c94fbac7887a1e49047, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SBabchuk.Runtime.UI.UIPulseAnimation
+  _target: {fileID: 0}
+  _scaleMultiplier: 1.08
+  _duration: 0.6
+  _ease: 4
+  _playOnEnable: 0
+--- !u!114 &696808596
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 696808587}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5a5fc8702d1c70f4db430f19150b12fa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SBabchuk.Runtime.UI.Intro.UIScaleInAnimation
+  _styleOverride: {fileID: 0}
+  _extraDelay: 0
+  _fromScale: 0
 --- !u!1 &701912716
 GameObject:
   m_ObjectHideFlags: 0
@@ -6609,6 +7133,8 @@ GameObject:
   - component: {fileID: 709271629}
   - component: {fileID: 709271633}
   - component: {fileID: 709271634}
+  - component: {fileID: 709271636}
+  - component: {fileID: 709271635}
   m_Layer: 5
   m_Name: BttnSelectLvl (6)
   m_TagString: Untagged
@@ -6663,6 +7189,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 3efd80ffdc20b1441a58ea341fd100e7, type: 3}
   _predecessors:
   - {fileID: 1451522980}
+  _nextLevelPulse: {fileID: 709271635}
 --- !u!114 &709271630
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6786,6 +7313,38 @@ MonoBehaviour:
   _id: 9
   _index: 22
   _fitActiveChildren: 0
+--- !u!114 &709271635
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 709271627}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e17769859790c94fbac7887a1e49047, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SBabchuk.Runtime.UI.UIPulseAnimation
+  _target: {fileID: 0}
+  _scaleMultiplier: 1.08
+  _duration: 0.6
+  _ease: 4
+  _playOnEnable: 0
+--- !u!114 &709271636
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 709271627}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5a5fc8702d1c70f4db430f19150b12fa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SBabchuk.Runtime.UI.Intro.UIScaleInAnimation
+  _styleOverride: {fileID: 0}
+  _extraDelay: 0
+  _fromScale: 0
 --- !u!1 &719164260
 GameObject:
   m_ObjectHideFlags: 0
@@ -7025,6 +7584,7 @@ GameObject:
   - component: {fileID: 739860973}
   - component: {fileID: 739860976}
   - component: {fileID: 739860977}
+  - component: {fileID: 739860978}
   m_Layer: 5
   m_Name: BttnMainMenu
   m_TagString: Untagged
@@ -7173,6 +7733,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SBabchuk.Runtime.UI.UIClickSound
   _type: 0
   _customSound: {fileID: 0}
+--- !u!114 &739860978
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 739860971}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 29704f54e5e7ad742b97c4ae2bb009dd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SBabchuk.Runtime.UI.Intro.UISlideInAnimation
+  _styleOverride: {fileID: 0}
+  _extraDelay: 0
+  _side: 1
+  _includeChildren: 1
 --- !u!1 &740648747
 GameObject:
   m_ObjectHideFlags: 0
@@ -7263,6 +7839,8 @@ GameObject:
   - component: {fileID: 741294494}
   - component: {fileID: 741294493}
   - component: {fileID: 741294498}
+  - component: {fileID: 741294500}
+  - component: {fileID: 741294499}
   m_Layer: 5
   m_Name: BttnSelectLvl (7)
   m_TagString: Untagged
@@ -7331,6 +7909,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 3efd80ffdc20b1441a58ea341fd100e7, type: 3}
   _predecessors:
   - {fileID: 686752739}
+  _nextLevelPulse: {fileID: 741294499}
 --- !u!114 &741294495
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7440,6 +8019,38 @@ MonoBehaviour:
   _id: 9
   _index: 31
   _fitActiveChildren: 0
+--- !u!114 &741294499
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 741294491}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e17769859790c94fbac7887a1e49047, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SBabchuk.Runtime.UI.UIPulseAnimation
+  _target: {fileID: 0}
+  _scaleMultiplier: 1.08
+  _duration: 0.6
+  _ease: 4
+  _playOnEnable: 0
+--- !u!114 &741294500
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 741294491}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5a5fc8702d1c70f4db430f19150b12fa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SBabchuk.Runtime.UI.Intro.UIScaleInAnimation
+  _styleOverride: {fileID: 0}
+  _extraDelay: 0
+  _fromScale: 0
 --- !u!1 &746102573
 GameObject:
   m_ObjectHideFlags: 0
@@ -7605,6 +8216,8 @@ GameObject:
   - component: {fileID: 750665172}
   - component: {fileID: 750665177}
   - component: {fileID: 750665178}
+  - component: {fileID: 750665180}
+  - component: {fileID: 750665179}
   m_Layer: 5
   m_Name: BttnSelectLvl (3)
   m_TagString: Untagged
@@ -7637,6 +8250,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 3efd80ffdc20b1441a58ea341fd100e7, type: 3}
   _predecessors:
   - {fileID: 227660892}
+  _nextLevelPulse: {fileID: 750665179}
 --- !u!114 &750665173
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7782,6 +8396,38 @@ MonoBehaviour:
   _id: 9
   _index: 19
   _fitActiveChildren: 0
+--- !u!114 &750665179
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 750665171}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e17769859790c94fbac7887a1e49047, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SBabchuk.Runtime.UI.UIPulseAnimation
+  _target: {fileID: 0}
+  _scaleMultiplier: 1.08
+  _duration: 0.6
+  _ease: 4
+  _playOnEnable: 0
+--- !u!114 &750665180
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 750665171}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5a5fc8702d1c70f4db430f19150b12fa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SBabchuk.Runtime.UI.Intro.UIScaleInAnimation
+  _styleOverride: {fileID: 0}
+  _extraDelay: 0
+  _fromScale: 0
 --- !u!1 &791244374
 GameObject:
   m_ObjectHideFlags: 0
@@ -8261,6 +8907,7 @@ GameObject:
   - component: {fileID: 844851619}
   - component: {fileID: 844851618}
   - component: {fileID: 844851621}
+  - component: {fileID: 844851622}
   m_Layer: 0
   m_Name: BttnPreviousChapter
   m_TagString: Untagged
@@ -8383,6 +9030,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SBabchuk.Runtime.UI.UIClickSound
   _type: 0
   _customSound: {fileID: 0}
+--- !u!114 &844851622
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 844851616}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 29704f54e5e7ad742b97c4ae2bb009dd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SBabchuk.Runtime.UI.Intro.UISlideInAnimation
+  _styleOverride: {fileID: 0}
+  _extraDelay: 0
+  _side: 1
+  _includeChildren: 1
 --- !u!1 &861933102
 GameObject:
   m_ObjectHideFlags: 0
@@ -8831,6 +9494,7 @@ GameObject:
   - component: {fileID: 883962073}
   - component: {fileID: 883962072}
   - component: {fileID: 883962071}
+  - component: {fileID: 883962075}
   m_Layer: 5
   m_Name: '[SelectLevels]'
   m_TagString: Untagged
@@ -8923,6 +9587,26 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &883962075
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 883962070}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c8b0cfc8c2a3a264dbe52990603db989, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SBabchuk.Runtime.UI.Intro.UIIntroView
+  _style: {fileID: 11400000, guid: 618f38b3a3fd8f84f951df80c6800b7a, type: 2}
+  _startDelay: 0.1
+  _stagger: 0.05
+  _animations:
+  - {fileID: 1724146141}
+  - {fileID: 739860978}
+  - {fileID: 844851622}
+  - {fileID: 1267211436}
 --- !u!1 &890034347
 GameObject:
   m_ObjectHideFlags: 0
@@ -9673,6 +10357,8 @@ GameObject:
   - component: {fileID: 982076321}
   - component: {fileID: 982076325}
   - component: {fileID: 982076326}
+  - component: {fileID: 982076328}
+  - component: {fileID: 982076327}
   m_Layer: 5
   m_Name: BttnSelectLvl (5)
   m_TagString: Untagged
@@ -9727,6 +10413,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 3efd80ffdc20b1441a58ea341fd100e7, type: 3}
   _predecessors:
   - {fileID: 259880341}
+  _nextLevelPulse: {fileID: 982076327}
 --- !u!114 &982076322
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9850,6 +10537,38 @@ MonoBehaviour:
   _id: 9
   _index: 5
   _fitActiveChildren: 0
+--- !u!114 &982076327
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 982076319}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e17769859790c94fbac7887a1e49047, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SBabchuk.Runtime.UI.UIPulseAnimation
+  _target: {fileID: 0}
+  _scaleMultiplier: 1.08
+  _duration: 0.6
+  _ease: 4
+  _playOnEnable: 0
+--- !u!114 &982076328
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 982076319}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5a5fc8702d1c70f4db430f19150b12fa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SBabchuk.Runtime.UI.Intro.UIScaleInAnimation
+  _styleOverride: {fileID: 0}
+  _extraDelay: 0
+  _fromScale: 0
 --- !u!1 &1002463783
 GameObject:
   m_ObjectHideFlags: 0
@@ -10488,6 +11207,8 @@ GameObject:
   - component: {fileID: 1108650443}
   - component: {fileID: 1108650444}
   - component: {fileID: 1108650449}
+  - component: {fileID: 1108650451}
+  - component: {fileID: 1108650450}
   m_Layer: 5
   m_Name: BttnSelectLvl (1)
   m_TagString: Untagged
@@ -10520,6 +11241,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 3efd80ffdc20b1441a58ea341fd100e7, type: 3}
   _predecessors:
   - {fileID: 18594528}
+  _nextLevelPulse: {fileID: 1108650450}
 --- !u!114 &1108650444
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10665,6 +11387,38 @@ MonoBehaviour:
   _id: 9
   _index: 25
   _fitActiveChildren: 0
+--- !u!114 &1108650450
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1108650442}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e17769859790c94fbac7887a1e49047, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SBabchuk.Runtime.UI.UIPulseAnimation
+  _target: {fileID: 0}
+  _scaleMultiplier: 1.08
+  _duration: 0.6
+  _ease: 4
+  _playOnEnable: 0
+--- !u!114 &1108650451
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1108650442}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5a5fc8702d1c70f4db430f19150b12fa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SBabchuk.Runtime.UI.Intro.UIScaleInAnimation
+  _styleOverride: {fileID: 0}
+  _extraDelay: 0
+  _fromScale: 0
 --- !u!1 &1109314705
 GameObject:
   m_ObjectHideFlags: 0
@@ -10675,6 +11429,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1109314706}
   - component: {fileID: 1109314707}
+  - component: {fileID: 1109314708}
   m_Layer: 5
   m_Name: ChapterPanel_2
   m_TagString: Untagged
@@ -10720,6 +11475,31 @@ MonoBehaviour:
   _background: {fileID: 604582012}
   _title: {fileID: 28529406}
   _levelButtonsRoot: {fileID: 218443288}
+--- !u!114 &1109314708
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1109314705}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 58b7402d32d2ad84da5e10c3add31426, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SBabchuk.Runtime.UI.Intro.UIIntroGroup
+  _styleOverride: {fileID: 0}
+  _extraDelay: 0
+  _stagger: 0.04
+  _animations:
+  - {fileID: 28529408}
+  - {fileID: 655402061}
+  - {fileID: 1142363095}
+  - {fileID: 1554787417}
+  - {fileID: 696808596}
+  - {fileID: 242695781}
+  - {fileID: 468835510}
+  - {fileID: 2054853576}
+  - {fileID: 1574022171}
 --- !u!1 &1109327087
 GameObject:
   m_ObjectHideFlags: 0
@@ -11100,6 +11880,8 @@ GameObject:
   - component: {fileID: 1142363087}
   - component: {fileID: 1142363092}
   - component: {fileID: 1142363093}
+  - component: {fileID: 1142363095}
+  - component: {fileID: 1142363094}
   m_Layer: 5
   m_Name: BttnSelectLvl (1)
   m_TagString: Untagged
@@ -11132,6 +11914,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 3efd80ffdc20b1441a58ea341fd100e7, type: 3}
   _predecessors:
   - {fileID: 655402053}
+  _nextLevelPulse: {fileID: 1142363094}
 --- !u!224 &1142363088
 RectTransform:
   m_ObjectHideFlags: 0
@@ -11277,6 +12060,38 @@ MonoBehaviour:
   _id: 9
   _index: 9
   _fitActiveChildren: 0
+--- !u!114 &1142363094
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1142363086}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e17769859790c94fbac7887a1e49047, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SBabchuk.Runtime.UI.UIPulseAnimation
+  _target: {fileID: 0}
+  _scaleMultiplier: 1.08
+  _duration: 0.6
+  _ease: 4
+  _playOnEnable: 0
+--- !u!114 &1142363095
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1142363086}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5a5fc8702d1c70f4db430f19150b12fa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SBabchuk.Runtime.UI.Intro.UIScaleInAnimation
+  _styleOverride: {fileID: 0}
+  _extraDelay: 0
+  _fromScale: 0
 --- !u!1 &1179670925
 GameObject:
   m_ObjectHideFlags: 0
@@ -11591,6 +12406,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1200606782}
   - component: {fileID: 1200606783}
+  - component: {fileID: 1200606784}
   m_Layer: 5
   m_Name: ChapterPanel_3
   m_TagString: Untagged
@@ -11636,6 +12452,31 @@ MonoBehaviour:
   _background: {fileID: 1576332003}
   _title: {fileID: 1729127334}
   _levelButtonsRoot: {fileID: 163178575}
+--- !u!114 &1200606784
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1200606781}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 58b7402d32d2ad84da5e10c3add31426, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SBabchuk.Runtime.UI.Intro.UIIntroGroup
+  _styleOverride: {fileID: 0}
+  _extraDelay: 0
+  _stagger: 0.04
+  _animations:
+  - {fileID: 1729127336}
+  - {fileID: 563000841}
+  - {fileID: 1487715950}
+  - {fileID: 227660900}
+  - {fileID: 750665180}
+  - {fileID: 96357657}
+  - {fileID: 1451522988}
+  - {fileID: 709271636}
+  - {fileID: 2117274713}
 --- !u!1 &1236650535
 GameObject:
   m_ObjectHideFlags: 0
@@ -12278,6 +13119,7 @@ GameObject:
   - component: {fileID: 1267211433}
   - component: {fileID: 1267211432}
   - component: {fileID: 1267211435}
+  - component: {fileID: 1267211436}
   m_Layer: 0
   m_Name: BttnNextChapter
   m_TagString: Untagged
@@ -12400,6 +13242,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SBabchuk.Runtime.UI.UIClickSound
   _type: 0
   _customSound: {fileID: 0}
+--- !u!114 &1267211436
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1267211430}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 29704f54e5e7ad742b97c4ae2bb009dd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SBabchuk.Runtime.UI.Intro.UISlideInAnimation
+  _styleOverride: {fileID: 0}
+  _extraDelay: 0
+  _side: 2
+  _includeChildren: 1
 --- !u!1 &1275842767
 GameObject:
   m_ObjectHideFlags: 0
@@ -12715,6 +13573,8 @@ GameObject:
   - component: {fileID: 1328553876}
   - component: {fileID: 1328553880}
   - component: {fileID: 1328553881}
+  - component: {fileID: 1328553883}
+  - component: {fileID: 1328553882}
   m_Layer: 5
   m_Name: BttnSelectLvl (3)
   m_TagString: Untagged
@@ -12769,6 +13629,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 3efd80ffdc20b1441a58ea341fd100e7, type: 3}
   _predecessors:
   - {fileID: 1456185738}
+  _nextLevelPulse: {fileID: 1328553882}
 --- !u!114 &1328553877
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12892,6 +13753,38 @@ MonoBehaviour:
   _id: 9
   _index: 3
   _fitActiveChildren: 0
+--- !u!114 &1328553882
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1328553874}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e17769859790c94fbac7887a1e49047, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SBabchuk.Runtime.UI.UIPulseAnimation
+  _target: {fileID: 0}
+  _scaleMultiplier: 1.08
+  _duration: 0.6
+  _ease: 4
+  _playOnEnable: 0
+--- !u!114 &1328553883
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1328553874}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5a5fc8702d1c70f4db430f19150b12fa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SBabchuk.Runtime.UI.Intro.UIScaleInAnimation
+  _styleOverride: {fileID: 0}
+  _extraDelay: 0
+  _fromScale: 0
 --- !u!1 &1348453623
 GameObject:
   m_ObjectHideFlags: 0
@@ -13247,6 +14140,7 @@ GameObject:
   - component: {fileID: 1409234414}
   - component: {fileID: 1409234413}
   - component: {fileID: 1409234415}
+  - component: {fileID: 1409234416}
   m_Layer: 5
   m_Name: ChapterName
   m_TagString: Untagged
@@ -13387,6 +14281,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6366ee97f6b541449155028b9487355a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TMP_SpriteAnimator
+--- !u!114 &1409234416
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1409234411}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 29704f54e5e7ad742b97c4ae2bb009dd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SBabchuk.Runtime.UI.Intro.UISlideInAnimation
+  _styleOverride: {fileID: 0}
+  _extraDelay: 0
+  _side: 3
+  _includeChildren: 1
 --- !u!1 &1417539517
 GameObject:
   m_ObjectHideFlags: 0
@@ -13552,6 +14462,8 @@ GameObject:
   - component: {fileID: 1425823870}
   - component: {fileID: 1425823871}
   - component: {fileID: 1425823876}
+  - component: {fileID: 1425823878}
+  - component: {fileID: 1425823877}
   m_Layer: 5
   m_Name: BttnSelectLvl (4)
   m_TagString: Untagged
@@ -13584,6 +14496,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 3efd80ffdc20b1441a58ea341fd100e7, type: 3}
   _predecessors:
   - {fileID: 400084344}
+  _nextLevelPulse: {fileID: 1425823877}
 --- !u!114 &1425823871
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13729,6 +14642,38 @@ MonoBehaviour:
   _id: 9
   _index: 28
   _fitActiveChildren: 0
+--- !u!114 &1425823877
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1425823869}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e17769859790c94fbac7887a1e49047, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SBabchuk.Runtime.UI.UIPulseAnimation
+  _target: {fileID: 0}
+  _scaleMultiplier: 1.08
+  _duration: 0.6
+  _ease: 4
+  _playOnEnable: 0
+--- !u!114 &1425823878
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1425823869}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5a5fc8702d1c70f4db430f19150b12fa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SBabchuk.Runtime.UI.Intro.UIScaleInAnimation
+  _styleOverride: {fileID: 0}
+  _extraDelay: 0
+  _fromScale: 0
 --- !u!1 &1431567589
 GameObject:
   m_ObjectHideFlags: 0
@@ -13969,6 +14914,8 @@ GameObject:
   - component: {fileID: 1448628251}
   - component: {fileID: 1448628255}
   - component: {fileID: 1448628256}
+  - component: {fileID: 1448628258}
+  - component: {fileID: 1448628257}
   m_Layer: 5
   m_Name: BttnSelectLvl (6)
   m_TagString: Untagged
@@ -14023,6 +14970,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 3efd80ffdc20b1441a58ea341fd100e7, type: 3}
   _predecessors:
   - {fileID: 982076321}
+  _nextLevelPulse: {fileID: 1448628257}
 --- !u!114 &1448628252
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14146,6 +15094,38 @@ MonoBehaviour:
   _id: 9
   _index: 6
   _fitActiveChildren: 0
+--- !u!114 &1448628257
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1448628249}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e17769859790c94fbac7887a1e49047, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SBabchuk.Runtime.UI.UIPulseAnimation
+  _target: {fileID: 0}
+  _scaleMultiplier: 1.08
+  _duration: 0.6
+  _ease: 4
+  _playOnEnable: 0
+--- !u!114 &1448628258
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1448628249}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5a5fc8702d1c70f4db430f19150b12fa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SBabchuk.Runtime.UI.Intro.UIScaleInAnimation
+  _styleOverride: {fileID: 0}
+  _extraDelay: 0
+  _fromScale: 0
 --- !u!1 &1451522979
 GameObject:
   m_ObjectHideFlags: 0
@@ -14161,6 +15141,8 @@ GameObject:
   - component: {fileID: 1451522980}
   - component: {fileID: 1451522985}
   - component: {fileID: 1451522986}
+  - component: {fileID: 1451522988}
+  - component: {fileID: 1451522987}
   m_Layer: 5
   m_Name: BttnSelectLvl (5)
   m_TagString: Untagged
@@ -14193,6 +15175,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 3efd80ffdc20b1441a58ea341fd100e7, type: 3}
   _predecessors:
   - {fileID: 96357649}
+  _nextLevelPulse: {fileID: 1451522987}
 --- !u!114 &1451522981
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14338,6 +15321,38 @@ MonoBehaviour:
   _id: 9
   _index: 21
   _fitActiveChildren: 0
+--- !u!114 &1451522987
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1451522979}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e17769859790c94fbac7887a1e49047, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SBabchuk.Runtime.UI.UIPulseAnimation
+  _target: {fileID: 0}
+  _scaleMultiplier: 1.08
+  _duration: 0.6
+  _ease: 4
+  _playOnEnable: 0
+--- !u!114 &1451522988
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1451522979}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5a5fc8702d1c70f4db430f19150b12fa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SBabchuk.Runtime.UI.Intro.UIScaleInAnimation
+  _styleOverride: {fileID: 0}
+  _extraDelay: 0
+  _fromScale: 0
 --- !u!1 &1455788015
 GameObject:
   m_ObjectHideFlags: 0
@@ -14428,6 +15443,8 @@ GameObject:
   - component: {fileID: 1456185738}
   - component: {fileID: 1456185742}
   - component: {fileID: 1456185743}
+  - component: {fileID: 1456185745}
+  - component: {fileID: 1456185744}
   m_Layer: 5
   m_Name: BttnSelectLvl (2)
   m_TagString: Untagged
@@ -14482,6 +15499,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 3efd80ffdc20b1441a58ea341fd100e7, type: 3}
   _predecessors:
   - {fileID: 97925093}
+  _nextLevelPulse: {fileID: 1456185744}
 --- !u!114 &1456185739
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14605,6 +15623,38 @@ MonoBehaviour:
   _id: 9
   _index: 2
   _fitActiveChildren: 0
+--- !u!114 &1456185744
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1456185736}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e17769859790c94fbac7887a1e49047, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SBabchuk.Runtime.UI.UIPulseAnimation
+  _target: {fileID: 0}
+  _scaleMultiplier: 1.08
+  _duration: 0.6
+  _ease: 4
+  _playOnEnable: 0
+--- !u!114 &1456185745
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1456185736}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5a5fc8702d1c70f4db430f19150b12fa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SBabchuk.Runtime.UI.Intro.UIScaleInAnimation
+  _styleOverride: {fileID: 0}
+  _extraDelay: 0
+  _fromScale: 0
 --- !u!1 &1460298117
 GameObject:
   m_ObjectHideFlags: 0
@@ -14999,6 +16049,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SBabchuk.Runtime.Installers.LevelSelectInstaller
   _tutorialView: {fileID: 867185185}
+  _uiIntro: {fileID: 883962075}
 --- !u!1 &1487715941
 GameObject:
   m_ObjectHideFlags: 0
@@ -15014,6 +16065,8 @@ GameObject:
   - component: {fileID: 1487715942}
   - component: {fileID: 1487715947}
   - component: {fileID: 1487715948}
+  - component: {fileID: 1487715950}
+  - component: {fileID: 1487715949}
   m_Layer: 5
   m_Name: BttnSelectLvl (1)
   m_TagString: Untagged
@@ -15046,6 +16099,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 3efd80ffdc20b1441a58ea341fd100e7, type: 3}
   _predecessors:
   - {fileID: 563000833}
+  _nextLevelPulse: {fileID: 1487715949}
 --- !u!114 &1487715943
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15191,6 +16245,38 @@ MonoBehaviour:
   _id: 9
   _index: 17
   _fitActiveChildren: 0
+--- !u!114 &1487715949
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1487715941}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e17769859790c94fbac7887a1e49047, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SBabchuk.Runtime.UI.UIPulseAnimation
+  _target: {fileID: 0}
+  _scaleMultiplier: 1.08
+  _duration: 0.6
+  _ease: 4
+  _playOnEnable: 0
+--- !u!114 &1487715950
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1487715941}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5a5fc8702d1c70f4db430f19150b12fa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SBabchuk.Runtime.UI.Intro.UIScaleInAnimation
+  _styleOverride: {fileID: 0}
+  _extraDelay: 0
+  _fromScale: 0
 --- !u!1 &1489644818
 GameObject:
   m_ObjectHideFlags: 0
@@ -15285,6 +16371,8 @@ GameObject:
   - component: {fileID: 1524546431}
   - component: {fileID: 1524546435}
   - component: {fileID: 1524546436}
+  - component: {fileID: 1524546438}
+  - component: {fileID: 1524546437}
   m_Layer: 5
   m_Name: BttnSelectLvl (7)
   m_TagString: Untagged
@@ -15339,6 +16427,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 3efd80ffdc20b1441a58ea341fd100e7, type: 3}
   _predecessors:
   - {fileID: 1448628251}
+  _nextLevelPulse: {fileID: 1524546437}
 --- !u!114 &1524546432
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15462,6 +16551,38 @@ MonoBehaviour:
   _id: 9
   _index: 7
   _fitActiveChildren: 0
+--- !u!114 &1524546437
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1524546429}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e17769859790c94fbac7887a1e49047, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SBabchuk.Runtime.UI.UIPulseAnimation
+  _target: {fileID: 0}
+  _scaleMultiplier: 1.08
+  _duration: 0.6
+  _ease: 4
+  _playOnEnable: 0
+--- !u!114 &1524546438
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1524546429}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5a5fc8702d1c70f4db430f19150b12fa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SBabchuk.Runtime.UI.Intro.UIScaleInAnimation
+  _styleOverride: {fileID: 0}
+  _extraDelay: 0
+  _fromScale: 0
 --- !u!1 &1530645928
 GameObject:
   m_ObjectHideFlags: 0
@@ -15644,6 +16765,8 @@ GameObject:
   - component: {fileID: 1554787409}
   - component: {fileID: 1554787414}
   - component: {fileID: 1554787415}
+  - component: {fileID: 1554787417}
+  - component: {fileID: 1554787416}
   m_Layer: 5
   m_Name: BttnSelectLvl (2)
   m_TagString: Untagged
@@ -15676,6 +16799,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 3efd80ffdc20b1441a58ea341fd100e7, type: 3}
   _predecessors:
   - {fileID: 1142363087}
+  _nextLevelPulse: {fileID: 1554787416}
 --- !u!224 &1554787410
 RectTransform:
   m_ObjectHideFlags: 0
@@ -15821,6 +16945,38 @@ MonoBehaviour:
   _id: 9
   _index: 10
   _fitActiveChildren: 0
+--- !u!114 &1554787416
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1554787408}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e17769859790c94fbac7887a1e49047, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SBabchuk.Runtime.UI.UIPulseAnimation
+  _target: {fileID: 0}
+  _scaleMultiplier: 1.08
+  _duration: 0.6
+  _ease: 4
+  _playOnEnable: 0
+--- !u!114 &1554787417
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1554787408}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5a5fc8702d1c70f4db430f19150b12fa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SBabchuk.Runtime.UI.Intro.UIScaleInAnimation
+  _styleOverride: {fileID: 0}
+  _extraDelay: 0
+  _fromScale: 0
 --- !u!1 &1567072314
 GameObject:
   m_ObjectHideFlags: 0
@@ -16058,6 +17214,8 @@ GameObject:
   - component: {fileID: 1574022163}
   - component: {fileID: 1574022168}
   - component: {fileID: 1574022169}
+  - component: {fileID: 1574022171}
+  - component: {fileID: 1574022170}
   m_Layer: 5
   m_Name: BttnSelectLvl (7)
   m_TagString: Untagged
@@ -16090,6 +17248,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 3efd80ffdc20b1441a58ea341fd100e7, type: 3}
   _predecessors:
   - {fileID: 2054853569}
+  _nextLevelPulse: {fileID: 1574022170}
 --- !u!224 &1574022164
 RectTransform:
   m_ObjectHideFlags: 0
@@ -16235,6 +17394,38 @@ MonoBehaviour:
   _id: 9
   _index: 15
   _fitActiveChildren: 0
+--- !u!114 &1574022170
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1574022162}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e17769859790c94fbac7887a1e49047, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SBabchuk.Runtime.UI.UIPulseAnimation
+  _target: {fileID: 0}
+  _scaleMultiplier: 1.08
+  _duration: 0.6
+  _ease: 4
+  _playOnEnable: 0
+--- !u!114 &1574022171
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1574022162}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5a5fc8702d1c70f4db430f19150b12fa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SBabchuk.Runtime.UI.Intro.UIScaleInAnimation
+  _styleOverride: {fileID: 0}
+  _extraDelay: 0
+  _fromScale: 0
 --- !u!1 &1576332001
 GameObject:
   m_ObjectHideFlags: 0
@@ -17061,6 +18252,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1724146140}
+  - component: {fileID: 1724146141}
   m_Layer: 0
   m_Name: Content
   m_TagString: Untagged
@@ -17091,6 +18283,26 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 10664, y: 1500}
   m_Pivot: {x: 0, y: 0.5}
+--- !u!114 &1724146141
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1724146139}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 58b7402d32d2ad84da5e10c3add31426, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SBabchuk.Runtime.UI.Intro.UIIntroGroup
+  _styleOverride: {fileID: 0}
+  _extraDelay: 0
+  _stagger: 0
+  _animations:
+  - {fileID: 130835732}
+  - {fileID: 1109314708}
+  - {fileID: 1200606784}
+  - {fileID: 604904542}
 --- !u!1 &1729127332
 GameObject:
   m_ObjectHideFlags: 0
@@ -17102,6 +18314,7 @@ GameObject:
   - component: {fileID: 1729127333}
   - component: {fileID: 1729127335}
   - component: {fileID: 1729127334}
+  - component: {fileID: 1729127336}
   m_Layer: 5
   m_Name: ChapterName
   m_TagString: Untagged
@@ -17228,6 +18441,22 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1729127332}
   m_CullTransparentMesh: 1
+--- !u!114 &1729127336
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1729127332}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 29704f54e5e7ad742b97c4ae2bb009dd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SBabchuk.Runtime.UI.Intro.UISlideInAnimation
+  _styleOverride: {fileID: 0}
+  _extraDelay: 0
+  _side: 3
+  _includeChildren: 1
 --- !u!1 &1764879917
 GameObject:
   m_ObjectHideFlags: 0
@@ -17468,6 +18697,8 @@ GameObject:
   - component: {fileID: 1789139731}
   - component: {fileID: 1789139732}
   - component: {fileID: 1789139737}
+  - component: {fileID: 1789139739}
+  - component: {fileID: 1789139738}
   m_Layer: 5
   m_Name: BttnSelectLvl (2)
   m_TagString: Untagged
@@ -17500,6 +18731,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 3efd80ffdc20b1441a58ea341fd100e7, type: 3}
   _predecessors:
   - {fileID: 1108650443}
+  _nextLevelPulse: {fileID: 1789139738}
 --- !u!114 &1789139732
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17645,6 +18877,38 @@ MonoBehaviour:
   _id: 9
   _index: 26
   _fitActiveChildren: 0
+--- !u!114 &1789139738
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1789139730}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e17769859790c94fbac7887a1e49047, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SBabchuk.Runtime.UI.UIPulseAnimation
+  _target: {fileID: 0}
+  _scaleMultiplier: 1.08
+  _duration: 0.6
+  _ease: 4
+  _playOnEnable: 0
+--- !u!114 &1789139739
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1789139730}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5a5fc8702d1c70f4db430f19150b12fa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SBabchuk.Runtime.UI.Intro.UIScaleInAnimation
+  _styleOverride: {fileID: 0}
+  _extraDelay: 0
+  _fromScale: 0
 --- !u!1 &1847374062
 GameObject:
   m_ObjectHideFlags: 0
@@ -18185,6 +19449,7 @@ GameObject:
   - component: {fileID: 1927899580}
   - component: {fileID: 1927899582}
   - component: {fileID: 1927899581}
+  - component: {fileID: 1927899583}
   m_Layer: 5
   m_Name: ChapterName
   m_TagString: Untagged
@@ -18311,6 +19576,22 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1927899579}
   m_CullTransparentMesh: 1
+--- !u!114 &1927899583
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1927899579}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 29704f54e5e7ad742b97c4ae2bb009dd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SBabchuk.Runtime.UI.Intro.UISlideInAnimation
+  _styleOverride: {fileID: 0}
+  _extraDelay: 0
+  _side: 3
+  _includeChildren: 1
 --- !u!1 &1944300506
 GameObject:
   m_ObjectHideFlags: 0
@@ -18476,6 +19757,8 @@ GameObject:
   - component: {fileID: 1979990637}
   - component: {fileID: 1979990638}
   - component: {fileID: 1979990639}
+  - component: {fileID: 1979990641}
+  - component: {fileID: 1979990640}
   m_Layer: 5
   m_Name: BttnSelectLvl
   m_TagString: Untagged
@@ -18623,6 +19906,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 0e0f9499d62b5bb43bbbcdbd894d27e6, type: 3}
   - {fileID: 21300000, guid: 3efd80ffdc20b1441a58ea341fd100e7, type: 3}
   _predecessors: []
+  _nextLevelPulse: {fileID: 1979990640}
 --- !u!114 &1979990638
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18652,6 +19936,38 @@ MonoBehaviour:
   _id: 9
   _index: 0
   _fitActiveChildren: 0
+--- !u!114 &1979990640
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1979990632}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e17769859790c94fbac7887a1e49047, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SBabchuk.Runtime.UI.UIPulseAnimation
+  _target: {fileID: 0}
+  _scaleMultiplier: 1.08
+  _duration: 0.6
+  _ease: 4
+  _playOnEnable: 0
+--- !u!114 &1979990641
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1979990632}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5a5fc8702d1c70f4db430f19150b12fa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SBabchuk.Runtime.UI.Intro.UIScaleInAnimation
+  _styleOverride: {fileID: 0}
+  _extraDelay: 0
+  _fromScale: 0
 --- !u!1 &1984258073
 GameObject:
   m_ObjectHideFlags: 0
@@ -19046,6 +20362,8 @@ GameObject:
   - component: {fileID: 2054853569}
   - component: {fileID: 2054853573}
   - component: {fileID: 2054853574}
+  - component: {fileID: 2054853576}
+  - component: {fileID: 2054853575}
   m_Layer: 5
   m_Name: BttnSelectLvl (6)
   m_TagString: Untagged
@@ -19100,6 +20418,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 3efd80ffdc20b1441a58ea341fd100e7, type: 3}
   _predecessors:
   - {fileID: 468835502}
+  _nextLevelPulse: {fileID: 2054853575}
 --- !u!114 &2054853570
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -19223,6 +20542,38 @@ MonoBehaviour:
   _id: 9
   _index: 14
   _fitActiveChildren: 0
+--- !u!114 &2054853575
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2054853567}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e17769859790c94fbac7887a1e49047, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SBabchuk.Runtime.UI.UIPulseAnimation
+  _target: {fileID: 0}
+  _scaleMultiplier: 1.08
+  _duration: 0.6
+  _ease: 4
+  _playOnEnable: 0
+--- !u!114 &2054853576
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2054853567}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5a5fc8702d1c70f4db430f19150b12fa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SBabchuk.Runtime.UI.Intro.UIScaleInAnimation
+  _styleOverride: {fileID: 0}
+  _extraDelay: 0
+  _fromScale: 0
 --- !u!1 &2057770093
 GameObject:
   m_ObjectHideFlags: 0
@@ -19589,6 +20940,8 @@ GameObject:
   - component: {fileID: 2117274706}
   - component: {fileID: 2117274710}
   - component: {fileID: 2117274711}
+  - component: {fileID: 2117274713}
+  - component: {fileID: 2117274712}
   m_Layer: 5
   m_Name: BttnSelectLvl (7)
   m_TagString: Untagged
@@ -19643,6 +20996,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 3efd80ffdc20b1441a58ea341fd100e7, type: 3}
   _predecessors:
   - {fileID: 709271629}
+  _nextLevelPulse: {fileID: 2117274712}
 --- !u!114 &2117274707
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -19766,6 +21120,38 @@ MonoBehaviour:
   _id: 9
   _index: 23
   _fitActiveChildren: 0
+--- !u!114 &2117274712
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2117274704}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e17769859790c94fbac7887a1e49047, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SBabchuk.Runtime.UI.UIPulseAnimation
+  _target: {fileID: 0}
+  _scaleMultiplier: 1.08
+  _duration: 0.6
+  _ease: 4
+  _playOnEnable: 0
+--- !u!114 &2117274713
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2117274704}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5a5fc8702d1c70f4db430f19150b12fa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SBabchuk.Runtime.UI.Intro.UIScaleInAnimation
+  _styleOverride: {fileID: 0}
+  _extraDelay: 0
+  _fromScale: 0
 --- !u!1 &2117895511
 GameObject:
   m_ObjectHideFlags: 0

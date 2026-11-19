@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using SBabchuk.Runtime.Services.Contracts;
+using SBabchuk.Runtime.UI.Popups;
 using Zenject;
 
 namespace SBabchuk.Runtime.UI
@@ -73,7 +74,7 @@ namespace SBabchuk.Runtime.UI
 
             _isOpened = true;
             if (panel)
-                panel.SetActive(true);
+                panel.ShowPopup();
         }
 
         public void Close()
@@ -126,7 +127,7 @@ namespace SBabchuk.Runtime.UI
         private void CloseWithoutTimeScale()
         {
             if (panel)
-                panel.SetActive(false);
+                panel.HidePopup();
         }
     }
 }

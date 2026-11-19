@@ -9,6 +9,7 @@ namespace SBabchuk.Runtime.UI
         [SerializeField] private float _scaleMultiplier = 1.08f;
         [SerializeField] private float _duration = 0.6f;
         [SerializeField] private Ease _ease = Ease.InOutSine;
+        [SerializeField] private bool _playOnEnable = true;
 
         private Vector3 _baseScale = Vector3.one;
         private Tween _tween;
@@ -24,7 +25,11 @@ namespace SBabchuk.Runtime.UI
             _baseScale = _target.localScale;
         }
 
-        private void OnEnable() => Play();
+        private void OnEnable()
+        {
+            if (_playOnEnable)
+                Play();
+        }
 
         private void OnDisable() => Stop();
 

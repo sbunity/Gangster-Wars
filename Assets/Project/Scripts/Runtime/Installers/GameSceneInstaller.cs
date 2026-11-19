@@ -11,6 +11,7 @@ using SBabchuk.Runtime.Tutorial;
 using SBabchuk.Runtime.Tutorial.Steps;
 using SBabchuk.Runtime.UI;
 using SBabchuk.Runtime.UI.FlyingCoins;
+using SBabchuk.Runtime.UI.Intro;
 using SBabchuk.Runtime.UI.Tutorial;
 
 namespace SBabchuk.Runtime.Installers
@@ -29,6 +30,7 @@ namespace SBabchuk.Runtime.Installers
         [SerializeField] private CoinFlightSpawner _coinFlightSpawner;
         [SerializeField] private Transform _backgroundRoot;
         [SerializeField] private TutorialOverlayView _tutorialView;
+        [SerializeField] private UIIntroView _uiIntro;
 
         public override void InstallBindings()
         {
@@ -76,6 +78,7 @@ namespace SBabchuk.Runtime.Installers
             if (_coinFlightSpawner != null)
                 Container.Bind<ICoinFlightService>().FromInstance(_coinFlightSpawner).AsSingle();
 
+            SceneIntroInstaller.Install(Container, _uiIntro);
             BindTutorial();
         }
 

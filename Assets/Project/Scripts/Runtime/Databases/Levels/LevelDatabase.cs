@@ -56,6 +56,15 @@ namespace SBabchuk.Runtime.Databases.Levels
             return index != -1 ? _legacyLevels[index] : null;
         }
 
+        public bool TryGetNextLevelId(int levelId, out int nextLevelId)
+        {
+            var levels = Levels;
+            var index = levels.FindIndex(level => level != null && level.Id == levelId);
+            var hasNext = index >= 0 && index + 1 < levels.Count && levels[index + 1] != null;
+            nextLevelId = hasNext ? levels[index + 1].Id : -1;
+            return hasNext;
+        }
+
         public ChapterDatabase GetChapter(int id)
         {
             if (_chapters == null)

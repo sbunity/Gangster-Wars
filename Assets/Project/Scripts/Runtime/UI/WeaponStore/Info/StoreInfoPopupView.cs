@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using SBabchuk.Runtime.UI.Popups;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -58,7 +59,7 @@ namespace SBabchuk.Runtime.UI.WeaponStore.Info
             if (snapshot == null)
                 return;
 
-            gameObject.SetActive(true);
+            gameObject.ShowPopup();
             _openedFrom = openedFrom;
             _openedFrame = Time.frameCount;
 
@@ -78,7 +79,7 @@ namespace SBabchuk.Runtime.UI.WeaponStore.Info
 
         public void Hide()
         {
-            gameObject.SetActive(false);
+            gameObject.HidePopup();
         }
 
         private void RenderRows(StoreItemStatsSnapshot snapshot)

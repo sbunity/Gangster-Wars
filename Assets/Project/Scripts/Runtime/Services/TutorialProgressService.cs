@@ -24,6 +24,9 @@ namespace SBabchuk.Runtime.Services
         public bool IsTutorialLevelActive
             => Progress.LevelId == TutorialLevelId && !IsTutorialLevelCompleted;
 
+        public bool IsMenuTutorialCompleted
+            => IsCompleted(TutorialStepId.StoreTour);
+
         public bool IsLevelCompleted(int levelId)
             => Progress.GetLevelShortInfo(levelId)?.IsCompleted == mySwitch.On;
 

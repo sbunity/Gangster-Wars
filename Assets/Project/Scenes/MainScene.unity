@@ -2497,6 +2497,8 @@ GameObject:
   - component: {fileID: 93244245}
   - component: {fileID: 93244246}
   - component: {fileID: 93244247}
+  - component: {fileID: 93244249}
+  - component: {fileID: 93244248}
   m_Layer: 5
   m_Name: Element
   m_TagString: Untagged
@@ -2616,6 +2618,32 @@ MonoBehaviour:
   - {fileID: 1540278425}
   - {fileID: 1092636237}
   _margin: 24
+--- !u!114 &93244248
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 93244241}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 536856f7867dd8c4dad828d766c94ef2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SBabchuk.Runtime.UI.Popups.UIPopupAnimation
+  _style: {fileID: 11400000, guid: bd83f6b7b2828384fb6edb0850aec67e, type: 2}
+  _window: {fileID: 93244242}
+--- !u!225 &93244249
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 93244241}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &95553775
 GameObject:
   m_ObjectHideFlags: 0
@@ -21120,6 +21148,8 @@ GameObject:
   - component: {fileID: 856149811}
   - component: {fileID: 856149810}
   - component: {fileID: 856149809}
+  - component: {fileID: 856149813}
+  - component: {fileID: 856149812}
   m_Layer: 5
   m_Name: SettingsPopup
   m_TagString: Untagged
@@ -21203,6 +21233,32 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 856149807}
   m_CullTransparentMesh: 1
+--- !u!114 &856149812
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 856149807}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 536856f7867dd8c4dad828d766c94ef2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SBabchuk.Runtime.UI.Popups.UIPopupAnimation
+  _style: {fileID: 11400000, guid: a40a5230cdfca5a48a3af1ba5b263b7f, type: 2}
+  _window: {fileID: 475766090}
+--- !u!225 &856149813
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 856149807}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &856758006
 GameObject:
   m_ObjectHideFlags: 0
@@ -32412,6 +32468,8 @@ GameObject:
   - component: {fileID: 1261138219}
   - component: {fileID: 1261138222}
   - component: {fileID: 1261138223}
+  - component: {fileID: 1261138225}
+  - component: {fileID: 1261138224}
   m_Layer: 5
   m_Name: Element
   m_TagString: Untagged
@@ -32531,6 +32589,32 @@ MonoBehaviour:
   - {fileID: 1540278425}
   - {fileID: 1092636237}
   _margin: 24
+--- !u!114 &1261138224
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1261138217}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 536856f7867dd8c4dad828d766c94ef2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SBabchuk.Runtime.UI.Popups.UIPopupAnimation
+  _style: {fileID: 11400000, guid: bd83f6b7b2828384fb6edb0850aec67e, type: 2}
+  _window: {fileID: 1261138218}
+--- !u!225 &1261138225
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1261138217}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &1262856452
 GameObject:
   m_ObjectHideFlags: 0
@@ -45635,6 +45719,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1737722885}
   - component: {fileID: 1737722886}
+  - component: {fileID: 1737722888}
+  - component: {fileID: 1737722887}
   m_Layer: 5
   m_Name: CarSkinPopup
   m_TagString: Untagged
@@ -45679,6 +45765,32 @@ MonoBehaviour:
   _outsideCloseButton: {fileID: 578945711}
   _itemsRoot: {fileID: 550163678}
   _itemTemplate: {fileID: 2118882818}
+--- !u!114 &1737722887
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1737722884}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 536856f7867dd8c4dad828d766c94ef2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SBabchuk.Runtime.UI.Popups.UIPopupAnimation
+  _style: {fileID: 11400000, guid: a40a5230cdfca5a48a3af1ba5b263b7f, type: 2}
+  _window: {fileID: 1410881744}
+--- !u!225 &1737722888
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1737722884}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &1739080270
 GameObject:
   m_ObjectHideFlags: 0
@@ -50434,6 +50546,8 @@ GameObject:
   - component: {fileID: 1957939695}
   - component: {fileID: 1957939699}
   - component: {fileID: 1957939696}
+  - component: {fileID: 1957939701}
+  - component: {fileID: 1957939700}
   m_Layer: 5
   m_Name: StoreInfoPopup
   m_TagString: Untagged
@@ -50492,6 +50606,32 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1957939694}
   m_CullTransparentMesh: 1
+--- !u!114 &1957939700
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1957939694}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 536856f7867dd8c4dad828d766c94ef2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SBabchuk.Runtime.UI.Popups.UIPopupAnimation
+  _style: {fileID: 11400000, guid: a40a5230cdfca5a48a3af1ba5b263b7f, type: 2}
+  _window: {fileID: 695976009}
+--- !u!225 &1957939701
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1957939694}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &1959023713
 GameObject:
   m_ObjectHideFlags: 0

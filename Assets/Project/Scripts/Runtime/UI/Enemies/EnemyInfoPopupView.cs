@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using SBabchuk.Runtime.Architecture;
 using SBabchuk.Runtime.Services.Contracts;
 using SBabchuk.Runtime.Services.Models;
+using SBabchuk.Runtime.UI.Popups;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -76,7 +77,7 @@ namespace SBabchuk.Runtime.UI.Enemies
             PauseGame();
 
             if (_panel != null)
-                _panel.SetActive(true);
+                _panel.ShowPopup();
 
             _isOpen = true;
             _openEnemyId = enemyId;
@@ -88,7 +89,7 @@ namespace SBabchuk.Runtime.UI.Enemies
                 return;
 
             if (_panel != null)
-                _panel.SetActive(false);
+                _panel.HidePopup();
 
             ResumeGame();
             _isOpen = false;

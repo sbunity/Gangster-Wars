@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Cysharp.Threading.Tasks;
@@ -37,20 +38,25 @@ namespace SBabchuk.Runtime.UI
         [SerializeField, FormerlySerializedAs("predecessors")]
         private List<BttnSelectLvlController> _predecessors = new List<BttnSelectLvlController>();
 
+        [SerializeField]
+        private UIPulseAnimation _nextLevelPulse;
+
         private LevelDatabase _database;
         private Level _properties;
         private IAssetProvider _assetProvider;
         private IPlayerProgressService _progressService;
         private ISceneTransitionService _sceneTransitionService;
+        private ISceneIntro _sceneIntro;
 
         public int LevelId => _levelId >= 0 ? _levelId : (int)_level;
 
         [Inject]
-        public void Construct(IAssetProvider assetProvider, IPlayerProgressService progressService, ISceneTransitionService sceneTransitionService)
+        public void Construct(IAssetProvider assetProvider, IPlayerProgressService progressService, ISceneTransitionService sceneTransitionService, ISceneIntro sceneIntro)
         {
             _assetProvider = assetProvider;
             _progressService = progressService;
             _sceneTransitionService = sceneTransitionService;
+            _sceneIntro = sceneIntro;
         }
 
         private IEnumerator Start()
@@ -61,6 +67,7 @@ namespace SBabchuk.Runtime.UI
             yield return null;
 
             RefreshLockState();
+            PulseIfNextLevelAsync().Forget();
         }
 
         public void Init(LevelsName targetLevel)
@@ -106,6 +113,21 @@ namespace SBabchuk.Runtime.UI
 
             _lockImg.SetActive(isLocked);
             _stars.enabled = !_lockImg.activeSelf;
+        }
+
+        private async UniTaskVoid PulseIfNextLevelAsync()
+        {
+            if (_nextLevelPulse == null || _lockImg.activeSelf || _isCompleted == mySwitch.On)
+                return;
+
+            try
+            {
+                await _sceneIntro.WaitForCompletionAsync(destroyCancellationToken);
+                _nextLevelPulse.Play();
+            }
+            catch (OperationCanceledException)
+            {
+            }
         }
 
         public void StartLevel()

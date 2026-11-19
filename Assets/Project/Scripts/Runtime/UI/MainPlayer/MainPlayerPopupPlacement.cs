@@ -60,13 +60,13 @@ namespace SBabchuk.Runtime.UI.MainPlayer
 
             _rect.localPosition += (Vector3)(GetTargetPoint(mirrored) - GetTailPoint());
 
-            var frame = GetFrame();
+            var frame = GetFullSizeFrame();
             return Mathf.Max(0f, area.xMin - frame.xMin) + Mathf.Max(0f, frame.xMax - area.xMax);
         }
 
         private void ClampInto(Rect area)
         {
-            var frame = GetFrame();
+            var frame = GetFullSizeFrame();
             var shift = new Vector2(Shift(frame.xMin, frame.xMax, area.xMin, area.xMax), Shift(frame.yMin, frame.yMax, area.yMin, area.yMax));
             _rect.localPosition += (Vector3)shift;
         }
@@ -114,6 +114,21 @@ namespace SBabchuk.Runtime.UI.MainPlayer
             }
 
             return area;
+        }
+
+        private Rect GetFullSizeFrame()
+        {
+            var frame = GetFrame();
+            var scale = Mathf.Abs(_rect.localScale.y);
+            if (scale <= 0f)
+                return frame;
+
+            var tail = GetTailPoint();
+            return Rect.MinMaxRect(
+                tail.x + (frame.xMin - tail.x) / scale,
+                tail.y + (frame.yMin - tail.y) / scale,
+                tail.x + (frame.xMax - tail.x) / scale,
+                tail.y + (frame.yMax - tail.y) / scale);
         }
 
         private Rect GetFrame()

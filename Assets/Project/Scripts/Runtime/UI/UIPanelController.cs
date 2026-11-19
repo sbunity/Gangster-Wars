@@ -1,4 +1,5 @@
 using SBabchuk.Runtime.Architecture;
+using SBabchuk.Runtime.UI.Popups;
 using UnityEngine;
 using Zenject;
 using UnityEngine.Serialization;
@@ -48,7 +49,7 @@ namespace SBabchuk.Runtime.UI
             if (targetPanel.InstanceID != InstanceID)
                 return;
 
-            _panel.SetActive(true);
+            _panel.ShowPopup();
         }
 
         public void Hide(UIPanelController targetPanel)
@@ -56,7 +57,7 @@ namespace SBabchuk.Runtime.UI
             if (targetPanel.InstanceID != InstanceID)
                 return;
 
-            _panel.SetActive(false);
+            _panel.HidePopup();
         }
 
         private void Replace(UIPanelReplaceSignal signal)
@@ -68,7 +69,7 @@ namespace SBabchuk.Runtime.UI
             if (targetPanel.ParentPanel && InstanceID == targetPanel.ParentPanel.InstanceID && !targetPanel.ParentPanel.HideIfShowChild)
                 return;
 
-            _panel.SetActive(false);
+            _panel.HidePopup();
         }
     }
 }

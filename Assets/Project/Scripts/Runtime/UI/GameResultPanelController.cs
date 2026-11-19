@@ -3,6 +3,7 @@ using DG.Tweening;
 using SBabchuk.Runtime.Architecture;
 using SBabchuk.Runtime.Audio;
 using SBabchuk.Runtime.Services.Contracts;
+using SBabchuk.Runtime.UI.Popups;
 using SBabchuk.Runtime.Vibration;
 using UnityEngine;
 using UnityEngine.Serialization;
@@ -19,11 +20,7 @@ namespace SBabchuk.Runtime.UI
         [SerializeField, FormerlySerializedAs("panel")]
         private GameObject _panel;
 
-        [SerializeField] private CanvasGroup _canvasGroup;
-
         [SerializeField, Min(0f)] private float _showDelay;
-
-        [SerializeField, Min(0f)] private float _fadeDuration = 0.4f;
 
         [SerializeField] private SoundConfig _showSound;
 
@@ -41,7 +38,6 @@ namespace SBabchuk.Runtime.UI
         private IMusicService _musicService;
         private IVibrationService _vibrationService;
         private SignalSubscriptions _signals;
-        private Tween _fadeTween;
         private Tween _showDelayTween;
 
         [Inject]
@@ -62,7 +58,6 @@ namespace SBabchuk.Runtime.UI
         protected virtual void OnDestroy()
         {
             _showDelayTween?.Kill();
-            _fadeTween?.Kill();
         }
 
         public void Show(Panels panelType)
@@ -72,9 +67,8 @@ namespace SBabchuk.Runtime.UI
 
             OnShow();
             ApplyTopMostSorting();
-            _panel.SetActive(true);
+            _panel.ShowPopup();
             Time.timeScale = 0f;
-            PlayFadeIn();
             PlayCoinsReward();
             _musicService?.Stop();
             _audioService?.Play(_showSound);
@@ -84,7 +78,6 @@ namespace SBabchuk.Runtime.UI
         public void Hide()
         {
             _showDelayTween?.Kill();
-            _fadeTween?.Kill();
             _panel.SetActive(false);
         }
 
@@ -152,18 +145,6 @@ namespace SBabchuk.Runtime.UI
         {
             if (_coinsReward != null)
                 _coinsReward.Play();
-        }
-
-        private void PlayFadeIn()
-        {
-            if (_canvasGroup == null)
-                return;
-
-            _fadeTween?.Kill();
-            _canvasGroup.alpha = 0f;
-            _fadeTween = DOTween
-                .To(() => _canvasGroup.alpha, value => _canvasGroup.alpha = value, 1f, _fadeDuration)
-                .SetUpdate(true);
         }
     }
 }

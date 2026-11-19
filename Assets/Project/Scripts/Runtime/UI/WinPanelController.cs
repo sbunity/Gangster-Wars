@@ -10,23 +10,33 @@ namespace SBabchuk.Runtime.UI
     {
         [SerializeField] private Button _continueButton;
 
+        [SerializeField] private Button _nextLevelButton;
+
         [Header("Stars (Win panel only)")]
         [SerializeField] private Image _starsImage;
 
         [SerializeField] private List<Sprite> _starsSprites;
 
         private IPlayerProgressService _progressService;
+        private ITutorialProgressService _tutorialProgress;
+        private IAssetProvider _assetProvider;
+        private int _nextLevelId = -1;
 
         [Inject]
-        public void Construct(IPlayerProgressService progressService)
+        public void Construct(IPlayerProgressService progressService, ITutorialProgressService tutorialProgress, IAssetProvider assetProvider)
         {
             _progressService = progressService;
+            _tutorialProgress = tutorialProgress;
+            _assetProvider = assetProvider;
         }
 
         private void Awake()
         {
             if (_continueButton != null)
                 _continueButton.onClick.AddListener(ReturnToMainMenu);
+
+            if (_nextLevelButton != null)
+                _nextLevelButton.onClick.AddListener(StartNextLevel);
         }
 
         protected override void OnDestroy()
@@ -34,11 +44,42 @@ namespace SBabchuk.Runtime.UI
             base.OnDestroy();
             if (_continueButton != null)
                 _continueButton.onClick.RemoveListener(ReturnToMainMenu);
+
+            if (_nextLevelButton != null)
+                _nextLevelButton.onClick.RemoveListener(StartNextLevel);
         }
 
-        protected override void OnShow() => UpdateStars();
+        protected override void OnShow()
+        {
+            UpdateStars();
+            UpdateNextLevelButton();
+        }
 
         public void ReturnToMainMenu() => TransitionTo(Scene.MainScene);
+
+        public void StartNextLevel()
+        {
+            if (_nextLevelId < 0)
+                return;
+
+            _progressService.SetCurrentLevel(_nextLevelId);
+            TransitionTo(Scene.GameScene);
+        }
+
+        private void UpdateNextLevelButton()
+        {
+            if (_nextLevelButton == null)
+                return;
+
+            _nextLevelButton.gameObject.SetActive(TryGetNextLevel(out _nextLevelId));
+        }
+
+        private bool TryGetNextLevel(out int levelId)
+        {
+            levelId = -1;
+            return _tutorialProgress.IsMenuTutorialCompleted
+                && _assetProvider.LevelDatabase.TryGetNextLevelId(_progressService.CurrentLevelId, out levelId);
+        }
 
         private void UpdateStars()
         {
