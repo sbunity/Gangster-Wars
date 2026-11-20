@@ -1,0 +1,78 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 83f8be750920ec04a9069af8179c7eb4, type: 3}
+  m_Name: IAPRewardsConfig
+  m_EditorClassIdentifier: Assembly-CSharp::SBabchuk.Runtime.Purchasing.IAPRewardsConfig
+  _rewards:
+  - _product: 0
+    _coins: 200
+    _weapon: -1
+    _personage: -1
+    _defence: -1
+    _carSkin: -1
+    _removeAds: 0
+  - _product: 1
+    _coins: 500
+    _weapon: -1
+    _personage: -1
+    _defence: -1
+    _carSkin: -1
+    _removeAds: 0
+  - _product: 2
+    _coins: 1000
+    _weapon: -1
+    _personage: -1
+    _defence: -1
+    _carSkin: -1
+    _removeAds: 0
+  - _product: 3
+    _coins: 1500
+    _weapon: -1
+    _personage: -1
+    _defence: -1
+    _carSkin: -1
+    _removeAds: 0
+  - _product: 4
+    _coins: 0
+    _weapon: 4
+    _personage: -1
+    _defence: -1
+    _carSkin: -1
+    _removeAds: 0
+  - _product: 5
+    _coins: 0
+    _weapon: -1
+    _personage: 1
+    _defence: -1
+    _carSkin: -1
+    _removeAds: 0
+  - _product: 6
+    _coins: 0
+    _weapon: -1
+    _personage: -1
+    _defence: 3
+    _carSkin: -1
+    _removeAds: 0
+  - _product: 7
+    _coins: 0
+    _weapon: -1
+    _personage: -1
+    _defence: -1
+    _carSkin: 1
+    _removeAds: 0
+  - _product: 8
+    _coins: 0
+    _weapon: -1
+    _personage: -1
+    _defence: -1
+    _carSkin: -1
+    _removeAds: 1

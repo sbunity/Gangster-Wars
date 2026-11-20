@@ -65,7 +65,11 @@ namespace SBabchuk.Runtime.Installers
             Container.Bind<IUserService>().To<UserService>().AsSingle();
             Container.Bind<IConsentData>().To<ConsentData>().AsSingle();
             Container.BindInterfacesTo<AdsService>().AsSingle();
+            Container.BindInterfacesTo<NoAdsService>().AsSingle();
             Container.BindInterfacesTo<IAPService>().AsSingle();
+            Container.BindInterfacesTo<IAPShopService>().AsSingle();
+            Container.Bind<IStoreItemPurchaseService>().To<StoreItemPurchaseService>().AsSingle();
+            Container.BindInterfacesTo<IAPRewardService>().AsSingle();
         }
 
         private void BindSafeArea()
@@ -117,6 +121,8 @@ namespace SBabchuk.Runtime.Installers
             Container.DeclareSignal<CoinFlightFromScreenRequestedSignal>().OptionalSubscriber();
             Container.DeclareSignal<ProgressUpgradedSignal>().OptionalSubscriber();
             Container.DeclareSignal<CarSkinChangedSignal>().OptionalSubscriber();
+            Container.DeclareSignal<IAPInitializedSignal>().OptionalSubscriber();
+            Container.DeclareSignal<AdsRemovedSignal>().OptionalSubscriber();
             Container.DeclareSignal<WeaponAmmoChangedSignal>().OptionalSubscriber();
             Container.DeclareSignal<LeaderMagazineInitializedSignal>().OptionalSubscriber();
             Container.DeclareSignal<LeaderPatronsChangedSignal>().OptionalSubscriber();

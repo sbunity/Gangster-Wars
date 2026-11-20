@@ -1,6 +1,8 @@
 using System.Collections.Generic;
+using Cysharp.Threading.Tasks;
 using SBabchuk.Runtime.Architecture;
 using SBabchuk.Runtime.Services.Contracts;
+using SBabchuk.Runtime.Services.Models;
 using SBabchuk.Runtime.UI.Popups;
 using UnityEngine;
 using UnityEngine.UI;
@@ -17,17 +19,20 @@ namespace SBabchuk.Runtime.UI.CarSkins
 
         private readonly List<CarSkinItemView> _items = new();
         private ICarSkinService _carSkinService;
+        private IStoreItemPurchaseService _purchaseService;
         private IInstantiator _instantiator;
         private SignalSubscriptions _signals;
 
         [Inject]
-        public void Construct(ICarSkinService carSkinService, IInstantiator instantiator, SignalBus signalBus)
+        public void Construct(ICarSkinService carSkinService, IStoreItemPurchaseService purchaseService, IInstantiator instantiator, SignalBus signalBus)
         {
             _carSkinService = carSkinService;
+            _purchaseService = purchaseService;
             _instantiator = instantiator;
             _signals = new SignalSubscriptions(signalBus)
                 .Add<CarSkinChangedSignal>(Refresh)
-                .Add<CoinsChangedSignal>(Refresh);
+                .Add<CoinsChangedSignal>(Refresh)
+                .Add<IAPInitializedSignal>(Refresh);
         }
 
         private void Awake()
@@ -84,7 +89,7 @@ namespace SBabchuk.Runtime.UI.CarSkins
                 return;
 
             foreach (var item in _items)
-                item.Render(GetState(item.SkinId), _carSkinService.CanBuy(item.SkinId));
+                item.Render(GetState(item.SkinId), _purchaseService.GetPrice(StoreItem.CarSkin(item.SkinId)));
         }
 
         private CarSkinItemState GetState(int skinId)
@@ -96,7 +101,20 @@ namespace SBabchuk.Runtime.UI.CarSkins
         }
 
         private void OnBuyRequested(int skinId)
-            => _carSkinService.TryBuy(skinId);
+            => BuyAsync(skinId).Forget();
+
+        private async UniTaskVoid BuyAsync(int skinId)
+        {
+            var skin = StoreItem.CarSkin(skinId);
+            var isRealMoney = _purchaseService.GetPrice(skin).IsRealMoney;
+            var isBought = await _purchaseService.BuyAsync(skin, destroyCancellationToken);
+            if (!isBought || !isRealMoney)
+                return;
+
+            var item = _items.Find(view => view.SkinId == skinId);
+            if (item != null)
+                item.PlayPurchaseSound();
+        }
 
         private void OnSelectRequested(int skinId)
             => _carSkinService.TrySelect(skinId);

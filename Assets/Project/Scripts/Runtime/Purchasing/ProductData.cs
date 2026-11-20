@@ -12,6 +12,7 @@ namespace SBabchuk.Runtime.Purchasing
 
         public decimal Price { get; }
         public string ISOCurrencyCode { get; }
+        public string LocalizedPriceString { get; }
 
         public bool IsSubscribed { get; }
 
@@ -51,6 +52,7 @@ namespace SBabchuk.Runtime.Purchasing
 
             Price = product.metadata.localizedPrice;
             ISOCurrencyCode = product.metadata.isoCurrencyCode;
+            LocalizedPriceString = product.metadata.localizedPriceString;
         }
 #endif
     }

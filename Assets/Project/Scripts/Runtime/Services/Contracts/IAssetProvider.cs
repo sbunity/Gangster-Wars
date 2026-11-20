@@ -9,6 +9,7 @@ using SBabchuk.Runtime.Databases.Levels;
 using SBabchuk.Runtime.Databases.MainPlayers;
 using SBabchuk.Runtime.Databases.WeaponStore;
 using SBabchuk.Runtime.Progress;
+using SBabchuk.Runtime.Purchasing;
 using SBabchuk.Runtime.Tutorial;
 
 namespace SBabchuk.Runtime.Services.Contracts
@@ -38,6 +39,8 @@ namespace SBabchuk.Runtime.Services.Contracts
         TutorialConfig TutorialConfig { get; }
 
         AdPlacementConfig AdPlacementConfig { get; }
+
+        IAPRewardsConfig IAPRewardsConfig { get; }
 
         T LoadAsset<T>() where T : Object;
         GameObject LoadPrefab(NamesPool pool, int id);

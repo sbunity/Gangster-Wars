@@ -25,11 +25,19 @@ namespace SBabchuk.Runtime.UI
         private Selectable _selectable;
         private bool _pressedWhileInteractable;
 
+        public bool DeferSound { get; set; }
+
         [Inject]
         public void Construct(IAudioService audioService, UISoundsConfig sounds)
         {
             _audioService = audioService;
             _sounds = sounds;
+        }
+
+        public void PlayDeferredSound()
+        {
+            if (_sounds != null)
+                Play(GetSound());
         }
 
         private void Awake()
@@ -49,8 +57,14 @@ namespace SBabchuk.Runtime.UI
 
             _pressedWhileInteractable = false;
 
-            if (_audioService != null && _sounds != null)
-                _audioService.Play(GetSound());
+            if (_sounds != null)
+                Play(DeferSound ? _sounds.Click : GetSound());
+        }
+
+        private void Play(SoundConfig sound)
+        {
+            if (_audioService != null)
+                _audioService.Play(sound);
         }
 
         private SoundConfig GetSound()

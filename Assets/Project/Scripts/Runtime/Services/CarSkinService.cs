@@ -54,6 +54,17 @@ namespace SBabchuk.Runtime.Services
             return true;
         }
 
+        public void Unlock(int id)
+        {
+            if (Database.GetSkin(id) == null || IsOwned(id))
+                return;
+
+            Progress.OwnedCarSkinIds.Add(id);
+            Progress.SelectedCarSkinId = id;
+            _repository.Save();
+            FireSkinChanged();
+        }
+
         public bool TrySelect(int id)
         {
             if (!IsOwned(id) || id == SelectedSkinId)

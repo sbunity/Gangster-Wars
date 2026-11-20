@@ -14,6 +14,7 @@ namespace SBabchuk.Runtime.Services.Contracts
         bool IsOwned(int id);
         bool CanBuy(int id);
         bool TryBuy(int id);
+        void Unlock(int id);
         bool TrySelect(int id);
     }
 }

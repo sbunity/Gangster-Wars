@@ -140,6 +140,14 @@ namespace SBabchuk.Runtime.Architecture
     {
     }
 
+    public readonly struct IAPInitializedSignal
+    {
+    }
+
+    public readonly struct AdsRemovedSignal
+    {
+    }
+
     public readonly struct CarSkinChangedSignal
     {
         public CarSkinChangedSignal(int skinId)

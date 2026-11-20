@@ -202,7 +202,11 @@ namespace SBabchuk.Runtime.Purchasing
 #if MODULE_IAP && !UNITY_IAP_NEW
             var item = _iapService.GetIAPItem(productKeyType);
             if (item != null)
-                return new ProductData(Controller.products.WithID(item.ID));
+            {
+                var product = Controller.products.WithID(item.ID);
+                if (product != null)
+                    return new ProductData(product);
+            }
 #endif
 
             return null;

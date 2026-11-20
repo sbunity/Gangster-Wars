@@ -405,7 +405,7 @@ namespace SBabchuk.Runtime.Advertisement
 
             if(state == AppState.Foreground)
             {
-                if (_appOpenAdCanShow && IsAppOpenAdAvailable())
+                if (_appOpenAdCanShow && _adsService.IsForcedAdEnabled() && IsAppOpenAdAvailable())
                 {
                     _appOpenAd.Show();
 

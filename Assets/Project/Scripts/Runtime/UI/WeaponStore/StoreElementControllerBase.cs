@@ -23,7 +23,8 @@ namespace SBabchuk.Runtime.UI.WeaponStore
             ProgressService = progressService;
             _signals = new SignalSubscriptions(signalBus)
                 .Add<ProgressUpgradedSignal>(RefreshState)
-                .Add<CoinsChangedSignal>(RefreshState);
+                .Add<CoinsChangedSignal>(RefreshState)
+                .Add<IAPInitializedSignal>(RefreshState);
 
             TryActivate();
         }

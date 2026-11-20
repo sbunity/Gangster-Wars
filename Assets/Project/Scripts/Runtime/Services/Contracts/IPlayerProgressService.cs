@@ -31,15 +31,18 @@ namespace SBabchuk.Runtime.Services.Contracts
         ChapterShortInfo GetChapterShortInfo(int id);
         void SetWeaponAmmo(WeaponsName weapon, int value);
         void BuyWeapon(int id);
+        void UnlockWeapon(int id);
         void BuyWeaponMagazine(int id, bool isFree = false);
         void BuyWeaponUpgrade(int id);
         void BuyGrenade(int id, bool isFree = false);
         bool CanUseGrenade(int id);
         bool UseGrenade(int id);
         void BuyDefence(int id);
+        void UnlockDefence(int id);
         void SelectDefence(int id);
         void BuyDefenceUpgrade(int id);
         void BuyPersonage(int id);
+        void UnlockPersonage(int id);
         void BuyPersonageUpgrade(int id);
     }
 }

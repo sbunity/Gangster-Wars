@@ -2,10 +2,14 @@ namespace SBabchuk.Runtime.Purchasing
 {
     public enum ProductKeyType
     {
-        NoAds = 0,
-        StarterPack = 1,
-        GoldSmall = 2,
-        GoldMedium = 3,
-        GoldBig = 4,
+        PocketChange = 0,
+        CashRoll = 1,
+        Briefcase = 2,
+        BossStash = 3,
+        Minigun = 4,
+        Bomber = 5,
+        Barricade4 = 6,
+        RedCarSkin = 7,
+        NoAds = 8,
     }
 }

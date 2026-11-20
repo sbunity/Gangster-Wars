@@ -10,6 +10,7 @@ using SBabchuk.Runtime.Databases.Levels;
 using SBabchuk.Runtime.Databases.MainPlayers;
 using SBabchuk.Runtime.Databases.WeaponStore;
 using SBabchuk.Runtime.Progress;
+using SBabchuk.Runtime.Purchasing;
 using SBabchuk.Runtime.Services.Contracts;
 using SBabchuk.Runtime.Tutorial;
 using UnityEngine;
@@ -42,6 +43,7 @@ namespace SBabchuk.Runtime.Services
         public CarSkinDatabase CarSkinDatabase => GetDatabase<CarSkinDatabase>();
         public TutorialConfig TutorialConfig => GetDatabase<TutorialConfig>();
         public AdPlacementConfig AdPlacementConfig => GetDatabase<AdPlacementConfig>();
+        public IAPRewardsConfig IAPRewardsConfig => GetDatabase<IAPRewardsConfig>();
 
         public T LoadAsset<T>() where T : UnityEngine.Object
         {

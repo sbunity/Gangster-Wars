@@ -163,6 +163,17 @@ namespace SBabchuk.Runtime.Services
             FireProgressChanged();
         }
 
+        public void UnlockWeapon(int id)
+        {
+            var weaponShortInfo = Progress.GetWeaponShortInfo(id);
+            if (weaponShortInfo == null || weaponShortInfo.IsBuy == mySwitch.On)
+                return;
+
+            weaponShortInfo.IsBuy = mySwitch.On;
+            SaveProgress();
+            FireProgressChanged();
+        }
+
         public void BuyWeaponMagazine(int id, bool isFree = false)
         {
             var weaponShortInfo = Progress.GetWeaponShortInfo(id);
@@ -276,6 +287,17 @@ namespace SBabchuk.Runtime.Services
             FireProgressChanged();
         }
 
+        public void UnlockDefence(int id)
+        {
+            var defenceShortInfo = Progress.GetDefenceShortInfo(id);
+            if (defenceShortInfo == null || defenceShortInfo.IsBuy == mySwitch.On)
+                return;
+
+            defenceShortInfo.IsBuy = mySwitch.On;
+            SaveProgress();
+            FireProgressChanged();
+        }
+
         public void SelectDefence(int id)
         {
             Progress.SelectedDefenceId = id;
@@ -310,6 +332,17 @@ namespace SBabchuk.Runtime.Services
 
             personageShortInfo.IsBuy = mySwitch.On;
             AddCoins(-personage.Price);
+            FireProgressChanged();
+        }
+
+        public void UnlockPersonage(int id)
+        {
+            var personageShortInfo = Progress.GetPersonageShortInfo(id);
+            if (personageShortInfo == null || personageShortInfo.IsBuy == mySwitch.On)
+                return;
+
+            personageShortInfo.IsBuy = mySwitch.On;
+            SaveProgress();
             FireProgressChanged();
         }
 

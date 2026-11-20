@@ -15,28 +15,48 @@ MonoBehaviour:
   _useFakeStore: 0
   _fakeStoreMode: 0
   _storeItems:
-  - _androidID: com.example.noads
-    _iOSID: com.example.noads
+  - _androidID: gangsterwars.pocket_change
+    _iOSID: gangsterwars.pocket_change
     _productKeyType: 0
-    _productType: 1
-    _defaultUSDPrice: 5.99
-  - _androidID: com.example.starter.pack
-    _iOSID: com.example.starter.pack
+    _productType: 0
+    _defaultUSDPrice: 0.99
+  - _androidID: gangsterwars.cash_roll
+    _iOSID: gangsterwars.cash_roll
     _productKeyType: 1
-    _productType: 1
-    _defaultUSDPrice: 11.99
-  - _androidID: com.example.coins.1k
-    _iOSID: com.example.coins.1k
+    _productType: 0
+    _defaultUSDPrice: 1.99
+  - _androidID: gangsterwars.briefcase
+    _iOSID: gangsterwars.briefcase
     _productKeyType: 2
     _productType: 0
-    _defaultUSDPrice: 1.49
-  - _androidID: com.example.coins.5k
-    _iOSID: com.example.coins.5k
+    _defaultUSDPrice: 2.99
+  - _androidID: gangsterwars.boss_stash
+    _iOSID: gangsterwars.boss_stash
     _productKeyType: 3
     _productType: 0
-    _defaultUSDPrice: 5.99
-  - _androidID: com.example.coins.10k
-    _iOSID: com.example.coins.10k
+    _defaultUSDPrice: 3.99
+  - _androidID: gangsterwars.minigun
+    _iOSID: gangsterwars.minigun
     _productKeyType: 4
-    _productType: 0
-    _defaultUSDPrice: 10.99
+    _productType: 1
+    _defaultUSDPrice: 4.99
+  - _androidID: gangsterwars.bomber
+    _iOSID: gangsterwars.bomber
+    _productKeyType: 5
+    _productType: 1
+    _defaultUSDPrice: 3.99
+  - _androidID: gangsterwars.barricade_4
+    _iOSID: gangsterwars.barricade_4
+    _productKeyType: 6
+    _productType: 1
+    _defaultUSDPrice: 2.99
+  - _androidID: gangsterwars.red_car_skin
+    _iOSID: gangsterwars.red_car_skin
+    _productKeyType: 7
+    _productType: 1
+    _defaultUSDPrice: 0.99
+  - _androidID: gangsterwars.no_ads
+    _iOSID: gangsterwars.no_ads
+    _productKeyType: 8
+    _productType: 1
+    _defaultUSDPrice: 3.99

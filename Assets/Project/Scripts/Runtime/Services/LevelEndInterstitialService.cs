@@ -33,7 +33,7 @@ namespace SBabchuk.Runtime.Services
 
         public void ScheduleAfter(UniTask presentation)
         {
-            if (_state != State.Idle || _isFirstLevel)
+            if (_state != State.Idle || _isFirstLevel || !_adsService.IsForcedAdEnabled())
                 return;
 
             _state = State.Scheduled;

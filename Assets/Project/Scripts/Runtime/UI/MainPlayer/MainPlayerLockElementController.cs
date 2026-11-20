@@ -1,24 +1,10 @@
-using SBabchuk.Runtime.Databases.MainPlayers;
+using SBabchuk.Runtime.Services.Models;
 using SBabchuk.Runtime.UI.WeaponStore;
 
 namespace SBabchuk.Runtime.UI.MainPlayer
 {
-    public class MainPlayerLockElementController : LockElementControllerBase
+    public class MainPlayerLockElementController : StoreItemLockElementControllerBase
     {
-        private Personage _personage;
-
-        public override void Initialisation(int personageId)
-        {
-            Id = personageId;
-            var playerStore = _assetProvider.MainPlayerDatabase;
-            _personage = playerStore.GetPersonage(Id);
-
-            StoreElementView.ApplyPrice(PriceBuy, BttnBuy, _personage?.Price, _progressService);
-        }
-
-        public override void Buy()
-        {
-            _progressService.BuyPersonage(Id);
-        }
+        protected override StoreItemType ItemType => StoreItemType.Personage;
     }
 }
